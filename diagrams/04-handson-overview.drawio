@@ -1,0 +1,118 @@
+<mxfile host="65bd71144e">
+    <diagram name="Handson Overview" id="handson-overview">
+        <mxGraphModel dx="1114" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="Antigravity ハンズオン構成図" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="60" width="400" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="subtitle" value="合計: 約2時間 | 前半: 基礎体験（50分） → 後半: 発展・拡張（70分）" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#555555;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="100" width="760" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="step01" value="01. 環境セットアップ&#10;⏱️ 15分 ⭐" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=none;fontSize=14;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="150" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="step01-detail" value="✅ Antigravityインストール&#10;✅ Googleアカウントログイン&#10;✅ ワークスペース作成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4FB;strokeColor=#6C8EBF;fontSize=11;align=left;dashed=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="250" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="step02" value="02. GEMINI.md 設定&lt;br&gt;⏱️ 15分 ⭐" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=none;fontSize=14;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="150" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="step02-detail" value="✅ GEMINI.md作成&#10;✅ 基本ルール設定&#10;✅ コーディング規約定義" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF6E8;strokeColor=#82B366;fontSize=11;align=left;dashed=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="250" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="step03" value="03. Vibe Coding 基礎編&#10;⏱️ 20分 ⭐⭐ 🎨" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF4C3;strokeColor=none;fontSize=14;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="150" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="step03-detail" value="✅ HTMLページ作成&#10;✅ デザインカスタマイズ&#10;✅ Nano Banana画像生成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEA;strokeColor=#D6B656;fontSize=11;align=left;dashed=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="250" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="phase-separator" value="" style="endArrow=none;html=1;strokeColor=#FF6B6B;strokeWidth=3;dashed=1;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="50" y="380" as="sourcePoint"/>
+                        <mxPoint x="1090" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="phase-label" value="後半: 発展・拡張（70分）" style="text;html=1;strokeColor=none;fillColor=#FFE6E6;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=16;fontStyle=1;fontColor=#FF6B6B;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="365" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="step04" value="04. MCP 接続&#10;⏱️ 20分 ⭐⭐" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1BEE7;strokeColor=none;fontSize=14;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="440" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="step04-detail" value="✅ MCP設定画面確認&#10;✅ Playwright MCP有効化&#10;✅ Web検索テスト" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#9C27B0;fontSize=11;align=left;dashed=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="540" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="step05" value="05. Agent Skills 作成&#10;⏱️ 20分 ⭐⭐⭐" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=none;fontSize=14;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="440" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="step05-detail" value="✅ SKILL.md作成&#10;✅ コードレビュー機能&#10;✅ Skill呼び出しテスト" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#B85450;fontSize=11;align=left;dashed=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="540" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="step06" value="06. Vibe Coding 発展編&#10;⏱️ 30分 ⭐⭐⭐ 🚀" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=none;fontSize=14;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="440" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="step06-detail" value="✅ Webリサーチ（MCP）&#10;✅ React+Vite LP作成&#10;✅ デプロイ準備" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D79B00;fontSize=11;align=left;dashed=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="540" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="goal" value="🎯 最終ゴール&#10;AIエージェントを活用した&#10;高速プロトタイピング" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#B9E0A5;strokeColor=none;fontSize=15;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="820" y="410" width="200" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow01" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#666666;strokeWidth=2;" parent="1" source="step01" target="step02" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow02" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#666666;strokeWidth=2;" parent="1" source="step02" target="step03" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow03" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#666666;strokeWidth=2;" parent="1" source="step03" target="step04" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="810" y="190"/>
+                            <mxPoint x="810" y="350"/>
+                            <mxPoint x="180" y="350"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="arrow04" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#666666;strokeWidth=2;" parent="1" source="step04" target="step05" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow05" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#666666;strokeWidth=2;" parent="1" source="step05" target="step06" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow06" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#5D8A3A;strokeWidth=3;" parent="1" source="step06" target="goal" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-d01" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#6C8EBF;strokeWidth=1;dashed=1;" parent="1" source="step01" target="step01-detail" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-d02" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#82B366;strokeWidth=1;dashed=1;" parent="1" source="step02" target="step02-detail" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-d03" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#D6B656;strokeWidth=1;dashed=1;" parent="1" source="step03" target="step03-detail" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-d04" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#9C27B0;strokeWidth=1;dashed=1;" parent="1" source="step04" target="step04-detail" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-d05" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#B85450;strokeWidth=1;dashed=1;" parent="1" source="step05" target="step05-detail" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-d06" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#D79B00;strokeWidth=1;dashed=1;" parent="1" source="step06" target="step06-detail" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-title" value="難易度" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="80" y="632" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend1" value="⭐ 初級" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12" parent="1" vertex="1">
+                    <mxGeometry x="80" y="662" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend2" value="⭐⭐ 中級" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12" parent="1" vertex="1">
+                    <mxGeometry x="200" y="662" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend3" value="⭐⭐⭐ 上級" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12" parent="1" vertex="1">
+                    <mxGeometry x="320" y="662" width="100" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

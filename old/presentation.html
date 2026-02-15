@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Antigravity - 次世代AIエージェント統合開発環境</title>
+  <meta name="description" content="Google Antigravityハンズオン プレゼンテーション資料">
+
+  <!-- Google Fonts: Noto Sans JP + JetBrains Mono + Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ========================================
+       パステルカラーパレット
+       - Primary:   #a8d8ea (パステルブルー)
+       - Secondary: #f6c6ea (パステルピンク)
+       - Accent:    #ffe0ac (パステルオレンジ)
+       - Green:     #c1e6c0 (パステルグリーン)
+       - Lavender:  #d5c6e0 (パステルラベンダー)
+       - BG:        #faf5ff (ほぼ白)
+       - Text:      #3a3a5c (ダークパープルグレー)
+       ======================================== */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #e8e0f0;
+      color: #3a3a5c;
+      line-height: 1.7;
+    }
+
+    /* Material Symbols のヘルパー */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    .icon-lg {
+      font-size: 36px;
+    }
+
+    .icon-xl {
+      font-size: 48px;
+    }
+
+    .icon-hero {
+      font-size: 72px;
+    }
+
+    .icon-pastel-blue {
+      color: #6daad8;
+    }
+
+    .icon-pastel-pink {
+      color: #e08ac0;
+    }
+
+    .icon-pastel-orange {
+      color: #e0a050;
+    }
+
+    .icon-pastel-green {
+      color: #6bb86a;
+    }
+
+    .icon-pastel-lavender {
+      color: #9b82b5;
+    }
+
+    /* ===== スライド共通 ===== */
+    .slide {
+      width: 100vw;
+      min-height: 100vh;
+      padding: 60px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide+.slide {
+      border-top: 1px solid #e0d6ec;
+    }
+
+    /* ページ番号 */
+    .slide::after {
+      content: attr(data-page);
+      position: absolute;
+      bottom: 20px;
+      right: 40px;
+      font-size: 14px;
+      color: #b0a3c0;
+      font-weight: 700;
+    }
+
+    /* 背景バリエーション */
+    .bg-white {
+      background: linear-gradient(160deg, #faf5ff 0%, #f0eaf8 100%);
+    }
+
+    .bg-blue {
+      background: linear-gradient(160deg, #e8f4fa 0%, #d4eaf6 100%);
+    }
+
+    .bg-pink {
+      background: linear-gradient(160deg, #fdf0f8 0%, #f6e0f0 100%);
+    }
+
+    .bg-green {
+      background: linear-gradient(160deg, #eef8ee 0%, #ddf0dc 100%);
+    }
+
+    .bg-orange {
+      background: linear-gradient(160deg, #fff8ee 0%, #f8eedc 100%);
+    }
+
+    .bg-lavender {
+      background: linear-gradient(160deg, #f4eefa 0%, #e8ddf4 100%);
+    }
+
+    /* タイトルスライド */
+    .slide-lead {
+      text-align: center;
+      background: linear-gradient(160deg, #e8ddf4 0%, #d4eaf6 40%, #f6e0f0 100%);
+    }
+
+    .slide-lead h1 {
+      font-size: 64px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #7b8fd4 0%, #b07bc8 50%, #d47ba0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      border: none;
+    }
+
+    .slide-lead h2 {
+      font-size: 30px;
+      color: #7a6d90;
+      border: none;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .slide-lead .tagline {
+      font-size: 22px;
+      color: #a080b8;
+      font-weight: 700;
+    }
+
+    .slide-lead .sub {
+      font-size: 20px;
+      color: #9a8aad;
+      margin-top: 8px;
+    }
+
+    /* 見出し */
+    h1 {
+      font-size: 44px;
+      font-weight: 900;
+      color: #5a4d78;
+      border-bottom: 4px solid #c8b8e0;
+      padding-bottom: 12px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #6a5d88;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #7a6d90;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* テキスト装飾 */
+    strong {
+      color: #8060a8;
+    }
+
+    em {
+      color: #c06888;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    a {
+      color: #6a90c8;
+      text-decoration: none;
+      border-bottom: 2px solid #a8d8ea;
+    }
+
+    /* コードブロック */
+    code {
+      background: rgba(168, 216, 234, 0.25);
+      padding: 3px 8px;
+      border-radius: 6px;
+      color: #5070a0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+    }
+
+    pre {
+      background: #2d2640;
+      color: #e8e0f0;
+      padding: 24px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(90, 70, 120, 0.15);
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    pre code {
+      background: transparent;
+      color: #e8e0f0;
+      font-size: 18px;
+    }
+
+    /* テーブル */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(90, 70, 120, 0.1);
+    }
+
+    th {
+      background: linear-gradient(135deg, #b8a0d8 0%, #a8c8e8 100%);
+      color: #fff;
+      padding: 14px 18px;
+      font-weight: 700;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    td {
+      padding: 12px 18px;
+      border-bottom: 1px solid #e8e0f0;
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 18px;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* 引用 */
+    blockquote {
+      border-left: 5px solid #c8b8e0;
+      padding: 20px 24px;
+      background: rgba(213, 198, 224, 0.2);
+      border-radius: 10px;
+      margin: 18px 0;
+      font-size: 22px;
+      color: #6a5d88;
+      font-weight: 700;
+    }
+
+    /* カラム */
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin: 18px 0;
+    }
+
+    /* ボックスパーツ */
+    .card {
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 16px rgba(90, 70, 120, 0.08);
+      margin: 12px 0;
+    }
+
+    .card-blue {
+      background: rgba(168, 216, 234, 0.3);
+      border: 2px solid #a8d8ea;
+    }
+
+    .card-pink {
+      background: rgba(246, 198, 234, 0.3);
+      border: 2px solid #f6c6ea;
+    }
+
+    .card-green {
+      background: rgba(193, 230, 192, 0.3);
+      border: 2px solid #c1e6c0;
+    }
+
+    .card-orange {
+      background: rgba(255, 224, 172, 0.3);
+      border: 2px solid #ffe0ac;
+    }
+
+    .card-lavender {
+      background: rgba(213, 198, 224, 0.3);
+      border: 2px solid #d5c6e0;
+    }
+
+    .note-box {
+      background: rgba(255, 224, 172, 0.3);
+      border-left: 5px solid #f0c060;
+      padding: 18px 22px;
+      border-radius: 10px;
+      margin: 16px 0;
+      font-weight: 700;
+      color: #8a6830;
+    }
+
+    .success-box {
+      background: rgba(193, 230, 192, 0.35);
+      border-left: 5px solid #80c080;
+      padding: 18px 22px;
+      border-radius: 10px;
+      margin: 16px 0;
+      color: #3a6a3a;
+    }
+
+    .warning-box {
+      background: rgba(246, 198, 234, 0.3);
+      border-left: 5px solid #e090b8;
+      padding: 18px 22px;
+      border-radius: 10px;
+      margin: 16px 0;
+      color: #8a3060;
+    }
+
+    /* リスト */
+    ul,
+    ol {
+      padding-left: 30px;
+      margin: 12px 0;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    li::marker {
+      color: #b0a0c8;
+    }
+
+    /* ハイライト */
+    .highlight {
+      background: linear-gradient(135deg, rgba(168, 216, 234, 0.2), rgba(213, 198, 224, 0.2));
+      padding: 28px;
+      border-radius: 16px;
+      border: 2px solid #d0c0e4;
+      margin: 18px 0;
+    }
+
+    /* 大きいアイコン + テキスト */
+    .icon-text {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 12px 0;
+      font-size: 20px;
+    }
+
+    /* ステップインジケーター */
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #b8a0d8, #a8c8e8);
+      color: #fff;
+      font-weight: 900;
+      font-size: 20px;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    /* CTA ボタン */
+    .cta-btn {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #b8a0d8 0%, #a8c8e8 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 20px;
+      text-decoration: none;
+      border: none;
+      box-shadow: 0 4px 16px rgba(130, 100, 170, 0.25);
+      margin-top: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(130, 100, 170, 0.35);
+    }
+
+    /* アニメーション */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide>* {
+      animation: fadeInUp 0.6s ease-out both;
+    }
+
+    .slide>*:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .slide>*:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    .slide>*:nth-child(4) {
+      animation-delay: 0.3s;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-sm {
+      font-size: 16px;
+      color: #9a8aad;
+    }
+
+    .mt-1 {
+      margin-top: 12px;
+    }
+
+    .mt-2 {
+      margin-top: 24px;
+    }
+
+    .mb-1 {
+      margin-bottom: 12px;
+    }
+
+    .gap-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 12px 0;
+    }
+
+    /* 比較矢印 */
+    .arrow-down {
+      text-align: center;
+      font-size: 28px;
+      color: #b0a0c8;
+      margin: 8px 0;
+    }
+
+    /* 印刷 / スクロールナビ */
+    @media print {
+      .slide {
+        page-break-after: always;
+        min-height: auto;
+        padding: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================ -->
+  <!-- スライド 1: タイトル -->
+  <!-- ============================================================ -->
+  <section class="slide slide-lead" data-page="1">
+    <span class="material-symbols-outlined icon-hero icon-pastel-lavender">rocket_launch</span>
+    <h1>Google Antigravity</h1>
+    <h2>次世代AIエージェント統合開発環境</h2>
+    <p class="tagline">重力から解放された開発体験へ</p>
+    <p class="sub">Vibe Codingで創造性を最大化する</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 2: アジェンダ -->
+  <!-- ============================================================ -->
+  <section class="slide bg-white" data-page="2">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-blue">list_alt</span> 本日のアジェンダ</h1>
+
+    <div class="card card-blue mb-1">
+      <h3><span class="material-symbols-outlined icon-pastel-blue">flag</span> 学習目標</h3>
+      <p><strong>Antigravityの魅力を体感し、明日から使えるスキルを身につける</strong></p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>時間</th>
+          <th>内容</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>5分</strong></td>
+          <td><span class="material-symbols-outlined icon-pastel-pink">help</span> 課題提起</td>
+          <td>従来の開発の問題点</td>
+        </tr>
+        <tr>
+          <td><strong>10分</strong></td>
+          <td><span class="material-symbols-outlined icon-pastel-blue">target</span> Antigravityとは</td>
+          <td>基本概念と革新性</td>
+        </tr>
+        <tr>
+          <td><strong>15分</strong></td>
+          <td><span class="material-symbols-outlined icon-pastel-green">build</span> 技術詳細</td>
+          <td>Architecture / MCP / Skills</td>
+        </tr>
+        <tr>
+          <td><strong>20分</strong></td>
+          <td><span class="material-symbols-outlined icon-pastel-lavender">rocket_launch</span> Vibe Coding</td>
+          <td>実践デモ</td>
+        </tr>
+        <tr>
+          <td><strong>5分</strong></td>
+          <td><span class="material-symbols-outlined icon-pastel-orange">auto_awesome</span> まとめ</td>
+          <td>次のステップ</td>
+        </tr>
+        <tr>
+          <td><strong>15分</strong></td>
+          <td><span class="material-symbols-outlined icon-pastel-pink">forum</span> Q&A</td>
+          <td>質問・ディスカッション</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-sm text-center mt-1"><span class="material-symbols-outlined" style="font-size:16px;">schedule</span>
+      合計所要時間：約70分</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 3: 課題提起 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-pink" data-page="3">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-pink">sentiment_dissatisfied</span> こんな経験ありませんか？</h1>
+
+    <div class="columns">
+      <div class="warning-box">
+        <h3><span class="material-symbols-outlined icon-pastel-pink">warning</span> 従来の開発でよくある悩み</h3>
+        <p>環境構築だけで<strong>半日</strong>が消える。ボイラープレートの記述、単調なリファクタリング作業、ドキュメント整備、デザイン素材の準備…本質的な開発に集中できないまま時間が過ぎていく。</p>
+      </div>
+      <div class="success-box">
+        <h3><span class="material-symbols-outlined icon-pastel-green">check_circle</span> Antigravityなら</h3>
+        <p>環境構築もテンプレートも<strong>AIが自動で処理</strong>。リファクタリング、ドキュメント生成、画像生成まで全て自律的に実行。創造的な作業だけに集中できます。</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <span class="material-symbols-outlined icon-pastel-orange">lightbulb</span>
+      開発時間を<strong>70%削減</strong>し、創造性を最大化するのがAntigravityの目標です。
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 4: Antigravityとは？ -->
+  <!-- ============================================================ -->
+  <section class="slide bg-blue" data-page="4">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-blue">target</span> Google Antigravityとは？</h1>
+
+    <blockquote>
+      2025年11月にGoogleが発表した革新的なIDE。従来の「コード補完ツール」から<strong>「自律的AIパートナー」</strong>へのパラダイムシフトを実現しています。
+    </blockquote>
+
+    <div class="highlight">
+      <h2><span class="material-symbols-outlined icon-pastel-lavender">auto_awesome</span> 3つの革新ポイント</h2>
+      <div class="columns">
+        <div>
+          <h3><span class="step-num">1</span> Agent-First Architecture</h3>
+          <p>AIが単なるツールではなく、タスクの計画・実行・検証までを担う<strong>自律的なパートナー</strong>として機能します。</p>
+        </div>
+        <div>
+          <h3><span class="step-num">2</span> Dual View System</h3>
+          <p><strong>Manager View</strong>（司令塔）でエージェントを指揮し、<strong>Editor View</strong>（作業場）でコードを書く。2つの画面を自在に使い分けられます。
+          </p>
+        </div>
+      </div>
+      <h3><span class="step-num">3</span> Multi-Model Support</h3>
+      <p>Gemini 3 Pro、Claude、Nano Bananaなど複数のAIモデルを、目的に応じて使い分けることができます。</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 5: 従来ツールとの比較 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-lavender" data-page="5">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-lavender">compare</span> 従来のAIツールとの違い</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>GitHub Copilot</th>
+          <th>Cursor</th>
+          <th>Antigravity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>役割</strong></td>
+          <td>コード補完</td>
+          <td>AI編集支援</td>
+          <td><strong>自律エージェント</strong></td>
+        </tr>
+        <tr>
+          <td><strong>タスク実行</strong></td>
+          <td>手動</td>
+          <td>半自動</td>
+          <td><strong>完全自律</strong></td>
+        </tr>
+        <tr>
+          <td><strong>複数モデル</strong></td>
+          <td><span class="material-symbols-outlined icon-pastel-pink">close</span></td>
+          <td>一部対応</td>
+          <td><span class="material-symbols-outlined icon-pastel-green">check_circle</span> 完全対応</td>
+        </tr>
+        <tr>
+          <td><strong>ブラウザ操作</strong></td>
+          <td><span class="material-symbols-outlined icon-pastel-pink">close</span></td>
+          <td><span class="material-symbols-outlined icon-pastel-pink">close</span></td>
+          <td><span class="material-symbols-outlined icon-pastel-green">check_circle</span> 統合済み</td>
+        </tr>
+        <tr>
+          <td><strong>画像生成</strong></td>
+          <td><span class="material-symbols-outlined icon-pastel-pink">close</span></td>
+          <td><span class="material-symbols-outlined icon-pastel-pink">close</span></td>
+          <td><span class="material-symbols-outlined icon-pastel-green">check_circle</span> Nano Banana</td>
+        </tr>
+        <tr>
+          <td><strong>MCP対応</strong></td>
+          <td><span class="material-symbols-outlined icon-pastel-pink">close</span></td>
+          <td>限定的</td>
+          <td><span class="material-symbols-outlined icon-pastel-green">check_circle</span> フル対応</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 6: 哲学 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-green" data-page="6">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-green">spa</span> Antigravityの哲学</h1>
+
+    <div class="highlight">
+      <h2><span class="material-symbols-outlined icon-pastel-lavender">feather</span> 「重力からの解放」</h2>
+      <p style="font-size:22px; margin-bottom:16px;">開発者は<strong>「何を創るか（What）」に集中すべき</strong>。環境構築、定型作業、ドキュメント、デザイン素材 ──
+        これらはすべてAIに任せる。</p>
+      <div class="gap-row">
+        <div class="card card-blue" style="flex:1;"><span
+            class="material-symbols-outlined icon-pastel-blue">settings</span> 環境構築 → AIへ</div>
+        <div class="card card-pink" style="flex:1;"><span
+            class="material-symbols-outlined icon-pastel-pink">repeat</span> 定型作業 → AIへ</div>
+        <div class="card card-orange" style="flex:1;"><span
+            class="material-symbols-outlined icon-pastel-orange">description</span> ドキュメント → AIへ</div>
+        <div class="card card-green" style="flex:1;"><span
+            class="material-symbols-outlined icon-pastel-green">palette</span> デザイン → AIへ</div>
+      </div>
+      <p class="text-center mt-1" style="font-size:24px; font-weight:900; color:#8060a8;">これが Vibe Coding の真髄</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 7: Agent-First Architecture -->
+  <!-- ============================================================ -->
+  <section class="slide bg-white" data-page="7">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-blue">account_tree</span> Agent-First Architecture
+    </h1>
+
+    <div class="card card-lavender text-center" style="font-size:20px;">
+      <p style="margin-bottom:12px;"><strong>開発者</strong>が自然言語で指示</p>
+      <div class="arrow-down">↓</div>
+      <p style="margin-bottom:12px;"><span class="material-symbols-outlined icon-pastel-blue">dashboard</span>
+        <strong>Manager View</strong>が受け取り、各エージェントへ分配</p>
+      <div class="arrow-down">↓</div>
+      <div class="gap-row" style="justify-content:center;">
+        <div class="card card-blue"><span class="material-symbols-outlined icon-pastel-blue">fact_check</span> Planner
+        </div>
+        <div class="card card-green"><span class="material-symbols-outlined icon-pastel-green">code</span> Coder</div>
+        <div class="card card-pink"><span class="material-symbols-outlined icon-pastel-pink">brush</span> Designer</div>
+        <div class="card card-orange"><span class="material-symbols-outlined icon-pastel-orange">rate_review</span>
+          Reviewer</div>
+      </div>
+      <div class="arrow-down">↓</div>
+      <p><span class="material-symbols-outlined icon-pastel-lavender">inventory_2</span>
+        <strong>Artifacts</strong>（成果物）として統合</p>
+    </div>
+    <p class="text-center mt-1"><strong>複数のエージェントが並列処理で協働</strong></p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 8: Dual View System -->
+  <!-- ============================================================ -->
+  <section class="slide bg-blue" data-page="8">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-blue">view_sidebar</span> Dual View System</h1>
+
+    <div class="columns">
+      <div class="card card-lavender">
+        <h3><span class="material-symbols-outlined icon-pastel-lavender">supervisor_account</span> Manager View（司令塔）
+        </h3>
+        <p>チャット形式で自然言語のタスク依頼ができるインターフェース。エージェントの動作をリアルタイムで監視・管理し、Artifacts（成果物）もここで確認できます。</p>
+      </div>
+      <div class="card card-blue">
+        <h3><span class="material-symbols-outlined icon-pastel-blue">terminal</span> Editor View（作業場）</h3>
+        <p>VS Code互換のエディタ。<code>Cmd+K</code> でインライン編集、リアルタイムプレビューに対応。従来の手動開発スタイルとAIの両方を柔軟に使い分けられます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 9: Multi-Model Support -->
+  <!-- ============================================================ -->
+  <section class="slide bg-orange" data-page="9">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-orange">model_training</span> Multi-Model Support
+    </h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>モデル</th>
+          <th>得意分野</th>
+          <th>使用シーン</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Gemini 3 Pro</strong></td>
+          <td>総合力・論理的思考</td>
+          <td>メイン開発、複雑なロジック</td>
+        </tr>
+        <tr>
+          <td><strong>Claude Sonnet 4.5</strong></td>
+          <td>文脈理解・自然な文章</td>
+          <td>ドキュメント、要件定義</td>
+        </tr>
+        <tr>
+          <td><strong>Nano Banana</strong></td>
+          <td>画像生成・UIデザイン</td>
+          <td>アイコン、OGP、ヒーロー画像</td>
+        </tr>
+        <tr>
+          <td><strong>Gemini 2.5 Computer Use</strong></td>
+          <td>ブラウザ操作</td>
+          <td>Web検索、E2Eテスト</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-center mt-1"><strong>目的に応じてモデルが自動で選ばれます</strong></p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 10: Nano Banana -->
+  <!-- ============================================================ -->
+  <section class="slide bg-pink" data-page="10">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-orange">image</span> Nano Banana（画像生成AI）</h1>
+
+    <div class="highlight">
+      <h3><span class="material-symbols-outlined icon-pastel-pink">brush</span> エンジニアがデザイン素材を即座に用意</h3>
+      <pre><code>「このヘッダーに合う背景画像を生成して（Nano Banana）」</code></pre>
+      <div class="arrow-down">↓</div>
+      <p style="font-size:20px;">生成された画像が <code>public/images/</code> に自動保存・配置されます。</p>
+      <div class="gap-row mt-1">
+        <div class="card card-green" style="flex:1;"><span
+            class="material-symbols-outlined icon-pastel-green">speed</span> デザイナーを待つ必要なし</div>
+        <div class="card card-blue" style="flex:1;"><span class="material-symbols-outlined icon-pastel-blue">bolt</span>
+          プロトタイプが高速化</div>
+        <div class="card card-orange" style="flex:1;"><span
+            class="material-symbols-outlined icon-pastel-orange">thumb_up</span> イメージ通りの素材を入手</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 11: MCP -->
+  <!-- ============================================================ -->
+  <section class="slide bg-green" data-page="11">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-green">cable</span> MCP（Model Context Protocol）</h1>
+
+    <blockquote>AIエージェントを外部ツールに接続するための標準規格です。</blockquote>
+
+    <h3 class="mt-1"><span class="material-symbols-outlined icon-pastel-blue">extension</span> 接続可能なツール例</h3>
+    <div class="gap-row">
+      <div class="card card-blue" style="flex:1;"><span
+          class="material-symbols-outlined icon-pastel-blue">language</span> <strong>Browser</strong><br>Puppeteer /
+        Playwright</div>
+      <div class="card card-green" style="flex:1;"><span
+          class="material-symbols-outlined icon-pastel-green">folder</span> <strong>Filesystem</strong><br>ローカルファイル操作
+      </div>
+      <div class="card card-lavender" style="flex:1;"><span
+          class="material-symbols-outlined icon-pastel-lavender">code</span> <strong>GitHub</strong><br>リポジトリ操作</div>
+    </div>
+    <div class="gap-row">
+      <div class="card card-orange" style="flex:1;"><span
+          class="material-symbols-outlined icon-pastel-orange">storage</span> <strong>PostgreSQL</strong><br>DB直接参照
+      </div>
+      <div class="card card-pink" style="flex:1;"><span class="material-symbols-outlined icon-pastel-pink">chat</span>
+        <strong>Slack</strong><br>通知・連携</div>
+      <div class="card card-blue" style="flex:1;"><span class="material-symbols-outlined icon-pastel-blue">cloud</span>
+        <strong>Google Drive</strong><br>ドキュメント管理</div>
+    </div>
+    <p class="text-center mt-1"><strong>開発環境を自由に拡張できます</strong></p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 12: GEMINI.md -->
+  <!-- ============================================================ -->
+  <section class="slide bg-lavender" data-page="12">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-lavender">description</span> GEMINI.md（設定ファイル）</h1>
+
+    <p style="font-size:20px; margin-bottom:16px;">プロジェクトルートに配置して、<strong>エージェントにプロジェクトの文脈を教える</strong>役割を持ちます。</p>
+
+    <pre><code># プロジェクト設定
+
+## 基本ルール
+- 常に日本語で応答してください
+- コードには必ずコメントを入れてください
+
+## 技術スタック
+- React + TypeScript
+- TailwindCSS / Vite
+
+## コーディング規約
+- 変数名: camelCase
+- ファイル名: kebab-case</code></pre>
+
+    <div class="note-box mt-1">
+      <span class="material-symbols-outlined icon-pastel-orange">lightbulb</span>
+      このファイルを書くだけで、AIがプロジェクトの方針やルールを理解して動いてくれます。
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 13: Agent Skills -->
+  <!-- ============================================================ -->
+  <section class="slide bg-white" data-page="13">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-blue">psychology</span> Agent Skills</h1>
+
+    <p style="font-size:20px; margin-bottom:16px;">エージェントに特定の<strong>「能力」をパッケージとして追加</strong>できる仕組みです。</p>
+
+    <div class="card card-lavender">
+      <h3><span class="material-symbols-outlined icon-pastel-lavender">folder_special</span>
+        .agent/skills/code-review/SKILL.md</h3>
+      <pre><code>---
+name: code-review
+description: コードの品質レビューを行う
+---
+
+# コードレビュー手順
+1. 指定されたファイルを読み込む
+2. セキュリティ脆弱性がないか確認する
+3. 変数名が適切かチェックする
+4. パフォーマンス改善点を提案する</code></pre>
+    </div>
+
+    <p class="text-center mt-2" style="font-size:22px; font-weight:700; color:#8060a8;">「@code-review して」と頼むだけで実行されます
+    </p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 14: 料金プラン -->
+  <!-- ============================================================ -->
+  <section class="slide bg-orange" data-page="14">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-orange">payments</span> 料金プラン</h1>
+
+    <div class="columns" style="grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+      <div class="card card-green text-center">
+        <h3><span class="material-symbols-outlined icon-pastel-green">volunteer_activism</span> Free</h3>
+        <p style="font-size:28px; font-weight:900; color:#6bb86a;">無料</p>
+        <p style="font-size:16px; margin-top:8px;">Gemini 3 Pro（制限あり）<br>Nano Banana（月50枚）<br>ローカルMCP</p>
+      </div>
+      <div class="card card-blue text-center">
+        <h3><span class="material-symbols-outlined icon-pastel-blue">star</span> Pro</h3>
+        <p style="font-size:28px; font-weight:900; color:#6daad8;">$19/月</p>
+        <p style="font-size:16px; margin-top:8px;">Gemini 3 Pro（優先）<br>Claude Sonnet 4.5<br>Nano Banana（無制限）<br>クラウドMCP
+        </p>
+      </div>
+      <div class="card card-lavender text-center">
+        <h3><span class="material-symbols-outlined icon-pastel-lavender">business</span> Enterprise</h3>
+        <p style="font-size:28px; font-weight:900; color:#9b82b5;">要相談</p>
+        <p style="font-size:16px; margin-top:8px;">チーム共有Artifacts<br>Enterpriseセキュリティ<br>カスタムモデル</p>
+      </div>
+    </div>
+
+    <p class="text-center mt-2" style="font-size:22px;"><strong>学生でもFreeプランで十分に活用できます</strong></p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 15: インストール -->
+  <!-- ============================================================ -->
+  <section class="slide bg-blue" data-page="15">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-blue">download</span> インストール方法</h1>
+
+    <div class="card card-blue">
+      <div class="icon-text"><span class="step-num">1</span> <strong>公式サイトへアクセス</strong> ― <a
+          href="https://build.google.com/antigravity">build.google.com/antigravity</a></div>
+      <div class="icon-text"><span class="step-num">2</span> <strong>ダウンロード</strong> ― macOS / Windows / Linux に対応しています
+      </div>
+      <div class="icon-text"><span class="step-num">3</span> <strong>ログイン</strong> ― Googleアカウントでサインインするだけ</div>
+    </div>
+
+    <p class="text-center mt-2" style="font-size:24px; font-weight:700; color:#5a4d78;">
+      <span class="material-symbols-outlined icon-pastel-green">timer</span> 5分で開発環境が整います
+    </p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 16: ハンズオン構成 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-white" data-page="16">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-lavender">menu_book</span> ハンズオン構成</h1>
+
+    <div class="note-box mb-1">
+      <span class="material-symbols-outlined icon-pastel-orange">lightbulb</span>
+      <strong>前半</strong>で早めにVibe Codingを体験 → <strong>後半</strong>で拡張機能を学ぶ流れです。
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>内容</th>
+          <th>所要時間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="step-num">1</span></td>
+          <td>環境セットアップ</td>
+          <td>15分</td>
+        </tr>
+        <tr>
+          <td><span class="step-num">2</span></td>
+          <td>GEMINI.md 設定</td>
+          <td>15分</td>
+        </tr>
+        <tr>
+          <td><span class="step-num">3</span></td>
+          <td><strong>Vibe Coding 基礎編</strong></td>
+          <td>20分</td>
+        </tr>
+        <tr>
+          <td><span class="step-num">4</span></td>
+          <td>MCP 接続</td>
+          <td>20分</td>
+        </tr>
+        <tr>
+          <td><span class="step-num">5</span></td>
+          <td>Agent Skills 作成</td>
+          <td>20分</td>
+        </tr>
+        <tr>
+          <td><span class="step-num">6</span></td>
+          <td><strong>Vibe Coding 発展編</strong></td>
+          <td>30分</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-center mt-1 text-sm">合計：約2時間</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 17: デモ 中扉 -->
+  <!-- ============================================================ -->
+  <section class="slide slide-lead" data-page="17">
+    <span class="material-symbols-outlined icon-hero icon-pastel-lavender">play_circle</span>
+    <h1>実践！Vibe Coding デモ</h1>
+    <h2>「AI Coffee Shop」ランディングページを作ってみよう</h2>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 18: デモ Step 1 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-green" data-page="18">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-green">movie</span> Vibe Coding デモ ― Step 1</h1>
+    <h3><span class="material-symbols-outlined icon-pastel-green">create_new_folder</span> プロジェクト作成</h3>
+    <pre><code>「Vite + Reactで、モダンで美しい
+『AI Coffee Shop』のランディングページを作って。
+TailwindCSSを使って。」</code></pre>
+    <div class="arrow-down">↓</div>
+    <div class="success-box">
+      <p>Antigravityが自動的に <code>npx create-vite</code> を実行し、TailwindCSSの設定や基本構造を一気に生成します。</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 19: デモ Step 2 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-blue" data-page="19">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-blue">movie</span> Vibe Coding デモ ― Step 2</h1>
+    <h3><span class="material-symbols-outlined icon-pastel-blue">edit_note</span> キャッチコピーと構成（Gemini 3 Pro）</h3>
+    <pre><code>「未来的で落ち着くコーヒーショップのキャッチコピーと、
+LPのセクション構成を考えて（Gemini 3 Pro）」</code></pre>
+    <div class="arrow-down">↓</div>
+    <div class="card card-blue">
+      <p><span class="material-symbols-outlined icon-pastel-blue">format_quote</span>
+        キャッチコピー：<strong>「未来と伝統が溶け合う、至福の一杯」</strong></p>
+      <p class="mt-1"><span class="material-symbols-outlined icon-pastel-blue">view_list</span> セクション構成：Hero → Concept →
+        Menu → Access → Contact</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 20: デモ Step 3 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-pink" data-page="20">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-pink">movie</span> Vibe Coding デモ ― Step 3</h1>
+    <h3><span class="material-symbols-outlined icon-pastel-pink">image</span> ビジュアル生成（Nano Banana）</h3>
+    <pre><code>「『近未来的なカフェの店内、ネオンライトと植物が調和している、
+4K、リアル』な画像を生成して。
+ファイル名は hero-bg.webp で public フォルダに保存して。
+（Nano Banana）」</code></pre>
+    <div class="arrow-down">↓</div>
+    <div class="success-box">
+      <p>数秒で高品質な画像が生成され、<strong>プロジェクトに自動配置</strong>されます。</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 21: デモ Step 4 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-lavender" data-page="21">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-lavender">movie</span> Vibe Coding デモ ― Step 4</h1>
+    <h3><span class="material-symbols-outlined icon-pastel-lavender">code</span> 実装 & プレビュー</h3>
+    <pre><code>「生成した画像を背景に使って、Heroセクションを実装して。
+文字は白で読みやすく、グラスモーフィズムなデザインで。」</code></pre>
+    <div class="arrow-down">↓</div>
+    <div class="card card-lavender">
+      <p>AIが背景画像の配置、グラスモーフィズム効果、レスポンシブ対応、アニメーション追加まで一括で実装します。</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 22: デモ Step 5 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-green" data-page="22">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-green">movie</span> Vibe Coding デモ ― Step 5</h1>
+    <h3><span class="material-symbols-outlined icon-pastel-green">cloud_upload</span> デプロイ準備</h3>
+    <pre><code>「これで完成。ビルドしてデプロイの準備をして。」</code></pre>
+    <div class="arrow-down">↓</div>
+    <div class="success-box">
+      <p>AIが <code>npm run build</code> を実行、最適化チェックを行い、Vercel / Netlify 向けのデプロイコマンドも提示してくれます。</p>
+    </div>
+    <p class="text-center mt-2" style="font-size:24px; font-weight:900; color:#3a6a3a;">
+      <span class="material-symbols-outlined icon-pastel-green">timer</span> わずか10分で本格的なLPが完成！
+    </p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 23: Vibe Codingの魅力 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-orange" data-page="23">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-orange">auto_awesome</span> Vibe Codingの魅力</h1>
+
+    <div class="highlight">
+      <div class="columns">
+        <div>
+          <h3><span class="material-symbols-outlined icon-pastel-blue">target</span> 「What」に集中できる</h3>
+          <p>「どうやって実装するか」ではなく<strong>「何を創りたいか」</strong>を考える時間が増えます。</p>
+        </div>
+        <div>
+          <h3><span class="material-symbols-outlined icon-pastel-green">speed</span> 圧倒的な開発速度</h3>
+          <p>従来 3.5 時間（環境構築+実装+デザイン調整）が<strong>わずか10分</strong>に短縮。</p>
+        </div>
+      </div>
+      <h3 class="mt-1"><span class="material-symbols-outlined icon-pastel-pink">palette</span> デザインとコードの統合</h3>
+      <p>エンジニアが自分でデザイン素材を用意できるため、デザイナーとの待ち時間がなくなります。</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 24: 開発の未来 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-lavender" data-page="24">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-lavender">change_history</span> 開発フローの変化</h1>
+
+    <div class="columns">
+      <div class="card card-pink">
+        <h3><span class="material-symbols-outlined icon-pastel-pink">hourglass_top</span> 従来の開発フロー</h3>
+        <p>要件定義 → 設計 → 環境構築 → 実装 → テスト → デバッグ → ドキュメント → デプロイ</p>
+        <p class="mt-1 text-sm" style="color:#8a3060;">多くのステップに時間がかかる</p>
+      </div>
+      <div class="card card-green">
+        <h3><span class="material-symbols-outlined icon-pastel-green">bolt</span> Antigravityの開発フロー</h3>
+        <p><span class="step-num">1</span> 要件定義</p>
+        <p><span class="step-num">2</span> AIに指示</p>
+        <p><span class="step-num">3</span> 完成！</p>
+        <p class="mt-1" style="font-weight:700; color:#3a6a3a;">時間のかかる作業をAIが自律的に処理</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 25: まとめ -->
+  <!-- ============================================================ -->
+  <section class="slide bg-white" data-page="25">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-lavender">summarize</span> Antigravityの強み まとめ</h1>
+
+    <div class="gap-row">
+      <div class="card card-blue" style="flex:1;text-align:center;">
+        <span class="material-symbols-outlined icon-xl icon-pastel-blue">smart_toy</span>
+        <p class="mt-1"><strong>自律エージェント</strong></p>
+        <p class="text-sm">計画・実行・検証</p>
+      </div>
+      <div class="card card-pink" style="flex:1;text-align:center;">
+        <span class="material-symbols-outlined icon-xl icon-pastel-pink">image</span>
+        <p class="mt-1"><strong>画像生成</strong></p>
+        <p class="text-sm">Nano Banana</p>
+      </div>
+      <div class="card card-green" style="flex:1;text-align:center;">
+        <span class="material-symbols-outlined icon-xl icon-pastel-green">cable</span>
+        <p class="mt-1"><strong>拡張性</strong></p>
+        <p class="text-sm">MCP連携</p>
+      </div>
+    </div>
+    <div class="gap-row">
+      <div class="card card-orange" style="flex:1;text-align:center;">
+        <span class="material-symbols-outlined icon-xl icon-pastel-orange">model_training</span>
+        <p class="mt-1"><strong>マルチモデル</strong></p>
+        <p class="text-sm">適材適所</p>
+      </div>
+      <div class="card card-lavender" style="flex:1;text-align:center;">
+        <span class="material-symbols-outlined icon-xl icon-pastel-lavender">tune</span>
+        <p class="mt-1"><strong>カスタマイズ</strong></p>
+        <p class="text-sm">GEMINI.md / Skills</p>
+      </div>
+      <div class="card card-green" style="flex:1;text-align:center;">
+        <span class="material-symbols-outlined icon-xl icon-pastel-green">savings</span>
+        <p class="mt-1"><strong>無料で始められる</strong></p>
+        <p class="text-sm">Freeプラン対応</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 26: 学習リソース -->
+  <!-- ============================================================ -->
+  <section class="slide bg-blue" data-page="26">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-blue">school</span> 学習リソース</h1>
+
+    <div class="columns" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="card card-blue text-center">
+        <span class="material-symbols-outlined icon-xl icon-pastel-blue">article</span>
+        <h3>公式ドキュメント</h3>
+        <p class="text-sm"><a href="https://build.google.com/antigravity/docs">build.google.com/antigravity/docs</a></p>
+      </div>
+      <div class="card card-lavender text-center">
+        <span class="material-symbols-outlined icon-xl icon-pastel-lavender">groups</span>
+        <h3>コミュニティ</h3>
+        <p class="text-sm">Discord: Antigravity Developers<br>GitHub: antigravity-examples</p>
+      </div>
+      <div class="card card-pink text-center">
+        <span class="material-symbols-outlined icon-xl icon-pastel-pink">play_circle</span>
+        <h3>チュートリアル</h3>
+        <p class="text-sm">YouTube公式チャンネル<br>Qiita #Antigravity</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 27: 今日から始めよう -->
+  <!-- ============================================================ -->
+  <section class="slide bg-green" data-page="27">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-green">rocket_launch</span> 今日から始めよう！</h1>
+
+    <div class="highlight">
+      <div class="icon-text"><span class="step-num">1</span> <strong>インストール</strong> ― <a
+          href="https://build.google.com/antigravity">build.google.com/antigravity</a></div>
+      <div class="icon-text"><span class="step-num">2</span> <strong>ハンズオン実践</strong> ― 本日の資料を参考に5つのステップを体験</div>
+      <div class="icon-text"><span class="step-num">3</span> <strong>自分のプロジェクトで活用</strong> ―
+        GEMINI.md、Skills、MCPを駆使して開発を加速</div>
+    </div>
+
+    <p class="text-center mt-2" style="font-size:26px; font-weight:900; color:#5a4d78;">重力から解放された開発体験を、今すぐ！</p>
+    <p class="text-center mt-1"><a href="https://build.google.com/antigravity" class="cta-btn">Antigravityを試す</a></p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 28: ありがとうございました -->
+  <!-- ============================================================ -->
+  <section class="slide slide-lead" data-page="28">
+    <span class="material-symbols-outlined icon-hero icon-pastel-lavender">favorite</span>
+    <h1>ありがとうございました！</h1>
+    <h2>質問・ディスカッションタイム</h2>
+    <p class="tagline">Google Antigravityで、開発の未来を体験しましょう！</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- スライド 29: 補足資料 -->
+  <!-- ============================================================ -->
+  <section class="slide bg-white" data-page="29">
+    <h1><span class="material-symbols-outlined icon-lg icon-pastel-blue">attach_file</span> 補足資料</h1>
+
+    <div class="columns" style="grid-template-columns: 1fr 1fr;">
+      <div class="card card-blue">
+        <h3><span class="material-symbols-outlined icon-pastel-blue">link</span> 参考リンク</h3>
+        <p>公式サイト：<a href="https://build.google.com/antigravity">build.google.com/antigravity</a></p>
+        <p>ドキュメント：<a href="https://build.google.com/antigravity/docs">build.google.com/antigravity/docs</a></p>
+        <p>GitHub：<a href="https://github.com/google/antigravity-examples">antigravity-examples</a></p>
+      </div>
+      <div class="card card-lavender">
+        <h3><span class="material-symbols-outlined icon-pastel-lavender">inventory</span> ハンズオン資料</h3>
+        <p>各ステップの詳細は <code>handson/</code> フォルダを参照してください。</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+</html>

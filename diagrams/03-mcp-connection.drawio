@@ -1,0 +1,85 @@
+<mxfile host="65bd71144e">
+    <diagram name="MCP Connection" id="mcp-diagram">
+        <mxGraphModel dx="1114" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="MCP (Model Context Protocol) 接続図" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="325" y="100" width="450" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="antigravity" value="Antigravity&#10;AIエージェント" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=none;fontSize=16;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="150" width="200" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="mcp-layer" value="MCP&#10;(Model Context Protocol)" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#E1BEE7;strokeColor=none;fontSize=14;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="320" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="browser-mcp" value="🌐 Browser MCP&#10;(Playwright)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF4C3;strokeColor=none;fontSize=13;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="480" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="filesystem-mcp" value="📁 Filesystem MCP&#10;(ローカルファイル)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=none;fontSize=13;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="480" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="github-mcp" value="🐙 GitHub MCP&#10;(リポジトリ操作)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=none;fontSize=13;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="480" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="database-mcp" value="🗄️ Database MCP&#10;(PostgreSQL)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=none;fontSize=13;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="480" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="slack-mcp" value="💬 Slack MCP&#10;(通知・連携)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=none;fontSize=13;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="480" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="browser-detail" value="・Webページ操作&#10;・スクレイピング&#10;・E2Eテスト" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9E6;strokeColor=#D6B656;fontSize=11;dashed=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="600" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="filesystem-detail" value="・ファイル読み書き&#10;・ディレクトリ操作&#10;・ローカル検索" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#82B366;fontSize=11;dashed=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="600" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="github-detail" value="・コミット&#10;・プルリクエスト&#10;・Issue管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#9673A6;fontSize=11;dashed=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="600" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="database-detail" value="・SQL実行&#10;・データ参照&#10;・スキーマ確認" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#B85450;fontSize=11;dashed=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="600" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="slack-detail" value="・メッセージ送信&#10;・チャンネル管理&#10;・ステータス更新" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D79B00;fontSize=11;dashed=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="600" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-main" value="統一インターフェース" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#9C27B0;strokeWidth=3;" parent="1" source="antigravity" target="mcp-layer" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow1" value="" style="endArrow=classic;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#666666;strokeWidth=2;" parent="1" source="mcp-layer" target="browser-mcp" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow2" value="" style="endArrow=classic;html=1;exitX=0.35;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#666666;strokeWidth=2;" parent="1" source="mcp-layer" target="filesystem-mcp" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow3" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#666666;strokeWidth=2;" parent="1" source="mcp-layer" target="github-mcp" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow4" value="" style="endArrow=classic;html=1;exitX=0.65;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#666666;strokeWidth=2;" parent="1" source="mcp-layer" target="database-mcp" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow5" value="" style="endArrow=classic;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#666666;strokeWidth=2;" parent="1" source="mcp-layer" target="slack-mcp" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-d1" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#D6B656;strokeWidth=1;dashed=1;" parent="1" source="browser-mcp" target="browser-detail" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-d2" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#82B366;strokeWidth=1;dashed=1;" parent="1" source="filesystem-mcp" target="filesystem-detail" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-d3" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#9673A6;strokeWidth=1;dashed=1;" parent="1" source="github-mcp" target="github-detail" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-d4" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#B85450;strokeWidth=1;dashed=1;" parent="1" source="database-mcp" target="database-detail" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow-d5" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#D79B00;strokeWidth=1;dashed=1;" parent="1" source="slack-mcp" target="slack-detail" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="benefits" value="✨ MCPのメリット&#10;・統一された接続方法&#10;・簡単に拡張可能&#10;・コミュニティエコシステム" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B9E0A5;strokeColor=none;fontSize=12;fontStyle=1;align=left;fontColor=#333333;spacingLeft=6;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="710" width="860" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
