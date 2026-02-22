@@ -69,8 +69,9 @@ marp -s presentation.md
 | **04** | [04_mcp](./handson/04_mcp/README.md) | MCP 接続 | 20分 | ⭐⭐ |
 | **05** | [05_skills](./handson/05_skills/README.md) | Agent Skills 作成 | 20分 | ⭐⭐⭐ |
 | **06** | [06_vibe_coding_advanced](./handson/06_vibe_coding_advanced/README.md) | 🚀 **Vibe Coding 発展編** | 30分 | ⭐⭐⭐ |
+| **07** | [07_ai_dlc](./handson/07_ai_dlc/README.md) | 🏅 **ハッカソン攻略：AI-DLC戦略** | 10分 | ⭐⭐⭐ |
 
-**合計所要時間**: 約2時間
+**合計所要時間**: 約2時間10分
 
 ### 🎯 新しい学習パス
 

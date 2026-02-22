@@ -131,9 +131,9 @@ style: |
   pre code { background: transparent; color: #e8e0f0; font-size: 16px; border: none; }
 
   /* テーブル */
-  table { border-collapse: collapse; width: 100%; margin: 10px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 12px rgba(90,70,120,0.08); }
+  table { border-collapse: collapse; width: 100%; display: table; table-layout: fixed; margin: 10px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 12px rgba(90,70,120,0.08); }
   th { background: #b8a8d8; color: #fff; padding: 8px 14px; font-weight: 700; font-size: 18px; text-align: center; }
-  td { padding: 7px 14px; border-bottom: 1px solid #e8e0f0; background: rgba(255,255,255,0.7); font-size: 17px; }
+  td { padding: 7px 14px; border-bottom: 1px solid #e8e0f0; background: rgba(255,255,255,0.7); font-size: 17px; word-wrap: break-word; }
   tr:last-child td { border-bottom: none; }
 
   /* 引用 */
@@ -231,21 +231,24 @@ style: |
 
 ---
 
-# <img src="icons/lav/person.svg" width="50" style="vertical-align: -0.2em; margin-right: 6px;"> 発表者 | YAMAZAKI Haruto
-## **GoogleAI学生アンバサダー**
+# <img src="icons/lav/person.svg" width="50" style="vertical-align: -0.2em; margin-right: 6px;"> kozzy (@kozzy0919) | 山岡 滉治（やまおか こうじ）
 
-GoogleのAIツール・開発環境を活用した開発体験の普及・啓発活動を担当。Google Developer Groups on Campus Japanと連携し、学生エンジニアの技術力向上を支援しています。
+## **データ・AI企画推進 / Developer Relations**
 
-## 本日のセッション
+新卒よりBtoBクラウドサービスのインフラ/サーバーエンジニア → Webサービス開発 → 現在はデータ・AI企画推進チームにて**生成AI活用の企画・推進**を担当
 
-- 🔧 **Vibe Coding in Google Antigravity with Gemini 3!!**
-- インストールから実践的な活用法まで約2時間で集中学習
-- GEMINI.md・MCP・Skills の設定方法を解説
-- Agent Managerの活用など応用的な使い方まで
+<h3 style="margin-top: 14px;"><img src="icons/lav/star.svg" width="38" style="vertical-align: -0.2em; margin-right: 6px;"> 主要な実績</h3>
+<ul style="margin-top: -6px;">
+<li>GitHub Copilot導入で全社利用率を60%に向上</li>
+<li>社内生成AIコミュニティを200名→2,000名以上に成長</li>
+<li>生成AI活用の新機能企画・業務改善プロジェクトを推進</li>
+</ul>
 
-<div class="note">
-<img src="icons/orange/lightbulb.svg" width="38" style="vertical-align: -0.2em; margin-right: 6px;"> 参加URL・詳細はconnpassのイベントページをご確認ください。
-</div>
+<h3 style="margin-top: 14px;"><img src="icons/lav/edit_note.svg" width="38" style="vertical-align: -0.2em; margin-right: 6px;"> その他の活動</h3>
+<ul style="margin-top: -6px;">
+<li>📚 2025年3月 「開発系エンジニアのためのGit/GitHub絵とき入門」出版 (秀和システム)</li>
+<li>👨‍🏫 小中学生向けプログラミングスクール講師</li>
+</ul>
 
 ---
 
@@ -1205,6 +1208,147 @@ AIが <code>npm run build</code> を実行し、最適化チェック後、Verce
 <p><span class="num">2</span> AIに指示</p>
 <p><span class="num">3</span> 完成！</p>
 <p style="font-weight:700;color:#3a6a3a;margin-top:8px;">時間のかかる作業をAIが自律的に処理</p>
+</div>
+
+</div>
+
+---
+
+<!-- _class: bg-blue -->
+
+# <img src="icons/blue/rocket_launch.svg" width="50" style="vertical-align: -0.2em; margin-right: 6px;"> ハッカソンにおすすめ：AI-DLC とは
+
+<div class="cols">
+
+<div>
+
+<img src="images/ai_dlc_overview.png" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(90,70,120,0.15);">
+
+</div>
+
+<div>
+
+<div class="hl" style="margin-bottom:10px;">
+<h3><img src="icons/blue/psychology.svg" width="38" style="vertical-align: -0.2em; margin-right: 6px;"> AI-Driven Development Lifecycle</h3>
+<p>AIを単なるコーディング補助ではなく、<strong>開発プロセス全体の中心的な協力者</strong>として再構築する新しい開発手法。AWSが提唱。</p>
+</div>
+
+<div class="card card-pink" style="margin-bottom:6px;">
+<h3 style="font-size:18px;"><img src="icons/pink/close.svg" width="30" style="vertical-align: -0.2em; margin-right: 4px;"> 従来：人間がAIに指示（後付け）</h3>
+</div>
+
+<div class="card card-green">
+<h3 style="font-size:18px;"><img src="icons/green/check_circle.svg" width="30" style="vertical-align: -0.2em; margin-right: 4px;"> AI-DLC：<strong>AIが主導</strong>、人間は承認と監視</h3>
+</div>
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: bg-lav -->
+
+# <img src="icons/lav/account_tree.svg" width="50" style="vertical-align: -0.2em; margin-right: 6px;"> AI-DLC の3つのフェーズ
+
+<img src="images/ai_dlc_phases.png" style="display:block; margin:0 auto; width:85%; border-radius:12px; box-shadow:0 4px 16px rgba(90,70,120,0.15);">
+
+<div class="cols-3" style="margin-top:10px;">
+
+<div class="card card-blue center">
+<h3 style="font-size:17px;"><img src="icons/blue/lightbulb.svg" width="32" style="vertical-align: -0.2em; margin-right: 4px;"> Inception（発案）</h3>
+<p class="sm">ビジネス目標→要件→ユーザーストーリー</p>
+</div>
+
+<div class="card card-green center">
+<h3 style="font-size:17px;"><img src="icons/green/build.svg" width="32" style="vertical-align: -0.2em; margin-right: 4px;"> Construction（構築）</h3>
+<p class="sm">AIがコード・テスト・アーキテクチャを提案</p>
+</div>
+
+<div class="card card-orange center">
+<h3 style="font-size:17px;"><img src="icons/orange/cloud_upload.svg" width="32" style="vertical-align: -0.2em; margin-right: 4px;"> Operations（運用）</h3>
+<p class="sm">デプロイ・保守・フィードバック循環</p>
+</div>
+
+</div>
+
+<div class="note" style="margin-top: 8px;">
+<img src="icons/orange/lightbulb.svg" width="24" style="vertical-align: -0.2em;"> ハッカソンでは <strong>Inception → Construction</strong> を高速に回すことが勝敗を分けます！
+</div>
+
+---
+
+<!-- _class: bg-pink -->
+
+# <img src="icons/pink/groups.svg" width="50" style="vertical-align: -0.2em; margin-right: 6px;"> モブ開発 × AI（全員で1画面を見ながら進める）
+
+<div class="cols">
+
+<div>
+
+<img src="images/mob_elaboration.png" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(90,70,120,0.15);">
+<p class="sm center" style="margin-top:4px;">チーム全員＋AIで仕様を検討・検証する様子</p>
+
+</div>
+
+<div>
+
+<div class="card card-blue" style="margin-bottom:10px;">
+<h3><img src="icons/blue/lightbulb.svg" width="32" style="vertical-align: -0.2em; margin-right: 4px;"> モブエラボレーション（Inception）</h3>
+<ul style="font-size:16px;">
+<li>チーム全員で<strong>AIが生成した要件・計画書</strong>をレビュー</li>
+<li>「これは違う」「ここを深掘り」とリアルタイムで修正</li>
+<li>全員が<strong>同じコンテキスト</strong>を共有 → 手戻りゼロ</li>
+</ul>
+</div>
+
+<div class="card card-green">
+<h3><img src="icons/green/build.svg" width="32" style="vertical-align: -0.2em; margin-right: 4px;"> モブコンストラクション（Construction）</h3>
+<ul style="font-size:16px;">
+<li>AIがコードを書き、チームは<strong>技術的な判断に集中</strong></li>
+<li>アーキテクチャの選択をその場で議論・決定</li>
+<li>コードレビューが<strong>リアルタイム</strong>で完了</li>
+</ul>
+</div>
+
+<div class="note" style="margin-top:10px;">
+<img src="icons/orange/lightbulb.svg" width="24" style="vertical-align: -0.2em;"> ハッカソンの最初の1時間をモブエラボレーションに使うだけで成果物の品質が劇的に変わります！
+</div>
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: bg-green -->
+
+# <img src="icons/green/cable.svg" width="50" style="vertical-align: -0.2em; margin-right: 6px;"> AI-DLC × Antigravity：ハッカソン最強戦略
+
+<div class="cols">
+
+<div>
+
+| AI-DLC フェーズ | Antigravity の対応機能 |
+|:---|:---|
+| **Inception**（発案） | Agent Manager でタスク分解・計画書自動生成 |
+| **Construction**（構築） | Vibe Coding + MCP + Nano Banana でフルスタック実装 |
+| **Operations**（運用） | Browser Subagent で動作確認・テスト自動化 |
+
+</div>
+
+<div>
+
+<div class="card card-lav">
+<h3><img src="icons/lav/star.svg" width="38" style="vertical-align: -0.2em; margin-right: 6px;"> ハッカソンでの活用ポイント</h3>
+<ul>
+<li><strong>Human-in-the-Loop</strong>：計画書の承認で品質を担保</li>
+<li><strong>並行開発</strong>：複数エージェントで機能を同時実装</li>
+<li><strong>高速プロトタイピング</strong>：10分でLP完成の実力</li>
+<li><strong>デモ品質</strong>：画像生成・リアルUI で審査員にインパクト</li>
+</ul>
+</div>
+
 </div>
 
 </div>
