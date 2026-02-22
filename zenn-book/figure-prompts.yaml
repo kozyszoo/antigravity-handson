@@ -1,0 +1,213 @@
+# Zenn ブック「Antigravity 入門」図形挿入指示
+
+# 各チャプターに挿入すべき図形・画像の一覧です。
+# Nano Banana や Figma、draw.io などで作成し、Zenn にアップロードしてください。
+
+figures:
+
+  - id: fig-01
+    chapter: "00-introduction"
+    insert_after: "これを **Vibe Coding** と呼びます。"
+    type: diagram
+    format: png
+    description: >
+      Antigravity の概要図。
+      中央に Antigravity のロゴを配置し、
+      上に「自然言語で指示」、下に「コード生成・画像生成・ブラウザ操作・コードレビュー」の
+      4つの機能がアイコン付きで放射状に並ぶ構成。
+      全体としてAIエージェントが開発の中心にいることが一目でわかるレイアウト。
+    style:
+      background: "#1a1a2e"
+      accent_color: "#4ecca3"
+      text_color: "#ffffff"
+      width: 800
+      height: 450
+
+  - id: fig-02
+    chapter: "01-setup"
+    insert_after: "Antigravity には大きく分けて 2つの画面があります。"
+    type: screenshot
+    format: png
+    description: >
+      Editor View と Agent Manager の画面キャプチャを左右に並べた比較図。
+      左: Editor View（ファイルツリー + エディタ + チャットパネルの3カラム構成）
+      右: Agent Manager（エージェントとの対話画面 + Artifacts パネル）
+      各領域にラベルを付けて、どこが何の役割かわかるようにする。
+    style:
+      annotation_color: "#4ecca3"
+      label_font_size: 14
+      border: true
+      width: 1200
+      height: 600
+
+  - id: fig-03
+    chapter: "01-setup"
+    insert_after: "「この関数にエラーハンドリングを追加して」のように、選択したコードに対して自然言語で指示を出せます。"
+    type: screenshot
+    format: png
+    description: >
+      エディタの AI 機能の動作イメージ。
+      上段: Supercomplete が提案を表示している状態（グレーアウトされた提案テキスト + Tabキーの表示）
+      下段: Command パレットが開いた状態（Cmd+I で自然言語入力している様子）
+      簡潔な2段構成で、それぞれの機能がどう見えるかを示す。
+    style:
+      annotation_color: "#4ecca3"
+      width: 800
+      height: 500
+
+  - id: fig-04
+    chapter: "02-gemini-md"
+    insert_after: "置いた場所によって影響範囲が変わります。"
+    type: diagram
+    format: png
+    description: >
+      ルールファイルの階層と適用範囲を示す図。
+      ツリー構造で以下を表現:
+        ~/.gemini/GEMINI.md → すべてのプロジェクト (最大範囲の枠)
+          └── project-root/GEMINI.md → プロジェクト全体 (中範囲の枠)
+              ├── .agent/rules/*.md → ワークスペース固有
+              └── sub-dir/GEMINI.md → サブディレクトリのみ (最小範囲の枠)
+      各レベルを色分けした入れ子の四角形で表現。
+    style:
+      background: "#ffffff"
+      colors:
+        global: "#e8daef"
+        project: "#d5f5e3"
+        workspace: "#d6eaf8"
+        subdir: "#fdebd0"
+      width: 700
+      height: 400
+
+  - id: fig-05
+    chapter: "03-vibe-coding-basic"
+    insert_after: "Nano Banana は Antigravity に組み込まれた画像生成 AI です。"
+    type: screenshot
+    format: png
+    description: >
+      Nano Banana の画像生成フロー。
+      左から右へ:
+        1. チャット入力（プロンプトテキスト）
+        2. 生成中のインジケータ
+        3. 生成された画像のプレビュー
+      矢印で接続し、「プロンプト → 生成 → 結果」の流れを示す。
+      実際にNano Bananaで生成したアバター画像の例を含める。
+    style:
+      background: "#1a1a2e"
+      accent_color: "#4ecca3"
+      width: 900
+      height: 350
+
+  - id: fig-06
+    chapter: "03-vibe-coding-basic"
+    insert_after: "AI 生成のオリジナル画像が含まれているはずです。"
+    type: screenshot
+    format: png
+    description: >
+      完成した自己紹介ページのスクリーンショット。
+      ダークモードのデザインで、以下の要素を含む:
+        - ヘッダー背景画像（グラデーション）
+        - 丸くトリミングされたプロフィール画像
+        - 名前のフェードインアニメーション（アニメ途中の見た目でOK）
+        - レスポンシブ対応が伝わるよう、デスクトップ幅での表示
+    style:
+      border: true
+      shadow: true
+      width: 800
+      height: 600
+
+  - id: fig-07
+    chapter: "04-mcp"
+    insert_after: "データベースに直接クエリを投げたりできるようになります。"
+    type: diagram
+    format: png
+    description: >
+      MCP のアーキテクチャ図。
+      3カラム構成:
+        左カラム: Antigravity（AIエージェント）のアイコン
+        中央カラム: MCP Server（中継サーバー）のアイコン群
+        右カラム: 外部サービス（GitHub, Slack, DB, ブラウザなど）のアイコン群
+      左→中央→右を双方向矢印で接続。
+      中央の MCP Server が「安全な接続層」として働くことを示す。
+    style:
+      background: "#ffffff"
+      accent_color: "#3498db"
+      width: 900
+      height: 400
+
+  - id: fig-08
+    chapter: "04-mcp"
+    insert_after: "MCP Store は GUI で MCP サーバーの追加・管理ができるビルトイン機能です。"
+    type: screenshot
+    format: png
+    description: >
+      MCP Store の画面キャプチャ。
+      MCPサーバーの一覧が表示され、各サーバーに Install ボタンがある状態。
+      playwright, context7, github など人気のMCPが並んでいる画面。
+    style:
+      border: true
+      annotation_color: "#4ecca3"
+      width: 800
+      height: 500
+
+  - id: fig-09
+    chapter: "05-skills"
+    insert_after: "というイメージです。"
+    type: diagram
+    format: png
+    description: >
+      Rules / Workflows / Skills の関係図。
+      ベン図または3つのカードを横並びにした比較図。
+        Rules: 常に守るルール（歯車アイコン）→ 「コーディング規約」「応答言語」
+        Workflows: 手順の自動実行（フローチャートアイコン）→ 「/hello」「/deploy」
+        Skills: 専門能力の追加（脳アイコン）→ 「@code-review」「@generate-test」
+      それぞれの発動方法と用途が一目でわかるレイアウト。
+    style:
+      background: "#ffffff"
+      colors:
+        rules: "#e8daef"
+        workflows: "#d6eaf8"
+        skills: "#d5f5e3"
+      width: 800
+      height: 400
+
+  - id: fig-10
+    chapter: "06-vibe-coding-advanced"
+    insert_after: "全体の流れはこうなっています。"
+    type: diagram
+    format: png
+    description: >
+      発展編のワークフロー図。
+      横方向に6つのステップを矢印でつなぐ:
+        1. Web リサーチ（虫眼鏡アイコン）
+        2. 構成決定（設計図アイコン）
+        3. ビジュアル生成（画像アイコン）
+        4. 実装（コードアイコン）
+        5. 品質チェック（チェックマークアイコン）
+        6. デプロイ（ロケットアイコン）
+      各ステップの下に使われるツール名を小さく表記:
+        MCP Browser / AI分析 / Nano Banana / Vite+React / code-review Skill / Firebase
+    style:
+      background: "#1a1a2e"
+      accent_color: "#4ecca3"
+      text_color: "#ffffff"
+      width: 1000
+      height: 300
+
+  - id: fig-11
+    chapter: "07-summary"
+    insert_after: "これらを組み合わせることで"
+    type: diagram
+    format: png
+    description: >
+      Antigravity の3層構造図。
+      ピラミッドまたは同心円で表現:
+        最下層（基盤）: Editor View / Agent Manager / マルチモデル対応
+        中層（カスタマイズ）: Rules / Workflows / Skills
+        最上層（拡張）: MCP（外部ツール接続）
+      各層に含まれる要素をアイコン付きで配置。
+      Layer が上に行くほど拡張性が高まることを示す。
+    style:
+      background: "#ffffff"
+      accent_color: "#4ecca3"
+      width: 800
+      height: 500

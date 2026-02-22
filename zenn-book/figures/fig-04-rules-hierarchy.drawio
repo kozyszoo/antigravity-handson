@@ -1,0 +1,42 @@
+<mxfile host="app.diagrams.net" modified="2026-02-15" type="device">
+  <diagram id="fig04" name="Rules Hierarchy">
+    <mxGraphModel dx="650" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="560" pageHeight="420" background="#fefefe">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="ルールファイルの階層と適用範囲" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#555;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="100" y="5" width="360" height="28" as="geometry"/></mxCell>
+
+        <!-- 最外枠: Global -->
+        <mxCell id="g" value="" style="rounded=1;html=1;fillColor=#fce4ec;strokeColor=#f8bbd0;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="20" y="48" width="520" height="350" as="geometry"/></mxCell>
+        <mxCell id="gt" value="Global Rules（全プロジェクト共通）" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#c06080;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="30" y="55" width="300" height="22" as="geometry"/></mxCell>
+        <mxCell id="gf" value="~/.gemini/GEMINI.md" style="rounded=1;html=1;fillColor=#fff;strokeColor=#f8bbd0;fontColor=#c06080;fontSize=10;fontFamily=monospace;" vertex="1" parent="1"><mxGeometry x="30" y="80" width="160" height="24" as="geometry"/></mxCell>
+        <mxCell id="gd" value="言語設定・共通スタイルなど" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#d0a0b0;fontSize=9;" vertex="1" parent="1"><mxGeometry x="200" y="82" width="200" height="18" as="geometry"/></mxCell>
+
+        <!-- 中枠: Project -->
+        <mxCell id="p" value="" style="rounded=1;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="45" y="118" width="480" height="265" as="geometry"/></mxCell>
+        <mxCell id="pt" value="Project Rules（プロジェクト単位）" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#4a6a9a;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="55" y="125" width="300" height="22" as="geometry"/></mxCell>
+        <mxCell id="pf" value="./GEMINI.md" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=10;fontFamily=monospace;" vertex="1" parent="1"><mxGeometry x="55" y="150" width="110" height="24" as="geometry"/></mxCell>
+        <mxCell id="pd" value="技術スタック・命名規約・構成" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#7a9aba;fontSize=9;" vertex="1" parent="1"><mxGeometry x="180" y="152" width="220" height="18" as="geometry"/></mxCell>
+
+        <!-- 内枠: Folder -->
+        <mxCell id="f" value="" style="rounded=1;html=1;fillColor=#e8f5e9;strokeColor=#a5d6a7;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="70" y="190" width="220" height="178" as="geometry"/></mxCell>
+        <mxCell id="ft2" value="Folder Rules&#xa;（ディレクトリ単位）" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#3a7a4a;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="80" y="198" width="180" height="32" as="geometry"/></mxCell>
+        <mxCell id="ff" value="src/GEMINI.md" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=10;fontFamily=monospace;" vertex="1" parent="1"><mxGeometry x="80" y="238" width="120" height="24" as="geometry"/></mxCell>
+        <mxCell id="fd" value="特定フォルダの&#xa;コンテキスト固有ルール" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#6a9a7a;fontSize=9;" vertex="1" parent="1"><mxGeometry x="80" y="270" width="180" height="28" as="geometry"/></mxCell>
+
+        <!-- 内枠右: Activation Mode -->
+        <mxCell id="am" value="" style="rounded=1;html=1;fillColor=#f3e5f5;strokeColor=#ce93d8;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="305" y="190" width="205" height="178" as="geometry"/></mxCell>
+        <mxCell id="amt2" value="Activation Mode" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#7a4a9a;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="315" y="198" width="150" height="22" as="geometry"/></mxCell>
+        <mxCell id="am1" value="Always" style="rounded=1;html=1;fillColor=#fff;strokeColor=#ce93d8;fontColor=#7a4a9a;fontSize=10;" vertex="1" parent="1"><mxGeometry x="315" y="228" width="80" height="24" as="geometry"/></mxCell>
+        <mxCell id="am1d" value="常に適用" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#9a7aaa;fontSize=9;" vertex="1" parent="1"><mxGeometry x="400" y="230" width="80" height="18" as="geometry"/></mxCell>
+        <mxCell id="am2b" value="Auto" style="rounded=1;html=1;fillColor=#fff;strokeColor=#ce93d8;fontColor=#7a4a9a;fontSize=10;" vertex="1" parent="1"><mxGeometry x="315" y="262" width="80" height="24" as="geometry"/></mxCell>
+        <mxCell id="am2d" value="AI が判断" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#9a7aaa;fontSize=9;" vertex="1" parent="1"><mxGeometry x="400" y="264" width="80" height="18" as="geometry"/></mxCell>
+        <mxCell id="am3b" value="Manual" style="rounded=1;html=1;fillColor=#fff;strokeColor=#ce93d8;fontColor=#7a4a9a;fontSize=10;" vertex="1" parent="1"><mxGeometry x="315" y="296" width="80" height="24" as="geometry"/></mxCell>
+        <mxCell id="am3d" value="@ファイル名" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#9a7aaa;fontSize=9;" vertex="1" parent="1"><mxGeometry x="400" y="298" width="80" height="18" as="geometry"/></mxCell>
+
+        <!-- 優先順位矢印 -->
+        <mxCell id="pri" value="優先: Folder ＞ Project ＞ Global" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#aa8aba;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="150" y="400" width="260" height="20" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

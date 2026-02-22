@@ -1,0 +1,39 @@
+<mxfile host="app.diagrams.net" modified="2026-02-15" type="device">
+  <diagram id="fig05" name="Nano Banana Flow">
+    <mxGraphModel dx="800" dy="400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="700" pageHeight="320" background="#fefefe">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="Nano Banana ― 画像生成フロー" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#555;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="170" y="5" width="360" height="28" as="geometry"/></mxCell>
+
+        <!-- Step 1: プロンプト -->
+        <mxCell id="s1" value="" style="rounded=1;html=1;fillColor=#fff3e0;strokeColor=#ffcc80;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="20" y="55" width="180" height="200" as="geometry"/></mxCell>
+        <mxCell id="s1i" value="✍️" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontSize=32;" vertex="1" parent="1"><mxGeometry x="80" y="62" width="50" height="38" as="geometry"/></mxCell>
+        <mxCell id="s1t" value="① プロンプト入力" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#9a7a3a;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="30" y="100" width="160" height="22" as="geometry"/></mxCell>
+        <mxCell id="s1c" value="「プロフィール用の&#xa; アバター画像を&#xa; パステル調で作って」" style="rounded=1;html=1;fillColor=#fff;strokeColor=#ffcc80;fontColor=#7a6030;fontSize=10;fontFamily=monospace;whiteSpace=wrap;" vertex="1" parent="1"><mxGeometry x="30" y="130" width="160" height="55" as="geometry"/></mxCell>
+        <mxCell id="s1d" value="自然言語で指示" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#ba9a6a;fontSize=9;" vertex="1" parent="1"><mxGeometry x="45" y="195" width="120" height="18" as="geometry"/></mxCell>
+
+        <!-- 矢印1 -->
+        <mxCell id="a1" value="" style="shape=flexArrow;endArrow=classic;fillColor=#f0d8a0;strokeColor=none;width=10;endSize=5;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="208" y="155" as="sourcePoint"/><mxPoint x="248" y="155" as="targetPoint"/></mxGeometry></mxCell>
+
+        <!-- Step 2: 生成 -->
+        <mxCell id="s2" value="" style="rounded=1;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="255" y="55" width="180" height="200" as="geometry"/></mxCell>
+        <mxCell id="s2i" value="🎨" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontSize=32;" vertex="1" parent="1"><mxGeometry x="318" y="62" width="50" height="38" as="geometry"/></mxCell>
+        <mxCell id="s2t" value="② Nano Banana 生成" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#4a6a9a;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="265" y="100" width="160" height="22" as="geometry"/></mxCell>
+        <mxCell id="s2c" value="" style="rounded=1;html=1;fillColor=#d4e8fd;strokeColor=#90caf9;" vertex="1" parent="1"><mxGeometry x="295" y="130" width="100" height="70" as="geometry"/></mxCell>
+        <mxCell id="s2ci" value="🖼️" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontSize=28;" vertex="1" parent="1"><mxGeometry x="318" y="142" width="50" height="40" as="geometry"/></mxCell>
+        <mxCell id="s2d" value="AI が画像を自動生成" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#7a9aba;fontSize=9;" vertex="1" parent="1"><mxGeometry x="275" y="210" width="140" height="18" as="geometry"/></mxCell>
+
+        <!-- 矢印2 -->
+        <mxCell id="a2" value="" style="shape=flexArrow;endArrow=classic;fillColor=#a8d0f0;strokeColor=none;width=10;endSize=5;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="443" y="155" as="sourcePoint"/><mxPoint x="483" y="155" as="targetPoint"/></mxGeometry></mxCell>
+
+        <!-- Step 3: 組み込み -->
+        <mxCell id="s3" value="" style="rounded=1;html=1;fillColor=#e8f5e9;strokeColor=#a5d6a7;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="490" y="55" width="180" height="200" as="geometry"/></mxCell>
+        <mxCell id="s3i" value="✅" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontSize=32;" vertex="1" parent="1"><mxGeometry x="553" y="62" width="50" height="38" as="geometry"/></mxCell>
+        <mxCell id="s3t" value="③ コードに自動挿入" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#3a7a4a;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="500" y="100" width="160" height="22" as="geometry"/></mxCell>
+        <mxCell id="s3c" value="&lt;img src=&quot;avatar.png&quot;&#xa;  alt=&quot;プロフィール&quot;&#xa;  class=&quot;avatar&quot; /&gt;" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a6a4a;fontSize=9;fontFamily=monospace;whiteSpace=wrap;align=left;spacingLeft=6;" vertex="1" parent="1"><mxGeometry x="500" y="130" width="160" height="55" as="geometry"/></mxCell>
+        <mxCell id="s3d" value="HTML に自動配置" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#6a9a7a;fontSize=9;" vertex="1" parent="1"><mxGeometry x="530" y="195" width="120" height="18" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,59 @@
+<mxfile host="app.diagrams.net" modified="2026-02-15" type="device">
+  <diagram id="fig08" name="MCP Store">
+    <mxGraphModel dx="900" dy="550" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="460" background="#fefefe">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ウィンドウ枠 -->
+        <mxCell id="w" value="" style="rounded=1;html=1;fillColor=#f8f8fc;strokeColor=#d0d0e0;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="40" y="15" width="720" height="430" as="geometry"/></mxCell>
+        <mxCell id="tb" value="" style="rounded=0;html=1;fillColor=#eeeef5;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="40" y="15" width="720" height="35" as="geometry"/></mxCell>
+        <mxCell id="tt" value="MCP Store" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#555;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="300" y="15" width="200" height="35" as="geometry"/></mxCell>
+
+        <!-- 検索 -->
+        <mxCell id="sb" value="🔍 MCP サーバーを検索..." style="rounded=1;html=1;fillColor=#fff;strokeColor=#d0d0e0;fontColor=#aaa;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1"><mxGeometry x="60" y="65" width="680" height="32" as="geometry"/></mxCell>
+
+        <!-- カテゴリタブ -->
+        <mxCell id="c1" value="すべて" style="rounded=1;html=1;fillColor=#a5d6a7;strokeColor=none;fontColor=#fff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="112" width="65" height="25" as="geometry"/></mxCell>
+        <mxCell id="c2" value="ブラウザ" style="rounded=1;html=1;fillColor=#eeeef5;strokeColor=none;fontColor=#888;fontSize=10;" vertex="1" parent="1"><mxGeometry x="133" y="112" width="65" height="25" as="geometry"/></mxCell>
+        <mxCell id="c3" value="データ" style="rounded=1;html=1;fillColor=#eeeef5;strokeColor=none;fontColor=#888;fontSize=10;" vertex="1" parent="1"><mxGeometry x="206" y="112" width="55" height="25" as="geometry"/></mxCell>
+        <mxCell id="c4" value="開発ツール" style="rounded=1;html=1;fillColor=#eeeef5;strokeColor=none;fontColor=#888;fontSize=10;" vertex="1" parent="1"><mxGeometry x="269" y="112" width="75" height="25" as="geometry"/></mxCell>
+
+        <!-- カード1: playwright -->
+        <mxCell id="k1" value="" style="rounded=1;html=1;fillColor=#fff;strokeColor=#d0d0e0;shadow=1;" vertex="1" parent="1"><mxGeometry x="60" y="152" width="330" height="80" as="geometry"/></mxCell>
+        <mxCell id="k1i" value="🌐" style="text;html=1;fillColor=none;strokeColor=none;fontSize=22;" vertex="1" parent="1"><mxGeometry x="68" y="160" width="35" height="30" as="geometry"/></mxCell>
+        <mxCell id="k1n" value="playwright" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#555;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="108" y="160" width="120" height="20" as="geometry"/></mxCell>
+        <mxCell id="k1d" value="ブラウザ自動化・E2Eテスト" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#aaa;fontSize=9;" vertex="1" parent="1"><mxGeometry x="108" y="180" width="180" height="16" as="geometry"/></mxCell>
+        <mxCell id="k1b" value="Install" style="rounded=1;html=1;fillColor=#a5d6a7;strokeColor=none;fontColor=#fff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="300" y="168" width="70" height="26" as="geometry"/></mxCell>
+        <mxCell id="k1s" value="⭐ 4.8 • 12K" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#ccc;fontSize=8;" vertex="1" parent="1"><mxGeometry x="108" y="200" width="120" height="14" as="geometry"/></mxCell>
+
+        <!-- カード2: context7 -->
+        <mxCell id="k2" value="" style="rounded=1;html=1;fillColor=#fff;strokeColor=#d0d0e0;shadow=1;" vertex="1" parent="1"><mxGeometry x="410" y="152" width="330" height="80" as="geometry"/></mxCell>
+        <mxCell id="k2i" value="📚" style="text;html=1;fillColor=none;strokeColor=none;fontSize=22;" vertex="1" parent="1"><mxGeometry x="418" y="160" width="35" height="30" as="geometry"/></mxCell>
+        <mxCell id="k2n" value="context7" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#555;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="458" y="160" width="120" height="20" as="geometry"/></mxCell>
+        <mxCell id="k2d" value="最新ライブラリドキュメント参照" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#aaa;fontSize=9;" vertex="1" parent="1"><mxGeometry x="458" y="180" width="200" height="16" as="geometry"/></mxCell>
+        <mxCell id="k2b" value="Install" style="rounded=1;html=1;fillColor=#a5d6a7;strokeColor=none;fontColor=#fff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="650" y="168" width="70" height="26" as="geometry"/></mxCell>
+        <mxCell id="k2s" value="⭐ 4.7 • 8K" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#ccc;fontSize=8;" vertex="1" parent="1"><mxGeometry x="458" y="200" width="120" height="14" as="geometry"/></mxCell>
+
+        <!-- カード3: github -->
+        <mxCell id="k3" value="" style="rounded=1;html=1;fillColor=#fff;strokeColor=#d0d0e0;shadow=1;" vertex="1" parent="1"><mxGeometry x="60" y="248" width="330" height="80" as="geometry"/></mxCell>
+        <mxCell id="k3i" value="🐙" style="text;html=1;fillColor=none;strokeColor=none;fontSize=22;" vertex="1" parent="1"><mxGeometry x="68" y="256" width="35" height="30" as="geometry"/></mxCell>
+        <mxCell id="k3n" value="github" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#555;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="108" y="256" width="120" height="20" as="geometry"/></mxCell>
+        <mxCell id="k3d" value="GitHub API連携・PR/Issue管理" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#aaa;fontSize=9;" vertex="1" parent="1"><mxGeometry x="108" y="276" width="200" height="16" as="geometry"/></mxCell>
+        <mxCell id="k3b" value="Installed ✓" style="rounded=1;html=1;fillColor=#eeeef5;strokeColor=#d0d0e0;fontColor=#6a9a7a;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="290" y="264" width="80" height="26" as="geometry"/></mxCell>
+        <mxCell id="k3s" value="⭐ 4.9 • 15K" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#ccc;fontSize=8;" vertex="1" parent="1"><mxGeometry x="108" y="296" width="120" height="14" as="geometry"/></mxCell>
+
+        <!-- カード4: postgres -->
+        <mxCell id="k4" value="" style="rounded=1;html=1;fillColor=#fff;strokeColor=#d0d0e0;shadow=1;" vertex="1" parent="1"><mxGeometry x="410" y="248" width="330" height="80" as="geometry"/></mxCell>
+        <mxCell id="k4i" value="🗄️" style="text;html=1;fillColor=none;strokeColor=none;fontSize=22;" vertex="1" parent="1"><mxGeometry x="418" y="256" width="35" height="30" as="geometry"/></mxCell>
+        <mxCell id="k4n" value="postgres" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#555;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="458" y="256" width="120" height="20" as="geometry"/></mxCell>
+        <mxCell id="k4d" value="PostgreSQL接続・クエリ実行" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#aaa;fontSize=9;" vertex="1" parent="1"><mxGeometry x="458" y="276" width="200" height="16" as="geometry"/></mxCell>
+        <mxCell id="k4b" value="Install" style="rounded=1;html=1;fillColor=#a5d6a7;strokeColor=none;fontColor=#fff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="650" y="264" width="70" height="26" as="geometry"/></mxCell>
+        <mxCell id="k4s" value="⭐ 4.6 • 6K" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#ccc;fontSize=8;" vertex="1" parent="1"><mxGeometry x="458" y="296" width="120" height="14" as="geometry"/></mxCell>
+
+        <!-- アノテーション -->
+        <mxCell id="an" value="← ワンクリックで追加" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#d08080;fontSize=10;fontStyle=2;" vertex="1" parent="1"><mxGeometry x="390" y="173" width="140" height="18" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

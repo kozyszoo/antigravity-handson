@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" modified="2026-02-15" type="device">
+  <diagram id="fig07" name="MCP Architecture">
+    <mxGraphModel dx="1000" dy="450" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="370" background="#fefefe">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="MCP（Model Context Protocol）のアーキテクチャ" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#555;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="200" y="5" width="500" height="28" as="geometry"/></mxCell>
+
+        <!-- 左: Antigravity -->
+        <mxCell id="ag" value="" style="rounded=1;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="30" y="48" width="200" height="290" as="geometry"/></mxCell>
+        <mxCell id="agt" value="Antigravity" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#4a6a9a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="55" y="55" width="150" height="25" as="geometry"/></mxCell>
+        <mxCell id="ag1" value="🤖 AI エージェント" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="50" y="95" width="140" height="40" as="geometry"/></mxCell>
+        <mxCell id="ag2" value="Gemini / Claude" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#7a9aba;fontSize=10;" vertex="1" parent="1"><mxGeometry x="50" y="148" width="140" height="32" as="geometry"/></mxCell>
+        <mxCell id="ag3" value="Nano Banana" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#7a9aba;fontSize=10;" vertex="1" parent="1"><mxGeometry x="50" y="192" width="140" height="32" as="geometry"/></mxCell>
+        <mxCell id="ag4" value="Editor View" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#7a9aba;fontSize=10;" vertex="1" parent="1"><mxGeometry x="50" y="236" width="140" height="32" as="geometry"/></mxCell>
+
+        <!-- 中: MCP Server -->
+        <mxCell id="mc" value="" style="rounded=1;html=1;fillColor=#e8f5e9;strokeColor=#a5d6a7;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="320" y="48" width="260" height="290" as="geometry"/></mxCell>
+        <mxCell id="mct" value="MCP Server（中継層）" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#3a7a4a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="350" y="55" width="200" height="25" as="geometry"/></mxCell>
+        <mxCell id="mc1" value="🌐 playwright" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=10;" vertex="1" parent="1"><mxGeometry x="340" y="92" width="105" height="30" as="geometry"/></mxCell>
+        <mxCell id="mc2" value="📚 context7" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=10;" vertex="1" parent="1"><mxGeometry x="455" y="92" width="105" height="30" as="geometry"/></mxCell>
+        <mxCell id="mc3" value="🐙 github" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=10;" vertex="1" parent="1"><mxGeometry x="340" y="132" width="105" height="30" as="geometry"/></mxCell>
+        <mxCell id="mc4" value="💬 slack" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=10;" vertex="1" parent="1"><mxGeometry x="455" y="132" width="105" height="30" as="geometry"/></mxCell>
+        <mxCell id="mc5" value="🗄️ postgres" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=10;" vertex="1" parent="1"><mxGeometry x="340" y="172" width="105" height="30" as="geometry"/></mxCell>
+        <mxCell id="mc6" value="📝 filesystem" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=10;" vertex="1" parent="1"><mxGeometry x="455" y="172" width="105" height="30" as="geometry"/></mxCell>
+        <mxCell id="mcd" value="オープン標準プロトコル" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#6a9a7a;fontSize=9;fontStyle=2;" vertex="1" parent="1"><mxGeometry x="370" y="305" width="160" height="18" as="geometry"/></mxCell>
+
+        <!-- 右: 外部サービス -->
+        <mxCell id="ex" value="" style="rounded=1;html=1;fillColor=#fff3e0;strokeColor=#ffcc80;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="670" y="48" width="200" height="290" as="geometry"/></mxCell>
+        <mxCell id="ext" value="外部サービス" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#9a7a3a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="700" y="55" width="140" height="25" as="geometry"/></mxCell>
+        <mxCell id="ex1" value="Chrome / Web" style="rounded=1;html=1;fillColor=#fff;strokeColor=#ffcc80;fontColor=#7a6030;fontSize=10;" vertex="1" parent="1"><mxGeometry x="695" y="95" width="140" height="30" as="geometry"/></mxCell>
+        <mxCell id="ex2" value="GitHub" style="rounded=1;html=1;fillColor=#fff;strokeColor=#ffcc80;fontColor=#7a6030;fontSize=10;" vertex="1" parent="1"><mxGeometry x="695" y="138" width="140" height="30" as="geometry"/></mxCell>
+        <mxCell id="ex3" value="Slack / Jira" style="rounded=1;html=1;fillColor=#fff;strokeColor=#ffcc80;fontColor=#7a6030;fontSize=10;" vertex="1" parent="1"><mxGeometry x="695" y="181" width="140" height="30" as="geometry"/></mxCell>
+        <mxCell id="ex4" value="PostgreSQL" style="rounded=1;html=1;fillColor=#fff;strokeColor=#ffcc80;fontColor=#7a6030;fontSize=10;" vertex="1" parent="1"><mxGeometry x="695" y="224" width="140" height="30" as="geometry"/></mxCell>
+        <mxCell id="ex5" value="Notion / その他" style="rounded=1;html=1;fillColor=#fff;strokeColor=#ffcc80;fontColor=#7a6030;fontSize=10;" vertex="1" parent="1"><mxGeometry x="695" y="267" width="140" height="30" as="geometry"/></mxCell>
+
+        <!-- 矢印 -->
+        <mxCell id="al" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;fillColor=#a8d0f0;strokeColor=none;width=12;endSize=5;startSize=5;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="235" y="190" as="sourcePoint"/><mxPoint x="315" y="190" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="ar" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;fillColor=#f0d8a0;strokeColor=none;width=12;endSize=5;startSize=5;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="585" y="190" as="sourcePoint"/><mxPoint x="665" y="190" as="targetPoint"/></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

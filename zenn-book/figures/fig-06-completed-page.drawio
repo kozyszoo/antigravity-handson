@@ -1,0 +1,53 @@
+<mxfile host="app.diagrams.net" modified="2026-02-15" type="device">
+  <diagram id="fig06" name="Completed Page">
+    <mxGraphModel dx="700" dy="560" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="600" pageHeight="480" background="#fefefe">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="完成イメージ ― 自己紹介ページ" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#555;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="120" y="8" width="360" height="28" as="geometry"/></mxCell>
+
+        <!-- ブラウザ枠 -->
+        <mxCell id="bw" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9fb;strokeColor=#d0d0e0;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="40" y="48" width="520" height="410" as="geometry"/></mxCell>
+        <mxCell id="bar" value="" style="rounded=0;html=1;fillColor=#eeeef5;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="40" y="48" width="520" height="32" as="geometry"/></mxCell>
+        <mxCell id="dot1" value="" style="ellipse;fillColor=#f8b4b4;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="52" y="58" width="12" height="12" as="geometry"/></mxCell>
+        <mxCell id="dot2" value="" style="ellipse;fillColor=#fce4a8;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="70" y="58" width="12" height="12" as="geometry"/></mxCell>
+        <mxCell id="dot3" value="" style="ellipse;fillColor=#b4e8c8;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="88" y="58" width="12" height="12" as="geometry"/></mxCell>
+        <mxCell id="url" value="localhost:3000" style="rounded=1;html=1;fillColor=#fff;strokeColor=#d0d0e0;fontColor=#aaa;fontSize=9;fontFamily=monospace;" vertex="1" parent="1"><mxGeometry x="120" y="55" width="340" height="20" as="geometry"/></mxCell>
+
+        <!-- ヒーローセクション -->
+        <mxCell id="hero" value="" style="rounded=0;html=1;fillColor=#e8f0fe;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="40" y="80" width="520" height="120" as="geometry"/></mxCell>
+        <mxCell id="avatar" value="👤" style="ellipse;html=1;fillColor=#d4e4f8;strokeColor=#b8cce8;fontSize=28;" vertex="1" parent="1"><mxGeometry x="248" y="88" width="55" height="55" as="geometry"/></mxCell>
+        <mxCell id="name" value="山田 太郎" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#4a6a9a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="200" y="148" width="150" height="22" as="geometry"/></mxCell>
+        <mxCell id="bio" value="Web Developer / 東京在住" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#8a9aba;fontSize=10;" vertex="1" parent="1"><mxGeometry x="190" y="168" width="170" height="18" as="geometry"/></mxCell>
+
+        <!-- スキルセクション -->
+        <mxCell id="sec1t" value="Skills" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#6a8aba;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="210" width="80" height="22" as="geometry"/></mxCell>
+        <mxCell id="sk1" value="HTML/CSS" style="rounded=1;html=1;fillColor=#e8f0fe;strokeColor=#b8cce8;fontColor=#4a6a9a;fontSize=9;" vertex="1" parent="1"><mxGeometry x="60" y="236" width="75" height="24" as="geometry"/></mxCell>
+        <mxCell id="sk2" value="JavaScript" style="rounded=1;html=1;fillColor=#fef3e0;strokeColor=#f0d8a0;fontColor=#9a7a3a;fontSize=9;" vertex="1" parent="1"><mxGeometry x="145" y="236" width="75" height="24" as="geometry"/></mxCell>
+        <mxCell id="sk3" value="React" style="rounded=1;html=1;fillColor=#e0f7f0;strokeColor=#a0dac8;fontColor=#3a7a5a;fontSize=9;" vertex="1" parent="1"><mxGeometry x="230" y="236" width="60" height="24" as="geometry"/></mxCell>
+        <mxCell id="sk4" value="Node.js" style="rounded=1;html=1;fillColor=#f3e5f5;strokeColor=#d0b0e0;fontColor=#7a4a9a;fontSize=9;" vertex="1" parent="1"><mxGeometry x="300" y="236" width="65" height="24" as="geometry"/></mxCell>
+
+        <!-- プロジェクトセクション -->
+        <mxCell id="sec2t" value="Projects" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#6a8aba;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="275" width="80" height="22" as="geometry"/></mxCell>
+        <mxCell id="pj1" value="" style="rounded=1;html=1;fillColor=#fef3e0;strokeColor=#f0d8a0;" vertex="1" parent="1"><mxGeometry x="60" y="302" width="150" height="80" as="geometry"/></mxCell>
+        <mxCell id="pj1t" value="Portfolio Site" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#7a6030;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="75" y="340" width="120" height="18" as="geometry"/></mxCell>
+        <mxCell id="pj1i" value="🖼️" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontSize=22;" vertex="1" parent="1"><mxGeometry x="105" y="308" width="40" height="30" as="geometry"/></mxCell>
+
+        <mxCell id="pj2" value="" style="rounded=1;html=1;fillColor=#e0f7f0;strokeColor=#a0dac8;" vertex="1" parent="1"><mxGeometry x="225" y="302" width="150" height="80" as="geometry"/></mxCell>
+        <mxCell id="pj2t" value="Task Manager" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#3a6a50;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="240" y="340" width="120" height="18" as="geometry"/></mxCell>
+        <mxCell id="pj2i" value="📋" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontSize=22;" vertex="1" parent="1"><mxGeometry x="270" y="308" width="40" height="30" as="geometry"/></mxCell>
+
+        <mxCell id="pj3" value="" style="rounded=1;html=1;fillColor=#f3e5f5;strokeColor=#d0b0e0;" vertex="1" parent="1"><mxGeometry x="390" y="302" width="150" height="80" as="geometry"/></mxCell>
+        <mxCell id="pj3t" value="Chat App" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#6a3a7a;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="405" y="340" width="120" height="18" as="geometry"/></mxCell>
+        <mxCell id="pj3i" value="💬" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontSize=22;" vertex="1" parent="1"><mxGeometry x="435" y="308" width="40" height="30" as="geometry"/></mxCell>
+
+        <!-- フッター -->
+        <mxCell id="ft" value="" style="rounded=0;html=1;fillColor=#eeeef5;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="40" y="400" width="520" height="58" as="geometry"/></mxCell>
+        <mxCell id="ftx" value="Contact: hello@example.com" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#aaa;fontSize=9;" vertex="1" parent="1"><mxGeometry x="200" y="415" width="200" height="18" as="geometry"/></mxCell>
+
+        <!-- アノテーション -->
+        <mxCell id="an1" value="← Nano Banana で&#xa;   生成した画像" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#d07070;fontSize=9;fontStyle=2;" vertex="1" parent="1"><mxGeometry x="310" y="92" width="120" height="30" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

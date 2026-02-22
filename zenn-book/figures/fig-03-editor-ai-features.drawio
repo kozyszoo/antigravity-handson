@@ -1,0 +1,32 @@
+<mxfile host="app.diagrams.net" modified="2026-02-15" type="device">
+  <diagram id="fig03" name="Editor AI Features">
+    <mxGraphModel dx="800" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="700" pageHeight="420" background="#fefefe">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="Editor View の AI 機能" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#555;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="200" y="5" width="300" height="28" as="geometry"/></mxCell>
+
+        <!-- Supercomplete セクション -->
+        <mxCell id="sc_bg" value="" style="rounded=1;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="20" y="48" width="660" height="160" as="geometry"/></mxCell>
+        <mxCell id="sc_t" value="⚡ Supercomplete" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#4a6a9a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="35" y="55" width="200" height="25" as="geometry"/></mxCell>
+        <mxCell id="sc_d" value="Tab キーで次のコード全体を予測・補完" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#7a9aba;fontSize=10;" vertex="1" parent="1"><mxGeometry x="35" y="78" width="300" height="18" as="geometry"/></mxCell>
+
+        <mxCell id="sc1" value="function greet(name) {" style="rounded=0;html=1;fillColor=#fff;strokeColor=#d0ddf0;fontColor=#4a6a9a;fontSize=10;fontFamily=monospace;align=left;spacingLeft=8;" vertex="1" parent="1"><mxGeometry x="35" y="105" width="250" height="22" as="geometry"/></mxCell>
+        <mxCell id="sc2" value="  return `Hello, ${name}!`;" style="rounded=0;html=1;fillColor=#d4e8fd;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=10;fontFamily=monospace;align=left;spacingLeft=8;strokeWidth=1;dashed=1;" vertex="1" parent="1"><mxGeometry x="35" y="127" width="250" height="22" as="geometry"/></mxCell>
+        <mxCell id="sc3" value="}" style="rounded=0;html=1;fillColor=#d4e8fd;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=10;fontFamily=monospace;align=left;spacingLeft=8;strokeWidth=1;dashed=1;" vertex="1" parent="1"><mxGeometry x="35" y="149" width="250" height="22" as="geometry"/></mxCell>
+        <mxCell id="sc_tab" value="Tab ⇥ で確定" style="rounded=1;html=1;fillColor=#90caf9;strokeColor=none;fontColor=#fff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="300" y="130" width="100" height="28" as="geometry"/></mxCell>
+        <mxCell id="sc_an" value="← AI が予測した&#xa;   コード（薄い表示）" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#d08080;fontSize=9;fontStyle=2;" vertex="1" parent="1"><mxGeometry x="416" y="128" width="150" height="30" as="geometry"/></mxCell>
+
+        <!-- Command セクション -->
+        <mxCell id="cm_bg" value="" style="rounded=1;html=1;fillColor=#f3e5f5;strokeColor=#ce93d8;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="20" y="228" width="660" height="170" as="geometry"/></mxCell>
+        <mxCell id="cm_t" value="🔧 Command" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#7a4a9a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="35" y="235" width="200" height="25" as="geometry"/></mxCell>
+        <mxCell id="cm_d" value="⌘K で呼び出し → 選択範囲を自然言語で編集" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#9a7aaa;fontSize=10;" vertex="1" parent="1"><mxGeometry x="35" y="258" width="350" height="18" as="geometry"/></mxCell>
+
+        <mxCell id="cm_before" value="// before&#xa;const items = [3,1,2];&#xa;console.log(items);" style="rounded=1;html=1;fillColor=#fff;strokeColor=#d0b0e0;fontColor=#555;fontSize=10;fontFamily=monospace;align=left;spacingLeft=8;whiteSpace=wrap;" vertex="1" parent="1"><mxGeometry x="35" y="290" width="200" height="60" as="geometry"/></mxCell>
+        <mxCell id="cm_prompt" value="⌘K&#xa;「ソートしてから出力して」" style="rounded=1;html=1;fillColor=#ce93d8;strokeColor=none;fontColor=#fff;fontSize=10;fontStyle=1;whiteSpace=wrap;" vertex="1" parent="1"><mxGeometry x="260" y="298" width="160" height="42" as="geometry"/></mxCell>
+        <mxCell id="cm_arrow" value="" style="shape=flexArrow;endArrow=classic;fillColor=#d8b0e8;strokeColor=none;width=8;endSize=4;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="430" y="318" as="sourcePoint"/><mxPoint x="460" y="318" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="cm_after" value="// after&#xa;const items = [3,1,2];&#xa;items.sort();&#xa;console.log(items);" style="rounded=1;html=1;fillColor=#fff;strokeColor=#d0b0e0;fontColor=#555;fontSize=10;fontFamily=monospace;align=left;spacingLeft=8;whiteSpace=wrap;" vertex="1" parent="1"><mxGeometry x="465" y="285" width="200" height="72" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
