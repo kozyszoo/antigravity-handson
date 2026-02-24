@@ -1,0 +1,48 @@
+<mxfile host="app.diagrams.net" modified="2024-02-23T12:00:00.000Z" agent="Claude Code" version="22.1.0">
+  <diagram name="ルールファイルの階層と適用範囲" id="rules-hierarchy">
+    <mxGraphModel dx="700" dy="400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="700" pageHeight="400" background="#FFFFFF">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 最大範囲：すべてのプロジェクト（淡紫） -->
+        <mxCell id="layer1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6D5FF;strokeColor=#9673D6;strokeWidth=2;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="50" y="30" width="600" height="340" as="geometry"/>
+        </mxCell>
+        <mxCell id="label1" value="すべてのプロジェクトに適用（最大範囲）&#xa;~/.gemini/GEMINI.md" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=12;fontColor=#6B4C9A;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="300" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 中範囲：プロジェクト全体（淡緑） -->
+        <mxCell id="layer2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D4EDDA;strokeColor=#5CB85C;strokeWidth=2;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="90" y="90" width="520" height="260" as="geometry"/>
+        </mxCell>
+        <mxCell id="label2" value="プロジェクト全体（中範囲）&#xa;GEMINI.md" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=12;fontColor=#3D8B3D;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="100" y="100" width="250" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 小範囲：ワークスペース固有（淡青） -->
+        <mxCell id="layer3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1ECF1;strokeColor=#5BC0DE;strokeWidth=2;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="130" y="150" width="220" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="label3" value="ワークスペース固有（小範囲）&#xa;.agent/rules/*.md" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=11;fontColor=#31708F;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="140" y="160" width="200" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 最小範囲：サブディレクトリのみ（淡橙） -->
+        <mxCell id="layer4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCF8E3;strokeColor=#F0AD4E;strokeWidth=2;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="380" y="150" width="210" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="label4" value="サブディレクトリのみ（最小範囲）&#xa;sub-dir/GEMINI.md" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=11;fontColor=#8A6D3B;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="390" y="160" width="200" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 説明テキスト -->
+        <mxCell id="note" value="外側のルールほど広い範囲に適用されます。&#xa;内側のルールは外側のルールを上書きできます。" style="text;html=1;strokeColor=#CCCCCC;fillColor=#F5F5F5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="130" y="260" width="460" height="70" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,142 @@
+<mxfile host="app.diagrams.net" modified="2024-02-23T12:00:00.000Z" agent="Claude Code" version="22.1.0">
+  <diagram name="発展編のワークフロー図" id="advanced-workflow">
+    <mxGraphModel dx="1000" dy="300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="300" background="#1a1a2e">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 背景 -->
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1000" height="300" as="geometry"/>
+        </mxCell>
+
+        <!-- タイトル -->
+        <mxCell id="title" value="発展編：Vibe Coding の全体ワークフロー" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontColor=#FFFFFF;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="400" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- ステップ1: Web リサーチ -->
+        <mxCell id="step1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d2d44;strokeColor=#4ecca3;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="30" y="80" width="130" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="icon1" value="🔍" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=36;" vertex="1" parent="1">
+          <mxGeometry x="50" y="95" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="label1" value="① Web リサーチ" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#FFFFFF;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="35" y="150" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="tool1" value="MCP Browser" style="text;html=1;strokeColor=none;fillColor=#4ecca3;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="45" y="185" width="100" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- ステップ2: 構成決定 -->
+        <mxCell id="step2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d2d44;strokeColor=#4ecca3;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="185" y="80" width="130" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="icon2" value="📐" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=36;" vertex="1" parent="1">
+          <mxGeometry x="205" y="95" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="label2" value="② 構成決定" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#FFFFFF;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="190" y="150" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="tool2" value="AI分析" style="text;html=1;strokeColor=none;fillColor=#4ecca3;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="200" y="185" width="100" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- ステップ3: ビジュアル生成 -->
+        <mxCell id="step3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d2d44;strokeColor=#4ecca3;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="340" y="80" width="130" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="icon3" value="🖼️" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=36;" vertex="1" parent="1">
+          <mxGeometry x="360" y="95" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="label3" value="③ ビジュアル生成" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#FFFFFF;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="345" y="150" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="tool3" value="Nano Banana" style="text;html=1;strokeColor=none;fillColor=#4ecca3;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="355" y="185" width="100" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- ステップ4: 実装 -->
+        <mxCell id="step4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d2d44;strokeColor=#4ecca3;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="495" y="80" width="130" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="icon4" value="💻" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=36;" vertex="1" parent="1">
+          <mxGeometry x="515" y="95" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="label4" value="④ 実装" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#FFFFFF;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="500" y="150" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="tool4" value="Vite+React" style="text;html=1;strokeColor=none;fillColor=#4ecca3;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="510" y="185" width="100" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- ステップ5: 品質チェック -->
+        <mxCell id="step5" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d2d44;strokeColor=#4ecca3;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="650" y="80" width="130" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="icon5" value="✅" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=36;" vertex="1" parent="1">
+          <mxGeometry x="670" y="95" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="label5" value="⑤ 品質チェック" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#FFFFFF;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="655" y="150" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="tool5" value="code-review Skill" style="text;html=1;strokeColor=none;fillColor=#4ecca3;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="660" y="185" width="110" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- ステップ6: デプロイ -->
+        <mxCell id="step6" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d2d44;strokeColor=#4ecca3;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="805" y="80" width="130" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="icon6" value="🚀" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=36;" vertex="1" parent="1">
+          <mxGeometry x="825" y="95" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="label6" value="⑥ デプロイ" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#FFFFFF;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="810" y="150" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="tool6" value="Firebase" style="text;html=1;strokeColor=none;fillColor=#4ecca3;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="820" y="185" width="100" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- 矢印 -->
+        <mxCell id="arrow1" value="" style="endArrow=classic;html=1;strokeColor=#4ecca3;strokeWidth=3;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="150" as="sourcePoint"/>
+            <mxPoint x="185" y="150" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow2" value="" style="endArrow=classic;html=1;strokeColor=#4ecca3;strokeWidth=3;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="315" y="150" as="sourcePoint"/>
+            <mxPoint x="340" y="150" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow3" value="" style="endArrow=classic;html=1;strokeColor=#4ecca3;strokeWidth=3;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="470" y="150" as="sourcePoint"/>
+            <mxPoint x="495" y="150" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow4" value="" style="endArrow=classic;html=1;strokeColor=#4ecca3;strokeWidth=3;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="625" y="150" as="sourcePoint"/>
+            <mxPoint x="650" y="150" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow5" value="" style="endArrow=classic;html=1;strokeColor=#4ecca3;strokeWidth=3;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="150" as="sourcePoint"/>
+            <mxPoint x="805" y="150" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 説明 -->
+        <mxCell id="note" value="これらのステップを AI と対話しながら進めることで、完成度の高い Web アプリを短時間で開発できます" style="text;html=1;strokeColor=#4ecca3;fillColor=#2d2d44;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="200" y="250" width="600" height="30" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

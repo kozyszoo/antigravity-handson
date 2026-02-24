@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net" modified="2024-02-23T12:00:00.000Z" agent="Claude Code" version="22.1.0">
+  <diagram name="MCPアーキテクチャ図" id="mcp-architecture">
+    <mxGraphModel dx="900" dy="400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="400" background="#FFFFFF">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 左カラム：Antigravity -->
+        <mxCell id="antigravity-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#3498db;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="180" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="antigravity-icon" value="🤖" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=48;" vertex="1" parent="1">
+          <mxGeometry x="85" y="120" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="antigravity-label" value="Antigravity&#xa;(AI エージェント)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontColor=#2C3E50;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="200" width="160" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- 中央カラム：MCP Server -->
+        <mxCell id="mcp-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9E6;strokeColor=#F39C12;strokeWidth=3;dashed=1;dashPattern=5 5;" vertex="1" parent="1">
+          <mxGeometry x="300" y="80" width="280" height="240" as="geometry"/>
+        </mxCell>
+        <mxCell id="mcp-title" value="MCP Server（安全な接続層）" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=12;fontColor=#D68910;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="310" y="90" width="260" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- MCP Servers -->
+        <mxCell id="mcp1" value="playwright" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;strokeWidth=1;fontSize=12;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="320" y="130" width="110" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="mcp2" value="context7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;strokeWidth=1;fontSize=12;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="450" y="130" width="110" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="mcp3" value="chrome-devtools" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;strokeWidth=1;fontSize=12;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="320" y="180" width="110" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="mcp4" value="github" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;strokeWidth=1;fontSize=12;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="450" y="180" width="110" height="35" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="mcp-icon" value="🔌" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=36;" vertex="1" parent="1">
+          <mxGeometry x="380" y="235" width="100" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- 右カラム：外部サービス -->
+        <mxCell id="external-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F8F5;strokeColor=#16A085;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="680" y="100" width="180" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="external-title" value="外部サービス" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=14;fontColor=#117A65;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="690" y="110" width="160" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ext1" value="GitHub 🐙" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECF0F1;strokeColor=#95A5A6;strokeWidth=1;fontSize=11;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="700" y="150" width="140" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ext2" value="Slack 💬" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECF0F1;strokeColor=#95A5A6;strokeWidth=1;fontSize=11;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="700" y="190" width="140" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ext3" value="Database 🗄️" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECF0F1;strokeColor=#95A5A6;strokeWidth=1;fontSize=11;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="700" y="230" width="140" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ext4" value="Browser 🌐" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECF0F1;strokeColor=#95A5A6;strokeWidth=1;fontSize=11;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="700" y="270" width="140" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- 双方向矢印：Antigravity ⟷ MCP Server -->
+        <mxCell id="arrow1" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#3498db;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="antigravity-box" target="mcp-container">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="220" y="200" as="sourcePoint"/>
+            <mxPoint x="300" y="200" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 双方向矢印：MCP Server ⟷ 外部サービス -->
+        <mxCell id="arrow2" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#16A085;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mcp-container" target="external-box">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="200" as="sourcePoint"/>
+            <mxPoint x="680" y="200" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

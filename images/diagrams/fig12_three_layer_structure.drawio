@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net" modified="2024-02-23T12:00:00.000Z" agent="Claude Code" version="22.1.0">
+  <diagram name="Antigravity の3層構造図" id="three-layer-structure">
+    <mxGraphModel dx="800" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="500" background="#FFFFFF">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- タイトル -->
+        <mxCell id="main-title" value="Antigravity の 3 層構造" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=18;fontColor=#2C3E50;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="300" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- 最下層：基盤（淡グレー） -->
+        <mxCell id="layer1-base" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#95A5A6;strokeWidth=3;direction=north;size=0.2;" vertex="1" parent="1">
+          <mxGeometry x="100" y="300" width="500" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="layer1-title" value="基盤" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontColor=#7F8C8D;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="110" y="310" width="80" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- 基盤の要素 -->
+        <mxCell id="base1" value="📝 Editor View" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EAF6;strokeColor=#7986CB;strokeWidth=1;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="130" y="350" width="130" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="base2" value="🤖 Agent Manager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EAF6;strokeColor=#7986CB;strokeWidth=1;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="280" y="350" width="130" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="base3" value="🔄 マルチモデル対応" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EAF6;strokeColor=#7986CB;strokeWidth=1;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="430" y="350" width="140" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- 中層：カスタマイズ（淡青） -->
+        <mxCell id="layer2-customize" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#3498db;strokeWidth=3;direction=north;size=0.2;" vertex="1" parent="1">
+          <mxGeometry x="150" y="180" width="400" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="layer2-title" value="カスタマイズ" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontColor=#2980b9;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="160" y="190" width="130" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- カスタマイズの要素 -->
+        <mxCell id="custom1" value="⚙️ Rules&#xa;(GEMINI.md)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1976D2;strokeWidth=1;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="175" y="230" width="100" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="custom2" value="📊 Workflows" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1976D2;strokeWidth=1;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="295" y="230" width="100" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="custom3" value="🧠 Agent Skills" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1976D2;strokeWidth=1;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="415" y="230" width="105" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- 最上層：拡張（淡緑） -->
+        <mxCell id="layer3-extension" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fillColor=#D4EDDA;strokeColor=#4ecca3;strokeWidth=3;direction=north;size=0.2;" vertex="1" parent="1">
+          <mxGeometry x="220" y="80" width="260" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="layer3-title" value="拡張" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontColor=#3D8B3D;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="230" y="90" width="80" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- 拡張の要素 -->
+        <mxCell id="extension1" value="🔌 MCP&#xa;(外部ツール接続)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5D6A7;strokeColor=#388E3C;strokeWidth=2;fontSize=11;fontColor=#1B5E20;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="275" y="125" width="150" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- 右側の矢印と説明 -->
+        <mxCell id="arrow-up" value="" style="endArrow=classic;html=1;strokeColor=#4ecca3;strokeWidth=4;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="650" y="380" as="sourcePoint"/>
+            <mxPoint x="650" y="120" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-label1" value="拡張性が高まる" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#4ecca3;fontStyle=1;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="600" y="230" width="120" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- 補足説明 -->
+        <mxCell id="note" value="これらの層を組み合わせることで、強力でカスタマイズ可能な開発環境を構築できます" style="text;html=1;strokeColor=#4ecca3;fillColor=#E8FCF7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#117A65;" vertex="1" parent="1">
+          <mxGeometry x="150" y="450" width="500" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- 各層の説明ラベル -->
+        <mxCell id="desc1" value="すべての機能の土台となる&#xa;基本的な開発環境" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#7F8C8D;" vertex="1" parent="1">
+          <mxGeometry x="30" y="345" width="70" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="desc2" value="プロジェクトごとに&#xa;動作をカスタマイズ" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#2980b9;" vertex="1" parent="1">
+          <mxGeometry x="30" y="215" width="70" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="desc3" value="外部サービスと&#xa;連携して機能拡張" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#3D8B3D;" vertex="1" parent="1">
+          <mxGeometry x="30" y="110" width="70" height="40" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

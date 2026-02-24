@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Coffee Shop - 近未来カフェ体験</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #eee;
+            line-height: 1.6;
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+                        linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #4ecca3 0%, #64b5f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #aaa;
+        }
+
+        .hero-btn {
+            padding: 15px 40px;
+            background-color: #4ecca3;
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2em;
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(78, 204, 163, 0.4);
+        }
+
+        /* コンテナ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #4ecca3;
+        }
+
+        /* 特徴紹介（グラスモーフィズムカード） */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #4ecca3 0%, #2c7a7b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+        }
+
+        .feature-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #4ecca3;
+        }
+
+        .feature-description {
+            color: #bbb;
+            line-height: 1.8;
+        }
+
+        /* メニューセクション */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .menu-item {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #4ecca3;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateX(10px);
+        }
+
+        .menu-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #4ecca3;
+        }
+
+        .menu-description {
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .menu-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* CTAセクション */
+        .cta-section {
+            background: linear-gradient(135deg, #4ecca3 0%, #2c7a7b 100%);
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #0a0a0a;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .cta-btn {
+            padding: 15px 50px;
+            background-color: #0a0a0a;
+            color: #4ecca3;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2em;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* フッター */
+        footer {
+            background-color: #000;
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AI Coffee Shop</h1>
+            <p>未来のカフェ体験をあなたに</p>
+            <a href="#" class="hero-btn">今すぐ予約</a>
+        </div>
+    </section>
+
+    <!-- 特徴紹介 -->
+    <div class="container">
+        <h2 class="section-title">私たちの特徴</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">☕</div>
+                <h3 class="feature-title">AI抽出技術</h3>
+                <p class="feature-description">
+                    最新のAI技術により、あなたの好みに完璧にマッチした
+                    コーヒーを抽出します。毎回が特別な一杯に。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌱</div>
+                <h3 class="feature-title">サステナビリティ</h3>
+                <p class="feature-description">
+                    環境に配慮した豆の選定から、完全リサイクル可能な
+                    カップまで。地球に優しいカフェ体験を。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">モバイルオーダー</h3>
+                <p class="feature-description">
+                    アプリから事前注文で待ち時間ゼロ。
+                    スマートな時間の使い方を提案します。
+                </p>
+            </div>
+        </div>
+
+        <!-- メニュー -->
+        <h2 class="section-title">メニュー</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-name">AIブレンド</div>
+                <div class="menu-description">
+                    あなたの好みを学習したAIが毎日異なるブレンドを提案
+                </div>
+                <div class="menu-price">¥680</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-name">ネオンラテ</div>
+                <div class="menu-description">
+                    近未来的な演出とともに楽しむプレミアムラテ
+                </div>
+                <div class="menu-price">¥780</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-name">グリーンエスプレッソ</div>
+                <div class="menu-description">
+                    サステナブル農園から直送の有機豆を使用
+                </div>
+                <div class="menu-price">¥580</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-name">クラウドカプチーノ</div>
+                <div class="menu-description">
+                    ふわふわの泡が特徴的なAI制御の完璧な一杯
+                </div>
+                <div class="menu-price">¥720</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>今すぐ体験しよう</h2>
+        <p>近未来のカフェ体験があなたを待っています</p>
+        <a href="#" class="cta-btn">来店予約する</a>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2026 AI Coffee Shop. Created with Antigravity Vibe Coding.</p>
+        <p>東京都渋谷区〇〇 1-2-3 | TEL: 03-xxxx-xxxx</p>
+    </footer>
+</body>
+</html>

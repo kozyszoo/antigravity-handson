@@ -1,0 +1,76 @@
+<mxfile host="app.diagrams.net" modified="2024-02-23T12:00:00.000Z" agent="Claude Code" version="22.1.0">
+  <diagram name="Rules / Workflows / Skills の比較図" id="comparison">
+    <mxGraphModel dx="800" dy="400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="400" background="#FFFFFF">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- カード1: Rules（淡紫） -->
+        <mxCell id="card1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6D5FF;strokeColor=#9673D6;strokeWidth=2;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="220" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="icon1" value="⚙️" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=48;" vertex="1" parent="1">
+          <mxGeometry x="105" y="95" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="title1" value="Rules" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontColor=#6B4C9A;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="160" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="desc1" value="常に有効。&#xa;設定しておけば動く" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="50" y="195" width="200" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="example1" value="例: コーディング規約&#xa;応答言語" style="text;html=1;strokeColor=none;fillColor=#F3E5F5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#4A4A4A;" vertex="1" parent="1">
+          <mxGeometry x="55" y="245" width="190" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="trigger1" value="発動方法:&#xa;Always On / @ファイル名" style="text;html=1;strokeColor=#9673D6;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#6B4C9A;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="295" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- カード2: Workflows（淡青） -->
+        <mxCell id="card2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1ECF1;strokeColor=#5BC0DE;strokeWidth=2;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="290" y="80" width="220" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="icon2" value="📊" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=48;" vertex="1" parent="1">
+          <mxGeometry x="355" y="95" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="title2" value="Workflows" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontColor=#31708F;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="desc2" value="コマンドで呼び出す" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="300" y="195" width="200" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="example2" value="例: /hello&#xa;/deploy" style="text;html=1;strokeColor=none;fillColor=#E1F5FE;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#4A4A4A;" vertex="1" parent="1">
+          <mxGeometry x="305" y="245" width="190" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="trigger2" value="発動方法:&#xa;/ワークフロー名" style="text;html=1;strokeColor=#5BC0DE;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#31708F;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="295" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- カード3: Skills（淡緑） -->
+        <mxCell id="card3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D4EDDA;strokeColor=#5CB85C;strokeWidth=2;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="540" y="80" width="220" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="icon3" value="🧠" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=48;" vertex="1" parent="1">
+          <mxGeometry x="605" y="95" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="title3" value="Skills" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontColor=#3D8B3D;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="550" y="160" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="desc3" value="専門知識を追加" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="550" y="195" width="200" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="example3" value="例: @code-review&#xa;@generate-test" style="text;html=1;strokeColor=none;fillColor=#E8F5E9;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#4A4A4A;" vertex="1" parent="1">
+          <mxGeometry x="555" y="245" width="190" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="trigger3" value="発動方法:&#xa;@スキル名 / AI が自動判断" style="text;html=1;strokeColor=#5CB85C;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#3D8B3D;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="550" y="295" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- タイトル -->
+        <mxCell id="main-title" value="Rules / Workflows / Skills の比較" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=18;fontColor=#2C3E50;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="400" height="40" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
