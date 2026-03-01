@@ -1,4 +1,6 @@
-# Hands-on 04: MCP（Model Context Protocol）接続
+# Step 4: MCP（Model Context Protocol）接続
+
+> 🕐 **タイムライン**: Step 4-5 まとめて **20:20〜20:40**（20分）
 
 ## 目標
 MCP を使って、エージェントを外部ツールやデータソースにつなぐ方法を学びましょう。
@@ -192,4 +194,4 @@ Context7 MCP を使って、React の useEffect フックの
 
 ---
 
-**次へ進む → [05_skills](../05_skills/README.md)**
+**次へ進む → [Step 5: Agent Skills の作成](../05_skills/README.md)**

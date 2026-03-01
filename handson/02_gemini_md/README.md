@@ -1,4 +1,6 @@
-# Hands-on 02: Rules（GEMINI.md）設定
+# Step 2: Rules（GEMINI.md）設定
+
+> 🕐 **タイムライン**: Step 1-2 まとめて **19:30〜20:00**（30分）
 
 ## 目標
 プロジェクト固有のルールをエージェントに教える設定ファイルを作成しましょう。
@@ -184,4 +186,4 @@ AI が計画書を `Update` して日本語に書き直してくれます。
 
 ---
 
-**次へ進む → [03_vibe_coding_basic](../03_vibe_coding_basic/README.md)**
+**次へ進む → [Step 3: Vibe Coding 基礎編](../03_vibe_coding_basic/README.md)**

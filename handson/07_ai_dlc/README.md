@@ -1,5 +1,7 @@
 # Step 7: ハッカソンおすすめ戦略 AI-DLC
 
+> 🕐 **タイムライン**: **21:00〜21:10**（10分）
+
 Antigravityを使った開発をハッカソンで最大限活かすための戦略として、**AI-DLC（AI-Driven Development Lifecycle）**という手法を紹介します。
 
 ## 所要時間

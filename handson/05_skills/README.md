@@ -1,4 +1,6 @@
-# Hands-on 05: Agent Skills の作成
+# Step 5: Agent Skills の作成
+
+> 🕐 **タイムライン**: Step 4-5 まとめて **20:20〜20:40**（20分）
 
 ## 目標
 カスタム Skill を作り、エージェントに新しい能力を追加しましょう。
@@ -273,4 +275,4 @@ description: 関数に対するユニットテストを自動生成する
 
 ---
 
-**次へ進む → [06_vibe_coding_advanced](../06_vibe_coding_advanced/README.md)**
+**次へ進む → [Step 6: Vibe Coding 発展編](../06_vibe_coding_advanced/README.md)**
