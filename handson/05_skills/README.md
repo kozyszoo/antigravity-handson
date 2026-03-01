@@ -265,6 +265,37 @@ description: 関数に対するユニットテストを自動生成する
 
 ---
 
+## 🌟 コミュニティの Skills を活用しよう（claude-code-plugin）
+
+自分で一から作成しなくても、コミュニティで公開されている強力な Skill 集を活用することができます。
+代表例として `sean-sunagaku/claude-code-plugin` をご紹介します。
+
+### インストール方法
+
+プロンプト入力欄（または Claude Code コンソール）から以下のコマンドを実行するだけですぐに使えます。
+
+```bash
+/plugin marketplace add sean-sunagaku/claude-code-plugin
+```
+
+### 有用な Skill の例
+
+インストールすると、以下のような高度な機能が使えるようになります。
+
+| Skill 名 | 概要 |
+|:---|:---|
+| `@multi-ai-review` | Codex, Gemini, Claude の3つの AI に並列でコードレビューを依頼し、統合レポートを生成します。 |
+| `@agent-team` | 複数のサブエージェントをオーケストレーションし、タスクを並列実行・設計・実装するマルチエージェント機能です。 |
+| `@git-workflow` | ブランチ作成、Conventional Commits によるコミット、PR 作成までの Git ワークフローを自動化します。 |
+| `@ci-check` | `.github/workflows/*.yml` を解析し、CIチェックをローカル実行して必要なら自動修正します。 |
+| `@app-naming` | 5つの専門AIエージェントがブレインストーミングし、多角的な視点から最適なアプリ名を決定します。 |
+| `@ui-verify` | Chrome DevTools を使ってフロントエンドの実機動作確認とデバッグを実行します。 |
+| `@database` | Drizzle ORMやSQLiteを使ったスキーマ管理とマイグレーションを支援します。 |
+
+これらのコミュニティ提供の Skill を組み合わせることで、**「Vibe Coding」は単なるコード生成を超えた、高度な自動化プロセスへと進化**します。様々なタスクに応じて柔軟に使い分けてみましょう！
+
+---
+
 ## Skills / Rules / Workflows の比較
 
 | 機能 | 目的 | 発動方法 |

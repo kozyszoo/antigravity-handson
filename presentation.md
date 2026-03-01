@@ -851,6 +851,57 @@ AIが同じ品質で実行できる。
 
 </div>
 </div>
+</div>
+
+---
+
+<!-- _class: bg-green -->
+
+# <span class="ms ms-lg c-green" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M442-180h76v-82l142-156v-191H300v191l142 155.7v82.3Zm-60 60v-118L240-394v-215q0-24.75 17.63-42.38Q275.25-669 300-669h72l-30 30v-201h60v171h156v-171h60v201l-30-30h72q24.75 0 42.38 17.62Q720-633.75 720-609v215L578-238v118H382Zm98-275Z"/></svg></span> コミュニティのSkillsを活用しよう
+
+<div class="cols">
+<div>
+
+### claude-code-plugin
+
+<div class="card card-green">
+
+**オープンソースで公開されている強力なSkill集**
+`sean-sunagaku/claude-code-plugin`
+
+インストールするだけで、マルチエージェントや高度な開発フローを即座に導入できます。
+
+</div>
+
+<div class="card card-blue" style="margin-top:10px;">
+
+**💡 インストールコマンド**
+```bash
+/plugin marketplace add sean-sunagaku/claude-code-plugin
+```
+
+</div>
+
+</div>
+<div>
+
+### 有用なSkillの例
+
+<div class="card card-lav">
+
+- **`@multi-ai-review`**<br>
+  <small>Gemini, Claude, Codexの3AIに並列レビューを依頼</small>
+- **`@agent-team`**<br>
+  <small>マルチエージェントでタスクを並列実行・設計</small>
+- **`@git-workflow`**<br>
+  <small>ブランチ作成からPR作成までのGit操作を自動化</small>
+- **`@app-naming`**<br>
+  <small>5つの専門AIが議論して最適なアプリ名を提案</small>
+
+</div>
+
+</div>
+</div>
 
 ---
 
