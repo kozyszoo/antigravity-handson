@@ -67,51 +67,51 @@ marp -s presentation.md
 |:---|:---|:---|
 | 19:00〜19:15 | **イントロ** | Vibe Codingとは？開発のパラダイムシフト |
 | 19:15〜19:30 | **Antigravityの核心技術** | Agent-First / Dual View / Multi-Model |
-| 19:30〜20:00 | **Step 1-2** | 環境構築 + GEMINI.md設定（30分） |
-| 20:00〜20:20 | **Step 3** | Vibe Coding 基礎編（自己紹介ページ + Nano Banana） |
-| 20:20〜20:40 | **Step 4-5** | MCP接続 + Browser Subagent & Skills |
-| 20:40〜21:00 | **Step 6** | Vibe Coding 発展編（AI Coffee Shop LP） |
-| 21:00〜21:10 | **Step 7** | まとめ：AI-DLCとハッカソン戦略 |
+| 19:30〜20:00 | **Step 1** | 環境構築 + GEMINI.md設定（30分） |
+| 20:00〜20:20 | **Step 2** | Vibe Coding 基礎編（自己紹介ページ + Nano Banana） |
+| 20:20〜20:40 | **Step 3** | MCP接続 + Browser Subagent & Skills |
+| 20:40〜21:00 | **Step 4** | Vibe Coding 発展編（AI Coffee Shop LP） |
+| 21:00〜21:10 | **Step 5** | まとめ：AI-DLCとハッカソン戦略 |
 
 ### 📚 ハンズオン資料
 
 | No | フォルダ | 内容 | 時間帯 | 難易度 |
 |:---:|:---|:---|:---:|:---:|
-| **01** | [Step 1: 環境セットアップ](./handson/01_setup/README.md) | 環境構築・基本画面確認 | 19:30〜 | ⭐ |
-| **02** | [Step 2: GEMINI.md 設定](./handson/02_gemini_md/README.md) | GEMINI.md 設定 | 19:45〜 | ⭐⭐ |
-| **03** | [Step 3: Vibe Coding 基礎編](./handson/03_vibe_coding_basic/README.md) | 🎨 **自己紹介ページ + Nano Banana** | 20:00〜 | ⭐⭐ |
-| **04** | [Step 4: MCP 接続](./handson/04_mcp/README.md) | MCP接続・Browser Subagent | 20:20〜 | ⭐⭐ |
-| **05** | [Step 5: Agent Skills 作成](./handson/05_skills/README.md) | Agent Skills 作成 | 20:30〜 | ⭐⭐⭐ |
-| **06** | [Step 6: Vibe Coding 発展編](./handson/06_vibe_coding_advanced/README.md) | 🚀 **AI Coffee Shop LP 構築** | 20:40〜 | ⭐⭐⭐ |
-| **07** | [Step 7: AI-DLC戦略](./handson/07_ai_dlc/README.md) | 🏅 **ハッカソン攻略：AI-DLC** | 21:00〜 | ⭐⭐⭐ |
+| **01** | [Step 1-1: 環境セットアップ](./handson/01_1_setup/README.md) | 環境構築・基本画面確認 | 19:30〜 | ⭐ |
+| **02** | [Step 1-2: GEMINI.md 設定](./handson/01_2_gemini_md/README.md) | GEMINI.md 設定 | 19:45〜 | ⭐⭐ |
+| **03** | [Step 2: Vibe Coding 基礎編](./handson/02_vibe_coding_basic/README.md) | 🎨 **自己紹介ページ + Nano Banana** | 20:00〜 | ⭐⭐ |
+| **04** | [Step 3-1: MCP 接続](./handson/03_1_mcp/README.md) | MCP接続・Browser Subagent | 20:20〜 | ⭐⭐ |
+| **05** | [Step 3-2: Agent Skills 作成](./handson/03_2_skills/README.md) | Agent Skills 作成 | 20:30〜 | ⭐⭐⭐ |
+| **06** | [Step 4: Vibe Coding 発展編](./handson/04_vibe_coding_advanced/README.md) | 🚀 **AI Coffee Shop LP 構築** | 20:40〜 | ⭐⭐⭐ |
+| **07** | [Step 5: AI-DLC戦略](./handson/05_ai_dlc/README.md) | 🏅 **ハッカソン攻略：AI-DLC** | 21:00〜 | ⭐⭐⭐ |
 
 **合計所要時間**: 約100分（ハンズオン部分のみ）
 
 ### 🎯 学習フロー
 
 ```
-【Step 1-2】基礎の確立（19:30〜20:00）
+【Step 1】基礎の確立（19:30〜20:00）
   環境セットアップ → GEMINI.md設定
       ↓
-【Step 3】Vibe Coding を最速体験（20:00〜20:20）
+【Step 2】Vibe Coding を最速体験（20:00〜20:20）
   自己紹介ページ作成 + Nano Banana 画像生成
       ↓
-【Step 4-5】エージェントを拡張（20:20〜20:40）
+【Step 3】エージェントを拡張（20:20〜20:40）
   MCP接続 → Browser Subagent → Agent Skills
       ↓
-【Step 6】総合演習（20:40〜21:00）
+【Step 4】総合演習（20:40〜21:00）
   AI Coffee Shop LP（リサーチ→実装→デプロイ準備）
       ↓
-【Step 7】実践知識（21:00〜21:10）
+【Step 5】実践知識（21:00〜21:10）
   AI-DLC × ハッカソン最強戦略
 ```
 
 ### なぜこの順番？
 
-- **Step 3 で早期にVibe Codingを体験** → モチベーション維持
-- **Step 4-5 で機能を拡張** → できることが増える
-- **Step 6 で総合演習** → 学んだ機能を組み合わせる
-- **Step 7 で実践参考** → ハッカソンで即使える戦略を知る
+- **Step 2 で早期にVibe Codingを体験** → モチベーション維持
+- **Step 3 で機能を拡張** → できることが増える
+- **Step 4 で総合演習** → 学んだ機能を組み合わせる
+- **Step 5 で実践参考** → ハッカソンで即使える戦略を知る
 
 
 

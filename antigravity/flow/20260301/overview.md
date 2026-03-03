@@ -176,7 +176,7 @@ Slide 07: Multi-Model Support
 内容: Gemini 3 Pro/Flash、Claude 4.5、画像生成のNano Bananaなど、適材適所でモデルが使い分けられる強みを話します。
 +3
 
-3. Step 1-2: 環境構築とルール設定 (19:30〜20:00)
+3. Step 1: 環境構築とルール設定 (19:30〜20:00)
 ここから実際に手を動かし始めます。
 
 
@@ -195,7 +195,7 @@ Slide 09: GEMINI.md によるルール定義
 内容: プロジェクトの「意図」をAIに伝えるための設定ファイルの書き方を体験してもらいます。
 +3
 
-4. Step 3: Vibe Coding 基礎編 (20:00〜20:20)
+4. Step 2: Vibe Coding 基礎編 (20:00〜20:20)
 
 Slide 10: 自己紹介ページ作成とNano Banana 
 +2
@@ -204,7 +204,7 @@ Slide 10: 自己紹介ページ作成とNano Banana
 内容: プロンプトだけでHTML/CSSを組み、Nano Bananaでアバターや背景を生成して組み込む「デザインとコードの融合」を体験します。
 +3
 
-5. Step 4-5: 外部接続とスキル拡張 (20:20〜20:40)
+5. Step 3: 外部接続とスキル拡張 (20:20〜20:40)
 
 Slide 11: MCP (Model Context Protocol) 
 +2
@@ -221,7 +221,7 @@ Slide 12: Browser Subagent と Agent Skills
 内容: ブラウザを自律操作してリサーチする方法や、特定の専門能力（コードレビュー等）を追加する方法を伝えます。
 +3
 
-6. Step 6: Vibe Coding 発展編 (20:40〜21:00)
+6. Step 4: Vibe Coding 発展編 (20:40〜21:00)
 
 Slide 13: 「AI Coffee Shop」LP構築デモ 
 +1

@@ -14,7 +14,7 @@ antigravity_handson/
 │   └── PRESENTATION_README.md      # プレゼンテーション資料の使い方
 │
 ├── 📚 handson/                     # ハンズオン資料（メインコンテンツ）
-│   ├── 01_setup/                   # Step 1: 環境セットアップ
+│   ├── 01_setup/                   # Step 1-1: 環境セットアップ
 │   │   └── README.md
 │   ├── 02_gemini_md/               # Step 2: GEMINI.md設定
 │   │   ├── README.md

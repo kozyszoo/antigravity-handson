@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Antigravity ハンズオンガイド</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4ecca3;
+            --bg-dark: #1a1a2e;
+            --bg-medium: #16213e;
+            --bg-light: #0f3460;
+            --text-light: #e8e8e8;
+            --text-muted: #a0a0a0;
+            --sidebar-width: 280px;
+            --accent-purple: #9b82b5;
+            --accent-blue: #6daad8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--bg-medium);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+        }
+
+        .sidebar nav li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .sidebar nav a:hover {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .sidebar nav a.active {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            border-left: 3px solid var(--primary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            max-width: 1200px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-medium) 0%, var(--bg-light) 100%);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .section {
+            background: var(--bg-medium);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .section h3 {
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .section h4 {
+            color: var(--accent-purple);
+            font-size: 1.2rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+        }
+
+        .section ul, .section ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        code {
+            background: var(--bg-dark);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--primary-color);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--bg-dark);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 1px solid var(--bg-light);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--text-light);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .badge-time {
+            background: var(--accent-purple);
+            color: white;
+        }
+
+        .badge-info {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid var(--primary-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(78, 204, 163, 0.3);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .menu-toggle {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: var(--primary-color);
+                color: var(--bg-dark);
+                border: none;
+                padding: 10px 15px;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle" onclick="toggleSidebar()">☰ メニュー</button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <h2>🚀 ハンズオン</h2>
+        <nav>
+            <ul>
+                <li><a href="#intro" class="active">はじめに</a></li>
+                <li><a href="#step1">Step 1: 環境セットアップ</a></li>
+                <li><a href="#step2">Step 2: GEMINI.md設定</a></li>
+                <li><a href="#step3">Step 3: Vibe Coding 基礎編</a></li>
+                <li><a href="#step4">Step 4: MCP接続</a></li>
+                <li><a href="#step5">Step 5: Agent Skills</a></li>
+                <li><a href="#step6">Step 6: Vibe Coding 発展編</a></li>
+                <li><a href="#step7">Step 7: AI-DLC戦略</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="hero">
+            <h1>🚀 Google Antigravity ハンズオンガイド</h1>
+            <p>次世代AIエージェント統合開発環境 完全ガイド</p>
+            <p style="margin-top: 10px; color: var(--text-muted); font-size: 0.95rem;">2026年3月</p>
+        </div>
+
+        <!-- Introduction -->
+        <section class="section" id="intro">
+            <h2>はじめに</h2>
+            <p>このガイドでは、Google Antigravityを使った開発の基礎から応用まで、ステップバイステップで学習できます。</p>
+
+            <h3>学習の流れ</h3>
+            <div class="card">
+                <ul>
+                    <li><strong>Step 1-2</strong>: 環境セットアップと基本設定 (30分)</li>
+                    <li><strong>Step 3</strong>: Vibe Codingの基礎 (20分)</li>
+                    <li><strong>Step 4-5</strong>: MCPとSkillsの活用 (20分)</li>
+                    <li><strong>Step 6</strong>: 本格的なWebアプリケーション開発 (20分)</li>
+                    <li><strong>Step 7</strong>: ハッカソン戦略 (10分)</li>
+                </ul>
+            </div>
+
+            <h3>前提知識</h3>
+            <p>このハンズオンは、プログラミング初心者でも取り組める内容になっています。React や TailwindCSS などのフレームワークの知識がなくても、AIがすべてサポートしてくれます。</p>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="section" id="step1">
+            <h2>Step 1: 環境セットアップ</h2>
+            <span class="badge badge-time">🕐 19:30〜20:00 (30分)</span>
+
+            <h3>目標</h3>
+            <p>Google Antigravity を起動して、ワークスペースの基本設定まで済ませましょう。</p>
+
+            <h3>システム要件</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>OS</th>
+                        <th>要件</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>macOS</td>
+                        <td>バージョン 12 (Monterey) 以上 ※ Apple Silicon のみ。X86 は非対応です</td>
+                    </tr>
+                    <tr>
+                        <td>Windows</td>
+                        <td>Windows 10 (64-bit) 以上</td>
+                    </tr>
+                    <tr>
+                        <td>Linux</td>
+                        <td>glibc >= 2.28, glibcxx >= 3.4.25（Ubuntu 20, Debian 10, Fedora 36, RHEL 8 等）</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <blockquote>
+                📚 公式ドキュメント: <a href="https://antigravity.google/docs/get-started" target="_blank" style="color: var(--primary-color);">https://antigravity.google/docs/get-started</a>
+            </blockquote>
+
+            <h3>チェックリスト</h3>
+
+            <h4>1. Antigravity のインストール確認</h4>
+            <ul>
+                <li>Antigravity アプリケーションがインストールされている</li>
+                <li>Google アカウントでログイン済み</li>
+                <li>アプリが最新版になっている（Restart to Update が出ていたら再起動してください）</li>
+            </ul>
+
+            <h4>2. 初期設定（日本語化・拡張機能）</h4>
+            <p><strong>日本語化:</strong></p>
+            <ol>
+                <li>左側アイコンバーの「Extensions」をクリック</li>
+                <li>「Japanese Language Pack for Visual Studio Code」を検索してインストール</li>
+                <li>再起動して日本語化を確認</li>
+            </ol>
+
+            <h4>3. ワークスペースの作成</h4>
+            <ol>
+                <li><code>File</code> > <code>Open Folder</code> をクリック</li>
+                <li>このハンズオンのフォルダ（<code>antigravity_handson</code>）を選択</li>
+                <li>フォルダが左のサイドバーに表示されれば成功です</li>
+            </ol>
+
+            <h4>4. 基本画面の確認</h4>
+            <p>Antigravity には 2つのメインView があります。</p>
+
+            <div class="card">
+                <h4>Editor View（エディタ画面）</h4>
+                <p>ファイルツリーとエディタが並ぶ、VS Code ベースの画面です。</p>
+                <ul>
+                    <li>Editor View が表示される（左がファイルツリー、中央がエディタ）</li>
+                    <li>チャットパネルが開く（右サイドバー）</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Agent Manager（エージェント管理画面）</h4>
+                <p>AIエージェントとのやりとりに特化した画面です。</p>
+                <ul>
+                    <li>Agent Manager に切り替えできる</li>
+                    <li>Inbox（受信トレイ）で複数の会話を管理</li>
+                </ul>
+            </div>
+
+            <h4>View切り替えショートカット</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>操作</th>
+                        <th>ショートカット</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Editor ⇄ Agent Manager</td>
+                        <td><code>Cmd + E</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>5. モデル選択とモードの確認</h4>
+
+            <h4>推論モデル（Reasoning Model）</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>モデル</th>
+                        <th>特徴</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Gemini 3 Pro (High/Low)</td>
+                        <td>Google の最新モデル。高性能</td>
+                    </tr>
+                    <tr>
+                        <td>Gemini 3 Flash</td>
+                        <td>高速レスポンス</td>
+                    </tr>
+                    <tr>
+                        <td>Claude Sonnet 4.5</td>
+                        <td>Anthropic 製。Standard / Thinking モード</td>
+                    </tr>
+                    <tr>
+                        <td>Claude Opus 4.5</td>
+                        <td>Anthropic 製。高精度（Thinking モード）</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Planning モードと Fast モード</h4>
+            <ul>
+                <li><strong>Planning モード</strong>：エージェントがコードを書く前に「実装計画」を作成するモード。詳細な調査や複雑なタスク向け。</li>
+                <li><strong>Fast モード</strong>：計画を書かずに素早く直接コードを生成するモード。</li>
+            </ul>
+
+            <h3>やってみよう</h3>
+            <p>Antigravity のチャットで試してみましょう。</p>
+            <pre><code>こんにちは！今日の日付と曜日を教えて。</code></pre>
+            <p>今日の日付と曜日が日本語で返ってくれば成功です。</p>
+
+            <div class="nav-buttons">
+                <div></div>
+                <a href="#step2" class="btn">次へ: Step 2 →</a>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="section" id="step2">
+            <h2>Step 2: Rules（GEMINI.md）設定</h2>
+            <span class="badge badge-time">🕐 19:30〜20:00 (30分)</span>
+
+            <h3>目標</h3>
+            <p>プロジェクト固有のルールをエージェントに教える設定ファイルを作成しましょう。</p>
+
+            <h3>Rules とは</h3>
+            <p>Rules は、エージェントの振る舞いを制御するための持続的な指示です。簡単に言うと、<strong>「AIへの取扱説明書」</strong>のようなものです。</p>
+
+            <blockquote>
+                📚 公式ドキュメント: <a href="https://antigravity.google/docs/rules-workflows" target="_blank" style="color: var(--primary-color);">https://antigravity.google/docs/rules-workflows</a>
+            </blockquote>
+
+            <h3>設定ファイルの種類</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ファイル名</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>GEMINI.md</code></td>
+                        <td>プロジェクトルートに配置します。もっとも一般的です</td>
+                    </tr>
+                    <tr>
+                        <td><code>AI_INSTRUCTIONS.md</code></td>
+                        <td>別名です。機能は同じです</td>
+                    </tr>
+                    <tr>
+                        <td><code>ANTIGRAVITY.md</code></td>
+                        <td>別名です。機能は同じです</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>配置場所と適用範囲</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>レベル</th>
+                        <th>パス</th>
+                        <th>適用範囲</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>グローバル</td>
+                        <td><code>~/.gemini/GEMINI.md</code></td>
+                        <td>すべてのプロジェクトに適用</td>
+                    </tr>
+                    <tr>
+                        <td>ワークスペース</td>
+                        <td><code>.agent/rules/</code> フォルダ内</td>
+                        <td>そのワークスペースにのみ適用</td>
+                    </tr>
+                    <tr>
+                        <td>プロジェクトルート</td>
+                        <td><code>GEMINI.md</code></td>
+                        <td>そのプロジェクト全体に適用</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>基本テンプレート</h3>
+            <pre><code># プロジェクト設定 - Google Antigravity Hands-on
+
+## 基本ルール
+- 常に**日本語**で応答してください。
+- コードには必ず**コメント**を入れてください（日本語可）。
+- エラーが発生した場合は、原因と解決策を提示してください。
+
+## 技術スタック
+- HTML / CSS / JavaScript（Vanilla）
+- Node.js (任意)
+
+## コーディング規約
+- 変数名: camelCase
+- 関数名: camelCase
+- ファイル名: kebab-case（例: `my-component.js`）</code></pre>
+
+            <h3>動作確認</h3>
+            <p>Antigravity のチャットで試してみましょう。</p>
+            <pre><code>「Hello World」を表示する HTML ファイルを作成して。</code></pre>
+
+            <div class="nav-buttons">
+                <a href="#step1" class="btn">← 前へ: Step 1</a>
+                <a href="#step3" class="btn">次へ: Step 3 →</a>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="section" id="step3">
+            <h2>Step 3: Vibe Coding 基礎編</h2>
+            <span class="badge badge-time">🕐 20:00〜20:20 (20分)</span>
+
+            <h3>学習目標</h3>
+            <ul>
+                <li>Antigravity との基本的な対話方法を身につける</li>
+                <li>自然言語でコードを生成する感覚をつかむ</li>
+                <li>Nano Banana で画像を生成してみる</li>
+                <li>すぐに動く Web ページを一つ作る</li>
+            </ul>
+
+            <h3>Part 1: シンプルな HTML ページを作成</h3>
+            <p>Antigravity に、こう指示してください。</p>
+            <pre><code>新しいフォルダ「my-first-vibe」を作成して、その中にシンプルなHTMLファイルを作って。
+テーマは「自己紹介ページ」で、モダンでおしゃれなデザインにして。</code></pre>
+
+            <h3>Part 2: デザインをカスタマイズ</h3>
+            <pre><code>背景色をダークモードに変更して。
+アクセントカラーは青緑系（#4ecca3）にして。</code></pre>
+
+            <pre><code>名前の部分にふわっと表示されるアニメーションを追加して</code></pre>
+
+            <pre><code>スマホでも綺麗に見えるようにレスポンシブ対応して</code></pre>
+
+            <h3>Part 3: Nano Banana で画像生成</h3>
+
+            <h4>プロフィール画像を生成</h4>
+            <pre><code>Nano Bananaで、プロフィール用のアバター画像を生成して。
+- スタイル: アニメ風またはイラスト風
+- 背景: シンプルなグラデーション
+- サイズ: 正方形
+ファイル名は「avatar.png」で保存して。</code></pre>
+
+            <h4>背景画像を生成</h4>
+            <pre><code>Nano Bananaで、ヘッダー用の背景画像を生成して。
+- テーマ: 抽象的な波模様
+- 色: 紺から青緑へのグラデーション
+- 幅広い横長画像
+ファイル名は「header-bg.png」で保存して。</code></pre>
+
+            <h3>Vibe Coding のコツ</h3>
+            <div class="card">
+                <h4>1. 具体的に伝える</h4>
+                <p>❌ 「かっこいいページを作って」</p>
+                <p>✅ 「ダークモードで、青緑のアクセントカラー、グラスモーフィズムのカードデザインで作って」</p>
+            </div>
+
+            <div class="card">
+                <h4>2. 段階的に進める</h4>
+                <p>❌ 「完璧なポートフォリオサイトを作って」</p>
+                <p>✅ 「まずシンプルな自己紹介ページを作って」→「次にスキルセクションを追加して」</p>
+            </div>
+
+            <div class="card">
+                <h4>3. フィードバックを活用</h4>
+                <pre><code>「もう少し余白を増やして」
+「フォントサイズを大きくして」
+「もっとシンプルにして」</code></pre>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="#step2" class="btn">← 前へ: Step 2</a>
+                <a href="#step4" class="btn">次へ: Step 4 →</a>
+            </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section class="section" id="step4">
+            <h2>Step 4: MCP（Model Context Protocol）接続</h2>
+            <span class="badge badge-time">🕐 20:20〜20:40 (20分)</span>
+
+            <h3>目標</h3>
+            <p>MCP を使って、エージェントを外部ツールやデータソースにつなぐ方法を学びましょう。</p>
+
+            <h3>MCP とは</h3>
+            <p>MCP（Model Context Protocol）は、AIエージェントと外部システムを安全に接続するためのオープン標準です。簡単に言うと、<strong>「AIエージェント用のプラグイン」</strong>のようなものです。</p>
+
+            <blockquote>
+                📚 公式ドキュメント: <a href="https://antigravity.google/docs/mcp" target="_blank" style="color: var(--primary-color);">https://antigravity.google/docs/mcp</a>
+            </blockquote>
+
+            <h3>MCP でできること</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>機能</th>
+                        <th>説明</th>
+                        <th>例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Context Resources</td>
+                        <td>AI がリアルタイムデータを読み取る</td>
+                        <td>SQL スキーマ、ビルドログ</td>
+                    </tr>
+                    <tr>
+                        <td>Custom Tools</td>
+                        <td>AI がアクションを実行する</td>
+                        <td>GitHub Issue 作成、Notion 検索</td>
+                    </tr>
+                    <tr>
+                        <td>MCP Store</td>
+                        <td>GUI で MCP を追加・管理する</td>
+                        <td>ワンクリックで有効化</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>利用可能な MCP サーバー</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>MCP サーバー</th>
+                        <th>用途</th>
+                        <th>設定方法</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>filesystem</code></td>
+                        <td>ローカルファイルの読み書き</td>
+                        <td>デフォルト有効</td>
+                    </tr>
+                    <tr>
+                        <td><code>chrome-devtools</code></td>
+                        <td>Chrome ブラウザ操作・DevTools</td>
+                        <td>MCP Store から追加</td>
+                    </tr>
+                    <tr>
+                        <td><code>playwright</code></td>
+                        <td>ブラウザ自動化・テスト</td>
+                        <td>MCP Store から追加</td>
+                    </tr>
+                    <tr>
+                        <td><code>context7</code></td>
+                        <td>最新ライブラリドキュメント参照</td>
+                        <td>MCP Store から追加</td>
+                    </tr>
+                    <tr>
+                        <td><code>github</code></td>
+                        <td>GitHub API 連携</td>
+                        <td>MCP Store から追加</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>やってみよう: MCP を使ったリサーチ</h3>
+
+            <h4>演習 1: Web 検索</h4>
+            <pre><code>Google で「Antigravity IDE 2026」を検索して、
+トップ3件の記事タイトルを教えて。</code></pre>
+
+            <h4>演習 2: ドキュメント参照</h4>
+            <pre><code>Context7 MCP を使って、React の useEffect フックの
+最新の使い方を調べて教えて。</code></pre>
+
+            <div class="nav-buttons">
+                <a href="#step3" class="btn">← 前へ: Step 3</a>
+                <a href="#step5" class="btn">次へ: Step 5 →</a>
+            </div>
+        </section>
+
+        <!-- Step 5 -->
+        <section class="section" id="step5">
+            <h2>Step 5: Agent Skills の作成</h2>
+            <span class="badge badge-time">🕐 20:20〜20:40 (20分)</span>
+
+            <h3>目標</h3>
+            <p>カスタム Skill を作り、エージェントに新しい能力を追加しましょう。</p>
+
+            <h3>Agent Skills とは</h3>
+            <p>Skills は、特定のタスクを実行する手順をパッケージ化してエージェントに教える機能です。簡単に言うと、<strong>「AIに新しい『技能』を教える機能」</strong>です。</p>
+
+            <blockquote>
+                📚 公式ドキュメント: <a href="https://antigravity.google/docs/skills" target="_blank" style="color: var(--primary-color);">https://antigravity.google/docs/skills</a>
+            </blockquote>
+
+            <h3>Skills の構造</h3>
+            <pre><code>.agent/skills/&lt;skill-name&gt;/
+└── SKILL.md          # スキルの定義（必須）</code></pre>
+
+            <h3>SKILL.md のフォーマット</h3>
+            <pre><code>---
+name: my-skill
+description: 特定のタスクを支援するスキル
+---
+
+# スキルの説明
+
+## 実行手順
+1. ステップ 1
+2. ステップ 2
+...</code></pre>
+
+            <h3>やってみよう: サンプルコードをレビュー</h3>
+            <pre><code>sample.js を code-review Skill でレビューして</code></pre>
+
+            <h3>コミュニティの Skills を活用しよう</h3>
+            <p>自分で一から作成しなくても、コミュニティで公開されている強力な Skill 集を活用することができます。</p>
+
+            <h4>インストール方法</h4>
+            <pre><code>/plugin marketplace add sean-sunagaku/claude-code-plugin</code></pre>
+
+            <h4>有用な Skill の例</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Skill 名</th>
+                        <th>概要</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>@multi-ai-review</code></td>
+                        <td>Codex, Gemini, Claude の3つの AI に並列でコードレビューを依頼</td>
+                    </tr>
+                    <tr>
+                        <td><code>@agent-team</code></td>
+                        <td>複数のサブエージェントをオーケストレーション</td>
+                    </tr>
+                    <tr>
+                        <td><code>@git-workflow</code></td>
+                        <td>ブランチ作成、コミット、PR 作成までの Git ワークフローを自動化</td>
+                    </tr>
+                    <tr>
+                        <td><code>@ui-verify</code></td>
+                        <td>Chrome DevTools を使ってフロントエンドの実機動作確認</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="nav-buttons">
+                <a href="#step4" class="btn">← 前へ: Step 4</a>
+                <a href="#step6" class="btn">次へ: Step 6 →</a>
+            </div>
+        </section>
+
+        <!-- Step 6 -->
+        <section class="section" id="step6">
+            <h2>Step 6: Vibe Coding 発展編</h2>
+            <span class="badge badge-time">🕐 20:40〜21:00 (20分)</span>
+
+            <h3>学習目標</h3>
+            <ul>
+                <li>MCP を活用した Web リサーチの実践</li>
+                <li>Agent Skills を使った自動化フロー</li>
+                <li>複数エージェントの連携</li>
+                <li>本格的な Web アプリケーションの作成</li>
+            </ul>
+
+            <blockquote>
+                ⚠️ <strong>React や TailwindCSS を知らなくても大丈夫です！</strong><br>
+                このステップでは React / Vite / TailwindCSS といったフレームワークを使いますが、すべて AI がセットアップとコード生成を行います。
+            </blockquote>
+
+            <h3>全体の流れ</h3>
+            <div class="card">
+                <ol>
+                    <li>Web リサーチ（MCP 活用）</li>
+                    <li>競合分析 → 構成決定</li>
+                    <li>ビジュアル生成（Nano Banana）</li>
+                    <li>実装（Skills 活用）</li>
+                    <li>品質チェック（code-review Skill）</li>
+                    <li>デプロイ</li>
+                </ol>
+            </div>
+
+            <h3>Part 1: Web リサーチ（MCP 活用）</h3>
+            <pre><code>Browser MCPを使って、「おしゃれなカフェ ランディングページ」で検索して、
+上位5サイトのデザインの特徴を分析して。
+
+特に以下の点をまとめて：
+- 色使い
+- レイアウト
+- CTAボタンのデザイン
+- 画像の使い方</code></pre>
+
+            <h3>Part 2: 構成決定</h3>
+            <pre><code>リサーチ結果を踏まえて、このLPに必要なセクション構成を提案して。
+
+要件:
+- ターゲット: 20-30代のコーヒー好き
+- ブランドイメージ: 近未来的 × 温かみ
+- ゴール: 来店予約
+
+以下のセクションを含めて:
+- ヒーローセクション
+- 特徴紹介（3つ）
+- メニュー
+- アクセス
+- CTA（来店予約）
+
+各セクションのキャッチコピーも考えて。</code></pre>
+
+            <h3>Part 3: ビジュアル生成（Nano Banana）</h3>
+            <pre><code>Nano Banana で、「近未来的なカフェの店内、
+ネオンブルーとウォームライト、観葉植物、
+4K、フォトリアリスティック」のイメージを生成して。
+ファイル名は hero-bg.webp で保存して。</code></pre>
+
+            <h3>Part 4: 実装（Skills 活用）</h3>
+            <pre><code>この 06_vibe_coding_advanced フォルダに、
+Vite + React + TailwindCSS のプロジェクトを作成して。
+プロジェクト名は「ai-coffee-shop」</code></pre>
+
+            <h3>開発時間の比較</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>項目</th>
+                        <th>従来の開発</th>
+                        <th>基礎編</th>
+                        <th>発展編</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>リサーチ</td>
+                        <td>2時間</td>
+                        <td>-</td>
+                        <td><strong>10分</strong></td>
+                    </tr>
+                    <tr>
+                        <td>デザイン</td>
+                        <td>4時間</td>
+                        <td>20分</td>
+                        <td><strong>15分</strong></td>
+                    </tr>
+                    <tr>
+                        <td>実装</td>
+                        <td>8時間</td>
+                        <td>30分</td>
+                        <td><strong>20分</strong></td>
+                    </tr>
+                    <tr>
+                        <td>レビュー</td>
+                        <td>2時間</td>
+                        <td>-</td>
+                        <td><strong>5分</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>合計</strong></td>
+                        <td><strong>16時間</strong></td>
+                        <td><strong>50分</strong></td>
+                        <td><strong>50分</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="nav-buttons">
+                <a href="#step5" class="btn">← 前へ: Step 5</a>
+                <a href="#step7" class="btn">次へ: Step 7 →</a>
+            </div>
+        </section>
+
+        <!-- Step 7 -->
+        <section class="section" id="step7">
+            <h2>Step 7: ハッカソンおすすめ戦略 AI-DLC</h2>
+            <span class="badge badge-time">🕐 21:00〜21:10 (10分)</span>
+
+            <h3>この章の目標</h3>
+            <ul>
+                <li>AI-DLC という開発手法の考え方を理解する</li>
+                <li>ハッカソンの限られた時間でどう動けば良いかのイメージを持つ</li>
+                <li>チーム開発×AI の進め方を知る</li>
+            </ul>
+
+            <h3>AI-DLC（AI駆動開発ライフサイクル）とは</h3>
+            <p>AI-DLC は、AIを単なるコーディングの補助ツール（Copilot）としてではなく、<strong>開発プロセス全体の中心的な協力者</strong>として再構築する新しい開発手法です。</p>
+
+            <h3>従来の AI 活用との違い</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>従来の AI 支援型開発</th>
+                        <th>AI-DLC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>誰が主導？</td>
+                        <td>人間が主導し、AIに「この部分書いて」と指示</td>
+                        <td><strong>AIがワークフローを主導</strong>し、人間は承認・方向修正に集中</td>
+                    </tr>
+                    <tr>
+                        <td>AIの役割</td>
+                        <td>コーディングの部分的なお手伝い</td>
+                        <td>要件定義〜デプロイまでプロセス全体の協力者</td>
+                    </tr>
+                    <tr>
+                        <td>たとえるなら</td>
+                        <td>道具として使う（ドリルを持つ人）</td>
+                        <td>チームメイトとして一緒に走る（リレーの相方）</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>AI-DLC の3つのフェーズ</h3>
+
+            <div class="card">
+                <h4>1. Inception（発案）：「何を作るか」をAIと一緒に決める</h4>
+                <ul>
+                    <li>「こんなアプリ作りたい」というざっくりしたアイデアをAIに伝える</li>
+                    <li>AIが要件やユーザーストーリーを自動生成</li>
+                    <li>チームで画面を見ながらリアルタイムで修正</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>2. Construction（構築）：AIがコードを書き、人間が判断する</h4>
+                <ul>
+                    <li>Inception で決めた要件に基づいて、AIがコード・テスト・設計を一気に提案</li>
+                    <li>人間は技術的な判断に集中</li>
+                    <li>コードレビューもリアルタイムに行える</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>3. Operations（運用）：デプロイして改善サイクルを回す</h4>
+                <ul>
+                    <li>AIがデプロイ（公開）の準備を整える</li>
+                    <li>動作確認・テスト・バグ修正もAIがサポート</li>
+                    <li>改善のフィードバックを次のInceptionに循環させる</li>
+                </ul>
+            </div>
+
+            <h3>ハッカソンでの最強戦略：モブ開発 × AI</h3>
+            <p>ハッカソンで最も時間を無駄にするのは、<strong>「メンバー間の認識のズレ」</strong>による手戻りです。</p>
+
+            <blockquote>
+                💡 <strong>モブプログラミング</strong>とは？<br>
+                チーム全員が1つの画面を見ながら、一緒に議論・開発する手法です。一見「非効率」に見えますが、認識のズレがなくなるため、手戻りが激減して結果的に速くなります。
+            </blockquote>
+
+            <h3>Antigravity でのやり方</h3>
+            <ol>
+                <li>1人が Antigravity を画面共有（Zoom / Discord）</li>
+                <li>チーム全員で Agent Manager の画面を見ながら、要件定義を進める</li>
+                <li>AIが出力した「計画書」を全員で確認 → 修正指示</li>
+                <li>計画が固まったら「Proceed（実行）」→ AIがコードを生成</li>
+                <li>生成されたコードをみんなで確認しながら、方向修正</li>
+            </ol>
+
+            <blockquote>
+                🔥 <strong>ハッカソンの最初の1時間をモブエラボレーションに使うだけで、成果物の品質と開発スピードが劇的に変わります！</strong>
+            </blockquote>
+
+            <h3>まとめ：ハッカソンで勝つための3つのルール</h3>
+            <div class="card">
+                <ol>
+                    <li><strong>最初にモブエラボレーションする</strong>：全員でAIの出した計画を見て合意を取る</li>
+                    <li><strong>コードは AI に任せ、人間は判断に集中する</strong>：フレームワーク選定、デザイン方針、審査基準への対応</li>
+                    <li><strong>デモの見栄えを重視する</strong>：Nano Banana で画像生成、Browser Subagent で最終確認</li>
+                </ol>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="#step6" class="btn">← 前へ: Step 6</a>
+                <a href="#intro" class="btn">はじめに戻る</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--bg-light); margin-top: 60px;">
+            <p>© 2026 Google Antigravity ハンズオンガイド</p>
+            <p style="margin-top: 10px;">Made with 🚀 Antigravity</p>
+        </footer>
+    </main>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    // Update active link
+                    document.querySelectorAll('.sidebar nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    // Close sidebar on mobile
+                    if (window.innerWidth <= 768) {
+                        document.getElementById('sidebar').classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Toggle sidebar on mobile
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        // Update active link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('.section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.sidebar nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

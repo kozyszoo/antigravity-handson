@@ -2,9 +2,11 @@
 marp: true
 theme: default
 paginate: true
+html: true
 style: |
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
   
 
   /* ===== カラーパレット（パステル調） ===== */
@@ -130,21 +132,19 @@ style: |
 
 <div class="center">
 
-<span class="ms ms-hero c-lav" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m187-551 106 45q18-36 38.5-71t43.5-67l-79-16-109 109Zm154 81 133 133q57-26 107-59t81-64q81-81 119-166t41-192q-107 3-192 41T464-658q-31 31-64 81t-59 107Zm209-145.5q0-29.5 20-49.5t49.5-20q29.5 0 49.5 20t20 49.5q0 29.5-20 49.5t-49.5 20q-29.5 0-49.5-20t-20-49.5Zm5 432.5 109-109-16-79q-32 23-67 43.5T510-289l45 106Zm326-694q9 136-34 248T705-418l-2 2-2 2 22 110q3 15-1.5 29T706-250L535-78l-85-198-170-170-198-85 172-171q11-11 25-15.5t29-1.5l110 22q1-1 2-1.5t2-1.5q99-99 211-142.5T881-877ZM149-325q35-35 85.5-35.5T320-326q35 35 34.5 85.5T319-155q-26 26-80.5 43T75-80q15-109 31.5-164t42.5-81Zm42 43q-14 15-25 47t-19 82q50-8 82-19t47-25q19-17 19.5-42.5T278-284q-19-18-44.5-17.5T191-282Z"/></svg></span>
+<div style="font-size: 80px; margin-bottom: 24px;">🚀</div>
 
-# Google Antigravity
-## ハンズオン 2026.03.07
+<h1 style="font-size: 72px; font-weight: 900; letter-spacing: -1px; margin-bottom: 24px; color: #3a2e4a;">Google Antigravity Handson</h1>
 
-<br>
+<h2 style="font-size: 30px; color: #5a5a5a; font-weight: 700; margin-bottom: 64px;">次世代AIエージェント統合開発環境に入門しよう</h2>
 
-<div class="card card-lav" style="display:inline-block; padding: 10px 32px;">
-<strong>Vibe Coding で重力から解放されよう</strong>
+<div style="font-size: 24px; color: #5a5a5a; font-weight: 700; margin-bottom: 24px;">2026.03.07</div>
+
+<div style="font-size: 24px; color: #5a5a5a; margin-bottom: 50px;">@kozzy0919（Koji Yamaoka）</div>
+
+<div style="display: inline-flex; align-items: center; justify-content: center; background: white; padding: 14px 44px; border-radius: 40px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); font-weight: 700; font-size: 20px; color: #6a5580;">
+  <span style="font-size: 24px; margin-right: 8px;">🗓️</span> 2026年3月7日(土) 19:00〜21:00 <span style="color: #ccc; margin: 0 16px;">|</span> <span style="font-size: 24px; margin-right: 8px;">🌐</span> <span style="color: #72608c;">オンライン開催</span>
 </div>
-
-<br>
-
-**山岡 滉治（kozzy）**
-GitHub Copilot 導入実績 / フルスタックエンジニア
 
 </div>
 
@@ -168,12 +168,12 @@ GitHub Copilot 導入実績 / フルスタックエンジニア
 </div>
 
 <div class="card card-green" style="margin-bottom:10px;">
-<span class="step-badge step-green">19:30</span> <strong>Step 1-2: 環境構築</strong><br>
+<span class="step-badge step-green">19:30</span> <strong>Step 1: 環境構築</strong><br>
 <small>インストール + GEMINI.md 設定</small>
 </div>
 
 <div class="card card-green">
-<span class="step-badge step-green">20:00</span> <strong>Step 3: Vibe Coding 基礎</strong><br>
+<span class="step-badge step-green">20:00</span> <strong>Step 2: Vibe Coding 基礎</strong><br>
 <small>自己紹介ページ + Nano Banana</small>
 </div>
 
@@ -181,17 +181,17 @@ GitHub Copilot 導入実績 / フルスタックエンジニア
 <div>
 
 <div class="card card-orange" style="margin-bottom:10px;">
-<span class="step-badge step-orange">20:20</span> <strong>Step 4-5: エージェント拡張</strong><br>
+<span class="step-badge step-orange">20:20</span> <strong>Step 3: エージェント拡張</strong><br>
 <small>MCP 接続 + Agent Skills</small>
 </div>
 
 <div class="card card-orange" style="margin-bottom:10px;">
-<span class="step-badge step-orange">20:40</span> <strong>Step 6: Vibe Coding 発展</strong><br>
+<span class="step-badge step-orange">20:40</span> <strong>Step 4: Vibe Coding 発展</strong><br>
 <small>AI Coffee Shop LP 構築</small>
 </div>
 
 <div class="card card-lav">
-<span class="step-badge step-lav">21:00</span> <strong>Step 7: まとめ</strong><br>
+<span class="step-badge step-lav">21:00</span> <strong>Step 5: まとめ</strong><br>
 <small>AI-DLC × ハッカソン最強戦略</small>
 </div>
 
@@ -202,42 +202,40 @@ GitHub Copilot 導入実績 / フルスタックエンジニア
 
 <!-- _class: bg-pink -->
 
-# <span class="ms ms-lg c-pink" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5ZM437-141v-82q-35 0-59-26t-24-61v-44L149-559q-5 20-7 39.5t-2 39.5q0 130 84.5 227T437-141Zm294-108q44-48 66.5-107.5T820-480q0-106-58-192.5T607-799v18q0 35-24 61t-59 26h-87v87q0 17-13.5 28T393-568h-83v88h258q17 0 28 13t11 30v127h43q29 0 51 17t30 44Z"/></svg></span> 開発の「重力」から解放される
+# <span class="ms ms-lg c-pink" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5ZM437-141v-82q-35 0-59-26t-24-61v-44L149-559q-5 20-7 39.5t-2 39.5q0 130 84.5 227T437-141Zm294-108q44-48 66.5-107.5T820-480q0-106-58-192.5T607-799v18q0 35-24 61t-59 26h-87v87q0 17-13.5 28T393-568h-83v88h258q17 0 28 13t11 30v127h43q29 0 51 17t30 44Z"/></svg></span> 「開発知識」がなくても作れる！
 
 <div class="cols">
 <div>
 
-### 😩 今までの開発
+### <span class="material-symbols-outlined" style="vertical-align: middle;">sentiment_very_dissatisfied</span> 今までのプログラミング学習
 
 <div class="card card-pink">
 
-- 環境構築に **半日** 消える
-- ドキュメント作成で **時間切れ**
-- 定型コードを **手で書き続ける**
-- テスト・レビューが **後回し**
+- アプリを作る準備（環境構築）で **挫折**
+- エラーが出ても **原因が分からず進まない**
+- 1つの画面を作るのにも **膨大な知識** が必要
 
 </div>
 
 <div class="card card-pink" style="margin-top:10px;">
-<strong>「作りたいもの」より「作業」に追われる</strong>
+<strong>「作りたいもの」にたどり着く前に疲れてしまう</strong>
 </div>
 
 </div>
 <div>
 
-### 🚀 Antigravity の世界
+### <span class="material-symbols-outlined" style="vertical-align: middle;">rocket_launch</span> Antigravity の世界
 
 <div class="card card-green">
 
-- AIが **自律的にタスクを計画・実行**
-- 自然言語で **意図を伝えるだけ**
-- デザイン・実装・テストを **AI が担う**
-- 人間は **判断と創造** に集中
+- AIが **あなたの代わりにコードを書く**
+- エラーが出ても **AIが勝手に調査・修正**
+- 必要なのは **「何を作りたいか」のアイデアだけ！**
 
 </div>
 
 <div class="card card-green" style="margin-top:10px;">
-<strong>「What（何を作るか）」に集中できる</strong>
+<strong>知識ゼロからでも、まずは「動くもの」を作れる</strong>
 </div>
 
 </div>
@@ -286,6 +284,18 @@ GitHub Copilot 導入実績 / フルスタックエンジニア
 <br>
 
 > <span class="ms ms-sm c-orange" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m887-567-23-50-50-23 50-23 23-50 23 50 50 23-50 23-23 50ZM760-742l-35-74-74-35 74-35 35-74 35 74 74 35-74 35-35 74ZM302.5-103.5Q279-127 279-161h162q0 34-23.5 57.5T360-80q-34 0-57.5-23.5ZM198-223v-60h324v60H198Zm5-121q-66-43-104.5-107.5T60-597q0-122 89-211t211-89q122 0 211 89t89 211q0 81-38 145.5T517-344H203Zm22-60h271q48-32 76-83t28-110q0-99-70.5-169.5T360-837q-99 0-169.5 70.5T120-597q0 59 28 110t77 83Zm135 0Z"/></svg></span> バイブス（感覚・雰囲気）を伝えるだけで、プロダクトが形になる
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.006.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.019.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
 
 ---
 
@@ -369,6 +379,18 @@ GitHub Copilot 導入実績 / フルスタックエンジニア
 
 ---
 
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.007.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.014.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
 <!-- _class: bg-green -->
 
 # <span class="ms ms-lg c-green" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M206-206q-41-48-63.5-107.5T120-440q0-150 105-254.5T480-799q10 0 20.5.5T519-797l-81-81 42-42 160 160-160 160-43-43 92-92q-11-2-26-3t-23-1q-125 0-212.5 87T180-440q0 51 17 102t52 89l-43 43Zm236-4q0-21-15-43t-32.5-45Q377-321 362-346.5T347-400q0-55 39-94t94-39q55 0 94 39t39 94q0 28-15 53.5T565.5-298Q548-275 533-253t-15 43h-76Zm-2 90v-50h80v50h-80Zm314-86-42-42q30-36 49-85t19-107q0-66-27.5-125.5T670-670l44-44q58 50 92 120.5T840-440q0 67-22.5 126.5T754-206Z"/></svg></span> Multi-Model Support
@@ -398,13 +420,19 @@ GitHub Copilot 導入実績 / フルスタックエンジニア
 
 | モデル | 役割 |
 |:---|:---|
-| **Nano Banana Pro** | 🎨 画像生成・UIモックアップ |
-| **Gemini 2.5 Pro UI** | 🌐 Browser Subagent |
-| **Gemini 2.5 Flash** | 📋 要約・チェックポイント |
+| **Nano Banana Pro** | <span class="material-symbols-outlined" style="vertical-align: middle;">palette</span> 画像生成・UIモックアップ |
+| **Gemini 2.5 Pro UI** | <span class="material-symbols-outlined" style="vertical-align: middle;">public</span> Browser Subagent |
+| **Gemini 2.5 Flash** | <span class="material-symbols-outlined" style="vertical-align: middle;">content_paste</span> 要約・チェックポイント |
 
 </div>
 
 </div>
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.015.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
 </div>
 
 ---
@@ -417,8 +445,8 @@ GitHub Copilot 導入実績 / フルスタックエンジニア
 
 <span class="ms ms-hero c-green" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M705-128 447-388q-23 8-46 13t-47 5q-97.08 0-165.04-67.67Q121-505.33 121-602q0-31 8.16-60.39T152-718l145 145 92-86-149-149q25.91-15.16 54.96-23.58Q324-840 354-840q99.17 0 168.58 69.42Q592-701.17 592-602q0 24-5 47t-13 46l259 258q11 10.96 11 26.48T833-198l-76 70q-10.7 11-25.85 11Q716-117 705-128Zm28-57 40-40-273-273q16-21 24-49.5t8-54.5q0-75-55.5-127T350-782l102 104q9 9 8.5 21.5T451-635L318-510q-9.27 8-21.64 8-12.36 0-20.36-8l-98-97q3 77 54.67 127T354-430q25 0 53-8t49-24l277 277ZM476-484Z"/></svg></span>
 
-# Step 1-2
-## 環境構築 + GEMINI.md 設定
+# Step 1
+## 環境構築 (インストール + GEMINI.md 設定)
 
 </div>
 
@@ -426,7 +454,7 @@ GitHub Copilot 導入実績 / フルスタックエンジニア
 
 <!-- _class: bg-green -->
 
-# <span class="ms ms-lg c-green" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg></span> Step 1: 環境セットアップ
+# <span class="ms ms-lg c-green" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg></span> Step 1-1: 環境セットアップ
 
 <div class="cols">
 <div>
@@ -435,10 +463,10 @@ GitHub Copilot 導入実績 / フルスタックエンジニア
 
 <div class="card card-green">
 
-- ✅ Antigravity インストール済み
-- ✅ Google アカウントでログイン
-- ✅ 最新版に更新済み
-- ✅ `File > Open Folder` でこのフォルダを開く
+- <span class="material-symbols-outlined" style="vertical-align: middle;">check_circle</span> Antigravity インストール済み
+- <span class="material-symbols-outlined" style="vertical-align: middle;">check_circle</span> Google アカウントでログイン
+- <span class="material-symbols-outlined" style="vertical-align: middle;">check_circle</span> 最新版に更新済み
+- <span class="material-symbols-outlined" style="vertical-align: middle;">check_circle</span> `File > Open Folder` でこのフォルダを開く
 
 </div>
 
@@ -467,6 +495,12 @@ GitHub Copilot 導入実績 / フルスタックエンジニア
 </div>
 
 </div>
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.018.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
 </div>
 
 ---
@@ -520,9 +554,15 @@ function fetchUser(id) {
 
 ---
 
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.008.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
 <!-- _class: bg-lav -->
 
-# <span class="ms ms-lg c-lav" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M319-250h322v-60H319v60Zm0-170h322v-60H319v60ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"/></svg></span> Step 2: GEMINI.md 設定
+# <span class="ms ms-lg c-lav" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M319-250h322v-60H319v60Zm0-170h322v-60H319v60ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"/></svg></span> Step 1: GEMINI.md 設定
 
 <div class="cols">
 <div>
@@ -531,13 +571,13 @@ function fetchUser(id) {
 
 <div class="card card-lav">
 
-AIへの**「取扱説明書」**
+AIへの **「取扱説明書」**
 
 - 「日本語で答えて」
 - 「コードにコメントを入れて」
 - 「変数名はcamelCase」
 
-毎回言わなくても **自動で従ってくれる**！
+毎回言わなくても **自動で従ってくれる** ！
 
 </div>
 
@@ -570,6 +610,12 @@ AIへの**「取扱説明書」**
 
 ---
 
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.009.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
 <!-- _class: lead -->
 
 <div class="center">
@@ -580,7 +626,7 @@ AIへの**「取扱説明書」**
 
 # Step 3
 ## Vibe Coding 基礎編
-### 🎨 自己紹介ページ + Nano Banana
+### <span class="material-symbols-outlined" style="vertical-align: middle;">palette</span> 自己紹介ページ + Nano Banana
 
 </div>
 
@@ -634,7 +680,7 @@ Nano Bananaで、プロフィール用のアバター画像を生成。
 
 </div>
 
-<div class="card card-orange" style="margin-top:8px;">
+<div class="card card-orange" style="margin-top:10px;">
 
 ```
 生成したavatar.pngを自己紹介ページの
@@ -644,6 +690,24 @@ Nano Bananaで、プロフィール用のアバター画像を生成。
 </div>
 
 </div>
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.011.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.010.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.017.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
 </div>
 
 ---
@@ -658,8 +722,8 @@ Nano Bananaで、プロフィール用のアバター画像を生成。
 <div class="center"><span class="ms ms-lg c-blue" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M468-240q-96-5-162-74t-66-166q0-100 70-170t170-70q97 0 166 66t74 163l-63-20q-11-64-60-106.5T480-660q-75 0-127.5 52.5T300-480q0 67 42.5 116.5T449-303l19 63Zm48 158q-9 1-18 1.5t-18 .5q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 9-.5 18t-1.5 18l-58-18v-18q0-142-99-241t-241-99q-142 0-241 99t-99 241q0 142 99 241t241 99h18l18 58Zm305 22L650-231 600-80 480-480l400 120-151 50 171 171-79 79Z"/></svg></span></div>
 <h3>具体的に伝える</h3>
 <small>
-❌ 「かっこいいページを作って」<br><br>
-✅ 「ダークモード、青緑アクセント、グラスモーフィズムのカードデザイン」
+<span class="material-symbols-outlined" style="vertical-align: middle;">cancel</span> 「かっこいいページを作って」<br><br>
+<span class="material-symbols-outlined" style="vertical-align: middle;">check_circle</span> 「ダークモード、青緑アクセント、グラスモーフィズムのカードデザイン」
 </small>
 </div>
 
@@ -667,8 +731,8 @@ Nano Bananaで、プロフィール用のアバター画像を生成。
 <div class="center"><span class="ms ms-lg c-green" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M250-250h157v-133h103v-133h103v-134h97v-60H553v133H450v133H347v134h-97v60Zm-70 130q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Zm0-600v600-600Z"/></svg></span></div>
 <h3>段階的に進める</h3>
 <small>
-❌ 「完璧なポートフォリオを作って」<br><br>
-✅ 「まずシンプルな自己紹介を作って」→「次にスキルを追加」
+<span class="material-symbols-outlined" style="vertical-align: middle;">cancel</span> 「完璧なポートフォリオを作って」<br><br>
+<span class="material-symbols-outlined" style="vertical-align: middle;">check_circle</span> 「まずシンプルな自己紹介を作って」→「次にスキルを追加」
 </small>
 </div>
 
@@ -679,10 +743,50 @@ Nano Bananaで、プロフィール用のアバター画像を生成。
 「元に戻して」<br>
 「別のパターンを3つ提案」<br>
 「もっとシンプルに」<br><br>
-AIとの対話は**やり取り自由**！
+AIとの対話は **やり取り自由** ！
 </small>
 </div>
 
+</div>
+
+---
+
+<!-- _class: bg-green -->
+
+# <span class="ms ms-lg c-green" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q150 0 255 105t105 255q0 150-105 255T480-120Zm0-60q125 0 212.5-87.5T780-480q0-125-87.5-212.5T480-780q-125 0-212.5 87.5T180-480q0 125 87.5 212.5T480-180Zm-30-100h60v-60h-60v60Zm30-120q33 0 56.5-23.5T560-480q0-20-11.5-38.5T510-548q-26-17-43-41t-17-51q0-38 26-64t64-26q38 0 64 26t26 64h60q0-63-44.5-107.5T480-792q-63 0-107.5 44.5T328-640q0 43 23 75.5t57 52.5q24 16 38 34t14 44v34Z"/></svg></span> AIを「先生」として活用しよう
+
+<div class="cols">
+<div>
+
+<div class="card card-green">
+<h3>「優秀な働き手」であり「先生」</h3>
+
+AIに**すべて作ってもらって終わり**ではもったいない！<br><br>
+Antigravityは単なる自動化ツールではなく、**プログラミング学習を加速させる最高のパートナー**です。
+</div>
+
+<div class="card card-blue" style="margin-top:12px;">
+<span class="ms ms-sm c-blue" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M422.5-103.5Q399-127 399-161h162q0 34-23.5 57.5T480-80q-34 0-57.5-23.5ZM318-223v-60h324v60H318Zm5-121q-66-43-104.5-107.5T180-597q0-122 89-211t211-89q122 0 211 89t89 211q0 81-38 145.5T637-344H323Zm22-60h271q48-32 76-83t28-110q0-99-70.5-169.5T480-837q-99 0-169.5 70.5T240-597q0 59 28 110t77 83Zm135 0Z"/></svg></span> <strong>ポイント</strong><br>
+裏側で何が行われているか、どんなコードが書かれたかを必ず解説してもらおう！
+</div>
+
+</div>
+<div>
+
+<div class="card card-lav">
+
+**学習に役立つプロンプト例：**
+
+| 目的 | プロンプトの例 |
+|:---|:---|
+| 🧠 **仕組みの理解** | 「今追加した機能の仕組みを、初心者向けに分かりやすく解説して」 |
+| 🛠️ **エラーからの学習** | 「さっきのエラーの原因と、どうやって修正したのかを教えて」 |
+| 🔍 **技術要素の把握** | 「このコードで使われている〇〇という技術は、どんな役割か」 |
+| 🚀 **応用へのヒント** | 「さらに使いやすく機能を追加するとしたら、どんな案があるか」 |
+
+</div>
+
+</div>
 </div>
 
 ---
@@ -695,8 +799,8 @@ AIとの対話は**やり取り自由**！
 
 <span class="ms ms-hero c-orange" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M356-120H180q-24 0-42-18t-18-42v-176q44-5 75.5-34.5T227-463q0-43-31.5-72.5T120-570v-176q0-24 18-42t42-18h177q11-40 39.5-67t68.5-27q40 0 68.5 27t39.5 67h173q24 0 42 18t18 42v173q40 11 65.5 41.5T897-461q0 40-25.5 67T806-356v176q0 24-18 42t-42 18H570q-5-48-35.5-77.5T463-227q-41 0-71.5 29.5T356-120Zm-176-60h130q25-61 69.89-84t83-23Q501-287 546-264t70 84h130v-235h45q20 0 33-13t13-33q0-20-13-33t-33-13h-45v-239H511v-48q0-20-13-33t-33-13q-20 0-33 13t-13 33v48H180v130q48.15 17.82 77.58 59.69Q287-514.45 287-462.78 287-412 257.5-370T180-310v130Zm285-281Z"/></svg></span>
 
-# Step 4-5
-## MCP 接続 + Agent Skills
+# Step 3
+## エージェント拡張 (MCP接続 + Agent Skills)
 
 </div>
 
@@ -704,7 +808,7 @@ AIとの対話は**やり取り自由**！
 
 <!-- _class: bg-orange -->
 
-# <span class="ms ms-lg c-orange" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M442-180h76v-82l142-156v-191H300v191l142 155.7v82.3Zm-60 60v-118L240-394v-215q0-24.75 17.63-42.38Q275.25-669 300-669h72l-30 30v-201h60v171h156v-171h60v201l-30-30h72q24.75 0 42.38 17.62Q720-633.75 720-609v215L578-238v118H382Zm98-275Z"/></svg></span> Step 4: MCP とは？
+# <span class="ms ms-lg c-orange" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M442-180h76v-82l142-156v-191H300v191l142 155.7v82.3Zm-60 60v-118L240-394v-215q0-24.75 17.63-42.38Q275.25-669 300-669h72l-30 30v-201h60v171h156v-171h60v201l-30-30h72q24.75 0 42.38 17.62Q720-633.75 720-609v215L578-238v118H382Zm98-275Z"/></svg></span> Step 3-1: MCP とは？
 
 <div class="cols">
 <div>
@@ -750,6 +854,18 @@ AIエージェントと外部システムを
 
 ---
 
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.016.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.021.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
 <!-- _class: bg-orange -->
 
 # <span class="ms ms-lg c-orange" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M160-740v-60h642v60H160Zm5 580v-258h-49v-60l44-202h641l44 202v60h-49v258h-60v-258H547v258H165Zm60-60h262v-198H225v198Zm-50-258h611-611Zm0 0h611l-31-142H206l-31 142Z"/></svg></span> MCP の追加方法
@@ -767,7 +883,7 @@ AIエージェントと外部システムを
 
 <br>
 
-GUIで簡単に追加・管理できる ✅
+GUIで簡単に追加・管理できる <span class="material-symbols-outlined" style="vertical-align: middle;">check_circle</span>
 
 </div>
 
@@ -803,7 +919,7 @@ React の useEffect フックの
 
 <!-- _class: bg-lav -->
 
-# <span class="ms ms-lg c-lav" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M240-80v-172q-57-52-88.5-121.5T120-520q0-150 105-255t255-105q125 0 221.5 73.5T827-615l55 218q4 14-5 25.5T853-360h-93v140q0 24.75-17.62 42.37Q724.75-160 700-160H600v80h-60v-140h160v-200h114l-45-180q-24-97-105-158.5T480-820q-125 0-212.5 86.5T180-522.46q0 64.42 26.32 122.39Q232.65-342.09 281-297l19 18v199h-60Zm257-370Zm-48 76h60l3-44q12-2 22.47-8.46Q544.94-432.92 553-441l42 14 28-48-30-24q5-14 5-29t-5-29l30-24-28-48-42 14q-8.33-7.69-19.17-13.85Q523-635 512-638l-3-44h-60l-3 44q-11 3-21.83 9.15Q413.33-622.69 405-615l-42-14-28 48 30 24q-5 14-5 29t5 29l-30 24 28 48 42-14q8.06 8.08 18.53 14.54Q434-420 446-418l3 44Zm-19.5-104.38q-20.5-20.38-20.5-49.5t20.38-49.62q20.38-20.5 49.5-20.5t49.62 20.38q20.5 20.38 20.5 49.5t-20.38 49.62q-20.38 20.5-49.5 20.5t-49.62-20.38Z"/></svg></span> Step 5: Agent Skills
+# <span class="ms ms-lg c-lav" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M240-80v-172q-57-52-88.5-121.5T120-520q0-150 105-255t255-105q125 0 221.5 73.5T827-615l55 218q4 14-5 25.5T853-360h-93v140q0 24.75-17.62 42.37Q724.75-160 700-160H600v80h-60v-140h160v-200h114l-45-180q-24-97-105-158.5T480-820q-125 0-212.5 86.5T180-522.46q0 64.42 26.32 122.39Q232.65-342.09 281-297l19 18v199h-60Zm257-370Zm-48 76h60l3-44q12-2 22.47-8.46Q544.94-432.92 553-441l42 14 28-48-30-24q5-14 5-29t-5-29l30-24-28-48-42 14q-8.33-7.69-19.17-13.85Q523-635 512-638l-3-44h-60l-3 44q-11 3-21.83 9.15Q413.33-622.69 405-615l-42-14-28 48 30 24q-5 14-5 29t5 29l-30 24 28 48 42-14q8.06 8.08 18.53 14.54Q434-420 446-418l3 44Zm-19.5-104.38q-20.5-20.38-20.5-49.5t20.38-49.62q20.38-20.5 49.5-20.5t49.62 20.38q20.5 20.38 20.5 49.5t-20.38 49.62q-20.38 20.5-49.5 20.5t-49.62-20.38Z"/></svg></span> Step 3-2: Agent Skills
 
 <div class="cols">
 <div>
@@ -875,7 +991,7 @@ AIが同じ品質で実行できる。
 
 <div class="card card-blue" style="margin-top:10px;">
 
-**💡 インストールコマンド**
+**<span class="material-symbols-outlined" style="vertical-align: middle;">lightbulb</span> インストールコマンド**
 ```bash
 /plugin marketplace add sean-sunagaku/claude-code-plugin
 ```
@@ -913,9 +1029,9 @@ AIが同じ品質で実行できる。
 
 <span class="ms ms-hero c-green" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M442-242q-116 0-199-80t-83-195v-263q0-25 17.5-42.5T220-840h529q54 0 92.5 37t38.5 91q0 60-37 106t-94 46h-25v43q0 115-83 195t-199 80ZM220-620h444v-160H220v160Zm222 318q91 0 156.5-62T664-517v-43H220v43q0 91 65.5 153T442-302Zm282-318h25q33 0 52-28.5t19-63.5q0-29-21-48.5T749-780h-25v160ZM160-120v-60h640v60H160Zm282-440Z"/></svg></span>
 
-# Step 6
+# Step 4
 ## Vibe Coding 発展編
-### 🚀 AI Coffee Shop LP 構築
+### <span class="material-symbols-outlined" style="vertical-align: middle;">rocket_launch</span> AI Coffee Shop LP 構築
 
 </div>
 
@@ -1057,7 +1173,7 @@ Nano Banana で、
 <strong>同じ成果物を出す場合の所要時間</strong>
 </div>
 
-| 作業 | 従来の開発 | Step 3（基礎） | Step 6（発展） |
+| 作業 | 従来の開発 | Step 2（基礎） | Step 4（発展） |
 |:---|:---:|:---:|:---:|
 | リサーチ | 2時間 | — | **10分** |
 | デザイン | 4時間 | 20分 | **15分** |
@@ -1081,7 +1197,7 @@ Nano Banana で、
 
 <span class="ms ms-hero c-lav" style="display:inline-flex; align-items:center; justify-content:center;"><svg class="ms-svg" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M298-120v-60h152v-148q-54-11-96-46.5T296-463q-74-8-125-60t-51-125v-44q0-25 17.5-42.5T180-752h104v-88h392v88h104q25 0 42.5 17.5T840-692v44q0 73-51 125t-125 60q-16 53-58 88.5T510-328v148h152v60H298Zm-14-406v-166H180v44q0 45 29.5 78.5T284-526Zm292.5 101q39.5-40 39.5-97v-258H344v258q0 57 39.5 97t96.5 40q57 0 96.5-40ZM676-526q45-10 74.5-43.5T780-648v-44H676v166Zm-196-57Z"/></svg></span>
 
-# Step 7
+# Step 5
 ## AI-DLC × ハッカソン最強戦略
 
 </div>
@@ -1099,7 +1215,7 @@ Nano Banana で、
 
 <div class="card card-pink">
 
-- **人間が主導**し、AIに指示
+- **人間が主導** し、AIに指示
 - AIは部分的なコーディング補助
 - 認識のズレによる手戻りが多い
 
@@ -1158,12 +1274,12 @@ Nano Banana で、
 
 <div class="card card-lav">
 
-ハッカソン**最初の1時間**を全員で！
+ハッカソン **最初の1時間** を全員で！
 
-1. 1人が Antigravity を**画面共有**
-2. AIが出した**要件・計画書**を全員で確認
-3. 「ここは違う」「これを追加」と**リアルタイム修正**
-4. 計画が固まったら「**Proceed**」→ AI がコード生成
+1. 1人が Antigravity を **画面共有**
+2. AIが出した **要件・計画書** を全員で確認
+3. 「ここは違う」「これを追加」と **リアルタイム修正**
+4. 計画が固まったら「 **Proceed** 」→ AI がコード生成
 
 </div>
 
@@ -1277,4 +1393,153 @@ handson/
 </div>
 
 </div>
+</div>
+
+
+<!-- _class: lead -->
+
+# Appendix: 補足スライド
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.052.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.053.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.054.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.055.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.056.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.057.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.058.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.059.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.060.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.061.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.062.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.063.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.064.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.065.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.066.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.067.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.068.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.069.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.070.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.071.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.072.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.073.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="/Users/kozzy/Desktop/20260307_Antiglavity_Handson/20260307_Antiglavity_Handson.074.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+  <img src="./slides/20260307_Antiglavity_Handson.052.png" style="max-height: 85%; max-width: 85%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px;" />
 </div>
