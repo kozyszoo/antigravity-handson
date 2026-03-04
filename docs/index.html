@@ -233,6 +233,16 @@
             margin-bottom: 14px;
         }
 
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
         .badge-time {
             background: var(--purple);
             color: white;
@@ -353,6 +363,8 @@
                 <li><a href="#step3-2">Step 3-2: Agent Skills</a></li>
                 <li><a href="#step4">Step 4: Vibe Coding 発展編</a></li>
                 <li><a href="#step5">Step 5: AI-DLC 戦略</a></li>
+                <li><a href="#step6">Step 6: 活用 Tips 集</a></li>
+                <li><a href="#outro">おわりに</a></li>
             </ul>
         </nav>
     </aside>
@@ -361,24 +373,89 @@
         <!-- Hero -->
         <div class="hero">
             <h1>🚀 Google Antigravity ハンズオンガイド</h1>
-            <p>次世代AIエージェント統合開発環境 — 完全ガイド</p>
-            <p style="margin-top:8px; font-size:0.9rem;">2026年3月</p>
+            <p style="margin-top:8px; font-size:0.9rem;">2026年3月7日</p>
         </div>
 
         <!-- Intro -->
         <section class="section" id="intro">
             <h2>はじめに</h2>
+            <h3>登壇者 自己紹介</h3>
+
+            <!-- 自己紹介カード -->
+            <div class="card"
+                style="margin-bottom: 24px; border: 1px solid var(--primary); border-radius: 12px; padding: 24px;">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <div style="font-size: 3rem;">👨‍💻</div>
+                    <div>
+                        <div style="font-size: 1.4rem; font-weight: 700; color: var(--primary);">山岡 滉治（やまおか こうじ）</div>
+                        <div style="color: var(--muted); font-size: 0.95rem; margin-top: 4px;">データ・AI企画推進 /
+                            Developer Relations</div>
+                    </div>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                    <div style="background: var(--bg-dark); border-radius: 8px; padding: 16px;">
+                        <div style="color: var(--blue); font-weight: 700; margin-bottom: 8px;">📌 経歴</div>
+                        <p style="font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.6;">
+                            新卒よりBtoBクラウドのインフラ/サーバーエンジニア → ヤフオク! などの Web サービス開発 → 現在は<strong
+                                style="color: var(--text);">生成AI活用の企画・推進</strong>を担当</p>
+                    </div>
+
+                    <div style="background: var(--bg-dark); border-radius: 8px; padding: 16px;">
+                        <div style="color: var(--blue); font-weight: 700; margin-bottom: 8px;">🏆 主要実績</div>
+                        <ul
+                            style="font-size: 0.85rem; color: var(--muted); margin: 0; padding-left: 16px; line-height: 1.8;">
+                            <li>GitHub Copilot 導入で全社利用率 <strong style="color: var(--primary);">60%</strong> に向上</li>
+                            <li>社内生成AIコミュニティを <strong style="color: var(--primary);">200名 → 2,000名以上</strong> に成長（1年）
+                            </li>
+                            <li>学生向けハッカソン PM（年間800名規模・2年間）</li>
+                            <li>社内外技術勉強会の企画・運営（延べ1,000名以上）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: var(--bg-dark); border-radius: 8px; padding: 14px; margin-bottom: 12px;">
+                    <div style="color: var(--purple); font-weight: 700; margin-bottom: 8px;">📚 その他の活動</div>
+                    <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.8;">
+                        📖 2025年3月「<strong
+                            style="color: var(--text);">開発系エンジニアのためのGit/GitHub絵とき入門</strong>」出版（秀和システム）<br>
+                        👨‍🏫 小中学生向けプログラミングスクール講師（副業）　|　🎓 アクティブ・ブック・ダイアローグ®︎ 認定ファシリテーター
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <span
+                        style="background: var(--bg-light); color: var(--primary); border-radius: 6px; padding: 4px 10px; font-size: 0.8rem;">JavaScript
+                        / TypeScript</span>
+                    <span
+                        style="background: var(--bg-light); color: var(--primary); border-radius: 6px; padding: 4px 10px; font-size: 0.8rem;">PHP
+                        / Java / Kotlin</span>
+                    <span
+                        style="background: var(--bg-light); color: var(--primary); border-radius: 6px; padding: 4px 10px; font-size: 0.8rem;">Python
+                        / Ruby</span>
+                    <span
+                        style="background: var(--bg-light); color: var(--primary); border-radius: 6px; padding: 4px 10px; font-size: 0.8rem;">React.js</span>
+                    <span
+                        style="background: var(--bg-light); color: var(--primary); border-radius: 6px; padding: 4px 10px; font-size: 0.8rem;">AWS
+                        / GCP</span>
+                    <span
+                        style="background: var(--bg-light); color: var(--purple); border-radius: 6px; padding: 4px 10px; font-size: 0.8rem;">技術力
+                        × コミュニケーション力 × 企画推進力</span>
+                </div>
+            </div>
+
             <p>このガイドでは、Google Antigravity を使った開発の基礎から応用まで、ステップバイステップで学習できます。プログラミング初心者でも、AIがすべてサポートしてくれるので安心してください。</p>
 
-            <h3>学習の流れ（所要時間 約100分）</h3>
+            <h3>学習の流れ（所要時間 約110分）</h3>
             <div class="step-grid">
                 <div class="step-card">
-                    <div class="step-num">Step 1（30分）</div>
+                    <div class="step-num">Step 1（15分）</div>
                     <h4>環境セットアップ &amp; GEMINI.md</h4>
                     <p>Antigravity の起動・設定と、AIへのルール定義ファイルの作成</p>
                 </div>
                 <div class="step-card">
-                    <div class="step-num">Step 2（20分）</div>
+                    <div class="step-num">Step 2（30分）</div>
                     <h4>Vibe Coding 基礎編</h4>
                     <p>自然言語でWebページを作成し、Nano Banana で画像生成も体験</p>
                 </div>
@@ -388,12 +465,12 @@
                     <p>外部ツール連携（MCP）と、AIへの「技能追加」（Skills）を体験</p>
                 </div>
                 <div class="step-card">
-                    <div class="step-num">Step 4（20分）</div>
+                    <div class="step-num">Step 4（30分）</div>
                     <h4>Vibe Coding 発展編</h4>
                     <p>MCP × Skills を組み合わせて、本格的な Web アプリを作成</p>
                 </div>
                 <div class="step-card">
-                    <div class="step-num">Step 5（10分）</div>
+                    <div class="step-num">Step 5（15分）</div>
                     <h4>AI-DLC 戦略</h4>
                     <p>ハッカソンで勝つための AI 駆動開発ライフサイクル戦略</p>
                 </div>
@@ -403,7 +480,7 @@
         <!-- Step 1-1 -->
         <section class="section" id="step1-1">
             <h2>Step 1-1: 環境セットアップ</h2>
-            <span class="badge badge-time">🕐 19:30〜20:00（Step1 合計 30分）</span>
+            <span class="badge badge-time">🕐 19:30〜19:45（Step1 合計 15分）</span>
 
             <h3>目標</h3>
             <p>Google Antigravity を起動して、ワークスペースの基本設定まで済ませましょう。</p>
@@ -457,6 +534,10 @@
             </ol>
 
             <h4>4. 基本画面の確認</h4>
+            <!-- 【画像挿入箇所】 Editor View と Agent Manager の画面全体のスクショ -->
+
+            <img class="screenshot" src="img/fig1.png"
+                alt="Google Antigravity の全体画面構成。左側に Editor View（ファイルツリーとエディタ）、右側または別ペインに Agent Manager（AI エージェントとの対話画面）が表示されている状態">
             <div class="card">
                 <strong>Editor View</strong> — ファイルツリーとエディタが並ぶ VS Code ベースの画面
             </div>
@@ -479,6 +560,9 @@
             </table>
 
             <h4>5. モデル選択</h4>
+            <!-- 【画像挿入箇所】 モデル選択のプルダウンメニューが開いているスクショ -->
+            <img class="screenshot" src="img/fig2.png"
+                alt="利用可能なAIモデル（Gemini 3 Pro, Claude Sonnet 4.5, Nano Banana Pro など）を選択するプルダウンメニューのスクリーンショット">
             <table>
                 <thead>
                     <tr>
@@ -537,6 +621,9 @@
             <h3>やってみよう</h3>
             <pre><code>こんにちは！今日の日付と曜日を教えて。</code></pre>
             <p>日本語で日付と曜日が返ってくれば成功です。</p>
+            <!-- 【画像挿入箇所】 チャット欄で「こんにちは...」と入力し、AIが日本語で返信している様子のスクショ -->
+            <img class="screenshot" src="img/fig3.png"
+                alt="エージェントとの対話画面。ユーザーの挨拶に対して、AIが現在の日付と曜日を日本語で正確に返答している様子のスクリーンショット">
 
             <h3>エディタの AI 機能</h3>
             <table>
@@ -603,7 +690,7 @@
         <!-- Step 1-2 -->
         <section class="section" id="step1-2">
             <h2>Step 1-2: Rules（GEMINI.md）設定</h2>
-            <span class="badge badge-time">🕐 19:30〜20:00（Step1 合計 30分）</span>
+            <span class="badge badge-time">🕐 19:30〜19:45（Step1 合計 15分）</span>
 
             <h3>目標</h3>
             <p>プロジェクト固有のルールをエージェントに教える設定ファイルを作成しましょう。</p>
@@ -705,7 +792,15 @@
                 </tbody>
             </table>
 
-            <h3>基本テンプレート</h3>
+            <h3>基本テンプレートの設定</h3>
+            <ol>
+                <li>Editor View のファイルツリー（左側）で、一番上のフォルダ（プロジェクトルート）を右クリックします。</li>
+                <li><strong>New File</strong> を選択し、ファイル名を <code>GEMINI.md</code> にして Enter を押します。</li>
+                <li>作成されたファイルに以下のテンプレートをコピー＆ペーストして、保存（<code>Cmd + S</code>）してください。</li>
+            </ol>
+            <!-- 【画像挿入箇所】 GEMINI.md ファイルを作成してテンプレートを貼り付けた際のエディタ画面スクショ -->
+            <img class="screenshot" src="img/fig4.png"
+                alt="プロジェクト直下に GEMINI.md ファイルを作成し、基本ルールや技術スタックが記述されたマークダウンのテンプレートを貼り付けたエディタ画面のスクリーンショット">
             <pre><code># プロジェクト設定 - Google Antigravity Hands-on
 
 ## 基本ルール
@@ -729,6 +824,9 @@
                 <li>コードにコメントが入っているか</li>
                 <li>変数名が camelCase になっているか</li>
             </ul>
+            <!-- 【画像挿入箇所】 指示通りに動作確認し、ルールが適用されていることを示すチャットとコードのスクショ -->
+            <img class="screenshot" src="img/fig5.png"
+                alt="AIによって生成されたHTMLファイルのコード。GEMINI.md で指定した通り、日本語のコメントが含まれ、変数名にキャメルケースが適用されていることが確認できるスクリーンショット">
 
             <h3>応用: Workflows を体験しよう（任意）</h3>
             <p><code>.agent/workflows/</code> フォルダに <code>.md</code> ファイルを作成し、チャットで <code>/ワークフロー名</code> と入力して実行できます。
@@ -752,7 +850,7 @@ description: 挨拶のテスト用ワークフロー
         <!-- Step 2 -->
         <section class="section" id="step2">
             <h2>Step 2: Vibe Coding 基礎編</h2>
-            <span class="badge badge-time">🕐 20:00〜20:20（20分）</span>
+            <span class="badge badge-time">🕐 19:45〜20:15（30分）</span>
 
             <h3>学習目標</h3>
             <ul>
@@ -766,14 +864,17 @@ description: 挨拶のテスト用ワークフロー
             <pre><code>新しいフォルダ「my-first-vibe」を作成して、その中にシンプルなHTMLファイルを作って。
 テーマは「自己紹介ページ」で、モダンでおしゃれなデザインにして。</code></pre>
             <pre><code>作成したHTMLファイルをブラウザでプレビューして</code></pre>
+            <!-- 【画像挿入箇所】 ブラウザでプレビューしたオシャレな自己紹介ページのスクショ -->
+            <img class="screenshot" src="img/fig6.png"
+                alt="初期段階のシンプルな自己紹介ページをブラウザでプレビュー表示しているスクリーンショット。基本レイアウトが適用されている状態">
 
-            <h3>Part 2: デザインをカスタマイズ（5分）</h3>
+            <h3>Part 2: デザインをカスタマイズ（10分）</h3>
             <pre><code>背景色をダークモードに変更して。
 アクセントカラーは青緑系（#4ecca3）にして。</code></pre>
             <pre><code>名前の部分にふわっと表示されるアニメーションを追加して</code></pre>
             <pre><code>スマホでも綺麗に見えるようにレスポンシブ対応して</code></pre>
 
-            <h3>Part 3: Nano Banana で画像生成（10分）</h3>
+            <h3>Part 3: Nano Banana で画像生成（15分）</h3>
             <pre><code>Nano Bananaで、プロフィール用のアバター画像を生成して。
 - スタイル: アニメ風またはイラスト風
 - 背景: シンプルなグラデーション
@@ -787,6 +888,9 @@ description: 挨拶のテスト用ワークフロー
             <pre><code>生成したavatar.pngとheader-bg.pngを自己紹介ページに配置して。
 - avatar.pngは丸くトリミングしてプロフィール欄に
 - header-bg.pngはヘッダーの背景に</code></pre>
+            <!-- 【画像挿入箇所】 Nano Bananaで生成した画像が反映された完成版ページのスクショ -->
+            <img class="screenshot" src="img/fig7.png"
+                alt="Nano Bananaで生成されたアニメ風アバターとグラデーション背景画像が組み込まれ、ダークテーマで装飾された完成版の自己紹介ページのスクリーンショット">
 
             <h3>Vibe Coding のコツ</h3>
             <div class="card">
@@ -804,7 +908,9 @@ description: 挨拶のテスト用ワークフロー
                 <pre><code>「もう少し余白を増やして」「フォントサイズを大きくして」「元に戻して」</code></pre>
             </div>
 
-            <h3>Pro Tips: アーティファクトを活用する</h3>
+            <h3>Pro Tips: アーティファクト（成果物ドキュメント）を活用する</h3>
+            <p>AntigravityのAIエージェントは、チャットの返答とは別に独立したドキュメント（アーティファクト）を作成する機能があります。特に複雑な要件や中規模以上の開発を行う際は、いきなりコードを書かせるのではなく、まず以下のようなアーティファクトを作成するように指示することで、開発を整理しながら安全かつスムーズに進めることができます。
+            </p>
             <table>
                 <thead>
                     <tr>
@@ -841,7 +947,7 @@ description: 挨拶のテスト用ワークフロー
         <!-- Step 3-1 -->
         <section class="section" id="step3-1">
             <h2>Step 3-1: MCP（Model Context Protocol）接続</h2>
-            <span class="badge badge-time">🕐 20:20〜20:40（Step3 合計 20分）</span>
+            <span class="badge badge-time">🕐 20:15〜20:35（Step3 合計 20分）</span>
 
             <h3>目標</h3>
             <p>MCP を使って、エージェントを外部ツールやデータソースにつなぐ方法を学びましょう。</p>
@@ -924,6 +1030,9 @@ description: 挨拶のテスト用ワークフロー
             </table>
 
             <h3>ハンズオン: MCP Store から追加する</h3>
+            <!-- 【画像挿入箇所】 MCP Storeを開いてブラウザからインストールしている様子のスクショ -->
+            <img class="screenshot" src="img/fig8.png"
+                alt="Antigravity の MCP Store 画面。利用可能な MCP サーバーの一覧から特定のサーバーを選択し、Install ボタンをクリックしている様子のスクリーンショット">
             <ol>
                 <li>Agent パネル右上の <code>...</code>（三点メニュー）をクリック</li>
                 <li><strong>MCP Store</strong> を選択</li>
@@ -938,11 +1047,49 @@ description: 挨拶のテスト用ワークフロー
             <h4>演習 2: ドキュメント参照</h4>
             <pre><code>Context7 MCP を使って、React の useEffect フックの
 最新の使い方を調べて教えて。</code></pre>
+            <!-- 【画像挿入箇所】 Context7などの外部ツールを使って情報を取得し、チャットで答えている様子のスクショ -->
+            <img class="screenshot" src="img/fig9.png"
+                alt="Context7 MCP を利用して最新の React ドキュメントを参照し、エージェントが useEffect フックの最新の使い方をチャット上で解説しているスクリーンショット">
 
-            <h3>セキュリティ上の注意</h3>
+            <h3>⚠️ セキュリティ上の注意 — 野良 MCP に気をつけよう</h3>
+            <blockquote>
+                🚨 <strong>MCP サーバーはインターネット上に誰でも公開できます。</strong> 出所不明の「野良 MCP」を安易に導入するのは非常に危険です。MCP
+                はエージェントに強力な権限を与えるため、悪意あるサーバーを追加すると深刻な被害を受ける可能性があります。
+            </blockquote>
+            <table>
+                <thead>
+                    <tr>
+                        <th>リスク</th>
+                        <th>具体例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>プロンプトインジェクション</td>
+                        <td>MCP サーバーが返すデータに悪意のある命令が埋め込まれ、AIが意図しない操作を実行する</td>
+                    </tr>
+                    <tr>
+                        <td>機密情報の流出</td>
+                        <td>API キーやファイルの中身を外部サーバーに送信される</td>
+                    </tr>
+                    <tr>
+                        <td>ファイルの改ざん・削除</td>
+                        <td>AI がファイルシステムへのアクセス権を持つため、プロジェクトのコードを破壊される</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="card">
+                <h4>✅ 安全な MCP の見分け方</h4>
+                <ul>
+                    <li><strong>公式 MCP Store からインストールする</strong> — Antigravity が審査・掲載したサーバーを優先して使う</li>
+                    <li><strong>ソースコードが公開されているものを選ぶ</strong> — GitHub 等でコードが確認できる著名なプロジェクトが安心</li>
+                    <li><strong>インストール前に用途・権限を確認する</strong> — 「なぜそのアクセス権限が必要なのか」が明示されているものを選ぶ</li>
+                    <li><strong>不要な MCP は無効化（Disable）する</strong> — 使わないサーバーは常時有効にしない</li>
+                </ul>
+            </div>
             <ul>
-                <li>MCP は強力な権限を持ちます。信頼できるサーバーだけを有効にしてください</li>
-                <li>API キーは環境変数で管理し、設定ファイルへの直書きは避けましょう</li>
+                <li>API キーは環境変数で管理し、設定ファイルへの直書きは絶対に避けましょう</li>
+                <li>ハンズオン後も、追加した MCP の権限設定を定期的に見直す習慣をつけましょう</li>
             </ul>
 
             <div class="nav-btns">
@@ -954,7 +1101,7 @@ description: 挨拶のテスト用ワークフロー
         <!-- Step 3-2 -->
         <section class="section" id="step3-2">
             <h2>Step 3-2: Agent Skills の作成</h2>
-            <span class="badge badge-time">🕐 20:20〜20:40（Step3 合計 20分）</span>
+            <span class="badge badge-time">🕐 20:15〜20:35（Step3 合計 20分）</span>
 
             <h3>目標</h3>
             <p>カスタム Skill を作り、エージェントに新しい能力を追加しましょう。</p>
@@ -982,6 +1129,9 @@ description: 特定のタスクを支援するスキル
 ...</code></pre>
 
             <h3>このフォルダに入っているサンプル Skill</h3>
+            <!-- 【画像挿入箇所】 .agent/skills 内のディレクトリツリーのスクショ -->
+            <img class="screenshot" src="img/fig10.png"
+                alt="エディタのファイルツリー表示。.agent/skills ディレクトリの配下に code-review や marp-presentation といった複数の独自スキル（SKILL.md）が格納されている状態のスクリーンショット">
             <pre><code>.agent/
 └── skills/
     ├── code-review/
@@ -992,11 +1142,18 @@ description: 特定のタスクを支援するスキル
             <h3>やってみよう: サンプルコードをレビュー</h3>
             <pre><code>sample.js を code-review Skill でレビューして</code></pre>
 
-            <h3>🌟 コミュニティの Skills を活用しよう</h3>
-            <p>自分で一から作らなくても、コミュニティで公開されている強力な Skill 集を活用できます。</p>
+            <h3>🌟 公開されている Skills を活用しよう</h3>
+            <p>
+                自分で一から作らなくても、すでに公開されている強力な Skill 集を活用できます。
+                このハンズオンで使っている Skills は、<a href="https://x.com/suna_gaku" target="_blank">@suna_gaku</a>（X/ 旧
+                Twitter）によってまとめられた Skill コレクションを参考にしています。
+            </p>
             <pre><code>/plugin marketplace add sean-sunagaku/claude-code-plugin</code></pre>
 
             <h4>有用な Skill の例</h4>
+            <!-- 【画像挿入箇所】 コミュニティSkillプラグインのインストールコマンド実行後の出力スクショ -->
+            <img class="screenshot" src="img/fig11.png"
+                alt="チャット欄で claude-code-plugin のインストールコマンドを実行し、複数の強力なスキルが追加されたことを示す実行結果のスクリーンショット">
             <table>
                 <thead>
                     <tr>
@@ -1065,7 +1222,7 @@ description: 特定のタスクを支援するスキル
         <!-- Step 4 -->
         <section class="section" id="step4">
             <h2>Step 4: Vibe Coding 発展編</h2>
-            <span class="badge badge-time">🕐 20:40〜21:00（20分）</span>
+            <span class="badge badge-time">🕐 20:35〜21:05（30分）</span>
 
             <h3>学習目標</h3>
             <ul>
@@ -1148,12 +1305,18 @@ Step 6: デプロイ</code></pre>
             <pre><code>この 04_vibe_coding_advanced フォルダに、
 Vite + React + TailwindCSS のプロジェクトを作成して。
 プロジェクト名は「ai-coffee-shop」</code></pre>
+            <pre><code>開発サーバーを起動してブラウザでプレビューして</code></pre>
+
+            <h4>Part 5: 品質チェック（Skills活用）</h4>
             <pre><code>@code-review ai-coffee-shop/src/components/ のすべてのコンポーネントを
 レビューして、改善点があれば自動的に修正して。</code></pre>
 
-            <h4>Part 5: デプロイ</h4>
+            <h4>Part 6: デプロイ</h4>
             <pre><code>プロダクションビルドを実行して、
 Firebase Hosting にデプロイする準備をして。</code></pre>
+            <!-- 【画像挿入箇所】 完成したAI Coffee Shop LPのスクリーンショットや構築中のチャット画面 -->
+            <img class="screenshot" src="img/fig12.png"
+                alt="Vibe Coding 発展編で作成された「AI Coffee Shop LP」の完成版のブラウザプレビュー。近未来的なデザインと Nano Banana で生成された高品質な画像が調和しているスクリーンショット">
 
             <h3>開発時間の比較</h3>
             <table>
@@ -1208,7 +1371,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
         <!-- Step 5 -->
         <section class="section" id="step5">
             <h2>Step 5: ハッカソンおすすめ戦略 AI-DLC</h2>
-            <span class="badge badge-time">🕐 21:00〜21:10（10分）</span>
+            <span class="badge badge-time">🕐 21:05〜21:20（15分）</span>
 
             <h3>この章の目標</h3>
             <ul>
@@ -1263,26 +1426,24 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
             <h3>ハッカソン最強戦略: モブ開発 × AI</h3>
             <p>ハッカソンで最も時間を無駄にするのは、<strong>「メンバー間の認識のズレ」</strong>による手戻りです。</p>
             <blockquote>
-                💡 <strong>モブプログラミング</strong>とは？ チーム全員が1つの画面を見ながら一緒に議論・開発する手法です。認識のズレがなくなり、手戻りが激減して結果的に速くなります。
+                💡 <strong>モブプログラミング（モブ開発）</strong>とは？<br>
+                本来は全員が1つの画面を見ながら一緒にプログラミングする手法ですが、AI-DLCにおいては、実装自体はAIに任せ、人間はチーム全員で画面を見ながら「要件定義」や「アーキテクチャの意思決定」に集中するスタイルになります。認識のズレがなくなり、結果的に手戻りが激減します。
             </blockquote>
 
             <table>
                 <thead>
                     <tr>
                         <th>フェーズ</th>
-                        <th>モブ作業</th>
                         <th>やること</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Inception</td>
-                        <td>モブエラボレーション</td>
                         <td>AI が出した要件・計画をチーム全員で確認・修正。全員が同じゴールを共有できる</td>
                     </tr>
                     <tr>
                         <td>Construction</td>
-                        <td>モブコンストラクション</td>
                         <td>AI がコードを書き、チーム全員で技術的な判断をその場で議論</td>
                     </tr>
                 </tbody>
@@ -1296,7 +1457,10 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 <li>計画が固まったら「Proceed（実行）」→ AI がコードを生成</li>
                 <li>生成されたコードをみんなで確認しながら方向修正</li>
             </ol>
-            <blockquote>🔥 <strong>ハッカソンの最初の1時間をモブエラボレーションに使うだけで、成果物の品質と開発スピードが劇的に変わります！</strong></blockquote>
+            <blockquote>
+                🔥 <strong>ハッカソンの最初の1時間を「モブエラボレーション」に使うだけで、成果物の品質と開発スピードが劇的に変わります！</strong><br>
+                ※ モブエラボレーション：チーム全員で一斉に要件やアイデアを深掘り・整理（Elaboration）し、詳細な設計書（アーティファクト）へと落とし込む作業のこと。
+            </blockquote>
 
             <h3>Antigravity と AI-DLC の対応関係</h3>
             <table>
@@ -1326,7 +1490,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 </tbody>
             </table>
 
-            <h3>まとめ: ハッカソンで勝つための3つのルール</h3>
+            <h3>まとめ: チームで納得できる作品に仕上げるための3つのルール</h3>
             <div class="card">
                 <ol>
                     <li><strong>最初にモブエラボレーションする</strong> — 全員でAIの出した計画を見て合意を取る</li>
@@ -1337,6 +1501,230 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
 
             <div class="nav-btns">
                 <a href="#step4" class="btn">← Step 4</a>
+                <a href="#step6" class="btn">次へ: Step 6 →</a>
+            </div>
+        </section>
+
+        <!-- Step 6 -->
+        <section class="section" id="step6">
+            <h2>Step 6: 活用 Tips 集</h2>
+
+            <p>Antigravity をさらに使いこなすための参考記事・公式リソースをまとめました。ハンズオン後の自習や、チームへの共有にご活用ください。</p>
+
+            <h3>📰 活用 Tips</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tips</th>
+                        <th>概要</th>
+                        <th>出典 URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>画面は「3分割」で理解する</td>
+                        <td>左：Workspace（ファイル置き場）、中：Editor（作業机）、右：AI
+                            Chat（頭脳）の3エリア構成。「右のAIに指示して、左の素材を使い、中央で作業させる」と覚えるとシンプル。チャット履歴は右上の「＋」で新規、「時計マーク」で過去ログを参照できる。
+                        </td>
+                        <td rowspan="5"><a href="https://note.com/kino_11/n/n4a7712b47868" target="_blank"
+                                style="color: var(--blue); word-break: break-all;">note.com/<br>kino_11</a></td>
+                    </tr>
+                    <tr>
+                        <td>モードは基本「Planning」一択</td>
+                        <td>Planning Mode ではAIがまず計画を立て、宣言してから作業する。Fast Mode は計画なしで即作業するためミスりやすい。複雑なタスクは急がば回れで Planning
+                            を選ぶほうが精度が上がる。モデルは <code>Gemini 3 Pro（High）</code> が安定。</td>
+                    </tr>
+                    <tr>
+                        <td>Global Rules に「日本語指示」を書く</td>
+                        <td>設定しないとAIが英語で返答することがある。Global Rules に <code>回答、計画、思考プロセスを全て日本語で行うこと。</code>
+                            の一行を書くだけで日本語対応になる。これが最初にやるべき「憲法」設定。</td>
+                    </tr>
+                    <tr>
+                        <td>Mentions でファイルを「食わせる」</td>
+                        <td>チャット欄にファイルをドラッグ＆ドロップするか <code>@ファイル名</code> で参照することで、AIに正確なコンテキストを与えられる。指示の精度が大きく向上する。</td>
+                    </tr>
+                    <tr>
+                        <td>Auto Execution の使い分け</td>
+                        <td>設計を壁打ちしたいときは <code>Request Review</code>（AIが毎回確認を求める）、単純作業を任せるときは
+                            <code>Always Proceed</code>（確認なしで爆速）に切り替える。慣れるまでは Request Review が安全。</td>
+                    </tr>
+                    <tr>
+                        <td>Artifacts でAIの作業を「見える化」</td>
+                        <td>タスク実行時に
+                            <code>task.md</code>（進行状況）・<code>implementation_plan.md</code>（実装計画）・<code>walkthrough.md</code>（作業ログ）が自動生成される。コードを書く前に計画書が出るため「仕様レビュー」感覚で開発できる。
+                        </td>
+                        <td rowspan="4"><a href="https://zenn.dev/minedia/articles/cc718542d8cc73" target="_blank"
+                                style="color: var(--blue); word-break: break-all;">zenn.dev/<br>minedia</a></td>
+                    </tr>
+                    <tr>
+                        <td>Chrome拡張でクロスツール自律操作</td>
+                        <td>Antigravity 専用の Chrome
+                            拡張を入れると、AIがブラウザを実際に見て操作できるようになる。ターミナル実行→ブラウザ動作確認まで全自動。UIの実装精度が段違いに向上する。</td>
+                    </tr>
+                    <tr>
+                        <td>スクショに直接コメントで指示する</td>
+                        <td>生成されたUIのスクリーンショットや画像に対して、ドラッグ＆ドロップで範囲選択してコメントを入れるだけで修正指示が出せる。「右上のボタンを…」とテキストで説明するストレスから解放される。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nano Banana Pro で画像を即生成</td>
+                        <td>UIモックアップ・アーキテクチャ図・Webサイト用の画像アセットなどをAIが生成して直接プロジェクトに配置してくれる。デザイナーを待たずとも高品質な素材が数秒で手に入る。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🔗 公式ドキュメント・リソース</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>カテゴリ</th>
+                        <th>概要</th>
+                        <th>URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>公式サイト</td>
+                        <td>Antigravity のダウンロード・プラン・最新情報</td>
+                        <td><a href="https://antigravity.google" target="_blank"
+                                style="color: var(--blue);">antigravity.google</a></td>
+                    </tr>
+                    <tr>
+                        <td>公式ドキュメント</td>
+                        <td>セットアップ・Rules・MCP・Skills・Workflows の詳細リファレンス</td>
+                        <td><a href="https://antigravity.google/docs" target="_blank"
+                                style="color: var(--blue);">antigravity.google/docs</a></td>
+                    </tr>
+                    <tr>
+                        <td>Rules &amp; Workflows</td>
+                        <td>GEMINI.md の書き方・Activation Mode・Workflows の設定方法</td>
+                        <td><a href="https://antigravity.google/docs/rules-workflows" target="_blank"
+                                style="color: var(--blue);">antigravity.google/docs/rules-workflows</a></td>
+                    </tr>
+                    <tr>
+                        <td>MCP（Model Context Protocol）</td>
+                        <td>外部ツール連携（ブラウザ・DB・GitHub 等）の接続手順</td>
+                        <td><a href="https://antigravity.google/docs/mcp" target="_blank"
+                                style="color: var(--blue);">antigravity.google/docs/mcp</a></td>
+                    </tr>
+                    <tr>
+                        <td>Agent Skills</td>
+                        <td>スキルの作成・配置・呼び出し方法のリファレンス</td>
+                        <td><a href="https://antigravity.google/docs/skills" target="_blank"
+                                style="color: var(--blue);">antigravity.google/docs/skills</a></td>
+                    </tr>
+                    <tr>
+                        <td>GitHub サンプル集</td>
+                        <td>Antigravity を使った実装例・スターターキット</td>
+                        <td><a href="https://github.com/antigravity-examples" target="_blank"
+                                style="color: var(--blue);">github.com/antigravity-examples</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="nav-btns">
+                <a href="#step5" class="btn">← Step 5</a>
+                <a href="#outro" class="btn">おわりに →</a>
+            </div>
+        </section>
+
+        <!-- おわりに -->
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <p>本日はご参加いただきありがとうございました！<br>
+                Antigravity を使った AI 駆動開発の可能性を少しでも感じてもらえたなら嬉しいです。今後もイベントや学習コンテンツを通じて、一緒に「Vibe Coding」の世界を探求しましょう。</p>
+
+            <!-- 今後のイベント -->
+            <h3>🎪 今後のイベント</h3>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 16px 0;">
+                <div class="card" style="border-left: 4px solid var(--primary);">
+                    <div style="color: var(--primary); font-weight: 700; font-size: 1rem; margin-bottom: 8px;">🛠️ AIDD
+                        もくもく会</div>
+                    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 10px;">「AI
+                        駆動開発（AIDD）」をテーマに、各自が持ち寄った課題を AI と共に解決するもくもく会。プロンプトや知見をみんなで共有します。</p>
+                    <div style="font-size: 0.82rem; color: var(--muted);">📅 日程調整中 ｜ 🖥️ オンライン（Discord / Zoom）</div>
+                </div>
+                <div class="card" style="border-left: 4px solid var(--blue);">
+                    <div style="color: var(--blue); font-weight: 700; font-size: 1rem; margin-bottom: 8px;">🎓 Google
+                        学生向けハッカソン</div>
+                    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 10px;">年間 800
+                        名規模で開催している学生向けハッカソン。AI ツールを活用したプロダクト開発に挑戦しよう！</p>
+                    <div style="font-size: 0.82rem; color: var(--muted);">📅 詳細は SNS・Discord で告知予定</div>
+                </div>
+                <div class="card" style="border-left: 4px solid var(--purple);">
+                    <div style="color: var(--purple); font-weight: 700; font-size: 1rem; margin-bottom: 8px;">📚 AI
+                        活用勉強会・登壇</div>
+                    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 10px;">社内外の技術勉強会や登壇情報を随時発信中。気になる方は
+                        X（Twitter）をフォローしてください！</p>
+                    <div style="font-size: 0.82rem; color: var(--muted);">📅 随時開催</div>
+                </div>
+            </div>
+
+            <!-- 書籍紹介 -->
+            <h3>📖 書籍のご紹介</h3>
+            <div class="card" style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
+                <div style="font-size: 4rem; flex-shrink: 0;">📗</div>
+                <div style="flex: 1; min-width: 220px;">
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px;">
+                        開発系エンジニアのためのGit/GitHub絵とき入門</div>
+                    <div style="color: var(--muted); font-size: 0.88rem; margin-bottom: 10px;">著者: 山岡 滉治（やまおか こうじ） ｜ 出版:
+                        秀和システム ｜ 発売: 2025年3月</div>
+                    <p style="font-size: 0.9rem; color: var(--text); margin-bottom: 12px;">Git/GitHub
+                        の仕組みを「絵解き」でわかりやすく解説した入門書。チーム開発のフロー・ブランチ戦略・PR レビューまでカバーしています。エンジニア初心者から中級者まで必読！</p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span
+                            style="background: var(--bg-light); color: var(--primary); border-radius: 6px; padding: 3px 10px; font-size: 0.8rem;">#Git</span>
+                        <span
+                            style="background: var(--bg-light); color: var(--primary); border-radius: 6px; padding: 3px 10px; font-size: 0.8rem;">#GitHub</span>
+                        <span
+                            style="background: var(--bg-light); color: var(--primary); border-radius: 6px; padding: 3px 10px; font-size: 0.8rem;">#入門書</span>
+                        <span
+                            style="background: var(--bg-light); color: var(--primary); border-radius: 6px; padding: 3px 10px; font-size: 0.8rem;">#チーム開発</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 公式リソース -->
+            <h3>🔗 学習リソース</h3>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0;">
+                <div
+                    style="background: var(--bg-dark); border-radius: 8px; padding: 16px; border: 1px solid var(--bg-light);">
+                    <div style="color: var(--primary); font-weight: 700; margin-bottom: 6px;">🌐 公式ドキュメント</div>
+                    <a href="https://antigravity.google/docs" target="_blank"
+                        style="color: var(--blue); font-size: 0.88rem; text-decoration: none;">antigravity.google/docs</a>
+                </div>
+                <div
+                    style="background: var(--bg-dark); border-radius: 8px; padding: 16px; border: 1px solid var(--bg-light);">
+                    <div style="color: var(--primary); font-weight: 700; margin-bottom: 6px;">💻 GitHub サンプル</div>
+                    <a href="https://github.com/antigravity-examples" target="_blank"
+                        style="color: var(--blue); font-size: 0.88rem; text-decoration: none;">antigravity-examples</a>
+                </div>
+                <div
+                    style="background: var(--bg-dark); border-radius: 8px; padding: 16px; border: 1px solid var(--bg-light);">
+                    <div style="color: var(--primary); font-weight: 700; margin-bottom: 6px;">💬 コミュニティ</div>
+                    <span style="color: var(--muted); font-size: 0.88rem;">Discord: Antigravity Developers</span>
+                </div>
+                <div
+                    style="background: var(--bg-dark); border-radius: 8px; padding: 16px; border: 1px solid var(--bg-light);">
+                    <div style="color: var(--primary); font-weight: 700; margin-bottom: 6px;">📝 Qiita / Zenn</div>
+                    <span style="color: var(--muted); font-size: 0.88rem;">#Antigravity タグで記事を検索</span>
+                </div>
+            </div>
+
+            <!-- SNS フォロー -->
+            <h3>📣 SNS でつながろう</h3>
+            <div class="card" style="text-align: center; padding: 24px;">
+                <div style="font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px;">
+                    X（Twitter）で最新情報を発信中！</div>
+                <div style="color: var(--muted); margin-bottom: 16px; font-size: 0.95rem;">イベント告知・AI 活用の
+                    Tips・登壇情報などを随時ポスト中です。</div>
+                <div style="font-size: 1.5rem; color: var(--primary); font-weight: 700;">@kozzy0919</div>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step6" class="btn">← Step 6</a>
                 <div></div>
             </div>
         </section>
