@@ -560,6 +560,10 @@
             </table>
 
             <h4>5. モデル選択</h4>
+            <p>Agent Manager の右上にあるモデル選択プルダウンから、タスクに応じて最適なモデルを切り替えられます。<br>
+                <strong>基本は <code>Gemini 3 Pro (High)</code> を選んでおけば間違いありません。</strong>使いすぎて Rate Limit
+                に達した場合は別モデルに切り替えましょう。
+            </p>
             <!-- 【画像挿入箇所】 モデル選択のプルダウンメニューが開いているスクショ -->
             <img class="screenshot" src="img/fig2.png"
                 alt="利用可能なAIモデル（Gemini 3 Pro, Claude Sonnet 4.5, Nano Banana Pro など）を選択するプルダウンメニューのスクリーンショット">
@@ -568,55 +572,95 @@
                     <tr>
                         <th>モデル</th>
                         <th>特徴</th>
+                        <th>おすすめ用途</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Gemini 3 Pro (High/Low)</td>
-                        <td>Google の最新モデル。高性能</td>
+                        <td><strong>Gemini 3 Pro (High)</strong></td>
+                        <td>Google の最新フラッグシップモデル。コード生成・ロジック推論・複雑なタスク分解に最も優れる。ターミナル操作との連携精度も高い。</td>
+                        <td>メイン開発、複雑なロジック、要件定義・設計の壁打ち</td>
+                    </tr>
+                    <tr>
+                        <td>Gemini 3 Pro (Low)</td>
+                        <td>High と同じモデルだが計算リソースを抑えた設定。応答速度が若干速くなる場合がある。High が Rate Limit に達した際の代替としても有効。</td>
+                        <td>比較的シンプルなコード修正、High の代替</td>
                     </tr>
                     <tr>
                         <td>Gemini 3 Flash</td>
-                        <td>高速レスポンス</td>
+                        <td>軽量・高速に特化したモデル。複雑な推論より「素早く答えを出す」ことを優先。レスポンスタイムが短いため、簡単な質問や確認作業に向いている。</td>
+                        <td>簡単な質問応答、文言確認、素早いフィードバックが欲しいとき</td>
                     </tr>
                     <tr>
                         <td>Claude Sonnet 4.5</td>
-                        <td>Anthropic 製。Standard / Thinking モード</td>
+                        <td>Anthropic 製。文脈理解と自然な文章生成に強み。Standard モード（通常）と Thinking モード（深い推論）を切り替えられる。Google 製 IDE
+                            で他社モデルが使えるのは特筆すべき点。</td>
+                        <td>ドキュメント作成、要件定義書・READMEの執筆、長文の整理</td>
                     </tr>
                     <tr>
                         <td>Claude Opus 4.5</td>
-                        <td>Anthropic 製。高精度（Thinking モード）</td>
+                        <td>Anthropic の最高精度モデル。Thinking モードでは複雑な問題を段階的に深く推論する。消費リソースが大きい分、精度が求められる場面で真価を発揮する。</td>
+                        <td>難易度の高いバグ解析、アーキテクチャ設計の深い検討</td>
                     </tr>
                     <tr>
                         <td>Nano Banana Pro</td>
-                        <td>画像生成専用（バックグラウンドで動作）</td>
+                        <td>画像生成専用モデル。チャットで「〜な画像を生成して」と指示するとバックグラウンドで自動生成・保存してくれる。UIモックアップ・OGP・アイコンなどに活用できる。</td>
+                        <td>ヒーロー画像、アイコン、UIモックアップ、OGP画像の生成</td>
                     </tr>
                 </tbody>
             </table>
+            <div class="card">
+                <strong>💡 Rate Limit に達したときの対処法</strong>
+                <ul style="margin-top: 8px;">
+                    <li>Gemini 3 Pro (High) → <strong>Gemini 3 Pro (Low)</strong> または <strong>Claude Sonnet 4.5</strong>
+                        に切り替える</li>
+                    <li>しばらく時間をおいてから再試行する（通常数分〜数十分でリセット）</li>
+                    <li>簡単な作業は <strong>Gemini 3 Flash</strong> で素早く処理する</li>
+                </ul>
+            </div>
 
             <h4>6. セキュリティ設定（ターミナル自動実行ポリシー）</h4>
+            <p>Antigravity は AI がターミナルコマンドを自動実行できます。「どこまで AI に任せるか」を <strong>Auto Execution</strong> ポリシーで制御します。<br>
+                設定は Agent Manager の設定アイコン（⚙️）→ <code>Auto Execution</code> から変更できます。</p>
             <table>
                 <thead>
                     <tr>
                         <th>モード</th>
-                        <th>説明</th>
+                        <th>動作</th>
+                        <th>こんな時に使う</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Off</td>
-                        <td>許可リストに登録しない限り自動実行しない。最も安全</td>
+                        <td><strong>Off</strong><br><span style="color: var(--primary); font-size: 0.8rem;">最も安全</span>
+                        </td>
+                        <td>許可リスト（Allowlist）に登録したコマンドのみ実行。それ以外はすべて手動承認が必要。AIが勝手にコマンドを実行することは一切ない。</td>
+                        <td>本番環境に近いリポジトリ、初めて使う場合、慎重に進めたいとき</td>
                     </tr>
                     <tr>
-                        <td>Auto</td>
-                        <td>AI の安全性モデルで判断。リスクが高いコマンドは確認を求める</td>
+                        <td><strong>Auto</strong><br><span
+                                style="color: var(--blue); font-size: 0.8rem;">推奨（バランス）</span></td>
+                        <td>AI の安全性モデルが各コマンドのリスクを自動判断。低リスクなコマンド（<code>npm install</code>・<code>git status</code>
+                            など）は自動実行し、リスクが高いコマンド（ファイル削除・外部送信など）は確認を求める。</td>
+                        <td>ハンズオン・個人開発・学習用プロジェクト。<strong>初心者はここから始めるのがおすすめ</strong></td>
                     </tr>
                     <tr>
-                        <td>Turbo</td>
-                        <td>常に自動実行。最速だがリスクも伴う</td>
+                        <td><strong>Turbo</strong><br><span
+                                style="color: var(--purple); font-size: 0.8rem;">最速・要注意</span></td>
+                        <td>すべてのコマンドを確認なしで即時実行。AI の判断にすべて委ねるため、開発スピードは最大になるが、意図しないファイル削除や変更のリスクも高まる。</td>
+                        <td>手順が完全に確定した単純繰り返し作業、慣れたユーザーが速度を最優先にするとき</td>
                     </tr>
                 </tbody>
             </table>
+            <div class="card">
+                <strong>⚠️ ハンズオンでの推奨設定</strong>
+                <p style="margin-top: 8px;">今日のハンズオンでは <strong>Auto</strong> に設定しておくことを推奨します。</p>
+                <ul>
+                    <li>AI が <code>npm install</code> や <code>git</code> コマンドを自動実行してくれるので作業がスムーズ</li>
+                    <li>危険なコマンドは確認ダイアログが出るので誤操作を防げる</li>
+                    <li>「何をやっているか見たい」場合は <strong>Off</strong> にして一つ一つ確認するのも学習になる</li>
+                </ul>
+            </div>
 
             <h3>やってみよう</h3>
             <pre><code>こんにちは！今日の日付と曜日を教えて。</code></pre>
@@ -897,15 +941,70 @@ description: 挨拶のテスト用ワークフロー
                 <h4>1. 具体的に伝える</h4>
                 <p>❌ 「かっこいいページを作って」</p>
                 <p>✅ 「ダークモードで、青緑のアクセントカラー、グラスモーフィズムのカードデザインで作って」</p>
+                <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
+                    💡 <strong>補足:</strong> AI
+                    は「かっこいい」「おしゃれ」などの曖昧な言葉より、<strong>色・レイアウト・デザインスタイル</strong>を具体的に指定するほど期待通りの結果になりやすい。
+                    参考になるWebサイトのURLを貼って「このデザインに似た感じで」と伝えるのも効果的。
+                </p>
             </div>
             <div class="card">
                 <h4>2. 段階的に進める</h4>
                 <p>❌ 「完璧なポートフォリオサイトを作って」</p>
                 <p>✅ 「まずシンプルな自己紹介ページを作って」→「次にスキルセクションを追加して」</p>
+                <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
+                    💡 <strong>補足:</strong> 一度に多くを求めると、AIが間違った方向に進んでしまい修正が大変になる。
+                    <strong>「まず〇〇だけ作って」→ 確認 → 「次に〇〇を追加して」</strong> という小さいサイクルを繰り返すのが鉄則。
+                    Planning Mode で計画書（implementation_plan.md）を確認してから「Proceed」を押す習慣をつけよう。
+                </p>
             </div>
             <div class="card">
-                <h4>3. フィードバックを活用</h4>
+                <h4>3. フィードバックを活用する</h4>
                 <pre><code>「もう少し余白を増やして」「フォントサイズを大きくして」「元に戻して」</code></pre>
+                <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
+                    💡 <strong>補足:</strong> ブラウザプレビューを見ながら、気になった点をそのまま言葉で伝えるだけで修正してくれる。
+                    スクリーンショットをチャットに貼り付けて「ここの部分を〜」と指示するのが最も伝わりやすい。
+                    「元に戻して」も有効で、AI は直前の変更を取り消してくれる。
+                </p>
+            </div>
+            <div class="card">
+                <h4>4. 役割・ペルソナを与える</h4>
+                <p>✅ 「あなたはプロのフロントエンドエンジニアです。ユーザー体験を最優先したコードを書いてください」</p>
+                <p>✅ 「Bootstrap ではなく Vanilla CSS で、保守しやすいコードにして」</p>
+                <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
+                    💡 <strong>補足:</strong> AI に「どんな立場で考えてほしいか」を伝えると、回答の質が変わる。
+                    技術スタックや制約条件（「外部ライブラリは使わない」「TypeScript で書く」など）も最初に伝えておくと、後から修正する手間が減る。
+                    これは GEMINI.md に書いておくと毎回設定不要になる。
+                </p>
+            </div>
+            <div class="card">
+                <h4>5. 「なぜ」を聞いて学習する</h4>
+                <pre><code>「このコードのどこを直したか、理由も含めて教えて」
+「この実装方法にした理由は？他の選択肢は？」</code></pre>
+                <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
+                    💡 <strong>補足:</strong> Vibe Coding はただコードを生成してもらうだけでなく、<strong>AIと対話しながら学ぶ</strong>チャンスでもある。
+                    「なぜこのライブラリを使った？」「別の書き方は？」と問いかけると、AI が複数の選択肢や理由を説明してくれる。
+                    Artifacts に残る実装計画書（implementation_plan.md）も読み返すと理解が深まる。
+                </p>
+            </div>
+            <div class="card">
+                <h4>6. うまくいかないときの切り替え方</h4>
+                <pre><code>「一旦リセットして、別のアプローチで試して」
+「このエラーメッセージを見て。何が原因か教えて」</code></pre>
+                <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
+                    💡 <strong>補足:</strong> AI が同じ修正を繰り返して解決しない場合は、<strong>新しいチャットを開いて仕切り直す</strong>のが最善策。
+                    エラーが出たらターミナルのエラーメッセージをそのままコピーして貼り付けるだけでOK。
+                    「なぜこのエラーになる？」と原因を聞いてから「直して」と指示する二段階アプローチが効果的。
+                </p>
+            </div>
+            <div class="card">
+                <h4>7. チームで使うときのコツ（ハッカソン特有）</h4>
+                <p>✅ 一人が Antigravity を操作し、残りのメンバーは画面を見てフィードバックを出す「モブプログラミング」形式</p>
+                <p>✅ GEMINI.md にチームの共通ルール（技術スタック・ファイル命名規則など）を書いておく</p>
+                <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
+                    💡 <strong>補足:</strong> ハッカソンでは「全員でAIの計画書を確認 → 合意してから実行」のフローが大事。
+                    AIが生成した implementation_plan.md をチーム全員で読んで認識を合わせると、後でのやり直しが減る。
+                    コードベースが大きくなっても GEMINI.md のルールがあれば AI のコードスタイルが一貫する。
+                </p>
             </div>
 
             <h3>Pro Tips: アーティファクト（成果物ドキュメント）を活用する</h3>
@@ -1546,7 +1645,8 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     <tr>
                         <td>Auto Execution の使い分け</td>
                         <td>設計を壁打ちしたいときは <code>Request Review</code>（AIが毎回確認を求める）、単純作業を任せるときは
-                            <code>Always Proceed</code>（確認なしで爆速）に切り替える。慣れるまでは Request Review が安全。</td>
+                            <code>Always Proceed</code>（確認なしで爆速）に切り替える。慣れるまでは Request Review が安全。
+                        </td>
                     </tr>
                     <tr>
                         <td>Artifacts でAIの作業を「見える化」</td>
