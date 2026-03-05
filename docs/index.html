@@ -1722,15 +1722,90 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
                 が自動実行します。「パフォーマンス改善」「セキュリティチェック」「コーディング規約の遵守」などを一括チェックできます。
             </div>
 
-            <h4>Part 6: デプロイ — 所要時間: 2分</h4>
+            <h4>Part 6: デプロイ — 所要時間: 2〜10分</h4>
             <p><strong>目的：</strong> 完成した LP を本番環境にデプロイし、実際に公開できる状態にします。</p>
+
+            <div class="card" style="background: #fff3cd; border-left: 4px solid #ffc107; color: #856404;">
+                <strong>⚠️ Firebase の準備が必要です</strong>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    このパートでは <strong>Firebase Hosting</strong> を使用します。初めて使う方は事前設定が必要です。<br>
+                    <strong style="color: var(--green);">時間がない場合や難しい場合は、このパートをスキップして「Part 5 までの体験」でも十分です。</strong>
+                </p>
+            </div>
+
+            <h5>デプロイ前の準備（初めての方のみ）</h5>
+
+            <div class="card" style="background: var(--bg-light);">
+                <strong>📌 2つの方法から選べます</strong>
+                <div style="margin-top: 12px;">
+                    <div style="margin-bottom: 12px;">
+                        <strong style="color: var(--primary);">方法1: AI に全部お願いする（おすすめ）</strong>
+                        <p style="margin-top: 4px; font-size: 0.9rem;">
+                            Antigravity に以下のように依頼すれば、AI が必要な手順を案内してくれます：
+                        </p>
+                        <pre style="margin-top: 8px;"><code>Firebase Hosting を初めて使います。
+プロジェクト作成からデプロイまでの手順を教えてください。</code></pre>
+                    </div>
+                    <div>
+                        <strong style="color: var(--purple);">方法2: 自分で設定する</strong>
+                        <p style="margin-top: 4px; font-size: 0.9rem;">以下の手順で進めてください：</p>
+                    </div>
+                </div>
+            </div>
+
+            <p><strong>ステップ1: Firebase プロジェクトの作成</strong></p>
+            <ol style="font-size: 0.9rem;">
+                <li><a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a> にアクセス（Google アカウントでログイン）</li>
+                <li>「プロジェクトを追加」をクリック</li>
+                <li>プロジェクト名を入力（例：<code>ai-coffee-shop</code>）</li>
+                <li>Google アナリティクスは「今は設定しない」でOK</li>
+                <li>「プロジェクトを作成」をクリックして完了を待つ</li>
+            </ol>
+
+            <p><strong>ステップ2: Firebase CLI のインストールとログイン</strong></p>
+            <p style="font-size: 0.9rem; margin-top: 8px;">
+                <strong>初心者の方へ：</strong>ターミナル操作が不安な場合は、<strong>以下のコマンドを Antigravity のチャットにコピペして「実行して」と依頼</strong>すれば、AI が代わりに実行してくれます。
+            </p>
+
+            <pre><code># Firebase CLI をインストール（初回のみ）
+npm install -g firebase-tools
+
+# Firebase にログイン
+firebase login</code></pre>
+
+            <div class="card" style="font-size: 0.9rem;">
+                <strong>💡 ヒント：</strong>
+                <ul style="margin-top: 8px;">
+                    <li><code>firebase login</code> を実行すると、ブラウザが開いて Google アカウントでログインを求められます</li>
+                    <li>「Firebase CLI がアクセスをリクエスト」と表示されたら「許可」をクリック</li>
+                    <li>ターミナルに「Success! Logged in as your-email@gmail.com」と表示されれば成功</li>
+                </ul>
+            </div>
+
+            <h5>デプロイの実行</h5>
             <p><strong>やること：</strong> AI に「Firebase Hosting にデプロイ準備」と依頼すると、プロダクションビルド実行から設定ファイル作成まで自動化されます。</p>
 
             <pre><code>プロダクションビルドを実行して、
 Firebase Hosting にデプロイする準備をして。</code></pre>
 
             <div class="card" style="font-size: 0.9rem;">
-                <strong>💡 ポイント：</strong> 従来なら「ビルドコマンドは何？」「設定ファイルのフォーマットは？」と調べながら作業する必要がありましたが、AI が全て自動化してくれます。
+                <strong>💡 ポイント：</strong>
+                AI が以下を自動実行してくれます：
+                <ul style="margin-top: 8px;">
+                    <li>プロダクションビルド（<code>npm run build</code>）</li>
+                    <li>Firebase 設定ファイル（<code>firebase.json</code>）の作成</li>
+                    <li>デプロイコマンド（<code>firebase deploy</code>）の実行</li>
+                </ul>
+                従来なら「ビルドコマンドは何？」「設定ファイルのフォーマットは？」と調べながら作業する必要がありましたが、AI が全て自動化してくれます。
+            </div>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--purple);">
+                <strong>🌐 デプロイ後の確認</strong>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    デプロイが成功すると、ターミナルに以下のような URL が表示されます：<br>
+                    <code>Hosting URL: https://your-project.web.app</code><br>
+                    この URL をブラウザで開けば、世界中からアクセスできる本番環境の LP が表示されます！
+                </p>
             </div>
 
             <div class="card"
