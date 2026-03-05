@@ -514,18 +514,62 @@
             <h3>ハンズオン資料のクローン</h3>
             <p>このハンズオンで使用する資料はGitHubで公開されています。以下の手順でローカル環境にクローンしてください。</p>
 
-            <h4>方法1: コマンドラインでクローン</h4>
-            <p>ターミナルまたはコマンドプロンプトで以下のコマンドを実行します：</p>
-            <pre><code>git clone https://github.com/kozyszoo/antigravity-handson.git
-cd antigravity-handson</code></pre>
+            <h4>方法1: コマンドラインでクローン（推奨：初心者向け）</h4>
+            <p><strong>ステップ1: ターミナルを開く</strong></p>
+            <ul>
+                <li><strong>macOS:</strong> Launchpad から「ターミナル」を検索して起動、または <code>Cmd + Space</code> で Spotlight 検索 → 「terminal」と入力</li>
+                <li><strong>Windows:</strong> スタートメニューから「コマンドプロンプト」または「PowerShell」を検索して起動</li>
+                <li><strong>Linux:</strong> <code>Ctrl + Alt + T</code> でターミナルを起動</li>
+            </ul>
 
-            <h4>方法2: Antigravity のターミナルでクローン</h4>
+            <p><strong>ステップ2: コマンドを実行する</strong></p>
             <ol>
-                <li>Antigravity を起動</li>
-                <li><code>Terminal</code> メニューから <code>New Terminal</code> を選択</li>
-                <li>上記のコマンドを実行してクローン</li>
-                <li><code>File</code> &gt; <code>Open Folder</code> で <code>antigravity-handson</code> フォルダを開く</li>
+                <li>以下のコマンドをコピーします（マウスでドラッグして選択 → <code>Ctrl+C</code> または <code>Cmd+C</code>）：</li>
             </ol>
+            <pre><code>git clone https://github.com/kozyszoo/antigravity-handson.git</code></pre>
+            <ol start="2">
+                <li>ターミナル画面で右クリック → 「貼り付け」（または <code>Ctrl+V</code> / <code>Cmd+V</code>）</li>
+                <li><strong>Enter キー</strong>を押してコマンドを実行</li>
+                <li>「Cloning into 'antigravity-handson'...」と表示され、ダウンロードが始まります</li>
+                <li>完了すると、プロンプト（<code>$</code> や <code>&gt;</code> の記号）が再び表示されます</li>
+            </ol>
+
+            <p><strong>ステップ3: フォルダに移動する</strong></p>
+            <pre><code>cd antigravity-handson</code></pre>
+            <p>このコマンドを実行すると、ダウンロードしたフォルダの中に移動します。</p>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
+                <strong>💡 ターミナルが初めての方へ</strong>
+                <ul style="margin-top: 8px; font-size: 0.9rem;">
+                    <li>ターミナルは「文字だけでコンピュータに指示を出す」ツールです</li>
+                    <li>コマンドを入力したら <strong>Enter キー</strong>を押すことで実行されます</li>
+                    <li>間違えても大丈夫。もう一度入力し直せばOKです</li>
+                    <li><code>cd</code> は「Change Directory」の略で、フォルダを移動するコマンドです</li>
+                </ul>
+            </div>
+
+            <h4>方法2: Antigravity のターミナルでクローン（Antigravity 内で完結）</h4>
+            <ol>
+                <li>Antigravity アプリを起動します</li>
+                <li>画面上部のメニューバーから <code>Terminal</code> → <code>New Terminal</code> をクリック</li>
+                <li>画面下部にターミナルパネルが表示されます</li>
+                <li>以下のコマンドをコピーして、ターミナルパネルに貼り付け（右クリック → 貼り付け）：</li>
+            </ol>
+            <pre><code>git clone https://github.com/kozyszoo/antigravity-handson.git</code></pre>
+            <ol start="5">
+                <li><strong>Enter キー</strong>を押してコマンドを実行</li>
+                <li>ダウンロードが完了したら、<code>File</code> → <code>Open Folder</code> をクリック</li>
+                <li>ダウンロードされた <code>antigravity-handson</code> フォルダを選択して「開く」</li>
+            </ol>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--green);">
+                <strong>✅ 成功の確認方法</strong>
+                <ul style="margin-top: 8px; font-size: 0.9rem;">
+                    <li>左側のファイルツリーに「antigravity-handson」フォルダが表示される</li>
+                    <li>フォルダ内に <code>docs</code>、<code>.agent</code> などのファイルが見える</li>
+                    <li>エラーメッセージが出ていなければ成功です</li>
+                </ul>
+            </div>
 
             <h4>方法3: GitHub Desktop を使用</h4>
             <ol>
@@ -644,6 +688,16 @@ cd antigravity-handson</code></pre>
             </div>
 
             <h4>6. セキュリティ設定（ターミナル自動実行ポリシー）</h4>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--purple);">
+                <strong>📖 ターミナルコマンドとは？</strong>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    ターミナルコマンドとは、文字で入力してコンピュータに指示を出す命令のことです。<br>
+                    例：<code>npm install</code>（パッケージをインストール）、<code>git commit</code>（変更を記録）、<code>rm -rf フォルダ名</code>（フォルダを削除）など。<br>
+                    Antigravity では、AIが開発作業を進めるために、これらのコマンドを自動で実行することができます。
+                </p>
+            </div>
+
             <p>Antigravity は AI がターミナルコマンドを自動実行できます。「どこまで AI に任せるか」を <strong>Auto Execution</strong> ポリシーで制御します。<br>
                 設定は Agent Manager の設定アイコン（⚙️）→ <code>Auto Execution</code> から変更できます。</p>
             <table>
@@ -680,9 +734,18 @@ cd antigravity-handson</code></pre>
                 <strong>⚠️ ハンズオンでの推奨設定</strong>
                 <p style="margin-top: 8px;">今日のハンズオンでは <strong>Auto</strong> に設定しておくことを推奨します。</p>
                 <ul>
-                    <li>AI が <code>npm install</code> や <code>git</code> コマンドを自動実行してくれるので作業がスムーズ</li>
-                    <li>危険なコマンドは確認ダイアログが出るので誤操作を防げる</li>
+                    <li>AI が <code>npm install</code> や <code>git status</code> などの安全なコマンドを自動実行してくれるので作業がスムーズ</li>
+                    <li>危険なコマンド（ファイル削除など）は確認ダイアログが出るので誤操作を防げる</li>
                     <li>「何をやっているか見たい」場合は <strong>Off</strong> にして一つ一つ確認するのも学習になる</li>
+                </ul>
+            </div>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
+                <strong>💡 実際の動作例（Autoモードの場合）</strong>
+                <ul style="margin-top: 8px; font-size: 0.9rem;">
+                    <li><strong>自動実行される例：</strong> <code>ls</code>（ファイル一覧表示）、<code>npm install</code>（パッケージインストール）、<code>git status</code>（Git状態確認）</li>
+                    <li><strong>確認が求められる例：</strong> <code>rm -rf フォルダ名</code>（フォルダ削除）、<code>git push --force</code>（強制プッシュ）</li>
+                    <li>確認ダイアログが出たら、コマンドの内容を確認して「許可」または「拒否」を選択できます</li>
                 </ul>
             </div>
 
@@ -692,6 +755,33 @@ cd antigravity-handson</code></pre>
             <!-- 【画像挿入箇所】 チャット欄で「こんにちは...」と入力し、AIが日本語で返信している様子のスクショ -->
             <img class="screenshot" src="img/fig3.png"
                 alt="エージェントとの対話画面。ユーザーの挨拶に対して、AIが現在の日付と曜日を日本語で正確に返答している様子のスクリーンショット">
+
+            <h3>🛠️ ターミナルでエラーが出たら</h3>
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--orange);">
+                <strong>⚠️ 初心者向け：ターミナルエラーの対処法</strong>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    ターミナルに赤い文字でエラーメッセージが表示されても、慌てる必要はありません。以下の手順で対処できます：
+                </p>
+                <ol style="font-size: 0.9rem; margin-top: 8px;">
+                    <li><strong>エラーメッセージをコピー：</strong> ターミナルのエラー部分をマウスで選択 → <code>Ctrl+C</code>（または <code>Cmd+C</code>）でコピー</li>
+                    <li><strong>AIに貼り付けて相談：</strong> Antigravity のチャット欄に「このエラーが出ました：」とメッセージを入力し、その下にエラーメッセージを貼り付け</li>
+                    <li><strong>AIが自動で解決：</strong> AIがエラーの原因を分析し、自動的に修正コマンドを実行してくれます</li>
+                </ol>
+                <p style="font-size: 0.9rem; margin-top: 12px; background: var(--bg-dark); padding: 8px; border-radius: 4px;">
+                    <strong>例：</strong><br>
+                    <code style="color: var(--text);">このエラーが出ました：<br>
+                    Error: Cannot find module 'vite'<br>
+                    どうすればいいですか？</code>
+                </p>
+                <p style="font-size: 0.9rem; margin-top: 8px;">
+                    <strong>よくあるエラーと原因：</strong>
+                </p>
+                <ul style="font-size: 0.9rem;">
+                    <li><code>command not found</code> → 必要なツールがインストールされていない（AIに相談すればインストール方法を教えてくれます）</li>
+                    <li><code>EACCES: permission denied</code> → ファイルの権限エラー（AIが自動的に権限を修正してくれます）</li>
+                    <li><code>port already in use</code> → 既に開発サーバーが起動している（ターミナルで <code>Ctrl+C</code> を押して停止してから再実行）</li>
+                </ul>
+            </div>
 
             <h3>エディタの AI 機能</h3>
             <table>
@@ -932,6 +1022,22 @@ description: 挨拶のテスト用ワークフロー
             <pre><code>新しいフォルダ「my-first-vibe」を作成して、その中にシンプルなHTMLファイルを作って。
 テーマは「自己紹介ページ」で、モダンでおしゃれなデザインにして。</code></pre>
             <pre><code>作成したHTMLファイルをブラウザでプレビューして</code></pre>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
+                <strong>💡 「ブラウザでプレビュー」の意味</strong>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    AIに「ブラウザでプレビューして」と依頼すると、AIが自動的に以下を実行してくれます：
+                </p>
+                <ol style="font-size: 0.9rem; margin-top: 8px;">
+                    <li>HTMLファイルをデフォルトのブラウザ（Chrome、Safariなど）で開く</li>
+                    <li>または、開発サーバーを起動して <code>http://localhost:ポート番号</code> で表示</li>
+                    <li>Antigravityが自動的にターミナルコマンドを実行してくれるので、<strong>あなたは何もする必要がありません</strong></li>
+                </ol>
+                <p style="font-size: 0.9rem; margin-top: 8px;">
+                    ブラウザウィンドウが自動的に開き、作成したページが表示されます。
+                </p>
+            </div>
+
             <!-- 【画像挿入箇所】 ブラウザでプレビューしたオシャレな自己紹介ページのスクショ -->
             <img class="screenshot" src="img/fig6.png"
                 alt="初期段階のシンプルな自己紹介ページをブラウザでプレビュー表示しているスクリーンショット。基本レイアウトが適用されている状態">
@@ -1296,19 +1402,49 @@ description: 特定のタスクを支援するスキル
             </p>
 
             <h4>公開 Skills の追加方法</h4>
-            <p>GitHub で公開されている Skills リポジトリをクローンして、<code>.agent/skills/</code> にコピーすることで利用できます：</p>
-            <pre><code># ターミナルで実行
-# 例: GitHubからSkillsリポジトリをクローン
-git clone https://github.com/USERNAME/skills-collection.git
 
-# 必要なSkillを .agent/skills/ にコピー
-cp -r skills-collection/multi-ai-review .agent/skills/
-cp -r skills-collection/agent-team .agent/skills/</code></pre>
-
-            <p>または、Antigravity のチャット欄で直接 AI に依頼することもできます：</p>
+            <p><strong>方法1: AI に依頼する（初心者におすすめ）</strong></p>
+            <p>Antigravity のチャット欄で、AI に自然言語で依頼するだけで Skills を追加できます：</p>
             <pre><code>GitHub の https://github.com/USERNAME/skills-collection から
 multi-ai-review と agent-team の Skill をダウンロードして
 .agent/skills/ に配置して</code></pre>
+            <p>AIが自動的にダウンロード、配置まで行ってくれるので、<strong>ターミナル操作に不慣れな方はこの方法が最も簡単</strong>です。</p>
+
+            <p><strong>方法2: ターミナルで手動追加（詳細手順）</strong></p>
+            <p>より詳しく理解したい方は、以下の手順でターミナルから手動で追加できます：</p>
+
+            <ol>
+                <li><strong>Antigravity でターミナルを開く：</strong> <code>Terminal</code> メニュー → <code>New Terminal</code></li>
+                <li><strong>プロジェクトフォルダにいることを確認：</strong> ターミナルに現在のパスが表示されます。<code>antigravity-handson</code> フォルダ内にいることを確認してください。</li>
+                <li><strong>Skills リポジトリをクローン：</strong> 以下のコマンドをコピーして貼り付け、Enter で実行</li>
+            </ol>
+            <pre><code>git clone https://github.com/USERNAME/skills-collection.git</code></pre>
+            <ol start="4">
+                <li><strong>Skills をコピー：</strong> 以下のコマンドを1行ずつ実行します（<code>#</code> で始まる行はコメントなので入力不要）</li>
+            </ol>
+            <pre><code># multi-ai-review Skill をコピー
+cp -r skills-collection/multi-ai-review .agent/skills/
+
+# agent-team Skill をコピー
+cp -r skills-collection/agent-team .agent/skills/</code></pre>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
+                <strong>💡 コマンドの意味</strong>
+                <ul style="margin-top: 8px; font-size: 0.9rem;">
+                    <li><code>git clone</code>: GitHubからファイルをダウンロード</li>
+                    <li><code>cp -r</code>: フォルダごとコピー（<code>-r</code> は「再帰的に=中身も全部」の意味）</li>
+                    <li><code>.agent/skills/</code>: コピー先のフォルダ（<code>.</code> は「現在のフォルダ」を指す）</li>
+                </ul>
+            </div>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--green);">
+                <strong>✅ 成功の確認</strong>
+                <ul style="margin-top: 8px; font-size: 0.9rem;">
+                    <li>左側のファイルツリーで <code>.agent/skills/</code> を開く</li>
+                    <li><code>multi-ai-review</code> や <code>agent-team</code> フォルダが表示されていればOK</li>
+                    <li>各フォルダ内に <code>SKILL.md</code> ファイルがあることを確認</li>
+                </ul>
+            </div>
 
             <h4>有用な Skill の例</h4>
             <p>以下は公開されている有用な Skills の例です。これらを <code>.agent/skills/</code> に追加することで利用できます：</p>
@@ -1467,6 +1603,23 @@ Step 6: デプロイ</code></pre>
 Vite + React + TailwindCSS のプロジェクトを作成して。
 プロジェクト名は「ai-coffee-shop」</code></pre>
             <pre><code>開発サーバーを起動してブラウザでプレビューして</code></pre>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--purple);">
+                <strong>📖 「開発サーバー」とは？</strong>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    開発サーバーは、Webアプリをローカル環境で動かすための小さなサーバーです。<br>
+                    AIに「開発サーバーを起動して」と依頼すると、AIが自動的に以下を実行します：
+                </p>
+                <ol style="font-size: 0.9rem; margin-top: 8px;">
+                    <li>ターミナルで <code>npm run dev</code> などのコマンドを実行</li>
+                    <li>サーバーが起動し、<code>http://localhost:5173</code> のようなアドレスでアクセス可能になる</li>
+                    <li>ブラウザが自動で開き、作成したアプリが表示される</li>
+                    <li>コードを変更すると、<strong>ブラウザが自動的に更新される（ホットリロード）</strong></li>
+                </ol>
+                <p style="font-size: 0.9rem; margin-top: 8px;">
+                    <strong>初心者の方へ：</strong>ターミナルに「Server running at http://localhost:5173」のような表示が出ていれば成功です。サーバーを止めたいときは、ターミナルで <code>Ctrl+C</code> を押します。
+                </p>
+            </div>
 
             <h4>Part 5: 品質チェック（Skills活用）</h4>
             <pre><code>@code-review ai-coffee-shop/src/components/ のすべてのコンポーネントを
