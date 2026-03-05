@@ -447,6 +447,16 @@
 
             <p>このガイドでは、Google Antigravity を使った開発の基礎から応用まで、ステップバイステップで学習できます。プログラミング初心者でも、AIがすべてサポートしてくれるので安心してください。</p>
 
+            <!-- 【挿絵】 Antigravity の全体像を表すコンセプトイラスト
+                 ▼ 画像生成プロンプト例（Nano Banana / Midjourney 等）:
+                 「A developer and an AI robot collaborating in front of a glowing VS Code-like IDE,
+                 dark background with teal accent lights, futuristic and friendly atmosphere,
+                 flat illustration style, wide aspect ratio, Japanese hackathon scene」
+                 サイズ推奨: 横幅 1200px × 縦幅 480px（16:6 比率のワイド横長バナー）
+            -->
+            <img class="screenshot" src="img/fig-intro.png"
+                alt="AIエージェント（ロボット）とエンジニアが横並びでノートパソコンに向かい、コードを協力して書いているフラットイラスト。ダークな背景に青緑色のアクセントカラー。Google Antigravity ハンズオンのコンセプトイメージ">
+
             <h3>学習の流れ（所要時間 約110分）</h3>
             <div class="step-grid">
                 <div class="step-card">
@@ -748,7 +758,8 @@
                         <code>ls</code>（ファイル一覧表示）、<code>npm install</code>（パッケージインストール）、<code>git status</code>（Git状態確認）
                     </li>
                     <li><strong>確認が求められる例：</strong>
-                        <code>rm -rf フォルダ名</code>（フォルダ削除）、<code>git push --force</code>（強制プッシュ）</li>
+                        <code>rm -rf フォルダ名</code>（フォルダ削除）、<code>git push --force</code>（強制プッシュ）
+                    </li>
                     <li>確認ダイアログが出たら、コマンドの内容を確認して「許可」または「拒否」を選択できます</li>
                 </ul>
             </div>
@@ -768,7 +779,8 @@
                 </p>
                 <ol style="font-size: 0.9rem; margin-top: 8px;">
                     <li><strong>エラーメッセージをコピー：</strong> ターミナルのエラー部分をマウスで選択 → <code>Ctrl+C</code>（または
-                        <code>Cmd+C</code>）でコピー</li>
+                        <code>Cmd+C</code>）でコピー
+                    </li>
                     <li><strong>AIに貼り付けて相談：</strong> Antigravity のチャット欄に「このエラーが出ました：」とメッセージを入力し、その下にエラーメッセージを貼り付け</li>
                     <li><strong>AIが自動で解決：</strong> AIがエラーの原因を分析し、自動的に修正コマンドを実行してくれます</li>
                 </ol>
@@ -1571,7 +1583,8 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
 
             <h3>ハンズオン: AI Coffee Shop LP を作ろう</h3>
 
-            <p>このハンズオンでは、架空の「AI カフェ」のランディングページ（LP）を作成します。<strong>MCP × Skills × Nano Banana</strong> を総動員して、本格的な Web アプリケーションを約30分で完成させる体験ができます。</p>
+            <p>このハンズオンでは、架空の「AI カフェ」のランディングページ（LP）を作成します。<strong>MCP × Skills × Nano Banana</strong> を総動員して、本格的な Web
+                アプリケーションを約30分で完成させる体験ができます。</p>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--primary);">
                 <strong>🎯 このハンズオンで体験できること</strong>
@@ -1599,7 +1612,8 @@ Step 6: デプロイ</code></pre>
 
             <h4>Part 1: Web リサーチ（MCP Browser）— 所要時間: 5分</h4>
             <p><strong>目的：</strong> 実在する競合サイトから最新のデザイントレンドを自動収集し、LP の品質を高めるための参考情報を得ます。</p>
-            <p><strong>やること：</strong> MCP Browser を使って Google 検索を実行し、上位サイトのデザイン要素（色使い・レイアウト・CTA ボタン・画像）を AI が自動分析します。</p>
+            <p><strong>やること：</strong> MCP Browser を使って Google 検索を実行し、上位サイトのデザイン要素（色使い・レイアウト・CTA ボタン・画像）を AI が自動分析します。
+            </p>
 
             <pre><code>Browser MCPを使って、「おしゃれなカフェ ランディングページ」で検索して、
 上位5サイトのデザインの特徴を分析して。
@@ -1611,7 +1625,8 @@ Step 6: デプロイ</code></pre>
 - 画像の使い方</code></pre>
 
             <div class="card" style="font-size: 0.9rem;">
-                <strong>💡 ポイント：</strong> AIが自動的にブラウザを操作して検索結果を巡回し、デザインパターンを抽出してくれます。従来なら2時間かかる競合調査が<strong>5分で完了</strong>します。
+                <strong>💡 ポイント：</strong>
+                AIが自動的にブラウザを操作して検索結果を巡回し、デザインパターンを抽出してくれます。従来なら2時間かかる競合調査が<strong>5分で完了</strong>します。
             </div>
 
             <h4>Part 2: 構成決定 — 所要時間: 5分</h4>
@@ -1638,12 +1653,14 @@ Step 6: デプロイ</code></pre>
 のイメージを生成して。ファイル名は hero-bg.webp で保存して。</code></pre>
 
             <div class="card" style="font-size: 0.9rem;">
-                <strong>💡 ポイント：</strong> 従来ならデザイナーに依頼して数日待つか、有料素材サイトで探す作業が、<strong>数秒で完結</strong>します。イメージに合わなければ「もっと温かみを出して」と再生成できます。
+                <strong>💡 ポイント：</strong>
+                従来ならデザイナーに依頼して数日待つか、有料素材サイトで探す作業が、<strong>数秒で完結</strong>します。イメージに合わなければ「もっと温かみを出して」と再生成できます。
             </div>
 
             <h4>Part 4: 実装（React + TailwindCSS）— 所要時間: 10分</h4>
             <p><strong>目的：</strong> Part 2 で決めた構成と Part 3 で生成した画像を使い、本格的な React アプリとして実装します。</p>
-            <p><strong>やること：</strong> AI に「Vite + React + TailwindCSS で構築して」と依頼すると、プロジェクトのセットアップからコンポーネント実装まで全自動で行われます。</p>
+            <p><strong>やること：</strong> AI に「Vite + React + TailwindCSS で構築して」と依頼すると、プロジェクトのセットアップからコンポーネント実装まで全自動で行われます。
+            </p>
 
             <pre><code>この 04_vibe_coding_advanced フォルダに、
 Vite + React + TailwindCSS のプロジェクトを作成して。
@@ -1651,7 +1668,8 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
             <pre><code>開発サーバーを起動してブラウザでプレビューして</code></pre>
 
             <div class="card" style="font-size: 0.9rem;">
-                <strong>💡 ポイント：</strong> AI は React のベストプラクティスに従ってコンポーネントを分割し、TailwindCSS でレスポンシブ対応まで自動実装します。あなたはブラウザで確認しながら「ここをもっと大きく」などの指示を出すだけです。
+                <strong>💡 ポイント：</strong> AI は React のベストプラクティスに従ってコンポーネントを分割し、TailwindCSS
+                でレスポンシブ対応まで自動実装します。あなたはブラウザで確認しながら「ここをもっと大きく」などの指示を出すだけです。
             </div>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--purple);">
@@ -1680,7 +1698,8 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
 レビューして、改善点があれば自動的に修正して。</code></pre>
 
             <div class="card" style="font-size: 0.9rem;">
-                <strong>💡 ポイント：</strong> チーム開発でのコードレビューと同じ流れを、AI が自動実行します。「パフォーマンス改善」「セキュリティチェック」「コーディング規約の遵守」などを一括チェックできます。
+                <strong>💡 ポイント：</strong> チーム開発でのコードレビューと同じ流れを、AI
+                が自動実行します。「パフォーマンス改善」「セキュリティチェック」「コーディング規約の遵守」などを一括チェックできます。
             </div>
 
             <h4>Part 6: デプロイ — 所要時間: 2分</h4>
@@ -1694,7 +1713,8 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 <strong>💡 ポイント：</strong> 従来なら「ビルドコマンドは何？」「設定ファイルのフォーマットは？」と調べながら作業する必要がありましたが、AI が全て自動化してくれます。
             </div>
 
-            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--green); margin-top: 20px;">
+            <div class="card"
+                style="background: var(--bg-light); border-left: 4px solid var(--green); margin-top: 20px;">
                 <strong>✅ 完成！</strong>
                 <p style="margin-top: 8px; font-size: 0.9rem;">
                     これで、<strong>リサーチ → 企画 → デザイン → 実装 → レビュー → デプロイ</strong> という本格的な Web 開発フローを約30分で体験できました。<br>
@@ -1797,6 +1817,18 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
             </table>
 
             <h3>AI-DLC の3つのフェーズ</h3>
+
+            <!-- 【挿絵】 AI-DLC の Inception → Construction → Operations サイクルを示すフロー図
+                 ▼ 画像生成プロンプト例（Nano Banana / Midjourney 等）:
+                 「A clean circular flow diagram showing three phases: 1. Inception (idea bulb icon),
+                 2. Construction (code/wrench icon), 3. Operations (rocket/check icon),
+                 connected by arrows forming a cycle, dark navy background, teal and purple
+                 accent colors, modern infographic flat design style」
+                 サイズ推奨: 横幅 900px × 縦幅 400px（正方形寄りのワイド）
+            -->
+            <img class="screenshot" src="img/fig-ai-dlc-cycle.png"
+                alt="AI-DLC の3フェーズ（Inception → Construction → Operations）が矢印でループしているサイクル図。各フェーズにアイコンとラベルが付いたインフォグラフィック">
+
             <div class="card">
                 <h4>1. Inception（発案）</h4>
                 <p>「こんなアプリ作りたい」というざっくりしたアイデアを AI に伝える。AI が要件・ユーザーストーリーを自動生成。チームでリアルタイムで修正。</p>
@@ -1837,6 +1869,18 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
             </table>
 
             <h4>Antigravity でのやり方</h4>
+
+            <!-- 【挿絵】 チームがモニターを囲んで画面共有しながら Antigravity を使う様子のイラスト
+                 ▼ 画像生成プロンプト例（Nano Banana / Midjourney 等）:
+                 「A small hackathon team of 3-4 people gathered around a large monitor showing
+                 an AI chat interface (like a VS Code sidebar), one person typing at laptop,
+                 others pointing at screen and discussing, dark room with neon lights,
+                 flat illustration style, teamwork and collaboration vibe」
+                 サイズ推奨: 横幅 1000px × 縦幅 420px（横長バナー）
+            -->
+            <img class="screenshot" src="img/fig-mob-dev.png"
+                alt="3〜4人のハッカソンチームが大型モニターを囲み、Antigravity の Agent Manager 画面を共有しながら要件定義を進めている様子のイラスト。ダークな部屋にネオンライトが灯ったモブ開発のシーン">
+
             <ol>
                 <li>1人が Antigravity を画面共有（Zoom / Discord）</li>
                 <li>チーム全員で Agent Manager の画面を見ながら要件定義を進める</li>
@@ -2062,6 +2106,17 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
             <h2>おわりに</h2>
             <p>本日はご参加いただきありがとうございました！<br>
                 Antigravity を使った AI 駆動開発の可能性を少しでも感じてもらえたなら嬉しいです。今後もイベントや学習コンテンツを通じて、一緒に「Vibe Coding」の世界を探求しましょう。</p>
+
+            <!-- 【挿絵】 ハンズオン後の達成感・前向きな締めくくりを表すイメージ画像
+                 ▼ 画像生成プロンプト例（Nano Banana / Midjourney 等）:
+                 「A cheerful developer (gender-neutral) raising their fist in triumph
+                 in front of a glowing screen showing a completed web app, confetti falling,
+                 bright and warm atmosphere, flat digital illustration style,
+                 teal and navy color palette, celebration and achievement theme」
+                 サイズ推奨: 横幅 1000px × 縦幅 380px（横長バナー）
+            -->
+            <img class="screenshot" src="img/fig-outro.png"
+                alt="開発者がノートパソコンの前で達成感を表して両手を上げて喜んでいるイラスト。画面には完成した Web アプリが映り、カラフルな紙吹雪が舞っている。ハンズオン完了の達成感を表すシーン">
 
             <!-- 今後のイベント -->
             <h3>🎪 今後のイベント</h3>
