@@ -1,0 +1,910 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>【公開用】kozzy (Koji Yamaoka) 自己紹介</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d882c537-081d-4d64-87db-512626132bc2" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🌐</span></div><h1 class="page-title" dir="auto">【公開用】kozzy (Koji Yamaoka) 自己紹介</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="ltr"><figure id="65db6406-e209-49b5-8f35-3f1f59954383" class="image"><a href="%E3%80%90%E5%85%AC%E9%96%8B%E7%94%A8%E3%80%91kozzy%20(Koji%20Yamaoka)%20%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B/Untitled.png"><img style="width:192px" src="%E3%80%90%E5%85%AC%E9%96%8B%E7%94%A8%E3%80%91kozzy%20(Koji%20Yamaoka)%20%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B/Untitled.png"/></a></figure></div><div style="display:contents" dir="auto"><h2 id="75613dda-426c-445f-be1b-8681f2d0e1ee" class="">kozzy（Koji Yamaoka)</h2></div><div style="display:contents" dir="auto"><h3 id="d20c0f0d-2110-48d1-93ae-36dbaf14f2d1" class="">自己紹介</h3></div><div style="display:contents" dir="auto"><p id="ef9c58cb-bf8e-43f5-95cd-1b1da34c9159" class="">国内大手通信企業、Webサービス企業にてエンジニアとして計8年間勤務。現在はデータ・AI企画推進チームに異動しAI/生成AIを活用した企画や、AIを用いた開発推進をする役割として従事。加えて、社内における生成AI活用コミュニティの運営や、社内外の開発者向けイベントの企画・運営の活動も担う。<br/><br/>技術面では、Ruby、PHP、C++、Java、NodeJS、Go、Kotlinなどのバックエンド言語、そしてJavaScript、jQuery、ReactJSなどのフロントエンド技術に幅広い開発経験を持つ。また、スクラムマスターとしての経験もあり、さらに小中学生向けのプログラミング講師としても活動。（2024.10.6 現在）</p></div><div style="display:contents" dir="auto"><h3 id="89567dd3-68c8-4892-abf2-e78052db2fea" class=""><strong>SNS</strong></h3></div><div style="display:contents" dir="ltr"><figure id="7531feaa-3f1d-4679-88cd-04f8ad40d50f"><a href="https://twitter.com/kozzy0919" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">kozzy | 技術と学びとコミュニティが好きな人🦆 (@kozzy0919) on X</div><div class="bookmark-description">👨‍💻 LINEヤフー @lycorp_jp サービス企画推進 &amp; DevRel ✨ データサイエンス / 生成AI 勉強中 💓 @buff_community 3期 🧘‍♂️サウナ 🌳自習の森 @ssf_karugamo ※not組織代表発言</div></div><div class="bookmark-href"><img src="https://abs.twimg.com/favicons/twitter.3.ico" class="icon bookmark-icon"/>https://twitter.com/kozzy0919</div></div><img src="https://pbs.twimg.com/profile_images/1658355369469693952/Rle8K3lX_200x200.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><h1 id="e6e939a7-0450-4ed0-92b6-8591ba24ce3b" class="">職歴</h1></div><div style="display:contents" dir="auto"><h3 id="a6df9841-a0e5-4ab0-b0ea-d431cb7fdcf6" class="">2023.11~ 国内大手Webサービス系企業</h3></div><div style="display:contents" dir="auto"><p id="88b40d82-cf8e-4e95-9d01-7121e8267412" class=""><strong>サービス企画・推進</strong></p></div><div style="display:contents" dir="auto"><ul id="3e6d52bc-c3e5-45bb-add6-cbe7584a79b3" class="bulleted-list"><li style="list-style-type:disc">データAI推進チーム<div style="display:contents" dir="auto"><ul id="5584c8c5-8dc1-4c20-9025-26d39d64a455" class="bulleted-list"><li style="list-style-type:circle">データ / 生成AIを活用した新規機能企画、業務改善企画</li></ul></div><div style="display:contents" dir="auto"><ul id="a9060225-3914-4064-a794-8d9b6c5e4801" class="bulleted-list"><li style="list-style-type:circle">部署内ワークショップの企画・ファシリテーション支援</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2c04c5c2-14ad-4916-a457-00ccaebc021c" class="bulleted-list"><li style="list-style-type:disc">Developer Relations ハッカソン・勉強会運営<div style="display:contents" dir="auto"><ul id="5fe90893-a9cd-4cda-a44c-e3c7ab8fd4e0" class="bulleted-list"><li style="list-style-type:circle">社内外 技術勉強会の企画、運営支援<div style="display:contents" dir="ltr"><figure id="12966000-88fd-8053-849f-e73ff8447001"><a href="https://lycorptech-jp.connpass.com/event/316926/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Extended Tokyo 2024 (2024/06/10 22:30〜)</div><div class="bookmark-description"># Extended Tokyoとは  Extended Tokyo は、Appleが行なっている技術者向けカンファレンスWWDCのメインセッション（Keynote）をさらに楽しむためのイベントです。  https://developer.apple.com/wwdc24/  今年もLINEヤフー紀尾井町オフィスの「LODGE」を会場に開催します（今回はオンラインでは開催しませんのでこ注意ください）  Keynote開始までの間は恒例のLT大会を開催。主催する各社からエンジニアが登壇します。それ以外にも、参加者同士の交流ができるコンテンツもご用意する予定です。  LT大会 (前年の発表内...</div></div><div class="bookmark-href"><img src="https://connpass.com/static/img/apple_touch_icon.png" class="icon bookmark-icon"/>https://lycorptech-jp.connpass.com/event/316926/</div></div><img src="https://media.connpass.com/thumbs/2d/a4/2da49c00500b31b46fe5a702a8b03432.png" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="12966000-88fd-80d2-9bff-df358c1ae463"><a href="https://lycorptech-jp.connpass.com/event/328298/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub Copilot LT Meetup (2024/09/17 18:30〜)</div><div class="bookmark-description"># 参加枠を 50枠 → 60枠に増枠しました (2024.9.6)  参加枠を 40枠 → 50枠に増枠しました (2024.8.28)  # GitHub Copilot 活用LT会 in 紀尾井町オフィス  ## 開催概要  このイベントは、開発者の皆様がGitHub Copilotをどのように業務に取り入れているかを共有するLTを中心としたMeetupとなります。  さまざまな経験レベルの開発者が集まり、知識を共有し、交流する貴重な機会となります。GitHub Copilotの可能性を最大限に引き出し、より効率的なコーディング環境を構築するヒントを是非持ち帰ってください！  主な...</div></div><div class="bookmark-href"><img src="https://connpass.com/static/img/apple_touch_icon.png" class="icon bookmark-icon"/>https://lycorptech-jp.connpass.com/event/328298/</div></div><img src="https://media.connpass.com/thumbs/90/b4/90b4da8e55a3fb9ab087e678404b2e80.png" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="18766000-88fd-807a-bb77-e80f65a88e1b"><a href="https://lycorptech-jp.connpass.com/event/331755/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">KDD2024 論文読み会（ハイブリッド開催） (2024/10/17 18:30〜)</div><div class="bookmark-description"># KDD2024論文読み会  ## 開催概要  2024年8月に開催されたデータマイニング関連の国際会議、KDD2024で発表された論文の読み会です。   参加報告と、機械学習エンジニアやデータサイエンティストが各々の視点で選出した6本の論文紹介が主な内容となります。    学生、社会人、アカデミア問わずデータマイニングに興味のある方でしたら、どなたでもご参加いただけます。   また、オフラインのみにはなりますが懇親会の用意をしておりますので、   論文の内容や業務にどう応用するかについて議論を交わすなどの交流を深める場となれば幸いです。   登壇メンバーは全員バルセロナで現地参加して...</div></div><div class="bookmark-href"><img src="https://connpass.com/static/img/apple_touch_icon.png" class="icon bookmark-icon"/>https://lycorptech-jp.connpass.com/event/331755/</div></div><img src="https://media.connpass.com/thumbs/1e/35/1e35c8f72a8d3eda4c184ed713f6a0ef.png" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="18766000-88fd-80d7-a07c-c61938d59f9e"><a href="https://lycorptech-jp.connpass.com/event/333885/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">著者トークイベント:「エンジニアチームの生産性の高め方」の秘訣 (2024/11/01 19:00〜)</div><div class="bookmark-description">## イベント概要  書籍「エンジニアチームの生産性の高め方 〜開発効率を向上させて、人を育てる仕組みを作る」の出版記念のトークイベントです。第1部と第2部の著者らが、それぞれ「開発プロセスと生産性」と「開発チームと生産性」についてパネルディスカッションします。また、じゃんけんでの書籍プレゼント企画もあります。  ※ このイベントは全て日本語で行われます   ※ This event is held in Japanese  ## 会場  LINEヤフー株式会社 東京ガーデンテラス紀尾井町オフィス 17F セミナールーム   （東京都千代田区紀尾井町1-3 東京ガーデンテラス紀尾井町 紀...</div></div><div class="bookmark-href"><img src="https://connpass.com/static/img/apple_touch_icon.png" class="icon bookmark-icon"/>https://lycorptech-jp.connpass.com/event/333885/</div></div><img src="https://media.connpass.com/thumbs/fc/84/fc84c3df0b770d65dd13f2087debd310.png" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="18766000-88fd-808f-8787-fd41c425f4f6"><a href="https://lycorptech-jp.connpass.com/event/339481/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">NeurIPS 2024 論文読み会 (2025/01/23 19:00〜)</div><div class="bookmark-description"># イベント概要  2024年12月に開催された機械学習分野の国際学術会議、[NeurIPS2024] (https://nips.cc/Conferences/2024)(Thirty-sixth Conference on Neural Information Processing Systems) にて発表された論文の読み会です。   登壇者が注目した論文をピックアップして、LT形式で発表していきます。      学生、社会人、アカデミア問わず機械学習に興味のある方でしたら、どなたでもご参加いただけます。   ぜひお気軽にご登録ください！    # 開催日時  2024/1/23 ...</div></div><div class="bookmark-href"><img src="https://connpass.com/static/img/apple_touch_icon.png" class="icon bookmark-icon"/>https://lycorptech-jp.connpass.com/event/339481/</div></div><img src="https://media.connpass.com/thumbs/74/77/7477dae7e96c12eb2054e0497db737eb.png" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="18766000-88fd-806f-a36c-d885f41a0dee"><a href="https://lycorptech-jp.connpass.com/event/341189/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">LINEヤフー × Deno Land Inc. Meetup (2025/02/17 18:55〜)</div><div class="bookmark-description"># イベント概要  『LINEヤフー』と『Deno Land Inc.』による共同ミートアップ開催！  LINEヤフーとDeno Land Inc. がタッグを組み、次世代ランタイム×フロントエンド開発の未来を探求するミートアップを開催します。  さらに、特別ゲストとして、Cloudflare Inc.からyusukebeさんをお迎えします。  このイベントを通じて、参加者の皆様とともに、Denoの可能性や次世代ランタイムを用いた新しい開発手法について考える時間を持ちたいと思います。次世代ランタイムがフロントエンドの開発環境として広く活用されるために必要な要素や、現時点でのベストプラクテ...</div></div><div class="bookmark-href"><img src="https://connpass.com/static/img/apple_touch_icon.png" class="icon bookmark-icon"/>https://lycorptech-jp.connpass.com/event/341189/</div></div><img src="https://media.connpass.com/thumbs/ee/d6/eed686881127d11b6a528fafbc755880.png" class="bookmark-image"/></a></figure></div></li></ul></div><div style="display:contents" dir="auto"><ul id="1e166000-88fd-807d-bc94-d3d766e39f66" class="bulleted-list"><li style="list-style-type:circle">社内外エンジニア向け AI 駆動開発 活用推進<div style="display:contents" dir="ltr"><figure id="2cd66000-88fd-8030-8e4f-df392cf74f8a"><a href="https://www.lycorp.co.jp/ja/news/release/019831/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">LINEヤフー、社内エンジニア約7,000名を対象に実践型のAI活用スキル向上ワークショップを開始｜LINEヤフー株式会社</div><div class="bookmark-description">実務で使える最新AIオーケストレーション開発手法をグローバルに社内展開。 開発組織を効率化し、AI実装力向上によりLLMOpsなど先端領域をリードする人材を育成</div></div><div class="bookmark-href"><img src="https://www.lycorp.co.jp/assets/images/favicon.ico" class="icon bookmark-icon"/>https://www.lycorp.co.jp/ja/news/release/019831/</div></div><img src="https://www.lycorp.co.jp/ja/news/2025/Orchestration%20Development%20Workshop.png" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="1e166000-88fd-80a3-94a9-dbc4380ec132"><a href="https://techblog.lycorp.co.jp/ja/20250409b" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">LINEヤフーにおける『GitHub Copilot』の利用推進の取り組み</div><div class="bookmark-description">こんにちは。GitHub Copilot Meetupイベントを運営している河本です。本記事では、LINEヤフーの Developer Relations が行っている GitHub Copilot ...</div></div><div class="bookmark-href"><img src="https://techblog.lycorp.co.jp/favicon.ico" class="icon bookmark-icon"/>https://techblog.lycorp.co.jp/ja/20250409b</div></div><img src="https://techblog.lycorp.co.jp/static/d25e599f9590b1a8cba64528b4a65804/f0810/d2a6d776aa1c4155b884e724589bdbf7.jpg" class="bookmark-image"/></a></figure></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="1e266000-88fd-8009-a48f-d3b4c47205ee" class="bulleted-list"><li style="list-style-type:disc">社内向け生成AIコミュニティ / イベントの企画、運営支援</li></ul></div><div style="display:contents" dir="auto"><ul id="2cd66000-88fd-80fd-8a6c-ec58a4899c7a" class="bulleted-list"><li style="list-style-type:disc">学生向けハッカソンのイベント企画、運営、ファシリテーターなど</li></ul></div><div style="display:contents" dir="auto"><p id="027e2bc0-4a63-411d-81d2-3b915e4166ef" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="d68bb2af-c435-48b8-bf72-f206e208e0da" class="">2019.4~ 国内大手Webサービス系企業</h3></div><div style="display:contents" dir="auto"><p id="886a4e17-e31a-47f2-9e34-64b5c5e301d6" class=""><strong>フロントエンド、サーバサイドエンジニア</strong></p></div><div style="display:contents" dir="auto"><ul id="1964dc35-62fe-438c-b068-4d16ed8fcd9c" class="bulleted-list"><li style="list-style-type:disc">ECサービス<div style="display:contents" dir="auto"><ul id="4b3d95ec-b515-4364-bea7-f5ab7aa1d146" class="bulleted-list"><li style="list-style-type:circle">フロントエンド実装（JavaScript, jQuery, ReactJS）</li></ul></div><div style="display:contents" dir="auto"><ul id="6e69a785-4250-4291-ab1b-408ea627b307" class="bulleted-list"><li style="list-style-type:circle">バックエンド実装（PHP, C++, Java, NodeJS）</li></ul></div><div style="display:contents" dir="auto"><ul id="a02d4c5d-7c04-4c79-a8dd-308c162d2e89" class="bulleted-list"><li style="list-style-type:circle">バックエンドシステムのリプレイス（Java, Go）</li></ul></div><div style="display:contents" dir="auto"><ul id="b94ae816-ce88-4c6a-9955-fff62d0d3b0d" class="bulleted-list"><li style="list-style-type:circle">障害解析、復旧対応</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="17f841bc-b6bc-486a-9558-39f0626880ae" class="bulleted-list"><li style="list-style-type:disc">ストレージ開発チーム<div style="display:contents" dir="auto"><ul id="63b32a13-6752-4747-afd8-5fbf092337ba" class="bulleted-list"><li style="list-style-type:circle">ストレージサービスの開発、運用<div style="display:contents" dir="auto"><ul id="3ab16eca-ef8d-4afb-8ff1-e514bc587f44" class="bulleted-list"><li style="list-style-type:square">バックエンド実装（Kotlin）</li></ul></div><div style="display:contents" dir="auto"><ul id="1aebb0ad-2c6b-41a6-9381-058c0e5d7017" class="bulleted-list"><li style="list-style-type:square">スクラムマスター</li></ul></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="7622787e-3890-42cf-b21b-43294e0c96ed" class="bulleted-list"><li style="list-style-type:disc">学生向けハッカソン担当<div style="display:contents" dir="auto"><ul id="69b00136-1e45-4c46-95d5-38bbd3b968b2" class="bulleted-list"><li style="list-style-type:circle">学生向けハッカソンのイベント企画、運営、ファシリテーターなど</li></ul></div><div style="display:contents" dir="auto"><p id="11a66000-88fd-80f4-a5f8-c6766036bdf9" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="11a66000-88fd-80cd-974f-cce8fc063908"><a href="https://www.youtube.com/watch?v=z8uqZBVOpVo" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Open Hack U 2020 Online Vol.4 プレゼンテーション・作品展示会・表彰式</div><div class="bookmark-description">ヤフーと各教育機関が共催する学生のためのものづくり体験イベント「Hack U（ハック・ユー）」
+Open Hack U 2020 プレゼンテーション・作品展示会・表彰式の様子です。
+イベント詳細はこちら
+https://hacku.yahoo.co.jp/2020/
+
+■タイムテーブル
+0:00 - オープニング、Hack Time!
+7:58 - 甘味「WindowNote」
+11:17 - ut-9「UT-Board」
+14:28 - ぽんぽんぺいん「マグメル」
+18:36 - ファンタスティック・フォー「プッシュウォーター」
+22:19 - G-lab「Hackathon Supporter」
+26:29 - Links「未定」
+30:02 - BTB「BTB」
+33:33 - プチョヘンザ×2「ogiri-shi-night」
+37:16 - ねこ「HackUp」
+40:57 - 最上ランクのジロリアン目指します！「生活習慣バトラー」
+44:54 - 岐大Hackers「フル単ナビ」
+48:41 - 焼肉焼いても家焼くな「焼肉焼いたら家焼けたbot」
+52:15 - うめラボ「chatTable」
+56:03 - KOAN「Easy調整入力くん」
+59:50 - Canvas「Tsuzl」
+1:03:39 - ビスニー「Reboot Sleeper」
+1:07:27 - そてそてすずめ「返してほしいでチュン！」
+1:11:15 - 334jst「プレゼンペースメーカー」
+1:15:16 - 前世はコーヒー「Mask」
+1:22:31 - （作品展示会）甘味「WindowNote」
+1:27:23 - （作品展示会）ut-9「UT-Board」
+1:30:39 - （作品展示会）ぽんぽんぺいん「マグメル」
+1:34:04 - （作品展示会）ファンタスティック・フォー「プッシュウォーター」
+1:38:18 - （作品展示会）G-lab「Hackathon Supporter」
+1:41:57 - （作品展示会）Links「未定」
+1:47:04 - （作品展示会）BTB「BTB」
+1:50:49 - （作品展示会）プチョヘンザ×2「ogiri-shi-night」
+1:55:45 - （作品展示会）ねこ「HackUp」
+2:00:06 - （作品展示会）最上ランクのジロリアン目指します！「生活習慣バトラー」
+2:04:02 - （作品展示会）岐大Hackers「フル単ナビ」
+2:08:34 - （作品展示会）焼肉焼いても家焼くな「焼肉焼いたら家焼けたbot」
+2:13:26 - （作品展示会）うめラボ「chatTable」
+2:20:06 - （作品展示会）KOAN「Easy調整入力くん」
+2:24:11 - （作品展示会）Canvas「Tsuzl」
+2:28:03 - （作品展示会）ビスニー「Reboot Sleeper」
+2:32:04 - （作品展示会）そてそてすずめ「返してほしいでチュン！」
+2:35:50 - （作品展示会）334jst「プレゼンペースメーカー」
+2:39:21 - （作品展示会）前世はコーヒー「Mask」
+2:43:41 - 表彰式、総評、クロージング</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/fcb15d92/img/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=z8uqZBVOpVo</div></div><img src="https://i.ytimg.com/vi/z8uqZBVOpVo/maxresdefault.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="11a66000-88fd-80e4-a929-d0e466ac6421"><a href="https://www.youtube.com/watch?v=uzsjm_9tSwY" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Hack U KOSEN 2021 プレゼンテーション・作品展示会・表彰式</div><div class="bookmark-description">ヤフーと各教育機関が共催する学生のためのものづくり体験イベント「Hack U（ハック・ユー）」
+Hack U KOSEN 2021 プレゼンテーション・作品展示会・表彰式の様子です。
+
+イベント詳細はこちら
+https://hacku.yahoo.co.jp/kosen2021/
+
+22:50 付近、Hack ID 4の途中からHack ID 5の途中まで、機材トラブルにより映像が途切れてしまっております。
+発表者・視聴者のみなさまには大変申し訳ありませんがご容赦いただけますようお願いいたします。</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/fcb15d92/img/logos/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=uzsjm_9tSwY</div></div><img src="https://i.ytimg.com/vi/uzsjm_9tSwY/maxresdefault.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="11a66000-88fd-80ab-80f1-c7b6a212149a"><a href="https://techblog.yahoo.co.jp/entry/20190625687244/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">学生向け開発イベントHack Uの魅力とは 〜 夏休みに開催決定！</div><div class="bookmark-description">ヤフーの学生向けハッカソンである Hack U の紹介記事。社員が学生時代に Hack U に参加した時の体験談を交えて Hack U の魅力について語ります。</div></div><div class="bookmark-href"><img src="https://s.yimg.jp/i/docs/integrate/images/common/about_yahoo_webclip.png" class="icon bookmark-icon"/>https://techblog.yahoo.co.jp/entry/20190625687244/</div></div><img src="https://s.yimg.jp/images/tecblog/2019-H1/hacku/ogp.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="11a66000-88fd-8001-be50-de8ebc6d4c82"><a href="https://techblog.yahoo.co.jp/entry/2020120430052928/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">社員もクリエイターとして成長できる、企業が学生向けハッカソンを開催するメリット</div><div class="bookmark-description">ヤフーの学生向けハッカソン「Hack U」の中の人がHack Uを運営する中で学んだことや感じたことをお話しします。</div></div><div class="bookmark-href"><img src="https://s.yimg.jp/i/docs/integrate/images/common/about_yahoo_webclip.png" class="icon bookmark-icon"/>https://techblog.yahoo.co.jp/entry/2020120430052928/</div></div><img src="https://s.yimg.jp/images/tecblog/2020-H2/ac_hacku/ogp_20201202T152846.png" class="bookmark-image"/></a></figure></div></li></ul></div><div style="display:contents" dir="auto"><p id="11a66000-88fd-8093-84d0-ee630b60a998" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="ce9f30f8-e2a9-4506-bd39-21a3b2051c76" class="">2015.4~ 国内大手通信系企業</h3></div><div style="display:contents" dir="auto"><p id="55ef4247-e47a-4b1e-a628-1d16b9f12a18" class=""><strong>インフラ/サーバサイドエンジニア/プロジェクトマネージャー</strong></p></div><div style="display:contents" dir="auto"><ul id="d611d4dd-8e20-4bbd-a7f8-b187a7ff4403" class="bulleted-list"><li style="list-style-type:disc"><strong>社内クラウドサービス Order 管理ツールの開発</strong><div style="display:contents" dir="auto"><ul id="3406a7f6-1f3a-4cec-a9c8-2b33a17b6d74" class="bulleted-list"><li style="list-style-type:circle">Ruby on Rails による社内オーダー、リソース管理ツールの開発を実施（2人規模）</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="b02d5227-6200-4b4a-ac10-a245a82451bb" class="bulleted-list"><li style="list-style-type:disc"><strong>専用線ネットワーク接続機能のリリースプロジェクトのマネジメント</strong><div style="display:contents" dir="auto"><ul id="508aae1c-62fb-4907-8cff-493486dc7f57" class="bulleted-list"><li style="list-style-type:circle">BtoB クラウドサービスにおける Microsoft Azure 向け専用線ネットワーク接続機能のリリースプロジェクトのマネジメントを実施（20人規模）</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="6f7e043b-adfd-4bcf-b203-9dc17a418369" class="bulleted-list"><li style="list-style-type:disc"><strong>クラウドサービスのサーバープロビジョニングシステムにおける API コントローラーの開発</strong><div style="display:contents" dir="auto"><ul id="fd2b9771-00c6-4713-b7b3-347a217fdeec" class="bulleted-list"><li style="list-style-type:circle">BtoBクラウドサービスのサーバープロビジョニングシステムにおける API 連携周りを主に担当、及び拠点展開プロジェクトのマネジメントを実施（15人規模チーム）</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="8d3afbf3-3d28-4e8a-a13f-612424f1a268" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="5096b56e-f53a-488d-b0a8-f6e9f960890d" class="">資格</h3></div><div style="display:contents" dir="ltr"><table id="cbe07bb7-197b-48bc-a31f-0b03203e7d73" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="e77b4baa-60b7-45c3-86fe-1b22c18c716c"><td id="]l@o" class=""><strong>年</strong></td><td id="xCHn" class="" style="width:61px"><strong>月</strong></td><td id="uKnp" class="" style="width:464px"><strong>免許・資格</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="02cb88d8-c724-4d2e-8545-60396b861d70"><td id="]l@o" class="">2012</td><td id="xCHn" class="" style="width:61px">10</td><td id="uKnp" class="" style="width:464px">基本情報技術者</td></tr></div><div style="display:contents" dir="ltr"><tr id="0bc621d2-35fd-40bc-8765-977e89100bdf"><td id="]l@o" class="">2015</td><td id="xCHn" class="" style="width:61px">5</td><td id="uKnp" class="" style="width:464px">ドットコムマスター★★</td></tr></div><div style="display:contents" dir="ltr"><tr id="7340a17e-53e1-412a-b25e-7a0354509061"><td id="]l@o" class="">2016</td><td id="xCHn" class="" style="width:61px">5</td><td id="uKnp" class="" style="width:464px">Ruby Association Certified Ruby Programmer Silver</td></tr></div><div style="display:contents" dir="ltr"><tr id="51d783b1-1901-44f6-9fa1-cc44486f3e2d"><td id="]l@o" class="">2023</td><td id="xCHn" class="" style="width:61px">11</td><td id="uKnp" class="" style="width:464px">JDLA Deep Learning for GENERAL 2023#5</td></tr></div><div style="display:contents" dir="ltr"><tr id="47a6593a-92b0-4407-b8dd-5858d61508a5"><td id="]l@o" class="">2023</td><td id="xCHn" class="" style="width:61px">11</td><td id="uKnp" class="" style="width:464px">アクティブ・ブック・ダイアローグ® 認定ファシリテーター</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="c525eb5b-a30c-4ce6-97e5-efc6c7dc980f" class="">コミュニティ</h1></div><div style="display:contents" dir="auto"><ul id="a6d955d0-b675-4e63-9235-3f94d17efe57" class="bulleted-list"><li style="list-style-type:disc"><a href="https://buff-community.jp/">BUFF コミュニティマネージャーの学校 3期生</a> | OB / OG コミュニティ運営</li></ul></div><div style="display:contents" dir="ltr"><figure id="f27f9aa1-2555-453d-8cdc-693df9374600"><a href="https://buff-community.jp/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">BUFF コミュニティマネジメントのプロフェッショナルファーム</div><div class="bookmark-description">BUFFは「コミュニティマネジメントを全ての組織の当たり前に」を掲げて活動するコミュニティマネジメントファームです。「コミュニティマネージャーの学校」を通じて、業界を牽引するコミュニティマネージャーの育成に取り組むほか、様々なクライアントの課題にコミュニティという視点からプロフェッショナルサービスを提供しています。</div></div><div class="bookmark-href"><img src="https://images.squarespace-cdn.com/content/v1/5c296cfae17ba3d4ccaff949/1546304268202-O5X2K9K0K5QZ0AGT6EKP/favicon.ico?format=100w" class="icon bookmark-icon"/>https://buff-community.jp/</div></div><img src="http://static1.squarespace.com/static/5c296cfae17ba3d4ccaff949/t/6483db8ca212f6364ebfa7ac/1686363020639/buff-16th_cover.png?format=1500w" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="cec39041-d6cf-488f-9af2-b6736b452bf2" class="">
+</p></div><div style="display:contents" dir="auto"><ul id="174e55a5-e574-4efc-8d07-21580abd8dce" class="bulleted-list"><li style="list-style-type:disc"><a href="https://selfstudyforest.com/">自習の森</a> コミュニティ運営</li></ul></div><div style="display:contents" dir="ltr"><figure id="45e8c802-fe12-4724-a597-f398cf10fec6"><a href="https://selfstudyforest.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">自習の森｜社会人勉強コミュニティ｜自習会サークル</div><div class="bookmark-description">「自習の森」は、勉強仲間で集まり一緒に自習するコミュニティ・社会人サークルです。オンライン自習室やカフェ自習会、朝活Zoom自習会など、基本無料で何度でもご参加いただけます。 資格勉強・テレワークなど、どのような勉強・作業していただいても大丈夫です。学生・受験生など、社会人以外の方のご参加も歓迎しております。</div></div><div class="bookmark-href"><img src="https://storage.googleapis.com/production-os-assets/assets/d3ff4f57-d199-498e-a608-72687e0e37a6" class="icon bookmark-icon"/>https://selfstudyforest.com/</div></div><img src="https://storage.googleapis.com/production-os-assets/assets/79adc594-d7df-406b-b046-c488875edd51" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="caf56a35-3729-4ebc-b02c-e58e164d6618" class="">
+</p></div><div style="display:contents" dir="auto"><ul id="1d6fbd58-8dc9-494e-9d61-84b7da610ef2" class="bulleted-list"><li style="list-style-type:disc"><a href="https://comucal.connpass.com/">コミュ勉</a> コミュニティ運営メンバー</li></ul></div><div style="display:contents" dir="ltr"><figure id="78739067-d3a5-443a-8a75-e759ba3116b4"><a href="https://comucal.connpass.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">コミュニティ運営勉強会</div><div class="bookmark-description">* * *  2023/3/1 連絡事項   メンバーの情報交換・交流用のDiscordを作成しました。⇨Discord  登壇立候補やスポンサー等のご希望はこちらへ  * * *  X(Twitter)ハッシュタグは#コミュ勉 です！  * * *  コミュニティに関するお悩みやご質問はこちらにどうぞ！※匿名フォームです   X(Twitter)にて #コミュ勉QA で展開してみなさんに回答いただきます！  * * *  こちらに当てはまる人は注目    * * *    * すべてのコミュニティマネージャー・コミュニティ運営者   * コミュニティ運営や推進に興味がある！   * コ...</div></div><div class="bookmark-href"><img src="https://connpass.com/static/img/apple_touch_icon.png" class="icon bookmark-icon"/>https://comucal.connpass.com/</div></div><img src="https://media.connpass.com/thumbs/c1/f5/c1f5390178687631722fd680cd92bdb3.png" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="13048b36-b57e-4531-976b-41619b123678" class="">
+</p></div><div style="display:contents" dir="auto"><ul id="18766000-88fd-80d0-a5b0-e4b3cfb7fc11" class="bulleted-list"><li style="list-style-type:disc">SOZOコラボ 生成AIコミュニティ アンバサダー</li></ul></div><div style="display:contents" dir="ltr"><figure id="18766000-88fd-80ac-aba3-d9914a6c6b06"><a href="https://sozo-collabo.hp.peraichi.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">#SOZOコラボ</div><div class="bookmark-description">生成AI領域最大規模のDISCORDコミュニティです。誰でも無料で参加できます。皆で研鑽していきましょう♬</div></div><div class="bookmark-href"><img src="https://cdn.peraichi.com/userData/61878bda-45d4-4541-a9eb-5a910a0014b5/img/665272db879a2/original.png" class="icon bookmark-icon"/>https://sozo-collabo.hp.peraichi.com/</div></div><img src="https://cdn.peraichi.com/userData/61878bda-45d4-4541-a9eb-5a910a0014b5/ogp/1897579.png" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="19c66000-88fd-8044-93ec-d3f8c20cc7a8" class="">
+</p></div><div style="display:contents" dir="auto"><ul id="32b22b43-4643-4b91-bef8-628477729644" class="bulleted-list"><li style="list-style-type:disc">社内生成AI活用コミュニティ 運営・企画担当</li></ul></div><div style="display:contents" dir="auto"><ul id="65265edd-86f8-4c05-b9e7-0f0e5a61204d" class="bulleted-list"><li style="list-style-type:disc">社内スプラトゥーンサークル 部長</li></ul></div><div style="display:contents" dir="auto"><ul id="18766000-88fd-80fc-8766-ca6bfac3a66e" class="bulleted-list"><li style="list-style-type:disc">社内生成AIサークル 副部長</li></ul></div><div style="display:contents" dir="auto"><h1 id="9801cf7a-7e16-4324-a6d4-77deac47fa9a" class=""><strong>興味領域</strong></h1></div><div style="display:contents" dir="auto"><ul id="b9dca5a7-0682-4c34-9e7c-da64e461c46d" class="bulleted-list"><li style="list-style-type:disc">生成AI の活用</li></ul></div><div style="display:contents" dir="auto"><ul id="edf98cf9-6574-4c20-aff4-512a2696b158" class="bulleted-list"><li style="list-style-type:disc">データサイエンス領域</li></ul></div><div style="display:contents" dir="auto"><ul id="c0607311-ad56-4f51-9d29-2f7e75c0b852" class="bulleted-list"><li style="list-style-type:disc">コミュニティづくり<div style="display:contents" dir="auto"><ul id="1d87a11f-fa8d-421d-873d-81df5c5de738" class="bulleted-list"><li style="list-style-type:circle">コミュニティづくりの学校（BUFF）に参加してたりしました</li></ul></div><div style="display:contents" dir="auto"><ul id="806c27ac-8611-4cd6-b193-ee1a017ef65a" class="bulleted-list"><li style="list-style-type:circle">土日は 自習の森 というコミュニティで公民館貸し切って自習するだけのイベントを企画してます</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="54a62743-eac8-4f52-9bcc-5858476509de" class="bulleted-list"><li style="list-style-type:disc">コミュニティへの参加<div style="display:contents" dir="auto"><ul id="f4735b21-10c8-4064-b7a6-1ec18de19bc4" class="bulleted-list"><li style="list-style-type:circle">コミュニティの観察</li></ul></div><div style="display:contents" dir="auto"><ul id="42b0a027-0a08-4a28-98e7-b2d67e8cb82f" class="bulleted-list"><li style="list-style-type:circle">プチ発信</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="b17cdb66-4748-494e-9333-0c46d0b12818" class="bulleted-list"><li style="list-style-type:disc">ファシリテーション</li></ul></div><div style="display:contents" dir="auto"><ul id="fbd15c9e-5565-4b89-a7c0-af8b0dd1063f" class="bulleted-list"><li style="list-style-type:disc">イベント企画・運営</li></ul></div><div style="display:contents" dir="auto"><ul id="048b2991-2248-4787-8908-2be1c1d7c752" class="bulleted-list"><li style="list-style-type:disc">プログラミング教育<div style="display:contents" dir="auto"><ul id="756d50d5-f0d8-4af5-a6de-edd6f0c4388b" class="bulleted-list"><li style="list-style-type:circle">副業で小中高生向けにプログラミング教えてます</li></ul></div><div style="display:contents" dir="auto"><ul id="5047b2a2-7ac9-42f2-9cec-23d610ab9b2d" class="bulleted-list"><li style="list-style-type:circle">Discordの放課後コミュニティの運営もしてます</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="5c4dd7cc-a478-4010-b923-792a880f208c" class="bulleted-list"><li style="list-style-type:disc">読書<div style="display:contents" dir="auto"><ul id="7b9261fd-d4e0-41f4-932e-19feb79f5cfa" class="bulleted-list"><li style="list-style-type:circle">流行のビジネス書籍、HSP・心理学周りの書籍など</li></ul></div><div style="display:contents" dir="auto"><ul id="6ce7e0fc-ff0a-46b2-a97d-cbe13cfa6dd8" class="bulleted-list"><li style="list-style-type:circle">アクティブ・ブック・ダイアローグ®︎ と呼ばれる読書団体の公式ファシリテーター</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h1 id="20e6eab6-ca16-4724-86c2-8210b5c83562" class=""><strong>その他活動</strong></h1></div><div style="display:contents" dir="auto"><p id="1c466000-88fd-80ce-90c2-fae55f9a07f4" class="">2025/3/29 秀和システム様より、「開発系エンジニアのためのGit/GitHub絵とき入門」 を出版</p></div><div style="display:contents" dir="auto"><p id="1c466000-88fd-80f7-801e-fd162a5c658d" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="1c466000-88fd-8089-939a-f1b2d949b95c"><div class="source"><a href="https://x.com/kozzy0919/status/1904704795098964060">https://x.com/kozzy0919/status/1904704795098964060</a></div></figure></div><div style="display:contents" dir="auto"><p id="1c466000-88fd-8083-942f-cdd6e0ba90f1" class="">
+</p></div><div style="display:contents" dir="auto"><p id="8d268443-2fd8-4484-9b3f-d2084436dcd7" class=""><strong>小中学生向けプログラミングスクール講師 / Discord 運営</strong></p></div><div style="display:contents" dir="ltr"><figure id="b75d7e0f-2137-4542-a60e-2e4047d81096"><a href="https://ands-tech.com/teacher" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">先生紹介 | 子供・小学生のオンラインプログラミング教室 アンズテック</div><div class="bookmark-description">アンズテックオンライン子どもプログラミング教室の先生をご紹介します。現役のプログラマーの講師による指導で楽しくプログラミングを学習できます。</div></div><div class="bookmark-href"><img src="https://ands-tech.com/wp-content/themes/andstech_v3/assets/img/favicon/apple-touch-icon.png" class="icon bookmark-icon"/>https://ands-tech.com/teacher</div></div><img src="https://ands-tech.com/wp-content/uploads/2020/08/ogp.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="11e66000-88fd-804c-a796-d1faa8a8291f" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="11e66000-88fd-80e3-9344-dcd3db8a7e18"><a href="https://www.youtube.com/watch?v=jAbKMLuYd10&amp;feature=youtu.be" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">【プログラマーを目指す小中学生へ】プログラマーの仕事ってどんなの？今までにした失敗は？</div><div class="bookmark-description">プロのプログラマーになるための方法を直撃取材しました！
+アンズテックの山田先生と山岡先生は普段どんな仕事をしているのか？
+ぜひご覧ください！
+
+アンズテック オンライン子どもプログラミングスクール
+------------------
+公式サイト
+https://ands-tech.com/
+
+X
+https://x.com/_andstech_
+
+公式LINEアカウント
+https://line.me/R/ti/p/@hsc6119y
+
+体験レッスンのご予約はこちら
+https://ands-tech.com/trial
+
+■ 素材
+DOVA-SYNDROME様 https://dova-s.jp/
+効果音ラボ様 https://soundeffect-lab.info/
+OtoLogic様 https://otologic.jp/
+魔王魂様 https://maou.audio/
+いらすとや様 https://www.irasutoya.com/
+
+#scratch #プログラミング #ゲーム #小学生 #中学生 #キャリア</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/fd504f58/img/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=jAbKMLuYd10&amp;feature=youtu.be</div></div><img src="https://i.ytimg.com/vi/jAbKMLuYd10/maxresdefault.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="6d58c932-c48a-4965-87a7-5d158f9b267d" class="">
+</p></div><div style="display:contents" dir="auto"><p id="27ade2ec-5381-4dbe-a8f4-b6b996500b85" class=""><strong>アクティブ・ブック・ダイアローグ®︎ 認定ファシリテーター</strong></p></div><div style="display:contents" dir="ltr"><figure id="6a42cf24-f45a-4b1b-9d1e-1d8d60435644" class="image"><a href="%E3%80%90%E5%85%AC%E9%96%8B%E7%94%A8%E3%80%91kozzy%20(Koji%20Yamaoka)%20%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B/Untitled%201.png"><img style="width:707.9971313476562px" src="%E3%80%90%E5%85%AC%E9%96%8B%E7%94%A8%E3%80%91kozzy%20(Koji%20Yamaoka)%20%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B/Untitled%201.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="4d605bf6-1589-46c2-bbe8-c3b60497600c" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="b2ba20a4-afff-4896-a27c-466317b68398"><a href="https://www.abd-abd.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">未来型読書法 アクティブ・ブック・ダイアローグ®（ABD）公式サイト</div><div class="bookmark-description">新しい未来型読書法である「アクティブ・ブック・ダイアローグ®」の紹介ページです。</div></div><div class="bookmark-href"><img src="https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,h_64,w_64,f_auto,q_90/914873/pexels-photo_rcm7oj.jpg" class="icon bookmark-icon"/>https://www.abd-abd.com/</div></div><img src="https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,h_630,w_1200,f_auto,q_90/914873/pexels-photo_rcm7oj.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="12966000-88fd-8018-98b4-f44430572bde" class="">
+</p></div><div style="display:contents" dir="auto"><p id="507f002a-24e3-477e-954e-d46d83b4e269" class=""><strong>コミュニティ運営の勉強会の企画・運営・登壇</strong></p></div><div style="display:contents" dir="ltr"><figure id="8c1e770c-0672-41e3-935a-d8c9b3f22d3a"><a href="https://www.youtube.com/watch?v=3YelEC5hiTI" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">コミュニティ運営と継続的学習～学びによる成長の道～</div><div class="bookmark-description">2024年7月19日に開催「コミュニティ運営技や課題の共有！コミュニティ運営者トーク！#15」のイベントアーカイブ動画です。
+
+🔵スピーカー
+kozzyさん（https://x.com/kozzy0919 ）
+
+🔵コミュニティ運営勉強会
+https://comucal.peatix.com/
+
+#コミュ勉 #コミュニティ運営 #コミュニティマネージャー</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/72b8c307/img/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=3YelEC5hiTI</div></div><img src="https://i.ytimg.com/vi/3YelEC5hiTI/maxresdefault.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="9ac0302d-b935-42c5-92b2-b2ccc06f3cba" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="9ba4de03-afbe-46de-849d-d353bad09a65"><a href="https://www.youtube.com/watch?v=QyBiGavj6sQ" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">書籍で学ぶコミュニティ運営 vol.1 ～ビジネスも人生も成長させる コミュニティマーケティング～</div><div class="bookmark-description">2024年3月26日に開催された「書籍で学ぶコミュニティ運営 vol.1」のイベントアーカイブ動画です。
+今回のイベントでは、書籍「ビジネスも人生も成長させる コミュニティマーケティング」（日本実業出版社） https://www.amazon.co.jp/dp/453405677X をベースとして、コミュニティの育て方、コミュニティマネジメント、キャリアなどについて、有志の立候補者数名がLT（ライトニングトーク）形式で発表しました✨
+
+00:00 書籍で学ぶコミュニティ運営 vol.1
+06:15 コミュ勉について
+07:36 著者：小島秀揮さんについて
+08:24 書籍について
+09:21 コミュニティ運営に関わる人が目指すべき理想像とは？（kozzyさん）
+19:18 「アウトプット」の大切さについてあらためて考えてみた話（にしやんさん）
+31:14 本を読んで疑問に思ったことを共有（ありぱんさん）
+40:30 コミュニティが力を発揮できるケース（Mitz）
+
+#コミュ勉 #コミュニティ運営 #コミュニティマネージャー</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/e6683cb8/img/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=QyBiGavj6sQ</div></div><img src="https://i.ytimg.com/vi/QyBiGavj6sQ/maxresdefault.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="116a12c1-3c12-4f03-ad89-f13a978a4eee" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="a8660a3b-74a8-4b01-9bf3-c5f33452ffec"><a href="https://www.youtube.com/watch?v=irYLDXjG42A" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">【著者降臨】「成功するコミュニティの作り方」を読んで得た学びをシェア！</div><div class="bookmark-description">2024年8月17日に開催された「書籍で学ぶコミュニティ運営 Vol.2 「成功するコミュニティの作り方」〜オンライン開催～」のイベントアーカイブ動画です。
+今回のイベントでは、書籍「成功するコミュニティの作り方( https://amzn.asia/d/0bIrdHq3 )」（リックテレコム）をベースとしてに、コミュニティ運営のノウハウ、コミュニティマネジメント、うまくいっているコミュニティの実例などについて、LT（ライトニングトーク）形式で発表しました✨
+
+■目次
+00:00 オープニング
+02:47 イベントの目的
+04:13 書籍を読んで思ったことLT
+05:46 著者紹介-黒須さん
+06:33 コミュニティの「Why」と成長し始めたコミュニティが直面する未来-kozzy
+15:56 大事なのはコミュニティの価値-Mitz
+20:56 著者の黒須さんにインタビュー
+28:20 感想共有とディスカッション
+
+#コミュ勉 #コミュニティ運営 #コミュニティマネージャー #Jagu&#x27;e&#x27;r</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/72b8c307/img/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=irYLDXjG42A</div></div><img src="https://i.ytimg.com/vi/irYLDXjG42A/maxresdefault.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="a21b541b-2461-41ee-bdff-bed453243fe6" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="21092420-8f18-4aa2-8065-4b1dcadaa88b"><a href="https://www.youtube.com/watch?v=QzCa2yWP0C0" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">書籍で学んだノウハウ＋著者の実体験！コミュニティ運営の真髄を語る</div><div class="bookmark-description">2024年9月7日に開催された「書籍で学ぶコミュニティ運営 Vol.3 「成功するコミュニティの作り方」〜オンライン開催～」のイベントアーカイブ動画です。
+今回のイベントでは、書籍「成功するコミュニティの作り方( https://amzn.asia/d/0bIrdHq3 )」（リックテレコム）をベースとしてに、コミュニティ運営のノウハウ、コミュニティマネジメント、うまくいっているコミュニティの実例などについて、LT（ライトニングトーク）形式で発表しました✨
+
+■目次
+00:00 オープニング
+01:53 コミュニティ運営のモヤモヤはきっと自分だけのものじゃない Tomonori Hayashiさん
+08:39 社内コミュニティを成功させたい かーでぃさん
+16:37 著者:黒須さんとディスカッション
+
+#コミュ勉 #コミュニティ運営 #コミュニティマネージャー #Jagu&#x27;e&#x27;r</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/e6683cb8/img/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=QzCa2yWP0C0</div></div><img src="https://i.ytimg.com/vi/QzCa2yWP0C0/maxresdefault.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="11e66000-88fd-8000-a1fe-ccf8e5b49c36" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="11e66000-88fd-80d1-861e-d0773e7e9300"><a href="https://www.youtube.com/watch?v=AdXOlDIJ4m4" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">【LIVE】書籍で学ぶコミュニティ運営 Vol.4 「成功するコミュニティの作り方」</div><div class="bookmark-description">📝イベント概要
+コミュニティ運営やコミュニティマーケティングに焦点を当てた学びの場、「書籍から学ぶコミュニティ運営読書会」です！
+
+今回のイベントでは、書籍「成功するコミュニティの作り方」（リックテレコム）をベースとして、著者の黒須さんにコミュニティ運営のノウハウ、コミュニティマネジメントなどお話しいただきます。✨ 参加者の皆様からの質問も大歓迎！
+
+📆 日時: 10月12日 (土曜日) 20:00～21:00
+
+「書籍で学ぶコミュニティ」はこんな人におすすめ！
+📘 書籍からの学びを深めたい方
+🌱 コミュニティ運営に情熱を持つ方
+📈 マーケティングやキャリア開発に関心がある方
+🏫 コミュニティを運営している方
+❓ コミュニティに関するお悩みがある方
+
+書籍プレゼントの応募フォームはこちら
+https://docs.google.com/forms/d/e/1FAIpQLScAT4FFvZuGSOuSZCTkDIxhSqwIAfDS2nS8N6AkoRF9uM-_4A/viewform</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/fd504f58/img/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=AdXOlDIJ4m4</div></div><img src="https://i.ytimg.com/vi/AdXOlDIJ4m4/maxresdefault.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="12966000-88fd-808d-9a3c-e05d76916ca2" class="">
+</p></div><div style="display:contents" dir="auto"><p id="11a66000-88fd-806e-9296-c913fb573a1b" class=""><strong>2019年 Qiita 年間ランキング Top20 の記事を執筆</strong></p></div><div style="display:contents" dir="ltr"><figure id="11a66000-88fd-80c4-8ec2-eb98ad2b29c7"><a href="https://qiita.com/kozzy/items/b42ba59a8bac190a16ab" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">[ver 1.2] Git でよく使われるコマンドにイラストによる説明を加えて1枚のチートシートにまとめてみた - Qiita</div><div class="bookmark-description">本題のチートシートはこちらPNGSVGhttps://d.kuku.lu/6b5cc7b0a9 から DL できます作った理由git って他人に概念を説明するのって難しいし、自身も何度も反…</div></div><div class="bookmark-href"><img src="https://cdn.qiita.com/assets/favicons/public/production-c620d3e403342b1022967ba5e3db1aaa.ico" class="icon bookmark-icon"/>https://qiita.com/kozzy/items/b42ba59a8bac190a16ab</div></div><img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fcdn.qiita.com%2Fassets%2Fpublic%2Farticle-ogp-background-412672c5f0600ab9a64263b751f1bc81.png?ixlib=rb-4.0.0&amp;w=1200&amp;mark64=aHR0cHM6Ly9xaWl0YS11c2VyLWNvbnRlbnRzLmltZ2l4Lm5ldC9-dGV4dD9peGxpYj1yYi00LjAuMCZ3PTk3MiZoPTM3OCZ0eHQ9JTVCdmVyJTIwMS4yJTVEJTIwR2l0JTIwJUUzJTgxJUE3JUUzJTgyJTg4JUUzJTgxJThGJUU0JUJEJUJGJUUzJTgyJThGJUUzJTgyJThDJUUzJTgyJThCJUUzJTgyJUIzJUUzJTgzJTlFJUUzJTgzJUIzJUUzJTgzJTg5JUUzJTgxJUFCJUUzJTgyJUE0JUUzJTgzJUE5JUUzJTgyJUI5JUUzJTgzJTg4JUUzJTgxJUFCJUUzJTgyJTg4JUUzJTgyJThCJUU4JUFBJUFDJUU2JTk4JThFJUUzJTgyJTkyJUU1JThBJUEwJUUzJTgxJTg4JUUzJTgxJUE2MSVFNiU5RSU5QSVFMyU4MSVBRSVFMyU4MyU4MSVFMyU4MyVCQyVFMyU4MyU4OCVFMyU4MiVCNyVFMyU4MyVCQyVFMyU4MyU4OCVFMyU4MSVBQiVFMyU4MSVCRSVFMyU4MSVBOCVFMyU4MiU4MSVFMyU4MSVBNiVFMyU4MSVCRiVFMyU4MSU5RiZ0eHQtYWxpZ249bGVmdCUyQ3RvcCZ0eHQtY29sb3I9JTIzMUUyMTIxJnR4dC1mb250PUhpcmFnaW5vJTIwU2FucyUyMFc2JnR4dC1zaXplPTU2JnM9OWQwZmUzNzZhMWRjOTgxNDZjNGMzMzI3MDBlZDk0OGM&amp;mark-x=142&amp;mark-y=57&amp;blend64=aHR0cHM6Ly9xaWl0YS11c2VyLWNvbnRlbnRzLmltZ2l4Lm5ldC9-dGV4dD9peGxpYj1yYi00LjAuMCZoPTc2Jnc9NzcwJnR4dD0lNDBrb3p6eSZ0eHQtY29sb3I9JTIzMUUyMTIxJnR4dC1mb250PUhpcmFnaW5vJTIwU2FucyUyMFc2JnR4dC1zaXplPTM2JnR4dC1hbGlnbj1sZWZ0JTJDdG9wJnM9N2U1ZWMwYWYxMzE5ZDg4Y2YyZjMxZDI1OTg1MzkzZWM&amp;blend-x=142&amp;blend-y=486&amp;blend-mode=normal&amp;s=5291f53e8bf105f832c5a184f37b0cbf" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="19c66000-88fd-805d-ade1-ed3d1ee864ab" class="">
+</p></div><div style="display:contents" dir="auto"><p id="19c66000-88fd-801b-8d91-ea0f879073ae" class=""><strong>京都市内の私立高校における生成AI活用講義・ワークショップの実施</strong></p></div><div style="display:contents" dir="auto"><ul id="19c66000-88fd-8063-b672-c6bf20bc310c" class="bulleted-list"><li style="list-style-type:disc">20名を対象に生成AIを活用したハンズオン型の講義を行いました。</li></ul></div><div style="display:contents" dir="ltr"><figure id="19c66000-88fd-8018-875b-c7a3ca4f1740"><div class="source"><a href="https://x.com/kozzy0919/status/1890605640189448195">https://x.com/kozzy0919/status/1890605640189448195</a></div></figure></div><div style="display:contents" dir="auto"><p id="19c66000-88fd-8055-bda6-c566902cfc52" class="">
+</p></div><div style="display:contents" dir="auto"><p id="4ead9fe0-0cd7-4ebf-bc80-62aacd5ff226" class=""><strong>京都市内の大学におけるハッカソン授業の講師</strong></p></div><div style="display:contents" dir="auto"><ul id="a5999a0f-a5d8-4f2b-bb3d-226a321e8ec6" class="bulleted-list"><li style="list-style-type:disc">情報系の学生に対してハッカソンを行う講座において講師を担当しました</li></ul></div><div style="display:contents" dir="auto"><p id="12966000-88fd-8078-90a7-cbdc6828be40" class="">
+</p></div><div style="display:contents" dir="auto"><p id="12966000-88fd-80d9-958c-dbf7c238c3b2" class=""><strong>SOZO コラボ 公式アンバサダー</strong></p></div><div style="display:contents" dir="auto"><ul id="12966000-88fd-8040-b107-eab10db8916d" class="bulleted-list"><li style="list-style-type:disc">生成AIコミュニティでハンズオンなど実施<div style="display:contents" dir="ltr"><figure id="12966000-88fd-80b3-a9dd-c781e5f83701"><div class="source"><a href="https://twitter.com/kozzy0919/status/1835635637254586657">https://twitter.com/kozzy0919/status/1835635637254586657</a></div></figure></div></li></ul></div><div style="display:contents" dir="auto"><p id="18766000-88fd-80e9-86b6-e35d5a49ee39" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="18766000-88fd-80d3-88de-c3f718e05623"><div class="source"><a href="https://x.com/kozzy0919/status/1853397004950593794">https://x.com/kozzy0919/status/1853397004950593794</a></div></figure></div><div style="display:contents" dir="auto"><p id="1c466000-88fd-800a-9023-d6b96bb955b6" class="">
+</p></div><div style="display:contents" dir="auto"><ul id="12966000-88fd-804d-9524-fab3d47b7979" class="bulleted-list"><li style="list-style-type:disc">生成AIアートなどコンテスト応募<div style="display:contents" dir="ltr"><figure id="12966000-88fd-80f6-80a0-e2a68f824db4"><div class="source"><a href="https://twitter.com/kozzy0919/status/1847877820003041758">https://twitter.com/kozzy0919/status/1847877820003041758</a></div></figure></div><div style="display:contents" dir="auto"><p id="1c466000-88fd-80e7-9013-eac0d0e2baac" class="">
+</p></div></li></ul></div><div style="display:contents" dir="auto"><ul id="18766000-88fd-809b-ab9e-ff6140f06249" class="bulleted-list"><li style="list-style-type:disc">オフラインでの生成AIイベント開催支援</li></ul></div><div style="display:contents" dir="auto"><p id="1e266000-88fd-80bf-ab11-d26ff2679b3f" class="">
+</p></div><div style="display:contents" dir="auto"><p id="1e266000-88fd-80df-a23e-e2f5dd414867" class="">生成AIに関わるイベントであれば、会場手配のご相談とイベント運営のお手伝いをさせていただいてます。</p></div><div style="display:contents" dir="auto"><p id="19c66000-88fd-8084-8ea7-d4107611d12c" class=""><div class="indented"><div style="display:contents" dir="auto"><p id="19c66000-88fd-802c-b686-e6f6abf24a73" class="">80名規模</p></div><div style="display:contents" dir="ltr"><figure id="18766000-88fd-80b3-b8fa-cd9169897241"><a href="https://peatix.com/event/4146259" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">#SOZOコラボ オフライン交流会</div><div class="bookmark-description">SOZOコラボ第2回オフ会を開催！前回ご参加いただいた方も、今回初めての方も大歓迎！生成AI初心者の方も、ベテランの方も、気軽に交流できる場になればと思っています。ご参加お待ちして... powered by Peatix : More than a ticket.</div></div><div class="bookmark-href"><img src="https://peatix.com/favicon.ico" class="icon bookmark-icon"/>https://peatix.com/event/4146259</div></div><img src="https://cdn.peatix.com/event/4146259/cover-amTCejeu001PHxW1BZ7HwCtqUn8XTN6n.png" class="bookmark-image"/></a></figure></div></div></p></div><div style="display:contents" dir="auto"><p id="19c66000-88fd-8082-9b91-fea1b5182f1e" class=""><div class="indented"><div style="display:contents" dir="auto"><p id="18766000-88fd-8091-8906-ed32630b12e8" class="">150名規模</p></div><div style="display:contents" dir="ltr"><figure id="18766000-88fd-805b-ac78-d7fdcde2fd19"><a href="https://sozofes2025.hp.peraichi.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">#SOZOフェス2025</div><div class="bookmark-description">開催日時 ：2025年2月15日（土）17:00 ~ 21:30　　　　　（一般入場は 18:00 から）開催場所 ：東京都千代田区紀尾井町1-3　　　　　東京ガーデンテラス紀尾井町 紀尾井タワー　　　　　LINEヤフー株式会社本社オフィス内 LODGE（受付は 2F）入場料：¥2,000 ＊スナックなどの軽食と飲み物付き出店ブース数：15(予定）　　　　　　　来場者数見込み：150名出展内容：生成AIを活用した画像・動画作品の展示　　　・AIを活用した新サービスやプロダクトの紹介　　　・AIクリエイター作品展示（画像、動画他)　　　・入場チケット・ブース申し込みは以下に掲載</div></div><div class="bookmark-href">https://sozofes2025.hp.peraichi.com/</div></div><img src="https://cdn.peraichi.com/userData/61878bda-45d4-4541-a9eb-5a910a0014b5/ogp/2075022.png" class="bookmark-image"/></a></figure></div></div></p></div><div style="display:contents" dir="auto"><h1 id="485b1edf-ae12-493d-95df-1c6e02eaf1de" class="">性格</h1></div><div style="display:contents" dir="auto"><h3 id="61947272-86fd-4acf-8107-d3a09565d5a0" class=""><strong>16 Personalitis</strong></h3></div><div style="display:contents" dir="auto"><ul id="0867cb29-19cd-4a46-85f5-6cd2350b951e" class="bulleted-list"><li style="list-style-type:disc">2024.6 ）冒険者 ISFP</li></ul></div><div style="display:contents" dir="ltr"><figure id="11e66000-88fd-80c9-bd4a-c43d75f62ee0"><a href="https://www.16personalities.com/ja/isfp型の性格" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">ISFP型の性格 (冒険家) | 16Personalities</div><div class="bookmark-description">従来の芸術家とは異なるかもしれませんが、冒険家は真の芸術家です。冒険家にとって人生は自己表現のためのキャンバスで、服装から自分の時間の使い方まで、冒険家の生き様は個性を鮮やかに反映するものです。</div></div><div class="bookmark-href"><img src="https://www.16personalities.com/static/images/favicons/favicon-96x96.png" class="icon bookmark-icon"/>https://www.16personalities.com/ja/isfp型の性格</div></div><img src="https://www.16personalities.com/static/images/social/isfp.png?v=3" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="11e66000-88fd-804f-9ac9-e0ed1be9f3e7" class="">
+</p></div><div style="display:contents" dir="auto"><ul id="8cae0c95-7de8-42e6-a19c-7ca96fb0793e" class="bulleted-list"><li style="list-style-type:disc">2024.1 ）仲介者 INFP</li></ul></div><div style="display:contents" dir="ltr"><figure id="11e66000-88fd-80c4-a23b-da21ab888cb8"><a href="https://www.16personalities.com/ja/infp型の性格" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">INFP型の性格 (仲介者) | 16Personalities</div><div class="bookmark-description">仲介者（INFP）は控えめ、または静かそうに見えるかもしれませんが、心の中は情熱であふれ、生き生きとしている人たちです。独創的かつ想像力豊かなので、色々な空想をしながら、さまざまな会話やストーリを作り上げることが好きなタイプでしょう。繊細な気質の持ち主として知られていて、音楽、芸術、自然、そして周りの人に対して、深く感情的に反応する人たちです。</div></div><div class="bookmark-href"><img src="https://www.16personalities.com/static/images/favicons/favicon-96x96.png" class="icon bookmark-icon"/>https://www.16personalities.com/ja/infp型の性格</div></div><img src="https://www.16personalities.com/static/images/social/infp.png?v=3" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="8ca4996d-28e8-46cb-aab5-b2dd78fbadbc" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="cb9507a2-f09c-46d1-a4a5-a58bd47202b9" class=""><strong>ソーシャルスタイル理論</strong></h3></div><div style="display:contents" dir="auto"><ul id="59e5d815-18b7-4eb1-9ce7-ef453a62654e" class="bulleted-list"><li style="list-style-type:disc">エミアブルタイプ </li></ul></div><div style="display:contents" dir="ltr"><figure id="11e66000-88fd-80fa-ada3-f222e4ab02c1"><a href="https://mitsucari.com/blog/social_style_emiable/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">ソーシャルスタイル理論のエミアブルタイプの特徴と相性とは？</div><div class="bookmark-description">ソーシャルスタイル理論では、人のコミュニケーションスタイルは4つのタイプに分類されます。4つのタイプの1つであるエミアブルタイプの特徴や相性を知っておけば、コミュニケーションの円滑化やチームワークの効率化が図れます。今回はエミアブルタイプの特徴と、ソーシャルスタイルごとの相性についてご紹介します。</div></div><div class="bookmark-href"><img src="https://s3-ap-northeast-1.amazonaws.com/mitsucari-blog/images/2017/10/31171537/favicon.ico" class="icon bookmark-icon"/>https://mitsucari.com/blog/social_style_emiable/</div></div><img src="https://mitsucari-blog.s3.ap-northeast-1.amazonaws.com/images/2022/05/22165754/b49028a1602b0d0513207ac8dda87eab.png" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="de668544-7464-4257-89c8-2c07dc47f6eb" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="b4365159-f203-412d-a25f-66236ba95d7e" class=""><strong>mgran</strong></h3></div><div style="display:contents" dir="auto"><ul id="90aabf37-58d7-476d-8097-cc543c3960ea" class="bulleted-list"><li style="list-style-type:disc"><a href="https://mgram.me/ja/share/MQ0gpRNhRVAfXF6Qx-C?">https://mgram.me/ja/share/MQ0gpRNhRVAfXF6Qx-C?</a></li></ul></div><div style="display:contents" dir="auto"><ul id="e7c8246e-727a-4787-b54d-6fecb4dce05a" class="bulleted-list"><li style="list-style-type:disc">#協調性あります #ひとりの時間も大事 #かなり繊細 #聴く力あります #凝り性 #少し優しい #ポジティブ気味 #好奇心強め</li></ul></div><div style="display:contents" dir="auto"><p id="3c76ea4a-148a-4bb9-b171-d308e40b756e" class="">
+</p></div><div style="display:contents" dir="auto"><p id="0a927b0a-f550-44ff-884c-ed28ed2d1337" class="">・HSP傾向強め</p></div><div style="display:contents" dir="auto"><p id="6968c30a-2238-493e-b7dc-c741cc595398" class="">・対人関係、信頼を大事にしたいという想いが強い</p></div><div style="display:contents" dir="auto"><p id="5f826783-928b-4615-adae-5cb2624c671b" class="">・他者を否定することが難しい</p></div><div style="display:contents" dir="auto"><p id="3adca188-5b8a-4310-96f5-ecaca2c95a12" class="">・自分にとっての心理的安全性が担保されていない場では能力を殆ど発揮できない</p></div><div style="display:contents" dir="auto"><p id="9fb52d52-4eb0-4e04-aad5-cef1b37cd227" class="">　　・声がでない</p></div><div style="display:contents" dir="auto"><p id="4a15a0d0-72f4-4171-a6ac-f991635771e7" class="">　　・思考が停止する</p></div><div style="display:contents" dir="auto"><p id="81c77a76-7d81-4039-a988-731dae440977" class="">　　・対処、対応が後回しにしてしまう（回避傾向）</p></div><div style="display:contents" dir="auto"><p id="727e3f0d-79a7-4ea5-b7f0-061d6180201c" class="">→ 何かを指摘するときは部分的に褒めつつ、注意いただけると助かりますmm</p></div><div style="display:contents" dir="auto"><h1 id="f23973de-c72f-436d-8cd1-45d90225837d" class=""><strong>趣味</strong></h1></div><div style="display:contents" dir="auto"><ul id="488a2c1b-aa4d-484a-87d7-3c1a971e6c6e" class="bulleted-list"><li style="list-style-type:disc">サウナ（自宅にサウナあります）<div style="display:contents" dir="auto"><ul id="943cc40d-84c9-4074-b5e4-a45fa5f691ba" class="bulleted-list"><li style="list-style-type:circle"><a href="https://www.google.com/maps/d/u/0/edit?hl=ja&amp;mid=1NE_i1aczpcEzSGinnFKivPzSTtxfPiPI&amp;ll=35.69803157622816%2C139.76787999999996&amp;z=18">My ベストサウナマップ（Google Map）</a></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="6f35d684-3699-4434-b2fb-6f35e4dab424" class="bulleted-list"><li style="list-style-type:disc">スプラトゥーン（会社の部活で部長やってます）</li></ul></div><div style="display:contents" dir="ltr"><figure id="de294fcf-1db6-4d9f-82bd-b78cabdeb94b"><a href="https://www.youtube.com/watch?v=lbGgzWegZ6o" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">【ガチ対決】LINE ポコポコで対決！　ゲームサークルの頂点は誰だ？</div><div class="bookmark-description">LINEヤフー社内のゲームサークルが集結し、LINE ポコポコで最強を決定する対戦イベントを開催。
+各サークルの部長が出場し、優勝者には豪華賞品が贈られ、最下位には驚きの結末が！
+普段はプレステやSwitchで闘っている彼らが、スマホを手にパズルゲームで繰り広げる熱いバトルをお楽しみください。
+果たして、どのサークルが頂点に立つのか？
+
+#LINEポコポコ　#LINEヤフー　#LINEヤフーのサブチャンネル 
+=====================
+「LINE ポコポコ」は、“ポコタ”をはじめ、人気パズルゲーム「LINE ポコパン」でお馴染みのキャラクターが多数登場する3マッチパズルゲームです。
+2024年9月3日でサービス開始から10周年を迎えます。
+気になる方は下記URLからダウンロードして遊んでみてくださいね！
+
+■LINE ポコポコ
+対応端末：iPhone／Android
+対応言語：日本語、英語、台湾（繁体字）、タイ
+サービス地域：日本、台湾、タイ
+サービス開始日：2014年9月3日
+価格：無料（アイテム課金）
+開発：Treenod Inc.
+運営：LINEヤフー株式会社
+著作権表記：© Treenod, Inc. All rights reserved.
+▼App Store　ダウンロードページ
+https://itunes.apple.com/jp/app/id888615473
+▼Google Play　ダウンロードページ
+https://play.google.com/store/apps/details?id=com.linecorp.LGPKPK
+
+───────────────────
+【LINEヤフー株式会社】
+LINEヤフー株式会社は、『「WOW」なライフプラットフォームを創り、日常に「！」を届ける。』をミッションに掲げ、検索・ポータル、eコマース、メッセンジャー、広告など、多様な領域において事業を展開しています。
+約40の国と地域から集まった1万人以上の従業員が働くLINEヤフーは、ユーザーに感動を与えるサービスを提供し続けるとともに、インターネットの力を通じてより豊かで便利な暮らしの実現に貢献していきます。
+
+LINEヤフー公式チャンネル： https://www.youtube.com/channel/UCQ7z3U6ALlj4k5_PN71UNWg
+X： https://twitter.com/lycorp_JP/
+コーポレートサイト： https://www.lycorp.co.jp/ja/</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/e6683cb8/img/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=lbGgzWegZ6o</div></div><img src="https://i.ytimg.com/vi/lbGgzWegZ6o/hqdefault.jpg" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><ul id="4acdf8fb-86c1-44d9-be45-a6ac19a6db07" class="bulleted-list"><li style="list-style-type:disc">イベントの企画<div style="display:contents" dir="auto"><ul id="18766000-88fd-80ba-9a81-c99a98e0a9bd" class="bulleted-list"><li style="list-style-type:circle">10名程度の小さなイベントも含めれば、100件を超えるイベントの企画はしてきました</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="62f55be1-08d6-471e-bd17-d8e51490ce25" class="bulleted-list"><li style="list-style-type:disc">麻雀、ポーカー</li></ul></div><div style="display:contents" dir="auto"><ul id="68c06222-7267-4588-9ddb-2fcd423d2a10" class="bulleted-list"><li style="list-style-type:disc">猫カフェ・猫ワーキング<div style="display:contents" dir="auto"><ul id="4fcb70d0-1784-414b-8ea8-9a9b7ad7cfcd" class="bulleted-list"><li style="list-style-type:circle"><a href="https://e-office.space/spaces/kanto/tokyo/setagayaku/sangenjaya-by-sanchaco">https://e-office.space/spaces/kanto/tokyo/setagayaku/sangenjaya-by-sanchaco</a></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h1 id="d3b53244-8584-40e7-99b1-180e104db67d" class=""><strong>特許</strong></h1></div><div style="display:contents" dir="auto"><p id="92753608-5e3c-4e3c-baa1-823d347e55ac" class="">【特許】 6900334 映像出力装置、映像出力方法および映像出力プログラム</p></div><div style="display:contents" dir="auto"><p id="8d2734b2-ce94-42f0-914d-ac303ff8713c" class=""><a href="https://www.j-platpat.inpit.go.jp/c1800/PU/JP-2019-144817/27D89F7641EB15C9AE6A38FD444B3CC784BA24B2D47F546C4054D2AF327A898E/11/ja">https://www.j-platpat.inpit.go.jp/c1800/PU/JP-2019-144817/27D89F7641EB15C9AE6A38FD444B3CC784BA24B2D47F546C4054D2AF327A898E/11/ja</a></p></div><div style="display:contents" dir="auto"><h1 id="19c66000-88fd-8089-bea6-dbd0f5a2b091" class="">お仕事のご依頼・ご相談はこちらへ</h1></div><div style="display:contents" dir="auto"><p id="19c66000-88fd-806a-954d-f26aea3e02cd" class="">k.yamaoka0919+request &lt;at&gt; gmail.com</p></div><div style="display:contents" dir="auto"><p id="19c66000-88fd-80d4-8387-f690c44803b7" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
