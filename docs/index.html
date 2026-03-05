@@ -529,7 +529,8 @@ cd antigravity-handson</code></pre>
 
             <h4>方法3: GitHub Desktop を使用</h4>
             <ol>
-                <li><a href="https://github.com/kozyszoo/antigravity-handson" target="_blank" style="color: var(--blue);">https://github.com/kozyszoo/antigravity-handson</a> にアクセス</li>
+                <li><a href="https://github.com/kozyszoo/antigravity-handson" target="_blank"
+                        style="color: var(--blue);">https://github.com/kozyszoo/antigravity-handson</a> にアクセス</li>
                 <li>緑色の <code>Code</code> ボタンをクリック</li>
                 <li><code>Open with GitHub Desktop</code> を選択してクローン</li>
             </ol>
@@ -1030,7 +1031,7 @@ description: 挨拶のテスト用ワークフロー
                 </p>
             </div>
 
-            <h3>Pro Tips: アーティファクト（成果物ドキュメント）を活用する</h3>
+            <h3>Tips: アーティファクト（成果物ドキュメント）を活用する</h3>
             <p>AntigravityのAIエージェントは、チャットの返答とは別に独立したドキュメント（アーティファクト）を作成する機能があります。特に複雑な要件や中規模以上の開発を行う際は、いきなりコードを書かせるのではなく、まず以下のようなアーティファクトを作成するように指示することで、開発を整理しながら安全かつスムーズに進めることができます。
             </p>
             <table>
@@ -1059,6 +1060,24 @@ description: 挨拶のテスト用ワークフロー
                     </tr>
                 </tbody>
             </table>
+
+            <h3>Tips: Web ブラウザ（標準機能）</h3>
+            <p>Antigravity では、特別な拡張機能をインストールしなくても、<strong>デフォルトで外部の Web サイトを検索・閲覧したり、ブラウザの画面を操作する機能</strong>が備わっています。AI
+                は最新の公式ドキュメントやネット上の情報を自律的に検索したり、開発中のアプリをブラウザで開いて自律的にテストを行ってくれます。</p>
+
+            <div class="card" style="margin-bottom: 16px; border-left: 4px solid var(--blue);">
+                <p style="font-size: 0.9rem; margin: 0 0 8px;"><strong>💡 どういう時に便利？:</strong></p>
+                <ul style="font-size: 0.9rem; margin: 0; padding-left: 20px;">
+                    <li style="margin-bottom: 4px;"><strong>最新情報の検索:</strong> エラーの解決策を調べたい時や、最新の技術バージョンについて知りたい時など、AI
+                        の事前学習データに含まれていない「リアルタイムな情報」が必要な場面</li>
+                    <li><strong>動作確認・操作の自動化:</strong>
+                        「ローカルサーバーを起ち上げてブラウザで開き、ボタンをクリックして意図通り動くかテストして」のように、実際のブラウザ操作を自動実行させたい場面</li>
+                </ul>
+            </div>
+
+            <h4>やってみよう</h4>
+            <pre><code>Google で「Antigravity IDE 2026」を検索して、
+トップ3件の記事タイトルを教えて。</code></pre>
 
             <div class="nav-btns">
                 <a href="#step1-2" class="btn">← Step 1-2</a>
@@ -1162,11 +1181,16 @@ description: 挨拶のテスト用ワークフロー
             </ol>
 
             <h3>やってみよう</h3>
-            <h4>演習 1: Web 検索</h4>
-            <pre><code>Google で「Antigravity IDE 2026」を検索して、
-トップ3件の記事タイトルを教えて。</code></pre>
+            <p style="margin-bottom: 20px;">以下の演習を通して、AI が外部ツールを自律的に使いこなす様子を体験してみましょう。実行前に、MCP Store から
+                <code>context7</code> MCP をインストールしておきます。
+            </p>
 
-            <h4>演習 2: ドキュメント参照</h4>
+            <h4>演習: ドキュメント参照</h4>
+            <div class="card" style="margin-bottom: 16px; border-left: 4px solid var(--purple);">
+                <p style="font-size: 0.9rem; margin: 0;"><strong>💡 ここでの MCP の役割:</strong> <code>context7</code> MCP
+                    は、React をはじめとする様々なライブラリやフレームワークの公式ドキュメントを素早く正確に参照できるツールです。通常の Web
+                    ブラウザ検索よりも、特定の技術ドキュメントを体系的かつ高精度に読み込み、正しい書き方を提案してくれます。</p>
+            </div>
             <pre><code>Context7 MCP を使って、React の useEffect フックの
 最新の使い方を調べて教えて。</code></pre>
             <!-- 【画像挿入箇所】 Context7などの外部ツールを使って情報を取得し、チャットで答えている様子のスクショ -->
@@ -1695,37 +1719,50 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>Artifact Review で実行前にモデル切り替え</td>
-                        <td>Artifact Review Policy を「Request Review」に設定すると、AIが実装計画を提示した段階でレビューできる。ここで<strong>実行前にモデルを切り替えられる</strong>のが最大のメリット。設計フェーズは Gemini 3 Pro（High）、実装フェーズは Low に切り替えると、素早いトライアンドエラーが可能になる。</td>
-                        <td rowspan="8"><a href="https://dev.classmethod.jp/articles/google-antigravity-five-tips/" target="_blank"
-                                style="color: var(--blue); word-break: break-all;">DevelopersIO /<br>G-gen Blog /<br>Zenn</a></td>
+                        <td>Artifact Review Policy を「Request
+                            Review」に設定すると、AIが実装計画を提示した段階でレビューできる。ここで<strong>実行前にモデルを切り替えられる</strong>のが最大のメリット。設計フェーズは
+                            Gemini 3 Pro（High）、実装フェーズは Low に切り替えると、素早いトライアンドエラーが可能になる。</td>
+                        <td rowspan="8"><a href="https://dev.classmethod.jp/articles/google-antigravity-five-tips/"
+                                target="_blank" style="color: var(--blue); word-break: break-all;">DevelopersIO
+                                /<br>G-gen Blog /<br>Zenn</a></td>
                     </tr>
                     <tr>
                         <td>DevContainer で安全に実行</td>
-                        <td>Antigravity は DevContainer 対応が組み込み。ホストOSを保護するため、独立した環境内で実行することでリスク軽減できる。<code>.gitconfig</code> などの設定ファイルはホストからマウントして引き継ぐ。</td>
+                        <td>Antigravity は DevContainer
+                            対応が組み込み。ホストOSを保護するため、独立した環境内で実行することでリスク軽減できる。<code>.gitconfig</code>
+                            などの設定ファイルはホストからマウントして引き継ぐ。</td>
                     </tr>
                     <tr>
                         <td>Step10 超過時に一時停止させる</td>
-                        <td><code>~/.gemini/GEMINI.md</code> に「Step10超過時に処理を一時停止して、完了内容・状況報告・次アクションを報告すること」と書くことで、根本原因分析を促進し、無限ループを防げる。日本語対応設定も同じファイルに記述できる。</td>
+                        <td><code>~/.gemini/GEMINI.md</code>
+                            に「Step10超過時に処理を一時停止して、完了内容・状況報告・次アクションを報告すること」と書くことで、根本原因分析を促進し、無限ループを防げる。日本語対応設定も同じファイルに記述できる。
+                        </td>
                     </tr>
                     <tr>
                         <td>Agent Manager で並列実行</td>
-                        <td><code>cmd + E</code> で Agent Manager を開くと、複数エージェントを同時管理できる。<strong>Asynchronous Agents 機能</strong>で複数タスクを並行実行すると、フロントエンド実装とバックエンド構築を同時進行させられる。</td>
+                        <td><code>cmd + E</code> で Agent Manager を開くと、複数エージェントを同時管理できる。<strong>Asynchronous Agents
+                                機能</strong>で複数タスクを並行実行すると、フロントエンド実装とバックエンド構築を同時進行させられる。</td>
                     </tr>
                     <tr>
                         <td>無料枠のレート制限に注意</td>
-                        <td>プレビュー版では無料枠のレート制限が厳しく、数時間で上限に達する可能性がある。制限に達したら<strong>別モデルへ切り替え</strong>（Claude Sonnet 4.5 は無料で利用可能）、またはエラー発生時は「続きを実装して」と依頼すると再開される。</td>
+                        <td>プレビュー版では無料枠のレート制限が厳しく、数時間で上限に達する可能性がある。制限に達したら<strong>別モデルへ切り替え</strong>（Claude Sonnet 4.5
+                            は無料で利用可能）、またはエラー発生時は「続きを実装して」と依頼すると再開される。</td>
                     </tr>
                     <tr>
                         <td>Review-driven development を活用</td>
-                        <td>ターミナル実行ポリシーを「Request Review」、変更の適用は「Agent Decides」に設定すると、コマンド実行時に確認を挟みつつ、AIが状況に応じて自動判断できる。要所で人間の確認を挟みながら作業を進められる。</td>
+                        <td>ターミナル実行ポリシーを「Request Review」、変更の適用は「Agent
+                            Decides」に設定すると、コマンド実行時に確認を挟みつつ、AIが状況に応じて自動判断できる。要所で人間の確認を挟みながら作業を進められる。</td>
                     </tr>
                     <tr>
                         <td>Browser Agent でデバッグ自動化</td>
-                        <td>Browser Agent 拡張機能をインストールすると、エージェントに「ブラウザで確認するよう指示」するだけで、エラー画面を自動確認・デバッグ情報を収集できる。ターミナル実行→ブラウザ動作確認まで全自動になる。</td>
+                        <td>Browser Agent
+                            拡張機能をインストールすると、エージェントに「ブラウザで確認するよう指示」するだけで、エラー画面を自動確認・デバッグ情報を収集できる。ターミナル実行→ブラウザ動作確認まで全自動になる。
+                        </td>
                     </tr>
                     <tr>
                         <td>Planning Mode は9割のケースで使う</td>
-                        <td>Planning Mode は計画立案→実装の流れで進むため、エラーが出やすいクラウドインフラ構築・複雑な機能実装に最適。Fast Mode は単発の質問やテキスト修正向けで、継続的なタスク実行には不向き。迷ったら Planning を選ぶべし。</td>
+                        <td>Planning Mode は計画立案→実装の流れで進むため、エラーが出やすいクラウドインフラ構築・複雑な機能実装に最適。Fast Mode
+                            は単発の質問やテキスト修正向けで、継続的なタスク実行には不向き。迷ったら Planning を選ぶべし。</td>
                     </tr>
                 </tbody>
             </table>
