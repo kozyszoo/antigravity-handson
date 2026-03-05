@@ -1061,7 +1061,7 @@ description: 挨拶のテスト用ワークフロー
                 </tbody>
             </table>
 
-            <h3>Tips: Web ブラウザ（標準機能）</h3>
+            <h3>Tips: Web ブラウザを操作する（標準機能）</h3>
             <p>Antigravity では、特別な拡張機能をインストールしなくても、<strong>デフォルトで外部の Web サイトを検索・閲覧したり、ブラウザの画面を操作する機能</strong>が備わっています。AI
                 は最新の公式ドキュメントやネット上の情報を自律的に検索したり、開発中のアプリをブラウザで開いて自律的にテストを行ってくれます。</p>
 
@@ -1291,15 +1291,30 @@ description: 特定のタスクを支援するスキル
             <h3>🌟 公開されている Skills を活用しよう</h3>
             <p>
                 自分で一から作らなくても、すでに公開されている強力な Skill 集を活用できます。
-                このハンズオンで使っている Skills は、<a href="https://x.com/suna_gaku" target="_blank">@suna_gaku</a>（X/ 旧
-                Twitter）によってまとめられた Skill コレクションを参考にしています。
+                このハンズオンで使っている Skills は、<a href="https://x.com/suna_gaku" target="_blank">@suna_gaku</a>（X）さんによってまとめられた
+                Skill コレクションを参考にしています。
             </p>
-            <pre><code>/plugin marketplace add sean-sunagaku/claude-code-plugin</code></pre>
+
+            <h4>公開 Skills の追加方法</h4>
+            <p>GitHub で公開されている Skills リポジトリをクローンして、<code>.agent/skills/</code> にコピーすることで利用できます：</p>
+            <pre><code># ターミナルで実行
+# 例: GitHubからSkillsリポジトリをクローン
+git clone https://github.com/USERNAME/skills-collection.git
+
+# 必要なSkillを .agent/skills/ にコピー
+cp -r skills-collection/multi-ai-review .agent/skills/
+cp -r skills-collection/agent-team .agent/skills/</code></pre>
+
+            <p>または、Antigravity のチャット欄で直接 AI に依頼することもできます：</p>
+            <pre><code>GitHub の https://github.com/USERNAME/skills-collection から
+multi-ai-review と agent-team の Skill をダウンロードして
+.agent/skills/ に配置して</code></pre>
 
             <h4>有用な Skill の例</h4>
-            <!-- 【画像挿入箇所】 コミュニティSkillプラグインのインストールコマンド実行後の出力スクショ -->
+            <p>以下は公開されている有用な Skills の例です。これらを <code>.agent/skills/</code> に追加することで利用できます：</p>
+            <!-- 【画像挿入箇所】 .agent/skills ディレクトリに複数のコミュニティSkillが追加されている状態のスクショ -->
             <img class="screenshot" src="img/fig11.png"
-                alt="チャット欄で claude-code-plugin のインストールコマンドを実行し、複数の強力なスキルが追加されたことを示す実行結果のスクリーンショット">
+                alt=".agent/skills ディレクトリに multi-ai-review、agent-team、git-workflow などの公開 Skills が追加されている状態のスクリーンショット">
             <table>
                 <thead>
                     <tr>
