@@ -1330,20 +1330,19 @@ description: 挨拶のテスト用ワークフロー
             <blockquote>💡 <strong>ヒント:</strong> 簡単に試したい場合は、MCP Store からワンクリックでインストールすることもできます。設定ファイルでの追加は、バージョン管理や複数環境での一貫した設定に便利です。</blockquote>
 
             <h3>やってみよう</h3>
-            <p style="margin-bottom: 20px;">以下の演習を通して、AI が外部ツールを自律的に使いこなす様子を体験してみましょう。実行前に、MCP Store から
-                <code>browser</code> MCP をインストールしておきます。
+            <p style="margin-bottom: 20px;">以下の演習を通して、AI が外部ツールを自律的に使いこなす様子を体験してみましょう。上記の手順で
+                <code>serena</code> MCP を設定しておきます。
             </p>
 
-            <h4>演習: ドキュメント参照</h4>
+            <h4>演習: コードベース分析</h4>
             <div class="card" style="margin-bottom: 16px; border-left: 4px solid var(--purple);">
-                <p style="font-size: 0.9rem; margin: 0;"><strong>💡 ここでの MCP の役割:</strong> <code>browser</code> MCP
-                    は、Web ブラウザを自動操作して公式ドキュメントを参照できるツールです。AI が自律的にブラウザを開き、React
-                    などのライブラリの公式ドキュメントにアクセスして、最新の情報を取得してくれます。通常の手動検索よりも、特定のページを素早く正確に読み込み、正しい書き方を提案してくれます。</p>
+                <p style="font-size: 0.9rem; margin: 0;"><strong>💡 ここでの MCP の役割:</strong> <code>serena</code> MCP
+                    は、大規模なコードベースを意味的に解析し、特定の機能やパターンを見つけ出すツールです。AI が自律的にプロジェクト全体をスキャンし、関連するコードを発見・分析してくれます。通常の grep や検索では見つけにくい、意味的に関連するコードも見つけられます。</p>
             </div>
-            <pre><code>Browser を操作して、React 公式ドキュメントから useEffect フックの最新の使い方を調べて教えて。</code></pre>
-            <!-- 【画像挿入箇所】 Browser MCP などの外部ツールを使って情報を取得し、チャットで答えている様子のスクショ -->
+            <pre><code>serena を使って、このプロジェクト内で useState フックを使っているコンポーネントを全て見つけて、それぞれどのような状態を管理しているか分析して教えて。</code></pre>
+            <!-- 【画像挿入箇所】 serena MCP でコードベースを分析し、エージェントが useState の使用状況をチャット上で解説しているスクリーンショット -->
             <img class="screenshot" src="img/fig9.png"
-                alt="Browser を操作して React 公式ドキュメントを参照し、エージェントが useEffect フックの最新の使い方をチャット上で解説しているスクリーンショット">
+                alt="serena を使ってプロジェクト内の useState フックの使用箇所を分析し、エージェントが各コンポーネントの状態管理についてチャット上で解説しているスクリーンショット">
 
             <h3>⚠️ セキュリティ上の注意 — 野良 MCP に気をつけよう</h3>
             <blockquote>
