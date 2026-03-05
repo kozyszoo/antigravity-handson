@@ -511,10 +511,25 @@
             <blockquote>📚 公式ドキュメント: <a href="https://antigravity.google/docs/get-started"
                     target="_blank">https://antigravity.google/docs/get-started</a></blockquote>
 
-            <h3>ハンズオン資料のクローン</h3>
+            <h3>チェックリスト</h3>
+            <h4>1. Antigravity のインストール確認</h4>
+            <ul>
+                <li>Antigravity アプリケーションがインストールされている</li>
+                <li>Google アカウントでログイン済み</li>
+                <li>アプリが最新版（Restart to Update が出ていたら再起動してください）</li>
+            </ul>
+
+            <h4>2. 初期設定（日本語化）</h4>
+            <ol>
+                <li>左側アイコンバーの「Extensions」をクリック</li>
+                <li>「Japanese Language Pack for Visual Studio Code」を検索してインストール</li>
+                <li>再起動して日本語化を確認</li>
+            </ol>
+
+            <h4>3. ハンズオン資料のクローン</h4>
             <p>このハンズオンで使用する資料はGitHubで公開されています。以下の手順でローカル環境にクローンしてください。</p>
 
-            <h4>方法1: コマンドラインでクローン（推奨：初心者向け）</h4>
+            <h5>方法1: コマンドラインでクローン（推奨：初心者向け）</h5>
             <p><strong>ステップ1: ターミナルを開く</strong></p>
             <ul>
                 <li><strong>macOS:</strong> Launchpad から「ターミナル」を検索して起動、または <code>Cmd + Space</code> で Spotlight 検索 →
@@ -549,7 +564,7 @@
                 </ul>
             </div>
 
-            <h4>方法2: Antigravity のターミナルでクローン（Antigravity 内で完結）</h4>
+            <h5>方法2: Antigravity のターミナルでクローン（Antigravity 内で完結）</h5>
             <ol>
                 <li>Antigravity アプリを起動します</li>
                 <li>画面上部のメニューバーから <code>Terminal</code> → <code>New Terminal</code> をクリック</li>
@@ -572,7 +587,7 @@
                 </ul>
             </div>
 
-            <h4>方法3: GitHub Desktop を使用</h4>
+            <h5>方法3: GitHub Desktop を使用</h5>
             <ol>
                 <li><a href="https://github.com/kozyszoo/antigravity-handson" target="_blank"
                         style="color: var(--blue);">https://github.com/kozyszoo/antigravity-handson</a> にアクセス</li>
@@ -580,29 +595,14 @@
                 <li><code>Open with GitHub Desktop</code> を選択してクローン</li>
             </ol>
 
-            <h3>チェックリスト</h3>
-            <h4>1. Antigravity のインストール確認</h4>
-            <ul>
-                <li>Antigravity アプリケーションがインストールされている</li>
-                <li>Google アカウントでログイン済み</li>
-                <li>アプリが最新版（Restart to Update が出ていたら再起動してください）</li>
-            </ul>
-
-            <h4>2. 初期設定（日本語化）</h4>
-            <ol>
-                <li>左側アイコンバーの「Extensions」をクリック</li>
-                <li>「Japanese Language Pack for Visual Studio Code」を検索してインストール</li>
-                <li>再起動して日本語化を確認</li>
-            </ol>
-
-            <h4>3. ワークスペースの作成</h4>
+            <h4>4. ワークスペースの作成</h4>
             <ol>
                 <li><code>File</code> &gt; <code>Open Folder</code> をクリック</li>
-                <li>このハンズオンのフォルダ（<code>antigravity_handson</code>）を選択</li>
+                <li>クローンしたハンズオンのフォルダ（<code>antigravity-handson</code>）を選択</li>
                 <li>フォルダが左のサイドバーに表示されれば成功</li>
             </ol>
 
-            <h4>4. 基本画面の確認</h4>
+            <h4>5. 基本画面の確認</h4>
             <!-- 【画像挿入箇所】 Editor View と Agent Manager の画面全体のスクショ -->
 
             <img class="screenshot" src="img/fig1.png"
@@ -628,7 +628,7 @@
                 </tbody>
             </table>
 
-            <h4>5. モデル選択</h4>
+            <h4>6. モデル選択</h4>
             <p>Agent Manager の右上にあるモデル選択プルダウンから、タスクに応じて最適なモデルを切り替えられます。<br>
                 <strong>基本は <code>Gemini 3 Pro (High)</code> を選んでおけば間違いありません。</strong>使いすぎて Rate Limit
                 に達した場合は別モデルに切り替えましょう。
@@ -688,7 +688,7 @@
                 </ul>
             </div>
 
-            <h4>6. セキュリティ設定（ターミナル自動実行ポリシー）</h4>
+            <h4>7. セキュリティ設定（ターミナル自動実行ポリシー）</h4>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--purple);">
                 <strong>📖 ターミナルコマンドとは？</strong>
