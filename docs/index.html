@@ -1278,8 +1278,8 @@ description: 挨拶のテスト用ワークフロー
                         <td>MCP Store から追加</td>
                     </tr>
                     <tr>
-                        <td><code>context7</code></td>
-                        <td>最新ライブラリドキュメント参照</td>
+                        <td><code>browser</code></td>
+                        <td>Web ブラウザ操作・ドキュメント参照</td>
                         <td>MCP Store から追加</td>
                     </tr>
                     <tr>
@@ -1307,20 +1307,19 @@ description: 挨拶のテスト用ワークフロー
 
             <h3>やってみよう</h3>
             <p style="margin-bottom: 20px;">以下の演習を通して、AI が外部ツールを自律的に使いこなす様子を体験してみましょう。実行前に、MCP Store から
-                <code>context7</code> MCP をインストールしておきます。
+                <code>browser</code> MCP をインストールしておきます。
             </p>
 
             <h4>演習: ドキュメント参照</h4>
             <div class="card" style="margin-bottom: 16px; border-left: 4px solid var(--purple);">
-                <p style="font-size: 0.9rem; margin: 0;"><strong>💡 ここでの MCP の役割:</strong> <code>context7</code> MCP
-                    は、React をはじめとする様々なライブラリやフレームワークの公式ドキュメントを素早く正確に参照できるツールです。通常の Web
-                    ブラウザ検索よりも、特定の技術ドキュメントを体系的かつ高精度に読み込み、正しい書き方を提案してくれます。</p>
+                <p style="font-size: 0.9rem; margin: 0;"><strong>💡 ここでの MCP の役割:</strong> <code>browser</code> MCP
+                    は、Web ブラウザを自動操作して公式ドキュメントを参照できるツールです。AI が自律的にブラウザを開き、React などのライブラリの公式ドキュメントにアクセスして、最新の情報を取得してくれます。通常の手動検索よりも、特定のページを素早く正確に読み込み、正しい書き方を提案してくれます。</p>
             </div>
-            <pre><code>Context7 MCP を使って、React の useEffect フックの
-最新の使い方を調べて教えて。</code></pre>
-            <!-- 【画像挿入箇所】 Context7などの外部ツールを使って情報を取得し、チャットで答えている様子のスクショ -->
+            <pre><code>Browser MCP を使って、React 公式ドキュメントから
+useEffect フックの最新の使い方を調べて教えて。</code></pre>
+            <!-- 【画像挿入箇所】 Browser MCP などの外部ツールを使って情報を取得し、チャットで答えている様子のスクショ -->
             <img class="screenshot" src="img/fig9.png"
-                alt="Context7 MCP を利用して最新の React ドキュメントを参照し、エージェントが useEffect フックの最新の使い方をチャット上で解説しているスクリーンショット">
+                alt="Browser MCP を利用して React 公式ドキュメントを参照し、エージェントが useEffect フックの最新の使い方をチャット上で解説しているスクリーンショット">
 
             <h3>⚠️ セキュリティ上の注意 — 野良 MCP に気をつけよう</h3>
             <blockquote>
