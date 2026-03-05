@@ -517,7 +517,8 @@
             <h4>方法1: コマンドラインでクローン（推奨：初心者向け）</h4>
             <p><strong>ステップ1: ターミナルを開く</strong></p>
             <ul>
-                <li><strong>macOS:</strong> Launchpad から「ターミナル」を検索して起動、または <code>Cmd + Space</code> で Spotlight 検索 → 「terminal」と入力</li>
+                <li><strong>macOS:</strong> Launchpad から「ターミナル」を検索して起動、または <code>Cmd + Space</code> で Spotlight 検索 →
+                    「terminal」と入力</li>
                 <li><strong>Windows:</strong> スタートメニューから「コマンドプロンプト」または「PowerShell」を検索して起動</li>
                 <li><strong>Linux:</strong> <code>Ctrl + Alt + T</code> でターミナルを起動</li>
             </ul>
@@ -743,8 +744,11 @@
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
                 <strong>💡 実際の動作例（Autoモードの場合）</strong>
                 <ul style="margin-top: 8px; font-size: 0.9rem;">
-                    <li><strong>自動実行される例：</strong> <code>ls</code>（ファイル一覧表示）、<code>npm install</code>（パッケージインストール）、<code>git status</code>（Git状態確認）</li>
-                    <li><strong>確認が求められる例：</strong> <code>rm -rf フォルダ名</code>（フォルダ削除）、<code>git push --force</code>（強制プッシュ）</li>
+                    <li><strong>自動実行される例：</strong>
+                        <code>ls</code>（ファイル一覧表示）、<code>npm install</code>（パッケージインストール）、<code>git status</code>（Git状態確認）
+                    </li>
+                    <li><strong>確認が求められる例：</strong>
+                        <code>rm -rf フォルダ名</code>（フォルダ削除）、<code>git push --force</code>（強制プッシュ）</li>
                     <li>確認ダイアログが出たら、コマンドの内容を確認して「許可」または「拒否」を選択できます</li>
                 </ul>
             </div>
@@ -763,11 +767,13 @@
                     ターミナルに赤い文字でエラーメッセージが表示されても、慌てる必要はありません。以下の手順で対処できます：
                 </p>
                 <ol style="font-size: 0.9rem; margin-top: 8px;">
-                    <li><strong>エラーメッセージをコピー：</strong> ターミナルのエラー部分をマウスで選択 → <code>Ctrl+C</code>（または <code>Cmd+C</code>）でコピー</li>
+                    <li><strong>エラーメッセージをコピー：</strong> ターミナルのエラー部分をマウスで選択 → <code>Ctrl+C</code>（または
+                        <code>Cmd+C</code>）でコピー</li>
                     <li><strong>AIに貼り付けて相談：</strong> Antigravity のチャット欄に「このエラーが出ました：」とメッセージを入力し、その下にエラーメッセージを貼り付け</li>
                     <li><strong>AIが自動で解決：</strong> AIがエラーの原因を分析し、自動的に修正コマンドを実行してくれます</li>
                 </ol>
-                <p style="font-size: 0.9rem; margin-top: 12px; background: var(--bg-dark); padding: 8px; border-radius: 4px;">
+                <p
+                    style="font-size: 0.9rem; margin-top: 12px; background: var(--bg-dark); padding: 8px; border-radius: 4px;">
                     <strong>例：</strong><br>
                     <code style="color: var(--text);">このエラーが出ました：<br>
                     Error: Cannot find module 'vite'<br>
@@ -779,7 +785,8 @@
                 <ul style="font-size: 0.9rem;">
                     <li><code>command not found</code> → 必要なツールがインストールされていない（AIに相談すればインストール方法を教えてくれます）</li>
                     <li><code>EACCES: permission denied</code> → ファイルの権限エラー（AIが自動的に権限を修正してくれます）</li>
-                    <li><code>port already in use</code> → 既に開発サーバーが起動している（ターミナルで <code>Ctrl+C</code> を押して停止してから再実行）</li>
+                    <li><code>port already in use</code> → 既に開発サーバーが起動している（ターミナルで <code>Ctrl+C</code> を押して停止してから再実行）
+                    </li>
                 </ul>
             </div>
 
@@ -1415,7 +1422,8 @@ multi-ai-review と agent-team の Skill をダウンロードして
 
             <ol>
                 <li><strong>Antigravity でターミナルを開く：</strong> <code>Terminal</code> メニュー → <code>New Terminal</code></li>
-                <li><strong>プロジェクトフォルダにいることを確認：</strong> ターミナルに現在のパスが表示されます。<code>antigravity-handson</code> フォルダ内にいることを確認してください。</li>
+                <li><strong>プロジェクトフォルダにいることを確認：</strong> ターミナルに現在のパスが表示されます。<code>antigravity-handson</code>
+                    フォルダ内にいることを確認してください。</li>
                 <li><strong>Skills リポジトリをクローン：</strong> 以下のコマンドをコピーして貼り付け、Enter で実行</li>
             </ol>
             <pre><code>git clone https://github.com/USERNAME/skills-collection.git</code></pre>
@@ -1617,7 +1625,8 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
                     <li>コードを変更すると、<strong>ブラウザが自動的に更新される（ホットリロード）</strong></li>
                 </ol>
                 <p style="font-size: 0.9rem; margin-top: 8px;">
-                    <strong>初心者の方へ：</strong>ターミナルに「Server running at http://localhost:5173」のような表示が出ていれば成功です。サーバーを止めたいときは、ターミナルで <code>Ctrl+C</code> を押します。
+                    <strong>初心者の方へ：</strong>ターミナルに「Server running at
+                    http://localhost:5173」のような表示が出ていれば成功です。サーバーを止めたいときは、ターミナルで <code>Ctrl+C</code> を押します。
                 </p>
             </div>
 
@@ -1975,12 +1984,6 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                         <td><a href="https://antigravity.google/docs/skills" target="_blank"
                                 style="color: var(--blue);">antigravity.google/docs/skills</a></td>
                     </tr>
-                    <tr>
-                        <td>GitHub サンプル集</td>
-                        <td>Antigravity を使った実装例・スターターキット</td>
-                        <td><a href="https://github.com/antigravity-examples" target="_blank"
-                                style="color: var(--blue);">github.com/antigravity-examples</a></td>
-                    </tr>
                 </tbody>
             </table>
 
@@ -2074,12 +2077,6 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     <div style="color: var(--primary); font-weight: 700; margin-bottom: 6px;">🌐 公式ドキュメント</div>
                     <a href="https://antigravity.google/docs" target="_blank"
                         style="color: var(--blue); font-size: 0.88rem; text-decoration: none;">antigravity.google/docs</a>
-                </div>
-                <div
-                    style="background: var(--bg-dark); border-radius: 8px; padding: 16px; border: 1px solid var(--bg-light);">
-                    <div style="color: var(--primary); font-weight: 700; margin-bottom: 6px;">💻 GitHub サンプル</div>
-                    <a href="https://github.com/antigravity-examples" target="_blank"
-                        style="color: var(--blue); font-size: 0.88rem; text-decoration: none;">antigravity-examples</a>
                 </div>
 
                 <div
