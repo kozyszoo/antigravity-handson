@@ -1570,6 +1570,20 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
             </table>
 
             <h3>ハンズオン: AI Coffee Shop LP を作ろう</h3>
+
+            <p>このハンズオンでは、架空の「AI カフェ」のランディングページ（LP）を作成します。<strong>MCP × Skills × Nano Banana</strong> を総動員して、本格的な Web アプリケーションを約30分で完成させる体験ができます。</p>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--primary);">
+                <strong>🎯 このハンズオンで体験できること</strong>
+                <ul style="margin-top: 8px; font-size: 0.9rem;">
+                    <li><strong>MCP Browser</strong> で競合サイトを自動リサーチ</li>
+                    <li><strong>Nano Banana</strong> でプロ品質のビジュアル生成</li>
+                    <li><strong>React + TailwindCSS</strong> で本格的なフロントエンド開発</li>
+                    <li><strong>Agent Skills</strong> で自動コードレビュー＆修正</li>
+                    <li>従来なら数日かかる作業を約30分で完結</li>
+                </ul>
+            </div>
+
             <h4>全体の流れ</h4>
             <pre><code>Step 1: Web リサーチ（MCP 活用）
     ↓
@@ -1583,7 +1597,10 @@ Step 5: 品質チェック（code-review Skill）
     ↓
 Step 6: デプロイ</code></pre>
 
-            <h4>Part 1: Web リサーチ（MCP Browser）</h4>
+            <h4>Part 1: Web リサーチ（MCP Browser）— 所要時間: 5分</h4>
+            <p><strong>目的：</strong> 実在する競合サイトから最新のデザイントレンドを自動収集し、LP の品質を高めるための参考情報を得ます。</p>
+            <p><strong>やること：</strong> MCP Browser を使って Google 検索を実行し、上位サイトのデザイン要素（色使い・レイアウト・CTA ボタン・画像）を AI が自動分析します。</p>
+
             <pre><code>Browser MCPを使って、「おしゃれなカフェ ランディングページ」で検索して、
 上位5サイトのデザインの特徴を分析して。
 
@@ -1593,7 +1610,14 @@ Step 6: デプロイ</code></pre>
 - CTAボタンのデザイン
 - 画像の使い方</code></pre>
 
-            <h4>Part 2: 構成決定</h4>
+            <div class="card" style="font-size: 0.9rem;">
+                <strong>💡 ポイント：</strong> AIが自動的にブラウザを操作して検索結果を巡回し、デザインパターンを抽出してくれます。従来なら2時間かかる競合調査が<strong>5分で完了</strong>します。
+            </div>
+
+            <h4>Part 2: 構成決定 — 所要時間: 5分</h4>
+            <p><strong>目的：</strong> リサーチ結果とターゲット要件を組み合わせて、最適な LP 構成を設計します。</p>
+            <p><strong>やること：</strong> AI に「ターゲット層」「ブランドイメージ」「目標行動（ゴール）」を伝えると、セクション構成とキャッチコピーを自動生成してくれます。</p>
+
             <pre><code>リサーチ結果を踏まえて、このLPに必要なセクション構成を提案して。
 要件:
 - ターゲット: 20-30代のコーヒー好き
@@ -1601,16 +1625,34 @@ Step 6: デプロイ</code></pre>
 - ゴール: 来店予約
 各セクションのキャッチコピーも考えて。</code></pre>
 
-            <h4>Part 3: ビジュアル生成（Nano Banana）</h4>
+            <div class="card" style="font-size: 0.9rem;">
+                <strong>💡 ポイント：</strong> AI が提案した構成に対して「もっとこうしたい」とフィードバックすれば、即座に修正案を出してくれます。企画書作成の壁打ち相手として最適です。
+            </div>
+
+            <h4>Part 3: ビジュアル生成（Nano Banana）— 所要時間: 3分</h4>
+            <p><strong>目的：</strong> LP のメインビジュアル（ヒーロー画像）を AI で生成し、デザイン品質を一気に引き上げます。</p>
+            <p><strong>やること：</strong> Nano Banana に「近未来的なカフェ」のイメージを指示すると、プロ品質のフォトリアリスティックな画像を生成してプロジェクトに配置してくれます。</p>
+
             <pre><code>Nano Banana で、「近未来的なカフェの店内、
 ネオンブルーとウォームライト、観葉植物、4K、フォトリアリスティック」
 のイメージを生成して。ファイル名は hero-bg.webp で保存して。</code></pre>
 
-            <h4>Part 4: 実装（React + TailwindCSS）</h4>
+            <div class="card" style="font-size: 0.9rem;">
+                <strong>💡 ポイント：</strong> 従来ならデザイナーに依頼して数日待つか、有料素材サイトで探す作業が、<strong>数秒で完結</strong>します。イメージに合わなければ「もっと温かみを出して」と再生成できます。
+            </div>
+
+            <h4>Part 4: 実装（React + TailwindCSS）— 所要時間: 10分</h4>
+            <p><strong>目的：</strong> Part 2 で決めた構成と Part 3 で生成した画像を使い、本格的な React アプリとして実装します。</p>
+            <p><strong>やること：</strong> AI に「Vite + React + TailwindCSS で構築して」と依頼すると、プロジェクトのセットアップからコンポーネント実装まで全自動で行われます。</p>
+
             <pre><code>この 04_vibe_coding_advanced フォルダに、
 Vite + React + TailwindCSS のプロジェクトを作成して。
 プロジェクト名は「ai-coffee-shop」</code></pre>
             <pre><code>開発サーバーを起動してブラウザでプレビューして</code></pre>
+
+            <div class="card" style="font-size: 0.9rem;">
+                <strong>💡 ポイント：</strong> AI は React のベストプラクティスに従ってコンポーネントを分割し、TailwindCSS でレスポンシブ対応まで自動実装します。あなたはブラウザで確認しながら「ここをもっと大きく」などの指示を出すだけです。
+            </div>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--purple);">
                 <strong>📖 「開発サーバー」とは？</strong>
@@ -1630,13 +1672,35 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
                 </p>
             </div>
 
-            <h4>Part 5: 品質チェック（Skills活用）</h4>
+            <h4>Part 5: 品質チェック（Skills活用）— 所要時間: 5分</h4>
+            <p><strong>目的：</strong> 実装したコードの品質を自動レビューし、バグやアンチパターンを事前に発見・修正します。</p>
+            <p><strong>やること：</strong> <code>@code-review</code> Skill を呼び出すと、AI が全コンポーネントをレビューし、改善すべき点を自動的に修正してくれます。</p>
+
             <pre><code>@code-review ai-coffee-shop/src/components/ のすべてのコンポーネントを
 レビューして、改善点があれば自動的に修正して。</code></pre>
 
-            <h4>Part 6: デプロイ</h4>
+            <div class="card" style="font-size: 0.9rem;">
+                <strong>💡 ポイント：</strong> チーム開発でのコードレビューと同じ流れを、AI が自動実行します。「パフォーマンス改善」「セキュリティチェック」「コーディング規約の遵守」などを一括チェックできます。
+            </div>
+
+            <h4>Part 6: デプロイ — 所要時間: 2分</h4>
+            <p><strong>目的：</strong> 完成した LP を本番環境にデプロイし、実際に公開できる状態にします。</p>
+            <p><strong>やること：</strong> AI に「Firebase Hosting にデプロイ準備」と依頼すると、プロダクションビルド実行から設定ファイル作成まで自動化されます。</p>
+
             <pre><code>プロダクションビルドを実行して、
 Firebase Hosting にデプロイする準備をして。</code></pre>
+
+            <div class="card" style="font-size: 0.9rem;">
+                <strong>💡 ポイント：</strong> 従来なら「ビルドコマンドは何？」「設定ファイルのフォーマットは？」と調べながら作業する必要がありましたが、AI が全て自動化してくれます。
+            </div>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--green); margin-top: 20px;">
+                <strong>✅ 完成！</strong>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    これで、<strong>リサーチ → 企画 → デザイン → 実装 → レビュー → デプロイ</strong> という本格的な Web 開発フローを約30分で体験できました。<br>
+                    従来の開発手法では数日〜1週間かかる作業を、Antigravity + MCP + Skills の組み合わせで大幅に短縮できることを実感していただけたと思います。
+                </p>
+            </div>
             <!-- 【画像挿入箇所】 完成したAI Coffee Shop LPのスクリーンショットや構築中のチャット画面 -->
             <img class="screenshot" src="img/fig12.png"
                 alt="Vibe Coding 発展編で作成された「AI Coffee Shop LP」の完成版のブラウザプレビュー。近未来的なデザインと Nano Banana で生成された高品質な画像が調和しているスクリーンショット">
