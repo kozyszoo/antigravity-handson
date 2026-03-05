@@ -1285,7 +1285,7 @@ description: 挨拶のテスト用ワークフロー
                     <tr>
                         <td><code>serena</code></td>
                         <td>大規模コードベース解析</td>
-                        <td>MCP Store から追加</td>
+                        <td>設定ファイルで追加（後述）</td>
                     </tr>
                     <tr>
                         <td><code>github</code></td>
@@ -1295,15 +1295,39 @@ description: 挨拶のテスト用ワークフロー
                 </tbody>
             </table>
 
-            <h3>ハンズオン: MCP Store から追加する</h3>
-            <!-- 【画像挿入箇所】 MCP Storeを開いてブラウザからインストールしている様子のスクショ -->
-            <img class="screenshot" src="img/fig8.png"
-                alt="Antigravity の MCP Store 画面。利用可能な MCP サーバーの一覧から特定のサーバーを選択し、Install ボタンをクリックしている様子のスクリーンショット">
+            <h3>ハンズオン: serena を設定ファイルで追加する</h3>
+            <p>MCP サーバーは GUI の MCP Store から追加する方法と、設定ファイルを直接編集する方法の2つがあります。ここでは、大規模コードベース解析に使える <code>serena</code> MCP を例に、設定ファイルでの追加方法を学びます。</p>
+
+            <h4>設定ファイルの場所</h4>
+            <p>Antigravity の MCP 設定ファイルは <code>.gemini/antigravity/mcp_config.json</code> に配置されています。</p>
+
+            <h4>設定手順</h4>
             <ol>
                 <li>Agent パネル右上の <code>...</code>（三点メニュー）をクリック</li>
-                <li><strong>MCP Store</strong> を選択</li>
-                <li>使いたいサーバーを選び <strong>Install</strong> ボタンをクリック</li>
+                <li><strong>Manage MCP Servers</strong> を選択</li>
+                <li>メインタブの <strong>View raw config</strong> をクリック</li>
+                <li>以下の設定を <code>mcpServers</code> セクションに追加：
+                    <pre><code>{
+  "mcpServers": {
+    "serena": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide"
+      ]
+    }
+  }
+}</code></pre>
+                </li>
+                <li>設定を保存して Antigravity を再起動</li>
+                <li>プロジェクトを開いた後、エージェントに「Activate the current project using serena's activation tool」と依頼して serena を有効化</li>
             </ol>
+
+            <blockquote>💡 <strong>ヒント:</strong> 簡単に試したい場合は、MCP Store からワンクリックでインストールすることもできます。設定ファイルでの追加は、バージョン管理や複数環境での一貫した設定に便利です。</blockquote>
 
             <h3>やってみよう</h3>
             <p style="margin-bottom: 20px;">以下の演習を通して、AI が外部ツールを自律的に使いこなす様子を体験してみましょう。実行前に、MCP Store から
@@ -1313,13 +1337,13 @@ description: 挨拶のテスト用ワークフロー
             <h4>演習: ドキュメント参照</h4>
             <div class="card" style="margin-bottom: 16px; border-left: 4px solid var(--purple);">
                 <p style="font-size: 0.9rem; margin: 0;"><strong>💡 ここでの MCP の役割:</strong> <code>browser</code> MCP
-                    は、Web ブラウザを自動操作して公式ドキュメントを参照できるツールです。AI が自律的にブラウザを開き、React などのライブラリの公式ドキュメントにアクセスして、最新の情報を取得してくれます。通常の手動検索よりも、特定のページを素早く正確に読み込み、正しい書き方を提案してくれます。</p>
+                    は、Web ブラウザを自動操作して公式ドキュメントを参照できるツールです。AI が自律的にブラウザを開き、React
+                    などのライブラリの公式ドキュメントにアクセスして、最新の情報を取得してくれます。通常の手動検索よりも、特定のページを素早く正確に読み込み、正しい書き方を提案してくれます。</p>
             </div>
-            <pre><code>Browser MCP を使って、React 公式ドキュメントから
-useEffect フックの最新の使い方を調べて教えて。</code></pre>
+            <pre><code>Browser を操作して、React 公式ドキュメントから useEffect フックの最新の使い方を調べて教えて。</code></pre>
             <!-- 【画像挿入箇所】 Browser MCP などの外部ツールを使って情報を取得し、チャットで答えている様子のスクショ -->
             <img class="screenshot" src="img/fig9.png"
-                alt="Browser MCP を利用して React 公式ドキュメントを参照し、エージェントが useEffect フックの最新の使い方をチャット上で解説しているスクリーンショット">
+                alt="Browser を操作して React 公式ドキュメントを参照し、エージェントが useEffect フックの最新の使い方をチャット上で解説しているスクリーンショット">
 
             <h3>⚠️ セキュリティ上の注意 — 野良 MCP に気をつけよう</h3>
             <blockquote>
@@ -1596,7 +1620,8 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
                 </ul>
             </div>
 
-            <div class="card" style="background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%); border: 2px solid var(--purple);">
+            <div class="card"
+                style="background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%); border: 2px solid var(--purple);">
                 <strong>👥 自分のペースで進めましょう</strong>
                 <div style="margin-top: 12px;">
                     <div style="margin-bottom: 12px;">
@@ -1754,7 +1779,8 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
 
             <p><strong>ステップ1: Firebase プロジェクトの作成</strong></p>
             <ol style="font-size: 0.9rem;">
-                <li><a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a> にアクセス（Google アカウントでログイン）</li>
+                <li><a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a> にアクセス（Google
+                    アカウントでログイン）</li>
                 <li>「プロジェクトを追加」をクリック</li>
                 <li>プロジェクト名を入力（例：<code>ai-coffee-shop</code>）</li>
                 <li>Google アナリティクスは「今は設定しない」でOK</li>
@@ -1763,7 +1789,8 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
 
             <p><strong>ステップ2: Firebase CLI のインストールとログイン</strong></p>
             <p style="font-size: 0.9rem; margin-top: 8px;">
-                <strong>初心者の方へ：</strong>ターミナル操作が不安な場合は、<strong>以下のコマンドを Antigravity のチャットにコピペして「実行して」と依頼</strong>すれば、AI が代わりに実行してくれます。
+                <strong>初心者の方へ：</strong>ターミナル操作が不安な場合は、<strong>以下のコマンドを Antigravity のチャットにコピペして「実行して」と依頼</strong>すれば、AI
+                が代わりに実行してくれます。
             </p>
 
             <pre><code># Firebase CLI をインストール（初回のみ）
