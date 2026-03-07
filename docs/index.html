@@ -638,6 +638,34 @@
                 </tbody>
             </table>
 
+            <h3>エディタの AI 機能</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>機能</th>
+                        <th>ショートカット</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Supercomplete</td>
+                        <td><code>Tab</code></td>
+                        <td>複数行のコード提案を先読みして提示</td>
+                    </tr>
+                    <tr>
+                        <td>Tab-to-Jump</td>
+                        <td><code>Tab</code></td>
+                        <td>次の編集場所に自動ジャンプ</td>
+                    </tr>
+                    <tr>
+                        <td>Command</td>
+                        <td><code>Cmd + I</code></td>
+                        <td>自然言語でコード変更を指示</td>
+                    </tr>
+                </tbody>
+            </table>
+
             <h4>6. モデル選択</h4>
             <p>Agent Manager の右上にあるモデル選択プルダウンから、タスクに応じて最適なモデルを切り替えられます。<br>
                 <strong>基本は <code>Gemini 3 Pro (High)</code> を選んでおけば間違いありません。</strong>使いすぎて Rate Limit
@@ -764,13 +792,6 @@
                 </ul>
             </div>
 
-            <h3>やってみよう</h3>
-            <pre><code>こんにちは！今日の日付と曜日を教えて。</code></pre>
-            <p>日本語で日付と曜日が返ってくれば成功です。</p>
-            <!-- 【画像挿入箇所】 チャット欄で「こんにちは...」と入力し、AIが日本語で返信している様子のスクショ -->
-            <img class="screenshot" src="img/fig3.png"
-                alt="エージェントとの対話画面。ユーザーの挨拶に対して、AIが現在の日付と曜日を日本語で正確に返答している様子のスクリーンショット">
-
             <h3>🛠️ ターミナルでエラーが出たら</h3>
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--orange);">
                 <strong>⚠️ 初心者向け：ターミナルエラーの対処法</strong>
@@ -802,33 +823,12 @@
                 </ul>
             </div>
 
-            <h3>エディタの AI 機能</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>機能</th>
-                        <th>ショートカット</th>
-                        <th>説明</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Supercomplete</td>
-                        <td><code>Tab</code></td>
-                        <td>複数行のコード提案を先読みして提示</td>
-                    </tr>
-                    <tr>
-                        <td>Tab-to-Jump</td>
-                        <td><code>Tab</code></td>
-                        <td>次の編集場所に自動ジャンプ</td>
-                    </tr>
-                    <tr>
-                        <td>Command</td>
-                        <td><code>Cmd + I</code></td>
-                        <td>自然言語でコード変更を指示</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h3>やってみよう</h3>
+            <pre><code>こんにちは！今日の日付と曜日を教えて。</code></pre>
+            <p>日本語で日付と曜日が返ってくれば成功です。</p>
+            <!-- 【画像挿入箇所】 チャット欄で「こんにちは...」と入力し、AIが日本語で返信している様子のスクショ -->
+            <img class="screenshot" src="img/fig3.png"
+                alt="エージェントとの対話画面。ユーザーの挨拶に対して、AIが現在の日付と曜日を日本語で正確に返答している様子のスクリーンショット">
 
             <h3>トラブルシューティング</h3>
             <table>
@@ -1037,54 +1037,6 @@ description: 挨拶のテスト用ワークフロー
                 <li>すぐに動く Web ページを一つ作る</li>
             </ul>
 
-            <h3>Part 1: シンプルな HTML ページを作成（5分）</h3>
-            <pre><code>新しいフォルダ「my-first-vibe」を作成して、その中にシンプルなHTMLファイルを作って。
-テーマは「自己紹介ページ」で、モダンでおしゃれなデザインにして。</code></pre>
-            <pre><code>作成したHTMLファイルをブラウザでプレビューして</code></pre>
-
-            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
-                <strong>💡 「ブラウザでプレビュー」の意味</strong>
-                <p style="margin-top: 8px; font-size: 0.9rem;">
-                    AIに「ブラウザでプレビューして」と依頼すると、AIが自動的に以下を実行してくれます：
-                </p>
-                <ol style="font-size: 0.9rem; margin-top: 8px;">
-                    <li>HTMLファイルをデフォルトのブラウザ（Chrome、Safariなど）で開く</li>
-                    <li>または、開発サーバーを起動して <code>http://localhost:ポート番号</code> で表示</li>
-                    <li>Antigravityが自動的にターミナルコマンドを実行してくれるので、<strong>あなたは何もする必要がありません</strong></li>
-                </ol>
-                <p style="font-size: 0.9rem; margin-top: 8px;">
-                    ブラウザウィンドウが自動的に開き、作成したページが表示されます。
-                </p>
-            </div>
-
-            <!-- 【画像挿入箇所】 ブラウザでプレビューしたオシャレな自己紹介ページのスクショ -->
-            <img class="screenshot" src="img/fig6.png"
-                alt="初期段階のシンプルな自己紹介ページをブラウザでプレビュー表示しているスクリーンショット。基本レイアウトが適用されている状態">
-
-            <h3>Part 2: デザインをカスタマイズ（10分）</h3>
-            <pre><code>背景色をダークモードに変更して。
-アクセントカラーは青緑系（#4ecca3）にして。</code></pre>
-            <pre><code>名前の部分にふわっと表示されるアニメーションを追加して</code></pre>
-            <pre><code>スマホでも綺麗に見えるようにレスポンシブ対応して</code></pre>
-
-            <h3>Part 3: Nano Banana で画像生成（15分）</h3>
-            <pre><code>Nano Bananaで、プロフィール用のアバター画像を生成して。
-- スタイル: アニメ風またはイラスト風
-- 背景: シンプルなグラデーション
-- サイズ: 正方形
-ファイル名は「avatar.png」で保存して。</code></pre>
-            <pre><code>Nano Bananaで、ヘッダー用の背景画像を生成して。
-- テーマ: 抽象的な波模様
-- 色: 紺から青緑へのグラデーション
-- 幅広い横長画像
-ファイル名は「header-bg.png」で保存して。</code></pre>
-            <pre><code>生成したavatar.pngとheader-bg.pngを自己紹介ページに配置して。
-- avatar.pngは丸くトリミングしてプロフィール欄に
-- header-bg.pngはヘッダーの背景に</code></pre>
-            <!-- 【画像挿入箇所】 Nano Bananaで生成した画像が反映された完成版ページのスクショ -->
-            <img class="screenshot" src="img/fig7.png"
-                alt="Nano Bananaで生成されたアニメ風アバターとグラデーション背景画像が組み込まれ、ダークテーマで装飾された完成版の自己紹介ページのスクリーンショット">
-
             <h3>Vibe Coding のコツ</h3>
             <div class="card">
                 <h4>1. 具体的に伝える</h4>
@@ -1156,53 +1108,53 @@ description: 挨拶のテスト用ワークフロー
                 </p>
             </div>
 
-            <h3>Tips: アーティファクト（成果物ドキュメント）を活用する</h3>
-            <p>AntigravityのAIエージェントは、チャットの返答とは別に独立したドキュメント（アーティファクト）を作成する機能があります。特に複雑な要件や中規模以上の開発を行う際は、いきなりコードを書かせるのではなく、まず以下のようなアーティファクトを作成するように指示することで、開発を整理しながら安全かつスムーズに進めることができます。
-            </p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>アーティファクト</th>
-                        <th>説明</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Implementation Plan</td>
-                        <td>どう実装するかの全体設計</td>
-                    </tr>
-                    <tr>
-                        <td>Task Lists</td>
-                        <td>具体的な作業ステップ</td>
-                    </tr>
-                    <tr>
-                        <td>Code Diffs</td>
-                        <td>実際に変更されるコードのプレビュー</td>
-                    </tr>
-                    <tr>
-                        <td>Walkthrough</td>
-                        <td>タスク完了後の変更概要とテスト方法</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h3>Part 1: シンプルな HTML ページを作成（5分）</h3>
+            <pre><code>新しいフォルダ「my-first-vibe」を作成して、その中にシンプルなHTMLファイルを作って。
+テーマは「自己紹介ページ」で、モダンでおしゃれなデザインにして。</code></pre>
+            <pre><code>作成したHTMLファイルをブラウザでプレビューして</code></pre>
 
-            <h3>Tips: Web ブラウザを操作する（標準機能）</h3>
-            <p>Antigravity では、特別な拡張機能をインストールしなくても、<strong>デフォルトで外部の Web サイトを検索・閲覧したり、ブラウザの画面を操作する機能</strong>が備わっています。AI
-                は最新の公式ドキュメントやネット上の情報を自律的に検索したり、開発中のアプリをブラウザで開いて自律的にテストを行ってくれます。</p>
-
-            <div class="card" style="margin-bottom: 16px; border-left: 4px solid var(--blue);">
-                <p style="font-size: 0.9rem; margin: 0 0 8px;"><strong>💡 どういう時に便利？:</strong></p>
-                <ul style="font-size: 0.9rem; margin: 0; padding-left: 20px;">
-                    <li style="margin-bottom: 4px;"><strong>最新情報の検索:</strong> エラーの解決策を調べたい時や、最新の技術バージョンについて知りたい時など、AI
-                        の事前学習データに含まれていない「リアルタイムな情報」が必要な場面</li>
-                    <li><strong>動作確認・操作の自動化:</strong>
-                        「ローカルサーバーを起ち上げてブラウザで開き、ボタンをクリックして意図通り動くかテストして」のように、実際のブラウザ操作を自動実行させたい場面</li>
-                </ul>
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
+                <strong>💡 「ブラウザでプレビュー」の意味</strong>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    AIに「ブラウザでプレビューして」と依頼すると、AIが自動的に以下を実行してくれます：
+                </p>
+                <ol style="font-size: 0.9rem; margin-top: 8px;">
+                    <li>HTMLファイルをデフォルトのブラウザ（Chrome、Safariなど）で開く</li>
+                    <li>または、開発サーバーを起動して <code>http://localhost:ポート番号</code> で表示</li>
+                    <li>Antigravityが自動的にターミナルコマンドを実行してくれるので、<strong>あなたは何もする必要がありません</strong></li>
+                </ol>
+                <p style="font-size: 0.9rem; margin-top: 8px;">
+                    ブラウザウィンドウが自動的に開き、作成したページが表示されます。
+                </p>
             </div>
 
-            <h4>やってみよう</h4>
-            <pre><code>Google で「Antigravity IDE 2026」を検索して、
-トップ3件の記事タイトルを教えて。</code></pre>
+            <!-- 【画像挿入箇所】 ブラウザでプレビューしたオシャレな自己紹介ページのスクショ -->
+            <img class="screenshot" src="img/fig6.png"
+                alt="初期段階のシンプルな自己紹介ページをブラウザでプレビュー表示しているスクリーンショット。基本レイアウトが適用されている状態">
+
+            <h3>Part 2: デザインをカスタマイズ（10分）</h3>
+            <pre><code>背景色をダークモードに変更して。
+アクセントカラーは青緑系（#4ecca3）にして。</code></pre>
+            <pre><code>名前の部分にふわっと表示されるアニメーションを追加して</code></pre>
+            <pre><code>スマホでも綺麗に見えるようにレスポンシブ対応して</code></pre>
+
+            <h3>Part 3: Nano Banana で画像生成（15分）</h3>
+            <pre><code>Nano Bananaで、プロフィール用のアバター画像を生成して。
+- スタイル: アニメ風またはイラスト風
+- 背景: シンプルなグラデーション
+- サイズ: 正方形
+ファイル名は「avatar.png」で保存して。</code></pre>
+            <pre><code>Nano Bananaで、ヘッダー用の背景画像を生成して。
+- テーマ: 抽象的な波模様
+- 色: 紺から青緑へのグラデーション
+- 幅広い横長画像
+ファイル名は「header-bg.png」で保存して。</code></pre>
+            <pre><code>生成したavatar.pngとheader-bg.pngを自己紹介ページに配置して。
+- avatar.pngは丸くトリミングしてプロフィール欄に
+- header-bg.pngはヘッダーの背景に</code></pre>
+            <!-- 【画像挿入箇所】 Nano Bananaで生成した画像が反映された完成版ページのスクショ -->
+            <img class="screenshot" src="img/fig7.png"
+                alt="Nano Bananaで生成されたアニメ風アバターとグラデーション背景画像が組み込まれ、ダークテーマで装飾された完成版の自己紹介ページのスクリーンショット">
 
             <div class="nav-btns">
                 <a href="#step1-2" class="btn">← Step 1-2</a>
@@ -1296,7 +1248,8 @@ description: 挨拶のテスト用ワークフロー
             </table>
 
             <h3>ハンズオン: serena を設定ファイルで追加する</h3>
-            <p>MCP サーバーは GUI の MCP Store から追加する方法と、設定ファイルを直接編集する方法の2つがあります。ここでは、大規模コードベース解析に使える <code>serena</code> MCP を例に、設定ファイルでの追加方法を学びます。</p>
+            <p>MCP サーバーは GUI の MCP Store から追加する方法と、設定ファイルを直接編集する方法の2つがあります。ここでは、大規模コードベース解析に使える <code>serena</code> MCP
+                を例に、設定ファイルでの追加方法を学びます。</p>
 
             <h4>設定ファイルの場所</h4>
             <p>Antigravity の MCP 設定ファイルは <code>.gemini/antigravity/mcp_config.json</code> に配置されています。</p>
@@ -1324,10 +1277,12 @@ description: 挨拶のテスト用ワークフロー
 }</code></pre>
                 </li>
                 <li>設定を保存して Antigravity を再起動</li>
-                <li>プロジェクトを開いた後、エージェントに「Activate the current project using serena's activation tool」と依頼して serena を有効化</li>
+                <li>プロジェクトを開いた後、エージェントに「Activate the current project using serena's activation tool」と依頼して serena を有効化
+                </li>
             </ol>
 
-            <blockquote>💡 <strong>ヒント:</strong> 簡単に試したい場合は、MCP Store からワンクリックでインストールすることもできます。設定ファイルでの追加は、バージョン管理や複数環境での一貫した設定に便利です。</blockquote>
+            <blockquote>💡 <strong>ヒント:</strong> 簡単に試したい場合は、MCP Store
+                からワンクリックでインストールすることもできます。設定ファイルでの追加は、バージョン管理や複数環境での一貫した設定に便利です。</blockquote>
 
             <h3>やってみよう</h3>
             <p style="margin-bottom: 20px;">以下の演習を通して、AI が外部ツールを自律的に使いこなす様子を体験してみましょう。上記の手順で
@@ -1337,7 +1292,8 @@ description: 挨拶のテスト用ワークフロー
             <h4>演習: コードベース分析</h4>
             <div class="card" style="margin-bottom: 16px; border-left: 4px solid var(--purple);">
                 <p style="font-size: 0.9rem; margin: 0;"><strong>💡 ここでの MCP の役割:</strong> <code>serena</code> MCP
-                    は、大規模なコードベースを意味的に解析し、特定の機能やパターンを見つけ出すツールです。AI が自律的にプロジェクト全体をスキャンし、関連するコードを発見・分析してくれます。通常の grep や検索では見つけにくい、意味的に関連するコードも見つけられます。</p>
+                    は、大規模なコードベースを意味的に解析し、特定の機能やパターンを見つけ出すツールです。AI が自律的にプロジェクト全体をスキャンし、関連するコードを発見・分析してくれます。通常の grep
+                    や検索では見つけにくい、意味的に関連するコードも見つけられます。</p>
             </div>
             <pre><code>serena を使って、このプロジェクト内で useState フックを使っているコンポーネントを全て見つけて、それぞれどのような状態を管理しているか分析して教えて。</code></pre>
             <!-- 【画像挿入箇所】 serena MCP でコードベースを分析し、エージェントが useState の使用状況をチャット上で解説しているスクリーンショット -->
@@ -1403,6 +1359,34 @@ description: 挨拶のテスト用ワークフロー
             <p>Skills は、特定のタスクを実行する手順をパッケージ化してエージェントに教える機能です。簡単に言うと、<strong>「AIに新しい『技能』を教える機能」</strong>です。</p>
             <blockquote>📚 公式ドキュメント: <a href="https://antigravity.google/docs/skills"
                     target="_blank">https://antigravity.google/docs/skills</a></blockquote>
+
+            <h3>Skills / Rules / Workflows の比較</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>機能</th>
+                        <th>目的</th>
+                        <th>発動方法</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Rules</td>
+                        <td>エージェントの振る舞いを制御する</td>
+                        <td>自動、または <code>@ファイル名</code></td>
+                    </tr>
+                    <tr>
+                        <td>Workflows</td>
+                        <td>定型タスクを自動化する</td>
+                        <td><code>/ワークフロー名</code></td>
+                    </tr>
+                    <tr>
+                        <td>Skills</td>
+                        <td>専門的な能力を追加する</td>
+                        <td><code>@スキル名</code>、または AI が自動判断</td>
+                    </tr>
+                </tbody>
+            </table>
 
             <h3>Skills の構造</h3>
             <pre><code>.agent/skills/&lt;skill-name&gt;/
@@ -1524,33 +1508,6 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
                 </tbody>
             </table>
 
-            <h3>Skills / Rules / Workflows の比較</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>機能</th>
-                        <th>目的</th>
-                        <th>発動方法</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Rules</td>
-                        <td>エージェントの振る舞いを制御する</td>
-                        <td>自動、または <code>@ファイル名</code></td>
-                    </tr>
-                    <tr>
-                        <td>Workflows</td>
-                        <td>定型タスクを自動化する</td>
-                        <td><code>/ワークフロー名</code></td>
-                    </tr>
-                    <tr>
-                        <td>Skills</td>
-                        <td>専門的な能力を追加する</td>
-                        <td><code>@スキル名</code>、または AI が自動判断</td>
-                    </tr>
-                </tbody>
-            </table>
 
             <div class="nav-btns">
                 <a href="#step3-1" class="btn">← Step 3-1</a>
@@ -1602,6 +1559,55 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
                     </tr>
                 </tbody>
             </table>
+
+            <h3>Tips: アーティファクト（成果物ドキュメント）を活用する</h3>
+            <p>AntigravityのAIエージェントは、チャットの返答とは別に独立したドキュメント（アーティファクト）を作成する機能があります。特に複雑な要件や中規模以上の開発を行う際は、いきなりコードを書かせるのではなく、まず以下のようなアーティファクトを作成するように指示することで、開発を整理しながら安全かつスムーズに進めることができます。
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>アーティファクト</th>
+                        <th>説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Implementation Plan</td>
+                        <td>どう実装するかの全体設計</td>
+                    </tr>
+                    <tr>
+                        <td>Task Lists</td>
+                        <td>具体的な作業ステップ</td>
+                    </tr>
+                    <tr>
+                        <td>Code Diffs</td>
+                        <td>実際に変更されるコードのプレビュー</td>
+                    </tr>
+                    <tr>
+                        <td>Walkthrough</td>
+                        <td>タスク完了後の変更概要とテスト方法</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Tips: Web ブラウザを操作する（標準機能）</h3>
+            <p>Antigravity では、特別な拡張機能をインストールしなくても、<strong>デフォルトで外部の Web サイトを検索・閲覧したり、ブラウザの画面を操作する機能</strong>が備わっています。AI
+                は最新の公式ドキュメントやネット上の情報を自律的に検索したり、開発中のアプリをブラウザで開いて自律的にテストを行ってくれます。</p>
+
+            <div class="card" style="margin-bottom: 16px; border-left: 4px solid var(--blue);">
+                <p style="font-size: 0.9rem; margin: 0 0 8px;"><strong>💡 どういう時に便利？:</strong></p>
+                <ul style="font-size: 0.9rem; margin: 0; padding-left: 20px;">
+                    <li style="margin-bottom: 4px;"><strong>最新情報の検索:</strong> エラーの解決策を調べたい時や、最新の技術バージョンについて知りたい時など、AI
+                        の事前学習データに含まれていない「リアルタイムな情報」が必要な場面</li>
+                    <li><strong>動作確認・操作の自動化:</strong>
+                        「ローカルサーバーを起ち上げてブラウザで開き、ボタンをクリックして意図通り動くかテストして」のように、実際のブラウザ操作を自動実行させたい場面</li>
+                </ul>
+            </div>
+
+            <h4>やってみよう</h4>
+            <pre><code>Google で「Antigravity IDE 2026」を検索して、
+トップ3件の記事タイトルを教えて。</code></pre>
+
 
             <h3>ハンズオン: AI Coffee Shop LP を作ろう</h3>
 
@@ -1655,10 +1661,10 @@ Step 6: デプロイ</code></pre>
 
             <h4>Part 1: Web リサーチ（MCP Browser）— 所要時間: 5分</h4>
             <p><strong>目的：</strong> 実在する競合サイトから最新のデザイントレンドを自動収集し、LP の品質を高めるための参考情報を得ます。</p>
-            <p><strong>やること：</strong> MCP Browser を使って Google 検索を実行し、上位サイトのデザイン要素（色使い・レイアウト・CTA ボタン・画像）を AI が自動分析します。
+            <p><strong>やること：</strong> Browser を使って Google 検索を実行し、上位サイトのデザイン要素（色使い・レイアウト・CTA ボタン・画像）を AI が自動分析します。
             </p>
 
-            <pre><code>Browser MCPを使って、「おしゃれなカフェ ランディングページ」で検索して、
+            <pre><code>Browserを使って、「おしゃれなカフェ ランディングページ」で検索して、
 上位5サイトのデザインの特徴を分析して。
 
 特に以下の点をまとめて：
@@ -1705,7 +1711,7 @@ Step 6: デプロイ</code></pre>
             <p><strong>やること：</strong> AI に「Vite + React + TailwindCSS で構築して」と依頼すると、プロジェクトのセットアップからコンポーネント実装まで全自動で行われます。
             </p>
 
-            <pre><code>この 04_vibe_coding_advanced フォルダに、
+            <pre><code>04_vibe_coding_advanced フォルダに、
 Vite + React + TailwindCSS のプロジェクトを作成して。
 プロジェクト名は「ai-coffee-shop」</code></pre>
             <pre><code>開発サーバーを起動してブラウザでプレビューして</code></pre>
@@ -2336,6 +2342,32 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     style="display: inline-block; font-size: 1.5rem; color: var(--primary); font-weight: 700; text-decoration: none; padding: 12px 24px; border: 2px solid var(--primary); border-radius: 8px; transition: background 0.2s, color 0.2s;">
                     @kozzy0919
                 </a>
+            </div>
+
+            <!-- 感想ツイート -->
+            <div class="card"
+                style="text-align: center; padding: 32px; margin-top: 24px; border: 2px solid #1DA1F2; background: linear-gradient(135deg, var(--bg-dark) 0%, rgba(29,161,242,0.08) 100%);">
+                <div style="font-size: 2rem; margin-bottom: 8px;">🐦</div>
+                <div style="font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 8px;">
+                    ハンズオンの感想をシェアしよう！
+                </div>
+                <div style="color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; line-height: 1.6;">
+                    今日の体験はいかがでしたか？<br>
+                    感想・学び・気づきを X（Twitter）でシェアしていただけると嬉しいです 🙌<br>
+                    <span
+                        style="font-size: 0.85rem; color: var(--muted);">下記ボタンをクリックすると、投稿フォームが開きます（内容は自由に編集できます）</span>
+                </div>
+                <!-- Twitter Web インテント：テンプレートテキスト・ハッシュタグ・URL を事前セット -->
+                <a href="https://twitter.com/intent/tweet?text=%E3%80%90%E6%84%9F%E6%83%B3%E3%80%91Google+AI+Student+Ambassador+%C3%97+Antigravity+%E3%83%8F%E3%83%B3%E3%82%BA%E3%82%AA%E3%83%B3%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81+Vibe+Coding%E3%81%A7AI%E3%81%A8%E4%B8%80%E7%B7%92%E3%81%AB%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B%E4%BD%93%E9%A8%93%E3%81%AF%E6%9C%80%E9%AB%98%E3%81%A7%E3%81%97%E3%81%9F%F0%9F%9A%80&hashtags=Antigravity%2CVibeCoding%2CGoogleAI%2CAIDD&url=https%3A%2F%2Fgoogleaistudentambassador-uoa.connpass.com%2Fevent%2F384075%2F"
+                    target="_blank" rel="noopener noreferrer"
+                    style="display: inline-block; background: #1DA1F2; color: #fff; font-weight: 700; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-size: 1rem; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 14px rgba(29,161,242,0.4);"
+                    onmouseover="this.style.background='#0d8ecf'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(29,161,242,0.5)';"
+                    onmouseout="this.style.background='#1DA1F2'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 14px rgba(29,161,242,0.4)';">
+                    𝕏 ポストする
+                </a>
+                <div style="margin-top: 16px; font-size: 0.82rem; color: var(--muted);">
+                    投稿文の例:「Antigravity × MCP × Skills で本格的な Web アプリが30分でできた！ #Antigravity #VibeCoding」
+                </div>
             </div>
 
             <div class="nav-btns">
