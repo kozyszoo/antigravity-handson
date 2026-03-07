@@ -47,19 +47,60 @@
 git clone https://github.com/YOUR_USERNAME/antigravity_handson.git
 cd antigravity_handson
 
-# 2. Marpをインストール（プレゼンテーション資料を表示する場合）
-npm install -g @marp-team/marp-cli
+# 2. ハンズオン資料を開く
+open docs/index.html
 
-# 3. プレゼンテーション資料を表示
-open presentation.html
-# または
-marp -s presentation.md
-
-# 4. ハンズオンを開始
-# handson/01_setup/README.md から順番に進めてください
+# 3. ハンズオンを開始
+# docs/index.html または zenn-book/chapters/ から順番に進めてください
 ```
 
-## 📂 ハンズオン構成
+## 📂 リポジトリ構成
+
+```
+antigravity_handson/
+├── .agent/                    # AIエージェント設定
+│   └── agents/               # カスタムエージェント定義
+│       ├── copy-designer.md
+│       ├── code-researcher.md
+│       ├── insight-analyst.md
+│       └── ...
+├── .claude/                   # Claude設定
+│   ├── settings.local.json   # ローカル設定
+│   └── skills/               # プロジェクト固有のスキル
+│       ├── database/
+│       ├── git-workflow/
+│       ├── ui-verify/
+│       └── ...
+├── docs/                      # ドキュメント・プレゼンテーション資料
+│   ├── index.html            # ハンズオンWebページ
+│   ├── live-coding-script.md # ライブコーディング台本
+│   └── img/                  # 画像・図表
+│       ├── fig1.png
+│       ├── fig2.png
+│       ├── slide-*.png       # スライド画像
+│       └── ...
+├── zenn-book/                 # Zenn本コンテンツ
+│   ├── chapters/             # 各章のMarkdown
+│   │   ├── 00-introduction.md
+│   │   ├── 01-1-setup.md
+│   │   ├── 01-2-gemini-md.md
+│   │   ├── 02-vibe-coding-basic.md
+│   │   ├── 03-1-mcp.md
+│   │   ├── 03-2-skills.md
+│   │   ├── 04-vibe-coding-advanced.md
+│   │   ├── 05-ai-dlc.md
+│   │   └── 08-summary.md
+│   ├── figures/              # 図表（Draw.io形式）
+│   │   ├── fig-01-antigravity-overview.drawio
+│   │   ├── fig-02-dual-view.drawio
+│   │   └── ...
+│   ├── figure-creation-prompts.md  # 図表作成プロンプト
+│   └── figure-prompts.yaml         # 図表生成設定
+├── LICENSE
+└── README.md
+```
+
+## 📚 コンテンツ構成
 
 ### 🕐 当日のタイムライン（2026.03.07）
 
@@ -73,17 +114,19 @@ marp -s presentation.md
 | 20:40〜21:00 | **Step 4** | Vibe Coding 発展編（AI Coffee Shop LP） |
 | 21:00〜21:10 | **Step 5** | まとめ：AI-DLCとハッカソン戦略 |
 
-### 📚 ハンズオン資料
+### 📖 Zenn本チャプター
 
-| No | フォルダ | 内容 | 時間帯 | 難易度 |
+| No | ファイル | 内容 | 時間帯 | 難易度 |
 |:---:|:---|:---|:---:|:---:|
-| **01** | [Step 1-1: 環境セットアップ](./handson/01_1_setup/README.md) | 環境構築・基本画面確認 | 19:30〜 | ⭐ |
-| **02** | [Step 1-2: GEMINI.md 設定](./handson/01_2_gemini_md/README.md) | GEMINI.md 設定 | 19:45〜 | ⭐⭐ |
-| **03** | [Step 2: Vibe Coding 基礎編](./handson/02_vibe_coding_basic/README.md) | 🎨 **自己紹介ページ + Nano Banana** | 20:00〜 | ⭐⭐ |
-| **04** | [Step 3-1: MCP 接続](./handson/03_1_mcp/README.md) | MCP接続・Browser Subagent | 20:20〜 | ⭐⭐ |
-| **05** | [Step 3-2: Agent Skills 作成](./handson/03_2_skills/README.md) | Agent Skills 作成 | 20:30〜 | ⭐⭐⭐ |
-| **06** | [Step 4: Vibe Coding 発展編](./handson/04_vibe_coding_advanced/README.md) | 🚀 **AI Coffee Shop LP 構築** | 20:40〜 | ⭐⭐⭐ |
-| **07** | [Step 5: AI-DLC戦略](./handson/05_ai_dlc/README.md) | 🏅 **ハッカソン攻略：AI-DLC** | 21:00〜 | ⭐⭐⭐ |
+| **00** | [はじめに](./zenn-book/chapters/00-introduction.md) | 本書の目的と対象読者 | - | - |
+| **01-1** | [環境セットアップ](./zenn-book/chapters/01-1-setup.md) | 環境構築・基本画面確認 | 19:30〜 | ⭐ |
+| **01-2** | [GEMINI.md 設定](./zenn-book/chapters/01-2-gemini-md.md) | GEMINI.md 設定 | 19:45〜 | ⭐⭐ |
+| **02** | [Vibe Coding 基礎編](./zenn-book/chapters/02-vibe-coding-basic.md) | 🎨 **自己紹介ページ + Nano Banana** | 20:00〜 | ⭐⭐ |
+| **03-1** | [MCP 接続](./zenn-book/chapters/03-1-mcp.md) | MCP接続・Browser Subagent | 20:20〜 | ⭐⭐ |
+| **03-2** | [Agent Skills 作成](./zenn-book/chapters/03-2-skills.md) | Agent Skills 作成 | 20:30〜 | ⭐⭐⭐ |
+| **04** | [Vibe Coding 発展編](./zenn-book/chapters/04-vibe-coding-advanced.md) | 🚀 **AI Coffee Shop LP 構築** | 20:40〜 | ⭐⭐⭐ |
+| **05** | [AI-DLC戦略](./zenn-book/chapters/05-ai-dlc.md) | 🏅 **ハッカソン攻略：AI-DLC** | 21:00〜 | ⭐⭐⭐ |
+| **08** | [まとめ](./zenn-book/chapters/08-summary.md) | 本書のまとめと次のステップ | - | - |
 
 **合計所要時間**: 約100分（ハンズオン部分のみ）
 
@@ -115,47 +158,39 @@ marp -s presentation.md
 
 
 
-## 📊 プレゼンテーション資料
+## 📊 ハンズオン資料
 
-登壇用のMarpプレゼンテーション資料が含まれています。
+### Webページ版（推奨）
 
-### ファイル
-
-- `presentation.md` - Marpソースファイル
-- `presentation.html` - HTML版（推奨）
-- `presentation.pdf` - PDF版
-
-### 表示方法
-
-#### HTML版（推奨）
+ハンズオンの詳細な手順とスライドがWebページ形式で提供されています。
 
 ```bash
 # ブラウザで開く
-open presentation.html
-
-# または、ライブサーバーで表示
-marp -s presentation.md
-# http://localhost:8080 にアクセス
+open docs/index.html
 ```
 
-**操作方法**:
-- `→` または `Space`: 次のスライド
-- `←`: 前のスライド
-- `F`: フルスクリーンモード
-- `Esc`: フルスクリーン解除
+**含まれる内容**:
+- ハンズオンの全手順（Step 1〜5）
+- スライド画像による視覚的な説明
+- ライブコーディングのデモ手順
 
-#### PDF版
+### Zenn本版
+
+各章が独立したMarkdownファイルとして `zenn-book/chapters/` に格納されています。
 
 ```bash
-open presentation.pdf
+# 各章を読む
+cat zenn-book/chapters/01-1-setup.md
+cat zenn-book/chapters/02-vibe-coding-basic.md
+# ...
 ```
 
-### プレゼンテーションの編集
+### ライブコーディング台本
+
+イベント登壇時のライブコーディング用台本です。
 
 ```bash
-# presentation.md を編集後、再生成
-marp presentation.md -o presentation.html --html
-marp presentation.md -o presentation.pdf --html --allow-local-files
+cat docs/live-coding-script.md
 ```
 
 
@@ -176,10 +211,7 @@ marp presentation.md -o presentation.pdf --html --allow-local-files
 
 ### オプション
 
-- **Marp CLI**: プレゼンテーション資料の表示・編集
-  ```bash
-  npm install -g @marp-team/marp-cli
-  ```
+- **任意のWebブラウザ**: ハンズオン資料（docs/index.html）の閲覧用
 
 ## 🛠️ セットアップ
 
@@ -213,20 +245,21 @@ File > Open Folder > antigravity_handson を選択
 
 ### ハンズオンの進め方
 
-1. **順番に進める**: `01_setup` から順番に進めることを推奨
-2. **各フォルダのREADME.mdを読む**: 詳細な手順が記載されています
-3. **実際に手を動かす**: コードを書いて、動かして、理解を深める
-4. **質問・疑問をメモ**: 後で調べたり、コミュニティで質問
+1. **Webページを開く**: `docs/index.html` をブラウザで開く
+2. **順番に進める**: Step 1から順番に進めることを推奨
+3. **Zenn本も参照**: `zenn-book/chapters/` に詳細な解説あり
+4. **実際に手を動かす**: コードを書いて、動かして、理解を深める
+5. **質問・疑問をメモ**: 後で調べたり、コミュニティで質問
 
-### 各ハンズオンの概要
+### 各ステップの概要
 
-#### 01. 環境セットアップ
+#### Step 1-1: 環境セットアップ
 
 Antigravityの基本操作を学びます。
 
 ```bash
-cd handson/01_setup
-# README.mdの手順に従って進める
+# Zenn本チャプターを参照
+cat zenn-book/chapters/01-1-setup.md
 ```
 
 **学習内容**:
@@ -234,13 +267,12 @@ cd handson/01_setup
 - プロジェクトの作成
 - Manager ViewとEditor Viewの使い分け
 
-#### 02. GEMINI.md 設定
+#### Step 1-2: GEMINI.md 設定
 
 プロジェクト固有のルールをAIに教えます。
 
 ```bash
-cd handson/02_gemini_md
-# README.mdの手順に従って進める
+cat zenn-book/chapters/01-2-gemini-md.md
 ```
 
 **学習内容**:
@@ -248,13 +280,12 @@ cd handson/02_gemini_md
 - プロジェクト設定の記述方法
 - コーディング規約の定義
 
-#### 03. Vibe Coding 基礎編
+#### Step 2: Vibe Coding 基礎編
 
 MCP/Skillsなしで、シンプルなVibe Codingを体験します。
 
 ```bash
-cd handson/03_vibe_coding_basic
-# README.mdの手順に従って進める
+cat zenn-book/chapters/02-vibe-coding-basic.md
 ```
 
 **学習内容**:
@@ -262,13 +293,12 @@ cd handson/03_vibe_coding_basic
 - Nano Bananaでの画像生成
 - デザインカスタマイズ
 
-#### 04. MCP 接続
+#### Step 3-1: MCP 接続
 
 外部ツールとの連携を学びます。
 
 ```bash
-cd handson/04_mcp
-# README.mdの手順に従って進める
+cat zenn-book/chapters/03-1-mcp.md
 ```
 
 **学習内容**:
@@ -276,13 +306,12 @@ cd handson/04_mcp
 - ブラウザMCPの接続
 - Context7によるドキュメント参照
 
-#### 05. Agent Skills 作成
+#### Step 3-2: Agent Skills 作成
 
 エージェントに新しい能力を追加します。
 
 ```bash
-cd handson/05_skills
-# README.mdの手順に従って進める
+cat zenn-book/chapters/03-2-skills.md
 ```
 
 **学習内容**:
@@ -290,19 +319,31 @@ cd handson/05_skills
 - SKILL.mdの作成
 - Rules / Workflows / Skills の使い分け
 
-#### 06. Vibe Coding 発展編
+#### Step 4: Vibe Coding 発展編
 
 MCP + Skills を活用した本格的なVibe Codingを実践します。
 
 ```bash
-cd handson/06_vibe_coding_advanced
-# README.mdの手順に従って進める
+cat zenn-book/chapters/04-vibe-coding-advanced.md
 ```
 
 **学習内容**:
 - MCPを使ったWebリサーチ
 - 複数のNano Banana画像の統合
 - 高速プロトタイピング
+
+#### Step 5: AI-DLC戦略
+
+ハッカソン攻略のための実践的な戦略を学びます。
+
+```bash
+cat zenn-book/chapters/05-ai-dlc.md
+```
+
+**学習内容**:
+- AI-DLCサイクルの理解
+- ハッカソンでの時間配分
+- チーム開発での活用方法
 
 ## 🎓 学習リソース
 
