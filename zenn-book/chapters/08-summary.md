@@ -92,3 +92,54 @@ git clone https://github.com/YOUR_USERNAME/antigravity_handson.git
 ```
 
 Issue やプルリクエストも歓迎です。
+
+---
+
+## おわりに
+
+本日はご参加いただきありがとうございました！
+
+Antigravity を使った AI 駆動開発の可能性を少しでも感じてもらえたなら嬉しいです。今後もイベントや学習コンテンツを通じて、一緒に「Vibe Coding」の世界を探求しましょう。
+
+### 🎪 今後のイベント
+
+#### 🛠️ AIDD もくもく会
+
+「AI 駆動開発（AIDD）」をテーマに、各自が持ち寄った課題を AI と共に解決するもくもく会。プロンプトや知見をみんなで共有します。
+
+- **開催日時**: 日程調整中
+- **形式**: オンライン（Discord / Zoom）
+
+#### 📚 AI 活用勉強会・登壇
+
+社内外の技術勉強会や登壇情報を随時発信中。気になる方は X をフォローしてください！
+
+- **開催頻度**: 随時開催
+- **フォロー**: [@kozzy0919](https://x.com/kozzy0919)
+
+### 📗 書籍のご紹介
+
+**開発系エンジニアのためのGit/GitHub絵とき入門**
+
+- **著者**: 山岡 滉治（やまおか こうじ）
+- **出版**: 秀和システム
+- **発売**: 2025年3月
+
+Git/GitHub の仕組みを「絵解き」でわかりやすく解説した入門書。チーム開発のフロー・ブランチ戦略・PR レビューまでカバーしています。エンジニア初心者から中級者まで必読！
+
+**購入リンク**:
+- [Amazon で詳細を見る](https://amzn.to/4ld2hGf)
+- [X で著者をフォロー @kozzy0919](https://x.com/kozzy0919)
+
+※上記リンクはAmazonアソシエイトリンクです。
+
+### 🔗 学習リソース
+
+- **公式ドキュメント**: [antigravity.google/docs](https://antigravity.google/docs)
+- **Qiita / Zenn**: #Antigravity タグで記事を検索
+- **YouTube**: [公式チャンネル](https://youtube.com/@antigravity)
+- **Discord**: Antigravity Developers Community
+
+---
+
+それでは、Happy Vibe Coding! 🚀

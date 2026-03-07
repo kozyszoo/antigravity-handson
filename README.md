@@ -126,6 +126,7 @@ antigravity_handson/
 | **03-2** | [Agent Skills 作成](./zenn-book/chapters/03-2-skills.md) | Agent Skills 作成 | 20:30〜 | ⭐⭐⭐ |
 | **04** | [Vibe Coding 発展編](./zenn-book/chapters/04-vibe-coding-advanced.md) | 🚀 **AI Coffee Shop LP 構築** | 20:40〜 | ⭐⭐⭐ |
 | **05** | [AI-DLC戦略](./zenn-book/chapters/05-ai-dlc.md) | 🏅 **ハッカソン攻略：AI-DLC** | 21:00〜 | ⭐⭐⭐ |
+| **06** | [活用Tips集](./zenn-book/chapters/06-tips.md) | 実践的な活用方法とリソース | - | ⭐⭐ |
 | **08** | [まとめ](./zenn-book/chapters/08-summary.md) | 本書のまとめと次のステップ | - | - |
 
 **合計所要時間**: 約100分（ハンズオン部分のみ）
@@ -460,29 +461,3 @@ tail -f ~/.config/Antigravity/logs/main.log
 ## 📄 ライセンス
 
 このプロジェクトは MIT ライセンスの下で公開されています。詳細は [LICENSE](LICENSE) ファイルを参照してください。
-
-## 👥 作成者
-
-- **Your Name** - [@your_twitter](https://twitter.com/your_twitter)
-
-## 🙏 謝辞
-
-- Google Antigravityチーム
-- コミュニティの皆様
-- このハンズオンに貢献してくださった方々
-
-## 📞 お問い合わせ
-
-- **Twitter**: [@your_twitter](https://twitter.com/your_twitter)
-- **Email**: your.email@example.com
-- **GitHub**: [Issues](https://github.com/YOUR_USERNAME/antigravity_handson/issues)
-
----
-
-<div align="center">
-
-**🚀 Google Antigravityで、重力から解放された開発体験を！**
-
-[公式サイト](https://antigravity.google) | [ドキュメント](https://antigravity.google/docs/get-started) | [コミュニティ](https://discord.gg/antigravity)
-
-</div>
