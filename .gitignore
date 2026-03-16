@@ -1,7 +1,7 @@
-# Antigravity
-.antigravity/
+# Codex
+.codex/
 .agent/cache/
-*.antigravity
+*.codex
 
 # Node
 node_modules/
