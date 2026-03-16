@@ -1,0 +1,33 @@
+<mxfile host="app.diagrams.net" modified="2026-02-15" type="device">
+  <diagram id="fig01" name="Antigravity Overview">
+    <mxGraphModel dx="600" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="520" pageHeight="420" background="#fefefe">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 中央ロゴ -->
+        <mxCell id="logo" value="🌀&#xa;Antigravity" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#a0c4f0;strokeWidth=2;fontColor=#4a6a9a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="175" y="155" width="160" height="100" as="geometry"/></mxCell>
+
+        <!-- 機能1: コード生成 (左上) -->
+        <mxCell id="f1" value="💻&#xa;コード生成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;strokeWidth=2;fontColor=#4a6a9a;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="140" height="70" as="geometry"/></mxCell>
+        <mxCell id="f1d" value="自然言語からコードを自動生成" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#7a9aba;fontSize=9;" vertex="1" parent="1"><mxGeometry x="10" y="90" width="160" height="18" as="geometry"/></mxCell>
+        <mxCell id="a1" value="" style="endArrow=classic;html=1;strokeColor=#90caf9;strokeWidth=2;curved=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="140" y="95" as="sourcePoint"/><mxPoint x="200" y="165" as="targetPoint"/></mxGeometry></mxCell>
+
+        <!-- 機能2: 画像生成 (右上) -->
+        <mxCell id="f2" value="🎨&#xa;画像生成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ffcc80;strokeWidth=2;fontColor=#9a7a3a;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="355" y="20" width="140" height="70" as="geometry"/></mxCell>
+        <mxCell id="f2d" value="Nano Banana でアセット作成" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#ba9a6a;fontSize=9;" vertex="1" parent="1"><mxGeometry x="345" y="90" width="160" height="18" as="geometry"/></mxCell>
+        <mxCell id="a2" value="" style="endArrow=classic;html=1;strokeColor=#ffcc80;strokeWidth=2;curved=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="375" y="95" as="sourcePoint"/><mxPoint x="310" y="165" as="targetPoint"/></mxGeometry></mxCell>
+
+        <!-- 機能3: ブラウザ操作 (左下) -->
+        <mxCell id="f3" value="🌐&#xa;ブラウザ操作" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#a5d6a7;strokeWidth=2;fontColor=#3a7a4a;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="20" y="320" width="140" height="70" as="geometry"/></mxCell>
+        <mxCell id="f3d" value="MCP 経由で Web を自動操作" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#6a9a7a;fontSize=9;" vertex="1" parent="1"><mxGeometry x="10" y="302" width="160" height="18" as="geometry"/></mxCell>
+        <mxCell id="a3" value="" style="endArrow=classic;html=1;strokeColor=#a5d6a7;strokeWidth=2;curved=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="140" y="325" as="sourcePoint"/><mxPoint x="200" y="250" as="targetPoint"/></mxGeometry></mxCell>
+
+        <!-- 機能4: コードレビュー (右下) -->
+        <mxCell id="f4" value="🔍&#xa;コードレビュー" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#ce93d8;strokeWidth=2;fontColor=#7a4a9a;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="355" y="320" width="140" height="70" as="geometry"/></mxCell>
+        <mxCell id="f4d" value="Skills で品質チェックを自動化" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#9a7aaa;fontSize=9;" vertex="1" parent="1"><mxGeometry x="345" y="302" width="160" height="18" as="geometry"/></mxCell>
+        <mxCell id="a4" value="" style="endArrow=classic;html=1;strokeColor=#ce93d8;strokeWidth=2;curved=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="375" y="325" as="sourcePoint"/><mxPoint x="310" y="250" as="targetPoint"/></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

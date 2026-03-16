@@ -1,0 +1,42 @@
+<mxfile host="app.diagrams.net" modified="2026-02-15" type="device">
+  <diagram id="fig02" name="Dual View">
+    <mxGraphModel dx="900" dy="450" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="380" background="#fefefe">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="2 つの View" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#555;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="280" y="5" width="240" height="28" as="geometry"/></mxCell>
+
+        <!-- 左: Editor View -->
+        <mxCell id="ev" value="" style="rounded=1;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="20" y="48" width="370" height="310" as="geometry"/></mxCell>
+        <mxCell id="evt" value="Editor View" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#4a6a9a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="120" y="55" width="170" height="25" as="geometry"/></mxCell>
+        <mxCell id="evd" value="日常のコーディング向け" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#7a9aba;fontSize=10;" vertex="1" parent="1"><mxGeometry x="105" y="78" width="200" height="18" as="geometry"/></mxCell>
+
+        <mxCell id="ev1" value="📝 コードエディタ" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="40" y="108" width="160" height="35" as="geometry"/></mxCell>
+        <mxCell id="ev2" value="💬 インラインチャット" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="210" y="108" width="160" height="35" as="geometry"/></mxCell>
+        <mxCell id="ev3" value="⚡ Supercomplete" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="40" y="155" width="160" height="35" as="geometry"/></mxCell>
+        <mxCell id="ev4" value="🔧 Command" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="210" y="155" width="160" height="35" as="geometry"/></mxCell>
+        <mxCell id="ev5" value="🎨 Nano Banana" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="40" y="202" width="160" height="35" as="geometry"/></mxCell>
+        <mxCell id="ev6" value="🔀 Inline Diff" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="210" y="202" width="160" height="35" as="geometry"/></mxCell>
+
+        <mxCell id="evc" value="特徴: 素早い編集・補完・差分確認" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#7a9aba;fontSize=9;fontStyle=2;" vertex="1" parent="1"><mxGeometry x="60" y="250" width="290" height="18" as="geometry"/></mxCell>
+
+        <!-- 右: Agent Manager -->
+        <mxCell id="am" value="" style="rounded=1;html=1;fillColor=#e8f5e9;strokeColor=#a5d6a7;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="410" y="48" width="370" height="310" as="geometry"/></mxCell>
+        <mxCell id="amt" value="Agent Manager" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#3a7a4a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="500" y="55" width="190" height="25" as="geometry"/></mxCell>
+        <mxCell id="amd" value="複雑なタスク向け" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#6a9a7a;fontSize=10;" vertex="1" parent="1"><mxGeometry x="500" y="78" width="190" height="18" as="geometry"/></mxCell>
+
+        <mxCell id="am1" value="🤖 AI エージェント" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="430" y="108" width="160" height="35" as="geometry"/></mxCell>
+        <mxCell id="am2" value="🔌 MCP 連携" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="600" y="108" width="160" height="35" as="geometry"/></mxCell>
+        <mxCell id="am3" value="🧠 Skills" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="430" y="155" width="160" height="35" as="geometry"/></mxCell>
+        <mxCell id="am4" value="📋 Workflows" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="600" y="155" width="160" height="35" as="geometry"/></mxCell>
+        <mxCell id="am5" value="💾 Memory" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="430" y="202" width="160" height="35" as="geometry"/></mxCell>
+        <mxCell id="am6" value="📊 タスク管理" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="600" y="202" width="160" height="35" as="geometry"/></mxCell>
+
+        <mxCell id="amc" value="特徴: 自律的なタスク実行・外部連携" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#6a9a7a;fontSize=9;fontStyle=2;" vertex="1" parent="1"><mxGeometry x="445" y="250" width="300" height="18" as="geometry"/></mxCell>
+
+        <!-- 切り替え矢印 -->
+        <mxCell id="sw" value="⌘ + Shift で切り替え" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#aa8aba;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="290" y="325" width="220" height="20" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,50 @@
+<mxfile host="app.diagrams.net" modified="2026-02-15" type="device">
+  <diagram id="fig09" name="Rules Workflows Skills">
+    <mxGraphModel dx="900" dy="450" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="380" background="#fefefe">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="Rules / Workflows / Skills の比較" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#555;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="200" y="5" width="400" height="28" as="geometry"/></mxCell>
+
+        <!-- Rules -->
+        <mxCell id="r" value="" style="rounded=1;html=1;fillColor=#fce4ec;strokeColor=#f8bbd0;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="25" y="48" width="235" height="310" as="geometry"/></mxCell>
+        <mxCell id="ri" value="⚙️" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontSize=28;" vertex="1" parent="1"><mxGeometry x="110" y="55" width="45" height="35" as="geometry"/></mxCell>
+        <mxCell id="rt" value="Rules" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#c06080;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="85" y="90" width="100" height="24" as="geometry"/></mxCell>
+        <mxCell id="rd" value="常に守るルール" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#d0a0b0;fontSize=11;" vertex="1" parent="1"><mxGeometry x="65" y="114" width="140" height="20" as="geometry"/></mxCell>
+        <mxCell id="rl" value="" style="line;strokeColor=#f8bbd0;opacity=50;" vertex="1" parent="1"><mxGeometry x="45" y="140" width="195" height="1" as="geometry"/></mxCell>
+        <mxCell id="rh" value="発動" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#c06080;fontSize=9;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="42" y="148" width="40" height="16" as="geometry"/></mxCell>
+        <mxCell id="rv" value="自動 / @ファイル名" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#888;fontSize=10;" vertex="1" parent="1"><mxGeometry x="42" y="164" width="160" height="18" as="geometry"/></mxCell>
+        <mxCell id="rf" value="ファイル" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#c06080;fontSize=9;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="42" y="190" width="60" height="16" as="geometry"/></mxCell>
+        <mxCell id="rfv" value="GEMINI.md" style="rounded=1;html=1;fillColor=#fff;strokeColor=#f8bbd0;fontColor=#c06080;fontSize=10;fontFamily=monospace;" vertex="1" parent="1"><mxGeometry x="42" y="208" width="100" height="22" as="geometry"/></mxCell>
+        <mxCell id="re" value="例" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#c06080;fontSize=9;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="42" y="242" width="30" height="16" as="geometry"/></mxCell>
+        <mxCell id="rev" value="• 日本語で応答&#xa;• camelCase 規約&#xa;• コメント必須" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#888;fontSize=10;" vertex="1" parent="1"><mxGeometry x="42" y="260" width="180" height="50" as="geometry"/></mxCell>
+
+        <!-- Workflows -->
+        <mxCell id="w" value="" style="rounded=1;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="283" y="48" width="235" height="310" as="geometry"/></mxCell>
+        <mxCell id="wi" value="📋" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontSize=28;" vertex="1" parent="1"><mxGeometry x="370" y="55" width="45" height="35" as="geometry"/></mxCell>
+        <mxCell id="wt" value="Workflows" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#4a6a9a;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="330" y="90" width="130" height="24" as="geometry"/></mxCell>
+        <mxCell id="wd" value="手順の自動実行" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#7a9aba;fontSize=11;" vertex="1" parent="1"><mxGeometry x="323" y="114" width="140" height="20" as="geometry"/></mxCell>
+        <mxCell id="wl" value="" style="line;strokeColor=#90caf9;opacity=50;" vertex="1" parent="1"><mxGeometry x="303" y="140" width="195" height="1" as="geometry"/></mxCell>
+        <mxCell id="wh" value="発動" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#4a6a9a;fontSize=9;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="300" y="148" width="40" height="16" as="geometry"/></mxCell>
+        <mxCell id="wv" value="/ワークフロー名" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#888;fontSize=10;" vertex="1" parent="1"><mxGeometry x="300" y="164" width="160" height="18" as="geometry"/></mxCell>
+        <mxCell id="wfn" value="ファイル" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#4a6a9a;fontSize=9;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="300" y="190" width="60" height="16" as="geometry"/></mxCell>
+        <mxCell id="wfv" value=".agent/workflows/*.md" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=10;fontFamily=monospace;" vertex="1" parent="1"><mxGeometry x="300" y="208" width="155" height="22" as="geometry"/></mxCell>
+        <mxCell id="we" value="例" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#4a6a9a;fontSize=9;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="300" y="242" width="30" height="16" as="geometry"/></mxCell>
+        <mxCell id="wev" value="• /hello&#xa;• /deploy&#xa;• /setup-env" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#888;fontSize=10;" vertex="1" parent="1"><mxGeometry x="300" y="260" width="180" height="50" as="geometry"/></mxCell>
+
+        <!-- Skills -->
+        <mxCell id="s" value="" style="rounded=1;html=1;fillColor=#e8f5e9;strokeColor=#a5d6a7;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="540" y="48" width="235" height="310" as="geometry"/></mxCell>
+        <mxCell id="si" value="🧠" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontSize=28;" vertex="1" parent="1"><mxGeometry x="628" y="55" width="45" height="35" as="geometry"/></mxCell>
+        <mxCell id="st" value="Skills" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#3a7a4a;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="600" y="90" width="100" height="24" as="geometry"/></mxCell>
+        <mxCell id="sd" value="専門能力の追加" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#6a9a7a;fontSize=11;" vertex="1" parent="1"><mxGeometry x="580" y="114" width="140" height="20" as="geometry"/></mxCell>
+        <mxCell id="sl" value="" style="line;strokeColor=#a5d6a7;opacity=50;" vertex="1" parent="1"><mxGeometry x="560" y="140" width="195" height="1" as="geometry"/></mxCell>
+        <mxCell id="sh" value="発動" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#3a7a4a;fontSize=9;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="557" y="148" width="40" height="16" as="geometry"/></mxCell>
+        <mxCell id="sv" value="@スキル名 / AI 自動判断" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#888;fontSize=10;" vertex="1" parent="1"><mxGeometry x="557" y="164" width="180" height="18" as="geometry"/></mxCell>
+        <mxCell id="sfn" value="ファイル" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#3a7a4a;fontSize=9;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="557" y="190" width="60" height="16" as="geometry"/></mxCell>
+        <mxCell id="sfv" value=".agent/skills/*/SKILL.md" style="rounded=1;html=1;fillColor=#fff;strokeColor=#a5d6a7;fontColor=#3a7a4a;fontSize=10;fontFamily=monospace;" vertex="1" parent="1"><mxGeometry x="557" y="208" width="160" height="22" as="geometry"/></mxCell>
+        <mxCell id="se" value="例" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#3a7a4a;fontSize=9;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="557" y="242" width="30" height="16" as="geometry"/></mxCell>
+        <mxCell id="sev" value="• @code-review&#xa;• @generate-test&#xa;• @translate-code" style="text;html=1;fillColor=none;strokeColor=none;align=left;fontColor=#888;fontSize=10;" vertex="1" parent="1"><mxGeometry x="557" y="260" width="180" height="50" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
