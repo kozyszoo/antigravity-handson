@@ -47,7 +47,7 @@ Step 1: Web リサーチ（MCP 活用）
     ↓
 Step 2: 競合分析 → 構成決定
     ↓
-Step 3: ビジュアル生成（Nano Banana）
+Step 3: ビジュアル生成（DALL-E）
     ↓
 Step 4: 実装（Skills 活用）
     ↓
@@ -70,7 +70,7 @@ Step 6: デプロイ
     ⑥ デプロイ（ロケットアイコン）
 
   各ステップの下に小さく使われるツール名を記載:
-    MCP Browser / AI分析 / Nano Banana / Vite+React / code-review Skill / Firebase
+    MCP Browser / AI分析 / DALL-E / Vite+React / code-review Skill / Firebase
 
   背景: ダーク (#1a1a2e)、アクセントカラー: #4ecca3、テキスト: 白。
   サイズ: 1000×300px。
@@ -151,12 +151,12 @@ Browser MCPを使って、「おしゃれなカフェ ランディングペー�
 
 ---
 
-## Part 3: ビジュアル生成（Nano Banana）【5分】
+## Part 3: ビジュアル生成（DALL-E）【5分】
 
 ### 3.1 ヒーロー画像の生成
 
 ```
-Nano Banana で、「近未来的なカフェの店内、
+DALL-E で、「近未来的なカフェの店内、
 ネオンブルーとウォームライト、観葉植物、
 4K、フォトリアリスティック」のイメージを生成して。
 ファイル名は hero-bg.webp で保存して。
@@ -295,7 +295,7 @@ firebase.json と .firebaserc が必要なら作成して。
 ## 最終確認
 
 - MCP（Browser）で Web リサーチができた
-- Nano Banana で複数の画像を生成できた
+- DALL-E で複数の画像を生成できた
 - React + TailwindCSS のプロジェクトが作成された
 - code-review Skill でコードレビューができた
 - レスポンシブデザインが機能している
@@ -342,7 +342,7 @@ MCP と Skills を組み合わせた本格的な Vibe Coding はここまでで�
 ### 今回学んだこと
 
 1. MCP による Web リサーチの自動化
-2. 複数の Nano Banana 画像の統合
+2. 複数の DALL-E 画像の統合
 3. React + TailwindCSS プロジェクトの作成
 4. Agent Skills によるコードレビュー
 5. デプロイまでの一貫したワークフロー
@@ -358,9 +358,9 @@ MCP と Skills を組み合わせた本格的な Vibe Coding はここまでで�
 
 ## 参考資料
 
-- [Antigravity 公式ドキュメント](https://antigravity.google/docs/get-started)
-- [MCP 公式ドキュメント](https://antigravity.google/docs/mcp)
-- [Agent Skills ガイド](https://antigravity.google/docs/skills)
+- [Codex 公式ドキュメント](https://openai.com/index/introducing-codex/)
+- [MCP 公式ドキュメント](https://modelcontextprotocol.io)
+- [Agent Skills ガイド](https://github.com/openai/codex)
 - [MCP プロトコル仕様](https://modelcontextprotocol.io/)
 
 ---

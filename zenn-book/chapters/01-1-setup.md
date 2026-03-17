@@ -3,7 +3,7 @@ title: "Step 1-1: 環境セットアップ"
 ---
 
 ## 目標
-Google Antigravity を起動して、ワークスペースの基本設定まで済ませましょう。
+OpenAI Codex を起動して、ワークスペースの基本設定まで済ませましょう。
 
 ---
 
@@ -15,14 +15,14 @@ Google Antigravity を起動して、ワークスペースの基本設定まで�
 | **Windows** | Windows 10 (64-bit) 以上 |
 | **Linux** | glibc >= 2.28, glibcxx >= 3.4.25（Ubuntu 20, Debian 10, Fedora 36, RHEL 8 等） |
 
-> 公式ドキュメント: https://antigravity.google/docs/get-started
+> 公式ドキュメント: https://openai.com/index/introducing-codex/
 
 ---
 
 ## チェックリスト
 
-### 1. Antigravity のインストール確認
-- Antigravity アプリケーションがインストールされている
+### 1. Codex CLI のインストール確認
+- Codex CLIがインストールされている
 - Google アカウントでログイン済み
 - アプリが最新版になっている（Restart to Update が出ていたら再起動してください）
 
@@ -34,12 +34,12 @@ Google Antigravity を起動して、ワークスペースの基本設定まで�
    - 再起動して日本語化を確認
 
 2. **ブラウザ拡張機能**（任意・後で設定してもOK）:
-   - Antigravity の設定画面（Agent パネル右上の `...` → `MCP Store`）から Browser 連携ツールを追加できます
+   - Codex CLI の設定画面（Agent パネル右上の `...` → `MCP Store`）から Browser 連携ツールを追加できます
    - 今すぐ必要ではないので、Step 3-1（MCP接続）で改めて説明します
 
 ### 3. ワークスペースの作成
 
-Antigravity を起動し、メニューから以下の操作を行ってください。
+Codex CLI を起動し、メニューから以下の操作を行ってください。
 
 1. `File` > `Open Folder` をクリック
 2. このハンズオンのフォルダ（`antigravity_handson`）を選択
@@ -47,12 +47,12 @@ Antigravity を起動し、メニューから以下の操作を行ってくだ�
 
 ### 4. 基本画面の確認
 
-Antigravity には 2つのメインView があります。
+Codex には 2つのメインView があります。
 
 <!--
   [図2: Editor View と Agent Manager の画面比較]
   【スクリーンショット指示】
-  実際の Antigravity 画面のキャプチャを左右2枚並べた比較図を作成する。
+  実際の Codex 画面のキャプチャを左右2枚並べた比較図を作成する。
 
   左側（Editor View）:
     - 左端: ファイルツリー（サイドバー）
@@ -94,20 +94,20 @@ Agent Manager で複数の会話を並行して行うことができます。過
 
 ### 5. モデル選択とモードの確認
 
-Antigravity では複数の AI モデルやモードを切り替えて使えます。
+Codex では複数の AI モデルやモードを切り替えて使えます。
 
 #### 推論モデル（Reasoning Model）
 メインのコーディングや対話に使うモデルです。右下のモデルセレクターで切り替えられます。
 
 | モデル | 特徴 |
 |:---|:---|
-| **Gemini 3 Pro** (High/Low) | Google の最新モデル。高性能 |
-| **Gemini 3 Flash** | 高速レスポンス |
-| **Claude Sonnet 4.5** | Anthropic 製。Standard / Thinking モード |
+| **codex-1** (High/Low) | Google の最新モデル。高性能 |
+| **o4-mini** | 高速レスポンス |
+| **GPT-4.1** | Anthropic 製。Standard / Thinking モード |
 | **Claude Opus 4.5** | Anthropic 製。高精度（Thinking モード） |
 | **GPT-OSS** | OpenAI 互換 |
 
-- `Gemini 3 Pro` が選択できる
+- `codex-1` が選択できる
 - 他のモデルにも切り替えられる
 
 #### Planning モードと Fast モード
@@ -119,16 +119,16 @@ Antigravity では複数の AI モデルやモードを切り替えて使えま�
 
 | モデル | 役割 |
 |:---|:---|
-| **Nano Banana Pro** | 画像生成、UIモックアップ、アーキテクチャ図 |
-| **Gemini 2.5 Pro UI Checkpoint** | Browser Subagent（ブラウザ操作） |
-| **Gemini 2.5 Flash** | チェックポイント、コンテキスト要約 |
-| **Gemini 2.5 Flash Lite** | コードベースのセマンティック検索 |
+| **DALL-E Pro** | 画像生成、UIモックアップ、アーキテクチャ図 |
+| **o3** | Browser Subagent（ブラウザ操作） |
+| **o4-mini** | チェックポイント、コンテキスト要約 |
+| **o4-mini** | コードベースのセマンティック検索 |
 
-Nano Banana は画像生成専用のモデルです。Step 2 で使います。
+DALL-E は画像生成専用のモデルです。Step 2 で使います。
 
 ### 6. セキュリティ設定（エージェントの保護）
 
-AI エージェントにターミナルやブラウザを操作させることは便利ですが、意図しないコマンドが実行されるリスクもあります。Antigravity では「ターミナル自動実行ポリシー」で安全性を管理します。
+AI エージェントにターミナルやブラウザを操作させることは便利ですが、意図しないコマンドが実行されるリスクもあります。Codex では「ターミナル自動実行ポリシー」で安全性を管理します。
 
 1. 設定（`Settings`）から `Advanced Settings` > `Terminal` を開く
 2. 以下のポリシーモードから適切なものを選びます（通常は **Auto** などを推奨します）。
@@ -145,7 +145,7 @@ AI エージェントにターミナルやブラウザを操作させること�
 
 ## やってみよう
 
-Antigravity のチャットで試してみましょう。
+Codex CLI のチャットで試してみましょう。
 
 ```
 こんにちは！今日の日付と曜日を教えて。
@@ -157,7 +157,7 @@ Antigravity のチャットで試してみましょう。
 
 ## エディタの AI 機能を体験
 
-Antigravity のエディタには、VS Code をベースにした AI ネイティブ機能が載っています。
+Codex のエディタには、VS Code をベースにした AI ネイティブ機能が載っています。
 
 ### Tab（コード補完）
 コードを書いている途中で `Tab` キーを押すと、AI が続きを提案してくれます。
@@ -202,7 +202,7 @@ Antigravity のエディタには、VS Code をベースにした AI ネイテ�
 |:---|:---|
 | ログインできない | VPN を切断してみる / ブラウザのキャッシュクリア |
 | モデルが選択できない | Rate Limit に達した可能性があります。しばらく待つか別モデルに切り替えてください |
-| チャットが応答しない | ネットワーク接続を確認 / Antigravity を再起動 |
+| チャットが応答しない | ネットワーク接続を確認 / Codex CLI を再起動 |
 | X86 Mac で起動しない | Apple Silicon (M1 以降) のみ対応です |
 
 ---

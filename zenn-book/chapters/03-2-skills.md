@@ -43,7 +43,7 @@ Skills は、特定のタスクを実行する手順をパッケージ化して�
   背景: 白 (#ffffff)。カード内は各色で屈れる。サイズ: 800×400px。
 -->
 
-> 公式ドキュメント: https://antigravity.google/docs/skills
+> 公式ドキュメント: https://github.com/openai/codex
 
 ### Skills の構造
 
@@ -59,7 +59,7 @@ Skills は `SKILL.md` ファイルを含むフォルダとして定義します�
 | レベル | パス | 適用範囲 |
 |:---|:---|:---|
 | **ワークスペース** | `<root>/.agent/skills/<name>/` | そのプロジェクトのみ |
-| **グローバル** | `~/.gemini/antigravity/skills/<name>/` | すべてのプロジェクト |
+| **グローバル** | `~/.codex/skills/<name>/` | すべてのプロジェクト |
 
 ### SKILL.md のフォーマット
 
@@ -96,7 +96,7 @@ description: 特定のタスクを支援するスキル
 <!--
   [図9b: Skills のフォルダ構造]
   【スクリーンショット指示】
-  Antigravity のファイルツリー（サイドバー）で、
+  Codex CLI のファイルツリー（サイドバー）で、
   `.agent/skills/` 以下のフォルダ構造が表示されているキャプチャ。
 
   ファイルツリーの内容:
@@ -166,7 +166,7 @@ description: コードの品質レビューを行う
 
 ### Step 3: Skill を呼び出す
 
-Antigravity のチャットで以下のように入力してください。
+Codex CLI のチャットで以下のように入力してください。
 
 ```
 @code-review で sample.js をレビューして
