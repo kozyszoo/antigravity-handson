@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code ハンズオンガイド</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d97706;
+            --primary-light: #fbbf24;
+            --bg-dark: #f9f7f4;
+            --bg-mid: #ffffff;
+            --bg-light: #fef3c7;
+            --text: #1c1917;
+            --muted: #57534e;
+            --purple: #7c3aed;
+            --blue: #1d4ed8;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        .sidebar .sub-link {
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .sidebar .sub-link:hover {
+            color: var(--primary);
+        }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--purple);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: #fef9ec;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #1c1917;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid #44403c;
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #e7e5e4;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        blockquote a {
+            color: var(--primary);
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .badge-time {
+            background: var(--purple);
+            color: white;
+        }
+
+        .badge-new {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-tip {
+            background: #065f46;
+            color: white;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .step-card .step-num {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-card h4 {
+            color: var(--text);
+            margin: 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 0;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .compare-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .compare-card h4 {
+            margin-bottom: 10px;
+        }
+
+        .compare-card ul {
+            margin-left: 18px;
+        }
+
+        .tip-box {
+            background: #ecfdf5;
+            border: 1px solid #6ee7b7;
+            border-left: 4px solid #10b981;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .tip-box strong {
+            color: #065f46;
+        }
+
+        .warn-box {
+            background: #fff7ed;
+            border: 1px solid #fdba74;
+            border-left: 4px solid #f97316;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .warn-box strong {
+            color: #9a3412;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #93c5fd;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .info-box strong {
+            color: #1e40af;
+        }
+
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .kbd {
+            display: inline-block;
+            background: #e7e5e4;
+            border: 1px solid #a8a29e;
+            border-bottom: 2px solid #78716c;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-family: monospace;
+            font-size: 0.85em;
+            color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🤖 Claude Code</h2>
+        <nav>
+            <ul>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#what-is-claude-code">Claude Code とは</a></li>
+                <li><a href="#step1">Step 1: インストール</a></li>
+                <li><a href="#step2">Step 2: 基本操作</a></li>
+                <li><a href="#step3">Step 3: CLAUDE.md 設定</a></li>
+                <li><a href="#step4">Step 4: MCP 連携</a></li>
+                <li><a href="#step5">Step 5: 実践 Vibe Coding</a></li>
+                <li><a href="#step6">Step 6: Git / PR 自動化</a></li>
+                <li><a href="#tips">活用 Tips 集</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>🤖 Claude Code ハンズオンガイド</h1>
+            <p>Anthropic が提供する AI コーディングエージェント「<strong>Claude Code</strong>」の基礎から実践まで習得する約 2 時間のハンズオン資料です。</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">2026年3月29日</p>
+        </div>
+
+        <!-- はじめに -->
+        <section class="section" id="intro">
+            <h2>📋 はじめに</h2>
+
+            <h3>当日のタイムライン</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>時間</th>
+                        <th>セクション</th>
+                        <th>内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>19:00〜19:15</td>
+                        <td><strong>イントロ</strong></td>
+                        <td>Claude Code とは？ Codex / Gemini CLI との比較</td>
+                    </tr>
+                    <tr>
+                        <td>19:15〜19:45</td>
+                        <td><strong>Step 1</strong></td>
+                        <td>インストール & 初期セットアップ（30分）</td>
+                    </tr>
+                    <tr>
+                        <td>19:45〜20:15</td>
+                        <td><strong>Step 2 & 3</strong></td>
+                        <td>基本操作 / CLAUDE.md で AI をカスタマイズ</td>
+                    </tr>
+                    <tr>
+                        <td>20:15〜20:35</td>
+                        <td><strong>Step 4</strong></td>
+                        <td>MCP（Model Context Protocol）連携</td>
+                    </tr>
+                    <tr>
+                        <td>20:35〜20:55</td>
+                        <td><strong>Step 5 & 6</strong></td>
+                        <td>Vibe Coding 実践 & Git / PR 自動化</td>
+                    </tr>
+                    <tr>
+                        <td>20:55〜21:10</td>
+                        <td><strong>Tips & おわりに</strong></td>
+                        <td>活用 Tips 集・まとめ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>学習目標</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">GOAL 1</div>
+                    <h4>環境構築</h4>
+                    <p>Claude Code のインストールから API キー設定まで完了できる</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">GOAL 2</div>
+                    <h4>基本操作マスター</h4>
+                    <p>対話モード・スラッシュコマンド・ファイル操作を使いこなせる</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">GOAL 3</div>
+                    <h4>CLAUDE.md 活用</h4>
+                    <p>プロジェクト固有のルールを AI に覚えさせられる</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">GOAL 4</div>
+                    <h4>Vibe Coding 実践</h4>
+                    <p>自然言語だけで Web ページを作り、PR まで自動作成できる</p>
+                </div>
+            </div>
+
+            <h3>前提条件</h3>
+            <table>
+                <thead>
+                    <tr><th>項目</th><th>要件</th><th>確認コマンド</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Node.js</td>
+                        <td>v18 以上（推奨 v22）</td>
+                        <td><code>node --version</code></td>
+                    </tr>
+                    <tr>
+                        <td>Anthropic アカウント</td>
+                        <td>API キーが必要</td>
+                        <td>console.anthropic.com</td>
+                    </tr>
+                    <tr>
+                        <td>GitHub アカウント</td>
+                        <td>PR 自動作成に必要</td>
+                        <td>github.com</td>
+                    </tr>
+                    <tr>
+                        <td>Git</td>
+                        <td>v2 以上</td>
+                        <td><code>git --version</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Claude Code とは -->
+        <section class="section" id="what-is-claude-code">
+            <h2>🧠 Claude Code とは</h2>
+
+            <p>
+                <strong>Claude Code</strong> は、Anthropic が開発したターミナルベースの AI コーディングエージェントです。
+                2025年2月にベータ版が公開され、同年5月に正式リリースされました。
+            </p>
+
+            <h3>主な特徴</h3>
+            <ul>
+                <li>🖥️ <strong>ターミナルで動作</strong>: ブラウザ不要、CLI からすぐに使える</li>
+                <li>📁 <strong>ファイル読み書き</strong>: プロジェクト全体を理解してコードを生成・修正</li>
+                <li>⚡ <strong>コマンド実行</strong>: テスト実行・ビルド・デプロイまで自動化</li>
+                <li>🔌 <strong>MCP 対応</strong>: Model Context Protocol で外部ツールと連携</li>
+                <li>📋 <strong>CLAUDE.md</strong>: プロジェクト固有のルールを AI に記憶させられる</li>
+                <li>🔀 <strong>Git 統合</strong>: コミット・PR 作成を自然言語で指示</li>
+            </ul>
+
+            <h3>他の AI コーディングエージェントとの比較</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ツール</th>
+                        <th>提供元</th>
+                        <th>動作場所</th>
+                        <th>モデル</th>
+                        <th>特徴</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Claude Code</strong></td>
+                        <td>Anthropic</td>
+                        <td>ターミナル</td>
+                        <td>Claude 3.x / 4.x</td>
+                        <td>MCP, CLAUDE.md, 長文コンテキスト</td>
+                    </tr>
+                    <tr>
+                        <td>Codex CLI</td>
+                        <td>OpenAI</td>
+                        <td>ターミナル</td>
+                        <td>GPT-4o / o4-mini</td>
+                        <td>オープンソース, マルチモーダル</td>
+                    </tr>
+                    <tr>
+                        <td>Gemini CLI</td>
+                        <td>Google</td>
+                        <td>ターミナル</td>
+                        <td>Gemini 2.x</td>
+                        <td>100万トークン, 無料枠あり</td>
+                    </tr>
+                    <tr>
+                        <td>GitHub Copilot</td>
+                        <td>GitHub / MS</td>
+                        <td>IDE + CLI</td>
+                        <td>GPT-4o, Claude</td>
+                        <td>IDE 統合, コード補完</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <strong>💡 Claude Code の強み</strong><br>
+                特に長いコードベースの理解と、CLAUDE.md による「プロジェクトのルールを覚える」能力が優れています。
+                大規模リファクタリングや複数ファイルにまたがる変更が得意です。
+            </div>
+        </section>
+
+        <!-- Step 1: インストール -->
+        <section class="section" id="step1">
+            <h2>⚙️ Step 1: インストール & セットアップ</h2>
+            <span class="badge badge-time">⏱ 30分</span>
+
+            <h3>1-1. Node.js の確認</h3>
+            <pre><code># Node.js バージョン確認（v18 以上が必要）
+node --version
+
+# npm バージョン確認
+npm --version</code></pre>
+
+            <div class="warn-box">
+                <strong>⚠️ Node.js が古い場合</strong><br>
+                <a href="https://nodejs.org/ja" target="_blank">nodejs.org</a> から最新 LTS 版をインストールしてください。
+                または <code>nvm</code>（Node Version Manager）でバージョンを切り替えることもできます。
+            </div>
+
+            <h3>1-2. Claude Code のインストール</h3>
+            <pre><code># npm でグローバルインストール
+npm install -g @anthropic-ai/claude-code
+
+# インストール確認
+claude --version</code></pre>
+
+            <h3>1-3. Anthropic API キーの取得</h3>
+            <ol>
+                <li><a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> にアクセス</li>
+                <li>アカウントを作成 / ログイン</li>
+                <li>「API Keys」→「Create Key」</li>
+                <li>キーをコピー（表示は一度だけ）</li>
+            </ol>
+
+            <div class="info-box">
+                <strong>💰 料金について</strong><br>
+                Claude Code は Anthropic の API を使います。ハンズオン（2時間程度）の使用で概ね <strong>$1〜3 程度</strong>です。
+                Claude 3.5 Haiku モデルを選ぶとよりコストを抑えられます。
+            </div>
+
+            <h3>1-4. API キーの設定</h3>
+            <pre><code># 環境変数に設定（今のターミナルセッションのみ有効）
+export ANTHROPIC_API_KEY="sk-ant-..."
+
+# 永続化する場合（~/.zshrc または ~/.bashrc に追記）
+echo 'export ANTHROPIC_API_KEY="sk-ant-..."' >> ~/.zshrc
+source ~/.zshrc</code></pre>
+
+            <h3>1-5. 起動確認</h3>
+            <pre><code># プロジェクトフォルダに移動
+cd ~/Documents
+
+# Claude Code を起動
+claude
+
+# 「Welcome to Claude Code」が表示されれば成功！</code></pre>
+
+            <div class="tip-box">
+                <strong>✅ チェックポイント</strong><br>
+                ターミナルに <code>&gt;</code> プロンプトが表示され、日本語で質問できたら Step 1 完了です。
+            </div>
+        </section>
+
+        <!-- Step 2: 基本操作 -->
+        <section class="section" id="step2">
+            <h2>💬 Step 2: 基本操作をマスターする</h2>
+            <span class="badge badge-time">⏱ 15分</span>
+
+            <h3>2-1. 対話モードの基本</h3>
+            <p>Claude Code を起動すると対話モード（<code>&gt;</code> プロンプト）に入ります。ここに日本語で指示を入力するだけです。</p>
+
+            <pre><code># プロジェクトを理解させる
+> このプロジェクトの構造を説明してください
+
+# ファイルを作ってもらう
+> hello.html という HTML ファイルを作って、「こんにちは！」と表示するページを作成して
+
+# バグを修正してもらう
+> app.js の 10行目のエラーを修正して</code></pre>
+
+            <h3>2-2. 便利なスラッシュコマンド</h3>
+            <table>
+                <thead>
+                    <tr><th>コマンド</th><th>説明</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>/help</code></td><td>ヘルプを表示</td></tr>
+                    <tr><td><code>/clear</code></td><td>会話履歴をリセット</td></tr>
+                    <tr><td><code>/compact</code></td><td>会話を圧縮してコンテキストを節約</td></tr>
+                    <tr><td><code>/model</code></td><td>使用モデルを変更</td></tr>
+                    <tr><td><code>/cost</code></td><td>現在セッションのコストを確認</td></tr>
+                    <tr><td><code>/review</code></td><td>直近の変更をレビュー</td></tr>
+                    <tr><td><code>/init</code></td><td>CLAUDE.md を自動生成</td></tr>
+                    <tr><td><code>/exit</code> または <kbd class="kbd">Ctrl+C</kbd></td><td>終了</td></tr>
+                </tbody>
+            </table>
+
+            <h3>2-3. キーボードショートカット</h3>
+            <table>
+                <thead>
+                    <tr><th>ショートカット</th><th>説明</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><kbd class="kbd">Enter</kbd></td><td>メッセージを送信</td></tr>
+                    <tr><td><kbd class="kbd">Shift</kbd> + <kbd class="kbd">Enter</kbd></td><td>改行（複数行入力）</td></tr>
+                    <tr><td><kbd class="kbd">↑</kbd> / <kbd class="kbd">↓</kbd></td><td>入力履歴を移動</td></tr>
+                    <tr><td><kbd class="kbd">Ctrl</kbd> + <kbd class="kbd">C</kbd></td><td>現在の処理をキャンセル</td></tr>
+                    <tr><td><kbd class="kbd">Ctrl</kbd> + <kbd class="kbd">L</kbd></td><td>画面をクリア</td></tr>
+                </tbody>
+            </table>
+
+            <h3>2-4. コマンドライン引数で使う</h3>
+            <pre><code># 直接指示を渡して実行（インタラクティブモードを開かない）
+claude "このフォルダにある JavaScript ファイルを一覧して"
+
+# ファイルの内容を読んで質問
+claude "app.js を読んで、どんな処理をしているか説明して"</code></pre>
+
+            <h3>2-5. 実習: はじめての Vibe Coding</h3>
+            <div class="card">
+                <strong>🎯 演習: 自己紹介ページを作成しよう</strong>
+                <ol style="margin: 12px 0 0 20px;">
+                    <li>ターミナルを開き、作業フォルダを作成: <code>mkdir my-profile && cd my-profile</code></li>
+                    <li><code>claude</code> を起動</li>
+                    <li>以下のプロンプトを入力してください:</li>
+                </ol>
+                <pre style="margin-top: 12px;"><code>> 以下の条件で自己紹介 HTML ページを作成してください：
+  - ファイル名: index.html
+  - 名前: [あなたの名前]
+  - 職業: [あなたの職業]
+  - 趣味: [趣味を 3 つ]
+  - デザイン: モダンでシンプル、アニメーション付き</code></pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>✅ チェックポイント</strong><br>
+                <code>index.html</code> が生成され、ブラウザで開いて自己紹介ページが表示されたら Step 2 完了です。
+            </div>
+        </section>
+
+        <!-- Step 3: CLAUDE.md -->
+        <section class="section" id="step3">
+            <h2>📝 Step 3: CLAUDE.md で AI をカスタマイズ</h2>
+            <span class="badge badge-time">⏱ 15分</span>
+
+            <p>
+                <strong>CLAUDE.md</strong> は、プロジェクトのルートに置くマークダウンファイルです。
+                Claude Code はこのファイルを常に読み込み、プロジェクト固有のルールや文脈を理解した上で作業します。
+            </p>
+
+            <h3>なぜ CLAUDE.md が必要なのか？</h3>
+            <div class="compare-grid">
+                <div class="compare-card">
+                    <h4 style="color: #dc2626;">❌ CLAUDE.md なし</h4>
+                    <ul>
+                        <li>毎回「このプロジェクトは〜」と説明が必要</li>
+                        <li>コーディング規約を毎回指示する必要がある</li>
+                        <li>チーム内でばらばらな指示になりがち</li>
+                    </ul>
+                </div>
+                <div class="compare-card">
+                    <h4 style="color: #16a34a;">✅ CLAUDE.md あり</h4>
+                    <ul>
+                        <li>プロジェクトの文脈を自動で理解</li>
+                        <li>コーディング規約を毎回説明不要</li>
+                        <li>チーム全員が同じルールで AI を使える</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>3-1. CLAUDE.md の自動生成</h3>
+            <pre><code># プロジェクトフォルダで Claude Code を起動し、/init を実行
+claude
+> /init</code></pre>
+            <p>Claude がプロジェクトを自動解析して <code>CLAUDE.md</code> のたたき台を生成します。</p>
+
+            <h3>3-2. CLAUDE.md の書き方</h3>
+            <pre><code># プロジェクト設定: マイポートフォリオ
+
+## プロジェクト概要
+個人ポートフォリオサイト。HTML/CSS/JavaScript のみ使用。
+
+## コーディング規約
+- 変数名・関数名: camelCase を使用
+- ファイル名: kebab-case を使用（例: my-component.js）
+- インデント: スペース 2 個
+- コメントは日本語で書く
+
+## 使用技術
+- HTML5 / CSS3 / Vanilla JavaScript
+- Tailwind CSS（CDN 使用）
+
+## 重要なルール
+- レスポンシブデザイン必須（スマホ対応）
+- アクセシビリティを考慮（alt 属性など）
+- 不要なライブラリを追加しない
+
+## ファイル構造
+docs/
+  index.html  # メインページ
+  style.css   # スタイル
+  script.js   # JavaScript
+  img/        # 画像フォルダ</code></pre>
+
+            <h3>3-3. メモリ機能（~/.claude/CLAUDE.md）</h3>
+            <p>
+                プロジェクト固有の設定は <code>プロジェクトルート/CLAUDE.md</code> に、
+                全プロジェクト共通のルールは <code>~/.claude/CLAUDE.md</code> に書けます。
+            </p>
+            <pre><code># ~/.claude/CLAUDE.md の例
+## グローバル設定
+
+- 回答は常に日本語で
+- コードには必ずコメントを追加する
+- エラーは原因と解決策をセットで提示する
+- 長いコードは要所に分割して説明する</code></pre>
+
+            <div class="tip-box">
+                <strong>💡 Tips</strong><br>
+                CLAUDE.md はチームでバージョン管理（Git）できます。
+                チーム全員が同じ AI 設定で作業できるのが大きなメリットです。
+            </div>
+
+            <div class="card">
+                <strong>🎯 演習: このリポジトリの CLAUDE.md を確認してみよう</strong>
+                <pre style="margin-top: 12px;"><code>> CLAUDE.md の内容を読んで、このプロジェクトのルールをまとめて説明してください</code></pre>
+            </div>
+        </section>
+
+        <!-- Step 4: MCP -->
+        <section class="section" id="step4">
+            <h2>🔌 Step 4: MCP（Model Context Protocol）連携</h2>
+            <span class="badge badge-time">⏱ 20分</span>
+
+            <p>
+                <strong>MCP（Model Context Protocol）</strong> は、Anthropic が策定した AI エージェントと外部ツールを繋ぐ標準規格です。
+                Claude Code は MCP サーバーを追加することで、ブラウザ操作・データベース接続・外部サービス連携などが可能になります。
+            </p>
+
+            <h3>MCP のしくみ</h3>
+            <div class="info-box">
+                <strong>📡 MCP とは</strong><br>
+                Claude ↔ MCP サーバー ↔ 外部ツール（ブラウザ、DB、Slack…）<br><br>
+                MCP サーバーは「プラグイン」のようなもの。追加するだけで Claude の能力が拡張されます。
+            </div>
+
+            <h3>4-1. 人気の MCP サーバー</h3>
+            <table>
+                <thead>
+                    <tr><th>MCP サーバー</th><th>機能</th><th>用途</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Playwright</strong></td>
+                        <td>ブラウザ自動操作</td>
+                        <td>Web スクレイピング、E2E テスト</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Filesystem</strong></td>
+                        <td>ファイル操作の拡張</td>
+                        <td>大規模ファイル管理</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GitHub</strong></td>
+                        <td>GitHub API 連携</td>
+                        <td>Issue 作成, PR レビュー</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Slack</strong></td>
+                        <td>Slack 送受信</td>
+                        <td>通知の自動化</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SQLite</strong></td>
+                        <td>DB クエリ実行</td>
+                        <td>データ分析</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fetch</strong></td>
+                        <td>Web ページ取得</td>
+                        <td>リサーチ、ドキュメント参照</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>4-2. MCP サーバーの追加方法</h3>
+            <pre><code># Playwright MCP を追加する例
+claude mcp add playwright -- npx @playwright/mcp@latest
+
+# 追加済みの MCP 一覧を確認
+claude mcp list
+
+# MCP を削除
+claude mcp remove playwright</code></pre>
+
+            <h3>4-3. 設定ファイル（.claude/settings.json）での管理</h3>
+            <pre><code>{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "ghp_..."
+      }
+    }
+  }
+}</code></pre>
+
+            <h3>4-4. MCP を使った実践例</h3>
+            <div class="card">
+                <strong>🌐 例: Playwright でブラウザを自動操作</strong>
+                <pre style="margin-top: 12px;"><code># Playwright MCP を追加後、Claude Code で:
+> ブラウザで https://example.com を開いて、
+  ページのタイトルと主要なテキストを取得してください</code></pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 MCP のエコシステム</strong><br>
+                公式・コミュニティ製の MCP サーバーが急速に増えています。
+                <a href="https://github.com/modelcontextprotocol/servers" target="_blank">modelcontextprotocol/servers</a> で検索できます。
+            </div>
+        </section>
+
+        <!-- Step 5: Vibe Coding 実践 -->
+        <section class="section" id="step5">
+            <h2>🎨 Step 5: Vibe Coding 実践編</h2>
+            <span class="badge badge-time">⏱ 20分</span>
+
+            <p>
+                <strong>Vibe Coding</strong> とは、詳細な仕様を書かず「雰囲気」で自然言語の指示だけでコードを作る開発スタイルです。
+                Claude Code を使ってランディングページを一から作りましょう。
+            </p>
+
+            <h3>Vibe Coding の 3 原則</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">原則 1</div>
+                    <h4>具体的に伝える</h4>
+                    <p>「かっこよくして」より「黒背景にネオンカラーのグラデーション」と書く</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">原則 2</div>
+                    <h4>段階的に進める</h4>
+                    <p>一度に全部頼まず、構造→デザイン→機能の順で追加していく</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">原則 3</div>
+                    <h4>フィードバックする</h4>
+                    <p>「ここは赤にして」「このアニメーションを消して」と細かく調整する</p>
+                </div>
+            </div>
+
+            <h3>5-1. 演習: AI カフェのランディングページを作ろう</h3>
+            <div class="card">
+                <strong>🎯 課題: AI Café のランディングページを Claude Code で作成</strong>
+                <p style="margin: 8px 0;">以下のプロンプトをそのままコピーして使ってください。</p>
+
+                <h4 style="margin-top: 16px;">① まず構造を作る</h4>
+                <pre><code>> 「AI Café Tokyo」というカフェのランディングページ（index.html）を作成してください。
+  構成:
+  - ヒーローセクション（キャッチコピー + CTAボタン）
+  - メニューセクション（コーヒー3種、スムージー3種）
+  - 特徴セクション（AI注文システム、顔認証決済、パーソナライズ提案）
+  - アクセスセクション
+  - フッター
+  デザイン: ダークモード、近未来感、グラデーション背景</code></pre>
+
+                <h4 style="margin-top: 16px;">② デザインを洗練させる</h4>
+                <pre><code>> デザインをさらに改善してください：
+  - フォントを Google Fonts の "Orbitron" と "Noto Sans JP" を使用
+  - ヒーローセクションにアニメーション（フェードイン + スライド）を追加
+  - メニューカードにホバーエフェクトを追加
+  - スクロールするとナビが固定されるようにして</code></pre>
+
+                <h4 style="margin-top: 16px;">③ レスポンシブ対応</h4>
+                <pre><code>> スマホでも綺麗に表示されるようにレスポンシブデザインを実装してください。
+  ブレークポイント: 768px（タブレット）, 480px（スマホ）</code></pre>
+            </div>
+
+            <h3>5-2. 効果的なプロンプトのコツ</h3>
+            <table>
+                <thead>
+                    <tr><th>避けるべき書き方</th><th>良い書き方</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>「いい感じにして」</td>
+                        <td>「白背景に青のアクセントカラー、角丸8px のカードデザイン」</td>
+                    </tr>
+                    <tr>
+                        <td>「全部まとめて作って」</td>
+                        <td>「まずヒーローセクションだけ作って、確認してから次に進む」</td>
+                    </tr>
+                    <tr>
+                        <td>「バグ直して」</td>
+                        <td>「ボタンをクリックすると〇〇のエラーが出る。コードを確認して直して」</td>
+                    </tr>
+                    <tr>
+                        <td>「追加して」</td>
+                        <td>「ナビゲーションバーの右端に、ダークモード切り替えボタンを追加して」</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Step 6: Git / PR 自動化 -->
+        <section class="section" id="step6">
+            <h2>🔀 Step 6: Git / PR を自動化する</h2>
+            <span class="badge badge-time">⏱ 20分</span>
+
+            <p>Claude Code は Git コマンドも理解しているため、コミット・ブランチ作成・PR 作成も自然言語で指示できます。</p>
+
+            <h3>6-1. 基本的な Git 操作</h3>
+            <pre><code># 変更内容を確認してコミット
+> 変更内容を確認して、適切なコミットメッセージで git commit してください
+
+# 新しいブランチを作ってコミット
+> feature/add-dark-mode というブランチを作成して、
+  ダークモード機能を実装してコミットしてください
+
+# コミットメッセージを日本語で
+> 今の変更を「feat: ダークモード機能を追加」というメッセージでコミットして</code></pre>
+
+            <h3>6-2. PR（Pull Request）の自動作成</h3>
+            <p>GitHub CLI（<code>gh</code>）がインストールされていれば、PR 作成まで自動化できます。</p>
+
+            <pre><code># GitHub CLI のインストール（Mac）
+brew install gh
+
+# GitHub にログイン
+gh auth login
+
+# Claude Code で PR を作成
+> 現在の変更をまとめて、GitHub に PR を作成してください。
+  タイトルと説明は日本語で、変更内容をわかりやすくまとめてください。</code></pre>
+
+            <h3>6-3. コードレビュー支援</h3>
+            <pre><code># PR のコードをレビューしてもらう
+> このコードの変更をレビューしてください。
+  問題点・改善点・セキュリティリスクがあれば指摘してください。
+
+# レビューコメントを反映
+> レビューで指摘された「関数が長すぎる」問題を修正してください。
+  50行以内に分割して、テストも追加してください。</code></pre>
+
+            <h3>6-4. 実習: フルサイクル Vibe Coding</h3>
+            <div class="card">
+                <strong>🎯 演習: コード作成 → コミット → PR 作成の全工程</strong>
+                <ol style="margin: 12px 0 0 20px;">
+                    <li>このリポジトリを fork して clone する</li>
+                    <li>Claude Code で新機能を実装する</li>
+                    <li>自動でコミットメッセージを生成してもらう</li>
+                    <li>PR の説明文も Claude に書いてもらう</li>
+                </ol>
+                <pre style="margin-top: 12px;"><code>> docs/ フォルダに自分の自己紹介ページ（profile.html）を追加してください。
+  完成したら feature/add-profile ブランチを作り、
+  PR を作成してください。PR の説明も日本語で書いてください。</code></pre>
+            </div>
+        </section>
+
+        <!-- Tips -->
+        <section class="section" id="tips">
+            <h2>💡 活用 Tips 集</h2>
+
+            <h3>Tips 1: コンテキストを意識する</h3>
+            <p>Claude Code には会話の長さ（コンテキスト）に上限があります。長い作業では定期的に <code>/compact</code> でコンテキストを圧縮しましょう。</p>
+            <pre><code>> /compact
+# 会話を圧縮して新しいセッションとして続ける</code></pre>
+
+            <h3>Tips 2: スクリーンショットで UI 改善</h3>
+            <p>Claude Code（Claude 3.x 以上）は画像を理解できます。スクリーンショットを貼り付けて UI 改善を依頼できます。</p>
+            <pre><code>> [スクリーンショットを添付]
+  このデザインをより洗練させてください。
+  特にボタンのデザインとフォントを改善してください。</code></pre>
+
+            <h3>Tips 3: エラーはそのままペースト</h3>
+            <p>エラーメッセージはそのまま貼り付けるだけで原因分析と修正案を提示してくれます。</p>
+            <pre><code>> 以下のエラーが発生しました。原因と修正方法を教えてください：
+
+TypeError: Cannot read properties of undefined (reading 'map')
+    at ProductList (app.js:45:23)
+    at renderWithHooks ...</code></pre>
+
+            <h3>Tips 4: ドキュメントを書いてもらう</h3>
+            <pre><code>> このコードの README.md を書いてください。
+  インストール方法、使い方、API リファレンスを含めてください。
+
+> JSDoc コメントを全ての関数に追加してください。</code></pre>
+
+            <h3>Tips 5: テストを自動生成</h3>
+            <pre><code>> utils.js のユニットテストを Jest で書いてください。
+  エッジケース（空文字列、null、大きい数値）も含めてください。</code></pre>
+
+            <h3>Tips 6: リファクタリング</h3>
+            <pre><code>> app.js をリファクタリングしてください：
+  - 1 関数 1 責任の原則に従う
+  - マジックナンバーを定数に置き換える
+  - 同じ処理は共通化する
+  - 処理の意図がわかるコメントを追加する</code></pre>
+
+            <h3>チートシート</h3>
+            <table>
+                <thead>
+                    <tr><th>やりたいこと</th><th>プロンプト例</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>コード生成</td>
+                        <td>「〇〇する関数を書いて」</td>
+                    </tr>
+                    <tr>
+                        <td>バグ修正</td>
+                        <td>「〇〇エラーが出る。コードを確認して直して」</td>
+                    </tr>
+                    <tr>
+                        <td>コード解説</td>
+                        <td>「app.js の処理を初心者向けに説明して」</td>
+                    </tr>
+                    <tr>
+                        <td>リファクタリング</td>
+                        <td>「このコードを読みやすく書き直して」</td>
+                    </tr>
+                    <tr>
+                        <td>テスト生成</td>
+                        <td>「この関数の Jest テストを書いて」</td>
+                    </tr>
+                    <tr>
+                        <td>ドキュメント</td>
+                        <td>「README.md を日本語で書いて」</td>
+                    </tr>
+                    <tr>
+                        <td>コミット</td>
+                        <td>「変更内容を確認して git commit して」</td>
+                    </tr>
+                    <tr>
+                        <td>PR 作成</td>
+                        <td>「この変更の PR を GitHub に作成して」</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- おわりに -->
+        <section class="section" id="outro">
+            <h2>🎓 おわりに</h2>
+
+            <h3>今日学んだこと</h3>
+            <ul>
+                <li>✅ Claude Code のインストールと API キー設定</li>
+                <li>✅ 対話モード・スラッシュコマンドの基本操作</li>
+                <li>✅ CLAUDE.md によるプロジェクト固有のカスタマイズ</li>
+                <li>✅ MCP による外部ツール連携</li>
+                <li>✅ 自然言語だけで Web ページを作る Vibe Coding</li>
+                <li>✅ Git コミット・PR 作成の自動化</li>
+            </ul>
+
+            <h3>次のステップ</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">NEXT 1</div>
+                    <h4>日常業務に取り込む</h4>
+                    <p>まずは 1 つの繰り返し作業（レポート生成、コメント追加など）を Claude Code に任せてみる</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">NEXT 2</div>
+                    <h4>MCP を探索する</h4>
+                    <p>自分の業務に必要な MCP サーバーを探して追加してみる</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">NEXT 3</div>
+                    <h4>CLAUDE.md を育てる</h4>
+                    <p>使うたびに改善点を CLAUDE.md に追記して、自分専用の AI アシスタントを育てる</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">NEXT 4</div>
+                    <h4>ハッカソンで使う</h4>
+                    <p>Claude Code を使えば 24 時間ハッカソンでも本格的なプロダクトが作れる</p>
+                </div>
+            </div>
+
+            <h3>学習リソース</h3>
+            <table>
+                <thead>
+                    <tr><th>リソース</th><th>内容</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://docs.anthropic.com/ja/docs/claude-code/overview" target="_blank">Claude Code 公式ドキュメント</a></td>
+                        <td>最新の機能・設定方法</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/anthropics/claude-code" target="_blank">GitHub: anthropics/claude-code</a></td>
+                        <td>ソースコード・Issue・Changelog</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/modelcontextprotocol/servers" target="_blank">MCP サーバー一覧</a></td>
+                        <td>公式・コミュニティ製 MCP</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://zenn.dev/topics/claudecode" target="_blank">Zenn #claudecode</a></td>
+                        <td>日本語の活用記事・Tips</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://qiita.com/tags/claude-code" target="_blank">Qiita #claude-code</a></td>
+                        <td>日本語の技術記事</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <blockquote>
+                「AI はツールではなく、パートナーです。うまく付き合うほど、あなたの生産性は指数関数的に上がります。」
+            </blockquote>
+
+            <div class="tip-box">
+                <strong>🎉 ハンズオン修了おめでとうございます！</strong><br>
+                質問・フィードバックは <a href="https://github.com/anthropics/claude-code/issues" target="_blank">GitHub Issues</a> または
+                コミュニティの Slack・Discord でどうぞ。
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // スクロール時にサイドバーのアクティブリンクを更新する
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.sidebar a');
+
+        function updateActiveLink() {
+            let currentId = '';
+            sections.forEach(section => {
+                const top = section.getBoundingClientRect().top;
+                if (top <= 120) {
+                    currentId = section.id;
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink();
+
+        // サイドバーのリンクをクリックしたらモバイルメニューを閉じる
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.remove('open');
+            });
+        });
+    </script>
+</body>
+
+</html>
