@@ -672,12 +672,12 @@
 
             <h4>6. モデル選択</h4>
             <p>Agent Manager の右上にあるモデル選択プルダウンから、タスクに応じて最適なモデルを切り替えられます。<br>
-                <strong>基本は <code>Gemini 3 Pro (High)</code> を選んでおけば間違いありません。</strong>使いすぎて Rate Limit
+                <strong>基本は <code>Gemini 3.1 Pro (High)</code> を選んでおけば間違いありません。</strong>使いすぎて Rate Limit
                 に達した場合は別モデルに切り替えましょう。
             </p>
             <!-- 【画像挿入箇所】 モデル選択のプルダウンメニューが開いているスクショ -->
             <img class="screenshot" src="img/fig2.png"
-                alt="利用可能なAIモデル（Gemini 3 Pro, Claude Sonnet 4.6, Nano Banana Pro など）を選択するプルダウンメニューのスクリーンショット">
+                alt="利用可能なAIモデル（Gemini 3.1 Pro, Claude Sonnet 4.6, GPT-OSS 120B など）を選択するプルダウンメニューのスクリーンショット">
             <table>
                 <thead>
                     <tr>
@@ -688,30 +688,34 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Gemini 3 Pro (High)</strong></td>
-                        <td>Google の最新フラッグシップモデル。コード生成・ロジック推論・複雑なタスク分解に最も優れる。ターミナル操作との連携精度も高い。</td>
+                        <td><strong>Gemini 3.1 Pro (High)</strong></td>
+                        <td>Google の高性能モデル。コード生成・ロジック推論・複雑なタスク分解に最も優れる。ターミナル操作との連携精度も高い。</td>
                         <td>メイン開発、複雑なロジック、要件定義・設計の壁打ち</td>
                     </tr>
                     <tr>
-                        <td>Gemini 3 Pro (Low)</td>
+                        <td>Gemini 3.1 Pro (Low)</td>
                         <td>High と同じモデルだが計算リソースを抑えた設定。応答速度が若干速くなる場合がある。High が Rate Limit に達した際の代替としても有効。</td>
                         <td>比較的シンプルなコード修正、High の代替</td>
                     </tr>
                     <tr>
-                        <td>Gemini 3 Flash</td>
-                        <td>軽量・高速に特化したモデル。複雑な推論より「素早く答えを出す」ことを優先。レスポンスタイムが短いため、簡単な質問や確認作業に向いている。</td>
-                        <td>簡単な質問応答、文言確認、素早いフィードバックが欲しいとき</td>
+                        <td><strong>Gemini 3.5 Flash (High / Medium)</strong></td>
+                        <td>軽量・高速に特化した最新世代モデル。複雑な推論より「素早く答えを出す」ことを優先。レスポンスタイムが短く、テンポ良く開発を進められる。</td>
+                        <td>簡単な質問応答、文言確認、素早いフィードバック、簡単なコード生成</td>
                     </tr>
                     <tr>
-                        <td>Claude Sonnet 4.6</td>
-                        <td>Anthropic 製。文脈理解と自然な文章生成に強み。Standard モード（通常）と Thinking モード（深い推論）を切り替えられる。Google 製 IDE
-                            で他社モデルが使えるのは特筆すべき点。</td>
-                        <td>ドキュメント作成、要件定義書・READMEの執筆、長文の整理</td>
+                        <td>Claude Sonnet 4.6 (Thinking)</td>
+                        <td>Anthropic 製。文脈理解と自然な文章生成に強み。高度な Reasoning を行う「Thinking モード」がデフォルトで有効であり、思考の過程を可視化できる。</td>
+                        <td>ドキュメント作成、要件定義書・READMEの執筆、アルゴリズムの思考</td>
                     </tr>
                     <tr>
-                        <td>Claude Opus 4.6</td>
-                        <td>Anthropic の最高精度モデル。Thinking モードでは複雑な問題を段階的に深く推論する。消費リソースが大きい分、精度が求められる場面で真価を発揮する。</td>
-                        <td>難易度の高いバグ解析、アーキテクチャ設計の深い検討</td>
+                        <td>Claude Opus 4.6 (Thinking)</td>
+                        <td>Anthropic の最高精度モデル。非常に深い推論を行う。消費リソースが大きい分、最高峰の精度が求められる場面で真価を発揮する。</td>
+                        <td>難易度の高いバグ解析、複雑なアーキテクチャ設計の検討</td>
+                    </tr>
+                    <tr>
+                        <td>GPT-OSS 120B (Medium)</td>
+                        <td>大規模オープンソースモデルを最適化したモデル。特定のプログラミングパターンや異なるアプローチでのアセット生成に役立つ。</td>
+                        <td>特定言語のコーディング、多角的なアイデア出しや代替案の作成</td>
                     </tr>
                     <tr>
                         <td>Nano Banana Pro</td>
@@ -723,10 +727,22 @@
             <div class="card">
                 <strong>💡 Rate Limit に達したときの対処法</strong>
                 <ul style="margin-top: 8px;">
-                    <li>Gemini 3 Pro (High) → <strong>Gemini 3 Pro (Low)</strong> または <strong>Claude Sonnet 4.6</strong>
-                        に切り替える</li>
+                    <li>Gemini 3.1 Pro (High) → <strong>Gemini 3.1 Pro (Low)</strong> または <strong>Claude Sonnet 4.6 (Thinking)</strong> / <strong>Gemini 3.5 Flash</strong> に切り替える</li>
                     <li>しばらく時間をおいてから再試行する（通常数分〜数十分でリセット）</li>
-                    <li>簡単な作業は <strong>Gemini 3 Flash</strong> で素早く処理する</li>
+                    <li>簡単な作業は <strong>Gemini 3.5 Flash</strong> で素早く処理する</li>
+                </ul>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <strong>⚙️ モデル設定とクォータ・クレジット管理（Settings - Models）</strong>
+                <p style="margin-top: 8px; font-size: 0.95rem;">
+                    Antigravity IDE では、設定画面の「Models」タブから、各AIモデルの利用可能クォータ（制限枠）や、AIクレジットの残高を詳細に確認・管理できます。
+                </p>
+                <img class="screenshot" src="img/settings-models.png" alt="Settings - Models 画面のスクリーンショット。モデルごとのクォータ状況やAIクレジットの設定が表示されている">
+                <ul style="margin-top: 12px; font-size: 0.9rem; padding-left: 20px;">
+                    <li><strong>AI クレジットの管理 (Model Credits):</strong> 現在使用可能な AI クレジット（Available AI Credits）や、クレジットの追加、使用履歴（See Activity）を確認できます。</li>
+                    <li><strong>クレジット超過の自動補填 (Enable AI Credit Overages):</strong> この設定を有効（ON）にしておくと、各モデルに割り当てられた月間/週間のクォータを使い切った後でも、保有している AI クレジットから自動的に補填されてモデルへのリクエストを継続できます。</li>
+                    <li><strong>モデルクォータの確認 (Model Quota):</strong> <code>Gemini 3.5 Flash</code> や <code>Claude Sonnet 4.6</code> など、登録されている各モデルの残りクォータ状況と、それがリセット（定期更新）されるまでの残り時間がリアルタイムに表示されます。</li>
                 </ul>
             </div>
 
@@ -1418,16 +1434,17 @@ description: 特定のタスクを支援するスキル
             <h3>このフォルダに入っているサンプル Skill</h3>
             <!-- 【画像挿入箇所】 .agent/skills 内のディレクトリツリーのスクショ -->
             <img class="screenshot" src="img/fig10.png"
-                alt="エディタのファイルツリー表示。.agent/skills ディレクトリの配下に code-review や marp-presentation といった複数の独自スキル（SKILL.md）が格納されている状態のスクリーンショット">
+                alt="エディタのファイルツリー表示。.agent/skills ディレクトリの配下に git-workflow や ui-verify といった複数の独自スキル（SKILL.md）が格納されている状態のスクリーンショット">
             <pre><code>.agent/
 └── skills/
-    ├── code-review/
-    │   └── SKILL.md      # コードレビュー用 Skill
-    └── marp-presentation/
-        └── SKILL.md      # Marp プレゼン作成 Skill</code></pre>
+    ├── git-workflow/
+    │   └── SKILL.md      # Git ワークフロー支援 Skill
+    └── ui-verify/
+        └── SKILL.md      # UI 検証・動作確認 Skill</code></pre>
 
-            <h3>やってみよう: サンプルコードをレビュー</h3>
-            <pre><code>sample.js を code-review Skill でレビューして</code></pre>
+            <h3>やってみよう: サンプル Skill を試す</h3>
+            <p>プロジェクトに最初から入っている <code>git-workflow</code> スキルを使って、AI に Git のワークフローをサポートさせてみましょう。例えばチャット欄で以下のように指示します：</p>
+            <pre><code>git-workflow Skill を使って、現在の変更点をステージングしてコミットメッセージを考えてコミットして</code></pre>
 
             <h3>🌟 公開されている Skills を活用しよう</h3>
             <p>
@@ -1665,7 +1682,7 @@ Step 3: ビジュアル生成（Nano Banana）
     ↓
 Step 4: 実装（Skills 活用）
     ↓
-Step 5: 品質チェック（code-review Skill）
+Step 5: 品質チェック（multi-ai-review Skill）
     ↓
 Step 6: デプロイ</code></pre>
 
@@ -1751,10 +1768,10 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
 
             <h4>Part 5: 品質チェック（Skills活用）— 所要時間: 5分</h4>
             <p><strong>目的：</strong> 実装したコードの品質を自動レビューし、バグやアンチパターンを事前に発見・修正します。</p>
-            <p><strong>やること：</strong> <code>@code-review</code> Skill を呼び出すと、AI が全コンポーネントをレビューし、改善すべき点を自動的に修正してくれます。</p>
+            <p><strong>やること：</strong> <code>@multi-ai-review</code> Skill を呼び出すと、AI が全コンポーネントをレビューし、改善すべき点をまとめた統合レポートを自動的に生成してくれます。</p>
 
-            <pre><code>@code-review ai-coffee-shop/src/components/ のすべてのコンポーネントを
-レビューして、改善点があれば自動的に修正して。</code></pre>
+            <pre><code>@multi-ai-review を使って ai-coffee-shop/src/components/ のすべてのコンポーネントを
+レビューして、改善点をまとめた統合レポートを生成して。</code></pre>
 
             <div class="card" style="font-size: 0.9rem;">
                 <strong>💡 ポイント：</strong> チーム開発でのコードレビューと同じ流れを、AI
