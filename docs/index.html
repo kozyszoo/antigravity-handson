@@ -18,9 +18,11 @@
             --accent-codex: #4f46e5;
             --accent-claude: #d97706;
             --accent-antigravity: #059669;
+            --accent-slide: #7c3aed;
             --accent-codex-gradient: linear-gradient(135deg, #6366f1, #4f46e5);
             --accent-claude-gradient: linear-gradient(135deg, #f59e0b, #d97706);
             --accent-antigravity-gradient: linear-gradient(135deg, #10b981, #059669);
+            --accent-slide-gradient: linear-gradient(135deg, #a78bfa, #7c3aed);
         }
 
         * {
@@ -107,6 +109,7 @@
         .card.codex::before { background: var(--accent-codex-gradient); }
         .card.claude::before { background: var(--accent-claude-gradient); }
         .card.antigravity::before { background: var(--accent-antigravity-gradient); }
+        .card.slide::before { background: var(--accent-slide-gradient); }
 
         .card:hover {
             transform: translateY(-8px);
@@ -117,6 +120,7 @@
         .card.codex:hover { box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1); }
         .card.claude:hover { box-shadow: 0 20px 40px rgba(245, 158, 11, 0.1); }
         .card.antigravity:hover { box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1); }
+        .card.slide:hover { box-shadow: 0 20px 40px rgba(124, 58, 237, 0.1); }
 
         .card-header {
             margin-bottom: 2rem;
@@ -155,6 +159,7 @@
         .card.codex .badge { background: rgba(99, 102, 241, 0.15); color: #a5b4fc; }
         .card.claude .badge { background: rgba(245, 158, 11, 0.15); color: #fde68a; }
         .card.antigravity .badge { background: rgba(16, 185, 129, 0.15); color: #a7f3d0; }
+        .card.slide .badge { background: rgba(124, 58, 237, 0.15); color: #c4b5fd; }
 
         .card-desc {
             font-size: 0.95rem;
@@ -183,6 +188,7 @@
         .card.codex .btn { background: var(--accent-codex-gradient); }
         .card.claude .btn { background: var(--accent-claude-gradient); }
         .card.antigravity .btn { background: var(--accent-antigravity-gradient); }
+        .card.slide .btn { background: var(--accent-slide-gradient); }
 
         .btn:hover {
             filter: brightness(1.1);
@@ -293,6 +299,21 @@
                 <p class="card-desc">Googleの最新2.0仕様に対応したスタンドアロン型エージェント。Dynamic Subagents による並列タスク分割と安全な Worktree 制御、Nano Banana 2 による極上のビジュアル構築を体感します。</p>
             </div>
             <a href="antigravity.html" class="btn">Antigravity ガイドを開始 ➔</a>
+        </div>
+
+        <!-- AI スライド自動生成（応用編） -->
+        <div class="card slide">
+            <div class="card-header">
+                <span class="card-icon">🎞️</span>
+                <h2 class="card-title">AI スライド自動生成</h2>
+                <div class="badges">
+                    <span class="badge">Slidev / Marp / HTML</span>
+                    <span class="badge">Playwright 連携</span>
+                    <span class="badge">自律デザインチェック</span>
+                </div>
+                <p class="card-desc">3つのエージェント（Claude / Codex / Antigravity）を横断して使う応用ハンズオン。Slidev・Marp・HTML でスライドを生成し、Playwright MCP/CLI で AI 自身がスクショを撮りながらデザインの崩れをチェック・修正する「自律ループ」を体験します。</p>
+            </div>
+            <a href="howToCreateSlide.html" class="btn">スライド作成ガイドを開始 ➔</a>
         </div>
     </main>
 

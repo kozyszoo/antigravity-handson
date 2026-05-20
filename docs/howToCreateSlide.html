@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI スライド自動生成ハンズオンガイド | Slidev × Marp × HTML × Playwright</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            /* バイオレット（スライド × AI のテーマカラー） */
+            --primary-light: #a78bfa;
+            --bg-dark: #f7f6fb;
+            --bg-mid: #ffffff;
+            --bg-light: #ede9fe;
+            --text: #1e1b2e;
+            --muted: #524d63;
+            --blue: #1d4ed8;
+            --green: #047857;
+            /* 各ツールのアクセント色（ポータルと統一） */
+            --claude: #d97706;
+            --codex: #4f46e5;
+            --antigravity: #059669;
+            --sidebar: 290px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.1rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.25rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--primary);
+            font-size: 1.08rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.93rem;
+            vertical-align: top;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: #f3effe;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #1e1b2e;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid #3b3550;
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #e9e5f5;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        blockquote a {
+            color: var(--primary);
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            margin-right: 6px;
+        }
+
+        .badge-time {
+            background: var(--blue);
+            color: white;
+        }
+
+        .badge-new {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-tip {
+            background: var(--green);
+            color: white;
+        }
+
+        .badge-claude {
+            background: var(--claude);
+            color: white;
+        }
+
+        .badge-codex {
+            background: var(--codex);
+            color: white;
+        }
+
+        .badge-antigravity {
+            background: var(--antigravity);
+            color: white;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .step-card .step-num {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-card h4 {
+            color: var(--text);
+            margin: 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 0;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .compare-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .compare-card h4 {
+            margin-bottom: 10px;
+        }
+
+        .compare-card ul {
+            margin-left: 18px;
+        }
+
+        .tip-box {
+            background: #ecfdf5;
+            border: 1px solid #6ee7b7;
+            border-left: 4px solid #10b981;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .tip-box strong {
+            color: #065f46;
+        }
+
+        .warn-box {
+            background: #fff7ed;
+            border: 1px solid #fdba74;
+            border-left: 4px solid #f97316;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .warn-box strong {
+            color: #9a3412;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #93c5fd;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .info-box strong {
+            color: #1e40af;
+        }
+
+        .kbd {
+            display: inline-block;
+            background: #e7e3f0;
+            border: 1px solid #b8b0cc;
+            border-bottom: 2px solid #8b80a8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-family: monospace;
+            font-size: 0.85em;
+            color: var(--text);
+        }
+
+        /* 自律ループの図 */
+        .loop-diagram {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 24px 0;
+        }
+
+        .loop-node {
+            background: var(--bg-light);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            padding: 14px 18px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            min-width: 140px;
+        }
+
+        .loop-node .num {
+            display: block;
+            color: var(--primary);
+            font-size: 0.75rem;
+            margin-bottom: 4px;
+        }
+
+        .loop-arrow {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🎞️ AI スライド生成</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#concept">この資料の全体像</a></li>
+                <li><a href="#formats">スライド3形式の比較</a></li>
+                <li><a href="#step1">Step 1: 環境構築</a></li>
+                <li><a href="#step2">Step 2: Playwright MCP/CLI</a></li>
+                <li><a href="#step3">Step 3: 自律デザインチェックループ</a></li>
+                <li><a href="#step4">Step 4: Slidev で作る</a></li>
+                <li><a href="#step5">Step 5: Marp で作る</a></li>
+                <li><a href="#step6">Step 6: HTML スライドで作る</a></li>
+                <li><a href="#agents">エージェント別の指示のコツ</a></li>
+                <li><a href="#export">PDF / 画像へのエクスポート</a></li>
+                <li><a href="#tips">活用 Tips 集</a></li>
+                <li><a href="#skills">Skill 化して資産にする</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>🎞️ AI スライド自動生成ハンズオンガイド<br>Slidev × Marp × HTML × Playwright</h1>
+            <p><strong>Claude Code / Codex / Antigravity</strong> の3つのエージェントを使い、<strong>Slidev・Marp・HTML</strong> の3形式でスライドを生成し、さらに <strong>Playwright MCP / CLI</strong> でスクリーンショットを撮りながら<strong>AI が自分でデザインの崩れをチェック・修正する</strong>「自律デザインループ」を体験するハンズオン資料です。</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">想定所要時間: 約 2 時間 / 2026年</p>
+        </div>
+
+        <!-- はじめに -->
+        <section class="section" id="intro">
+            <h2>📋 はじめに</h2>
+
+            <p>
+                「資料作成」は最も時間を奪われる作業のひとつです。AI コーディングエージェントを使えば、
+                <strong>テキストの箇条書きから、見栄えの整ったプレゼンスライドまでを丸ごと自動生成</strong>できます。
+                さらに本ハンズオンの目玉は、AI が <strong>生成したスライドを実際にブラウザで開いてスクリーンショットを撮り、
+                文字のはみ出し・余白・コントラストを自分で確認して直す</strong>「自律的デザインチェック」です。
+            </p>
+
+            <h3>当日のタイムライン</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>時間</th>
+                        <th>セクション</th>
+                        <th>内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00:00〜00:15</td>
+                        <td><strong>イントロ</strong></td>
+                        <td>全体像 / スライド3形式（Slidev・Marp・HTML）の違い</td>
+                    </tr>
+                    <tr>
+                        <td>00:15〜00:35</td>
+                        <td><strong>Step 1 & 2</strong></td>
+                        <td>環境構築 / Playwright MCP・CLI のセットアップ</td>
+                    </tr>
+                    <tr>
+                        <td>00:35〜00:55</td>
+                        <td><strong>Step 3</strong></td>
+                        <td>自律デザインチェックループの仕組みと指示文</td>
+                    </tr>
+                    <tr>
+                        <td>00:55〜01:35</td>
+                        <td><strong>Step 4〜6</strong></td>
+                        <td>Slidev / Marp / HTML でそれぞれスライド作成（実習）</td>
+                    </tr>
+                    <tr>
+                        <td>01:35〜01:50</td>
+                        <td><strong>エクスポート</strong></td>
+                        <td>PDF・画像化、発表準備</td>
+                    </tr>
+                    <tr>
+                        <td>01:50〜02:00</td>
+                        <td><strong>Tips & おわりに</strong></td>
+                        <td>活用 Tips・まとめ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>学習目標</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">GOAL 1</div>
+                    <h4>3形式を使い分け</h4>
+                    <p>Slidev・Marp・HTML の特徴を理解し、用途に応じて選べる</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">GOAL 2</div>
+                    <h4>Playwright 連携</h4>
+                    <p>MCP / CLI で AI にスクリーンショットを撮らせられる</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">GOAL 3</div>
+                    <h4>自律デザインループ</h4>
+                    <p>AI が自分で見た目を確認・修正する指示が書ける</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">GOAL 4</div>
+                    <h4>発表まで一気通貫</h4>
+                    <p>テーマ入力から PDF 書き出しまでを自動化できる</p>
+                </div>
+            </div>
+
+            <h3>前提条件</h3>
+            <table>
+                <thead>
+                    <tr><th>項目</th><th>要件</th><th>確認コマンド</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Node.js</td>
+                        <td>v18 以上（推奨 v20+）</td>
+                        <td><code>node --version</code></td>
+                    </tr>
+                    <tr>
+                        <td>AI エージェント</td>
+                        <td>Claude Code / Codex / Antigravity のいずれか</td>
+                        <td>各ガイド参照</td>
+                    </tr>
+                    <tr>
+                        <td>ブラウザ</td>
+                        <td>Chromium（Playwright が自動取得）</td>
+                        <td><code>npx playwright install</code></td>
+                    </tr>
+                    <tr>
+                        <td>Git</td>
+                        <td>v2 以上</td>
+                        <td><code>git --version</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <strong>📚 他のガイドとの関係</strong><br>
+                エージェント自体のインストール・基本操作は
+                <a href="claude.html">Claude Code</a> /
+                <a href="codex.html">Codex</a> /
+                <a href="antigravity.html">Antigravity</a>
+                の各ガイドを先に済ませておくとスムーズです。本資料は「スライド作成」という具体的なお題に絞った応用編です。
+            </div>
+        </section>
+
+        <!-- 全体像 -->
+        <section class="section" id="concept">
+            <h2>🗺️ この資料の全体像</h2>
+
+            <p>本ハンズオンが扱う 3 つの軸を整理します。これらを掛け合わせて「自分のお気に入りの組み合わせ」を見つけるのがゴールです。</p>
+
+            <div class="step-grid">
+                <div class="step-card" style="border-left-color: var(--codex);">
+                    <div class="step-num" style="color: var(--codex);">軸 ① エージェント</div>
+                    <h4>誰に作らせるか</h4>
+                    <p>Claude Code / Codex / Antigravity。指示の出し方は共通でも、得意分野が少し違います。</p>
+                </div>
+                <div class="step-card" style="border-left-color: var(--blue);">
+                    <div class="step-num" style="color: var(--blue);">軸 ② フォーマット</div>
+                    <h4>何で作るか</h4>
+                    <p>Slidev / Marp / HTML。Markdown ベースか、自由な HTML/CSS か。</p>
+                </div>
+                <div class="step-card" style="border-left-color: var(--green);">
+                    <div class="step-num" style="color: var(--green);">軸 ③ 検証</div>
+                    <h4>どう品質を担保するか</h4>
+                    <p>Playwright でスクショ → AI が目視 → 修正、のループを回します。</p>
+                </div>
+            </div>
+
+            <h3>核となるアイデア: 「見て、直す」を AI 自身に回させる</h3>
+            <p>
+                従来の AI スライド生成は「コードを吐いて終わり」でした。実際に表示すると、
+                文字がはみ出したり、画像が枠からあふれたり、配色が読みにくかったりします。
+                本資料では <strong>Playwright で実際の描画結果を画像として AI に戻す</strong>ことで、
+                AI が人間のレビュアーのように「ここ崩れてますね、直します」と<strong>自己修正</strong>できる状態を作ります。
+            </p>
+
+            <div class="loop-diagram">
+                <div class="loop-node"><span class="num">STEP 1</span>スライド生成</div>
+                <span class="loop-arrow">→</span>
+                <div class="loop-node"><span class="num">STEP 2</span>ブラウザで表示</div>
+                <span class="loop-arrow">→</span>
+                <div class="loop-node"><span class="num">STEP 3</span>スクショ撮影<br>(Playwright)</div>
+                <span class="loop-arrow">→</span>
+                <div class="loop-node"><span class="num">STEP 4</span>AI が目視チェック</div>
+                <span class="loop-arrow">↩</span>
+                <div class="loop-node" style="border-color: var(--green); background:#ecfdf5;"><span class="num" style="color:var(--green);">STEP 5</span>崩れを修正<br>→ STEP 2 へ戻る</div>
+            </div>
+        </section>
+
+        <!-- フォーマット比較 -->
+        <section class="section" id="formats">
+            <h2>📊 スライド3形式の比較</h2>
+            <span class="badge badge-new">基礎知識</span>
+
+            <p>まずは 3 つのフォーマットの性格を押さえましょう。「迷ったら Slidev」が無難ですが、用途次第です。</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>項目</th>
+                        <th>Slidev</th>
+                        <th>Marp</th>
+                        <th>HTML（自作）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>記述方法</strong></td>
+                        <td>Markdown + Vue</td>
+                        <td>Markdown のみ</td>
+                        <td>HTML / CSS / JS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>学習コスト</strong></td>
+                        <td>中</td>
+                        <td>低（最も簡単）</td>
+                        <td>高（自由度の代償）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>デザイン自由度</strong></td>
+                        <td>高（Vue/Tailwind/コンポーネント）</td>
+                        <td>中（テーマ CSS）</td>
+                        <td>最高（何でもできる）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>コードハイライト</strong></td>
+                        <td>◎ 標準で美しい</td>
+                        <td>◯</td>
+                        <td>△ 自前で用意</td>
+                    </tr>
+                    <tr>
+                        <td><strong>アニメーション</strong></td>
+                        <td>◎ クリック送り対応</td>
+                        <td>△ 限定的</td>
+                        <td>◯ JS 次第</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PDF 書き出し</strong></td>
+                        <td><code>slidev export</code></td>
+                        <td><code>marp --pdf</code></td>
+                        <td>Playwright / 印刷</td>
+                    </tr>
+                    <tr>
+                        <td><strong>向いている人</strong></td>
+                        <td>エンジニア登壇・技術発表</td>
+                        <td>とにかく速く・GitHub 管理</td>
+                        <td>ブランド固有の凝った1枚物</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="compare-grid">
+                <div class="compare-card">
+                    <h4 style="color: var(--primary);">📝 Markdown 系（Slidev / Marp）の利点</h4>
+                    <ul>
+                        <li>テキスト主体なので AI が生成・修正しやすい</li>
+                        <li>差分がきれいで Git 管理に強い</li>
+                        <li>テーマを変えるだけで一括で見た目が変わる</li>
+                    </ul>
+                </div>
+                <div class="compare-card">
+                    <h4 style="color: var(--primary);">🎨 HTML 系の利点</h4>
+                    <ul>
+                        <li>レイアウトの自由度が無限大</li>
+                        <li>独自フォント・アニメ・SVG を盛り込める</li>
+                        <li>このポータル資料のような独自世界観を作れる</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 ハンズオンの進め方</strong><br>
+                時間が限られる場合は <strong>Step 4（Slidev）だけ</strong>を実習し、Marp・HTML は読み物として眺めるのがおすすめです。
+                3 形式すべてを試すと、自分の好みがはっきり分かります。
+            </div>
+        </section>
+
+        <!-- Step 1: 環境構築 -->
+        <section class="section" id="step1">
+            <h2>⚙️ Step 1: 環境構築</h2>
+            <span class="badge badge-time">⏱ 10分</span>
+
+            <h3>1-1. 作業フォルダを用意</h3>
+            <pre><code># スライド用の作業フォルダを作成
+mkdir ai-slides && cd ai-slides
+
+# Git 管理を開始（任意だが推奨）
+git init</code></pre>
+
+            <h3>1-2. Node.js の確認</h3>
+            <pre><code># v18 以上が必要
+node --version
+npm --version</code></pre>
+
+            <div class="warn-box">
+                <strong>⚠️ Node.js が古い / 入っていない場合</strong><br>
+                <a href="https://nodejs.org/ja" target="_blank">nodejs.org</a> から LTS 版をインストールするか、
+                <code>nvm</code>（Node Version Manager）でバージョンを切り替えてください。
+            </div>
+
+            <h3>1-3. ツールのインストール（後の Step で使う分）</h3>
+            <p>各形式で必要なツールは、後ほど AI に入れてもらってもOKですが、先に把握しておきましょう。</p>
+            <pre><code># Slidev（プロジェクト作成時に自動セットアップ）
+npm init slidev@latest
+
+# Marp CLI（グローバル不要、npx で都度実行）
+npx @marp-team/marp-cli@latest --version
+
+# Playwright（スクショ用ブラウザ）
+npx playwright install chromium</code></pre>
+
+            <div class="tip-box">
+                <strong>✅ チェックポイント</strong><br>
+                <code>node --version</code> が v18 以上を返し、作業フォルダで <code>git status</code> が動けば Step 1 完了です。
+            </div>
+        </section>
+
+        <!-- Step 2: Playwright -->
+        <section class="section" id="step2">
+            <h2>🎭 Step 2: Playwright MCP / CLI のセットアップ</h2>
+            <span class="badge badge-time">⏱ 10分</span>
+
+            <p>
+                <strong>Playwright</strong> はブラウザを自動操作するツールです。これを AI に渡すことで、AI が
+                「スライドをブラウザで開いて、スクリーンショットを撮る」ことができるようになります。
+                使い方は大きく <strong>MCP 経由</strong>と <strong>CLI 経由</strong>の 2 通りです。
+            </p>
+
+            <h3>2-1. 方法A: Playwright MCP（推奨）</h3>
+            <p>MCP（Model Context Protocol）でブラウザ操作機能を AI に「ツール」として渡す方法です。AI が能動的にブラウザを操作できます。</p>
+
+            <h4><span class="badge badge-claude">Claude Code</span></h4>
+            <pre><code># Playwright MCP を追加
+claude mcp add playwright -- npx @playwright/mcp@latest
+
+# 追加されたか確認
+claude mcp list</code></pre>
+
+            <h4><span class="badge badge-codex">Codex</span> / <span class="badge badge-antigravity">Antigravity</span></h4>
+            <p>これらは設定ファイル（JSON）に MCP サーバーを登録します。形式は各ツールでほぼ共通です。</p>
+            <pre><code>{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    }
+  }
+}</code></pre>
+            <div class="info-box">
+                <strong>📍 設定ファイルの場所</strong><br>
+                Codex は <code>~/.codex/config.toml</code>（または設定 UI）、Antigravity は設定パネルの「MCP / 拡張」項目から登録します。
+                詳細は <a href="codex.html#step4">Codex ガイド</a> / <a href="antigravity.html">Antigravity ガイド</a> の MCP セクションを参照してください。
+            </div>
+
+            <h3>2-2. 方法B: Playwright CLI / スクリプト</h3>
+            <p>MCP が使えない環境では、AI に「スクショ用の小さなスクリプトを書いて実行させる」方法が確実です。AI が以下のようなファイルを生成し、自分で実行します。</p>
+            <pre><code>// shot.mjs — 指定 URL を開いてスクショを保存する
+import { chromium } from 'playwright';
+
+const browser = await chromium.launch();
+const page = await browser.newPage({
+  viewport: { width: 1280, height: 720 } // スライドは 16:9
+});
+await page.goto('http://localhost:3030');   // Slidev の開発サーバー
+await page.screenshot({ path: 'slide-1.png' });
+await browser.close();</code></pre>
+            <pre><code># 実行（playwright をローカルに入れてから）
+npm install -D playwright
+node shot.mjs
+# → slide-1.png が生成され、これを AI に読ませる</code></pre>
+
+            <h3>2-3. どちらを使う？</h3>
+            <div class="compare-grid">
+                <div class="compare-card">
+                    <h4 style="color: var(--green);">✅ MCP が向くケース</h4>
+                    <ul>
+                        <li>AI に主体的にブラウザ操作させたい</li>
+                        <li>クリック送り・スクロールも自動化したい</li>
+                        <li>対話の中で何度も撮り直したい</li>
+                    </ul>
+                </div>
+                <div class="compare-card">
+                    <h4 style="color: var(--blue);">✅ CLI が向くケース</h4>
+                    <ul>
+                        <li>MCP 未対応の環境</li>
+                        <li>全スライドを一括で連番スクショしたい</li>
+                        <li>CI / バッチ処理に組み込みたい</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <strong>✅ チェックポイント</strong><br>
+                MCP なら <code>mcp list</code> に playwright が出る、CLI なら <code>node shot.mjs</code> で PNG が出力されれば Step 2 完了です。
+            </div>
+        </section>
+
+        <!-- Step 3: 自律ループ -->
+        <section class="section" id="step3">
+            <h2>🔁 Step 3: 自律デザインチェックループ</h2>
+            <span class="badge badge-time">⏱ 20分</span>
+            <span class="badge badge-new">本資料の核心</span>
+
+            <p>
+                ここが本ハンズオンの心臓部です。AI に「<strong>作って終わり</strong>」ではなく
+                「<strong>作る → 自分で見る → 直す</strong>」を繰り返させます。
+                ポイントは、<strong>具体的なチェック観点</strong>と<strong>合格条件</strong>を指示文に書き込むことです。
+            </p>
+
+            <h3>3-1. チェックすべきデザイン観点</h3>
+            <p>AI に「何を見るか」を教えないと、ただ「良さそうです」で終わってしまいます。観点を明示しましょう。</p>
+            <table>
+                <thead>
+                    <tr><th>観点</th><th>NG の例</th><th>AI への伝え方</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>はみ出し</td>
+                        <td>文字や画像が画面端で切れている</td>
+                        <td>「全要素がスライド枠 (1280×720) 内に収まっているか」</td>
+                    </tr>
+                    <tr>
+                        <td>余白バランス</td>
+                        <td>上に詰まり下が大きく空く</td>
+                        <td>「コンテンツが上下左右に偏っていないか」</td>
+                    </tr>
+                    <tr>
+                        <td>文字量</td>
+                        <td>1枚に詰め込みすぎ</td>
+                        <td>「1スライド6行以内、フォントが小さすぎないか」</td>
+                    </tr>
+                    <tr>
+                        <td>コントラスト</td>
+                        <td>薄い背景に薄い文字で読めない</td>
+                        <td>「文字色と背景色のコントラストは十分か」</td>
+                    </tr>
+                    <tr>
+                        <td>一貫性</td>
+                        <td>スライドごとに見出し位置がずれる</td>
+                        <td>「全スライドで見出し・余白が揃っているか」</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3-2. そのまま使える「自律ループ」指示文</h3>
+            <p>以下のプロンプトを、お好きなエージェントにそのまま貼り付けてください。エージェントを問わず動作します。</p>
+            <div class="card">
+                <strong>🎯 自律デザインチェックの指示テンプレート</strong>
+                <pre style="margin-top: 12px;"><code>これからスライドを作成します。次の手順を「合格するまで」繰り返してください。
+
+1. スライドを生成し、開発サーバー（またはファイル）を表示する
+2. Playwright で各スライドのスクリーンショットを撮る
+3. 撮った画像を自分で確認し、以下の観点で採点する：
+   - 文字や画像が枠 (1280×720) からはみ出していないか
+   - 余白が上下左右で極端に偏っていないか
+   - 1スライドの情報量は適切か（6行以内・フォントが小さすぎない）
+   - 背景と文字のコントラストは十分か
+   - 全スライドで見出し位置・余白が揃っているか
+4. 問題があれば原因を1つずつ説明し、コードを修正する
+5. 修正後にもう一度スクショを撮り、2〜4を繰り返す
+6. すべての観点を満たしたら「合格」と報告し、最終スクショを見せる
+
+各ラウンドで「今ラウンドで直した点」を箇条書きで報告してください。
+無限ループを避けるため、最大5ラウンドで一旦止めて報告してください。</code></pre>
+            </div>
+
+            <h3>3-3. ループの流れ（イメージ）</h3>
+            <div class="loop-diagram">
+                <div class="loop-node"><span class="num">生成</span>Markdown/HTML</div>
+                <span class="loop-arrow">→</span>
+                <div class="loop-node"><span class="num">表示</span>localhost</div>
+                <span class="loop-arrow">→</span>
+                <div class="loop-node"><span class="num">撮影</span>screenshot</div>
+                <span class="loop-arrow">→</span>
+                <div class="loop-node"><span class="num">採点</span>5観点チェック</div>
+                <span class="loop-arrow">→</span>
+                <div class="loop-node" style="border-color: var(--green); background:#ecfdf5;"><span class="num" style="color:var(--green);">判定</span>合格 or 再修正</div>
+            </div>
+
+            <div class="warn-box">
+                <strong>⚠️ 無限ループ・暴走を防ぐ</strong><br>
+                「最大 5 ラウンドまで」「コストが気になったら一旦止めて報告して」など<strong>上限</strong>を指示に入れておくと安心です。
+                また、毎ラウンド「何を直したか」を報告させることで、AI が同じ修正を繰り返していないか人間が監視できます。
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 なぜ効くのか</strong><br>
+                LLM はテキストだけでは「見た目の崩れ」を想像できません。
+                <strong>実際の描画結果（画像）を入力に戻す</strong>ことで初めて、人間のレビュアーと同じ土俵に立てます。
+                これが「マルチモーダル × 自己修正」の威力です。
+            </div>
+        </section>
+
+        <!-- Step 4: Slidev -->
+        <section class="section" id="step4">
+            <h2>🟢 Step 4: Slidev でスライドを作る</h2>
+            <span class="badge badge-time">⏱ 15分</span>
+
+            <p>
+                <strong>Slidev</strong> はエンジニア向けの Markdown スライドツールです。
+                コードハイライト・アニメーション・Vue コンポーネントが使え、技術発表に最適です。
+            </p>
+
+            <h3>4-1. プロジェクト作成と起動</h3>
+            <pre><code># 対話形式でプロジェクトを作成
+npm init slidev@latest
+
+# 作成したフォルダに入って開発サーバー起動
+cd your-slidev-project
+npm run dev
+# → http://localhost:3030 で表示される</code></pre>
+
+            <h3>4-2. Slidev の Markdown 構造</h3>
+            <p><code>slides.md</code> を編集します。<code>---</code> 区切りが「次のスライド」を意味します。</p>
+            <pre><code>---
+theme: seriph
+title: AI 駆動開発入門
+---
+
+# AI 駆動開発入門
+副題: エージェントと作るスライド
+
+---
+
+## アジェンダ
+
+- AI エージェントとは
+- スライド自動生成
+- 自律デザインチェック
+
+---
+layout: center
+---
+
+# ありがとうございました</code></pre>
+
+            <h3>4-3. AI への実習プロンプト</h3>
+            <div class="card">
+                <strong>🎯 演習: 「AI 駆動開発入門」スライドを Slidev で作る</strong>
+                <pre style="margin-top: 12px;"><code>Slidev で「AI 駆動開発入門」の発表スライドを作成してください。
+構成（全6枚）:
+1. タイトル
+2. アジェンダ
+3. AI エージェントとは（箇条書き3点）
+4. スライド自動生成のデモ（コードブロック付き）
+5. 自律デザインチェックの仕組み（図解イメージ）
+6. まとめ + 締めの一言
+
+theme は seriph、アクセントカラーは紫系。
+作成後、Step 3 の自律デザインチェック手順で
+全スライドのスクショを撮り、崩れを直してください（最大5ラウンド）。</code></pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>✅ チェックポイント</strong><br>
+                <code>localhost:3030</code> で 6 枚のスライドが表示され、AI が「合格」と報告したら Step 4 完了です。
+            </div>
+        </section>
+
+        <!-- Step 5: Marp -->
+        <section class="section" id="step5">
+            <h2>🔵 Step 5: Marp でスライドを作る</h2>
+            <span class="badge badge-time">⏱ 15分</span>
+
+            <p>
+                <strong>Marp</strong> は「ただの Markdown」でスライドを書ける最もシンプルなツールです。
+                VS Code 拡張も人気で、とにかく速くスライド化したいときに最適です。
+            </p>
+
+            <h3>5-1. Marp の Markdown 構造</h3>
+            <p>先頭に <code>marp: true</code> を書くだけ。<code>---</code> がスライド区切りです。</p>
+            <pre><code>---
+marp: true
+theme: default
+paginate: true
+---
+
+# AI 駆動開発入門
+
+発表者: あなたの名前
+
+---
+
+## アジェンダ
+
+1. AI エージェントとは
+2. スライド自動生成
+3. 自律デザインチェック
+
+---
+
+## まとめ
+
+- AI に「見て直す」を任せられる時代
+- まずは小さなお題から</code></pre>
+
+            <h3>5-2. プレビューと書き出し</h3>
+            <pre><code># HTML プレビューを生成
+npx @marp-team/marp-cli@latest slides.md -o slides.html
+
+# PDF に書き出し
+npx @marp-team/marp-cli@latest slides.md --pdf
+
+# 監視モード（保存のたびに自動更新）
+npx @marp-team/marp-cli@latest -w slides.md -o slides.html</code></pre>
+
+            <h3>5-3. AI への実習プロンプト</h3>
+            <div class="card">
+                <strong>🎯 演習: Marp で同じ内容を作り、見た目を比較する</strong>
+                <pre style="margin-top: 12px;"><code>Marp で「AI 駆動開発入門」のスライド（slides.md）を作成してください。
+theme は default、paginate は true。
+
+作成後:
+1. marp CLI で slides.html を生成
+2. Playwright で各スライドのスクショを撮る
+3. Step 3 の観点でチェックし、はみ出しや文字過多を修正
+4. 最後に PDF も書き出してください</code></pre>
+            </div>
+
+            <div class="info-box">
+                <strong>🎨 テーマのカスタマイズ</strong><br>
+                Marp は <code>&lt;style&gt;</code> を Markdown に直接書いたり、カスタムテーマ CSS を読み込めます。
+                「もっと余白を広く」「見出しを大きく」と AI に頼めば、<code>style</code> ブロックを追記してくれます。
+            </div>
+        </section>
+
+        <!-- Step 6: HTML -->
+        <section class="section" id="step6">
+            <h2>🟣 Step 6: HTML スライドで作る</h2>
+            <span class="badge badge-time">⏱ 15分</span>
+
+            <p>
+                自由度を最優先するなら、HTML / CSS で 1 から作る方法です。
+                <strong>reveal.js</strong> のようなライブラリを使う方法と、<strong>完全自作</strong>する方法があります。
+                ブランド固有の凝ったデザインや、Web 公開を前提とする場合に向きます。
+            </p>
+
+            <h3>6-1. シンプルな自作 HTML スライドの骨格</h3>
+            <pre><code>&lt;!-- 1スライド = 1セクション。CSS Scroll Snap でページ送り --&gt;
+&lt;style&gt;
+  html { scroll-snap-type: y mandatory; }
+  .slide {
+    width: 100vw; height: 100vh;          /* 16:9 を意識 */
+    scroll-snap-align: start;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 5vw;
+  }
+&lt;/style&gt;
+
+&lt;section class="slide"&gt;&lt;h1&gt;AI 駆動開発入門&lt;/h1&gt;&lt;/section&gt;
+&lt;section class="slide"&gt;&lt;h2&gt;アジェンダ&lt;/h2&gt;&lt;/section&gt;</code></pre>
+
+            <h3>6-2. reveal.js を使う場合</h3>
+            <pre><code># CDN を読み込むだけで使える（AI が雛形を生成）
+# https://revealjs.com/ の &lt;section&gt; 区切りでスライドを書く</code></pre>
+
+            <h3>6-3. AI への実習プロンプト</h3>
+            <div class="card">
+                <strong>🎯 演習: 世界観のある HTML スライドを作る</strong>
+                <pre style="margin-top: 12px;"><code>HTML/CSS だけで「AI 駆動開発入門」のスライド（slides.html）を作成してください。
+要件:
+- 1スライド = 1画面（16:9, 1280×720想定）
+- CSS Scroll Snap で縦スクロールのページ送り
+- ダークテーマ + 紫のアクセント、Google Fonts 使用
+- 全6枚（タイトル / アジェンダ / 本編3枚 / まとめ）
+
+作成後、Playwright で各画面をスクショし、
+Step 3 の自律デザインチェックを最大5ラウンド実施して仕上げてください。</code></pre>
+            </div>
+
+            <div class="warn-box">
+                <strong>⚠️ HTML 自作の注意点</strong><br>
+                自由度が高い分、AI が崩しやすいのも HTML です。だからこそ
+                <strong>Step 3 の自律デザインチェックが最も効果を発揮します</strong>。
+                必ずスクショで実物を確認させましょう。
+            </div>
+        </section>
+
+        <!-- エージェント別 -->
+        <section class="section" id="agents">
+            <h2>🤖 エージェント別の指示のコツ</h2>
+
+            <p>基本のプロンプトは共通ですが、各エージェントの個性に合わせると、より快適に進められます。</p>
+
+            <h3><span class="badge badge-claude">Claude Code</span></h3>
+            <ul>
+                <li><code>CLAUDE.md</code> に「スライドは1枚6行以内」「16:9」などのルールを書いておくと毎回守ってくれる</li>
+                <li>長い反復に強い。自律ループを最後まで粘り強く回せる</li>
+                <li>スクショ画像をそのまま会話に貼って指摘するのも有効</li>
+            </ul>
+
+            <h3><span class="badge badge-codex">Codex</span></h3>
+            <ul>
+                <li>サンドボックス / クラウド実行で、スクショ生成スクリプトを安全に試せる</li>
+                <li>「まず計画を出して」と一段挟むと、構成が安定する</li>
+                <li>PR まで自動化したい場合は Codex の Git 連携が便利</li>
+            </ul>
+
+            <h3><span class="badge badge-antigravity">Antigravity</span></h3>
+            <ul>
+                <li>並列マルチエージェントで「Slidev 版」「Marp 版」を同時に作らせる使い方が強力</li>
+                <li>Worktree 制御で、形式ごとにブランチを分けて作業できる</li>
+                <li>ビジュアル生成と組み合わせて表紙画像まで作るのも◎</li>
+            </ul>
+
+            <div class="tip-box">
+                <strong>💡 共通の鉄則</strong><br>
+                どのエージェントでも「<strong>具体的に・段階的に・実物を見せて</strong>」が効きます。
+                これは <a href="claude.html#step5">Vibe Coding の3原則</a> と同じです。
+            </div>
+        </section>
+
+        <!-- エクスポート -->
+        <section class="section" id="export">
+            <h2>📤 PDF / 画像へのエクスポート</h2>
+            <span class="badge badge-time">⏱ 5分</span>
+
+            <p>発表本番では PDF が安心です。各形式の書き出しコマンドをまとめます。</p>
+
+            <table>
+                <thead>
+                    <tr><th>形式</th><th>PDF 書き出し</th><th>画像（PNG）書き出し</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Slidev</strong></td>
+                        <td><code>slidev export</code></td>
+                        <td><code>slidev export --format png</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marp</strong></td>
+                        <td><code>marp slides.md --pdf</code></td>
+                        <td><code>marp slides.md --images png</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>HTML</strong></td>
+                        <td>Playwright の <code>page.pdf()</code> / ブラウザ印刷</td>
+                        <td>Playwright の <code>page.screenshot()</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>HTML を Playwright で PDF 化する例</h3>
+            <pre><code>// to-pdf.mjs
+import { chromium } from 'playwright';
+
+const browser = await chromium.launch();
+const page = await browser.newPage();
+await page.goto('http://localhost:8000/slides.html');
+await page.pdf({ path: 'slides.pdf', landscape: true, printBackground: true });
+await browser.close();</code></pre>
+
+            <div class="info-box">
+                <strong>📌 発表直前のチェック</strong><br>
+                「全スライドを PNG にして、サムネイル一覧として並べて見せて」と AI に頼むと、
+                発表前の最終目視が一気に楽になります。
+            </div>
+        </section>
+
+        <!-- Tips -->
+        <section class="section" id="tips">
+            <h2>💡 活用 Tips 集</h2>
+
+            <h3>Tips 1: ビューポートは必ず 16:9 で固定</h3>
+            <p>スクショの <code>viewport</code> を <code>1280×720</code>（または <code>1920×1080</code>）に固定すると、AI のチェックが実際の発表画面と一致します。</p>
+
+            <h3>Tips 2: 「採点表」を出させる</h3>
+            <pre><code>各スライドについて、5観点（はみ出し/余白/文字量/コントラスト/一貫性）を
+○△× で採点した表を出してから、× の項目だけ直してください。</code></pre>
+
+            <h3>Tips 3: 元ネタは箇条書きで渡す</h3>
+            <p>長文の原稿より、<strong>箇条書きのアウトライン</strong>を渡すほうが構成が安定します。「この箇条書きを6枚のスライドに分割して」が鉄板です。</p>
+
+            <h3>Tips 4: テーマ替えは一瞬</h3>
+            <p>Slidev / Marp なら <code>theme:</code> を変えるだけで全体の印象が変わります。「3パターンのテーマで作り比べて、スクショを並べて」も可能です。</p>
+
+            <h3>Tips 5: 1枚ずつ撮らせる</h3>
+            <p>全体を1枚に撮るより、<strong>スライドごとに連番スクショ</strong>させたほうが、AI が崩れを正確に検出できます。</p>
+
+            <h3>チートシート</h3>
+            <table>
+                <thead>
+                    <tr><th>やりたいこと</th><th>プロンプト例</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>構成だけ作る</td><td>「このテーマで6枚のアウトラインを先に提案して」</td></tr>
+                    <tr><td>スライド生成</td><td>「このアウトラインを Slidev のスライドにして」</td></tr>
+                    <tr><td>見た目チェック</td><td>「Playwright で全スライドを撮って崩れを直して」</td></tr>
+                    <tr><td>テーマ比較</td><td>「3テーマで作ってスクショを並べて見せて」</td></tr>
+                    <tr><td>文字量調整</td><td>「3枚目が詰まっている。2枚に分割して」</td></tr>
+                    <tr><td>書き出し</td><td>「PDF と PNG 一覧に書き出して」</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Skill 化 -->
+        <section class="section" id="skills">
+            <h2>🧩 Skill 化して資産にする</h2>
+            <span class="badge badge-time">⏱ 10分</span>
+
+            <p>
+                ここまでの「作る → 見て直す」を毎回ゼロから指示するのは大変です。
+                今回のハンズオンで学んだ核心を <strong>Claude Code の Skill</strong>（<code>SKILL.md</code> ＋付属ファイル）に落とし込んでおけば、
+                次回からは「Slidev でスライド作って」の一言で同じ品質が再現できます。
+                おすすめは、役割の違う <strong>2つの Skill</strong> に分けることです。
+            </p>
+
+            <div class="info-box">
+                <strong>📌 なぜ2つに分けるのか</strong><br>
+                「<strong>作る</strong>（型・ルール・スタイルの適用）」と「<strong>見て直す</strong>（実描画レビューの自律ループ）」は
+                目的も使うツールも違います。分けておくと、デッキ作成時は前者、仕上げ時は後者、と用途に応じて呼び分けられます。
+            </div>
+
+            <h3>1. slidev-deck-build — スライドを作る Skill</h3>
+            <p>「型」と「守るべきルール」「実証済みのスタイル」をパッケージ化します。</p>
+            <pre><code>slidev-deck-build/
+├── SKILL.md                  作成手順・型・守るべきルール
+├── assets/slidev-style.css   このデッキで実証済みのグローバル CSS（そのままコピーして使う）
+└── reference/patterns.md     9種の図示パターン（IN/OUT・統計・カードグリッド・比較表・
+                              マトリクス・事例フロー・2軸散布図・階層フロー・CTA）＋配色トークン</code></pre>
+
+            <p>このプロジェクトで学んだ核心を、手順とルールに落とし込みます。</p>
+            <ul>
+                <li><strong>共通スタイルは <code>style.css</code> に集約する</strong> — スライド内の <code>&lt;style&gt;</code> は他スライドに波及しないため、共通の見た目はグローバル CSS に置く</li>
+                <li><strong>見出し＝短いラベル＋<code>.lead</code>＝主張一文</strong> — 1ページ1メッセージを徹底する</li>
+                <li><strong>数字は <code>.big-stat</code> で主役化</strong> — 統計値は大きく見せて視線を集める</li>
+                <li><strong>export は <code>--wait 3000</code></strong> — 描画完了を待ってから書き出し、崩れを防ぐ</li>
+                <li><strong>章番号は連番</strong> — セクションの通し番号で構成の見通しを良くする</li>
+            </ul>
+
+            <h3>2. slidev-design-review — Playwright 自律改善 Skill</h3>
+            <p>「描画 → 目視診断 → 修正 → 再描画で検証」の自律ループをパッケージ化します。</p>
+            <pre><code>slidev-design-review/
+├── SKILL.md            描画→目視診断→修正→再描画検証の自律ループ
+├── assets/shoot.mjs    スクショ撮影（node shoot.mjs 1-51 / 2,5,14 の範囲・個別指定対応）
+└── assets/probe.mjs    computed style 実測（スタイル未適用の切り分け）</code></pre>
+
+            <p>今回ハマった落とし穴を、すべて Skill 側のノウハウとして固定化します。</p>
+            <ul>
+                <li><strong><code>&lt;style&gt;</code> のスコープ問題は computed style 実測で切り分ける</strong> — 例えば <code>.lead</code> の <code>border</code> が <code>0px</code> なら CSS が未適用、と機械的に判定できる</li>
+                <li><strong><code>?print=cover</code> / <code>live=default</code> でレイアウトクラスが変わる</strong> — CSS セレクタを両対応にしないと、dev では直って見えても PDF で崩れる</li>
+                <li><strong>スクショは 1000px・1枚ずつ Read する</strong> — まとめ撮りより崩れを正確に検出できる。<code>playwright-chromium</code> は <code>node_modules</code> のあるディレクトリから実行する</li>
+                <li><strong>「直したつもり」で終わらせず、必ず再描画で確認する</strong> — 修正後にもう一度撮って、本当に直っているかを目視する</li>
+            </ul>
+
+            <div class="tip-box">
+                <strong>💡 作り方のヒント</strong><br>
+                Skill の雛形づくりに迷ったら、Claude Code に
+                「<code>slidev-deck-build</code> という Skill を作りたい。SKILL.md と assets/、reference/ の構成で、
+                上の核心ルールを手順に落として」と頼めば、土台を一気に生成できます。
+                作った Skill は <code>~/.claude/skills/</code> に置けば、どのプロジェクトからでも呼び出せます。
+            </div>
+
+            <table>
+                <thead>
+                    <tr><th>Skill</th><th>いつ使う</th><th>呼び出し例</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>slidev-deck-build</strong></td><td>新規にデッキを作る・再構成する</td><td>「この資料を 1ページ1メッセージでスライド化して」</td></tr>
+                    <tr><td><strong>slidev-design-review</strong></td><td>作ったデッキの仕上げ・崩れ修正</td><td>「Playwright で実描画レビューして直して」</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- おわりに -->
+        <section class="section" id="outro">
+            <h2>🎓 おわりに</h2>
+
+            <h3>今日学んだこと</h3>
+            <ul>
+                <li>✅ Slidev・Marp・HTML の3形式の違いと使い分け</li>
+                <li>✅ Playwright を MCP / CLI で AI に渡す方法</li>
+                <li>✅ 「作る → 見る → 直す」の自律デザインチェックループ</li>
+                <li>✅ Claude Code / Codex / Antigravity それぞれの活かし方</li>
+                <li>✅ PDF / 画像への書き出しと発表準備</li>
+                <li>✅ 学んだ核心を Skill 化して資産にする方法（作る／見て直す の2 Skill）</li>
+            </ul>
+
+            <h3>次のステップ</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">NEXT 1</div>
+                    <h4>自分の発表で使う</h4>
+                    <p>次の社内 LT・勉強会の資料を、丸ごと AI と作ってみる</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">NEXT 2</div>
+                    <h4>テーマを資産化</h4>
+                    <p>気に入った配色・レイアウトを自分のテーマ CSS として保存する</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">NEXT 3</div>
+                    <h4>チェック観点を育てる</h4>
+                    <p>自分が気になる崩れ方を観点リストに足し、CLAUDE.md に記録する</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">NEXT 4</div>
+                    <h4>並列生成に挑戦</h4>
+                    <p>Antigravity で3形式を同時生成し、最も良いものを選ぶ</p>
+                </div>
+            </div>
+
+            <h3>学習リソース</h3>
+            <table>
+                <thead>
+                    <tr><th>リソース</th><th>内容</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://sli.dev/" target="_blank">Slidev 公式</a></td>
+                        <td>テーマ・レイアウト・コンポーネント</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://marp.app/" target="_blank">Marp 公式</a></td>
+                        <td>記法・テーマ・CLI オプション</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://playwright.dev/" target="_blank">Playwright 公式</a></td>
+                        <td>スクショ・PDF・ブラウザ操作 API</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/microsoft/playwright-mcp" target="_blank">Playwright MCP</a></td>
+                        <td>MCP サーバーの導入と使い方</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://revealjs.com/" target="_blank">reveal.js</a></td>
+                        <td>HTML スライドフレームワーク</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <blockquote>
+                「スライドは“作るもの”から“レビューするもの”へ。AI に下書きと自己チェックを任せ、人間は中身と語りに集中しましょう。」
+            </blockquote>
+
+            <div class="tip-box">
+                <strong>🎉 ハンズオン修了おめでとうございます！</strong><br>
+                作ったスライドはぜひ次の登壇で使ってみてください。
+                <a href="index.html">ポータルに戻る</a>と、各エージェントの基礎ガイドも復習できます。
+            </div>
+
+            <div class="nav-btns">
+                <a href="index.html" class="btn">← ポータルに戻る</a>
+                <a href="#intro" class="btn">↑ 最初に戻る</a>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // スクロール時にサイドバーのアクティブリンクを更新する
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.sidebar a');
+
+        function updateActiveLink() {
+            let currentId = '';
+            sections.forEach(section => {
+                const top = section.getBoundingClientRect().top;
+                if (top <= 120) {
+                    currentId = section.id;
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink();
+
+        // サイドバーのリンクをクリックしたらモバイルメニューを閉じる
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.remove('open');
+            });
+        });
+    </script>
+</body>
+
+</html>
