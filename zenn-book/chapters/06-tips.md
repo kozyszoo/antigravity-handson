@@ -35,7 +35,7 @@ Antigravity CLI をさらに使いこなすための参考記事・公式リソ�
 
 | Tips | 概要 | 出典 |
 |:---|:---|:---|
-| **Artifact Review で実行前にモデル切り替え** | Artifact Review Policy を「Request Review」に設定すると、AIが実装計画を提示した段階でレビューできる。ここで**実行前にモデルを切り替えられる**のが最大のメリット。設計フェーズは Gemini 3.5 Flash、実装フェーズは Low に切り替えると、素早いトライアンドエラーが可能になる。 | [DevelopersIO / G-gen Blog](https://dev.classmethod.jp/articles/google-antigravity-five-tips/) |
+| **Artifact Review で実行前にモデル切り替え** | Artifact Review Policy を「Request Review」に設定すると、AIが実装計画を提示した段階でレビューできる。ここで**実行前にモデルを切り替えられる**のが最大のメリット。設計フェーズは Gemini 3.5 Flash (High)、実装フェーズは Gemini 3.5 Flash (Medium) に切り替えると、素早いトライアンドエラーが可能になる。 | [DevelopersIO / G-gen Blog](https://dev.classmethod.jp/articles/google-antigravity-five-tips/) |
 | **DevContainer で安全に実行** | Antigravity は DevContainer 対応が組み込み。ホストOSを保護するため、独立した環境内で実行することでリスク軽減できる。`.gitconfig` などの設定ファイルはホストからマウントして引き継ぐ。 | [DevelopersIO / G-gen Blog](https://dev.classmethod.jp/articles/google-antigravity-five-tips/) |
 | **Step10 超過時に一時停止させる** | `~/.antigravity/rules.md` に「Step10超過時に処理を一時停止して、完了内容・状況報告・次アクションを報告すること」と書くことで、根本原因分析を促進し、無限ループを防げる。日本語対応設定も同じファイルに記述できる。 | [DevelopersIO / G-gen Blog](https://dev.classmethod.jp/articles/google-antigravity-five-tips/) |
 | **Agent Manager で並列実行** | `Cmd + E` で Agent Manager を開くと、複数エージェントを同時管理できる。**Asynchronous Agents 機能**で複数タスクを並行実行すると、フロントエンド実装とバックエンド構築を同時進行させられる。 | [DevelopersIO / G-gen Blog](https://dev.classmethod.jp/articles/google-antigravity-five-tips/) |

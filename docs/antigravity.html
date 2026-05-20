@@ -670,9 +670,9 @@
                 </tbody>
             </table>
 
-            <h4>6. モデル選択</h4>
+                        <h4>6. モデル選択</h4>
             <p>Antigravity CLI の起動時や設定ファイルで、タスクに応じて最適なモデルを指定できます。<br>
-                <strong>基本は <code>Gemini 3.5 Flash</code>（Antigravity 専用モデル）を使用すれば間違いありません。</strong>Antigravity CLI はデフォルトで適切なモデルを自動選択します。
+                <strong>基本は <code>Gemini 3.5 Flash (High)</code> または <code>Gemini 3.5 Flash (Medium)</code>（Antigravity 専用モデル）を使用すれば間違いありません。</strong>Antigravity CLI はデフォルトで適切なモデルを自動選択します。
             </p>
             <!-- 【画像挿入箇所】 モデル選択のプルダウンメニューが開いているスクショ -->
             <img class="screenshot" src="img/fig2.png"
@@ -687,27 +687,32 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Gemini 3.5 Flash</strong></td>
-                        <td>OpenAI の Antigravity 専用モデル。ソフトウェアエンジニアリングタスクに特化しており、コード生成・バグ修正・テスト実行に最も適している。Antigravity（Web版）のデフォルトモデル。</td>
-                        <td>メイン開発、複雑なロジック、PR 作成</td>
+                        <td><strong>Gemini 3.5 Flash (High) [Fast]</strong></td>
+                        <td>Googleの最新軽量モデル。極めて高速に動作し、日常的な対話や一般的なコーディングタスクの大部分をサクサクこなします。</td>
+                        <td>普段使い、簡単なコード変更、即座のフィードバック</td>
                     </tr>
                     <tr>
-                        <td>o4-mini</td>
-                        <td>OpenAI の高速推論モデル。軽量ながらも高精度な推論が可能。Antigravity CLI のデフォルトモデル。応答速度が速く、日常的なコーディング作業に向いている。</td>
+                        <td><strong>Gemini 3.5 Flash (Medium) [Fast]</strong></td>
+                        <td>Highよりもさらに高速性とレスポンスに特化したバリエーション。※Highよりも精度は低めになります。</td>
+                        <td>超高速の応答確認、簡単な質問解決</td>
+                    </tr>
+                    <tr>
+                        <td><strong>o4-mini</strong></td>
+                        <td>Google の高速推論モデル。軽量ながらも高精度な推論が可能。Antigravity CLI のデフォルトモデル。応答速度が速く、日常的なコーディング作業に向いている。</td>
                         <td>日常的なコード修正、素早い質問応答</td>
                     </tr>
                     <tr>
-                        <td>o3</td>
-                        <td>OpenAI の最上位推論モデル。最も深い推論が必要な複雑な問題に適している。消費トークンが多い分、難易度の高い課題で真価を発揮する。</td>
+                        <td><strong>o3</strong></td>
+                        <td>Google の最上位推論モデル。最も深い推論が必要な複雑な問題に適している。消費トークンが多い分、難易度の高い課題で真価を発揮する。</td>
                         <td>難易度の高いバグ解析、アーキテクチャ設計の深い検討</td>
                     </tr>
                     <tr>
-                        <td>GPT-4.1</td>
-                        <td>OpenAI の汎用フラッグシップモデル。コーディングだけでなく、ドキュメント作成や要件定義にも高い能力を発揮する。100万トークンのコンテキストウィンドウを持つ。</td>
+                        <td><strong>GPT-4.1</strong></td>
+                        <td>Google の汎用フラッグシップモデル。コーディングだけでなく、ドキュメント作成や要件定義にも高い能力を発揮する。100万トークンのコンテキストウィンドウを持つ。</td>
                         <td>ドキュメント作成、要件定義書・READMEの執筆、長文の整理</td>
                     </tr>
                     <tr>
-                        <td>DALL-E（画像生成）</td>
+                        <td><strong>DALL-E（画像生成）</strong></td>
                         <td>画像生成専用モデル。チャットで「〜な画像を生成して」と指示するとバックグラウンドで自動生成・保存してくれる。UIモックアップ・OGP・アイコンなどに活用できる。</td>
                         <td>ヒーロー画像、アイコン、UIモックアップ、OGP画像の生成</td>
                     </tr>

@@ -101,7 +101,8 @@ Antigravity では複数の AI モデルやモードを切り替えて使えま�
 
 | モデル | 特徴 |
 |:---|:---|
-| **Gemini 3.5 Flash** (High/Low) | Google の最新モデル。高性能 |
+| **Gemini 3.5 Flash (High) [Fast]** | Googleの最新軽量モデル。極めて高速に動作し、日常的な対話や一般的なコーディングタスクの大部分をサクサクこなします。 |
+| **Gemini 3.5 Flash (Medium) [Fast]** | Highよりもさらに高速性とレスポンスに特化したバリエーション。※Highよりも精度は低めになります。 |
 | **o4-mini** | 高速レスポンス |
 | **GPT-4.1** | Anthropic 製。Standard / Thinking モード |
 | **Claude Opus 4.5** | Anthropic 製。高精度（Thinking モード） |
