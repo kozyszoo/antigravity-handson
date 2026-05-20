@@ -2,7 +2,7 @@
 title: "Step 5: ハッカソンおすすめ戦略 AI-DLC"
 ---
 
-OpenAI Codex を使った開発をハッカソンで最大限活かすための戦略として、**AI-DLC（AI-Driven Development Lifecycle）**という手法を紹介します。
+Antigravity を使った開発をハッカソンで最大限活かすための戦略として、**AI-DLC（AI-Driven Development Lifecycle）**という手法を紹介します。
 
 ## 所要時間
 
@@ -110,7 +110,7 @@ AI-DLCのプロセスは、主に以下の3つのフェーズが循環します�
   ハッカソンにおけるモブエラボレーションの様子を表す図。
 
   左側（パソコン湾画面）:
-    - 1一のモニターに Codex CLI の Agent Manager が表示されている
+    - 1一のモニターに Antigravity CLI の Agent Manager が表示されている
     - 画面に AI の出力した要件リスト（Implementation Plan）が表示されている
 
   右側（チームメンバーの反応）:
@@ -129,9 +129,9 @@ AI-DLCのプロセスは、主に以下の3つのフェーズが循環します�
 | **Inception** | **モブエラボレーション** | AIが出した要件・計画をチーム全員で眺めて、リアルタイムで修正。全員が同じゴールを共有できる |
 | **Construction** | **モブコンストラクション** | AIがコードを書き、チーム全員で技術的な判断（使うフレームワーク、UIの方向性など）をその場で議論 |
 
-### Codex でのやり方
+### Antigravity でのやり方
 
-1. **1人が Codex CLI を画面共有**（Zoom / Discord）
+1. **1人が Antigravity CLI を画面共有**（Zoom / Discord）
 2. チーム全員で Agent Manager の画面を見ながら、要件定義を進める
 3. AIが出力した「計画書」を全員で確認 → 「ここは違う」「これを追加」とチャットで修正指示
 4. 計画が固まったら「Proceed（実行）」→ AIがコードを生成
@@ -141,11 +141,11 @@ AI-DLCのプロセスは、主に以下の3つのフェーズが循環します�
 
 ---
 
-## Codex と AI-DLC の親和性
+## Antigravity と AI-DLC の親和性
 
-Codex CLI の各機能は、AI-DLC の各フェーズにそのまま対応しています。
+Antigravity CLI の各機能は、AI-DLC の各フェーズにそのまま対応しています。
 
-| AI-DLC フェーズ | やること | Codex CLI の対応機能 |
+| AI-DLC フェーズ | やること | Antigravity CLI の対応機能 |
 |:---|:---|:---|
 | **Inception**（発案） | アイデア → 要件 → 計画 | **Agent Manager** でタスク分解・計画書自動生成 |
 | **Construction**（構築） | コード・デザイン・テスト | **Vibe Coding** + **MCP** + **DALL-E** |

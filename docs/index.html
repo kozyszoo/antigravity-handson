@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenAI Codex ハンズオンガイド</title>
+    <title>Antigravity ハンズオンガイド</title>
     <!-- Google Material Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <style>
@@ -374,7 +374,7 @@
     <main class="main">
         <!-- Hero -->
         <div class="hero">
-            <h1>🚀 OpenAI Codex ハンズオンガイド</h1>
+            <h1>🚀 Antigravity ハンズオンガイド</h1>
             <p style="margin-top:8px; font-size:0.9rem;">2026年3月7日</p>
         </div>
 
@@ -447,9 +447,9 @@
 
             </div>
 
-            <p>このガイドでは、OpenAI Codex を使った開発の基礎から応用まで、ステップバイステップで学習できます。プログラミング初心者でも、AIがすべてサポートしてくれるので安心してください。</p>
+            <p>このガイドでは、Antigravity を使った開発の基礎から応用まで、ステップバイステップで学習できます。プログラミング初心者でも、AIがすべてサポートしてくれるので安心してください。</p>
 
-            <!-- 【挿絵】 Codex の全体像を表すコンセプトイラスト
+            <!-- 【挿絵】 Antigravity の全体像を表すコンセプトイラスト
                  ▼ 画像生成プロンプト例（DALL-E / Midjourney 等）:
                  「A developer and an AI robot collaborating in front of a glowing VS Code-like IDE,
                  dark background with teal accent lights, futuristic and friendly atmosphere,
@@ -457,15 +457,15 @@
                  サイズ推奨: 横幅 1200px × 縦幅 480px（16:6 比率のワイド横長バナー）
             -->
             <img class="screenshot" src="img/fig-intro.png"
-                alt="AIエージェント（ロボット）とエンジニアが横並びでノートパソコンに向かい、コードを協力して書いているフラットイラスト。ダークな背景に青緑色のアクセントカラー。OpenAI Codex ハンズオンのコンセプトイメージ">
+                alt="AIエージェント（ロボット）とエンジニアが横並びでノートパソコンに向かい、コードを協力して書いているフラットイラスト。ダークな背景に青緑色のアクセントカラー。Antigravity ハンズオンのコンセプトイメージ">
 
             <h3>学習の流れ（所要時間 約110分）</h3>
-            <img class="screenshot" src="img/slide-roadmap.png" alt="OpenAI Codex 学習の流れ（ロードマップ）">
+            <img class="screenshot" src="img/slide-roadmap.png" alt="Antigravity 学習の流れ（ロードマップ）">
             <div class="step-grid">
                 <div class="step-card">
                     <div class="step-num">Step 1（15分）</div>
                     <h4>環境セットアップ &amp; GEMINI.md</h4>
-                    <p>Codex の起動・設定と、AIへのルール定義ファイルの作成</p>
+                    <p>Antigravity の起動・設定と、AIへのルール定義ファイルの作成</p>
                 </div>
                 <div class="step-card">
                     <div class="step-num">Step 2（30分）</div>
@@ -496,7 +496,7 @@
             <span class="badge badge-time">🕐 19:30〜19:45（Step1 合計 15分）</span>
 
             <h3>目標</h3>
-            <p>OpenAI Codex を起動して、ワークスペースの基本設定まで済ませましょう。</p>
+            <p>Antigravity を起動して、ワークスペースの基本設定まで済ませましょう。</p>
 
             <h3>システム要件</h3>
             <table>
@@ -521,13 +521,13 @@
                     </tr>
                 </tbody>
             </table>
-            <blockquote>📚 公式ドキュメント: <a href="https://openai.com/index/introducing-codex/"
-                    target="_blank">openai.com/index/introducing-codex/</a></blockquote>
+            <blockquote>📚 公式ドキュメント: <a href="https://openai.com/index/introducing-antigravity/"
+                    target="_blank">openai.com/index/introducing-antigravity/</a></blockquote>
 
             <h3>チェックリスト</h3>
-            <h4>1. Codex のインストール確認</h4>
+            <h4>1. Antigravity のインストール確認</h4>
             <ul>
-                <li>Codex アプリケーションがインストールされている</li>
+                <li>Antigravity アプリケーションがインストールされている</li>
                 <li>OpenAI アカウントでログイン済み（ChatGPT Plus / Pro / Business / Edu / Enterprise）</li>
                 <li>アプリが最新版（Restart to Update が出ていたら再起動してください）</li>
             </ul>
@@ -577,9 +577,9 @@
                 </ul>
             </div>
 
-            <h5>方法2: Codex のターミナルでクローン（Codex 内で完結）</h5>
+            <h5>方法2: Antigravity のターミナルでクローン（Antigravity 内で完結）</h5>
             <ol>
-                <li>Codex アプリを起動します</li>
+                <li>Antigravity アプリを起動します</li>
                 <li>画面上部のメニューバーから <code>Terminal</code> → <code>New Terminal</code> をクリック</li>
                 <li>画面下部にターミナルパネルが表示されます</li>
                 <li>以下のコマンドをコピーして、ターミナルパネルに貼り付け（右クリック → 貼り付け）：</li>
@@ -616,15 +616,15 @@
             </ol>
 
             <h4>5. 基本画面の確認</h4>
-            <!-- 【画像挿入箇所】 Editor View と Codex Sidebar の画面全体のスクショ -->
+            <!-- 【画像挿入箇所】 Editor View と Antigravity Sidebar の画面全体のスクショ -->
 
             <img class="screenshot" src="img/fig1.png"
-                alt="OpenAI Codex の全体画面構成。左側に Editor View（ファイルツリーとエディタ）、右側または別ペインに Codex Sidebar（AI エージェントとの対話画面）が表示されている状態">
+                alt="Antigravity の全体画面構成。左側に Editor View（ファイルツリーとエディタ）、右側または別ペインに Antigravity Sidebar（AI エージェントとの対話画面）が表示されている状態">
             <div class="card">
                 <strong>Editor View</strong> — ファイルツリーとエディタが並ぶ VS Code ベースの画面
             </div>
             <div class="card">
-                <strong>Codex Sidebar</strong> — AIエージェントとのやりとりに特化した画面。Inbox で複数会話を管理
+                <strong>Antigravity Sidebar</strong> — AIエージェントとのやりとりに特化した画面。Inbox で複数会話を管理
             </div>
             <table>
                 <thead>
@@ -635,7 +635,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Editor ⇄ Codex Sidebar 切り替え</td>
+                        <td>Editor ⇄ Antigravity Sidebar 切り替え</td>
                         <td><code>Cmd + E</code></td>
                     </tr>
                 </tbody>
@@ -670,12 +670,12 @@
             </table>
 
             <h4>6. モデル選択</h4>
-            <p>Codex CLI の起動時や設定ファイルで、タスクに応じて最適なモデルを指定できます。<br>
-                <strong>基本は <code>codex-1</code>（Codex 専用モデル）を使用すれば間違いありません。</strong>Codex CLI はデフォルトで適切なモデルを自動選択します。
+            <p>Antigravity CLI の起動時や設定ファイルで、タスクに応じて最適なモデルを指定できます。<br>
+                <strong>基本は <code>Gemini 3.5 Flash</code>（Antigravity 専用モデル）を使用すれば間違いありません。</strong>Antigravity CLI はデフォルトで適切なモデルを自動選択します。
             </p>
             <!-- 【画像挿入箇所】 モデル選択のプルダウンメニューが開いているスクショ -->
             <img class="screenshot" src="img/fig2.png"
-                alt="利用可能なAIモデル（codex-1, o4-mini, o3, GPT-4.1 など）を選択するプルダウンメニューのスクリーンショット">
+                alt="利用可能なAIモデル（Gemini 3.5 Flash, o4-mini, o3, GPT-4.1 など）を選択するプルダウンメニューのスクリーンショット">
             <table>
                 <thead>
                     <tr>
@@ -686,13 +686,13 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>codex-1</strong></td>
-                        <td>OpenAI の Codex 専用モデル。ソフトウェアエンジニアリングタスクに特化しており、コード生成・バグ修正・テスト実行に最も適している。Codex（Web版）のデフォルトモデル。</td>
+                        <td><strong>Gemini 3.5 Flash</strong></td>
+                        <td>OpenAI の Antigravity 専用モデル。ソフトウェアエンジニアリングタスクに特化しており、コード生成・バグ修正・テスト実行に最も適している。Antigravity（Web版）のデフォルトモデル。</td>
                         <td>メイン開発、複雑なロジック、PR 作成</td>
                     </tr>
                     <tr>
                         <td>o4-mini</td>
-                        <td>OpenAI の高速推論モデル。軽量ながらも高精度な推論が可能。Codex CLI のデフォルトモデル。応答速度が速く、日常的なコーディング作業に向いている。</td>
+                        <td>OpenAI の高速推論モデル。軽量ながらも高精度な推論が可能。Antigravity CLI のデフォルトモデル。応答速度が速く、日常的なコーディング作業に向いている。</td>
                         <td>日常的なコード修正、素早い質問応答</td>
                     </tr>
                     <tr>
@@ -715,7 +715,7 @@
             <div class="card">
                 <strong>💡 Rate Limit に達したときの対処法</strong>
                 <ul style="margin-top: 8px;">
-                    <li>codex-1 → <strong>o4-mini</strong> または <strong>GPT-4.1</strong>
+                    <li>Gemini 3.5 Flash → <strong>o4-mini</strong> または <strong>GPT-4.1</strong>
                         に切り替える</li>
                     <li>しばらく時間をおいてから再試行する（通常数分〜数十分でリセット）</li>
                     <li>簡単な作業は <strong>o4-mini</strong> で素早く処理する</li>
@@ -731,12 +731,12 @@
                 <p style="margin-top: 8px; font-size: 0.9rem;">
                     ターミナルコマンドとは、文字で入力してコンピュータに指示を出す命令のことです。<br>
                     例：<code>npm install</code>（パッケージをインストール）、<code>git commit</code>（変更を記録）、<code>rm -rf フォルダ名</code>（フォルダを削除）など。<br>
-                    Codex では、AIが開発作業を進めるために、これらのコマンドを自動で実行することができます。
+                    Antigravity では、AIが開発作業を進めるために、これらのコマンドを自動で実行することができます。
                 </p>
             </div>
 
-            <p>Codex は AI がターミナルコマンドを自動実行できます。「どこまで AI に任せるか」を <strong>Auto Execution</strong> ポリシーで制御します。<br>
-                設定は Codex Sidebar の設定アイコン（⚙️）→ <code>Auto Execution</code> から変更できます。</p>
+            <p>Antigravity は AI がターミナルコマンドを自動実行できます。「どこまで AI に任せるか」を <strong>Auto Execution</strong> ポリシーで制御します。<br>
+                設定は Antigravity Sidebar の設定アイコン（⚙️）→ <code>Auto Execution</code> から変更できます。</p>
             <table>
                 <thead>
                     <tr>
@@ -800,7 +800,7 @@
                     <li><strong>エラーメッセージをコピー：</strong> ターミナルのエラー部分をマウスで選択 → <code>Ctrl+C</code>（または
                         <code>Cmd+C</code>）でコピー
                     </li>
-                    <li><strong>AIに貼り付けて相談：</strong> Codex のチャット欄に「このエラーが出ました：」とメッセージを入力し、その下にエラーメッセージを貼り付け</li>
+                    <li><strong>AIに貼り付けて相談：</strong> Antigravity のチャット欄に「このエラーが出ました：」とメッセージを入力し、その下にエラーメッセージを貼り付け</li>
                     <li><strong>AIが自動で解決：</strong> AIがエラーの原因を分析し、自動的に修正コマンドを実行してくれます</li>
                 </ol>
                 <p
@@ -847,7 +847,7 @@
                     </tr>
                     <tr>
                         <td>チャットが応答しない</td>
-                        <td>ネットワーク確認 / Codex を再起動</td>
+                        <td>ネットワーク確認 / Antigravity を再起動</td>
                     </tr>
                     <tr>
                         <td>X86 Mac で起動しない</td>
@@ -874,8 +874,8 @@
             <p>Rules
                 は、エージェントの振る舞いを制御する持続的な指示です。簡単に言うと、<strong>「AIへの取扱説明書」</strong>のようなものです。「日本語で答えて」「コメントを入れて」などのルールを書いておくと、AIが毎回それに従って動きます。
             </p>
-            <blockquote>📚 参考: <a href="https://github.com/openai/codex"
-                    target="_blank">github.com/openai/codex</a>（Codex CLI の README にルール設定方法が記載されています）</blockquote>
+            <blockquote>📚 参考: <a href="https://github.com/openai/antigravity"
+                    target="_blank">github.com/openai/antigravity</a>（Antigravity CLI の README にルール設定方法が記載されています）</blockquote>
 
             <h3>設定ファイルの種類</h3>
             <table>
@@ -973,7 +973,7 @@
             <!-- 【画像挿入箇所】 GEMINI.md ファイルを作成してテンプレートを貼り付けた際のエディタ画面スクショ -->
             <img class="screenshot" src="img/fig4.png"
                 alt="プロジェクト直下に GEMINI.md ファイルを作成し、基本ルールや技術スタックが記述されたマークダウンのテンプレートを貼り付けたエディタ画面のスクリーンショット">
-            <pre><code># プロジェクト設定 - OpenAI Codex Hands-on
+            <pre><code># プロジェクト設定 - Antigravity Hands-on
 
 ## 基本ルール
 - 常に**日本語**で応答してください。
@@ -1028,7 +1028,7 @@ description: 挨拶のテスト用ワークフロー
 
             <h3>学習目標</h3>
             <ul>
-                <li>Codex との基本的な対話方法を身につける</li>
+                <li>Antigravity との基本的な対話方法を身につける</li>
                 <li>自然言語でコードを生成する感覚をつかむ</li>
                 <li>DALL-E で画像を生成してみる</li>
                 <li>すぐに動く Web ページを一つ作る</li>
@@ -1097,7 +1097,7 @@ description: 挨拶のテスト用ワークフロー
             </div>
             <div class="card">
                 <h4>7. チームで使うときのコツ（ハッカソン特有）</h4>
-                <p>✅ 一人が Codex を操作し、残りのメンバーは画面を見てフィードバックを出す「モブプログラミング」形式</p>
+                <p>✅ 一人が Antigravity を操作し、残りのメンバーは画面を見てフィードバックを出す「モブプログラミング」形式</p>
                 <p>✅ GEMINI.md にチームの共通ルール（技術スタック・ファイル命名規則など）を書いておく</p>
                 <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
                     💡 <strong>補足:</strong> ハッカソンでは「全員でAIの計画書を確認 → 合意してから実行」のフローが大事。
@@ -1119,7 +1119,7 @@ description: 挨拶のテスト用ワークフロー
                 <ol style="font-size: 0.9rem; margin-top: 8px;">
                     <li>HTMLファイルをデフォルトのブラウザ（Chrome、Safariなど）で開く</li>
                     <li>または、開発サーバーを起動して <code>http://localhost:ポート番号</code> で表示</li>
-                    <li>Codexが自動的にターミナルコマンドを実行してくれるので、<strong>あなたは何もする必要がありません</strong></li>
+                    <li>Antigravityが自動的にターミナルコマンドを実行してくれるので、<strong>あなたは何もする必要がありません</strong></li>
                 </ol>
                 <p style="font-size: 0.9rem; margin-top: 8px;">
                     ブラウザウィンドウが自動的に開き、作成したページが表示されます。
@@ -1250,7 +1250,7 @@ description: 挨拶のテスト用ワークフロー
                 を例に、設定ファイルでの追加方法を学びます。</p>
 
             <h4>設定ファイルの場所</h4>
-            <p>Codex CLI の MCP 設定は、プロジェクトルートの <code>.codex/mcp.json</code> または設定ファイルで管理できます。</p>
+            <p>Antigravity CLI の MCP 設定は、プロジェクトルートの <code>.antigravity/mcp.json</code> または設定ファイルで管理できます。</p>
 
             <h4>設定手順</h4>
             <ol>
@@ -1274,7 +1274,7 @@ description: 挨拶のテスト用ワークフロー
   }
 }</code></pre>
                 </li>
-                <li>設定を保存して Codex を再起動</li>
+                <li>設定を保存して Antigravity を再起動</li>
                 <li>プロジェクトを開いた後、エージェントに「Activate the current project using serena's activation tool」と依頼して serena を有効化
                 </li>
             </ol>
@@ -1328,7 +1328,7 @@ description: 挨拶のテスト用ワークフロー
             <div class="card">
                 <h4>✅ 安全な MCP の見分け方</h4>
                 <ul>
-                    <li><strong>公式 MCP Store からインストールする</strong> — Codex が審査・掲載したサーバーを優先して使う</li>
+                    <li><strong>公式 MCP Store からインストールする</strong> — Antigravity が審査・掲載したサーバーを優先して使う</li>
                     <li><strong>ソースコードが公開されているものを選ぶ</strong> — GitHub 等でコードが確認できる著名なプロジェクトが安心</li>
                     <li><strong>インストール前に用途・権限を確認する</strong> — 「なぜそのアクセス権限が必要なのか」が明示されているものを選ぶ</li>
                     <li><strong>不要な MCP は無効化（Disable）する</strong> — 使わないサーバーは常時有効にしない</li>
@@ -1356,8 +1356,8 @@ description: 挨拶のテスト用ワークフロー
             <h3>Agent Skills とは</h3>
             <p>Skills は、特定のタスクを実行する手順をパッケージ化してエージェントに教える機能です。簡単に言うと、<strong>「AIに新しい『技能』を教える機能」</strong>です。</p>
             <img class="screenshot" src="img/slide-skills.png" alt="Agent Skills とは">
-            <blockquote>📚 参考: <a href="https://github.com/openai/codex"
-                    target="_blank">github.com/openai/codex</a>（Codex CLI のドキュメントにカスタマイズ方法が記載されています）</blockquote>
+            <blockquote>📚 参考: <a href="https://github.com/openai/antigravity"
+                    target="_blank">github.com/openai/antigravity</a>（Antigravity CLI のドキュメントにカスタマイズ方法が記載されています）</blockquote>
 
             <h3>Skills / Rules / Workflows の比較</h3>
             <table>
@@ -1428,7 +1428,7 @@ description: 特定のタスクを支援するスキル
             <h4>公開 Skills の追加方法</h4>
 
             <p><strong>方法1: AI に依頼する（初心者におすすめ）</strong></p>
-            <p>Codex のチャット欄で、AI に自然言語で依頼するだけで Skills を追加できます：</p>
+            <p>Antigravity のチャット欄で、AI に自然言語で依頼するだけで Skills を追加できます：</p>
             <pre><code>GitHub の https://github.com/USERNAME/skills-collection から
 multi-ai-review と agent-team の Skill をダウンロードして
 .agent/skills/ に配置して</code></pre>
@@ -1438,7 +1438,7 @@ multi-ai-review と agent-team の Skill をダウンロードして
             <p>より詳しく理解したい方は、以下の手順でターミナルから手動で追加できます：</p>
 
             <ol>
-                <li><strong>Codex でターミナルを開く：</strong> <code>Terminal</code> メニュー → <code>New Terminal</code></li>
+                <li><strong>Antigravity でターミナルを開く：</strong> <code>Terminal</code> メニュー → <code>New Terminal</code></li>
                 <li><strong>プロジェクトフォルダにいることを確認：</strong> ターミナルに現在のパスが表示されます。<code>antigravity-handson</code>
                     フォルダ内にいることを確認してください。</li>
                 <li><strong>Skills リポジトリをクローン：</strong> 以下のコマンドをコピーして貼り付け、Enter で実行</li>
@@ -1486,7 +1486,7 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
                 <tbody>
                     <tr>
                         <td><code>@multi-ai-review</code></td>
-                        <td>Codex, Gemini, Claude の3つに並列コードレビューを依頼し統合レポートを生成</td>
+                        <td>Antigravity, Gemini, Claude の3つに並列コードレビューを依頼し統合レポートを生成</td>
                     </tr>
                     <tr>
                         <td><code>@agent-team</code></td>
@@ -1560,7 +1560,7 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
             </table>
 
             <h3>Tips: アーティファクト（成果物ドキュメント）を活用する</h3>
-            <p>CodexのAIエージェントは、チャットの返答とは別に独立したドキュメント（アーティファクト）を作成する機能があります。特に複雑な要件や中規模以上の開発を行う際は、いきなりコードを書かせるのではなく、まず以下のようなアーティファクトを作成するように指示することで、開発を整理しながら安全かつスムーズに進めることができます。
+            <p>AntigravityのAIエージェントは、チャットの返答とは別に独立したドキュメント（アーティファクト）を作成する機能があります。特に複雑な要件や中規模以上の開発を行う際は、いきなりコードを書かせるのではなく、まず以下のようなアーティファクトを作成するように指示することで、開発を整理しながら安全かつスムーズに進めることができます。
             </p>
             <table>
                 <thead>
@@ -1590,7 +1590,7 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
             </table>
 
             <h3>Tips: Web ブラウザを操作する（標準機能）</h3>
-            <p>Codex では、特別な拡張機能をインストールしなくても、<strong>デフォルトで外部の Web サイトを検索・閲覧したり、ブラウザの画面を操作する機能</strong>が備わっています。AI
+            <p>Antigravity では、特別な拡張機能をインストールしなくても、<strong>デフォルトで外部の Web サイトを検索・閲覧したり、ブラウザの画面を操作する機能</strong>が備わっています。AI
                 は最新の公式ドキュメントやネット上の情報を自律的に検索したり、開発中のアプリをブラウザで開いて自律的にテストを行ってくれます。</p>
 
             <div class="card" style="margin-bottom: 16px; border-left: 4px solid var(--blue);">
@@ -1604,7 +1604,7 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
             </div>
 
             <h4>やってみよう</h4>
-            <pre><code>Google で「Codex IDE 2026」を検索して、
+            <pre><code>Google で「Antigravity IDE 2026」を検索して、
 トップ3件の記事タイトルを教えて。</code></pre>
 
 
@@ -1769,7 +1769,7 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
                     <div style="margin-bottom: 12px;">
                         <strong style="color: var(--primary);">方法1: AI に全部お願いする（おすすめ）</strong>
                         <p style="margin-top: 4px; font-size: 0.9rem;">
-                            Codex に以下のように依頼すれば、AI が必要な手順を案内してくれます：
+                            Antigravity に以下のように依頼すれば、AI が必要な手順を案内してくれます：
                         </p>
                         <pre style="margin-top: 8px;"><code>Firebase Hosting を初めて使います。
 プロジェクト作成からデプロイまでの手順を教えてください。</code></pre>
@@ -1793,7 +1793,7 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
 
             <p><strong>ステップ2: Firebase CLI のインストールとログイン</strong></p>
             <p style="font-size: 0.9rem; margin-top: 8px;">
-                <strong>初心者の方へ：</strong>ターミナル操作が不安な場合は、<strong>以下のコマンドを Codex のチャットにコピペして「実行して」と依頼</strong>すれば、AI
+                <strong>初心者の方へ：</strong>ターミナル操作が不安な場合は、<strong>以下のコマンドを Antigravity のチャットにコピペして「実行して」と依頼</strong>すれば、AI
                 が代わりに実行してくれます。
             </p>
 
@@ -1843,7 +1843,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 <strong>✅ 完成！</strong>
                 <p style="margin-top: 8px; font-size: 0.9rem;">
                     これで、<strong>リサーチ → 企画 → デザイン → 実装 → レビュー → デプロイ</strong> という本格的な Web 開発フローを約30分で体験できました。<br>
-                    従来の開発手法では数日〜1週間かかる作業を、Codex + MCP + Skills の組み合わせで大幅に短縮できることを実感していただけたと思います。
+                    従来の開発手法では数日〜1週間かかる作業を、Antigravity + MCP + Skills の組み合わせで大幅に短縮できることを実感していただけたと思います。
                 </p>
             </div>
             <!-- 【画像挿入箇所】 完成したAI Coffee Shop LPのスクリーンショットや構築中のチャット画面 -->
@@ -1994,9 +1994,9 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 </tbody>
             </table>
 
-            <h4>Codex でのやり方</h4>
+            <h4>Antigravity でのやり方</h4>
 
-            <!-- 【挿絵】 チームがモニターを囲んで画面共有しながら Codex を使う様子のイラスト
+            <!-- 【挿絵】 チームがモニターを囲んで画面共有しながら Antigravity を使う様子のイラスト
                  ▼ 画像生成プロンプト例（DALL-E / Midjourney 等）:
                  「A small hackathon team of 3-4 people gathered around a large monitor showing
                  an AI chat interface (like a VS Code sidebar), one person typing at laptop,
@@ -2005,11 +2005,11 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                  サイズ推奨: 横幅 1000px × 縦幅 420px（横長バナー）
             -->
             <img class="screenshot" src="img/fig-mob-dev.png"
-                alt="3〜4人のハッカソンチームが大型モニターを囲み、Codex の Codex Sidebar 画面を共有しながら要件定義を進めている様子のイラスト。ダークな部屋にネオンライトが灯ったモブ開発のシーン">
+                alt="3〜4人のハッカソンチームが大型モニターを囲み、Antigravity の Antigravity Sidebar 画面を共有しながら要件定義を進めている様子のイラスト。ダークな部屋にネオンライトが灯ったモブ開発のシーン">
 
             <ol>
-                <li>1人が Codex を画面共有（Zoom / Discord）</li>
-                <li>チーム全員で Codex Sidebar の画面を見ながら要件定義を進める</li>
+                <li>1人が Antigravity を画面共有（Zoom / Discord）</li>
+                <li>チーム全員で Antigravity Sidebar の画面を見ながら要件定義を進める</li>
                 <li>AI が出力した「計画書」を全員で確認 → 「ここは違う」とチャットで修正指示</li>
                 <li>計画が固まったら「Proceed（実行）」→ AI がコードを生成</li>
                 <li>生成されたコードをみんなで確認しながら方向修正</li>
@@ -2019,20 +2019,20 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 ※ モブエラボレーション：チーム全員で一斉に要件やアイデアを深掘り・整理（Elaboration）し、詳細な設計書（アーティファクト）へと落とし込む作業のこと。
             </blockquote>
 
-            <h3>Codex と AI-DLC の対応関係</h3>
+            <h3>Antigravity と AI-DLC の対応関係</h3>
             <table>
                 <thead>
                     <tr>
                         <th>AI-DLC フェーズ</th>
                         <th>やること</th>
-                        <th>Codex の対応機能</th>
+                        <th>Antigravity の対応機能</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Inception（発案）</td>
                         <td>アイデア → 要件 → 計画</td>
-                        <td>Codex Sidebar でタスク分解・計画書自動生成</td>
+                        <td>Antigravity Sidebar でタスク分解・計画書自動生成</td>
                     </tr>
                     <tr>
                         <td>Construction（構築）</td>
@@ -2066,7 +2066,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
         <section class="section" id="step6">
             <h2>Step 6: 活用 Tips 集</h2>
 
-            <p>Codex をさらに使いこなすための参考記事・公式リソースをまとめました。ハンズオン後の自習や、チームへの共有にご活用ください。</p>
+            <p>Antigravity をさらに使いこなすための参考記事・公式リソースをまとめました。ハンズオン後の自習や、チームへの共有にご活用ください。</p>
 
             <img class="screenshot" src="img/slide-cheatsheet.png" alt="Vibe Coding チートシート">
 
@@ -2091,7 +2091,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     <tr>
                         <td>モードは基本「Planning」一択</td>
                         <td>Planning Mode ではAIがまず計画を立て、宣言してから作業する。Fast Mode は計画なしで即作業するためミスりやすい。複雑なタスクは急がば回れで Planning
-                            を選ぶほうが精度が上がる。モデルは <code>codex-1</code> が安定。</td>
+                            を選ぶほうが精度が上がる。モデルは <code>Gemini 3.5 Flash</code> が安定。</td>
                     </tr>
                     <tr>
                         <td>Global Rules に「日本語指示」を書く</td>
@@ -2118,7 +2118,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>Chrome拡張でクロスツール自律操作</td>
-                        <td>Codex 専用の Chrome
+                        <td>Antigravity 専用の Chrome
                             拡張を入れると、AIがブラウザを実際に見て操作できるようになる。ターミナル実行→ブラウザ動作確認まで全自動。UIの実装精度が段違いに向上する。</td>
                     </tr>
                     <tr>
@@ -2134,14 +2134,14 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                         <td>Artifact Review で実行前にモデル切り替え</td>
                         <td>Artifact Review Policy を「Request
                             Review」に設定すると、AIが実装計画を提示した段階でレビューできる。ここで<strong>実行前にモデルを切り替えられる</strong>のが最大のメリット。設計フェーズは
-                            codex-1、実装フェーズは o4-mini に切り替えると、素早いトライアンドエラーが可能になる。</td>
+                            Gemini 3.5 Flash、実装フェーズは o4-mini に切り替えると、素早いトライアンドエラーが可能になる。</td>
                         <td rowspan="8"><a href="https://platform.openai.com/docs"
                                 target="_blank" style="color: var(--blue); word-break: break-all;">OpenAI Docs
                                 /<br>Community</a></td>
                     </tr>
                     <tr>
                         <td>DevContainer で安全に実行</td>
-                        <td>Codex は DevContainer
+                        <td>Antigravity は DevContainer
                             対応が組み込み。ホストOSを保護するため、独立した環境内で実行することでリスク軽減できる。<code>.gitconfig</code>
                             などの設定ファイルはホストからマウントして引き継ぐ。</td>
                     </tr>
@@ -2152,8 +2152,8 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                         </td>
                     </tr>
                     <tr>
-                        <td>Codex Sidebar で並列実行</td>
-                        <td><code>cmd + E</code> で Codex Sidebar を開くと、複数エージェントを同時管理できる。<strong>Asynchronous Agents
+                        <td>Antigravity Sidebar で並列実行</td>
+                        <td><code>cmd + E</code> で Antigravity Sidebar を開くと、複数エージェントを同時管理できる。<strong>Asynchronous Agents
                                 機能</strong>で複数タスクを並行実行すると、フロントエンド実装とバックエンド構築を同時進行させられる。</td>
                     </tr>
                     <tr>
@@ -2192,9 +2192,9 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 <tbody>
                     <tr>
                         <td>公式サイト</td>
-                        <td>Codex のダウンロード・プラン・最新情報</td>
-                        <td><a href="https://openai.com/index/introducing-codex/" target="_blank"
-                                style="color: var(--blue);">openai.com/index/introducing-codex/</a></td>
+                        <td>Antigravity のダウンロード・プラン・最新情報</td>
+                        <td><a href="https://openai.com/index/introducing-antigravity/" target="_blank"
+                                style="color: var(--blue);">openai.com/index/introducing-antigravity/</a></td>
                     </tr>
                     <tr>
                         <td>公式ドキュメント</td>
@@ -2203,10 +2203,10 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                                 style="color: var(--blue);">platform.openai.com/docs</a></td>
                     </tr>
                     <tr>
-                        <td>Codex CLI（オープンソース）</td>
-                        <td>Codex CLI のソースコード・インストール方法・カスタマイズ方法</td>
-                        <td><a href="https://github.com/openai/codex" target="_blank"
-                                style="color: var(--blue);">github.com/openai/codex</a></td>
+                        <td>Antigravity CLI（オープンソース）</td>
+                        <td>Antigravity CLI のソースコード・インストール方法・カスタマイズ方法</td>
+                        <td><a href="https://github.com/openai/antigravity" target="_blank"
+                                style="color: var(--blue);">github.com/openai/antigravity</a></td>
                     </tr>
                     <tr>
                         <td>MCP（Model Context Protocol）</td>
@@ -2216,7 +2216,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>ChatGPT</td>
-                        <td>Codex（Web版）にアクセス。Ask / Code モードでタスクを実行</td>
+                        <td>Antigravity（Web版）にアクセス。Ask / Code モードでタスクを実行</td>
                         <td><a href="https://chatgpt.com" target="_blank"
                                 style="color: var(--blue);">chatgpt.com</a></td>
                     </tr>
@@ -2233,7 +2233,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
         <section class="section" id="outro">
             <h2>おわりに</h2>
             <p>本日はご参加いただきありがとうございました！<br>
-                Codex を使った AI 駆動開発の可能性を少しでも感じてもらえたなら嬉しいです。今後もイベントや学習コンテンツを通じて、一緒に「Vibe Coding」の世界を探求しましょう。</p>
+                Antigravity を使った AI 駆動開発の可能性を少しでも感じてもらえたなら嬉しいです。今後もイベントや学習コンテンツを通じて、一緒に「Vibe Coding」の世界を探求しましょう。</p>
 
             <!-- 【挿絵】 ハンズオン後の達成感・前向きな締めくくりを表すイメージ画像
                  ▼ 画像生成プロンプト例（DALL-E / Midjourney 等）:
@@ -2329,7 +2329,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 <div
                     style="background: var(--bg-dark); border-radius: 8px; padding: 16px; border: 1px solid var(--bg-light);">
                     <div style="color: var(--primary); font-weight: 700; margin-bottom: 6px;">📝 Qiita / Zenn</div>
-                    <span style="color: var(--muted); font-size: 0.88rem;">#Codex タグで記事を検索</span>
+                    <span style="color: var(--muted); font-size: 0.88rem;">#Antigravity タグで記事を検索</span>
                 </div>
             </div>
 
@@ -2363,7 +2363,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     <span style="font-size: 0.85rem; color: #8C8276;">下記ボタンをクリックすると、投稿フォームが開きます（内容は自由に編集できます）</span>
                 </div>
                 <!-- Twitter Web インテント：テンプレートテキスト・ハッシュタグ・URL を事前セット -->
-                <a href="https://twitter.com/intent/tweet?text=%E3%80%90%E6%84%9F%E6%83%B3%E3%80%91Google+AI+Student+Ambassador+%C3%97+Codex+%E3%83%8F%E3%83%B3%E3%82%BA%E3%82%AA%E3%83%B3%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81+Vibe+Coding%E3%81%A7AI%E3%81%A8%E4%B8%80%E7%B7%92%E3%81%AB%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B%E4%BD%93%E9%A8%93%E3%81%AF%E6%9C%80%E9%AB%98%E3%81%A7%E3%81%97%E3%81%9F%F0%9F%9A%80&hashtags=Codex%2CVibeCoding%2CGoogleAI%2CAIDD&url=https%3A%2F%2Fgoogleaistudentambassador-uoa.connpass.com%2Fevent%2F384075%2F"
+                <a href="https://twitter.com/intent/tweet?text=%E3%80%90%E6%84%9F%E6%83%B3%E3%80%91Google+AI+Student+Ambassador+%C3%97+Antigravity+%E3%83%8F%E3%83%B3%E3%82%BA%E3%82%AA%E3%83%B3%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81+Vibe+Coding%E3%81%A7AI%E3%81%A8%E4%B8%80%E7%B7%92%E3%81%AB%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B%E4%BD%93%E9%A8%93%E3%81%AF%E6%9C%80%E9%AB%98%E3%81%A7%E3%81%97%E3%81%9F%F0%9F%9A%80&hashtags=Antigravity%2CVibeCoding%2CGoogleAI%2CAIDD&url=https%3A%2F%2Fgoogleaistudentambassador-uoa.connpass.com%2Fevent%2F384075%2F"
                     target="_blank" rel="noopener noreferrer"
                     style="display: inline-flex; align-items: center; justify-content: center; background: #61564D; color: #fff; font-weight: 700; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-size: 1rem; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 14px rgba(97,86,77,0.3);"
                     onmouseover="this.style.background='#4A423A'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(97,86,77,0.4)';"
@@ -2372,7 +2372,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                         style="margin-right: 6px; font-size: 1.2rem;">send</span>ポストする
                 </a>
                 <div style="margin-top: 16px; font-size: 0.82rem; color: #8F816E;">
-                    投稿文の例:「Codex × MCP × Skills で本格的な Web アプリが30分でできた！ #Codex #VibeCoding」
+                    投稿文の例:「Antigravity × MCP × Skills で本格的な Web アプリが30分でできた！ #Antigravity #VibeCoding」
                 </div>
             </div>
 
