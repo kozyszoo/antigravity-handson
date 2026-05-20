@@ -9,7 +9,7 @@ title: "まとめと次のステップ"
 | ステップ | 学んだこと |
 |:---:|:---|
 | 1 | Codex CLI の基本操作、2つの View、モデル選択 |
-| 2 | GEMINI.md によるプロジェクトルールの定義、Workflows |
+| 2 | CLAUDE.md によるプロジェクトルールの定義、Workflows |
 | 3 | 自然言語での HTML 生成、DALL-E による画像生成 |
 | 4 | MCP による外部ツール接続、Web リサーチの自動化 |
 | 5 | Agent Skills の作成と呼び出し、Rules / Workflows との使い分け |
@@ -20,7 +20,7 @@ title: "まとめと次のステップ"
 ここまでの内容を振り返ると、Codex が提供する仕組みは大きく3層に分かれます。
 
 **基盤**: Editor View と Agent Manager の Dual View、マルチモデル対応
-**カスタマイズ**: Rules（GEMINI.md）、Workflows、Agent Skills
+**カスタマイズ**: Rules（CLAUDE.md）、Workflows、Agent Skills
 **拡張**: MCP による外部ツール接続
 
 <!--
@@ -36,7 +36,7 @@ title: "まとめと次のステップ"
 
     中層（カスタマイズ / 中くらいの面積 / 淡青）:
       - ラベル: 「カスタマイズ」
-      - 要素: Rules（GEMINI.md）/ Workflows / Agent Skills
+      - 要素: Rules（CLAUDE.md）/ Workflows / Agent Skills
       - 各要素にアイコンを付ける
 
     最上層（拡張 / 最も狭い面積 / 淡緑 #4ecca3）:
@@ -64,7 +64,7 @@ Free プランでも十分に活用できます。
 
 ### 自分のプロジェクトで使ってみる
 
-まずは既存のプロジェクトに GEMINI.md を置いてみてください。応答言語とコーディング規約を指定するだけでも、エージェントの振る舞いが変わります。
+まずは既存のプロジェクトに CLAUDE.md を置いてみてください。応答言語とコーディング規約を指定するだけでも、エージェントの振る舞いが変わります。
 
 ### カスタム Skills を増やす
 
@@ -88,7 +88,7 @@ Slack、GitHub、Jira など、普段使っているツールに MCP で接続�
 本書のソースコードとハンズオン資料はGitHubで公開しています。
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/antigravity_handson.git
+git clone https://github.com/YOUR_USERNAME/codex_handson.git
 ```
 
 Issue やプルリクエストも歓迎です。

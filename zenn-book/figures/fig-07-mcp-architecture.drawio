@@ -6,9 +6,9 @@
         <mxCell id="1" parent="0"/>
         <mxCell id="t" value="MCP（Model Context Protocol）のアーキテクチャ" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#555;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="200" y="5" width="500" height="28" as="geometry"/></mxCell>
 
-        <!-- 左: Antigravity -->
+        <!-- 左: Codex -->
         <mxCell id="ag" value="" style="rounded=1;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="30" y="48" width="200" height="290" as="geometry"/></mxCell>
-        <mxCell id="agt" value="Antigravity" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#4a6a9a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="55" y="55" width="150" height="25" as="geometry"/></mxCell>
+        <mxCell id="agt" value="Codex" style="text;html=1;fillColor=none;strokeColor=none;align=center;fontColor=#4a6a9a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="55" y="55" width="150" height="25" as="geometry"/></mxCell>
         <mxCell id="ag1" value="🤖 AI エージェント" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#4a6a9a;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="50" y="95" width="140" height="40" as="geometry"/></mxCell>
         <mxCell id="ag2" value="Gemini / Claude" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#7a9aba;fontSize=10;" vertex="1" parent="1"><mxGeometry x="50" y="148" width="140" height="32" as="geometry"/></mxCell>
         <mxCell id="ag3" value="Nano Banana" style="rounded=1;html=1;fillColor=#fff;strokeColor=#90caf9;fontColor=#7a9aba;fontSize=10;" vertex="1" parent="1"><mxGeometry x="50" y="192" width="140" height="32" as="geometry"/></mxCell>

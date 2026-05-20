@@ -1,7 +1,7 @@
-# Zenn ブック「Antigravity 入門」図形挿入指示
+# Zenn ブック「Codex 入門」図形挿入指示
 
 # 各チャプターに挿入すべき図形・画像の一覧です。
-# Nano Banana や Figma、draw.io などで作成し、Zenn にアップロードしてください。
+# Nano Banana Pro や Figma、draw.io などで作成し、Zenn にアップロードしてください。
 
 figures:
 
@@ -11,8 +11,8 @@ figures:
     type: diagram
     format: png
     description: >
-      Antigravity の概要図。
-      中央に Antigravity のロゴを配置し、
+      Codex の概要図。
+      中央に Codex のロゴを配置し、
       上に「自然言語で指示」、下に「コード生成・画像生成・ブラウザ操作・コードレビュー」の
       4つの機能がアイコン付きで放射状に並ぶ構成。
       全体としてAIエージェントが開発の中心にいることが一目でわかるレイアウト。
@@ -25,7 +25,7 @@ figures:
 
   - id: fig-02
     chapter: "01-setup"
-    insert_after: "Antigravity には大きく分けて 2つの画面があります。"
+    insert_after: "Codex には大きく分けて 2つの画面があります。"
     type: screenshot
     format: png
     description: >
@@ -63,10 +63,10 @@ figures:
     description: >
       ルールファイルの階層と適用範囲を示す図。
       ツリー構造で以下を表現:
-        ~/.gemini/GEMINI.md → すべてのプロジェクト (最大範囲の枠)
-          └── project-root/GEMINI.md → プロジェクト全体 (中範囲の枠)
+        ~/.codex/rules.md → すべてのプロジェクト (最大範囲の枠)
+          └── project-root/CLAUDE.md → プロジェクト全体 (中範囲の枠)
               ├── .agent/rules/*.md → ワークスペース固有
-              └── sub-dir/GEMINI.md → サブディレクトリのみ (最小範囲の枠)
+              └── sub-dir/CLAUDE.md → サブディレクトリのみ (最小範囲の枠)
       各レベルを色分けした入れ子の四角形で表現。
     style:
       background: "#ffffff"
@@ -80,17 +80,17 @@ figures:
 
   - id: fig-05
     chapter: "03-vibe-coding-basic"
-    insert_after: "Nano Banana は Antigravity に組み込まれた画像生成 AI です。"
+    insert_after: "Nano Banana Pro は Codex に組み込まれた画像生成 AI です。"
     type: screenshot
     format: png
     description: >
-      Nano Banana の画像生成フロー。
+      Nano Banana Pro の画像生成フロー。
       左から右へ:
         1. チャット入力（プロンプトテキスト）
         2. 生成中のインジケータ
         3. 生成された画像のプレビュー
       矢印で接続し、「プロンプト → 生成 → 結果」の流れを示す。
-      実際にNano Bananaで生成したアバター画像の例を含める。
+      実際にNano Banana Proで生成したアバター画像の例を含める。
     style:
       background: "#1a1a2e"
       accent_color: "#4ecca3"
@@ -123,7 +123,7 @@ figures:
     description: >
       MCP のアーキテクチャ図。
       3カラム構成:
-        左カラム: Antigravity（AIエージェント）のアイコン
+        左カラム: Codex（AIエージェント）のアイコン
         中央カラム: MCP Server（中継サーバー）のアイコン群
         右カラム: 外部サービス（GitHub, Slack, DB, ブラウザなど）のアイコン群
       左→中央→右を双方向矢印で接続。
@@ -185,7 +185,7 @@ figures:
         5. 品質チェック（チェックマークアイコン）
         6. デプロイ（ロケットアイコン）
       各ステップの下に使われるツール名を小さく表記:
-        MCP Browser / AI分析 / Nano Banana / Vite+React / code-review Skill / Firebase
+        MCP Browser / AI分析 / Nano Banana Pro / Vite+React / code-review Skill / Firebase
     style:
       background: "#1a1a2e"
       accent_color: "#4ecca3"
@@ -199,7 +199,7 @@ figures:
     type: diagram
     format: png
     description: >
-      Antigravity の3層構造図。
+      Codex CLI の3層構造図。
       ピラミッドまたは同心円で表現:
         最下層（基盤）: Editor View / Agent Manager / マルチモデル対応
         中層（カスタマイズ）: Rules / Workflows / Skills

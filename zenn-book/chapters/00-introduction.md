@@ -41,7 +41,7 @@ OpenAI Codex は、2025年11月に Google が発表した AI エージェント�
 | ステップ | 内容 | 所要時間 |
 |:---:|:---|:---:|
 | 1 | 環境セットアップ | 15分 |
-| 2 | GEMINI.md 設定 | 15分 |
+| 2 | CLAUDE.md 設定 | 15分 |
 | 3 | Vibe Coding 基礎編 | 20分 |
 | 4 | MCP 接続 | 20分 |
 | 5 | Agent Skills 作成 | 20分 |
@@ -56,8 +56,8 @@ OpenAI Codex は、2025年11月に Google が発表した AI エージェント�
 本書のハンズオン資料はGitHubリポジトリとして公開しています。手を動かしながら進める場合は、cloneしてお使いください。
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/antigravity_handson.git
-cd antigravity_handson
+git clone https://github.com/YOUR_USERNAME/codex_handson.git
+cd codex_handson
 ```
 
 Codex で `File > Open Folder` からこのフォルダを開けば、すぐにハンズオンを始められます。

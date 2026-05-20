@@ -42,7 +42,7 @@ OpenAI Codex を起動して、ワークスペースの基本設定まで済ま�
 Codex CLI を起動し、メニューから以下の操作を行ってください。
 
 1. `File` > `Open Folder` をクリック
-2. このハンズオンのフォルダ（`antigravity_handson`）を選択
+2. このハンズオンのフォルダ（`codex_handson`）を選択
 3. フォルダが左のサイドバーに表示されれば成功です
 
 ### 4. 基本画面の確認
@@ -207,4 +207,4 @@ Codex のエディタには、VS Code をベースにした AI ネイティブ�
 
 ---
 
-**次へ進む → [Step 1-2: Rules（GEMINI.md）設定](./01-2-gemini-md.md)**
+**次へ進む → [Step 1-2: Rules（CLAUDE.md）設定](./01-2-gemini-md.md)**

@@ -359,7 +359,7 @@
             <ul>
                 <li><a href="#intro">はじめに</a></li>
                 <li><a href="#step1-1">Step 1-1: 環境セットアップ</a></li>
-                <li><a href="#step1-2">Step 1-2: GEMINI.md 設定</a></li>
+                <li><a href="#step1-2">Step 1-2: CLAUDE.md 設定</a></li>
                 <li><a href="#step2">Step 2: Vibe Coding 基礎編</a></li>
                 <li><a href="#step3-1">Step 3-1: MCP 接続</a></li>
                 <li><a href="#step3-2">Step 3-2: Agent Skills</a></li>
@@ -464,7 +464,7 @@
             <div class="step-grid">
                 <div class="step-card">
                     <div class="step-num">Step 1（15分）</div>
-                    <h4>環境セットアップ &amp; GEMINI.md</h4>
+                    <h4>環境セットアップ &amp; CLAUDE.md</h4>
                     <p>Codex の起動・設定と、AIへのルール定義ファイルの作成</p>
                 </div>
                 <div class="step-card">
@@ -555,16 +555,16 @@
             <ol>
                 <li>以下のコマンドをコピーします（マウスでドラッグして選択 → <code>Ctrl+C</code> または <code>Cmd+C</code>）：</li>
             </ol>
-            <pre><code>git clone https://github.com/kozyszoo/antigravity-handson.git</code></pre>
+            <pre><code>git clone https://github.com/kozyszoo/codex-handson.git</code></pre>
             <ol start="2">
                 <li>ターミナル画面で右クリック → 「貼り付け」（または <code>Ctrl+V</code> / <code>Cmd+V</code>）</li>
                 <li><strong>Enter キー</strong>を押してコマンドを実行</li>
-                <li>「Cloning into 'antigravity-handson'...」と表示され、ダウンロードが始まります</li>
+                <li>「Cloning into 'codex-handson'...」と表示され、ダウンロードが始まります</li>
                 <li>完了すると、プロンプト（<code>$</code> や <code>&gt;</code> の記号）が再び表示されます</li>
             </ol>
 
             <p><strong>ステップ3: フォルダに移動する</strong></p>
-            <pre><code>cd antigravity-handson</code></pre>
+            <pre><code>cd codex-handson</code></pre>
             <p>このコマンドを実行すると、ダウンロードしたフォルダの中に移動します。</p>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
@@ -584,17 +584,17 @@
                 <li>画面下部にターミナルパネルが表示されます</li>
                 <li>以下のコマンドをコピーして、ターミナルパネルに貼り付け（右クリック → 貼り付け）：</li>
             </ol>
-            <pre><code>git clone https://github.com/kozyszoo/antigravity-handson.git</code></pre>
+            <pre><code>git clone https://github.com/kozyszoo/codex-handson.git</code></pre>
             <ol start="5">
                 <li><strong>Enter キー</strong>を押してコマンドを実行</li>
                 <li>ダウンロードが完了したら、<code>File</code> → <code>Open Folder</code> をクリック</li>
-                <li>ダウンロードされた <code>antigravity-handson</code> フォルダを選択して「開く」</li>
+                <li>ダウンロードされた <code>codex-handson</code> フォルダを選択して「開く」</li>
             </ol>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--green);">
                 <strong>✅ 成功の確認方法</strong>
                 <ul style="margin-top: 8px; font-size: 0.9rem;">
-                    <li>左側のファイルツリーに「antigravity-handson」フォルダが表示される</li>
+                    <li>左側のファイルツリーに「codex-handson」フォルダが表示される</li>
                     <li>フォルダ内に <code>docs</code>、<code>.agent</code> などのファイルが見える</li>
                     <li>エラーメッセージが出ていなければ成功です</li>
                 </ul>
@@ -602,8 +602,8 @@
 
             <h5>方法3: GitHub Desktop を使用</h5>
             <ol>
-                <li><a href="https://github.com/kozyszoo/antigravity-handson" target="_blank"
-                        style="color: var(--blue);">https://github.com/kozyszoo/antigravity-handson</a> にアクセス</li>
+                <li><a href="https://github.com/kozyszoo/codex-handson" target="_blank"
+                        style="color: var(--blue);">https://github.com/kozyszoo/codex-handson</a> にアクセス</li>
                 <li>緑色の <code>Code</code> ボタンをクリック</li>
                 <li><code>Open with GitHub Desktop</code> を選択してクローン</li>
             </ol>
@@ -611,7 +611,7 @@
             <h4>4. ワークスペースの作成</h4>
             <ol>
                 <li><code>File</code> &gt; <code>Open Folder</code> をクリック</li>
-                <li>クローンしたハンズオンのフォルダ（<code>antigravity-handson</code>）を選択</li>
+                <li>クローンしたハンズオンのフォルダ（<code>codex-handson</code>）を選択</li>
                 <li>フォルダが左のサイドバーに表示されれば成功</li>
             </ol>
 
@@ -864,7 +864,7 @@
 
         <!-- Step 1-2 -->
         <section class="section" id="step1-2">
-            <h2>Step 1-2: Rules（GEMINI.md）設定</h2>
+            <h2>Step 1-2: Rules（CLAUDE.md）設定</h2>
             <span class="badge badge-time">🕐 19:30〜19:45（Step1 合計 15分）</span>
 
             <h3>目標</h3>
@@ -887,7 +887,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><code>GEMINI.md</code></td>
+                        <td><code>CLAUDE.md</code></td>
                         <td>プロジェクトルートに配置。もっとも一般的</td>
                     </tr>
                     <tr>
@@ -910,7 +910,7 @@
                 <tbody>
                     <tr>
                         <td>グローバル</td>
-                        <td><code>~/.gemini/GEMINI.md</code></td>
+                        <td><code>~/.codex/rules.md</code></td>
                         <td>すべてのプロジェクトに適用</td>
                     </tr>
                     <tr>
@@ -920,12 +920,12 @@
                     </tr>
                     <tr>
                         <td>プロジェクトルート</td>
-                        <td><code>GEMINI.md</code></td>
+                        <td><code>CLAUDE.md</code></td>
                         <td>そのプロジェクト全体</td>
                     </tr>
                     <tr>
                         <td>サブディレクトリ</td>
-                        <td>各フォルダ内の <code>GEMINI.md</code></td>
+                        <td>各フォルダ内の <code>CLAUDE.md</code></td>
                         <td>そのフォルダ以下のみ</td>
                     </tr>
                 </tbody>
@@ -967,12 +967,12 @@
             <h3>基本テンプレートの設定</h3>
             <ol>
                 <li>Editor View のファイルツリー（左側）で、一番上のフォルダ（プロジェクトルート）を右クリックします。</li>
-                <li><strong>New File</strong> を選択し、ファイル名を <code>GEMINI.md</code> にして Enter を押します。</li>
+                <li><strong>New File</strong> を選択し、ファイル名を <code>CLAUDE.md</code> にして Enter を押します。</li>
                 <li>作成されたファイルに以下のテンプレートをコピー＆ペーストして、保存（<code>Cmd + S</code>）してください。</li>
             </ol>
-            <!-- 【画像挿入箇所】 GEMINI.md ファイルを作成してテンプレートを貼り付けた際のエディタ画面スクショ -->
+            <!-- 【画像挿入箇所】 CLAUDE.md ファイルを作成してテンプレートを貼り付けた際のエディタ画面スクショ -->
             <img class="screenshot" src="img/fig4.png"
-                alt="プロジェクト直下に GEMINI.md ファイルを作成し、基本ルールや技術スタックが記述されたマークダウンのテンプレートを貼り付けたエディタ画面のスクリーンショット">
+                alt="プロジェクト直下に CLAUDE.md ファイルを作成し、基本ルールや技術スタックが記述されたマークダウンのテンプレートを貼り付けたエディタ画面のスクリーンショット">
             <pre><code># プロジェクト設定 - OpenAI Codex Hands-on
 
 ## 基本ルール
@@ -998,7 +998,7 @@
             </ul>
             <!-- 【画像挿入箇所】 指示通りに動作確認し、ルールが適用されていることを示すチャットとコードのスクショ -->
             <img class="screenshot" src="img/fig5.png"
-                alt="AIによって生成されたHTMLファイルのコード。GEMINI.md で指定した通り、日本語のコメントが含まれ、変数名にキャメルケースが適用されていることが確認できるスクリーンショット">
+                alt="AIによって生成されたHTMLファイルのコード。CLAUDE.md で指定した通り、日本語のコメントが含まれ、変数名にキャメルケースが適用されていることが確認できるスクリーンショット">
 
             <h3>応用: Workflows を体験しよう（任意）</h3>
             <p><code>.agent/workflows/</code> フォルダに <code>.md</code> ファイルを作成し、チャットで <code>/ワークフロー名</code> と入力して実行できます。
@@ -1072,7 +1072,7 @@ description: 挨拶のテスト用ワークフロー
                 <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
                     💡 <strong>補足:</strong> AI に「どんな立場で考えてほしいか」を伝えると、回答の質が変わる。
                     技術スタックや制約条件（「外部ライブラリは使わない」「TypeScript で書く」など）も最初に伝えておくと、後から修正する手間が減る。
-                    これは GEMINI.md に書いておくと毎回設定不要になる。
+                    これは CLAUDE.md に書いておくと毎回設定不要になる。
                 </p>
             </div>
             <div class="card">
@@ -1098,11 +1098,11 @@ description: 挨拶のテスト用ワークフロー
             <div class="card">
                 <h4>7. チームで使うときのコツ（ハッカソン特有）</h4>
                 <p>✅ 一人が Codex を操作し、残りのメンバーは画面を見てフィードバックを出す「モブプログラミング」形式</p>
-                <p>✅ GEMINI.md にチームの共通ルール（技術スタック・ファイル命名規則など）を書いておく</p>
+                <p>✅ CLAUDE.md にチームの共通ルール（技術スタック・ファイル命名規則など）を書いておく</p>
                 <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
                     💡 <strong>補足:</strong> ハッカソンでは「全員でAIの計画書を確認 → 合意してから実行」のフローが大事。
                     AIが生成した implementation_plan.md をチーム全員で読んで認識を合わせると、後でのやり直しが減る。
-                    コードベースが大きくなっても GEMINI.md のルールがあれば AI のコードスタイルが一貫する。
+                    コードベースが大きくなっても CLAUDE.md のルールがあれば AI のコードスタイルが一貫する。
                 </p>
             </div>
 
@@ -1439,7 +1439,7 @@ multi-ai-review と agent-team の Skill をダウンロードして
 
             <ol>
                 <li><strong>Codex でターミナルを開く：</strong> <code>Terminal</code> メニュー → <code>New Terminal</code></li>
-                <li><strong>プロジェクトフォルダにいることを確認：</strong> ターミナルに現在のパスが表示されます。<code>antigravity-handson</code>
+                <li><strong>プロジェクトフォルダにいることを確認：</strong> ターミナルに現在のパスが表示されます。<code>codex-handson</code>
                     フォルダ内にいることを確認してください。</li>
                 <li><strong>Skills リポジトリをクローン：</strong> 以下のコマンドをコピーして貼り付け、Enter で実行</li>
             </ol>
@@ -2147,7 +2147,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>Step10 超過時に一時停止させる</td>
-                        <td><code>~/.gemini/GEMINI.md</code>
+                        <td><code>~/.codex/rules.md</code>
                             に「Step10超過時に処理を一時停止して、完了内容・状況報告・次アクションを報告すること」と書くことで、根本原因分析を促進し、無限ループを防げる。日本語対応設定も同じファイルに記述できる。
                         </td>
                     </tr>
