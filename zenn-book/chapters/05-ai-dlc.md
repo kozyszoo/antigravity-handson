@@ -161,4 +161,8 @@ Codex CLI の各機能は、AI-DLC の各フェーズにそのまま対応して
 
 ---
 
+**次へ進む → [Step 6: 活用 Tips 集](./06-tips.md)**
+
+---
+
 **メインガイドに戻る → [README.md](../../README.md)**

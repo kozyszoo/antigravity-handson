@@ -186,4 +186,4 @@ AI が計画書を `Update` して日本語に書き直してくれます。
 
 ---
 
-**次へ進む → [03_vibe_coding_basic](../02_vibe_coding_basic/README.md)**
+**次へ進む → [Step 2: Vibe Coding 基礎編](./02-vibe-coding-basic.md)**

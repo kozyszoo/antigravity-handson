@@ -207,4 +207,4 @@ Codex のエディタには、VS Code をベースにした AI ネイティブ�
 
 ---
 
-**次へ進む → [02_gemini_md](../01_2_gemini_md/README.md)**
+**次へ進む → [Step 1-2: Rules（GEMINI.md）設定](./01-2-gemini-md.md)**
