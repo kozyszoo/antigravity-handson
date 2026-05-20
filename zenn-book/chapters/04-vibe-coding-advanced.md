@@ -369,9 +369,9 @@ MCP と Skills を組み合わせた本格的な Vibe Coding はここまでで�
 
 ## 参考資料
 
-- [Codex 公式ドキュメント](https://openai.com/index/introducing-codex/)
+- [Antigravity 公式ドキュメント](https://openai.com/index/introducing-antigravity/)
 - [MCP 公式ドキュメント](https://modelcontextprotocol.io)
-- [Agent Skills ガイド](https://github.com/openai/codex)
+- [Agent Skills ガイド](https://github.com/openai/antigravity)
 - [MCP プロトコル仕様](https://modelcontextprotocol.io/)
 
 ---

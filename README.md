@@ -1,8 +1,8 @@
-# 🚀 OpenAI Codex ハンズオン
+# 🚀 Antigravity ハンズオン
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-OpenAI が提供するクラウドベース AI コーディングエージェント「**Codex**」と、ターミナルで動作する「**Codex CLI**」の基礎から実践的な活用方法までを、1.5〜2時間程度で習得するためのハンズオン資料です。
+Google が提供する自律型 AI コーディングエージェント「**Antigravity**」と、ターミナルで動作する「**Antigravity CLI**」の基礎から実践的な活用方法までを、1.5〜2時間程度で習得するためのハンズオン資料です。
 
 ## 📚 目次
 
@@ -18,37 +18,37 @@ OpenAI が提供するクラウドベース AI コーディングエージェン
 
 ## 🎯 概要
 
-**OpenAI Codex** は、2025年5月に OpenAI がリリースしたクラウドベースの AI ソフトウェアエンジニアリングエージェントです。ChatGPT 内から利用でき、GitHub リポジトリと連携して自律的にコーディングタスクを実行します。
+**Antigravity** は、2026年5月の Google I/O 2026 で発表された、自律的な並列マルチエージェントを制御する独立したスタンドアロン型デスクトップアプリケーションです。高度な AI ソフトウェアエンジニアリングエージェントとして、ローカル環境やクラウド環境と連携して自律的にコーディングタスクを実行します。
 
 ### 2つのインターフェース
 
-- 🌐 **Codex（Web版）**: ChatGPT 内の Codex タブから利用。GitHub リポジトリを接続し、クラウドサンドボックス上でコード生成・バグ修正・PR作成を自動実行
-- 💻 **Codex CLI**: ターミナルで動作するオープンソースのコーディングエージェント。ローカル環境でファイルを読み書きし、対話的にコード生成・修正を実行
+- 🌐 **Antigravity（デスクトップアプリ版）**: 自律的な並列エージェント（Dynamic Subagents）を視覚的に管理・制御できるメインインターフェース。
+- 💻 **Antigravity CLI**: ターミナルで動作するオープンソースのコーディングエージェント。ローカル環境でファイルを高速に読み書きし、対話的にコード生成・修正を実行。
 
 ### 主な特徴
 
-- 🤖 **自律的タスク実行**: コード生成、バグ修正、テスト実行、PR 作成まで自動化
-- 🔒 **セキュアなサンドボックス**: 隔離されたクラウドコンテナ内で実行（Web版）
-- 🔌 **GitHub 連携**: リポジトリを直接操作し、PR やコードレビューを生成
-- 📋 **Ask / Code モード**: 質問特化モードとコード実行モードを使い分け
-- 🖥️ **Codex CLI**: ローカル環境で動作する軽量なターミナルエージェント
+- 🤖 **自律的タスク実行**: `Planning Mode` により実装計画書（`implementation_plan.md`）を自動作成し、実行前に人間が確認・軌道修正可能。
+- ⚡ **Dynamic Subagents（動的サブエージェント）**: 複雑なタスクを複数の専門子エージェントに自律的に分割・並列実行させ、開発効率を最大化。
+- 📁 **New Worktree Mode**: ローカルファイルを汚さずに安全な隔離環境（Git Worktree）で自律実行・自動検証。
+- 📋 **スラッシュコマンド連携**: `/schedule`（定時実行・タイマー）や `/goal`（徹底自律実行）などの高度なタスク管理コマンドに対応。
+- 🎨 **Nano Banana 2**: 高品質なアセット生成・UI/UXデザインを自律的に構築するビジュアルデザイン特化モデルを内蔵。
 
 ### 学習目標
 
 このハンズオンを通じて、以下のスキルを習得できます:
 
-- ✅ Codex（Web版）の基本操作と GitHub 連携
-- ✅ Codex CLI のインストールと活用
-- ✅ Ask モード / Code モードの使い分け
-- ✅ 自然言語によるコード生成（Vibe Coding）
-- ✅ PR 作成やコードレビューの自動化
+- ✅ Antigravity デスクトップアプリの基本操作と Agent Manager の活用
+- ✅ Antigravity CLI のインストールと活用
+- ✅ Planning モード / Fast モードの使い分けと意思決定
+- ✅ 自然言語による高度なコード生成（Vibe Coding）
+- ✅ Dynamic Subagents による並列タスクの設計とデバッグ
 
 ## ⚡ クイックスタート
 
 ```bash
 # 1. リポジトリをクローン
-git clone https://github.com/YOUR_USERNAME/codex_handson.git
-cd codex_handson
+git clone https://github.com/YOUR_USERNAME/antigravity_handson.git
+cd antigravity_handson
 
 # 2. ハンズオン資料を開く
 open docs/index.html
@@ -60,7 +60,7 @@ open docs/index.html
 ## 📂 リポジトリ構成
 
 ```
-codex_handson/
+antigravity_handson/
 ├── docs/                      # ドキュメント・プレゼンテーション資料
 │   ├── index.html            # ハンズオンWebページ
 │   ├── live-coding-script.md # ライブコーディング台本
@@ -80,24 +80,24 @@ codex_handson/
 | 時間 | セクション | 内容 |
 |:---|:---|:---|
 | 19:00〜19:15 | **イントロ** | Vibe Codingとは？AI コーディングエージェントの進化 |
-| 19:15〜19:30 | **Codex の特徴** | Web版 / CLI / GitHub連携 / Ask・Codeモード |
-| 19:30〜20:00 | **Step 1** | 環境構築 + Codex CLI セットアップ（30分） |
+| 19:15〜19:30 | **Antigravity の特徴** | アプリ版 / CLI / Dynamic Subagents / Worktree Mode |
+| 19:30〜20:00 | **Step 1** | 環境構築 + Antigravity CLI セットアップ（30分） |
 | 20:00〜20:20 | **Step 2** | Vibe Coding 基礎編（自己紹介ページ作成） |
-| 20:20〜20:40 | **Step 3** | Codex Web版で GitHub 連携 + PR 自動作成 |
+| 20:20〜20:40 | **Step 3** | Agent Manager で並列実行 + PR 自動作成 |
 | 20:40〜21:00 | **Step 4** | Vibe Coding 発展編（AI Coffee Shop LP） |
-| 21:00〜21:10 | **Step 5** | まとめ：AI-DLCとハッカソン戦略 |
+| 21:00〜21:10 | **Step 5** | まとめ：AI-DLCとハッカソン戦略（料金プラン・最新機能） |
 
 ### 🎯 学習フロー
 
 ```
 【Step 1】基礎の確立（19:30〜20:00）
-  Codex CLI インストール → 基本操作を体験
+  Antigravity CLI インストール → 基本操作を体験
       ↓
 【Step 2】Vibe Coding を最速体験（20:00〜20:20）
-  Codex CLI で自己紹介ページ作成
+  Antigravity CLI で自己紹介ページ作成
       ↓
-【Step 3】Web版で GitHub 連携（20:20〜20:40）
-  Codex Web版 → リポジトリ接続 → PR 自動作成
+【Step 3】Agent Manager で並列実行（20:20〜20:40）
+  Dynamic Subagents / New Worktree Mode の活用
       ↓
 【Step 4】総合演習（20:40〜21:00）
   AI Coffee Shop LP（リサーチ→実装→デプロイ準備）
@@ -110,49 +110,48 @@ codex_handson/
 
 ### 必須
 
-- **OpenAI アカウント**: ChatGPT Plus / Pro / Team / Enterprise のいずれかのプラン
-- **GitHub アカウント**: Codex Web版との連携に必要
-- **Node.js**: v22 以上（Codex CLI のインストールに必要）
-- **インターネット接続**: OpenAI API との通信に必要
+- **Google アカウント**: Antigravity へのログインに必要
+- **GitHub アカウント**: リポジトリとの連携に必要
+- **Node.js**: v22 以上（Antigravity CLI のインストールに必要）
+- **インターネット接続**: Google Gemini API との通信に必要
 
 ### 推奨
 
 - **Git**: バージョン管理
-- **VS Code / Cursor**: コード編集（Codex CLI と併用する場合）
-- **OpenAI API キー**: Codex CLI で使用
+- **VS Code / Cursor**: コード編集（Antigravity CLI と併用する場合）
+- **Google API キー / Google Cloud アカウント**: CLI で使用
 
 ## 🛠️ セットアップ
 
 ### 1. リポジトリのクローン
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/codex_handson.git
-cd codex_handson
+git clone https://github.com/YOUR_USERNAME/antigravity_handson.git
+cd antigravity_handson
 ```
 
-### 2. Codex CLI のインストール
+### 2. Antigravity CLI のインストール
 
 ```bash
 # npm でグローバルインストール
-npm install -g @openai/codex
+npm install -g @google/antigravity
 
 # インストール確認
-codex --version
+antigravity --version
 ```
 
-### 3. OpenAI API キーの設定
+### 3. API キーの設定
 
 ```bash
 # 環境変数に API キーを設定
-export OPENAI_API_KEY="sk-..."
+export GEMINI_API_KEY="AIzaSy..."
 ```
 
-### 4. Codex Web版の利用開始
+### 4. Antigravity デスクトップアプリの利用開始
 
-1. [ChatGPT](https://chatgpt.com) にログイン
-2. 左サイドバーの「Codex」をクリック
-3. GitHub アカウントを接続し、リポジトリへのアクセスを許可
-4. Ask モードまたは Code モードを選択してタスクを開始
+1. [Antigravity](https://antigravity.google) にアクセスしてアプリをダウンロード・インストール
+2. アプリを起動し、Google アカウントでログイン
+3. 対象プロジェクトディレクトリを開き、`Local Mode` または `New Worktree Mode` を選択してタスクを開始
 
 ## 📖 使い方
 
@@ -163,51 +162,35 @@ export OPENAI_API_KEY="sk-..."
 3. **実際に手を動かす**: コードを書いて、動かして、理解を深める
 4. **質問・疑問をメモ**: 後で調べたり、コミュニティで質問
 
-### Codex CLI の基本操作
+### Antigravity CLI の基本操作
 
 ```bash
 # 対話モードで起動
-codex
+antigravity
 
 # 直接指示を渡す
-codex "このプロジェクトの構造を説明して"
+antigravity "このプロジェクトの構造を説明して"
 
 # ファイルを指定して修正
-codex "index.html にナビゲーションバーを追加して"
+antigravity "index.html にナビゲーションバーを追加して"
 ```
-
-### Codex Web版の基本操作
-
-1. **Ask モード**: リポジトリの読み取り専用クローンで質問に回答（ブレインストーミング、コード監査に最適）
-2. **Code モード**: コード実行・テスト・修正が可能な完全な開発環境（バグ修正、新機能実装に最適）
 
 ## 🎓 学習リソース
 
 ### 公式ドキュメント
 
-- [OpenAI Codex 公式ページ](https://openai.com/index/introducing-codex/)
-- [Codex CLI GitHub リポジトリ](https://github.com/openai/codex)
-- [OpenAI API ドキュメント](https://platform.openai.com/docs)
-- [ChatGPT](https://chatgpt.com)
-
-### コミュニティ
-
-- **OpenAI Community Forum**: [community.openai.com](https://community.openai.com)
-- **GitHub Discussions**: Codex CLI リポジトリの Discussions
-- **Stack Overflow**: `#openai-codex` タグ
-
-### チュートリアル
-
-- [Qiita #OpenAI](https://qiita.com/tags/openai)
-- [Zenn #OpenAI](https://zenn.dev/topics/openai)
+- [Antigravity 公式ページ](https://antigravity.google)
+- [Antigravity API ドキュメント](https://ai.google.dev/gemini-api)
+- [Model Context Protocol (MCP)](https://modelcontextprotocol.io)
+- [Agent Skills](https://agentskills.io)
 
 ## 🐛 トラブルシューティング
 
 ### よくある問題
 
-#### 1. Codex CLI がインストールできない
+#### 1. Antigravity CLI がインストールできない
 
-**症状**: `npm install -g @openai/codex` でエラー
+**症状**: `npm install -g @google/antigravity` でエラー
 
 **解決策**:
 ```bash
@@ -218,7 +201,7 @@ node --version
 npm cache clean --force
 
 # 再インストール
-npm install -g @openai/codex
+npm install -g @google/antigravity
 ```
 
 #### 2. API キーが認識されない
@@ -228,30 +211,12 @@ npm install -g @openai/codex
 **解決策**:
 ```bash
 # 環境変数が正しく設定されているか確認
-echo $OPENAI_API_KEY
+echo $GEMINI_API_KEY
 
 # .bashrc や .zshrc に永続化
-echo 'export OPENAI_API_KEY="sk-..."' >> ~/.zshrc
+echo 'export GEMINI_API_KEY="AIzaSy..."' >> ~/.zshrc
 source ~/.zshrc
 ```
-
-#### 3. Codex Web版で GitHub 連携できない
-
-**症状**: リポジトリが表示されない
-
-**解決策**:
-1. GitHub アカウントが正しく接続されているか確認
-2. リポジトリへのアクセス権限を再設定
-3. プライベートリポジトリの場合は明示的にアクセスを許可
-4. ChatGPT を再ログイン
-
-### サポート
-
-問題が解決しない場合:
-
-1. **GitHub Issues**: バグ報告・機能要望
-2. **OpenAI Community Forum**: コミュニティサポート
-3. **OpenAI Help Center**: [help.openai.com](https://help.openai.com)
 
 ## 🤝 貢献
 
@@ -264,13 +229,6 @@ source ~/.zshrc
 3. 変更をコミット (`git commit -m 'Add some amazing feature'`)
 4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
 5. プルリクエストを作成
-
-### 貢献ガイドライン
-
-- **日本語で記述**: すべてのドキュメントは日本語で
-- **コードにコメント**: 説明的なコメントを追加
-- **テスト**: 変更が既存の機能を壊していないか確認
-- **スタイル**: 既存のコードスタイルに従う
 
 ## 📄 ライセンス
 

@@ -8,25 +8,25 @@ title: "まとめと次のステップ"
 
 | ステップ | 学んだこと |
 |:---:|:---|
-| 1 | Codex CLI の基本操作、2つの View、モデル選択 |
+| 1 | Antigravity CLI の基本操作、2つの View、モデル選択 |
 | 2 | GEMINI.md によるプロジェクトルールの定義、Workflows |
 | 3 | 自然言語での HTML 生成、DALL-E による画像生成 |
 | 4 | MCP による外部ツール接続、Web リサーチの自動化 |
 | 5 | Agent Skills の作成と呼び出し、Rules / Workflows との使い分け |
 | 6 | MCP + Skills を組み合わせた本格的な Vibe Coding |
 
-## Codex CLI の全体像
+## Antigravity CLI の全体像
 
-ここまでの内容を振り返ると、Codex が提供する仕組みは大きく3層に分かれます。
+ここまでの内容を振り返ると、Antigravity が提供する仕組みは大きく3層に分かれます。
 
 **基盤**: Editor View と Agent Manager の Dual View、マルチモデル対応
 **カスタマイズ**: Rules（GEMINI.md）、Workflows、Agent Skills
 **拡張**: MCP による外部ツール接続
 
 <!--
-  [図12: Codex CLI の3層構造図]
+  [図12: Antigravity CLI の3層構造図]
   【図形生成プロンプト】
-  Codex CLI の機能を3層のピラミッド（または同心円）で表現した構造図。
+  Antigravity CLI の機能を3層のピラミッド（または同心円）で表現した構造図。
 
   ピラミッド形式（下から上へ）:
     最下層（基盤 / 最も広い面積 / 淡グレー）:
@@ -54,8 +54,8 @@ title: "まとめと次のステップ"
 
 | プラン | 料金 | 主な内容 |
 |:---:|:---:|:---|
-| Free | 無料 | codex-1（制限あり）、DALL-E（月50枚）、ローカル MCP |
-| Pro | $19/月 | codex-1（優先）、GPT-4.1、DALL-E（無制限）、クラウド MCP |
+| Free | 無料 | Gemini 3.5 Flash（制限あり）、DALL-E（月50枚）、ローカル MCP |
+| Pro | $19/月 | Gemini 3.5 Flash（優先）、GPT-4.1、DALL-E（無制限）、クラウド MCP |
 | Enterprise | 要相談 | チーム共有 Artifacts、Enterprise セキュリティ、カスタムモデル |
 
 Free プランでも十分に活用できます。
@@ -76,10 +76,10 @@ Slack、GitHub、Jira など、普段使っているツールに MCP で接続�
 
 ## 参考リンク
 
-- [Codex 公式サイト](https://openai.com)
-- [公式ドキュメント](https://openai.com/index/introducing-codex/)
+- [Antigravity 公式サイト](https://openai.com)
+- [公式ドキュメント](https://openai.com/index/introducing-antigravity/)
 - [MCP ドキュメント](https://modelcontextprotocol.io)
-- [Skills ドキュメント](https://github.com/openai/codex)
+- [Skills ドキュメント](https://github.com/openai/antigravity)
 - [MCP プロトコル仕様](https://modelcontextprotocol.io/)
 - [Agent Skills 標準](https://agentskills.io)
 
@@ -99,7 +99,7 @@ Issue やプルリクエストも歓迎です。
 
 本日はご参加いただきありがとうございました！
 
-Codex CLI を使った AI 駆動開発の可能性を少しでも感じてもらえたなら嬉しいです。今後もイベントや学習コンテンツを通じて、一緒に「Vibe Coding」の世界を探求しましょう。
+Antigravity CLI を使った AI 駆動開発の可能性を少しでも感じてもらえたなら嬉しいです。今後もイベントや学習コンテンツを通じて、一緒に「Vibe Coding」の世界を探求しましょう。
 
 ### 🎪 今後のイベント
 
@@ -136,9 +136,9 @@ Git/GitHub の仕組みを「絵解き」でわかりやすく解説した入門
 ### 🔗 学習リソース
 
 - **公式ドキュメント**: [platform.openai.com/docs](https://platform.openai.com/docs)
-- **Qiita / Zenn**: #Codex タグで記事を検索
+- **Qiita / Zenn**: #Antigravity タグで記事を検索
 - **YouTube**: [公式チャンネル](https://youtube.com/@OpenAI)
-- **Discord**: Codex Developers Community
+- **Discord**: Antigravity Developers Community
 
 ---
 

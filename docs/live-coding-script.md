@@ -1,4 +1,4 @@
-# OpenAI Codex ハンズオン - ライブコーディング台本
+# Antigravity ハンズオン - ライブコーディング台本
 
 **イベント日時**: 2026年3月7日
 **所要時間**: 約2時間（19:00〜21:10）
@@ -11,10 +11,10 @@
 | 時間 | セクション | 内容 | 所要時間 |
 |:---|:---|:---|:---:|
 | 19:00〜19:15 | **イントロ** | 自己紹介、Vibe Codingとは、開発のパラダイムシフト | 15分 |
-| 19:15〜19:30 | **Codexの核心技術** | Web版とCLI / GitHub連携 / 自律的コーディング | 15分 |
-| 19:30〜20:00 | **Step 1** | 環境セットアップ & Codex CLI 基本操作 | 30分 |
+| 19:15〜19:30 | **Antigravityの核心技術** | Web版とCLI / GitHub連携 / 自律的コーディング | 15分 |
+| 19:30〜20:00 | **Step 1** | 環境セットアップ & Antigravity CLI 基本操作 | 30分 |
 | 20:00〜20:20 | **Step 2** | Vibe Coding 基礎編（自己紹介ページ） | 20分 |
-| 20:20〜20:40 | **Step 3** | Codex Web版 + GitHub連携によるPR自動作成 | 20分 |
+| 20:20〜20:40 | **Step 3** | Antigravity Web版 + GitHub連携によるPR自動作成 | 20分 |
 | 20:40〜21:00 | **Step 4** | Vibe Coding 発展編（AI Coffee Shop LP） | 20分 |
 | 21:00〜21:10 | **Step 5** | まとめ：AI-DLC戦略とハッカソン活用法 | 10分 |
 
@@ -67,11 +67,11 @@
 **スライド**: ロードマップ画像
 
 ```
-Step 1（30分）: 環境セットアップ & Codex CLI
+Step 1（30分）: 環境セットアップ & Antigravity CLI
   ↓
 Step 2（20分）: Vibe Coding 基礎編
   ↓
-Step 3（20分）: Codex Web版 + GitHub
+Step 3（20分）: Antigravity Web版 + GitHub
   ↓
 Step 4（20分）: Vibe Coding 発展編
   ↓
@@ -98,32 +98,32 @@ Step 5（10分）: AI-DLC 戦略
 
 ---
 
-## 🏗️ Codexの核心技術（19:15〜19:30）
+## 🏗️ Antigravityの核心技術（19:15〜19:30）
 
 ### 1. 2つの強力なインターフェース（5分）
 
-**スライド**: Codex Web版とCLIの比較図
+**スライド**: Antigravity Web版とCLIの比較図
 
 **デモポイント**:
-- **Codex Web版**: ChatGPT から直接利用。クラウドサンドボックスで安全に実行。
-- **Codex CLI**: ターミナルからローカル環境のコードを直接編集するエージェント。
+- **Antigravity Web版**: ChatGPT から直接利用。クラウドサンドボックスで安全に実行。
+- **Antigravity CLI**: ターミナルからローカル環境のコードを直接編集するエージェント。
 
 **トーク例**:
-> OpenAI Codex には2つの強力なインターフェースがあります。
+> Antigravity には2つの強力なインターフェースがあります。
 > ChatGPT 上で完結するWeb版と、ローカル環境で直接ファイルを編集してくれる CLI 版です。
 > 今日はこの両方をマスターしていただきます。
 
 ### 2. GitHub とのシームレスな統合（5分）
 
-**スライド**: Codex から GitHub への PR 自動作成フロー図
+**スライド**: Antigravity から GitHub への PR 自動作成フロー図
 
 **デモポイント**:
-- Codex Web版から GitHub リポジトリを紐付け
+- Antigravity Web版から GitHub リポジトリを紐付け
 - コードを変更したらそのまま Pull Request（PR）として送信
 - 開発者がブラウザ上でレビューしてマージするだけのフロー
 
 **トーク例**:
-> Codex の強力な機能の一つが GitHub 連携です。
+> Antigravity の強力な機能の一つが GitHub 連携です。
 > AI がコードを生成するだけでなく、変更をコミットして PR を作成するところまで
 > 自動で行ってくれます。人間はレビューするだけです。
 
@@ -137,39 +137,39 @@ Step 5（10分）: AI-DLC 戦略
 - 用途に応じて使い分け
 
 **トーク例**:
-> Codex の裏側では、OpenAI の最先端モデルが動いています。
+> Antigravity の裏側では、OpenAI の最先端モデルが動いています。
 > 日常的なコーディングやUI構築には GPT-4o を、
 > 複雑なロジック設計やデバッグには o1 などの推論モデルを使い分けることで、
 > あらゆる開発タスクに対応できます。
 
 ---
 
-## 🚀 Step 1: 環境セットアップ & Codex CLI（19:30〜20:00）
+## 🚀 Step 1: 環境セットアップ & Antigravity CLI（19:30〜20:00）
 
-### 1. Codex CLI のインストール（10分）
+### 1. Antigravity CLI のインストール（10分）
 
 **デモポイント**:
 1. ターミナルを開く
-2. `npm install -g @openai/codex` を実行
+2. `npm install -g @google/antigravity` を実行
 3. `OPENAI_API_KEY` を環境変数として設定
 
 **トーク例**:
-> まずはローカル環境で Codex CLI を使えるようにしましょう。
+> まずはローカル環境で Antigravity CLI を使えるようにしましょう。
 > Node.js があれば npm コマンド一行でインストールできます。
 > OpenAI の API キーを用意して設定してください。
 
 ### 2. 基本コマンドの確認と実行（10分）
 
 **デモポイント**:
-- ワークスペースで `codex` コマンドを実行
+- ワークスペースで `antigravity` コマンドを実行
 - 承認モード（`suggest`, `auto-edit`）の説明
 
 **実演**:
-1. ターミナルで `codex --mode auto-edit "README.mdの中身を要約して"`
+1. ターミナルで `antigravity --mode auto-edit "README.mdの中身を要約して"`
 2. AI が README の内容を読み取り、要約を作成する動きを確認
 
 **トーク例**:
-> ターミナルから `codex` コマンドで指示を出すだけで、
+> ターミナルから `antigravity` コマンドで指示を出すだけで、
 > ファイルを読み書きしてくれます。本日は自動で編集を適用する
 > `auto-edit` モードを使ってサクサク進めましょう。
 
@@ -205,8 +205,8 @@ Step 5（10分）: AI-DLC 戦略
 ```
 
 **デモポイント**:
-1. ターミナルで `codex "上記のプロンプト"` を実行
-2. Codex CLI が HTML と CSS を生成する様子を実況
+1. ターミナルで `antigravity "上記のプロンプト"` を実行
+2. Antigravity CLI が HTML と CSS を生成する様子を実況
 3. ブラウザで作成された `profile.html` を確認
 4. 「文字のサイズを大きくして」などの追加指示を出して修正させる
 
@@ -218,17 +218,17 @@ Step 5（10分）: AI-DLC 戦略
 
 ---
 
-## 🔌 Step 3: Codex Web版 + GitHub（20:20〜20:40）
+## 🔌 Step 3: Antigravity Web版 + GitHub（20:20〜20:40）
 
-### 1. Codex Web版の起動とGitHub連携（10分）
+### 1. Antigravity Web版の起動とGitHub連携（10分）
 
 **デモポイント**:
-1. ブラウザで ChatGPT にアクセスし、Codex ツールを起動
+1. ブラウザで ChatGPT にアクセスし、Antigravity ツールを起動
 2. GitHub アカウントと連携操作
 3. ハンズオン用のリポジトリを選択してクローン
 
 **トーク例**:
-> 次はブラウザで動く Codex Web版を使ってみましょう。
+> 次はブラウザで動く Antigravity Web版を使ってみましょう。
 > GitHub と連携することで、AI が直接あなたのリポジトリの
 > コードを読み書きできるようになります。
 
@@ -258,7 +258,7 @@ index.html のヘッダーの色を、OpenAIの緑色（#10a37f）に変更し�
 
 ### 1. AI Coffee Shop LPの作成（20分）
 
-**プロンプト例（Codex CLI または Web版で実行）**:
+**プロンプト例（Antigravity CLI または Web版で実行）**:
 
 ```
 AI技術を活用したコーヒーショップのランディングページ（LP）を作成してください。
@@ -286,7 +286,7 @@ AI技術を活用したコーヒーショップのランディングページ（
 4. 微調整の指示を追加（画像プレースホルダーの追加やボタンのホバーエフェクト変更など）
 
 **トーク例**:
-> 少し複雑な要件でも、Codex が全体の構造を理解して一気に作り上げてくれます。
+> 少し複雑な要件でも、Antigravity が全体の構造を理解して一気に作り上げてくれます。
 > アニメーションやレスポンシブ対応といった面倒な実装も、
 > 指示に含めるだけで完璧にこなしてくれます。
 
@@ -311,14 +311,14 @@ AI技術を活用したコーヒーショップのランディングページ（
 
 **キーメッセージ**:
 1. **アイデア出し**: GPT-4o や o1 モデルに壁打ち相手になってもらう
-2. **プロトタイプ**: Codex を使って Vibe Coding でモックアップを高速実装
+2. **プロトタイプ**: Antigravity を使って Vibe Coding でモックアップを高速実装
 3. **継続的な改善**: PR 自動作成機能を使い、チーム開発の効率を最大化
 
 ### 3. まとめ（2分）
 
 **メッセージ**:
 > 本日はありがとうございました！
-> OpenAI Codex を使えば、AIと対話しながら誰でもソフトウェアを創造できます。
+> Antigravity を使えば、AIと対話しながら誰でもソフトウェアを創造できます。
 > 明日からのハッカソンやプロジェクトで、ぜひフル活用してください！
 
 **最後のメッセージ**:
@@ -331,7 +331,7 @@ AI技術を活用したコーヒーショップのランディングページ（
 ### 事前準備チェックリスト
 
 - [ ] Node.js (v22+) のインストール確認
-- [ ] `npm install -g @openai/codex` の実行と動作確認
+- [ ] `npm install -g @google/antigravity` の実行と動作確認
 - [ ] `OPENAI_API_KEY` の環境変数セットアップ
 - [ ] ChatGPT アカウント（Plus などの有料プラン推奨）の用意とログイン
 - [ ] GitHub リポジトリ（ハンズオン用）の用意
@@ -339,7 +339,7 @@ AI技術を活用したコーヒーショップのランディングページ（
 
 ### デモ実行時の注意点
 
-1. **Codex CLI のモード選択**
+1. **Antigravity CLI のモード選択**
    - ライブデモでは進行をスムーズにするため `--mode auto-edit` を推奨します。
    - `suggest` モードは手動承認が必要なため、説明時のみ見せるのが良いでしょう。
 
@@ -358,7 +358,7 @@ AI技術を活用したコーヒーショップのランディングページ（
 
 ### 質疑応答用FAQ
 
-**Q1: Codex CLI は無料で使えますか？**
+**Q1: Antigravity CLI は無料で使えますか？**
 - A: CLI ツール自体はオープンソース（無料）ですが、API を呼び出すための OpenAI API 料金（従量課金）が発生します。
 
 **Q2: セキュリティはどうなっていますか（コードは学習されますか）？**
@@ -377,9 +377,9 @@ AI技術を活用したコーヒーショップのランディングページ（
 
 ## 🔗 参考リンク
 
-- [OpenAI プレスリリース](https://openai.com/index/introducing-codex/)
-- [Codex GitHub リポジトリ](https://github.com/openai/codex)
-- [GitHub リポジトリ（本プロジェクト）](https://github.com/YOUR_USERNAME/codex_handson)
+- [OpenAI プレスリリース](https://openai.com/index/introducing-antigravity/)
+- [Antigravity GitHub リポジトリ](https://github.com/openai/antigravity)
+- [GitHub リポジトリ（本プロジェクト）](https://github.com/YOUR_USERNAME/antigravity_handson)
 
 ---
 
