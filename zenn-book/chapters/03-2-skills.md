@@ -275,4 +275,4 @@ description: 関数に対するユニットテストを自動生成する
 
 ---
 
-**次へ進む → [06_vibe_coding_advanced](../04_vibe_coding_advanced/README.md)**
+**次へ進む → [Step 4: Vibe Coding 発展編](./04-vibe-coding-advanced.md)**
