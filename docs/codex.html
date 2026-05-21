@@ -671,12 +671,12 @@
             </table>
 
             <h4>6. モデル選択</h4>
-            <p>Codex CLI の起動時や設定ファイルで、タスクに応じて最適なモデルを指定できます。<br>
-                <strong>基本は <code>codex-1</code>（Codex 専用モデル）を使用すれば間違いありません。</strong>Codex CLI はデフォルトで適切なモデルを自動選択します。
+            <p>Codex CLI の起動中に <code>/model</code> コマンドを実行するか、設定ファイルで、タスクに応じて最適なモデルを切り替えられます。<br>
+                <strong>基本はモデルピッカーに表示される推奨モデル（<code>GPT-5.5</code>。未提供の環境では <code>GPT-5.4</code>）を選んでおけば間違いありません。</strong>Codex CLI はモデル未指定時、推奨モデルを自動選択します。
             </p>
             <!-- 【画像挿入箇所】 モデル選択のプルダウンメニューが開いているスクショ -->
             <img class="screenshot" src="img/fig2.png"
-                alt="利用可能なAIモデル（codex-1, o4-mini, o3, GPT-4.1 など）を選択するプルダウンメニューのスクリーンショット">
+                alt="利用可能なAIモデル（GPT-5.5, GPT-5.4, GPT-5.3-Codex, GPT-5.4-Mini など）を選択するプルダウンメニューのスクリーンショット">
             <table>
                 <thead>
                     <tr>
@@ -687,28 +687,28 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>codex-1</strong></td>
-                        <td>OpenAI の Codex 専用モデル。ソフトウェアエンジニアリングタスクに特化しており、コード生成・バグ修正・テスト実行に最も適している。Codex（Web版）のデフォルトモデル。</td>
-                        <td>メイン開発、複雑なロジック、PR 作成</td>
+                        <td><strong>GPT-5.5</strong></td>
+                        <td>OpenAI の最新フラッグシップモデル。複雑なコーディング・Computer Use・知的作業・リサーチに最も優れる。モデルピッカーに表示される場合は、ほとんどの Codex タスクでこれを選べばよい。</td>
+                        <td>メイン開発、複雑なロジック、要件定義・設計の壁打ち、PR 作成</td>
                     </tr>
                     <tr>
-                        <td>o4-mini</td>
-                        <td>OpenAI の高速推論モデル。軽量ながらも高精度な推論が可能。Codex CLI のデフォルトモデル。応答速度が速く、日常的なコーディング作業に向いている。</td>
-                        <td>日常的なコード修正、素早い質問応答</td>
+                        <td>GPT-5.4</td>
+                        <td>GPT-5.5 がまだ利用できない環境での標準モデル。高精度なコーディングと推論を両立する。GPT-5.5 が出るまではこちらを使えばよい。</td>
+                        <td>メイン開発全般、GPT-5.5 の代替</td>
                     </tr>
                     <tr>
-                        <td>o3</td>
-                        <td>OpenAI の最上位推論モデル。最も深い推論が必要な複雑な問題に適している。消費トークンが多い分、難易度の高い課題で真価を発揮する。</td>
-                        <td>難易度の高いバグ解析、アーキテクチャ設計の深い検討</td>
+                        <td>GPT-5.3-Codex</td>
+                        <td>Codex 学習スタック（コーディング最適化）と GPT-5 の推論・汎用知能を組み合わせた専用モデル。前世代より約25%高速で、4段階の推論強度（reasoning effort）を切り替えられる。</td>
+                        <td>コード生成・バグ修正・テスト実行、速度と精度のバランス重視</td>
                     </tr>
                     <tr>
-                        <td>GPT-4.1</td>
-                        <td>OpenAI の汎用フラッグシップモデル。コーディングだけでなく、ドキュメント作成や要件定義にも高い能力を発揮する。100万トークンのコンテキストウィンドウを持つ。</td>
-                        <td>ドキュメント作成、要件定義書・READMEの執筆、長文の整理</td>
+                        <td>GPT-5.4-Mini</td>
+                        <td>軽量・低コストなモデル。マルチエージェント構成で「安価なサブエージェント」を多数動かしたい場合の現実的な選択肢。応答が速く、簡単な作業に向く。</td>
+                        <td>日常的なコード修正、素早い質問応答、サブエージェント</td>
                     </tr>
                     <tr>
-                        <td>DALL-E（画像生成）</td>
-                        <td>画像生成専用モデル。チャットで「〜な画像を生成して」と指示するとバックグラウンドで自動生成・保存してくれる。UIモックアップ・OGP・アイコンなどに活用できる。</td>
+                        <td>画像生成（image gen）</td>
+                        <td>Codex CLI 内で画像を生成・編集できる。チャットで「〜な画像を生成して」と指示するとバックグラウンドで自動生成・保存してくれる。既存アセットを参照させて反復もできる。</td>
                         <td>ヒーロー画像、アイコン、UIモックアップ、OGP画像の生成</td>
                     </tr>
                 </tbody>
@@ -716,10 +716,10 @@
             <div class="card">
                 <strong>💡 Rate Limit に達したときの対処法</strong>
                 <ul style="margin-top: 8px;">
-                    <li>codex-1 → <strong>o4-mini</strong> または <strong>GPT-4.1</strong>
+                    <li>GPT-5.5 / GPT-5.4 → <strong>GPT-5.3-Codex</strong> または <strong>GPT-5.4-Mini</strong>
                         に切り替える</li>
                     <li>しばらく時間をおいてから再試行する（通常数分〜数十分でリセット）</li>
-                    <li>簡単な作業は <strong>o4-mini</strong> で素早く処理する</li>
+                    <li>簡単な作業は <strong>GPT-5.4-Mini</strong> で素早く処理する</li>
                 </ul>
             </div>
 
@@ -2109,7 +2109,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     <tr>
                         <td>モードは基本「Planning」一択</td>
                         <td>Planning Mode ではAIがまず計画を立て、宣言してから作業する。Fast Mode は計画なしで即作業するためミスりやすい。複雑なタスクは急がば回れで Planning
-                            を選ぶほうが精度が上がる。モデルは <code>codex-1</code> が安定。</td>
+                            を選ぶほうが精度が上がる。モデルは <code>GPT-5.5</code>（未提供なら <code>GPT-5.4</code>）が安定。</td>
                     </tr>
                     <tr>
                         <td>Global Rules に「日本語指示」を書く</td>
@@ -2152,7 +2152,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                         <td>Artifact Review で実行前にモデル切り替え</td>
                         <td>Artifact Review Policy を「Request
                             Review」に設定すると、AIが実装計画を提示した段階でレビューできる。ここで<strong>実行前にモデルを切り替えられる</strong>のが最大のメリット。設計フェーズは
-                            codex-1、実装フェーズは o4-mini に切り替えると、素早いトライアンドエラーが可能になる。</td>
+                            GPT-5.5、実装フェーズは GPT-5.3-Codex や GPT-5.4-Mini に切り替えると、素早いトライアンドエラーが可能になる。</td>
                         <td rowspan="8"><a href="https://platform.openai.com/docs"
                                 target="_blank" style="color: var(--blue); word-break: break-all;">OpenAI Docs
                                 /<br>Community</a></td>
@@ -2176,7 +2176,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>無料枠のレート制限に注意</td>
-                        <td>プレビュー版では無料枠のレート制限が厳しく、数時間で上限に達する可能性がある。制限に達したら<strong>別モデルへ切り替え</strong>（o4-mini
+                        <td>無料・低位プランではレート制限が厳しく、数時間で上限に達する可能性がある。制限に達したら<strong>別モデルへ切り替え</strong>（GPT-5.4-Mini
                             は比較的制限が緩やか）、またはエラー発生時は「続きを実装して」と依頼すると再開される。</td>
                     </tr>
                     <tr>
@@ -2218,6 +2218,24 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     <tr>
                         <td>テストファーストで「テストは触らせない」</td>
                         <td>まずテストを書かせて<strong>全部失敗することを確認</strong>し、失敗するテストをコミットしてチェックポイントにする。その上で「テスト自体は変更しないこと」と明示してから実装させると、AIが帳尻合わせでテストを書き換える事故を防げる。仕様駆動で品質を担保する王道パターン。</td>
+                    </tr>
+                    <tr>
+                        <td>繰り返す作業は Skills に「技」として登録する</td>
+                        <td>デプロイ・API 作成・DB マイグレーションなど何度も実行するワークフローは、毎回プロンプトで説明するのではなく <strong>Skill（再利用可能な知識パッケージ）</strong>
+                            として登録する。リクエストが Skill の説明に一致したときだけコンテキストに読み込まれるため、トークンを無駄にせず、チーム全体で一貫した実行が保証される。</td>
+                        <td rowspan="3"><a href="https://developers.openai.com/codex/learn/best-practices"
+                                target="_blank" style="color: var(--blue); word-break: break-all;">OpenAI Codex Best practices /<br>公式ドキュメント（2026年最新）</a></td>
+                    </tr>
+                    <tr>
+                        <td>恒久ルールは AGENTS.md、その場の指示はプロンプトに分ける</td>
+                        <td>「PR 前に lint を通す」「公開ユーティリティは <code>docs/</code> に記載」などの<strong>恒久的なルールはプロンプトに毎回書かず
+                            AGENTS.md に逃がす</strong>のが鉄則。プロンプトには「今回やってほしいこと」だけを書くと、Codex
+                            が毎タスクで安定した前提から作業を始められ、指示の精度が上がる。</td>
+                    </tr>
+                    <tr>
+                        <td>マルチエージェントでは安価なモデルをサブに割り当てる</td>
+                        <td>複数のサブエージェントを並列で動かすワークフローでは、すべてを最上位モデルで回すと一気にコストが膨らむ。<strong>サブエージェントには
+                            <code>GPT-5.4-Mini</code> のような軽量モデル</strong>を割り当て、設計・統合だけ上位モデルに任せると、品質を保ちつつ費用を抑えられる。</td>
                     </tr>
                 </tbody>
             </table>
