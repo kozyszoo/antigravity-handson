@@ -2267,6 +2267,25 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                         <td><code>~/.gemini/GEMINI.md</code> はすべてのワークスペースで共有される。日本語出力指示・コーディング規約・「Step10超過で一時停止」などの安全ルールをここに集約しておけば、新しいプロジェクトを開くたびに同じ設定をやり直す必要がなくなる。プロジェクト固有のルールは各リポジトリの
                             <code>GEMINI.md</code> で上書きする「2層構成」が定石。</td>
                     </tr>
+                    <tr>
+                        <td>Knowledge Items（KI）でセッションを越えて学習させる</td>
+                        <td>会話の終了時に <strong>Knowledge Subagent</strong> が自動でやり取りを分析し、重要な知見・パターン・解決策を <strong>Knowledge
+                            Items（KI）</strong>として永続化する。会話履歴はセッションで消えるが、KI は「蒸留された事実」として残り続け、関連する作業では自動的に読み込まれる。手動登録の画面はなく、<strong>使えば使うほど賢くなる</strong>のが特徴。新しい調査を始める前に KI の要約を確認すると、同じ分析の繰り返しを避けられる。</td>
+                        <td rowspan="3"><a href="https://iceberglakehouse.com/posts/2026-03-context-google-antigravity/"
+                                target="_blank" style="color: var(--blue); word-break: break-all;">Lakehouse Blog /<br>Antigravity 公式Docs /<br>Qiita（2026年最新）</a></td>
+                    </tr>
+                    <tr>
+                        <td>過去の Artifact を再参照してコンテキストを節約する</td>
+                        <td>以前のタスクで生成された <code>task.md</code>・<code>walkthrough.md</code>・<code>implementation_plan.md</code>
+                            を新しいセッションで参照させると、実装内容や検証結果の文脈を素早く復元できる。毎回ゼロから説明し直すよりコンテキストウィンドウの無駄が減り、長期プロジェクトでも文脈が途切れにくくなる。</td>
+                    </tr>
+                    <tr>
+                        <td>サブエージェントには「深さの上限」を設定する</td>
+                        <td>Antigravity
+                            2.0 では、エージェントが子エージェント（サブエージェント）を動的に生成して並列処理できる。便利な反面、サブエージェントがさらにサブエージェントを生む再帰が起きると、利用枠（特に Ultra
+                            の予算）を一気に消費してしまう。agent
+                            設定で<strong>最大の深さ（depth）を必ず指定</strong>し、暴走を防ぐのが鉄則。</td>
+                    </tr>
                 </tbody>
             </table>
 
