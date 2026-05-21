@@ -2249,6 +2249,24 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                         <td>Planning Mode は計画立案→実装の流れで進むため、エラーが出やすいクラウドインフラ構築・複雑な機能実装に最適。Fast Mode
                             は単発の質問やテキスト修正向けで、継続的なタスク実行には不向き。迷ったら Planning を選ぶべし。</td>
                     </tr>
+                    <tr>
+                        <td>「推論は Claude、実装は Gemini」で使い分ける</td>
+                        <td>1つのプロジェクト内でもフェーズごとに最適なモデルは異なる。要件整理・設計の壁打ちなど深い推論が要る場面は <code>Claude
+                                Opus 4.6</code> や <code>Gemini 3.1 Pro (High)</code>、コードを量産する実装フェーズは <code>Gemini 3.1 Pro
+                                (Low)</code> や <code>GPT-OSS</code> に切り替えると、精度とスピードのバランスが取れる。</td>
+                        <td rowspan="3"><a href="https://dev.classmethod.jp/articles/google-antigravity-five-tips/"
+                                target="_blank" style="color: var(--blue); word-break: break-all;">DevelopersIO /<br>公式ドキュメント /<br>各種ブログ（2026年最新）</a></td>
+                    </tr>
+                    <tr>
+                        <td>Rate Limit のリセット周期を把握して計画的に使う</td>
+                        <td>無料プランのレート制限は<strong>週次</strong>でリセットされるのに対し、Pro / Ultra などの有料プランは<strong>約5時間ごと</strong>に回復する。長時間のハンズオンや開発では、上限に達する前提で「重い設計フェーズは集中して回し、軽作業は別モデルに逃がす」と計画しておくと詰まりにくい。2026年1月には無料と Pro
+                            の中間プラン（ストレージ200GBを Gmail / Drive と共有）も追加された。</td>
+                    </tr>
+                    <tr>
+                        <td>グローバル GEMINI.md を「自分の標準設定」として育てる</td>
+                        <td><code>~/.gemini/GEMINI.md</code> はすべてのワークスペースで共有される。日本語出力指示・コーディング規約・「Step10超過で一時停止」などの安全ルールをここに集約しておけば、新しいプロジェクトを開くたびに同じ設定をやり直す必要がなくなる。プロジェクト固有のルールは各リポジトリの
+                            <code>GEMINI.md</code> で上書きする「2層構成」が定石。</td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -2387,24 +2405,6 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 </div>
             </div>
 
-            <!-- 公式リソース -->
-            <h3>🔗 学習リソース</h3>
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0;">
-                <div
-                    style="background: var(--bg-dark); border-radius: 8px; padding: 16px; border: 1px solid var(--bg-light);">
-                    <div style="color: var(--primary); font-weight: 700; margin-bottom: 6px;">🌐 公式ドキュメント</div>
-                    <a href="https://antigravity.google/docs" target="_blank"
-                        style="color: var(--blue); font-size: 0.88rem; text-decoration: none;">antigravity.google/docs</a>
-                </div>
-
-                <div
-                    style="background: var(--bg-dark); border-radius: 8px; padding: 16px; border: 1px solid var(--bg-light);">
-                    <div style="color: var(--primary); font-weight: 700; margin-bottom: 6px;">📝 Qiita / Zenn</div>
-                    <span style="color: var(--muted); font-size: 0.88rem;">#Antigravity タグで記事を検索</span>
-                </div>
-            </div>
-
             <!-- SNS フォロー -->
             <h3>📣 SNS でつながろう</h3>
             <div class="card" style="text-align: center; padding: 24px;">
@@ -2418,35 +2418,6 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 </a>
             </div>
 
-            <!-- 感想ツイート -->
-            <div class="card"
-                style="text-align: center; padding: 32px; margin-top: 24px; border: 2px solid #D2C4AF; background: linear-gradient(135deg, #F3EFE6 0%, #E8DFCE 100%);">
-                <div style="margin-bottom: 8px; color: #8F816E;">
-                    <span class="material-symbols-outlined" style="font-size: 2.2rem;">chat</span>
-                </div>
-                <div style="font-size: 1.15rem; font-weight: 700; color: #3B3631; margin-bottom: 8px;">
-                    ハンズオンの感想をシェアしよう！
-                </div>
-                <div style="color: #6C6359; margin-bottom: 20px; font-size: 0.95rem; line-height: 1.6;">
-                    今日の体験はいかがでしたか？<br>
-                    感想・学び・気づきを X でシェアしていただけると嬉しいです
-                    <span class="material-symbols-outlined"
-                        style="vertical-align: middle; font-size: 1.2rem; color: #8F816E; margin-left: 2px;">celebration</span><br>
-                    <span style="font-size: 0.85rem; color: #8C8276;">下記ボタンをクリックすると、投稿フォームが開きます（内容は自由に編集できます）</span>
-                </div>
-                <!-- Twitter Web インテント：テンプレートテキスト・ハッシュタグ・URL を事前セット -->
-                <a href="https://twitter.com/intent/tweet?text=%E3%80%90%E6%84%9F%E6%83%B3%E3%80%91Google+AI+Student+Ambassador+%C3%97+Antigravity+%E3%83%8F%E3%83%B3%E3%82%BA%E3%82%AA%E3%83%B3%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81+Vibe+Coding%E3%81%A7AI%E3%81%A8%E4%B8%80%E7%B7%92%E3%81%AB%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B%E4%BD%93%E9%A8%93%E3%81%AF%E6%9C%80%E9%AB%98%E3%81%A7%E3%81%97%E3%81%9F%F0%9F%9A%80&hashtags=Antigravity%2CVibeCoding%2CGoogleAI%2CAIDD&url=https%3A%2F%2Fgoogleaistudentambassador-uoa.connpass.com%2Fevent%2F384075%2F"
-                    target="_blank" rel="noopener noreferrer"
-                    style="display: inline-flex; align-items: center; justify-content: center; background: #61564D; color: #fff; font-weight: 700; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-size: 1rem; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 14px rgba(97,86,77,0.3);"
-                    onmouseover="this.style.background='#4A423A'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(97,86,77,0.4)';"
-                    onmouseout="this.style.background='#61564D'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 14px rgba(97,86,77,0.3)';">
-                    <span class="material-symbols-outlined"
-                        style="margin-right: 6px; font-size: 1.2rem;">send</span>ポストする
-                </a>
-                <div style="margin-top: 16px; font-size: 0.82rem; color: #8F816E;">
-                    投稿文の例:「Antigravity × MCP × Skills で本格的な Web アプリが30分でできた！ #Antigravity #VibeCoding」
-                </div>
-            </div>
 
             <div class="nav-btns">
                 <a href="#step6" class="btn">← Step 6</a>
