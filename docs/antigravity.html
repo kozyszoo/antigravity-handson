@@ -761,6 +761,20 @@
 
             <p>Antigravity は AI がターミナルコマンドを自動実行できます。「どこまで AI に任せるか」を <strong>Auto Execution</strong> ポリシーで制御します。<br>
                 設定は Agent Manager の設定アイコン（⚙️）→ <code>Auto Execution</code> から変更できます。</p>
+
+            <div class="card" style="margin-top: 20px;">
+                <strong>🔐 設定画面で権限を管理する（Settings - Permissions）</strong>
+                <p style="margin-top: 8px; font-size: 0.95rem;">
+                    実際の設定画面は「Permissions」タブから開きます。ここでエージェントの動作範囲をまとめて制御できます。
+                </p>
+                <img class="screenshot" src="img/settings-permissions.png" alt="Settings - Permissions 画面のスクリーンショット。Agent security mode（Full access / Sandboxed / Strict）やターミナル・ファイルアクセスの権限設定が表示されている">
+                <ul style="margin-top: 12px; font-size: 0.9rem; padding-left: 20px;">
+                    <li><strong>Agent security mode:</strong> エージェントの基本動作を <code>Full access</code>（全アクセス許可）／<code>Sandboxed</code>（信頼フォルダ外へのアクセスを制限したサンドボックス内で実行）／<code>Strict</code>（ターミナルコマンドは常に確認が必要・ワークスペース外のファイルにアクセス不可）の3つから選びます。迷ったら <strong>Sandboxed</strong> が安全と利便性のバランスに優れます。</li>
+                    <li><strong>Terminal Command Auto Execution:</strong> ターミナルコマンドを実行前に承認させるかどうかを制御します（前述の Auto Execution ポリシーに対応）。</li>
+                    <li><strong>Sandbox Allow Network / Enable Shell Integration:</strong> サンドボックス内コマンドのネットワーク接続可否や、IDE のシェル連携によるコマンド実行検知の有無を切り替えられます。</li>
+                    <li><strong>Agent Non-Workspace File Access:</strong> 現在のワークスペース外のファイルにエージェントがアクセスすることを許可するかどうかを設定します。安全のため、必要なときだけ有効にしましょう。</li>
+                </ul>
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -1228,6 +1242,19 @@ description: 挨拶のテスト用ワークフロー
                     </tr>
                 </tbody>
             </table>
+
+            <div class="card">
+                <strong>⚙️ 導入済み MCP サーバーを確認する（Settings - Customizations）</strong>
+                <p style="margin-top: 8px; font-size: 0.95rem;">
+                    現在ワークスペースに導入されている MCP サーバーは、設定画面の「Customizations」タブから一覧で確認・管理できます。
+                </p>
+                <img class="screenshot" src="img/settings-customizations.png" alt="Settings - Customizations 画面のスクリーンショット。Installed MCP Servers として blender や chrome-devtools が並び、トグルで有効・無効を切り替えられる様子と、Token Usage の使用量バーが表示されている">
+                <ul style="margin-top: 12px; font-size: 0.9rem; padding-left: 20px;">
+                    <li><strong>Installed MCP Servers:</strong> 導入済みのサーバー（例: <code>blender</code>・<code>chrome-devtools</code>）が一覧表示され、右側のトグルで個別に有効・無効を切り替えられます。各サーバーで使えるツール数（例: <code>22 tools enabled</code>）も確認できます。使わないサーバーは無効化しておくと安全です。</li>
+                    <li><strong>Add MCP / Refresh / Open MCP Config:</strong> GUI から新しい MCP を追加したり、一覧を更新したり、設定ファイル（<code>mcp_config.json</code>）を直接開いたりできます。</li>
+                    <li><strong>Token Usage:</strong> Skills・ルール・MCP などのカスタマイズが消費するトークン量（カスタマイズ予算の残量）が表示されます。予算を超えると大きなカスタマイズは自動的に切り詰められるため、ここで使用状況を把握できます。</li>
+                </ul>
+            </div>
 
             <h3>利用可能な MCP サーバー</h3>
             <table>
