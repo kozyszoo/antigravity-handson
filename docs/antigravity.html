@@ -357,7 +357,10 @@
         <h2>🚀 ハンズオン</h2>
         <nav>
             <ul>
-                <li><a href="index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="index.html"
+                        style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span
+                            class="material-symbols-outlined"
+                            style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
                 <li><a href="#intro">はじめに</a></li>
                 <li><a href="#step1-1">Step 1-1: 環境セットアップ</a></li>
                 <li><a href="#step1-2">Step 1-2: GEMINI.md 設定</a></li>
@@ -448,7 +451,7 @@
 
             </div>
 
-            <p>このガイドでは、Google Antigravity を使った開発の基礎から応用まで、ステップバイステップで学習できます。プログラミング初心者でも、AIがすべてサポートしてくれるので安心してください。</p>
+            <p>このガイドでは、Antigravity を使った開発の基礎から応用まで、ステップバイステップで学習できます。プログラミング初心者でも、AIがすべてサポートしてくれるので安心してください。</p>
 
             <!-- 【挿絵】 Antigravity の全体像を表すコンセプトイラスト
                  ▼ 画像生成プロンプト例（Nano Banana / Midjourney 等）:
@@ -458,7 +461,104 @@
                  サイズ推奨: 横幅 1200px × 縦幅 480px（16:6 比率のワイド横長バナー）
             -->
             <img class="screenshot" src="img/fig-intro.png"
-                alt="AIエージェント（ロボット）とエンジニアが横並びでノートパソコンに向かい、コードを協力して書いているフラットイラスト。ダークな背景に青緑色のアクセントカラー。Google Antigravity ハンズオンのコンセプトイメージ">
+                alt="AIエージェント（ロボット）とエンジニアが横並びでノートパソコンに向かい、コードを協力して書いているフラットイラスト。ダークな背景に青緑色のアクセントカラー。Antigravity ハンズオンのコンセプトイメージ">
+
+            <!-- Google Antigravity vs Antigravity IDE Difference -->
+            <div id="intro-diff" class="card"
+                style="margin: 30px 0; border: 1px solid var(--blue); border-radius: 12px; padding: 24px; background: linear-gradient(180deg, var(--bg-mid), var(--bg-dark));">
+                <h3 style="margin-top: 0; display: flex; align-items: center; gap: 8px; color: var(--blue);">
+                    <span class="material-symbols-outlined" style="color: var(--blue);">help_outline</span>
+                    Antigravity と Antigravity IDE の違い
+                </h3>
+                <p style="margin-top: 12px; font-size: 0.95rem; line-height: 1.6;">
+                    本ハンズオンでは、「<strong>Antigravity</strong>」と「<strong>Antigravity IDE</strong>」というよく似た2つの言葉が登場します。
+                    これらはそれぞれ<strong>「AIエージェント（エンジン）」</strong>と<strong>「開発環境（ツール）」</strong>を指しており、明確な違いがあります。
+                    スムーズに学習を進めるために、その定義と役割分担を詳しく理解しておきましょう。
+                </p>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin: 24px 0;">
+                    <!-- Google Antigravity -->
+                    <div
+                        style="background: var(--bg-light); border-radius: 10px; padding: 20px; border-top: 4px solid var(--primary); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div
+                                style="font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                                <span class="material-symbols-outlined" style="font-size: 1.5rem;">smart_toy</span>
+                                Antigravity
+                            </div>
+                            <ul
+                                style="font-size: 0.88rem; color: var(--text); margin: 0 0 16px 18px; line-height: 1.7; padding-left: 0;">
+                                <li><strong>正体:</strong> Googleが開発した<strong>「次世代の自律型AIエージェント（脳・エンジン）」</strong>です。</li>
+                                <li><strong>役割:</strong> 自然言語の指示を受け、自律的に実装計画（Plan）を策定します。</li>
+                                <li><strong>実行力:</strong> ファイルの自動編集、コンパイルエラーの修正、テスト実行、ブラウザ自動操作（Playwright）などを自ら判断して行います。
+                                </li>
+                                <li><strong>拡張性:</strong> MCP（Model Context Protocol）を介し、外部ツールや別エージェントと連携します。</li>
+                            </ul>
+                        </div>
+                        <div
+                            style="background: var(--bg-dark); border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: var(--primary); border: 1px dashed var(--primary); display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 1.2rem;">🚗</span>
+                            <strong>例え話: 「自動運転をするAIドライバー」</strong>
+                        </div>
+                    </div>
+
+                    <!-- Antigravity IDE -->
+                    <div
+                        style="background: var(--bg-light); border-radius: 10px; padding: 20px; border-top: 4px solid var(--blue); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div
+                                style="font-size: 1.15rem; font-weight: 700; color: var(--blue); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                                <span class="material-symbols-outlined" style="font-size: 1.5rem;">terminal</span>
+                                Antigravity IDE
+                            </div>
+                            <ul
+                                style="font-size: 0.88rem; color: var(--text); margin: 0 0 16px 18px; line-height: 1.7; padding-left: 0;">
+                                <li><strong>正体:</strong> VS
+                                    Codeをベースに構築された、AI特化型の<strong>「統合開発環境（エディタ・アプリケーション）」</strong>です。</li>
+                                <li><strong>画面構成:</strong> 人間がコードを書くエディタ部分と、AIと対話する「Agent Manager」の2つから成ります。</li>
+                                <li><strong>自動補完:</strong>
+                                    複数行を先読みする「Supercomplete」や、編集先にジャンプする「Tab-to-Jump」などのアシスト機能を標準搭載しています。</li>
+                                <li><strong>セーフティ:</strong> AIのターミナル操作やネットワーク通信を制御する「Auto Execution（セキュリティ設定）」を管理します。
+                                </li>
+                            </ul>
+                        </div>
+                        <div
+                            style="background: var(--bg-dark); border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: var(--blue); border: 1px dashed var(--blue); display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 1.2rem;">🏎️</span>
+                            <strong>例え話: 「AI機能がフル装備された最先端の車（車体）」</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    style="background: var(--bg-dark); border-radius: 8px; padding: 16px; border: 1px solid var(--bg-light); margin-top: 15px;">
+                    <div
+                        style="font-size: 0.95rem; font-weight: 700; color: var(--muted); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                        <span class="material-symbols-outlined"
+                            style="font-size: 1.2rem; color: var(--purple);">handshake</span>
+                        本ハンズオンでのあなたとAIの関わり方
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.6;">
+                        あなたが操作してファイルを開いたり設定を変更したりする画面が <strong style="color: var(--blue);">Antigravity IDE</strong> です。
+                        そして、あなたの頼もしい相棒（AIペアプログラマ）として、裏側で実際にファイルを書き換えたり、コマンドを実行してくれたりする存在が <strong
+                            style="color: var(--primary);">Antigravity (エージェント)</strong> です。
+                    </p>
+                </div>
+
+                <!-- 公式ドキュメントリンク -->
+                <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 16px; font-size: 0.88rem;">
+                    <a href="https://antigravity.google" target="_blank" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; opacity: 0.85;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.85">
+                        <span class="material-symbols-outlined" style="font-size: 1.1rem; vertical-align: middle;">public</span>
+                        Antigravity 公式サイト ↗
+                    </a>
+                    <span style="color: var(--bg-light);">|</span>
+                    <a href="https://antigravity.google/docs/ide-overview" target="_blank" style="color: var(--blue); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; opacity: 0.85;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.85">
+                        <span class="material-symbols-outlined" style="font-size: 1.1rem; vertical-align: middle;">open_in_new</span>
+                        公式ドキュメント ↗
+                    </a>
+                </div>
+            </div>
 
             <h3>学習の流れ（所要時間 約110分）</h3>
             <img class="screenshot" src="img/slide-roadmap.png" alt="Google Antigravity 学習の流れ（ロードマップ）">
@@ -497,7 +597,7 @@
             <span class="badge badge-time">🕐 19:30〜19:45（Step1 合計 15分）</span>
 
             <h3>目標</h3>
-            <p>Google Antigravity を起動して、ワークスペースの基本設定まで済ませましょう。</p>
+            <p>Antigravity IDE を起動して、ワークスペースの基本設定まで済ませましょう。</p>
 
             <h3>システム要件</h3>
             <table>
@@ -522,13 +622,13 @@
                     </tr>
                 </tbody>
             </table>
-            <blockquote>📚 公式ドキュメント: <a href="https://antigravity.google/docs/get-started"
-                    target="_blank">https://antigravity.google/docs/get-started</a></blockquote>
+            <blockquote>📚 公式ドキュメント: <a href="https://antigravity.google/docs/ide-overview"
+                    target="_blank">https://antigravity.google/docs/ide-overview</a></blockquote>
 
             <h3>チェックリスト</h3>
-            <h4>1. Antigravity のインストール確認</h4>
+            <h4>1. Antigravity IDE のインストール確認</h4>
             <ul>
-                <li>Antigravity アプリケーションがインストールされている</li>
+                <li>Antigravity IDE アプリケーションがインストールされている</li>
                 <li>Google アカウントでログイン済み</li>
                 <li>アプリが最新版（Restart to Update が出ていたら再起動してください）</li>
             </ul>
@@ -578,9 +678,9 @@
                 </ul>
             </div>
 
-            <h5>方法2: Antigravity のターミナルでクローン（Antigravity 内で完結）</h5>
+            <h5>方法2: Antigravity IDE のターミナルでクローン（Antigravity IDE 内で完結）</h5>
             <ol>
-                <li>Antigravity アプリを起動します</li>
+                <li>Antigravity IDE アプリを起動します</li>
                 <li>画面上部のメニューバーから <code>Terminal</code> → <code>New Terminal</code> をクリック</li>
                 <li>画面下部にターミナルパネルが表示されます</li>
                 <li>以下のコマンドをコピーして、ターミナルパネルに貼り付け（右クリック → 貼り付け）：</li>
@@ -620,7 +720,7 @@
             <!-- 【画像挿入箇所】 Editor View と Agent Manager の画面全体のスクショ -->
 
             <img class="screenshot" src="img/fig1.png"
-                alt="Google Antigravity の全体画面構成。左側に Editor View（ファイルツリーとエディタ）、右側または別ペインに Agent Manager（AI エージェントとの対話画面）が表示されている状態">
+                alt="Antigravity IDE の全体画面構成。左側に Editor View（ファイルツリーとエディタ）、右側または別ペインに Agent Manager（AI エージェントとの対話画面）が表示されている状態">
             <div class="card">
                 <strong>Editor View</strong> — ファイルツリーとエディタが並ぶ VS Code ベースの画面
             </div>
@@ -727,7 +827,8 @@
             <div class="card">
                 <strong>💡 Rate Limit に達したときの対処法</strong>
                 <ul style="margin-top: 8px;">
-                    <li>Gemini 3.1 Pro (High) → <strong>Gemini 3.1 Pro (Low)</strong> または <strong>Claude Sonnet 4.6 (Thinking)</strong> / <strong>Gemini 3.5 Flash</strong> に切り替える</li>
+                    <li>Gemini 3.1 Pro (High) → <strong>Gemini 3.1 Pro (Low)</strong> または <strong>Claude Sonnet 4.6
+                            (Thinking)</strong> / <strong>Gemini 3.5 Flash</strong> に切り替える</li>
                     <li>しばらく時間をおいてから再試行する（通常数分〜数十分でリセット）</li>
                     <li>簡単な作業は <strong>Gemini 3.5 Flash</strong> で素早く処理する</li>
                 </ul>
@@ -738,11 +839,17 @@
                 <p style="margin-top: 8px; font-size: 0.95rem;">
                     Antigravity IDE では、設定画面の「Models」タブから、各AIモデルの利用可能クォータ（制限枠）や、AIクレジットの残高を詳細に確認・管理できます。
                 </p>
-                <img class="screenshot" src="img/settings-models.png" alt="Settings - Models 画面のスクリーンショット。モデルごとのクォータ状況やAIクレジットの設定が表示されている">
+                <img class="screenshot" src="img/settings-models.png"
+                    alt="Settings - Models 画面のスクリーンショット。モデルごとのクォータ状況やAIクレジットの設定が表示されている">
                 <ul style="margin-top: 12px; font-size: 0.9rem; padding-left: 20px;">
-                    <li><strong>AI クレジットの管理 (Model Credits):</strong> 現在使用可能な AI クレジット（Available AI Credits）や、クレジットの追加、使用履歴（See Activity）を確認できます。</li>
-                    <li><strong>クレジット超過の自動補填 (Enable AI Credit Overages):</strong> この設定を有効（ON）にしておくと、各モデルに割り当てられた月間/週間のクォータを使い切った後でも、保有している AI クレジットから自動的に補填されてモデルへのリクエストを継続できます。</li>
-                    <li><strong>モデルクォータの確認 (Model Quota):</strong> <code>Gemini 3.5 Flash</code> や <code>Claude Sonnet 4.6</code> など、登録されている各モデルの残りクォータ状況と、それがリセット（定期更新）されるまでの残り時間がリアルタイムに表示されます。</li>
+                    <li><strong>AI クレジットの管理 (Model Credits):</strong> 現在使用可能な AI クレジット（Available AI
+                        Credits）や、クレジットの追加、使用履歴（See Activity）を確認できます。</li>
+                    <li><strong>クレジット超過の自動補填 (Enable AI Credit Overages):</strong>
+                        この設定を有効（ON）にしておくと、各モデルに割り当てられた月間/週間のクォータを使い切った後でも、保有している AI クレジットから自動的に補填されてモデルへのリクエストを継続できます。
+                    </li>
+                    <li><strong>モデルクォータの確認 (Model Quota):</strong> <code>Gemini 3.5 Flash</code> や
+                        <code>Claude Sonnet 4.6</code> など、登録されている各モデルの残りクォータ状況と、それがリセット（定期更新）されるまでの残り時間がリアルタイムに表示されます。
+                    </li>
                 </ul>
             </div>
 
@@ -755,11 +862,11 @@
                 <p style="margin-top: 8px; font-size: 0.9rem;">
                     ターミナルコマンドとは、文字で入力してコンピュータに指示を出す命令のことです。<br>
                     例：<code>npm install</code>（パッケージをインストール）、<code>git commit</code>（変更を記録）、<code>rm -rf フォルダ名</code>（フォルダを削除）など。<br>
-                    Antigravity では、AIが開発作業を進めるために、これらのコマンドを自動で実行することができます。
+                    Antigravity（エージェント）では、AIが開発作業を進めるために、これらのコマンドを自動で実行することができます。
                 </p>
             </div>
 
-            <p>Antigravity は AI がターミナルコマンドを自動実行できます。「どこまで AI に任せるか」を <strong>Auto Execution</strong> ポリシーで制御します。<br>
+            <p>Antigravity IDE では、AI（エージェント）がターミナルコマンドを自動実行できます。「どこまで AI に任せるか」を <strong>Auto Execution</strong> ポリシーで制御します。<br>
                 設定は Agent Manager の設定アイコン（⚙️）→ <code>Auto Execution</code> から変更できます。</p>
 
             <div class="card" style="margin-top: 20px;">
@@ -767,12 +874,18 @@
                 <p style="margin-top: 8px; font-size: 0.95rem;">
                     実際の設定画面は「Permissions」タブから開きます。ここでエージェントの動作範囲をまとめて制御できます。
                 </p>
-                <img class="screenshot" src="img/settings-permissions.png" alt="Settings - Permissions 画面のスクリーンショット。Agent security mode（Full access / Sandboxed / Strict）やターミナル・ファイルアクセスの権限設定が表示されている">
+                <img class="screenshot" src="img/settings-permissions.png"
+                    alt="Settings - Permissions 画面のスクリーンショット。Agent security mode（Full access / Sandboxed / Strict）やターミナル・ファイルアクセスの権限設定が表示されている">
                 <ul style="margin-top: 12px; font-size: 0.9rem; padding-left: 20px;">
-                    <li><strong>Agent security mode:</strong> エージェントの基本動作を <code>Full access</code>（全アクセス許可）／<code>Sandboxed</code>（信頼フォルダ外へのアクセスを制限したサンドボックス内で実行）／<code>Strict</code>（ターミナルコマンドは常に確認が必要・ワークスペース外のファイルにアクセス不可）の3つから選びます。迷ったら <strong>Sandboxed</strong> が安全と利便性のバランスに優れます。</li>
-                    <li><strong>Terminal Command Auto Execution:</strong> ターミナルコマンドを実行前に承認させるかどうかを制御します（前述の Auto Execution ポリシーに対応）。</li>
-                    <li><strong>Sandbox Allow Network / Enable Shell Integration:</strong> サンドボックス内コマンドのネットワーク接続可否や、IDE のシェル連携によるコマンド実行検知の有無を切り替えられます。</li>
-                    <li><strong>Agent Non-Workspace File Access:</strong> 現在のワークスペース外のファイルにエージェントがアクセスすることを許可するかどうかを設定します。安全のため、必要なときだけ有効にしましょう。</li>
+                    <li><strong>Agent security mode:</strong> エージェントの基本動作を
+                        <code>Full access</code>（全アクセス許可）／<code>Sandboxed</code>（信頼フォルダ外へのアクセスを制限したサンドボックス内で実行）／<code>Strict</code>（ターミナルコマンドは常に確認が必要・ワークスペース外のファイルにアクセス不可）の3つから選びます。迷ったら
+                        <strong>Sandboxed</strong> が安全と利便性のバランスに優れます。</li>
+                    <li><strong>Terminal Command Auto Execution:</strong> ターミナルコマンドを実行前に承認させるかどうかを制御します（前述の Auto
+                        Execution ポリシーに対応）。</li>
+                    <li><strong>Sandbox Allow Network / Enable Shell Integration:</strong> サンドボックス内コマンドのネットワーク接続可否や、IDE
+                        のシェル連携によるコマンド実行検知の有無を切り替えられます。</li>
+                    <li><strong>Agent Non-Workspace File Access:</strong>
+                        現在のワークスペース外のファイルにエージェントがアクセスすることを許可するかどうかを設定します。安全のため、必要なときだけ有効にしましょう。</li>
                 </ul>
             </div>
             <table>
@@ -1198,14 +1311,20 @@ description: 挨拶のテスト用ワークフロー
             <div class="card" style="border-left: 4px solid var(--yellow, #f4c542);">
                 <strong>⏩ 早く終わった人へ：自分だけのオリジナリティを加えよう</strong>
                 <p style="margin: 8px 0; font-size: 0.9rem;">
-                    お手本どおりに作れた人は、ここからが本番です。同じプロンプトをなぞるだけでは AI の本当の力は引き出せません。<strong>「あなたが作りたいもの」を AI に伝える</strong>練習をしてみましょう。下のヒントから気になるものを選んで、自分の言葉でプロンプトを書き換えてみてください。
+                    お手本どおりに作れた人は、ここからが本番です。同じプロンプトをなぞるだけでは AI の本当の力は引き出せません。<strong>「あなたが作りたいもの」を AI
+                        に伝える</strong>練習をしてみましょう。下のヒントから気になるものを選んで、自分の言葉でプロンプトを書き換えてみてください。
                 </p>
                 <ul style="font-size: 0.9rem; margin-top: 8px; padding-left: 20px;">
-                    <li><strong>テーマを自分ごとに：</strong> 「自己紹介ページ」を、自分の趣味・推し・ペット・架空のサービスの紹介ページに変えてみる。題材が変わるとデザインの正解も変わります。</li>
-                    <li><strong>インタラクションを足す：</strong> 「ダークモード切り替えボタン」「スクロールで要素がフェードインする」「クリックで開閉する FAQ アコーディオン」など、動きのある要素を 1 つ追加依頼してみる。</li>
-                    <li><strong>Nano Banana を使い倒す：</strong> アバターや背景だけでなく、セクションごとのアイコンや、ページ全体の世界観を統一したイラストを生成して差し込んでみる。「同じ画風で 3 枚」のように世界観を揃えるのがコツ。</li>
-                    <li><strong>1 機能だけ JS を入れる：</strong> 「現在時刻を表示する」「3 秒ごとに名言が切り替わる」など、小さな JavaScript の機能を 1 つ追加して、静的ページから一歩進める。</li>
-                    <li><strong>AI に相談する：</strong> 「このページをもっと魅力的にするアイデアを 3 つ提案して」と聞いて、提案の中から良いものを選んで実装させる。発想を AI に手伝ってもらうのも立派なスキルです。</li>
+                    <li><strong>テーマを自分ごとに：</strong> 「自己紹介ページ」を、自分の趣味・推し・ペット・架空のサービスの紹介ページに変えてみる。題材が変わるとデザインの正解も変わります。
+                    </li>
+                    <li><strong>インタラクションを足す：</strong> 「ダークモード切り替えボタン」「スクロールで要素がフェードインする」「クリックで開閉する FAQ
+                        アコーディオン」など、動きのある要素を 1 つ追加依頼してみる。</li>
+                    <li><strong>Nano Banana を使い倒す：</strong>
+                        アバターや背景だけでなく、セクションごとのアイコンや、ページ全体の世界観を統一したイラストを生成して差し込んでみる。「同じ画風で 3 枚」のように世界観を揃えるのがコツ。</li>
+                    <li><strong>1 機能だけ JS を入れる：</strong> 「現在時刻を表示する」「3 秒ごとに名言が切り替わる」など、小さな JavaScript の機能を 1
+                        つ追加して、静的ページから一歩進める。</li>
+                    <li><strong>AI に相談する：</strong> 「このページをもっと魅力的にするアイデアを 3 つ提案して」と聞いて、提案の中から良いものを選んで実装させる。発想を AI
+                        に手伝ってもらうのも立派なスキルです。</li>
                 </ul>
                 <p style="font-size: 0.85rem; margin-top: 8px; color: var(--text-light, #aaa);">
                     💬 余裕があれば、出来上がったオリジナルページのスクショを参加者同士で見せ合ってみましょう。同じ手順でもまったく違うものが生まれているはずです。
@@ -1265,11 +1384,16 @@ description: 挨拶のテスト用ワークフロー
                 <p style="margin-top: 8px; font-size: 0.95rem;">
                     現在ワークスペースに導入されている MCP サーバーは、設定画面の「Customizations」タブから一覧で確認・管理できます。
                 </p>
-                <img class="screenshot" src="img/settings-customizations.png" alt="Settings - Customizations 画面のスクリーンショット。Installed MCP Servers として blender や chrome-devtools が並び、トグルで有効・無効を切り替えられる様子と、Token Usage の使用量バーが表示されている">
+                <img class="screenshot" src="img/settings-customizations.png"
+                    alt="Settings - Customizations 画面のスクリーンショット。Installed MCP Servers として blender や chrome-devtools が並び、トグルで有効・無効を切り替えられる様子と、Token Usage の使用量バーが表示されている">
                 <ul style="margin-top: 12px; font-size: 0.9rem; padding-left: 20px;">
-                    <li><strong>Installed MCP Servers:</strong> 導入済みのサーバー（例: <code>blender</code>・<code>chrome-devtools</code>）が一覧表示され、右側のトグルで個別に有効・無効を切り替えられます。各サーバーで使えるツール数（例: <code>22 tools enabled</code>）も確認できます。使わないサーバーは無効化しておくと安全です。</li>
-                    <li><strong>Add MCP / Refresh / Open MCP Config:</strong> GUI から新しい MCP を追加したり、一覧を更新したり、設定ファイル（<code>mcp_config.json</code>）を直接開いたりできます。</li>
-                    <li><strong>Token Usage:</strong> Skills・ルール・MCP などのカスタマイズが消費するトークン量（カスタマイズ予算の残量）が表示されます。予算を超えると大きなカスタマイズは自動的に切り詰められるため、ここで使用状況を把握できます。</li>
+                    <li><strong>Installed MCP Servers:</strong> 導入済みのサーバー（例:
+                        <code>blender</code>・<code>chrome-devtools</code>）が一覧表示され、右側のトグルで個別に有効・無効を切り替えられます。各サーバーで使えるツール数（例:
+                        <code>22 tools enabled</code>）も確認できます。使わないサーバーは無効化しておくと安全です。</li>
+                    <li><strong>Add MCP / Refresh / Open MCP Config:</strong> GUI から新しい MCP
+                        を追加したり、一覧を更新したり、設定ファイル（<code>mcp_config.json</code>）を直接開いたりできます。</li>
+                    <li><strong>Token Usage:</strong> Skills・ルール・MCP
+                        などのカスタマイズが消費するトークン量（カスタマイズ予算の残量）が表示されます。予算を超えると大きなカスタマイズは自動的に切り詰められるため、ここで使用状況を把握できます。</li>
                 </ul>
             </div>
 
@@ -1487,7 +1611,8 @@ description: 特定のタスクを支援するスキル
         └── SKILL.md      # UI 検証・動作確認 Skill</code></pre>
 
             <h3>やってみよう: サンプル Skill を試す</h3>
-            <p>プロジェクトに最初から入っている <code>git-workflow</code> スキルを使って、AI に Git のワークフローをサポートさせてみましょう。例えばチャット欄で以下のように指示します：</p>
+            <p>プロジェクトに最初から入っている <code>git-workflow</code> スキルを使って、AI に Git のワークフローをサポートさせてみましょう。例えばチャット欄で以下のように指示します：
+            </p>
             <pre><code>git-workflow Skill を使って、現在の変更点をステージングしてコミットメッセージを考えてコミットして</code></pre>
 
             <h3>🌟 公開されている Skills を活用しよう</h3>
@@ -1812,7 +1937,8 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
 
             <h4>Part 5: 品質チェック（Skills活用）— 所要時間: 5分</h4>
             <p><strong>目的：</strong> 実装したコードの品質を自動レビューし、バグやアンチパターンを事前に発見・修正します。</p>
-            <p><strong>やること：</strong> <code>@multi-ai-review</code> Skill を呼び出すと、AI が全コンポーネントをレビューし、改善すべき点をまとめた統合レポートを自動的に生成してくれます。</p>
+            <p><strong>やること：</strong> <code>@multi-ai-review</code> Skill を呼び出すと、AI
+                が全コンポーネントをレビューし、改善すべき点をまとめた統合レポートを自動的に生成してくれます。</p>
 
             <pre><code>@multi-ai-review を使って ai-coffee-shop/src/components/ のすべてのコンポーネントを
 レビューして、改善点をまとめた統合レポートを生成して。</code></pre>
@@ -2255,34 +2381,45 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                                 Opus 4.6</code> や <code>Gemini 3.1 Pro (High)</code>、コードを量産する実装フェーズは <code>Gemini 3.1 Pro
                                 (Low)</code> や <code>GPT-OSS</code> に切り替えると、精度とスピードのバランスが取れる。</td>
                         <td rowspan="3"><a href="https://dev.classmethod.jp/articles/google-antigravity-five-tips/"
-                                target="_blank" style="color: var(--blue); word-break: break-all;">DevelopersIO /<br>公式ドキュメント /<br>各種ブログ（2026年最新）</a></td>
+                                target="_blank" style="color: var(--blue); word-break: break-all;">DevelopersIO
+                                /<br>公式ドキュメント /<br>各種ブログ（2026年最新）</a></td>
                     </tr>
                     <tr>
                         <td>Rate Limit のリセット周期を把握して計画的に使う</td>
-                        <td>無料プランのレート制限は<strong>週次</strong>でリセットされるのに対し、Pro / Ultra などの有料プランは<strong>約5時間ごと</strong>に回復する。長時間のハンズオンや開発では、上限に達する前提で「重い設計フェーズは集中して回し、軽作業は別モデルに逃がす」と計画しておくと詰まりにくい。2026年1月には無料と Pro
+                        <td>無料プランのレート制限は<strong>週次</strong>でリセットされるのに対し、Pro / Ultra
+                            などの有料プランは<strong>約5時間ごと</strong>に回復する。長時間のハンズオンや開発では、上限に達する前提で「重い設計フェーズは集中して回し、軽作業は別モデルに逃がす」と計画しておくと詰まりにくい。2026年1月には無料と
+                            Pro
                             の中間プラン（ストレージ200GBを Gmail / Drive と共有）も追加された。</td>
                     </tr>
                     <tr>
                         <td>グローバル GEMINI.md を「自分の標準設定」として育てる</td>
-                        <td><code>~/.gemini/GEMINI.md</code> はすべてのワークスペースで共有される。日本語出力指示・コーディング規約・「Step10超過で一時停止」などの安全ルールをここに集約しておけば、新しいプロジェクトを開くたびに同じ設定をやり直す必要がなくなる。プロジェクト固有のルールは各リポジトリの
-                            <code>GEMINI.md</code> で上書きする「2層構成」が定石。</td>
+                        <td><code>~/.gemini/GEMINI.md</code>
+                            はすべてのワークスペースで共有される。日本語出力指示・コーディング規約・「Step10超過で一時停止」などの安全ルールをここに集約しておけば、新しいプロジェクトを開くたびに同じ設定をやり直す必要がなくなる。プロジェクト固有のルールは各リポジトリの
+                            <code>GEMINI.md</code> で上書きする「2層構成」が定石。
+                        </td>
                     </tr>
                     <tr>
                         <td>Knowledge Items（KI）でセッションを越えて学習させる</td>
                         <td>会話の終了時に <strong>Knowledge Subagent</strong> が自動でやり取りを分析し、重要な知見・パターン・解決策を <strong>Knowledge
-                            Items（KI）</strong>として永続化する。会話履歴はセッションで消えるが、KI は「蒸留された事実」として残り続け、関連する作業では自動的に読み込まれる。手動登録の画面はなく、<strong>使えば使うほど賢くなる</strong>のが特徴。新しい調査を始める前に KI の要約を確認すると、同じ分析の繰り返しを避けられる。</td>
+                                Items（KI）</strong>として永続化する。会話履歴はセッションで消えるが、KI
+                            は「蒸留された事実」として残り続け、関連する作業では自動的に読み込まれる。手動登録の画面はなく、<strong>使えば使うほど賢くなる</strong>のが特徴。新しい調査を始める前に
+                            KI の要約を確認すると、同じ分析の繰り返しを避けられる。</td>
                         <td rowspan="3"><a href="https://iceberglakehouse.com/posts/2026-03-context-google-antigravity/"
-                                target="_blank" style="color: var(--blue); word-break: break-all;">Lakehouse Blog /<br>Antigravity 公式Docs /<br>Qiita（2026年最新）</a></td>
+                                target="_blank" style="color: var(--blue); word-break: break-all;">Lakehouse Blog
+                                /<br>Antigravity 公式Docs /<br>Qiita（2026年最新）</a></td>
                     </tr>
                     <tr>
                         <td>過去の Artifact を再参照してコンテキストを節約する</td>
-                        <td>以前のタスクで生成された <code>task.md</code>・<code>walkthrough.md</code>・<code>implementation_plan.md</code>
-                            を新しいセッションで参照させると、実装内容や検証結果の文脈を素早く復元できる。毎回ゼロから説明し直すよりコンテキストウィンドウの無駄が減り、長期プロジェクトでも文脈が途切れにくくなる。</td>
+                        <td>以前のタスクで生成された
+                            <code>task.md</code>・<code>walkthrough.md</code>・<code>implementation_plan.md</code>
+                            を新しいセッションで参照させると、実装内容や検証結果の文脈を素早く復元できる。毎回ゼロから説明し直すよりコンテキストウィンドウの無駄が減り、長期プロジェクトでも文脈が途切れにくくなる。
+                        </td>
                     </tr>
                     <tr>
                         <td>サブエージェントには「深さの上限」を設定する</td>
                         <td>Antigravity
-                            2.0 では、エージェントが子エージェント（サブエージェント）を動的に生成して並列処理できる。便利な反面、サブエージェントがさらにサブエージェントを生む再帰が起きると、利用枠（特に Ultra
+                            2.0 では、エージェントが子エージェント（サブエージェント）を動的に生成して並列処理できる。便利な反面、サブエージェントがさらにサブエージェントを生む再帰が起きると、利用枠（特に
+                            Ultra
                             の予算）を一気に消費してしまう。agent
                             設定で<strong>最大の深さ（depth）を必ず指定</strong>し、暴走を防ぐのが鉄則。</td>
                     </tr>
@@ -2359,19 +2496,20 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
             <h3>🎪 今後のイベント</h3>
             <div
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 16px 0;">
-                <div class="card" style="border-left: 4px solid var(--primary);">
-                    <div style="color: var(--primary); font-weight: 700; font-size: 1rem; margin-bottom: 8px;">🛠️ AIDD
-                        もくもく会</div>
-                    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 10px;">「AI
-                        駆動開発（AIDD）」をテーマに、各自が持ち寄った課題を AI と共に解決するもくもく会。プロンプトや知見をみんなで共有します。</p>
-                    <div style="font-size: 0.82rem; color: var(--muted);">📅 日程調整中 ｜ 🖥️ オンライン（Discord / Zoom）</div>
-                </div>
-                <div class="card" style="border-left: 4px solid var(--purple);">
-                    <div style="color: var(--purple); font-weight: 700; font-size: 1rem; margin-bottom: 8px;">📚 AI
-                        活用勉強会・登壇</div>
-                    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 10px;">社内外の技術勉強会や登壇情報を随時発信中。気になる方は
-                        X をフォローしてください！</p>
-                    <div style="font-size: 0.82rem; color: var(--muted);">📅 随時開催</div>
+                <div class="card" style="border-left: 4px solid var(--primary); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="color: var(--primary); font-weight: 700; font-size: 1rem; margin-bottom: 8px;">🛠️ AIDD
+                            もくもく会</div>
+                        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 12px;">「AI
+                            駆動開発（AIDD）」をテーマに、各自が持ち寄った課題を AI と共に解決するもくもく会。プロンプトや知見をみんなで共有します。</p>
+                        <div style="font-size: 0.82rem; color: var(--muted); margin-bottom: 16px;">📅 日程調整中 ｜ 🖥️ オンライン（Discord / Zoom）</div>
+                    </div>
+                    <div>
+                        <a href="https://aid.connpass.com/event/394171/" target="_blank" class="btn" style="padding: 6px 14px; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 4px;">
+                            <span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">event_upcoming</span>
+                            もくもく会に参加する（connpass） ↗
+                        </a>
+                    </div>
                 </div>
             </div>
 
