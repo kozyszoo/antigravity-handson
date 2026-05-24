@@ -868,18 +868,18 @@
                 </p>
             </div>
 
-            <p>Antigravity IDE では、AI（エージェント）がターミナルコマンドを自動実行できます。「どこまで AI に任せるか」を <strong>Auto Execution</strong> ポリシーで制御します。<br>
+            <p>Antigravity では、Agent がターミナルコマンドを自動実行できます。「どこまで Agent に任せるか」を <strong>Auto Execution</strong> ポリシーで制御します。<br>
                 設定は Agent Manager の設定アイコン（⚙️）→ <code>Auto Execution</code> から変更できます。</p>
 
             <div class="card" style="margin-top: 20px;">
                 <strong>🔐 設定画面で権限を管理する（Settings - Permissions）</strong>
                 <p style="margin-top: 8px; font-size: 0.95rem;">
-                    実際の設定画面は「Permissions」タブから開きます。ここでエージェントの動作範囲をまとめて制御できます。
+                    実際の設定画面は「Permissions」タブから開きます。ここで Agent の動作範囲をまとめて制御できます。
                 </p>
                 <img class="screenshot" src="img/settings-permissions.png"
                     alt="Settings - Permissions 画面のスクリーンショット。Agent security mode（Full access / Sandboxed / Strict）やターミナル・ファイルアクセスの権限設定が表示されている">
                 <ul style="margin-top: 12px; font-size: 0.9rem; padding-left: 20px;">
-                    <li><strong>Agent security mode:</strong> エージェントの基本動作を
+                    <li><strong>Agent security mode:</strong> Agent の基本動作を
                         <code>Full access</code>（全アクセス許可）／<code>Sandboxed</code>（信頼フォルダ外へのアクセスを制限したサンドボックス内で実行）／<code>Strict</code>（ターミナルコマンドは常に確認が必要・ワークスペース外のファイルにアクセス不可）の3つから選びます。迷ったら
                         <strong>Sandboxed</strong> が安全と利便性のバランスに優れます。</li>
                     <li><strong>Terminal Command Auto Execution:</strong> ターミナルコマンドを実行前に承認させるかどうかを制御します（前述の Auto
@@ -887,7 +887,7 @@
                     <li><strong>Sandbox Allow Network / Enable Shell Integration:</strong> サンドボックス内コマンドのネットワーク接続可否や、IDE
                         のシェル連携によるコマンド実行検知の有無を切り替えられます。</li>
                     <li><strong>Agent Non-Workspace File Access:</strong>
-                        現在のワークスペース外のファイルにエージェントがアクセスすることを許可するかどうかを設定します。安全のため、必要なときだけ有効にしましょう。</li>
+                        現在のワークスペース外のファイルに Agent がアクセスすることを許可するかどうかを設定します。安全のため、必要なときだけ有効にしましょう。</li>
                 </ul>
             </div>
             <table>
@@ -1463,7 +1463,11 @@ description: 挨拶のテスト用ワークフロー
                 <li><strong>macOS / Linux:</strong> <code>~/.gemini/antigravity/mcp_config.json</code></li>
                 <li><strong>Windows:</strong> <code>%USERPROFILE%\.gemini\antigravity\mcp_config.json</code></li>
             </ul>
-            <p style="font-size: 0.9rem; color: var(--muted);">💡 ファイルが見つからない場合は、後述の手順で「Manage MCP Servers → View raw config」から開くのが確実です（初回はファイルが自動生成されます）。</p>
+            <p style="font-size: 0.85rem; color: var(--muted); margin-top: 8px;">
+                ※ Antigravity のバージョンによっては、上記パスが <code>~/.gemini/config/mcp_config.json</code> への symlink（実体は <code>config/</code> 配下）になっている場合があります。
+                どちらの場合も上のパスで開けますが、見つからないときは <code>~/.gemini/config/</code> や <code>~/.gemini/antigravity-ide/</code> も確認してみてください。
+            </p>
+            <p style="font-size: 0.9rem; color: var(--muted);">💡 パスを直接探さずに、次項の手順で「Manage MCP Servers → View raw config」から開くのが、バージョン差に左右されず確実です（初回はファイルが自動生成されます）。</p>
 
             <h4>設定手順</h4>
             <ol>
@@ -1784,7 +1788,7 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
             </table>
 
             <h3>Tips: アーティファクト（成果物ドキュメント）を活用する</h3>
-            <p>AntigravityのAIエージェントは、チャットの返答とは別に独立したドキュメント（アーティファクト）を作成する機能があります。特に複雑な要件や中規模以上の開発を行う際は、いきなりコードを書かせるのではなく、まず以下のようなアーティファクトを作成するように指示することで、開発を整理しながら安全かつスムーズに進めることができます。
+            <p>Antigravity の Agent は、チャットの返答とは別に独立したドキュメント（アーティファクト）を作成する機能があります。特に複雑な要件や中規模以上の開発を行う際は、いきなりコードを書かせるのではなく、まず以下のようなアーティファクトを作成するように指示することで、開発を整理しながら安全かつスムーズに進めることができます。
             </p>
             <table>
                 <thead>
