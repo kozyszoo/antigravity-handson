@@ -463,66 +463,67 @@
             <img class="screenshot" src="img/fig-intro.png"
                 alt="AIエージェント（ロボット）とエンジニアが横並びでノートパソコンに向かい、コードを協力して書いているフラットイラスト。ダークな背景に青緑色のアクセントカラー。Antigravity ハンズオンのコンセプトイメージ">
 
-            <!-- Antigravity（プラットフォーム） vs Agent（中で動く実行主体）の整理 -->
+            <!-- Antigravity（Agent Manager 単体）と Antigravity IDE（VS Code フォーク） は別アプリ -->
             <div id="intro-diff" class="card"
                 style="margin: 30px 0; border: 1px solid var(--blue); border-radius: 12px; padding: 24px; background: linear-gradient(180deg, var(--bg-mid), var(--bg-dark));">
                 <h3 style="margin-top: 0; display: flex; align-items: center; gap: 8px; color: var(--blue);">
                     <span class="material-symbols-outlined" style="color: var(--blue);">help_outline</span>
-                    Antigravity（プラットフォーム）と Agent（中で動くAI）の関係
+                    Antigravity と Antigravity IDE は別アプリです
                 </h3>
                 <p style="margin-top: 12px; font-size: 0.95rem; line-height: 1.6;">
-                    Google の公式定義では、<strong>Antigravity</strong>（または <strong>Antigravity IDE</strong>）は<strong>「エージェントファースト開発プラットフォーム」</strong>そのものを指します。
-                    その中で実際に計画・実行を行う自律型 AI は <strong>Agent</strong>（並列実行されるときは <strong>Subagent</strong>）と呼ばれ、Gemini 3.1 Pro / Gemini 3 Flash 等を内部で利用しています。
-                    本ハンズオンでも、<strong>"ガワ" の製品名</strong>と<strong>"中で動くAI"</strong>を混同しないよう、ここで整理しておきましょう。
+                    Google は現在、よく似た名前の <strong>2 つの別アプリ</strong>を配布しています。インストールも別、バンドル ID も別、起動アイコンも別物です。
+                    本ハンズオンで対象にするのは <strong style="color: var(--blue);">Antigravity IDE</strong>（VS Code ベースの統合開発環境）の方です。
+                    既にメインの <strong>Antigravity</strong>（Agent Manager 単体アプリ）だけを入れている方は、追加で <strong>Antigravity IDE</strong> をインストールしてから本ハンズオンを進めてください。
                 </p>
 
                 <div
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin: 24px 0;">
-                    <!-- Antigravity（プラットフォーム / IDE） -->
-                    <div
-                        style="background: var(--bg-light); border-radius: 10px; padding: 20px; border-top: 4px solid var(--blue); display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <div
-                                style="font-size: 1.15rem; font-weight: 700; color: var(--blue); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
-                                <span class="material-symbols-outlined" style="font-size: 1.5rem;">terminal</span>
-                                Antigravity（= Antigravity IDE）
-                            </div>
-                            <ul
-                                style="font-size: 0.88rem; color: var(--text); margin: 0 0 16px 18px; line-height: 1.7; padding-left: 0;">
-                                <li><strong>正体:</strong> Google が提供する<strong>「エージェントファースト開発プラットフォーム」</strong>。VS Code をベースにした単独のデスクトップアプリです。</li>
-                                <li><strong>画面構成:</strong> コードを書く <strong>Editor</strong> と、複数の Agent をミッションコントロール的に並列管理する <strong>Agent Manager</strong> の 2 モードから成り、<code>Cmd + E</code> で切り替えます。</li>
-                                <li><strong>標準機能:</strong> Supercomplete / Tab-to-Jump などのエディタ補完、Auto Execution（ターミナル自動実行ポリシー）、MCP・Skills・Rules・Workflows の管理を提供します。</li>
-                                <li><strong>呼び方:</strong> 文脈上 IDE を強調したいときは <strong>Antigravity IDE</strong> とも呼ばれますが、<strong>公式的にはどちらも同じ製品</strong>を指します。</li>
-                            </ul>
-                        </div>
-                        <div
-                            style="background: var(--bg-dark); border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: var(--blue); border: 1px dashed var(--blue); display: flex; align-items: center; gap: 8px;">
-                            <span style="font-size: 1.2rem;">🏢</span>
-                            <strong>例え話: 「自律型AIが働く"オフィス"そのもの（建物＋設備）」</strong>
-                        </div>
-                    </div>
-
-                    <!-- Agent / Subagent（中で動く実行主体） -->
+                    <!-- Antigravity（Agent Manager 単体アプリ） -->
                     <div
                         style="background: var(--bg-light); border-radius: 10px; padding: 20px; border-top: 4px solid var(--primary); display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
                             <div
                                 style="font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
-                                <span class="material-symbols-outlined" style="font-size: 1.5rem;">smart_toy</span>
-                                Agent / Subagent
+                                <span class="material-symbols-outlined" style="font-size: 1.5rem;">dashboard</span>
+                                Antigravity（Agent Manager 単体アプリ）
                             </div>
                             <ul
                                 style="font-size: 0.88rem; color: var(--text); margin: 0 0 16px 18px; line-height: 1.7; padding-left: 0;">
-                                <li><strong>正体:</strong> Antigravity プラットフォーム上で動く<strong>自律的 AI エージェント本体</strong>。Gemini 3.1 Pro / Gemini 3 Flash などをエンジンとして利用します。</li>
-                                <li><strong>役割:</strong> 自然言語の指示を受け、実装計画（Plan）を策定 → 自律的に実行 → 検証までを担当します。</li>
-                                <li><strong>実行力:</strong> ファイルの自動編集、コンパイルエラーの修正、テスト実行、ブラウザ自動操作（Playwright）などを自ら判断して行います。</li>
-                                <li><strong>並列性:</strong> Agent Manager から最大 5 つの Agent / Subagent を非同期で並列稼働させ、複数タスクを同時に進められます。</li>
+                                <li><strong>正体:</strong> 複数の Agent / Subagent を起動・監視・オーケストレーションするための<strong>単体デスクトップアプリ</strong>。VS Code フォークではありません。</li>
+                                <li><strong>役割:</strong> 「ミッションコントロール」役。タスクを投げて並列実行し、進捗・成果物（Artifacts）・承認待ちをまとめて管理します。</li>
+                                <li><strong>使い方:</strong> 普段使いの IDE（Cursor / VS Code / Antigravity IDE など）と<strong>"並走"</strong>させ、エディタは別に開いたままエージェントに作業を任せる「dual-wield」スタイルが想定されています。</li>
+                                <li><strong>バンドル ID:</strong> <code>com.google.antigravity</code> / アプリ名 <code>Antigravity.app</code></li>
                             </ul>
                         </div>
                         <div
                             style="background: var(--bg-dark); border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: var(--primary); border: 1px dashed var(--primary); display: flex; align-items: center; gap: 8px;">
-                            <span style="font-size: 1.2rem;">🧑‍💻</span>
-                            <strong>例え話: 「そのオフィスで働く自律型AIワーカー」</strong>
+                            <span style="font-size: 1.2rem;">🛰️</span>
+                            <strong>例え話: 「エージェント艦隊を見渡す管制塔」</strong>
+                        </div>
+                    </div>
+
+                    <!-- Antigravity IDE（VS Code ベース IDE）— 本ハンズオン対象 -->
+                    <div
+                        style="background: var(--bg-light); border-radius: 10px; padding: 20px; border-top: 4px solid var(--blue); display: flex; flex-direction: column; justify-content: space-between; position: relative;">
+                        <span style="position: absolute; top: -12px; right: 12px; background: var(--primary); color: var(--bg-dark); font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 10px;">本ハンズオン対象</span>
+                        <div>
+                            <div
+                                style="font-size: 1.15rem; font-weight: 700; color: var(--blue); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                                <span class="material-symbols-outlined" style="font-size: 1.5rem;">terminal</span>
+                                Antigravity IDE（VS Code ベースの IDE）
+                            </div>
+                            <ul
+                                style="font-size: 0.88rem; color: var(--text); margin: 0 0 16px 18px; line-height: 1.7; padding-left: 0;">
+                                <li><strong>正体:</strong> Google が VS Code をフォークして作った <strong>AI 統合開発環境</strong>。エディタ画面と Agent パネルが 1 つのウィンドウに統合されています。</li>
+                                <li><strong>画面構成:</strong> ファイルツリー＋エディタの <strong>Editor View</strong> と、AIと対話する <strong>Agent Manager</strong> を <code>Cmd + E</code> で切り替えて使います。</li>
+                                <li><strong>標準機能:</strong> Supercomplete / Tab-to-Jump などのエディタ補完、Auto Execution（ターミナル自動実行ポリシー）、MCP・Skills・Rules・Workflows の管理を提供します。</li>
+                                <li><strong>バンドル ID:</strong> <code>com.google.antigravity-ide</code> / アプリ名 <code>Antigravity IDE.app</code></li>
+                            </ul>
+                        </div>
+                        <div
+                            style="background: var(--bg-dark); border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: var(--blue); border: 1px dashed var(--blue); display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 1.2rem;">🛠️</span>
+                            <strong>例え話: 「エディタもエージェントも全部入りの作業現場」</strong>
                         </div>
                     </div>
                 </div>
@@ -532,15 +533,13 @@
                     <div
                         style="font-size: 0.95rem; font-weight: 700; color: var(--muted); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
                         <span class="material-symbols-outlined"
-                            style="font-size: 1.2rem; color: var(--purple);">handshake</span>
-                        本ハンズオンでのあなたとAIの関わり方
+                            style="font-size: 1.2rem; color: var(--purple);">lightbulb</span>
+                        補足: Agent / Subagent という用語について
                     </div>
                     <p style="font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.6;">
-                        あなたが操作してファイルを開いたり設定を変更したりする<strong style="color: var(--blue);">アプリ（製品）そのもの</strong>が
-                        <strong style="color: var(--blue);">Antigravity</strong>（= Antigravity IDE）。
-                        その中で実際にファイルを書き換えたりコマンドを実行したりする<strong style="color: var(--primary);">自律型AIの実行主体</strong>が
-                        <strong style="color: var(--primary);">Agent / Subagent</strong> です。
-                        本ハンズオン本文では文脈上ゆるく「エージェント」「Antigravity」と呼ぶ場面もありますが、頭の中ではこの「ガワ ≠ 中身」の区別を覚えておくと、公式ドキュメントを読むときに迷いません。
+                        どちらのアプリも、内部で実際にコードを書いたりコマンドを実行したりする<strong>自律的 AI の実行主体</strong>を <strong style="color: var(--primary);">Agent</strong>（並列実行されるとき <strong style="color: var(--primary);">Subagent</strong>）と呼びます。
+                        中身のエンジンは Gemini 3.1 Pro / Gemini 3 Flash などで、本ハンズオンの Step 1-1 でモデルを切り替えながら触っていきます。
+                        本文中で単に「エージェント」と書かれている場合は、この <strong>Agent / Subagent</strong> のことを指します。
                     </p>
                 </div>
 
@@ -630,10 +629,17 @@
             <h3>チェックリスト</h3>
             <h4>1. Antigravity IDE のインストール確認</h4>
             <ul>
-                <li>Antigravity IDE アプリケーションがインストールされている</li>
+                <li><strong>Antigravity IDE</strong> アプリケーションがインストールされている（似た名前の「Antigravity」<span style="color: var(--muted);">＝Agent Manager 単体アプリ</span>とは別物）</li>
                 <li>Google アカウントでログイン済み</li>
                 <li>アプリが最新版（Restart to Update が出ていたら再起動してください）</li>
             </ul>
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid #f4c542; margin-top: 12px;">
+                <strong>⚠️ アプリを取り違えないために</strong>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    Dock や Launchpad に <strong>Antigravity</strong> と <strong>Antigravity IDE</strong> が両方ある場合は、必ず <strong>Antigravity IDE</strong>（Editor＋Agent Manager がひとつのウィンドウに統合されている方）を起動してください。
+                    本ハンズオンでの「ファイルを開く」「コードを書かせる」「MCP / Skills を扱う」といった操作はすべて <strong>Antigravity IDE</strong> 側の機能です。
+                </p>
+            </div>
 
             <h4>2. 初期設定（日本語化）</h4>
             <ol>
@@ -1458,16 +1464,16 @@ description: 挨拶のテスト用ワークフロー
                 を例に、設定ファイルでの追加方法を学びます。</p>
 
             <h4>設定ファイルの場所</h4>
-            <p>Antigravity の MCP 設定ファイルは、<strong>ユーザーのホームディレクトリ配下</strong>にあります（プロジェクト内ではない点に注意）：</p>
+            <p>Antigravity IDE の MCP 設定ファイルは、<strong>ユーザーのホームディレクトリ配下</strong>にあります（プロジェクト内ではない点に注意）：</p>
             <ul style="font-size: 0.9rem;">
-                <li><strong>macOS / Linux:</strong> <code>~/.gemini/antigravity/mcp_config.json</code></li>
-                <li><strong>Windows:</strong> <code>%USERPROFILE%\.gemini\antigravity\mcp_config.json</code></li>
+                <li><strong>macOS / Linux:</strong> <code>~/.gemini/antigravity-ide/mcp_config.json</code></li>
+                <li><strong>Windows:</strong> <code>%USERPROFILE%\.gemini\antigravity-ide\mcp_config.json</code></li>
             </ul>
             <p style="font-size: 0.85rem; color: var(--muted); margin-top: 8px;">
-                ※ Antigravity のバージョンによっては、上記パスが <code>~/.gemini/config/mcp_config.json</code> への symlink（実体は <code>config/</code> 配下）になっている場合があります。
-                どちらの場合も上のパスで開けますが、見つからないときは <code>~/.gemini/config/</code> や <code>~/.gemini/antigravity-ide/</code> も確認してみてください。
+                ※ 似た名前の <strong>Antigravity</strong>（Agent Manager 単体アプリ）も併用している場合、そちらの設定は <code>~/.gemini/antigravity/mcp_config.json</code>（バージョンによっては <code>~/.gemini/config/mcp_config.json</code> への symlink）に別途存在します。
+                <strong>本ハンズオンで編集するのは <code>antigravity-ide/</code> 配下</strong>です。
             </p>
-            <p style="font-size: 0.9rem; color: var(--muted);">💡 パスを直接探さずに、次項の手順で「Manage MCP Servers → View raw config」から開くのが、バージョン差に左右されず確実です（初回はファイルが自動生成されます）。</p>
+            <p style="font-size: 0.9rem; color: var(--muted);">💡 パスを直接探さずに、次項の手順で Antigravity IDE 上から「Manage MCP Servers → View raw config」を開くのが、バージョン差に左右されず確実です（初回はファイルが自動生成されます）。</p>
 
             <h4>設定手順</h4>
             <ol>
@@ -2369,8 +2375,8 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>DevContainer で安全に実行</td>
-                        <td>Antigravity は DevContainer
-                            対応が組み込み。ホストOSを保護するため、独立した環境内で実行することでリスク軽減できる。<code>.gitconfig</code>
+                        <td>Antigravity IDE は DevContainer
+                            対応が組み込み（VS Code ベースのため）。ホストOSを保護するため、独立した環境内で実行することでリスク軽減できる。<code>.gitconfig</code>
                             などの設定ファイルはホストからマウントして引き継ぐ。</td>
                     </tr>
                     <tr>
