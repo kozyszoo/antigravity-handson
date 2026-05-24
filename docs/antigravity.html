@@ -19,10 +19,15 @@
             --bg-dark: #1a1a2e;
             --bg-mid: #16213e;
             --bg-light: #0f3460;
+            --bg: #1a1a2e;
             --text: #e8e8e8;
+            --text-light: #c8c8c8;
             --muted: #a0a0a0;
             --purple: #9b82b5;
             --blue: #6daad8;
+            --green: #4ecca3;
+            --orange: #f4a261;
+            --yellow: #f4c542;
             --sidebar: 280px;
         }
 
@@ -560,7 +565,7 @@
                 </div>
             </div>
 
-            <h3>学習の流れ（所要時間 約110分）</h3>
+            <h3>学習の流れ（所要時間 約110分 + 任意の活用Tips）</h3>
             <img class="screenshot" src="img/slide-roadmap.png" alt="Google Antigravity 学習の流れ（ロードマップ）">
             <div class="step-grid">
                 <div class="step-card">
@@ -587,6 +592,11 @@
                     <div class="step-num">Step 5（15分）</div>
                     <h4>AI-DLC 戦略</h4>
                     <p>ハッカソンで勝つための AI 駆動開発ライフサイクル戦略</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 6（任意・自習）</div>
+                    <h4>活用 Tips 集</h4>
+                    <p>ハンズオン後の自習・チーム共有用。参考記事と公式リソースをまとめた Tips 集</p>
                 </div>
             </div>
         </section>
@@ -1459,7 +1469,12 @@ description: 挨拶のテスト用ワークフロー
                 を例に、設定ファイルでの追加方法を学びます。</p>
 
             <h4>設定ファイルの場所</h4>
-            <p>Antigravity の MCP 設定ファイルは <code>.gemini/antigravity/mcp_config.json</code> に配置されています。</p>
+            <p>Antigravity の MCP 設定ファイルは、<strong>ユーザーのホームディレクトリ配下</strong>にあります（プロジェクト内ではない点に注意）：</p>
+            <ul style="font-size: 0.9rem;">
+                <li><strong>macOS / Linux:</strong> <code>~/.gemini/antigravity/mcp_config.json</code></li>
+                <li><strong>Windows:</strong> <code>%USERPROFILE%\.gemini\antigravity\mcp_config.json</code></li>
+            </ul>
+            <p style="font-size: 0.9rem; color: var(--muted);">💡 ファイルが見つからない場合は、後述の手順で「Manage MCP Servers → View raw config」から開くのが確実です（初回はファイルが自動生成されます）。</p>
 
             <h4>設定手順</h4>
             <ol>
@@ -2327,8 +2342,8 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>Auto Execution の使い分け</td>
-                        <td>設計を壁打ちしたいときは <code>Request Review</code>（AIが毎回確認を求める）、単純作業を任せるときは
-                            <code>Always Proceed</code>（確認なしで爆速）に切り替える。慣れるまでは Request Review が安全。
+                        <td>設計を壁打ちしたいときは <code>Off</code>（許可リスト以外はすべて手動承認）、単純作業を任せるときは
+                            <code>Turbo</code>（確認なしで爆速）に切り替える。慣れるまでは Step 1-1 で推奨した <code>Auto</code> がバランス良く安全。
                         </td>
                     </tr>
                     <tr>
@@ -2386,8 +2401,8 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>Review-driven development を活用</td>
-                        <td>ターミナル実行ポリシーを「Request Review」、変更の適用は「Agent
-                            Decides」に設定すると、コマンド実行時に確認を挟みつつ、AIが状況に応じて自動判断できる。要所で人間の確認を挟みながら作業を進められる。</td>
+                        <td>ターミナル実行ポリシー（Auto Execution）を <code>Off</code> または <code>Auto</code>
+                            に設定すると、リスクの高いコマンドは実行前に確認が挟まり、AIが状況に応じて自動判断もしてくれる。要所で人間の確認を挟みながら作業を進められる。</td>
                     </tr>
                     <tr>
                         <td>Browser Agent でデバッグ自動化</td>
