@@ -3,6 +3,9 @@
 .agent/cache/
 *.codex
 
+# Serena MCP（ローカル解析キャッシュ・メモリ）
+.serena/
+
 # Node
 node_modules/
 npm-debug.log*

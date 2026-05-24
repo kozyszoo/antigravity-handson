@@ -1,0 +1,15 @@
+{
+  "name": "react-state-demo",
+  "private": true,
+  "version": "0.0.1",
+  "description": "serena MCP でのコードベース解析デモ用 React サンプル（useState の使い方3パターン）",
+  "type": "module",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "typescript": "^5.5.0"
+  }
+}
