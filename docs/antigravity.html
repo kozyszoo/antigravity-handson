@@ -1119,10 +1119,24 @@
             </table>
 
             <h3>基本テンプレートの設定</h3>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid #f4c542;">
+                <strong>⚠️ すでに <code>GEMINI.md</code>（または <code>CLAUDE.md</code>）がある場合</strong>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    このハンズオン用リポジトリ（<code>antigravity-handson</code>）のルートには、すでに <code>GEMINI.md</code> が用意されています。
+                    手順どおりに<strong>新規作成すると既存ルールを上書きしてしまう</strong>ので、以下のいずれかで進めてください：
+                </p>
+                <ul style="margin-top: 8px; font-size: 0.9rem;">
+                    <li><strong>そのまま使う（推奨）：</strong> 既存の <code>GEMINI.md</code> を開いて中身を読んでみる → そのまま「動作確認」セクションに進む</li>
+                    <li><strong>差し替えたい場合：</strong> 既存ファイルを開いて、下のテンプレートで上書き保存する（<strong>新規作成は不要</strong>）</li>
+                    <li><strong>別名で作りたい場合：</strong> <code>ANTIGRAVITY.md</code> や <code>AI_INSTRUCTIONS.md</code> として作成すると既存ルールと併用できます</li>
+                </ul>
+            </div>
+
             <ol>
                 <li>Editor View のファイルツリー（左側）で、一番上のフォルダ（プロジェクトルート）を右クリックします。</li>
-                <li><strong>New File</strong> を選択し、ファイル名を <code>GEMINI.md</code> にして Enter を押します。</li>
-                <li>作成されたファイルに以下のテンプレートをコピー＆ペーストして、保存（<code>Cmd + S</code>）してください。</li>
+                <li><strong>New File</strong> を選択し、ファイル名を <code>GEMINI.md</code> にして Enter を押します（既に存在する場合はファイルを直接開きます）。</li>
+                <li>ファイルに以下のテンプレートをコピー＆ペーストして、保存（<code>Cmd + S</code>）してください。</li>
             </ol>
             <!-- 【画像挿入箇所】 GEMINI.md ファイルを作成してテンプレートを貼り付けた際のエディタ画面スクショ -->
             <img class="screenshot" src="img/fig4.png"
@@ -1602,13 +1616,17 @@ description: 特定のタスクを支援するスキル
             <h3>このフォルダに入っているサンプル Skill</h3>
             <!-- 【画像挿入箇所】 .agent/skills 内のディレクトリツリーのスクショ -->
             <img class="screenshot" src="img/fig10.png"
-                alt="エディタのファイルツリー表示。.agent/skills ディレクトリの配下に git-workflow や ui-verify といった複数の独自スキル（SKILL.md）が格納されている状態のスクリーンショット">
+                alt="エディタのファイルツリー表示。.agent/skills ディレクトリの配下に git-workflow や ui-verify、multi-ai-review、agent-team といった多数の独自スキル（SKILL.md）が格納されている状態のスクリーンショット">
+            <p>このハンズオン用リポジトリの <code>.agent/skills/</code> には、すでに30種類以上のサンプル Skill が同梱されています。代表的なものを抜粋すると以下の通りです。</p>
             <pre><code>.agent/
 └── skills/
-    ├── git-workflow/
-    │   └── SKILL.md      # Git ワークフロー支援 Skill
-    └── ui-verify/
-        └── SKILL.md      # UI 検証・動作確認 Skill</code></pre>
+    ├── git-workflow/         # Git ワークフロー支援
+    ├── ui-verify/            # UI 検証・動作確認
+    ├── multi-ai-review/      # 複数AIによるコードレビュー（後述）
+    ├── agent-team/           # サブエージェントを並列実行
+    ├── ci-check/             # CI チェックをローカル実行
+    └── ... （その他 logo-design, ui-review, persona-creation など多数）</code></pre>
+            <p style="font-size: 0.9rem; color: var(--muted);">💡 全一覧はファイルツリーから <code>.agent/skills/</code> を開いて確認できます。</p>
 
             <h3>やってみよう: サンプル Skill を試す</h3>
             <p>プロジェクトに最初から入っている <code>git-workflow</code> スキルを使って、AI に Git のワークフローをサポートさせてみましょう。例えばチャット欄で以下のように指示します：
@@ -1622,25 +1640,32 @@ description: 特定のタスクを支援するスキル
                 Skill コレクションを参考にしています。
             </p>
 
-            <h4>公開 Skills の追加方法</h4>
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid #4ecca3;">
+                <strong>✅ このハンズオンでは追加作業は不要です</strong>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    後ほど Step 4 で使う <code>multi-ai-review</code> や <code>agent-team</code> をはじめ、代表的な Skill は<strong>すでに本リポジトリの
+                    <code>.agent/skills/</code> 配下に同梱済み</strong>です。下記の追加手順は、<strong>ハンズオン後に自分の別プロジェクトへ持ち込みたいとき</strong>の参考としてご覧ください。
+                </p>
+            </div>
+
+            <h4>新しい Skill を別プロジェクトに追加する方法</h4>
 
             <p><strong>方法1: AI に依頼する（初心者におすすめ）</strong></p>
-            <p>Antigravity のチャット欄で、AI に自然言語で依頼するだけで Skills を追加できます：</p>
-            <pre><code>GitHub の https://github.com/USERNAME/skills-collection から
+            <p>Antigravity のチャット欄で、対象リポジトリの URL を伝えて AI にお願いするだけで、Skills を追加できます：</p>
+            <pre><code>https://github.com/&lt;ユーザー名&gt;/&lt;リポジトリ名&gt; から
 multi-ai-review と agent-team の Skill をダウンロードして
 .agent/skills/ に配置して</code></pre>
             <p>AIが自動的にダウンロード、配置まで行ってくれるので、<strong>ターミナル操作に不慣れな方はこの方法が最も簡単</strong>です。</p>
 
             <p><strong>方法2: ターミナルで手動追加（詳細手順）</strong></p>
-            <p>より詳しく理解したい方は、以下の手順でターミナルから手動で追加できます：</p>
+            <p>より詳しく理解したい方は、以下の手順でターミナルから手動で追加できます（URL は実際のリポジトリに置き換えてください）：</p>
 
             <ol>
                 <li><strong>Antigravity でターミナルを開く：</strong> <code>Terminal</code> メニュー → <code>New Terminal</code></li>
-                <li><strong>プロジェクトフォルダにいることを確認：</strong> ターミナルに現在のパスが表示されます。<code>antigravity-handson</code>
-                    フォルダ内にいることを確認してください。</li>
-                <li><strong>Skills リポジトリをクローン：</strong> 以下のコマンドをコピーして貼り付け、Enter で実行</li>
+                <li><strong>プロジェクトフォルダにいることを確認：</strong> ターミナルに現在のパスが表示されます。対象プロジェクトのルートにいることを確認してください。</li>
+                <li><strong>Skills リポジトリをクローン：</strong> 以下のコマンドの URL 部分を、追加したい Skill コレクションのリポジトリ URL に書き換えて実行</li>
             </ol>
-            <pre><code>git clone https://github.com/USERNAME/skills-collection.git</code></pre>
+            <pre><code>git clone https://github.com/&lt;ユーザー名&gt;/&lt;リポジトリ名&gt;.git skills-collection</code></pre>
             <ol start="4">
                 <li><strong>Skills をコピー：</strong> 以下のコマンドを1行ずつ実行します（<code>#</code> で始まる行はコメントなので入力不要）</li>
             </ol>
@@ -1659,7 +1684,7 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
                 </ul>
             </div>
 
-            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--green);">
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid #4ecca3;">
                 <strong>✅ 成功の確認</strong>
                 <ul style="margin-top: 8px; font-size: 0.9rem;">
                     <li>左側のファイルツリーで <code>.agent/skills/</code> を開く</li>
