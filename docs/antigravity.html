@@ -463,70 +463,66 @@
             <img class="screenshot" src="img/fig-intro.png"
                 alt="AIエージェント（ロボット）とエンジニアが横並びでノートパソコンに向かい、コードを協力して書いているフラットイラスト。ダークな背景に青緑色のアクセントカラー。Antigravity ハンズオンのコンセプトイメージ">
 
-            <!-- Google Antigravity vs Antigravity IDE Difference -->
+            <!-- Antigravity（プラットフォーム） vs Agent（中で動く実行主体）の整理 -->
             <div id="intro-diff" class="card"
                 style="margin: 30px 0; border: 1px solid var(--blue); border-radius: 12px; padding: 24px; background: linear-gradient(180deg, var(--bg-mid), var(--bg-dark));">
                 <h3 style="margin-top: 0; display: flex; align-items: center; gap: 8px; color: var(--blue);">
                     <span class="material-symbols-outlined" style="color: var(--blue);">help_outline</span>
-                    Antigravity と Antigravity IDE の違い
+                    Antigravity（プラットフォーム）と Agent（中で動くAI）の関係
                 </h3>
                 <p style="margin-top: 12px; font-size: 0.95rem; line-height: 1.6;">
-                    本ハンズオンでは、「<strong>Antigravity</strong>」と「<strong>Antigravity IDE</strong>」というよく似た2つの言葉が登場します。
-                    これらはそれぞれ<strong>「AIエージェント（エンジン）」</strong>と<strong>「開発環境（ツール）」</strong>を指しており、明確な違いがあります。
-                    スムーズに学習を進めるために、その定義と役割分担を詳しく理解しておきましょう。
+                    Google の公式定義では、<strong>Antigravity</strong>（または <strong>Antigravity IDE</strong>）は<strong>「エージェントファースト開発プラットフォーム」</strong>そのものを指します。
+                    その中で実際に計画・実行を行う自律型 AI は <strong>Agent</strong>（並列実行されるときは <strong>Subagent</strong>）と呼ばれ、Gemini 3.1 Pro / Gemini 3 Flash 等を内部で利用しています。
+                    本ハンズオンでも、<strong>"ガワ" の製品名</strong>と<strong>"中で動くAI"</strong>を混同しないよう、ここで整理しておきましょう。
                 </p>
 
                 <div
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin: 24px 0;">
-                    <!-- Google Antigravity -->
-                    <div
-                        style="background: var(--bg-light); border-radius: 10px; padding: 20px; border-top: 4px solid var(--primary); display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <div
-                                style="font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
-                                <span class="material-symbols-outlined" style="font-size: 1.5rem;">smart_toy</span>
-                                Antigravity
-                            </div>
-                            <ul
-                                style="font-size: 0.88rem; color: var(--text); margin: 0 0 16px 18px; line-height: 1.7; padding-left: 0;">
-                                <li><strong>正体:</strong> Googleが開発した<strong>「次世代の自律型AIエージェント（脳・エンジン）」</strong>です。</li>
-                                <li><strong>役割:</strong> 自然言語の指示を受け、自律的に実装計画（Plan）を策定します。</li>
-                                <li><strong>実行力:</strong> ファイルの自動編集、コンパイルエラーの修正、テスト実行、ブラウザ自動操作（Playwright）などを自ら判断して行います。
-                                </li>
-                                <li><strong>拡張性:</strong> MCP（Model Context Protocol）を介し、外部ツールや別エージェントと連携します。</li>
-                            </ul>
-                        </div>
-                        <div
-                            style="background: var(--bg-dark); border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: var(--primary); border: 1px dashed var(--primary); display: flex; align-items: center; gap: 8px;">
-                            <span style="font-size: 1.2rem;">🚗</span>
-                            <strong>例え話: 「自動運転をするAIドライバー」</strong>
-                        </div>
-                    </div>
-
-                    <!-- Antigravity IDE -->
+                    <!-- Antigravity（プラットフォーム / IDE） -->
                     <div
                         style="background: var(--bg-light); border-radius: 10px; padding: 20px; border-top: 4px solid var(--blue); display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
                             <div
                                 style="font-size: 1.15rem; font-weight: 700; color: var(--blue); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
                                 <span class="material-symbols-outlined" style="font-size: 1.5rem;">terminal</span>
-                                Antigravity IDE
+                                Antigravity（= Antigravity IDE）
                             </div>
                             <ul
                                 style="font-size: 0.88rem; color: var(--text); margin: 0 0 16px 18px; line-height: 1.7; padding-left: 0;">
-                                <li><strong>正体:</strong> VS
-                                    Codeをベースに構築された、AI特化型の<strong>「統合開発環境（エディタ・アプリケーション）」</strong>です。</li>
-                                <li><strong>画面構成:</strong> 人間がコードを書くエディタ部分と、AIと対話する「Agent Manager」の2つから成ります。</li>
-                                <li><strong>自動補完:</strong>
-                                    複数行を先読みする「Supercomplete」や、編集先にジャンプする「Tab-to-Jump」などのアシスト機能を標準搭載しています。</li>
-                                <li><strong>セーフティ:</strong> AIのターミナル操作やネットワーク通信を制御する「Auto Execution（セキュリティ設定）」を管理します。
-                                </li>
+                                <li><strong>正体:</strong> Google が提供する<strong>「エージェントファースト開発プラットフォーム」</strong>。VS Code をベースにした単独のデスクトップアプリです。</li>
+                                <li><strong>画面構成:</strong> コードを書く <strong>Editor</strong> と、複数の Agent をミッションコントロール的に並列管理する <strong>Agent Manager</strong> の 2 モードから成り、<code>Cmd + E</code> で切り替えます。</li>
+                                <li><strong>標準機能:</strong> Supercomplete / Tab-to-Jump などのエディタ補完、Auto Execution（ターミナル自動実行ポリシー）、MCP・Skills・Rules・Workflows の管理を提供します。</li>
+                                <li><strong>呼び方:</strong> 文脈上 IDE を強調したいときは <strong>Antigravity IDE</strong> とも呼ばれますが、<strong>公式的にはどちらも同じ製品</strong>を指します。</li>
                             </ul>
                         </div>
                         <div
                             style="background: var(--bg-dark); border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: var(--blue); border: 1px dashed var(--blue); display: flex; align-items: center; gap: 8px;">
-                            <span style="font-size: 1.2rem;">🏎️</span>
-                            <strong>例え話: 「AI機能がフル装備された最先端の車（車体）」</strong>
+                            <span style="font-size: 1.2rem;">🏢</span>
+                            <strong>例え話: 「自律型AIが働く"オフィス"そのもの（建物＋設備）」</strong>
+                        </div>
+                    </div>
+
+                    <!-- Agent / Subagent（中で動く実行主体） -->
+                    <div
+                        style="background: var(--bg-light); border-radius: 10px; padding: 20px; border-top: 4px solid var(--primary); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div
+                                style="font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                                <span class="material-symbols-outlined" style="font-size: 1.5rem;">smart_toy</span>
+                                Agent / Subagent
+                            </div>
+                            <ul
+                                style="font-size: 0.88rem; color: var(--text); margin: 0 0 16px 18px; line-height: 1.7; padding-left: 0;">
+                                <li><strong>正体:</strong> Antigravity プラットフォーム上で動く<strong>自律的 AI エージェント本体</strong>。Gemini 3.1 Pro / Gemini 3 Flash などをエンジンとして利用します。</li>
+                                <li><strong>役割:</strong> 自然言語の指示を受け、実装計画（Plan）を策定 → 自律的に実行 → 検証までを担当します。</li>
+                                <li><strong>実行力:</strong> ファイルの自動編集、コンパイルエラーの修正、テスト実行、ブラウザ自動操作（Playwright）などを自ら判断して行います。</li>
+                                <li><strong>並列性:</strong> Agent Manager から最大 5 つの Agent / Subagent を非同期で並列稼働させ、複数タスクを同時に進められます。</li>
+                            </ul>
+                        </div>
+                        <div
+                            style="background: var(--bg-dark); border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: var(--primary); border: 1px dashed var(--primary); display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 1.2rem;">🧑‍💻</span>
+                            <strong>例え話: 「そのオフィスで働く自律型AIワーカー」</strong>
                         </div>
                     </div>
                 </div>
@@ -540,9 +536,11 @@
                         本ハンズオンでのあなたとAIの関わり方
                     </div>
                     <p style="font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.6;">
-                        あなたが操作してファイルを開いたり設定を変更したりする画面が <strong style="color: var(--blue);">Antigravity IDE</strong> です。
-                        そして、あなたの頼もしい相棒（AIペアプログラマ）として、裏側で実際にファイルを書き換えたり、コマンドを実行してくれたりする存在が <strong
-                            style="color: var(--primary);">Antigravity (エージェント)</strong> です。
+                        あなたが操作してファイルを開いたり設定を変更したりする<strong style="color: var(--blue);">アプリ（製品）そのもの</strong>が
+                        <strong style="color: var(--blue);">Antigravity</strong>（= Antigravity IDE）。
+                        その中で実際にファイルを書き換えたりコマンドを実行したりする<strong style="color: var(--primary);">自律型AIの実行主体</strong>が
+                        <strong style="color: var(--primary);">Agent / Subagent</strong> です。
+                        本ハンズオン本文では文脈上ゆるく「エージェント」「Antigravity」と呼ぶ場面もありますが、頭の中ではこの「ガワ ≠ 中身」の区別を覚えておくと、公式ドキュメントを読むときに迷いません。
                     </p>
                 </div>
 
@@ -866,7 +864,7 @@
                 <p style="margin-top: 8px; font-size: 0.9rem;">
                     ターミナルコマンドとは、文字で入力してコンピュータに指示を出す命令のことです。<br>
                     例：<code>npm install</code>（パッケージをインストール）、<code>git commit</code>（変更を記録）、<code>rm -rf フォルダ名</code>（フォルダを削除）など。<br>
-                    Antigravity（エージェント）では、AIが開発作業を進めるために、これらのコマンドを自動で実行することができます。
+                    Antigravity の Agent では、AIが開発作業を進めるために、これらのコマンドを自動で実行することができます。
                 </p>
             </div>
 
