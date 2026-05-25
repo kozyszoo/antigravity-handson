@@ -366,10 +366,12 @@
                 <li><a href="#step1-2">Step 1-2: GEMINI.md 設定</a></li>
                 <li><a href="#step2">Step 2: Vibe Coding 基礎編</a></li>
                 <li><a href="#step3-1">Step 3-1: MCP 接続</a></li>
+                <li><a href="#step3-cli" class="sub-link">└ CLI / SDK / Managed Agents</a></li>
                 <li><a href="#step3-2">Step 3-2: Agent Skills</a></li>
                 <li><a href="#step4">Step 4: Vibe Coding 発展編</a></li>
                 <li><a href="#step5">Step 5: AI-DLC 戦略</a></li>
                 <li><a href="#step6">Step 6: 活用 Tips 集</a></li>
+                <li><a href="#step6-v2" class="sub-link">└ Antigravity 2.0 の新機能まとめ</a></li>
                 <li><a href="#outro">おわりに</a></li>
             </ul>
         </nav>
@@ -379,7 +381,7 @@
         <!-- Hero -->
         <div class="hero">
             <h1>🚀 Google Antigravity ハンズオンガイド</h1>
-            <p style="margin-top:8px; font-size:0.9rem;">2026年5月21日</p>
+            <p style="margin-top:8px; font-size:0.9rem;">2026年5月25日 ／ <strong style="color: var(--primary);">Antigravity 2.0（v2.0.1, 2026-05-24）</strong> 対応</p>
         </div>
 
         <!-- Intro -->
@@ -462,6 +464,36 @@
             -->
             <img class="screenshot" src="img/fig-intro.png"
                 alt="AIエージェント（ロボット）とエンジニアが横並びでノートパソコンに向かい、コードを協力して書いているフラットイラスト。ダークな背景に青緑色のアクセントカラー。Antigravity ハンズオンのコンセプトイメージ">
+
+            <!-- Antigravity 2.0 リリース告知カード（I/O 2026 / 2026-05-24 リリース） -->
+            <div id="intro-v2" class="card"
+                style="margin: 24px 0; border: 1px solid var(--primary); border-radius: 12px; padding: 20px 24px; background: linear-gradient(135deg, rgba(78, 204, 163, 0.12), rgba(155, 130, 181, 0.10));">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span class="material-symbols-outlined" style="color: var(--primary); font-size: 1.6rem;">rocket_launch</span>
+                    <h3 style="margin: 0; color: var(--primary);">🆕 Antigravity 2.0 が出ました（2026-05-24 リリース）</h3>
+                </div>
+                <p style="font-size: 0.93rem; line-height: 1.7; margin: 8px 0 12px;">
+                    2026年5月19日の <strong>Google I/O 2026</strong> で <strong>Antigravity 2.0</strong> が発表され、5月24日に <code>v2.0.0</code> / <code>v2.0.1</code> として一般公開されました。
+                    本ハンズオンも 2.0 を前提に構成しています。<strong>初めて触る方は普段どおり Step 1 から進めて OK</strong> ですが、すでに 1.x を使い込んでいる方は以下が新しく増えた要素です。
+                </p>
+                <ul style="font-size: 0.9rem; line-height: 1.75; margin: 0 0 12px 22px; padding: 0;">
+                    <li><strong>Antigravity CLI</strong> — ターミナルから Agent を呼び出す公式 CLI。<strong>旧 Gemini CLI からの移行先</strong>として案内されています。</li>
+                    <li><strong>Antigravity SDK</strong> と <strong>Managed Agents (Gemini API)</strong> — IDE の外でも同じエージェントハーネスを呼び出してアプリに組み込めるようになりました。</li>
+                    <li><strong>Scheduled Background Tasks</strong> — エージェントタスクを cron 的に予約してバックグラウンド実行できます（チャットの <code>/schedule</code> からも可）。</li>
+                    <li><strong>Dynamic Subagent Workflows</strong> — メイン Agent が動的に <strong>Subagent</strong> を増やし、複数タスクを並列に処理します（Step 6 で深掘り）。</li>
+                    <li><strong>AgentKit 2.0 統合 / A2A プロトコル</strong> — LangChain・AutoGen など外部フレームワークのエージェントと相互運用できます。</li>
+                    <li><strong>Native Voice Commands</strong> — 音声でエージェントに指示を出せるようになりました。</li>
+                    <li><strong>Google AI Ultra プラン（$100/月）</strong> — Antigravity の利用枠が Pro の <strong>約5倍</strong>。長時間のオーバーナイト実行向け。</li>
+                    <li><strong>Gemini 3.5 Flash</strong> — Antigravity と <strong>co-developed</strong> された軽量高速モデル。2.0 以降は<strong>「速いが軽い」だけでなく多くの作業のデフォルト候補</strong>になります。</li>
+                </ul>
+                <div style="font-size: 0.85rem; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap; align-items: center;">
+                    <span>↳ 詳細は</span>
+                    <a href="#step3-cli" style="color: var(--blue); text-decoration: none;">Step 3-1（CLI / SDK / Managed Agents）</a>
+                    <span>と</span>
+                    <a href="#step6-v2" style="color: var(--blue); text-decoration: none;">Step 6（2.0 で増えた機能まとめ）</a>
+                    <span>を参照してください。</span>
+                </div>
+            </div>
 
             <!-- Antigravity（Agent Manager 単体）と Antigravity IDE（VS Code フォーク） は別アプリ -->
             <div id="intro-diff" class="card"
@@ -785,7 +817,7 @@
             </p>
             <!-- 【画像挿入箇所】 モデル選択のプルダウンメニューが開いているスクショ -->
             <img class="screenshot" src="img/fig2.png"
-                alt="利用可能なAIモデル（Gemini 3.1 Pro, Claude Sonnet 4.6, GPT-OSS 120B など）を選択するプルダウンメニューのスクリーンショット">
+                alt="利用可能なAIモデル（Gemini 3.5 Flash, Gemini 3.1 Pro, Claude Sonnet 4.6 など）を選択するプルダウンメニューのスクリーンショット">
             <table>
                 <thead>
                     <tr>
@@ -807,8 +839,8 @@
                     </tr>
                     <tr>
                         <td><strong>Gemini 3.5 Flash (High / Medium)</strong></td>
-                        <td>軽量・高速に特化した最新世代モデル。複雑な推論より「素早く答えを出す」ことを優先。レスポンスタイムが短く、テンポ良く開発を進められる。</td>
-                        <td>簡単な質問応答、文言確認、素早いフィードバック、簡単なコード生成</td>
+                        <td>軽量・高速に特化した最新世代モデル。<strong>Antigravity 2.0 と co-developed</strong> されており、Google は「他のフロンティアモデルの 4 倍速」「ベンチでは 3.1 Pro を上回る場面もある」と説明している。テンポ良く開発を進められる。</td>
+                        <td>簡単な質問応答、文言確認、素早いフィードバック、簡単なコード生成、<strong>Dynamic Subagent の並列実行</strong></td>
                     </tr>
                     <tr>
                         <td>Claude Sonnet 4.6 (Thinking)</td>
@@ -876,6 +908,9 @@
 
             <p>Antigravity では、Agent がターミナルコマンドを自動実行できます。「どこまで Agent に任せるか」を <strong>Auto Execution</strong> ポリシーで制御します。<br>
                 設定は Agent Manager の設定アイコン（⚙️）→ <code>Auto Execution</code> から変更できます。</p>
+            <!-- 【画像挿入箇所】 Agent設定メニュー（Auto Execution などの設定）のスクショ -->
+            <img class="screenshot" src="img/fig2-settings.png"
+                alt="Agent Manager の設定アイコン（⚙️）をクリックした際に表示される簡易設定メニューのスクリーンショット。Auto Execution や Review Policy などの項目が表示されている">
 
             <div class="card" style="margin-top: 20px;">
                 <strong>🔐 設定画面で権限を管理する（Settings - Permissions）</strong>
@@ -1561,6 +1596,57 @@ description: 挨拶のテスト用ワークフロー
                 <li>API キーは環境変数で管理し、設定ファイルへの直書きは絶対に避けましょう</li>
                 <li>ハンズオン後も、追加した MCP の権限設定を定期的に見直す習慣をつけましょう</li>
             </ul>
+
+            <!-- IDE の外でも Antigravity を使う：CLI / SDK / Managed Agents（Antigravity 2.0 で追加） -->
+            <h3 id="step3-cli">🛠️ IDE の外でも Antigravity を使う：CLI / SDK / Managed Agents</h3>
+            <p>
+                Antigravity 2.0 から、IDE 以外にも 3 つの「同じエージェントハーネスを呼び出す経路」が公式に提供されています。<br>
+                <strong>ハンズオン本編は IDE だけで完結します</strong>が、業務で Antigravity を継続利用していくなら早めに概要だけ押さえておきましょう。
+            </p>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--primary);">
+                <strong>① Antigravity CLI</strong>
+                <p style="font-size: 0.9rem; margin-top: 6px;">
+                    ターミナルから直接 Antigravity のエージェントを起動できる CLI です。Google はこれを <strong>旧 Gemini CLI からの移行先</strong>として案内しています。シェルスクリプトや CI に組み込みやすく、IDE を開かずに「ちょっとだけエージェントに頼みたい」用途に向きます。
+                </p>
+                <pre style="font-size: 0.85rem;"><code># 起動イメージ（具体的なコマンド名・引数は公式 Docs を参照）
+$ antigravity --help
+$ antigravity run "このリポジトリの README を要約して"</code></pre>
+                <p style="font-size: 0.85rem; color: var(--muted); margin-top: 6px;">
+                    💡 旧 <code>gemini</code> CLI を使っていた方は、最新版でメッセージ「Transitioning Gemini CLI to Antigravity CLI」が表示されます。<br>
+                    👉 公式案内: <a href="https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/" target="_blank" style="color: var(--blue);">Transitioning Gemini CLI to Antigravity CLI (Google Developers Blog)</a>
+                </p>
+            </div>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
+                <strong>② Antigravity SDK</strong>
+                <p style="font-size: 0.9rem; margin-top: 6px;">
+                    自前のアプリ・サーバーに Antigravity と同じエージェントハーネスを組み込むための SDK です。Gemini モデル向けに最適化されており、<strong>カスタムエージェントを自社インフラ上で動かせる</strong>のが特徴。社内ツール・ボット・バッチ処理にエージェント機能を埋め込みたい開発者向けの選択肢です。
+                </p>
+                <pre style="font-size: 0.85rem;"><code># Python / TypeScript SDK のインストール（イメージ）
+$ pip install antigravity
+# または
+$ npm install @google/antigravity</code></pre>
+            </div>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--purple);">
+                <strong>③ Managed Agents（Gemini API）</strong>
+                <p style="font-size: 0.9rem; margin-top: 6px;">
+                    Gemini API 側からワンコールで Antigravity のエージェントを呼び出せる仕組みです。<strong>マルチターンのセッションごとに独立した実行環境（サンドボックス）が永続化</strong>される設計で、自分でハーネスを運用しなくてもエージェントを使えます。プロトタイプを早く出したいときの最短ルート。
+                </p>
+                <p style="font-size: 0.85rem; color: var(--muted); margin-top: 6px;">
+                    💡 Antigravity 2.0 と同じタイミングで I/O 2026 でアナウンスされた機能で、エンタープライズ向けには <strong>Gemini Enterprise Agent Platform</strong> 経由で Google Cloud プロジェクトに直接統合できます。
+                </p>
+            </div>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--green); margin-top: 12px;">
+                <strong>📌 ハンズオン参加者への補足</strong>
+                <ul style="margin-top: 6px; font-size: 0.88rem; padding-left: 20px;">
+                    <li>本日の Step 4 までは <strong>すべて Antigravity IDE 単体で完結</strong>します。CLI / SDK / Managed Agents は使いません。</li>
+                    <li>「自分の業務にも Antigravity を取り込みたい」と感じたら、<strong>まず CLI から</strong>触るのが一番手軽です。</li>
+                    <li>API 仕様や料金は変動しやすいので、必ず <a href="https://antigravity.google/docs" target="_blank" style="color: var(--blue);">公式ドキュメント</a> と <a href="https://antigravity.google/changelog" target="_blank" style="color: var(--blue);">Changelog</a> で最新を確認してください。</li>
+                </ul>
+            </div>
 
             <div class="nav-btns">
                 <a href="#step2" class="btn">← Step 2</a>
@@ -2304,6 +2390,135 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
 
             <img class="screenshot" src="img/slide-cheatsheet.png" alt="Vibe Coding チートシート">
 
+            <!-- Antigravity 2.0（2026-05-24）で新しく増えた機能まとめ -->
+            <h3 id="step6-v2">🆕 Antigravity 2.0（2026-05）で増えた機能まとめ</h3>
+            <p>
+                2026年5月19日の <strong>Google I/O 2026</strong> で発表され、5月24日に <code>v2.0.0</code> / <code>v2.0.1</code> として一般公開された <strong>Antigravity 2.0</strong> の主要な追加機能を、ハンズオン後の自習用に整理しました。<br>
+                <span style="font-size: 0.88rem; color: var(--muted);">※ 一部の機能は今後の更新でさらに進化する可能性があります。最新は <a href="https://antigravity.google/changelog" target="_blank" style="color: var(--blue);">公式 Changelog</a> を必ず確認してください。</span>
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>機能</th>
+                        <th>何ができるようになったか</th>
+                        <th>主な活用シーン</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--primary);">terminal</span>
+                                <strong>Antigravity CLI</strong>
+                            </div>
+                        </td>
+                        <td>ターミナルから直接 Antigravity Agent を起動できる公式 CLI。旧 <code>gemini</code> CLI の後継として案内されている。</td>
+                        <td>CI スクリプト・シェル芸・サーバー上での軽量実行。IDE を開かずにエージェントへ依頼したい時。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--blue);">code_blocks</span>
+                                <strong>Antigravity SDK</strong>
+                            </div>
+                        </td>
+                        <td>自前のアプリ・サーバーに Antigravity と同じエージェントハーネスを組み込める SDK。カスタムエージェントを自社インフラ上で動かせる。</td>
+                        <td>社内ツール・Slack ボット・バッチ処理・既存 Web アプリへのエージェント統合。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--purple);">cloud</span>
+                                <strong>Managed Agents（Gemini API）</strong>
+                            </div>
+                        </td>
+                        <td>Gemini API からワンコールで Antigravity エージェントを呼べる。マルチターン用にサンドボックス環境が永続化される。</td>
+                        <td>自前でハーネスを運用したくない時のプロトタイピング。Gemini API ユーザーがそのままエージェント機能を試せる。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--green);">schedule</span>
+                                <strong>Scheduled Background Tasks</strong>
+                            </div>
+                        </td>
+                        <td>エージェントタスクを <code>/schedule</code> 等で cron 的に予約し、バックグラウンドで自律実行・監視させられる。</td>
+                        <td>「毎朝デプロイ状況をチェックして報告」「30分後にビルドが通ったか確認」など定期 / 時間差タスク。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--orange);">account_tree</span>
+                                <strong>Dynamic Subagent Workflows</strong>
+                            </div>
+                        </td>
+                        <td>メイン Agent が状況に応じて <strong>Subagent</strong> を動的に増やし、並列に処理を分担できる（カスタム Subagent ワークフローも設計可能）。</td>
+                        <td>大規模リファクタ・複数ファイル同時編集・「フロント実装と API 実装を並走」など。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--yellow, #f4c542);">hub</span>
+                                <strong>AgentKit 2.0 統合 / A2A プロトコル</strong>
+                            </div>
+                        </td>
+                        <td>外部フレームワーク（LangChain・AutoGen など）の A2A 対応エージェントと相互運用できる。ツール呼び出し精度・デバッグ出力・コンテキスト共有も改善。</td>
+                        <td>すでに LangChain / AutoGen で書いた資産を再利用しつつ、Antigravity を「司令塔」として組み合わせる構成。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--blue);">mic</span>
+                                <strong>Native Voice Commands</strong>
+                            </div>
+                        </td>
+                        <td>Google の他プロダクトと同じ音声入力スタックが Antigravity に組み込まれ、エージェントに音声で指示できる。</td>
+                        <td>ハンズフリーで「コード書いて」「テスト走らせて」と頼みたい時、登壇デモなど。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--green);">integration_instructions</span>
+                                <strong>AI Studio / Android / Firebase 統合</strong>
+                            </div>
+                        </td>
+                        <td>AI Studio のプロジェクトをローカル開発に書き出したり、Android / Firebase プロジェクトを直接 Antigravity から操作できる。エンタープライズ向けには Google Cloud プロジェクトとも統合。</td>
+                        <td>「AI Studio で試したプロンプトをそのまま実プロダクトに移植」「Firebase の関数を Antigravity で更新」など。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--primary);">bolt</span>
+                                <strong>Gemini 3.5 Flash（Antigravity と co-developed）</strong>
+                            </div>
+                        </td>
+                        <td>Antigravity と共同開発された軽量高速モデル。Google 公式は「他のフロンティアモデルの 4 倍速」「ベンチでは Gemini 3.1 Pro を上回る場面もある」と説明。</td>
+                        <td>イテレーションが多い実装フェーズ・チャットの即応・大量のサブエージェント並列実行。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--purple);">workspace_premium</span>
+                                <strong>Google AI Ultra プラン（$100/月）</strong>
+                            </div>
+                        </td>
+                        <td>Antigravity の利用枠が <strong>Pro の約5倍</strong>に拡大。長時間・並列・スケジュール実行を本格運用する人向けの上位プラン（期間限定のボーナスクレジット付き）。</td>
+                        <td>オーバーナイト実行・複数 Dynamic Subagent の常時並列・チームでの高負荷利用。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
+                <strong>📚 出典 / 一次情報</strong>
+                <ul style="margin-top: 6px; font-size: 0.88rem; padding-left: 20px;">
+                    <li><a href="https://antigravity.google/changelog" target="_blank" style="color: var(--blue);">Antigravity 公式 Changelog</a>（v2.0.0 / v2.0.1, 2026-05-24）</li>
+                    <li><a href="https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/" target="_blank" style="color: var(--blue);">Google I/O 2026 developer highlights（公式ブログ）</a></li>
+                    <li><a href="https://developers.googleblog.com/build-with-google-antigravity-our-new-agentic-development-platform/" target="_blank" style="color: var(--blue);">Build with Google Antigravity（Google Developers Blog）</a></li>
+                    <li><a href="https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/" target="_blank" style="color: var(--blue);">Transitioning Gemini CLI to Antigravity CLI</a></li>
+                </ul>
+            </div>
+
             <h3>📰 活用 Tips</h3>
             <table>
                 <thead>
@@ -2461,6 +2676,103 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                 </tbody>
             </table>
+
+            <h3>💬 最新機能：スラッシュコマンド（Slash Commands）の活用</h3>
+            <p>Antigravity IDE では、チャット欄で <code>/</code> を入力することで、開発プロセスを高度にコントロールする特別なコマンドを実行できます。これらは定型タスクや長時間の自律処理を安全かつ強力にサポートします。</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>コマンド</th>
+                        <th>機能概要</th>
+                        <th>具体的な活用シーン</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--blue);">bolt</span>
+                                <code>/goal</code>
+                            </div>
+                        </td>
+                        <td>長時間実行タスク（オーバーナイト等）で、エージェントが目標を完全に達成するまで諦めずに徹底的に試行錯誤を繰り返す超自律実行モード。</td>
+                        <td>「テストがすべて通過するまでコードをデバッグし、完璧にリファクタリングして」といった重厚なゴールを設定したい場合。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--green);">schedule</span>
+                                <code>/schedule</code>
+                            </div>
+                        </td>
+                        <td>一回限りのタイマー設定や、定期的な cron ジョブをスケジュールする。バックグラウンドでエージェントが自律的に実行・監視を行う。</td>
+                        <td>「3分後にビルドが完了したか確認する」「1時間ごとにデプロイ状況をヘルスチェックして報告する」などの監視や時間差タスク。</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="color: var(--purple);">question_answer</span>
+                                <code>/grill-me</code>
+                            </div>
+                        </td>
+                        <td>エージェントが人間にインタラクティブなインタビューを行い、設計の曖昧な点や技術的な意思決定を明らかにして計画をすり合わせる。</td>
+                        <td>「新しい機能を追加したいが、どの設計アプローチをとるか迷っている」という時に、AIから質問を投げかけて対話形式で要件定義を進めたい場合。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>📋 最新機能：Planning Mode の3大アーティファクト管理</h3>
+            <p>最新の Antigravity IDE では、自律型開発を人間が完全に制御できるよう、<strong>Planning Mode（プランニングモード）</strong>が強化され、以下の3つの Markdown ファイル（アーティファクト）が自動的に管理・更新されます。</p>
+            <div class="card" style="border-left: 4px solid var(--purple);">
+                <h4 style="display: flex; align-items: center; gap: 8px; margin-top: 0;">
+                    <span class="material-symbols-outlined" style="color: var(--purple);">assignment</span>
+                    1. 実装計画書 (<code>implementation_plan.md</code>)
+                </h4>
+                <p>タスクの開始時にエージェントが作成する詳細な設計書です。以下の内容が含まれ、実行前に人間の承認（Approve）を求めます。</p>
+                <ul style="padding-left: 20px; font-size: 0.95rem;">
+                    <li><strong>User Review Required</strong>: 破壊的変更や重要な設計上の決定など、人間が確認すべき重要事項。</li>
+                    <li><strong>Open Questions</strong>: 実装に影響する未解決の疑問点や設計オプション。</li>
+                    <li><strong>Proposed Changes</strong>: どのファイルをどのように変更するか（NEW, MODIFY, DELETE の明示）。</li>
+                    <li><strong>Verification Plan</strong>: 実装後の自動テストコマンドや手動動作確認手順。</li>
+                </ul>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--blue);">
+                <h4 style="display: flex; align-items: center; gap: 8px; margin-top: 0;">
+                    <span class="material-symbols-outlined" style="color: var(--blue);">task_alt</span>
+                    2. タスクリスト (<code>task.md</code>)
+                </h4>
+                <p>実装開始後に作成される、進捗追跡のための TODO リストです。作業の進捗に合わせてエージェントが自律的に更新します。</p>
+                <ul style="padding-left: 20px; font-size: 0.95rem;">
+                    <li><code>- [ ]</code>: 未着手のタスク</li>
+                    <li><code>- [/]</code>: 現在進行中のタスク</li>
+                    <li><code>- [x]</code>: 完了したタスク</li>
+                </ul>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--green);">
+                <h4 style="display: flex; align-items: center; gap: 8px; margin-top: 0;">
+                    <span class="material-symbols-outlined" style="color: var(--green);">fact_check</span>
+                    3. ウォークスルー (<code>walkthrough.md</code>)
+                </h4>
+                <p>タスク完了時にエージェントが作成する要約レポートです。変更したファイルの概要や、実施した検証テストの結果が詳細に記録されます。</p>
+            </div>
+
+            <h3>💡 最新機能：Knowledge Items (KI) &amp; 会話ログ (Conversation Logs)</h3>
+            <div class="card" style="border-left: 4px solid var(--orange, #ff9800);">
+                <h4 style="display: flex; align-items: center; gap: 8px; margin-top: 0;">
+                    <span class="material-symbols-outlined" style="color: var(--orange, #ff9800);">psychology</span>
+                    🧠 Knowledge Items (KI) システムによる知見の永続化
+                </h4>
+                <p>エージェントとのセッションが終了すると、バックグラウンドの <strong>Knowledge Subagent</strong> が自動で会話を分析し、重要な知見やリポジトリ固有のコーディングパターン、解決したバグの情報を <code>~/.gemini/antigravity-ide/knowledge/</code> に <strong>Knowledge Items (KI)</strong> として永続化します。</p>
+                <p>これにより、次回以降のセッションで同じようなタスクを行う際、エージェントが自動的に過去の KI を読み込んで学習し、二度手間やパターンの逸脱を防ぎます。<strong>「使えば使うほどプロジェクトの癖を学習する」</strong>最新のコア機能です。</p>
+            </div>
+            <div class="card" style="border-left: 4px solid #607d8b;">
+                <h4 style="display: flex; align-items: center; gap: 8px; margin-top: 0;">
+                    <span class="material-symbols-outlined" style="color: #607d8b;">history_edu</span>
+                    📜 会話ログ (Conversation Logs) の直接追跡
+                </h4>
+                <p>エージェントが行ったすべての思考、ツール実行、および動的サブエージェント（Dynamic Subagents）の全ログが <code>~/.gemini/antigravity-ide/brain/&lt;conversation-id&gt;/.system_generated/logs/transcript.jsonl</code> に JSON Lines 形式で完全に記録されています。</p>
+                <p>何が起きたかを完璧に追跡したい高度な開発者向けに、<code>grep</code> コマンドなどを使って過去のメッセージやサブエージェントの処理内容を自律的かつ高精度に検索・分析できるインフラが提供されています。</p>
+            </div>
 
             <h3>🔗 公式ドキュメント・リソース</h3>
             <table>
