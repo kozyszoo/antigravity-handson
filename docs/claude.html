@@ -410,6 +410,68 @@
             color: var(--text);
         }
 
+        /* YouTube 動画カード（活用 Tips の発展セクション用） */
+        .yt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .yt-card {
+            background: #ffffff;
+            border: 1px solid var(--bg-light);
+            border-left: 4px solid #ef4444;
+            border-radius: 10px;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .yt-card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .yt-card .yt-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #b91c1c;
+            background: #fee2e2;
+            padding: 2px 8px;
+            border-radius: 99px;
+            margin-bottom: 8px;
+            width: fit-content;
+        }
+
+        .yt-card h4 {
+            font-size: 1rem;
+            margin: 0 0 8px 0;
+            line-height: 1.45;
+            color: var(--text);
+        }
+
+        .yt-card p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin: 0 0 12px 0;
+        }
+
+        .yt-card .yt-link {
+            font-size: 0.82rem;
+            word-break: break-all;
+            color: #2563eb;
+            text-decoration: none;
+            margin-top: auto;
+        }
+
+        .yt-card .yt-link:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
@@ -454,6 +516,7 @@
                 <li><a href="#step5">Step 5: 実践 Vibe Coding</a></li>
                 <li><a href="#step6">Step 6: Git / PR 自動化</a></li>
                 <li><a href="#tips">活用 Tips 集</a></li>
+                <li><a href="#deep-dive">📺 さらに深掘り</a></li>
                 <li><a href="#outro">おわりに</a></li>
             </ul>
         </nav>
@@ -1216,6 +1279,86 @@ TypeError: Cannot read properties of undefined (reading 'map')
                     </tr>
                 </tbody>
             </table>
+        </section>
+
+        <!-- 📺 さらに深掘り：YouTube 動画から学ぶ -->
+        <section class="section" id="deep-dive">
+            <h2>📺 さらに深掘り：YouTube 動画から学ぶ</h2>
+            <p>このハンズオンで触れた話題を、もう一段深く理解したい方へ向けた YouTube 動画のキュレーションです。各動画は <strong>出典 URL を明記</strong> してありますので、興味のあるテーマから視聴してみてください。</p>
+
+            <div class="tip-box">
+                <strong>📌 紹介の方針</strong><br>
+                ここに掲載しているのは「Claude Code 本体・運用」「ハーネス／エージェント設計」「Claude Managed Agents」「ターミナル開発UX」に直接関連する動画です。実演や事例を見ることで、本ハンズオンの内容を業務へ転用しやすくなります。
+            </div>
+
+            <h3>🛠️ Claude Code 本体・運用</h3>
+            <div class="yt-grid">
+                <div class="yt-card">
+                    <span class="yt-tag">必須コマンド</span>
+                    <h4>Claude Code 必須コマンド15選（Tier1/2/3）</h4>
+                    <p>30〜40 個あるスラッシュコマンドから Tier1=必須6／Tier2=生産性4／Tier3=便利4＋小ネタ1 に絞って実演。<code>/init</code>・<code>/config</code>・<code>/model</code>・<code>/effort</code>・<code>/clear</code>・<code>/exit</code> の6つと、3R（<code>/resume</code>・<code>/rewind</code>・<code>/rename</code>）の運用イメージが掴めます。</p>
+                    <a class="yt-link" href="https://www.youtube.com/watch?v=dsVEVt6xZI4" target="_blank" rel="noopener">出典: https://www.youtube.com/watch?v=dsVEVt6xZI4</a>
+                </div>
+
+                <div class="yt-card">
+                    <span class="yt-tag">神機能9選</span>
+                    <h4>クロードコードの神機能9選</h4>
+                    <p>Superpowers／自作 Agent Skills／オートモード／MCP／Routines／Agent Teams／Ultra Review／リモートコントロール／Pencil 連携を一気に紹介。「まずは Superpowers ＋ 自作スキル ＋ MCP の 3 つから始める」という導入順がよくまとまっています。</p>
+                    <a class="yt-link" href="https://www.youtube.com/watch?v=CcZjTpUM6eg" target="_blank" rel="noopener">出典: https://www.youtube.com/watch?v=CcZjTpUM6eg</a>
+                </div>
+
+                <div class="yt-card">
+                    <span class="yt-tag">4月アップデート</span>
+                    <h4>Claude Code 4月アップデート総まとめ</h4>
+                    <p>2026年4月のデスクトップアプリ刷新、Routines（クラウド継続実行）、Ultra Plan モード、Auto Mode、CLI 新機能 4 種、新スラッシュ 6 種（<code>/ultra-review</code>・<code>/loop</code>・<code>/setup</code>・<code>/powerup</code>・<code>/spawn-PR</code>・<code>/usage</code>）を網羅。</p>
+                    <a class="yt-link" href="https://www.youtube.com/watch?v=umoAIATmPQo" target="_blank" rel="noopener">出典: https://www.youtube.com/watch?v=umoAIATmPQo</a>
+                </div>
+
+                <div class="yt-card">
+                    <span class="yt-tag">Routines</span>
+                    <h4>Routines（ルーティーンズ）徹底解説</h4>
+                    <p>「プロンプト＋トリガーを保存して自動実行」する Routines を、Notion×Gmail 連携の自動メール下書きを題材に非エンジニア向けに解説。Pro=1日5回／Max=15回／Team・Enterprise=25回の利用上限と、朝6時／昼12時／夜6時にまとめて処理する運用設計が学べます。</p>
+                    <a class="yt-link" href="https://www.youtube.com/watch?v=YGE-OLDyeZQ" target="_blank" rel="noopener">出典: https://www.youtube.com/watch?v=YGE-OLDyeZQ</a>
+                </div>
+
+                <div class="yt-card">
+                    <span class="yt-tag">運用スペシャル</span>
+                    <h4>Claude Code 環境整備運用スペシャル2 — オフ100名+オン700名イベント</h4>
+                    <p>AI駆動開発勉強会の長尺イベント録画。Skills/Subagents/Slash Commands/MCP を総称した「ハーネス」概念、Hooks による禁止項目の機械チェック、12 リポジトリ横断のセッションログ分析など、現場エンジニア 3 名による実証的な知見が詰まっています。</p>
+                    <a class="yt-link" href="https://www.youtube.com/watch?v=Iidj349pCB8" target="_blank" rel="noopener">出典: https://www.youtube.com/watch?v=Iidj349pCB8</a>
+                </div>
+
+                <div class="yt-card">
+                    <span class="yt-tag">Meetup JAPAN</span>
+                    <h4>Claude Code Meetup JAPAN 第5回</h4>
+                    <p>司会・新井氏進行の約 2 時間の登壇録画。直近 1 ヶ月で 635 件のリリースという量的アップデート、TAKT による実践ハーネスエンジニアリング、ARグラス連携、モバイルアプリ Skill 化、脆弱性調査の半自動化など、9 名の実例が学べます。</p>
+                    <a class="yt-link" href="https://www.youtube.com/watch?v=FOZs8FIQGVc" target="_blank" rel="noopener">出典: https://www.youtube.com/watch?v=FOZs8FIQGVc</a>
+                </div>
+            </div>
+
+            <h3>🧠 エージェント設計論・拡張</h3>
+            <div class="yt-grid">
+                <div class="yt-card">
+                    <span class="yt-tag">ハーネス入門</span>
+                    <h4>ハーネスエンジニアリング入門 — Planner/Generator/Evaluator</h4>
+                    <p>Anthropic 公式ブログを下敷きに、Planner（仕様化）／Generator（実装）／Evaluator（PR レビュー）の 3 体エージェント設計を図解。Evaluator が不合格 → Generator に戻す自己改善ループを 3 時間で複雑なアプリに適用するデモが秀逸。</p>
+                    <a class="yt-link" href="https://www.youtube.com/watch?v=Wfz-gdWcItM" target="_blank" rel="noopener">出典: https://www.youtube.com/watch?v=Wfz-gdWcItM</a>
+                </div>
+
+                <div class="yt-card">
+                    <span class="yt-tag">Managed Agents</span>
+                    <h4>Claude Managed Agents — エージェントを「環境込み」で動かす</h4>
+                    <p>Agent SDK で作ったエージェントを <strong>API として公開</strong> し、Slack/LINE/自社ツールから呼べるようにする新サービスの解説。Agent ／ Environment ／ Session ／ Vault の 4 構成要素と、ベンダーロックイン上のリスクまで触れています。</p>
+                    <a class="yt-link" href="https://www.youtube.com/watch?v=_fMxK74D1f0" target="_blank" rel="noopener">出典: https://www.youtube.com/watch?v=_fMxK74D1f0</a>
+                </div>
+
+                <div class="yt-card">
+                    <span class="yt-tag">ターミナルUX</span>
+                    <h4>Claude Code はもうターミナル時代 — Superset</h4>
+                    <p>Claude Code／Codex／Gemini／Cursor Agent を横断切替できるターミナル統合アプリ Superset の紹介。複数 Claude Code 並走時の「何してるか分からない問題」をワークスペース命名＋カラーで解決する運用例が見られます。</p>
+                    <a class="yt-link" href="https://www.youtube.com/watch?v=2KdZrR2HahE" target="_blank" rel="noopener">出典: https://www.youtube.com/watch?v=2KdZrR2HahE</a>
+                </div>
+            </div>
         </section>
 
         <!-- おわりに -->
