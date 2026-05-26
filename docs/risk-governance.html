@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>バイブコーディング × AIリスク × ガバナンス 徹底解説ハンズオン</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ef4444;
+            --primary-soft: #f87171;
+            --bg-dark: #1a1a2e;
+            --bg-mid: #16213e;
+            --bg-light: #0f3460;
+            --bg: #1a1a2e;
+            --text: #e8e8e8;
+            --text-light: #c8c8c8;
+            --muted: #a0a0a0;
+            --purple: #9b82b5;
+            --blue: #6daad8;
+            --green: #4ecca3;
+            --orange: #f4a261;
+            --yellow: #f4c542;
+            --danger: #ef4444;
+            --warn: #f59e0b;
+            --ok: #10b981;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 4px; }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        .sidebar .sub-link {
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .sidebar .sub-link:hover { color: var(--primary); }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-mid), var(--bg-light));
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero p { color: var(--muted); font-size: 1rem; }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--purple);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p { margin-bottom: 12px; }
+
+        .section ul, .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li { margin-bottom: 6px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: var(--bg-dark);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: var(--bg-dark);
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid var(--bg-light);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--text);
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        blockquote a { color: var(--primary); }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        .card.info { border-color: var(--blue); }
+        .card.warn { border-color: var(--warn); }
+        .card.ok { border-color: var(--ok); }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            background: rgba(239, 68, 68, 0.18);
+            color: var(--primary-soft);
+        }
+
+        .badge.warn { background: rgba(245, 158, 11, 0.18); color: var(--warn); }
+        .badge.info { background: rgba(109, 170, 216, 0.18); color: var(--blue); }
+        .badge.ok { background: rgba(16, 185, 129, 0.18); color: var(--ok); }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .step-card:hover { transform: translateY(-2px); }
+
+        .step-card .step-num {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-card h4 {
+            color: var(--text);
+            margin: 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 0;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* リスク表 */
+        .risk-table th:first-child { width: 22%; }
+        .risk-table td .sev {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-right: 4px;
+        }
+        .sev.high { background: rgba(239, 68, 68, 0.22); color: var(--primary-soft); }
+        .sev.mid  { background: rgba(245, 158, 11, 0.20); color: var(--warn); }
+        .sev.low  { background: rgba(16, 185, 129, 0.20); color: var(--ok); }
+
+        .do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .do-dont .col {
+            border-radius: 10px;
+            padding: 18px;
+            background: var(--bg-light);
+        }
+        .do-dont .col.do  { border-left: 4px solid var(--ok); }
+        .do-dont .col.dont { border-left: 4px solid var(--danger); }
+        .do-dont h4 { margin-top: 0; }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0 !important;
+        }
+        .checklist li {
+            padding: 8px 12px 8px 36px;
+            position: relative;
+            background: var(--bg-dark);
+            border-radius: 6px;
+            margin-bottom: 6px;
+        }
+        .checklist li::before {
+            content: "☐";
+            position: absolute;
+            left: 12px;
+            top: 8px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* 図表用スタイル */
+        .fig-container {
+            text-align: center;
+            margin: 24px 0;
+        }
+        .fig-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--bg-light);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .fig-image:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            .sidebar.open { transform: translateX(0); }
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+            .menu-toggle { display: block; }
+            .do-dont { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🛡️ AIリスク講座</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html"
+                        style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#chapter1">第1章: バイブコーディング入門</a></li>
+                <li><a href="#vibe-good" class="sub-link">└ 強み</a></li>
+                <li><a href="#vibe-bad" class="sub-link">└ 落とし穴</a></li>
+                <li><a href="#chapter2">第2章: AI活用の代表的リスク</a></li>
+                <li><a href="#risk-table" class="sub-link">└ リスク一覧表</a></li>
+                <li><a href="#risk-deep" class="sub-link">└ ケース別解説</a></li>
+                <li><a href="#copyright-deep" class="sub-link">　└ 著作権 詳説</a></li>
+                <li><a href="#chapter3">第3章: 組織のAIガバナンス</a></li>
+                <li><a href="#gov-policy" class="sub-link">└ 利用ポリシー</a></li>
+                <li><a href="#gov-log" class="sub-link">└ ログと監査</a></li>
+                <li><a href="#gov-roles" class="sub-link">└ 責任分界</a></li>
+                <li><a href="#chapter4">第4章: 実践チェックリスト</a></li>
+                <li><a href="#checklist-dev" class="sub-link">└ 開発者向け</a></li>
+                <li><a href="#checklist-mgr" class="sub-link">└ 管理者向け</a></li>
+                <li><a href="#chapter5">第5章: 演習</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>🛡️ バイブコーディング × AIリスク × ガバナンス</h1>
+            <p style="margin-top:8px; font-size:0.95rem;">
+                2026年5月 ／ AI コーディングエージェント時代の<strong style="color: var(--primary);">「正しく怖がる」ためのハンズオン</strong>
+            </p>
+            <p style="margin-top:6px; font-size:0.9rem; color: var(--text-light);">
+                Codex / Claude Code / Antigravity を使い始めた方が、<strong>個人として安全に使い倒す</strong>ためのリテラシーと、
+                <strong>チーム・組織として暴走させない</strong>ためのガバナンスを、1ページで一気に学べる構成です。
+            </p>
+        </div>
+
+        <!-- Intro -->
+        <section class="section" id="intro">
+            <h2>はじめに：なぜ今この講座が必要か</h2>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-hero.png" alt="エンジニアと AI ロボットが並んで座り、AI がコードを書きながら高速で走る車を運転している。エンジニア側は赤いシートベルトと「STOP」ボタンに手をかけている。背景はダークなコックピット風、赤と緑のアクセントライト。フラットイラスト、横長バナー。AI コーディングを安全に走らせる「ブレーキとシートベルト」の比喩。">
+            </div>
+            <p>
+                Codex、Claude Code、Antigravity といった<strong>自律型AIコーディングエージェント</strong>の登場で、
+                プロンプトを書くだけで動くアプリができる「<strong>バイブコーディング (Vibe Coding)</strong>」が一気に普及しました。
+                一方、現場では次のような事故が報告され始めています。
+            </p>
+            <ul>
+                <li><strong>「動いたから」とそのまま本番投入 → 脆弱性混入</strong>（SQLインジェクション、認可漏れ、シークレットの平文埋め込み）</li>
+                <li><strong>機密情報を含むコードを外部 LLM API にそのまま送信</strong> → 情報持出し扱いに</li>
+                <li><strong>AI が自信たっぷりに「存在しないライブラリ」を提案</strong>（ハルシネーション）→ <em>スロップスクワッティング</em>でマルウェア混入</li>
+                <li><strong>AI が <code>rm -rf</code> を含むスクリプトを実行</strong> → 開発環境がふっとぶ</li>
+                <li><strong>ライセンス不明なコードがコピペ</strong>される → 法務 NG</li>
+            </ul>
+            <p>
+                この講座は、<strong>AIを止めるためのもの</strong>ではありません。
+                むしろ <strong>AIを安心して全社で踏み込むための「ブレーキとシートベルト」</strong>を整備するためのものです。
+            </p>
+
+            <div class="card info" style="margin-top: 16px;">
+                <span class="badge info">ゴール</span>
+                <ul style="margin-top: 8px;">
+                    <li>バイブコーディングの<strong>強みと限界</strong>を自分の言葉で説明できる</li>
+                    <li>AI 活用の<strong>代表的リスクを6カテゴリ</strong>で整理できる</li>
+                    <li>自社/自チームの<strong>AI利用ポリシー素案</strong>が書ける</li>
+                    <li>明日から使える<strong>開発者・管理者向けチェックリスト</strong>を手に入れる</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== 第1章 ===== -->
+        <section class="section" id="chapter1">
+            <h2>第1章: バイブコーディング入門</h2>
+
+            <h3 id="vibe-def">バイブコーディングとは何か</h3>
+            <p>
+                「バイブコーディング (Vibe Coding)」は、2025年初頭から急速に広まった呼び名で、
+                <strong>厳密な仕様書ではなく「こんな雰囲気で動くものが欲しい」という温度感</strong>を AI に伝え、
+                AI 側がコードを書き、動かし、直すまでを担当するスタイルを指します。
+                語源は 2025年2月の OpenAI 共同創業者 Andrej Karpathy の発言
+                <a href="https://x.com/karpathy/status/1886192184808149383" target="_blank" rel="noopener" style="color: var(--primary);">(X / Twitter)</a>
+                で、同年 Collins English Dictionary の「Word of the Year 2025」にも選ばれました
+                <a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener" style="color: var(--primary);">(Wikipedia: Vibe coding)</a>。
+            </p>
+            <p>
+                人間の役割は次の3つに集約されます。
+            </p>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-vibe-roles.png" alt="バイブコーディングにおける人間と AI の役割分担図。左側に人間アイコンと「ゴール提示・軌道修正・ブレーキ」、右側に AI アイコンと「設計・実装・テスト・修正」が書かれ、中央に「信頼境界線（Trust Boundary）」と書かれた赤い破線がある。下部に「責任は人間側に残る」とキャプション。">
+            </div>
+
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">役割 1</div>
+                    <h4>🎯 ゴール提示</h4>
+                    <p>「何ができたら成功か」を一言で伝える。例: 「画像をアップロードしたら自動で文字起こしされる画面」。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">役割 2</div>
+                    <h4>🧭 軌道修正</h4>
+                    <p>AI の出した方針・UI・関数設計に「ここ違う」「もっとこう」と方向だけ示す。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">役割 3</div>
+                    <h4>🛑 ブレーキ</h4>
+                    <p>暴走しそうな実装・破壊的なコマンドを止め、必要なら承認・拒否する。<strong>本講座の主役。</strong></p>
+                </div>
+            </div>
+
+            <h3 id="vibe-good">バイブコーディングの強み</h3>
+            <ul>
+                <li><strong>立ち上がりの速さ</strong>：1時間で MVP、半日でデモ可能なアプリ。</li>
+                <li><strong>領域横断</strong>：フロント・バック・インフラ・SQL・README まで AI が面倒を見る。</li>
+                <li><strong>学習効率</strong>：未知のフレームワークでも「動くサンプル」から逆算して学べる。</li>
+                <li><strong>業務 DX のすそ野拡大</strong>：非エンジニアでも「ちょっとした自動化」を作れる。</li>
+            </ul>
+
+            <h3 id="vibe-bad">同じ強みが、そのまま落とし穴になる</h3>
+            <p>
+                バイブコーディングの「気持ちよさ」は、<strong>確認すべきポイントを飛ばしている快感</strong>でもあります。
+                ここでは典型的な落とし穴 5 つと、<strong>各落とし穴に対して「明日から手を動かせる具体的な対策」</strong>をセットで示します。
+            </p>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-do-dont.png" alt="左側（緑）: エンジニアが AI 生成コードを 1 行ずつ読みながら付箋を貼っている安全な様子。右側（赤）: 別のエンジニアが目をつぶって 'Merge' ボタンを連打し、後ろで本番サーバーが燃えている。中央に大きく「読まないコードは信用しない」のキャッチコピー。">
+            </div>
+
+            <!-- 落とし穴 1: 動いた=終わり -->
+            <div class="card" style="border-left: 4px solid var(--danger); margin: 16px 0;">
+                <span class="badge" style="background: rgba(239,68,68,0.18); color: var(--primary-soft);">落とし穴 1</span>
+                <h4 style="color: var(--danger); margin: 6px 0;">「動いた、終わり」で PR を出してしまう</h4>
+                <p style="margin: 8px 0; color: var(--text-light);">
+                    AI が出したコードはテストが通ると「完成した気」になるが、ロジックを読まずにマージすると
+                    認可漏れ・例外処理欠落・パフォーマンス爆発が後から噴き出す。
+                </p>
+                <p style="margin: 8px 0 4px;"><strong style="color: var(--ok);">✅ 具体的な対策（5分でできる）</strong></p>
+                <ol style="margin-top: 4px;">
+                    <li>
+                        PR を出す前に AI に<strong>「このコードのレビュー観点を5つ挙げて」</strong>と聞き、自分でその観点で読み直す
+                    </li>
+                    <li>
+                        変更ファイルを開き、<strong>関数 1 つに対して入力例・出力例・例外パスを口頭で説明できるか</strong>を自問する
+                        （説明できない関数 = 理解していない箇所）
+                    </li>
+                    <li>
+                        AI に<strong>「正常系のテストを 3 つ、異常系のテストを 3 つ書いて」</strong>と頼み、生成テストを実行
+                    </li>
+                    <li>
+                        PR 本文に <code>[AI-assisted]</code> ラベルを付けて、レビュアーが AI 生成箇所を意識できるようにする
+                    </li>
+                </ol>
+            </div>
+
+            <!-- 落とし穴 2: ライブラリ名を確認しない -->
+            <div class="card" style="border-left: 4px solid var(--danger); margin: 16px 0;">
+                <span class="badge" style="background: rgba(239,68,68,0.18); color: var(--primary-soft);">落とし穴 2</span>
+                <h4 style="color: var(--danger); margin: 6px 0;">AI が出した <code>npm install xxx</code> を名前確認なしで実行</h4>
+                <p style="margin: 8px 0; color: var(--text-light);">
+                    AI が幻覚で提案した存在しないパッケージ名を、攻撃者が先回りで悪意あるコードと共に登録する
+                    <em>スロップスクワッティング</em> の標的になりやすい（第2章 ① 参照）。
+                </p>
+                <p style="margin: 8px 0 4px;"><strong style="color: var(--ok);">✅ 具体的な対策（30秒チェック）</strong></p>
+                <ol style="margin-top: 4px;">
+                    <li>
+                        提案されたパッケージ名で<strong>公式レジストリを開く</strong>：
+                        <a href="https://www.npmjs.com/" target="_blank" rel="noopener" style="color: var(--primary);">npm</a> /
+                        <a href="https://pypi.org/" target="_blank" rel="noopener" style="color: var(--primary);">PyPI</a> /
+                        <a href="https://crates.io/" target="_blank" rel="noopener" style="color: var(--primary);">crates.io</a>
+                    </li>
+                    <li>
+                        <strong>3 つの数字を見る</strong>：
+                        週次ダウンロード数（数百以下なら警戒）／初版公開日（直近 1 週間なら警戒）／メンテナの GitHub アカウント
+                    </li>
+                    <li>
+                        怪しければ AI に<strong>「他に同等の機能を持つ実績のあるライブラリを 3 つ挙げて」</strong>と再質問し、複数候補から選ぶ
+                    </li>
+                    <li>
+                        CI に <code>npm audit</code> / <code>pip-audit</code> / <code>cargo audit</code> を必ず組み込む
+                    </li>
+                </ol>
+            </div>
+
+            <!-- 落とし穴 3: 認証情報の貼付け -->
+            <div class="card" style="border-left: 4px solid var(--danger); margin: 16px 0;">
+                <span class="badge" style="background: rgba(239,68,68,0.18); color: var(--primary-soft);">落とし穴 3</span>
+                <h4 style="color: var(--danger); margin: 6px 0;">本番 DB 認証情報・APIキー・顧客データをプロンプトに貼り付け</h4>
+                <p style="margin: 8px 0; color: var(--text-light);">
+                    送信した時点で「<strong>会社の外に出した</strong>」と同義。利用規約で「学習に使わない」と書かれていても、
+                    インシデント管理上の「持出し」の事実は消えない。
+                </p>
+                <p style="margin: 8px 0 4px;"><strong style="color: var(--ok);">✅ 具体的な対策（プロンプトの作法）</strong></p>
+                <ol style="margin-top: 4px;">
+                    <li>
+                        貼り付ける前に「これは外部に出して困らないか」を 3 秒だけ自問する習慣を作る
+                    </li>
+                    <li>
+                        <strong>サンプルデータに置換</strong>してから貼る。本番 10 万行 → サンプル 10 行で十分。
+                        <pre style="margin: 6px 0;"><code># ❌ NG: 本番DBの認証情報を貼る
+postgres://admin:P@ssw0rd@10.0.0.1:5432/prod_users
+
+# ✅ OK: スキーマだけ伝えて、データは合成する
+CREATE TABLE users(id INT, email TEXT, plan TEXT);
+-- サンプル: (1,'alice@example.com','free'), (2,'bob@example.com','pro')</code></pre>
+                    </li>
+                    <li>
+                        APIキー・本番接続情報は <code>.env</code> / Vault / Secrets Manager に置き、
+                        コードでは <code>process.env.XXX</code> として参照（AI に貼るときも変数名のまま）
+                    </li>
+                    <li>
+                        コミット前に <a href="https://github.com/gitleaks/gitleaks" target="_blank" rel="noopener" style="color: var(--primary);">gitleaks</a> や
+                        <a href="https://github.com/trufflesecurity/trufflehog" target="_blank" rel="noopener" style="color: var(--primary);">trufflehog</a> を pre-commit hook で走らせる
+                    </li>
+                </ol>
+            </div>
+
+            <!-- 落とし穴 4: 全自動デプロイ -->
+            <div class="card" style="border-left: 4px solid var(--danger); margin: 16px 0;">
+                <span class="badge" style="background: rgba(239,68,68,0.18); color: var(--primary-soft);">落とし穴 4</span>
+                <h4 style="color: var(--danger); margin: 6px 0;">AI に「全自動で本番にデプロイして」と任せている</h4>
+                <p style="margin: 8px 0; color: var(--text-light);">
+                    人間の承認なしに本番が変わる状態は、AI 時代以前から RCE と同じ重大インシデント素材。
+                    エージェントの暴走（rm -rf / DROP TABLE / force push）を 1 回でも経験すると分かる。
+                </p>
+                <p style="margin: 8px 0 4px;"><strong style="color: var(--ok);">✅ 具体的な対策（環境ごとに固定する）</strong></p>
+                <ol style="margin-top: 4px;">
+                    <li>
+                        AI エージェントの<strong>承認モードをツール側で固定</strong>する：
+                        <ul>
+                            <li>Codex: <code>approval_policy = "on-request"</code>（<a href="https://developers.openai.com/codex/agent-approvals-security" target="_blank" rel="noopener" style="color: var(--primary);">公式 docs</a>）</li>
+                            <li>Claude Code: <code>--dangerously-skip-permissions</code> は本番リポジトリで<strong>絶対使わない</strong>（<a href="https://code.claude.com/docs/en/permissions" target="_blank" rel="noopener" style="color: var(--primary);">公式 docs</a>）</li>
+                            <li>Antigravity: 業務リポジトリは <strong>Worktree モード必須</strong>（<a href="https://antigravity.google/docs/browser-subagent" target="_blank" rel="noopener" style="color: var(--primary);">公式 docs</a>）</li>
+                        </ul>
+                    </li>
+                    <li>
+                        本番デプロイは <strong>GitHub Actions の <code>environment: production</code> + Required Reviewers</strong> で
+                        必ず人間スタンプを挟む
+                    </li>
+                    <li>
+                        作業前に <code>git switch -c feature/ai-xxx</code> でブランチを切る。<strong>main で直接 AI を動かさない</strong>
+                    </li>
+                    <li>
+                        破壊的コマンド（<code>rm -rf</code> / <code>DROP</code> / <code>force push</code>）を許可リストから外しておく
+                    </li>
+                </ol>
+            </div>
+
+            <!-- 落とし穴 5: 直して、を連呼 -->
+            <div class="card" style="border-left: 4px solid var(--danger); margin: 16px 0;">
+                <span class="badge" style="background: rgba(239,68,68,0.18); color: var(--primary-soft);">落とし穴 5</span>
+                <h4 style="color: var(--danger); margin: 6px 0;">エラーが出ると AI に「直して」だけを連呼してしまう</h4>
+                <p style="margin: 8px 0; color: var(--text-light);">
+                    原因不明のまま動くコードができあがる「<strong>呪術コーディング</strong>」状態。
+                    本番で別のエラーが出たとき、誰も直せなくなる。
+                </p>
+                <p style="margin: 8px 0 4px;"><strong style="color: var(--ok);">✅ 具体的な対策（デバッグの型を持つ）</strong></p>
+                <ol style="margin-top: 4px;">
+                    <li>
+                        エラーメッセージは<strong>「直して」ではなく、AI に説明させてから直させる</strong>
+                        <pre style="margin: 6px 0;"><code># ❌ NG
+"このエラー直して: TypeError: ..."
+
+# ✅ OK
+"このエラーの原因を、関係するファイルとコードの流れを引用しながら 3 つの仮説で説明して。
+ その後で、最も可能性が高い仮説に対する最小修正だけを提案して。"</code></pre>
+                    </li>
+                    <li>
+                        2 回直しても直らないときは<strong>いったん AI を閉じる</strong>。スタックトレースを自分で読み、
+                        最小再現コード（10 行以内）を作ってから AI に渡し直す
+                    </li>
+                    <li>
+                        直ったら<strong>「なぜ直ったかを 3 行で説明して」</strong>と必ず聞く。説明できないなら理解していない
+                    </li>
+                    <li>
+                        同じ系統のエラーが繰り返し起きるなら、<strong>テストかリンタで未然防止</strong>する仕組み側に手を入れる
+                    </li>
+                </ol>
+            </div>
+
+            <blockquote style="margin-top: 18px;">
+                💡 <strong>ひとことで言うと：</strong>
+                バイブコーディングは「<em>AIに運転を任せる</em>」スタイル。
+                <strong>運転を任せても、シートベルトと交通ルールはあなたの責任です。</strong>
+                上の 5 つの対策は、すべて<strong>「今日のうちに 1 つだけ仕組み化する」</strong>から始めれば十分です。
+            </blockquote>
+        </section>
+
+        <!-- ===== 第2章 ===== -->
+        <section class="section" id="chapter2">
+            <h2>第2章: AI活用の代表的リスク</h2>
+            <p>
+                AI コーディングエージェントを業務利用するときに発生しうるリスクを、
+                <strong>6カテゴリ</strong>で整理します。まずは一覧で全体像を掴んでください。
+            </p>
+            <p style="font-size: 0.9rem; color: var(--text-light);">
+                📚 体系的な土台として
+                <a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener" style="color: var(--primary);">OWASP Top 10 for LLM Applications (2025)</a>
+                と
+                <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener" style="color: var(--primary);">NIST AI Risk Management Framework (AI RMF)</a>
+                が一次ソースとして有用です。本章のカテゴリ分類もこの2つと整合しています。
+            </p>
+
+            <h3 id="risk-table">リスク一覧表</h3>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-risk-matrix.png" alt="AI コーディングのリスクマトリクス。縦軸が影響度（低→高）、横軸が発生頻度（低→高）。右上の高影響×高頻度ゾーンに「ハルシネーション」「機密漏えい」「安全でないコード」、中央に「破壊的アクション」、左上に「ライセンス汚染」、右下に「プロンプトインジェクション」、左下に「過信・なりすまし」が配置されている。赤・橙・緑で重大度をカラーリング。">
+            </div>
+            <table class="risk-table">
+                <thead>
+                    <tr>
+                        <th>カテゴリ</th>
+                        <th>典型シナリオ</th>
+                        <th>重大度</th>
+                        <th>主な対策</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🧠 ハルシネーション</td>
+                        <td>存在しないAPI/ライブラリ/関数を「あります」と断言して使う</td>
+                        <td><span class="sev high">高</span></td>
+                        <td>公式ドキュメント突合、テスト実行、依存名の存在確認</td>
+                    </tr>
+                    <tr>
+                        <td>🔐 機密情報漏えい</td>
+                        <td>顧客データ・APIキー・社内コードを外部 LLM にそのまま送信</td>
+                        <td><span class="sev high">高</span></td>
+                        <td>送信内容のマスキング、社内ゲートウェイ、ログ無効化オプションの利用</td>
+                    </tr>
+                    <tr>
+                        <td>📜 著作権・ライセンス</td>
+                        <td>
+                            学習データ／生成物が他者の著作権を侵害する、GPL 等の制約付きコードが取り込まれる、
+                            <strong>意図せず</strong>類似コンテンツを生成してしまう
+                        </td>
+                        <td><span class="sev high">高</span></td>
+                        <td>
+                            類似性チェック、ライセンススキャナ、学習データの素性確認、
+                            生成過程の記録保持、ポリシー明示（→<a href="#copyright-deep" style="color: var(--primary);">著作権 詳説</a>）
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>💣 安全でないコード</td>
+                        <td>SQLインジェクション、認可漏れ、シークレット直書き</td>
+                        <td><span class="sev high">高</span></td>
+                        <td>SAST、レビュー必須化、AIへの<em>セキュアコーディング前提</em>プロンプト</td>
+                    </tr>
+                    <tr>
+                        <td>🪓 破壊的アクション</td>
+                        <td>AI が <code>rm -rf</code> / <code>DROP TABLE</code> / 強制 push を実行</td>
+                        <td><span class="sev high">高</span></td>
+                        <td>サンドボックス、承認モード、Worktree、書き込み権限の最小化</td>
+                    </tr>
+                    <tr>
+                        <td>🎭 プロンプトインジェクション</td>
+                        <td>外部から取り込んだテキスト/ファイルに「秘密を漏らせ」という指示が混入</td>
+                        <td><span class="sev mid">中</span></td>
+                        <td>信頼境界の明示、ツール権限の最小化、出力の人間レビュー</td>
+                    </tr>
+                    <tr>
+                        <td>⚖️ 過信・なりすまし</td>
+                        <td>AIの回答を「上位者の判断」として扱う、責任の所在が曖昧</td>
+                        <td><span class="sev mid">中</span></td>
+                        <td>意思決定者を明示、ログを残す、AI出力に明示ラベル</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 id="risk-deep">ケース別 深掘り</h3>
+
+            <h4>① ハルシネーション と スロップスクワッティング</h4>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-slopsquatting.png" alt="スロップスクワッティング攻撃の 4 ステップ図。①AI が存在しないパッケージ名 'super-validator-x' を提案。②攻撃者がその名前を npm に先に公開（中身はマルウェア）。③開発者が AI の言葉を信じて npm install を実行。④マルウェアが社内ネットワークに侵入。各ステップにアイコンと矢印付き。">
+            </div>
+            <p>
+                AI は「<strong>もっともらしく聞こえる嘘</strong>」を平気で出します。最近とくに問題視されているのが、
+                AIが頻繁に間違って提案する<strong>「存在しないライブラリ名」を悪用者が先回りして公開し、マルウェアを仕込む</strong>攻撃
+                ―― 通称 <em>スロップスクワッティング (slopsquatting)</em> です。
+            </p>
+            <p style="font-size: 0.9rem; color: var(--text-light);">
+                📚 学術的な裏付けとして、コード生成LLMがどの程度の頻度で存在しないパッケージを提案するかを大規模分析した
+                <a href="https://arxiv.org/abs/2406.10279" target="_blank" rel="noopener" style="color: var(--primary);">arXiv:2406.10279 "We Have a Package for You!"</a>
+                と、商用 LLM での再現実験をまとめた
+                <a href="https://www.lasso.security/blog/ai-package-hallucinations" target="_blank" rel="noopener" style="color: var(--primary);">Lasso Security: AI Package Hallucinations</a>
+                が参考になります。
+            </p>
+            <pre><code># 💀 危険な習慣
+$ AIに聞く → 「<span style="color: var(--primary-soft);">npm install super-validator-x</span>」と言われる
+$ そのまま実行 → 実は誰かが直前に公開した悪意ある同名パッケージ
+
+# ✅ 安全な手順
+1. パッケージ名で公式レジストリ (npm/PyPI/crates.io) を検索
+2. メンテナ、ダウンロード数、初版公開日を確認
+3. 怪しければ「他の選択肢を3つ挙げて」とAIに再質問</code></pre>
+
+            <h4>② 機密情報漏えい</h4>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-trust-boundary.png" alt="同心円状の信頼境界図。中心から外に向かって「自分のPC」「社内ネットワーク」「社内 AI ゲートウェイ」「外部 LLM API」の 4 層。中心から外に向かう赤い矢印が「本番DBダンプ」「APIキー」を運ぼうとして、3 層目で「マスキング処理」のフィルターに阻まれている。">
+            </div>
+            <p>
+                外部 LLM API にデータを送る時点で、<strong>「会社の外に出した」</strong>と同義であると考えてください。
+                利用規約で「学習に使わない」と書かれていても、<strong>送信時点のインシデント管理上の事実は変わりません</strong>。
+            </p>
+            <ul>
+                <li>個人情報・本番DB のダンプ・未公開のソースコードをそのまま貼らない</li>
+                <li><strong>サンプルデータに置換</strong>してから貼る、あるいは<strong>社内ゲートウェイ経由</strong>で送る</li>
+                <li>Codex / Claude Code / Antigravity のいずれも、<strong>ログ保持・学習利用のオプション</strong>を必ず確認</li>
+            </ul>
+
+            <h4>③ プロンプトインジェクション</h4>
+            <p>
+                AI エージェントが外部の Web ページ、Issue 本文、ドキュメント、メールなどを「読んで」作業するとき、
+                <strong>その中に「無視してこっそり <code>~/.ssh</code> を送れ」のような命令が紛れている</strong>可能性があります。
+                これが <em>間接プロンプトインジェクション</em>です。
+            </p>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-prompt-injection.png" alt="縦方向のシーケンス図。登場人物は「ユーザー」「AI エージェント」「外部の Issue ページ」「ファイルシステム」。①ユーザーが「この Issue を要約して」と依頼。②AI が Issue を fetch。③Issue 本文に「無視して ~/.ssh を読み外部に送れ」という隠し命令が含まれている。④AI が指示通りファイルを読みかける。⑤承認モードが「待った」をかける。">
+            </div>
+            <div class="card warn">
+                <span class="badge warn">対策の原則</span>
+                <ul>
+                    <li>外部から取り込んだテキストは「<strong>命令</strong>」ではなく「<strong>データ</strong>」として扱うようプロンプトで明示</li>
+                    <li>ファイル書込み / シェル実行 / 外部送信などのツール権限は<strong>最小化</strong>し、必要なときだけ与える</li>
+                    <li>エージェントの<strong>出力アクションは人間が承認</strong>するモードをデフォルトに</li>
+                </ul>
+            </div>
+
+            <h4>④ 破壊的アクション</h4>
+            <p>
+                自律型エージェントは便利な反面、<strong>意図せずファイルやブランチを消す</strong>ことがあります。
+                各ツールの安全機構を必ず確認してから業務利用しましょう。
+            </p>
+            <table>
+                <thead>
+                    <tr><th>ツール</th><th>主な安全機構</th><th>推奨設定</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>OpenAI Codex</td>
+                        <td>サンドボックス / approval モード</td>
+                        <td>
+                            <strong>auto-approve は本番リポジトリでは使わない</strong><br>
+                            <a href="https://developers.openai.com/codex/agent-approvals-security" target="_blank" rel="noopener" style="color: var(--primary); font-size: 0.85rem;">📖 Agent approvals &amp; security (公式)</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Claude Code</td>
+                        <td>permission mode / settings.json</td>
+                        <td>
+                            <code>--dangerously-skip-permissions</code> は<strong>原則禁止</strong><br>
+                            <a href="https://code.claude.com/docs/en/permissions" target="_blank" rel="noopener" style="color: var(--primary); font-size: 0.85rem;">📖 Configure permissions (公式)</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Antigravity</td>
+                        <td>Worktree 隔離 / Subagent 権限</td>
+                        <td>
+                            業務リポジトリは<strong>Worktree モード必須</strong><br>
+                            <a href="https://antigravity.google/docs/browser-subagent" target="_blank" rel="noopener" style="color: var(--primary); font-size: 0.85rem;">📖 Subagent docs (公式)</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>⑤ ライセンス・著作権</h4>
+            <ul>
+                <li>生成コードに既存OSSの<strong>かなり長い完全一致</strong>が含まれていないか、最低限の検索で確認</li>
+                <li>社内成果物の<strong>ライセンスポリシー</strong>（GPL不可、MIT/Apache可など）をAIに事前に伝える</li>
+                <li>顧客向け納品物の場合は、<strong>AI生成物の取り扱い条項</strong>を契約書側で明示</li>
+            </ul>
+            <p style="margin-top: 12px;">
+                生成AIと著作権の関係は<strong>コードに限らずイラスト・文章・音声・動画など全コンテンツに共通</strong>する論点で、
+                バイブコーディングの安全運用を考えるうえでも避けて通れません。
+                次の <a href="#copyright-deep" style="color: var(--primary);"><strong>「著作権 詳説」</strong></a> で、日本法・文化庁の整理に沿って踏み込みます。
+            </p>
+
+            <!-- ===== 著作権 詳説（AIと著作権の集中解説） ===== -->
+            <section id="copyright-deep" style="margin-top: 28px; padding-top: 8px; border-top: 2px dashed var(--bg-light);">
+                <h3 style="margin-top: 18px;">🎨 ⑤-拡張：AIと著作権 詳説（日本法ベース）</h3>
+                <p>
+                    ここから先は、<strong>2024〜2025 年に文化庁・文化審議会で整理された「AIと著作権に関する考え方」</strong>に沿って、
+                    生成AI／コーディングエージェントを使うときに最低限知っておきたい著作権の論点をまとめます。
+                    本節は、以下 2 本の解説動画の要点を再構成して反映したものです（出典は各小節と末尾に明記）。
+                </p>
+
+                <div class="card info" style="margin-top: 12px;">
+                    <span class="badge info">出典動画</span>
+                    <ul style="margin-top: 8px;">
+                        <li>
+                            文化庁「<strong>令和6年度著作権セミナー『AIと著作権Ⅱ』</strong>」
+                            （桜木洋子氏／弁護士・原口恵氏／文化庁著作権課・三井氏）
+                            <br>👉 <a href="https://www.youtube.com/watch?v=bD0Kp5PiP8o" target="_blank" rel="noopener">https://www.youtube.com/watch?v=bD0Kp5PiP8o</a>
+                        </li>
+                        <li>
+                            個人解説動画「<strong>生成AIと著作権</strong>」（弁護士リーガルチェック済の整理）
+                            <br>👉 <a href="https://www.youtube.com/watch?v=L3AfBzSVkUI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=L3AfBzSVkUI</a>
+                        </li>
+                    </ul>
+                    <p style="margin: 8px 0 0; font-size: 0.9rem;">
+                        ⚠️ 本節はあくまで<strong>「最初の地図」</strong>です。実務で判断に迷う事案は必ず弁護士など法律専門家へご相談ください。
+                        国によって著作権の取り扱いは異なり、本節は<strong>日本法</strong>を前提にしています。
+                    </p>
+                </div>
+
+                <h4 id="copyright-basics">A. 著作権法の超基礎：保護されるもの／されないもの</h4>
+                <p>
+                    著作権法は「<strong>著作者の権利の保護</strong>」と「<strong>著作物の公正な利用</strong>」のバランスをとり、
+                    最終的に<strong>文化の発展</strong>に寄与することを目的としています（著作権法 第1条）。
+                    生成AIをめぐる議論は、すべてこのバランス感覚の上で読み解くと迷子になりません。
+                </p>
+                <p>そのうえで、AIを使う前に押さえておくべき大前提が次の点です。</p>
+                <div class="do-dont">
+                    <div class="col do">
+                        <h4 style="color: var(--ok);">✅ 著作権で保護される（=「著作物」）</h4>
+                        <ul>
+                            <li><strong>思想または感情を創作的に表現したもの</strong>であって、文芸・学術・美術・音楽の範囲に属するもの</li>
+                            <li>例：小説、脚本、音楽、絵画、写真、映画、プログラム、イラスト など</li>
+                            <li>創作的「表現」が保護対象。表現に至っていれば短くてもOK</li>
+                        </ul>
+                    </div>
+                    <div class="col dont">
+                        <h4 style="color: var(--danger);">❌ 著作権では保護されない</h4>
+                        <ul>
+                            <li><strong>アイデア</strong>（表現に至る前の段階のもの）</li>
+                            <li><strong>作風・画風・文体</strong>（≒アイデア扱い）</li>
+                            <li>単なる事実、誰が作っても同じ表現になる<strong>ありふれた表現</strong></li>
+                            <li>※ 画風が似ているだけでは著作権侵害にならない</li>
+                        </ul>
+                    </div>
+                </div>
+                <blockquote style="margin-top: 10px;">
+                    💡 「保護されるのは<strong>表現</strong>、保護されないのは<strong>アイデア</strong>」というのが国際的な大原則。
+                    ただし両者の境界線はケースバイケースで判断され、実務では難しい事案も多い。
+                    <br><span style="font-size: 0.85rem; color: var(--muted);">出典：文化庁 著作権セミナー『AIと著作権Ⅱ』
+                    <a href="https://www.youtube.com/watch?v=bD0Kp5PiP8o" target="_blank" rel="noopener">https://www.youtube.com/watch?v=bD0Kp5PiP8o</a></span>
+                </blockquote>
+
+                <h4 id="copyright-30-4">B. AI学習と著作権法 第30条の4（「情報解析」の例外）</h4>
+                <p>
+                    生成AIを語るときに必ず出てくるのが、<strong>著作権法 第30条の4</strong> です。
+                    本来、他人の著作物を複製するには著作権者の許諾が必要ですが、
+                    <strong>「著作物に表現された思想・感情の享受を目的としない」</strong>利用（＝<strong>非享受目的</strong>）であれば、
+                    原則として許諾なく利用できる、と定めた<strong>権利制限規定</strong>です。
+                </p>
+                <p>
+                    AI学習のためにインターネット上の画像・テキスト・コードを大量に収集するのは、
+                    その典型的な「<strong>情報解析</strong>」にあたるので、原則 30条の4 が適用されます。
+                </p>
+
+                <div class="card warn" style="margin-top: 12px;">
+                    <span class="badge warn">ただし！ 30条の4 が適用されない 3 つのケース</span>
+                    <ol style="margin-top: 8px;">
+                        <li>
+                            <strong>享受目的が並存している</strong>場合
+                            <ul>
+                                <li>例：特定クリエイターの絵柄を「模写」させるための過学習（いわゆる<strong>狙い撃ち学習</strong>）</li>
+                                <li>例：既存著作物の類似物を出力させる目的での RAG 用データ収集</li>
+                                <li>「非営利・研究」でも、享受目的があれば適用外。逆に「商用」でも非享受なら適用される</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>著作権者の利益を不当に害する</strong>場合（30条の4 ただし書）
+                            <ul>
+                                <li>例：情報解析用に有償販売されているデータベースを無許諾でコピーして学習に使う</li>
+                                <li>例：<code>robots.txt</code>／ID・パスワード等の<strong>技術的措置を回避</strong>して学習データを収集する</li>
+                                <li>例：「近い将来、解析用に販売される」と推認できるデータを先回りで複製する</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>海賊版だと知りながら</strong>学習に使う場合
+                            <ul>
+                                <li>後段の責任追及（AI開発者の侵害責任）でも、極めて不利に働く</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p style="margin: 8px 0 0; font-size: 0.85rem; color: var(--muted);">
+                        出典：文化庁 著作権セミナー『AIと著作権Ⅱ』
+                        <a href="https://www.youtube.com/watch?v=bD0Kp5PiP8o" target="_blank" rel="noopener">https://www.youtube.com/watch?v=bD0Kp5PiP8o</a>
+                    </p>
+                </div>
+
+                <h4 id="copyright-similarity">C. 生成・利用段階：類似性 × 依拠性 の 2 軸判定</h4>
+                <p>
+                    AIに「学習させる」ときの話と、AIで「生成・利用する」ときの話は別です。
+                    生成・利用段階での著作権侵害は、<strong>通常の著作権侵害と同じく次の 2 つが両方そろったとき</strong>に成立します。
+                </p>
+
+                <div class="step-grid" style="margin: 14px 0;">
+                    <div class="step-card">
+                        <div class="step-num">要件 1</div>
+                        <h4>🔍 類似性</h4>
+                        <p>
+                            既存の著作物との<strong>表現上の本質的特徴を直接感得できる</strong>こと。
+                            <br>＝ <strong>創作的表現</strong>が共通している。
+                            <br>※ アイデア・作風・ありふれた表現の共通だけでは類似性にあたらない。
+                        </p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">要件 2</div>
+                        <h4>🧭 依拠性</h4>
+                        <p>
+                            既存の著作物に<strong>接して</strong>、それを自分の作品に<strong>用いた</strong>こと。
+                            <br>＝ 偶然似ただけ（独自創作）は侵害ではない。
+                        </p>
+                    </div>
+                </div>
+
+                <p>類似性は<strong>AIを使っても判断は変わりません</strong>。一方、AI生成の場合の<strong>依拠性</strong>は次の3パターンで整理されます。</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>パターン</th>
+                            <th>AI利用者の認識</th>
+                            <th>学習データに既存著作物が含まれていたか</th>
+                            <th>依拠性</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>①</td>
+                            <td>既存著作物を<strong>認識していた</strong>（例：有名キャラ名やタイトルを入力／Image-to-Image で画像を入力）</td>
+                            <td>問わない</td>
+                            <td><span class="sev high">あり</span></td>
+                        </tr>
+                        <tr>
+                            <td>②</td>
+                            <td>認識していたとは言えない</td>
+                            <td>含まれていた</td>
+                            <td><span class="sev mid">推認される</span></td>
+                        </tr>
+                        <tr>
+                            <td>③</td>
+                            <td>認識していない</td>
+                            <td>含まれていない</td>
+                            <td><span class="sev low">なし</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="card warn" style="margin-top: 12px;">
+                    <span class="badge warn">怖いのはパターン②</span>
+                    <p style="margin: 8px 0 0;">
+                        利用者は<strong>知らずに</strong>そっくりなものを生成したつもりでも、
+                        学習データに当該著作物が含まれていれば<strong>依拠性が推認</strong>され、
+                        類似性さえあれば<strong>著作権侵害</strong>になり得ます。
+                        多くの汎用生成AIは<strong>学習データを公開していない</strong>ため、
+                        利用者の側で②を否定するのは現実的に難しい――ここが生成AIの構造的な怖さです。
+                    </p>
+                    <p style="margin: 8px 0 0; font-size: 0.85rem; color: var(--muted);">
+                        出典：文化庁 著作権セミナー『AIと著作権Ⅱ』
+                        <a href="https://www.youtube.com/watch?v=bD0Kp5PiP8o" target="_blank" rel="noopener">https://www.youtube.com/watch?v=bD0Kp5PiP8o</a>
+                        ／ 個人解説『生成AIと著作権』
+                        <a href="https://www.youtube.com/watch?v=L3AfBzSVkUI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=L3AfBzSVkUI</a>
+                    </p>
+                </div>
+
+                <h4 id="copyright-liability">D. 侵害が起きたとき、誰が何を請求できるか</h4>
+                <p>
+                    著作権侵害が成立すると、権利者は次のような対抗措置を取れます。
+                    重要なのは「<strong>故意・過失の有無で取れる手段が変わる</strong>」点です。
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>請求の種類</th>
+                            <th>故意・過失の要否</th>
+                            <th>典型例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>差止請求</td>
+                            <td>不要</td>
+                            <td>侵害物の生成・公開停止、データセットからの当該著作物の除去、フィルタリング等の予防措置</td>
+                        </tr>
+                        <tr>
+                            <td>不当利得返還請求</td>
+                            <td>不要</td>
+                            <td>侵害により得た利益の返還</td>
+                        </tr>
+                        <tr>
+                            <td>損害賠償請求</td>
+                            <td><strong>必要</strong>（故意 or 過失）</td>
+                            <td>侵害により生じた損害の補填</td>
+                        </tr>
+                        <tr>
+                            <td>刑事罰（10年以下の懲役 等）</td>
+                            <td>故意</td>
+                            <td>悪質な侵害。原則として親告罪</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    また、責任主体は<strong>AI利用者だけ</strong>とは限りません。
+                    一定の事情があれば<strong>AI開発者・AI提供者</strong>も責任を負う場合があります。
+                </p>
+                <ul>
+                    <li>侵害物を高頻度で生成するモデルを提供している</li>
+                    <li>侵害物が出やすいと認識しながら<strong>抑止措置を講じていない</strong></li>
+                    <li>海賊版を学習データに含めていたことが分かった</li>
+                </ul>
+                <p style="font-size: 0.85rem; color: var(--muted);">
+                    出典：文化庁 著作権セミナー『AIと著作権Ⅱ』
+                    <a href="https://www.youtube.com/watch?v=bD0Kp5PiP8o" target="_blank" rel="noopener">https://www.youtube.com/watch?v=bD0Kp5PiP8o</a>
+                </p>
+
+                <h4 id="copyright-output">E. AI生成物に著作権は発生するのか？</h4>
+                <p>
+                    「AIが作ったものは誰のもの？」――よく聞かれる問いです。考え方では、次のように整理されています。
+                </p>
+                <div class="do-dont">
+                    <div class="col dont">
+                        <h4 style="color: var(--danger);">❌ 著作物にあたらない（=著作権なし）</h4>
+                        <ul>
+                            <li>AIが<strong>自律的</strong>に生成したもの</li>
+                            <li>指示が<strong>ごく簡単</strong>なものに留まる場合</li>
+                            <li>完全ランダム生成</li>
+                        </ul>
+                    </div>
+                    <div class="col do">
+                        <h4 style="color: var(--ok);">✅ 著作物にあたり得る（=利用者が著作者になり得る）</h4>
+                        <ul>
+                            <li>人がAIを<strong>「道具」として使った</strong>と認められる場合</li>
+                            <li>判断要素：①<strong>創作意図</strong>がある、②<strong>創作的寄与</strong>がある</li>
+                            <li>創作的寄与は<strong>総合判断</strong>（指示の具体性、試行回数、修正の有無 等）</li>
+                            <li>生成後に人が加えた創作的な修正部分には著作物性が認められ得る</li>
+                        </ul>
+                    </div>
+                </div>
+                <blockquote style="margin-top: 10px;">
+                    💡 「AIが生成したか否か」で二者択一に決まるのではなく、
+                    <strong>「人がどれだけ創作に関与したか」を総合的に評価する</strong>のがポイント。
+                    プロンプトと生成過程を残しておくことが、後で著作物性を主張する根拠にもなります。
+                    <br><span style="font-size: 0.85rem; color: var(--muted);">出典：文化庁 著作権セミナー『AIと著作権Ⅱ』
+                    <a href="https://www.youtube.com/watch?v=bD0Kp5PiP8o" target="_blank" rel="noopener">https://www.youtube.com/watch?v=bD0Kp5PiP8o</a>
+                    ／ 個人解説『生成AIと著作権』
+                    <a href="https://www.youtube.com/watch?v=L3AfBzSVkUI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=L3AfBzSVkUI</a></span>
+                </blockquote>
+
+                <h4 id="copyright-practice">F. 実務での「過失を減らす」具体策</h4>
+                <p>
+                    無過失で生成しただけでも差止請求は飛んできます。それでも、
+                    <strong>「過失なし」と言える状態を作っておく</strong>ことで、損害賠償リスクは大幅に下げられます。
+                    バイブコーディング／生成AI実務でそのまま使えるチェック項目を挙げます。
+                </p>
+                <ul class="checklist">
+                    <li><strong>類似性チェック</strong>：生成物を画像検索・コード検索にかけ、既存著作物との類似がないかを確認した</li>
+                    <li><strong>有名キャラ・有名作品の入力禁止</strong>：プロンプトにタイトル・固有名詞・既存画像を直接入力していない</li>
+                    <li><strong>学習データの素性を確認</strong>：可能なら学習データの来歴が明示されたAI（例：Adobe Firefly のようなクリーン学習を謳うサービス）を選ぶ</li>
+                    <li><strong>プロンプトと生成過程のログ保存</strong>：いつ・どのプロンプトで・どの生成結果を採用したかを記録（依拠性なしの主張＆著作物性主張の両方で効く）</li>
+                    <li><strong>狙い撃ち学習を行わない</strong>：特定クリエイターの少量作品のみでの追加学習（過学習）は 30条の4 適用外リスクが高い</li>
+                    <li><strong>海賊版データを学習に絶対使わない</strong>：素性不明のデータセットには手を出さない</li>
+                    <li><strong>差止対応の事前準備</strong>：問題があった時に該当箇所を即座に削除・非公開化できる運用にしておく</li>
+                    <li><strong>業務利用と私的利用を分ける</strong>：私的複製・引用・授業目的（第35条）など権利制限規定が効く範囲を把握しておく</li>
+                </ul>
+
+                <div class="card ok" style="margin-top: 12px;">
+                    <span class="badge ok">バイブコーディングへの含意</span>
+                    <p style="margin: 8px 0 0;">
+                        生成AIが出したコードに<strong>OSSの長い完全一致</strong>が混じっていれば、これは典型的な「類似性」のシグナル。
+                        プロンプトに「特定リポジトリ名」「特定作者名」を入力していれば「依拠性」も否定しづらくなります。
+                        <strong>PRレビューの段階で grep / GitHub Code Search による類似コード探索</strong>を最低限の儀式として組み込みましょう。
+                    </p>
+                </div>
+
+                <h4 id="copyright-sources">G. 出典まとめ・さらに学びたい人へ</h4>
+                <ul>
+                    <li>
+                        文化庁「<strong>令和6年度著作権セミナー『AIと著作権Ⅱ』</strong>」（公式）
+                        <br>👉 <a href="https://www.youtube.com/watch?v=bD0Kp5PiP8o" target="_blank" rel="noopener">https://www.youtube.com/watch?v=bD0Kp5PiP8o</a>
+                    </li>
+                    <li>
+                        個人解説動画「<strong>生成AIと著作権</strong>」（弁護士リーガルチェック済の整理／日本法ベース）
+                        <br>👉 <a href="https://www.youtube.com/watch?v=L3AfBzSVkUI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=L3AfBzSVkUI</a>
+                    </li>
+                    <li>
+                        文化庁「<strong>AIと著作権に関する考え方について</strong>」（2024年3月公表・考え方文書本体）
+                        <br>👉 <a href="https://current.ndl.go.jp/car/218811" target="_blank" rel="noopener">https://current.ndl.go.jp/car/218811</a>
+                    </li>
+                    <li>
+                        文化庁「<strong>AIと著作権に関するチェックリスト＆ガイダンス</strong>」（ステークホルダー別の実務ガイド）
+                        <br>👉 <a href="https://current.ndl.go.jp/car/224456" target="_blank" rel="noopener">https://current.ndl.go.jp/car/224456</a>
+                    </li>
+                    <li>
+                        著作権侵害に対する権利行使については、<strong>文化庁の無料弁護士相談窓口</strong>等の活用も推奨されています
+                    </li>
+                </ul>
+            </section>
+
+            <h4>⑥ 過信・責任分界の曖昧化</h4>
+            <p>
+                「AIがそう言ったから」は、<strong>責任を引き受けない言い訳</strong>として通用しません。
+                これは技術論ではなく組織論で、次章のガバナンスの話につながります。
+            </p>
+        </section>
+
+        <!-- ===== 第3章 ===== -->
+        <section class="section" id="chapter3">
+            <h2>第3章: 組織のAIガバナンス</h2>
+            <p>
+                個人の良心や勘で運用するフェーズはすでに終わっています。
+                ここでは「<strong>明日から自社で動かせる最小限のAIガバナンス</strong>」を、3つの軸でまとめます。
+            </p>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-gov-3axis.png" alt="三角形のピラミッド図。底辺に「① 利用ポリシー（何が許され、何が禁止か）」、左斜辺に「② ログと監査（誰が何をしたか追跡）」、右斜辺に「③ 責任分界（誰の判断か）」が並び、中央に「AI ガバナンス」と書かれている。3 つが揃って初めて成立することを示す。">
+            </div>
+
+            <div class="step-grid">
+                <div class="step-card"><div class="step-num">軸 1</div><h4>📜 利用ポリシー</h4><p>「何を AI にしてよく、何が禁止か」を文書化する。</p></div>
+                <div class="step-card"><div class="step-num">軸 2</div><h4>🗂 ログと監査</h4><p>誰がいつ何を投げたか / 何を出力したかを残す。</p></div>
+                <div class="step-card"><div class="step-num">軸 3</div><h4>⚖️ 責任分界</h4><p>AI の出力を「誰の判断」として扱うかを決める。</p></div>
+            </div>
+
+            <h3 id="gov-policy">3-1. 利用ポリシーの最小テンプレ</h3>
+            <p>
+                「分厚いガイドラインを作る前に、まずA4 1枚」を目指します。次の項目だけ埋めれば運用が始められます。
+            </p>
+            <pre><code># 社内 AI コーディング利用ポリシー (v0.1)
+
+## 1. 利用してよい AI ツール
+- 許可: Codex (社内SSO経由) / Claude Code (社内ゲートウェイ経由) / Antigravity
+- 禁止: 個人アカウントでのChatGPT/Claude直接利用（業務コードの貼付け）
+
+## 2. 入力してよいデータ
+- ✅ 公開済みのコード、サンプルデータ、自分が著者のドキュメント
+- ⚠️ 社内設計書・顧客名・営業情報 → マスクの上で許可
+- ❌ 本番DBダンプ・APIキー・個人情報・未公開財務情報
+
+## 3. 出力の取り扱い
+- AI生成コードは必ず<strong>人間のレビュー</strong>を経てマージする
+- 顧客納品物に組み込む場合は<strong>ライセンス確認</strong>を行う
+- AI が生成したと分かるよう PR 本文に <code>[AI-assisted]</code> を付ける
+
+## 4. 禁止行為
+- AI への「全自動で本番デプロイ」「全自動で外部送信」の指示
+- 承認モード OFF での業務リポジトリ操作
+- 個人アカウントでの長時間オーバーナイト実行
+
+## 5. インシデント時の連絡先
+- セキュリティ窓口: security@example.com / #ai-incident
+</code></pre>
+
+            <h3 id="gov-log">3-2. ログと監査</h3>
+            <p>
+                何かあったとき「<strong>誰が・いつ・何を AI に投げ、何を受け取り、何を merge したか</strong>」を追えるようにします。
+                これは責めるためではなく、<strong>同じ事故をチームで再発させない</strong>ためです。
+            </p>
+            <ul>
+                <li><strong>会話ログ</strong>：各ツールの管理コンソール / SSO ログ / 監査ログ を保持期間込みで設計</li>
+                <li><strong>変更ログ</strong>：AI が触ったコミットは PR 本文に <code>[AI-assisted]</code> やラベル付与で識別可能に</li>
+                <li><strong>承認ログ</strong>：破壊的アクションや本番反映は、<strong>人間の承認スタンプ</strong>を残す（GitHub の Required Reviewers など）</li>
+            </ul>
+
+            <h3 id="gov-roles">3-3. 責任分界（RACI モデル例）</h3>
+            <p>
+                「AI が判断した」は責任の主体になり得ません。<strong>必ず人間に紐付けて整理</strong>します。
+                RACI は PMBOK ガイドにも収録されているプロジェクトマネジメントの定番ツールです
+                （<a href="https://www.smartsheet.com/comprehensive-project-management-guide-everything-raci" target="_blank" rel="noopener" style="color: var(--primary);">RACI 解説 (Smartsheet)</a>、
+                <a href="https://en.wikipedia.org/wiki/Responsibility_assignment_matrix" target="_blank" rel="noopener" style="color: var(--primary);">Wikipedia: Responsibility assignment matrix</a>）。
+            </p>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-raci.png" alt="横軸にアクション（草案コード生成 / PR レビュー / 本番デプロイ / ガバナンス違反判定）、縦軸に役割（開発者 / レビュアー / リリース担当 / セキュリティ / CISO / AI）を配置した RACI マトリクス。R（実行）は青、A（説明責任）は赤、C（相談）は黄、I（共有）はグレーで色分けされている。AI は決して A（説明責任）を持たないことが一目で分かる。">
+            </div>
+            <table>
+                <thead>
+                    <tr><th>アクション</th><th>実行 (R)</th><th>説明責任 (A)</th><th>相談 (C)</th><th>共有 (I)</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AI による草案コード生成</td>
+                        <td>開発者</td>
+                        <td>開発者</td>
+                        <td>AI</td>
+                        <td>チーム</td>
+                    </tr>
+                    <tr>
+                        <td>PR レビュー & マージ</td>
+                        <td>レビュアー</td>
+                        <td>テックリード</td>
+                        <td>セキュリティ</td>
+                        <td>チーム</td>
+                    </tr>
+                    <tr>
+                        <td>本番デプロイ</td>
+                        <td>リリース担当</td>
+                        <td>サービスオーナー</td>
+                        <td>SRE / セキュリティ</td>
+                        <td>全社</td>
+                    </tr>
+                    <tr>
+                        <td>ガバナンス違反の判定</td>
+                        <td>セキュリティ</td>
+                        <td>CISO / 情シス長</td>
+                        <td>法務 / 人事</td>
+                        <td>該当組織</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card ok" style="margin-top: 16px;">
+                <span class="badge ok">運用のコツ</span>
+                <p style="margin: 8px 0 0;">
+                    「<strong>ポリシーを作る</strong>」より「<strong>ポリシーを毎月更新する</strong>」ほうが10倍重要です。
+                    最初から完璧を目指さず、v0.1 → v0.2 → … と<strong>四半期ごとに改訂する前提</strong>で運用してください。
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== 第4章 ===== -->
+        <section class="section" id="chapter4">
+            <h2>第4章: 実践チェックリスト</h2>
+            <p>
+                ここまでの内容を、明日の業務でそのまま使える形に圧縮しました。<strong>印刷 or ブクマ推奨</strong>です。
+            </p>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-checklist-mock.png" alt="A4 縦の紙に印刷されたチェックリストの俯瞰イラスト。タイトル「AI コーディング 日次セルフチェック」、7 項項目チェックボックス、最下部にサインと日付欄。机の上にコーヒーカップとペンが添えられている。実務感のある写真風イラスト。">
+            </div>
+
+            <h3 id="checklist-dev">4-1. 開発者向け（毎日のセルフチェック）</h3>
+            <ul class="checklist">
+                <li>本番認証情報・顧客データ・個人情報を AI のプロンプトに直接貼っていないか</li>
+                <li>AI が提案したライブラリ名を、公式レジストリで存在確認したか</li>
+                <li>AI が出したコードを、自分の言葉で <strong>1行ずつ説明できるか</strong></li>
+                <li><code>rm</code> / <code>DROP</code> / <code>force push</code> など破壊的コマンドを<strong>承認なしで実行</strong>させていないか</li>
+                <li>本番リポジトリでは<strong>Worktree / サンドボックス / 承認モード</strong>を有効にしているか</li>
+                <li>PR 本文に <code>[AI-assisted]</code> を付け、AI が触った範囲が分かるようにしたか</li>
+                <li>エラー時に「AIに直して」だけで済ませず、<strong>原因を一度は自分で読み解いた</strong>か</li>
+            </ul>
+
+            <h3 id="checklist-mgr">4-2. 管理者・リーダー向け（月次レビュー）</h3>
+            <ul class="checklist">
+                <li>社内 AI 利用ポリシー（v0.x）が<strong>1ページ以内</strong>で配布されているか</li>
+                <li>禁止データ / 推奨データの<strong>具体例</strong>がメンバーと共有されているか</li>
+                <li>AI ツールの<strong>監査ログ / SSO ログ</strong>が保持期間込みで設計されているか</li>
+                <li>破壊的アクション・本番反映に<strong>人間の承認</strong>が挟まる構成になっているか</li>
+                <li>インシデント窓口・連絡フローが<strong>1ヶ所に集約</strong>されているか</li>
+                <li>ポリシーが<strong>四半期で改訂</strong>される運用になっているか</li>
+                <li>新しく出たモデル/機能（例: Antigravity 2.0 の Scheduled Background Tasks）の<strong>リスク評価</strong>を実施したか</li>
+            </ul>
+        </section>
+
+        <!-- ===== 第5章 演習 ===== -->
+        <section class="section" id="chapter5">
+            <h2>第5章: ハンズオン演習</h2>
+            <p>
+                ここからは手を動かすパートです。3つの演習を順にやってみてください。
+                <strong>所要時間は合計30〜45分</strong>を想定しています。
+            </p>
+
+            <h3>演習 1: 危険なプロンプトを直してみる</h3>
+            <p>以下のプロンプトには <strong>少なくとも3つの問題</strong>があります。直して、安全版を書いてみてください。</p>
+            <pre><code># ❌ 直す前
+本番DBの接続情報は postgres://admin:P@ssw0rd@10.0.0.1:5432/prod_users です。
+このDBから全ユーザーをCSV出力して、添付の顧客リスト customers.xlsx と突合して、
+重複していたら DELETE してください。AIにすべて任せます。自動で実行してOKです。</code></pre>
+            <details>
+                <summary style="cursor: pointer; color: var(--blue); font-weight: 700;">▶ 模範解答を見る</summary>
+                <pre style="margin-top: 8px;"><code># ✅ 直したあと
+以下の<strong>サンプルデータ</strong>（個人情報なし、production の構造のみ模した10行）を使って、
+重複ユーザーを抽出する SQL とPython スクリプトを書いてください。
+- 実行は私が手元で行います。<strong>AI側で実行・送信はしないでください</strong>
+- <strong>DELETE は提案しないでください</strong>。重複の「検出」のみが目的です
+- 利用ライブラリは MIT / Apache-2.0 / BSD のみ可とします
+
+# 問題点まとめ:
+1. 本番認証情報をそのまま貼っている → サンプルデータに置換
+2. AIに自動実行を任せている     → 実行は人間
+3. DELETE まで委ねている         → 検出のみに範囲限定
+4. ライセンス制約が未指定        → 明示</code></pre>
+            </details>
+
+            <h3>演習 2: 自分のチームの 1ページ AI ポリシーを書く</h3>
+            <p>第3章のテンプレを下敷きに、<strong>あなたのチーム名で v0.1 を作成</strong>してみてください。所要 10 分。</p>
+            <ol>
+                <li>利用してよい AI ツールを3つまでに絞る</li>
+                <li>入力 OK / NG データを<strong>具体例</strong>で書く（抽象語禁止）</li>
+                <li>禁止行為を<strong>3つだけ</strong>挙げる（多すぎは形骸化する）</li>
+                <li>インシデント窓口を1つだけ書く</li>
+            </ol>
+
+            <h3>演習 3: 「やらかしログ」を書く文化を作る</h3>
+            <p>
+                最後に、チームで<strong>「AIに任せて失敗した話」</strong>を匿名で共有できる仕組みを1つ決めてください。
+                例: 週次の MTG の最後 5 分、Slack の <code>#ai-yarakashi</code> チャンネル、社内 Wiki の "AI失敗博物館" など。
+            </p>
+            <blockquote>
+                💬 <strong>やらかしを共有できるチームは強い。</strong>
+                AIの事故は「個人の不注意」ではなく、<strong>仕組みで防ぐ性質のもの</strong>です。共有こそが最大のガバナンスです。
+            </blockquote>
+        </section>
+
+        <!-- ===== Outro ===== -->
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-summary.png" alt="AI コーディングを安全に運用するための 1 枚まとめ。中央に「AI = 強力なアクセル、人間 = ブレーキ＆シートベルト」のキャッチコピー。左に「① 個人の習慣（読む・確認する・止める）」、右に「② チームの仕組み（ポリシー / ログ / RACI）」、下に「四半期で改訂し続ける」の矢印。配色は赤・緑・青で構成。">
+            </div>
+            <p>
+                AIコーディングエージェントは、<strong>正しく使えば過去最強の生産性ブースター</strong>です。
+                一方で、<strong>「ブレーキとシートベルト」がないままアクセル全開</strong>にしてしまうと、
+                個人の評価も、チームの信用も、会社のレピュテーションも一瞬で吹き飛びます。
+            </p>
+            <p>
+                この講座のチェックリストは、すべて「<strong>1人で始められて、チームに広げられる</strong>」ものにしています。
+                今日のうちに最低1つだけ持ち帰って、明日からの開発に組み込んでみてください。
+            </p>
+
+            <div class="nav-btns">
+                <a href="index.html" class="btn">← ポータルに戻る</a>
+                <a href="antigravity.html" class="btn">Antigravity ハンズオンへ →</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

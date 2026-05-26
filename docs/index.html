@@ -19,10 +19,12 @@
             --accent-claude: #d97706;
             --accent-antigravity: #059669;
             --accent-slide: #7c3aed;
+            --accent-risk: #dc2626;
             --accent-codex-gradient: linear-gradient(135deg, #6366f1, #4f46e5);
             --accent-claude-gradient: linear-gradient(135deg, #f59e0b, #d97706);
             --accent-antigravity-gradient: linear-gradient(135deg, #10b981, #059669);
             --accent-slide-gradient: linear-gradient(135deg, #a78bfa, #7c3aed);
+            --accent-risk-gradient: linear-gradient(135deg, #f87171, #dc2626);
         }
 
         * {
@@ -110,6 +112,7 @@
         .card.claude::before { background: var(--accent-claude-gradient); }
         .card.antigravity::before { background: var(--accent-antigravity-gradient); }
         .card.slide::before { background: var(--accent-slide-gradient); }
+        .card.risk::before { background: var(--accent-risk-gradient); }
 
         .card:hover {
             transform: translateY(-8px);
@@ -121,6 +124,7 @@
         .card.claude:hover { box-shadow: 0 20px 40px rgba(245, 158, 11, 0.1); }
         .card.antigravity:hover { box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1); }
         .card.slide:hover { box-shadow: 0 20px 40px rgba(124, 58, 237, 0.1); }
+        .card.risk:hover { box-shadow: 0 20px 40px rgba(220, 38, 38, 0.12); }
 
         .card-header {
             margin-bottom: 2rem;
@@ -160,6 +164,7 @@
         .card.claude .badge { background: rgba(245, 158, 11, 0.15); color: #fde68a; }
         .card.antigravity .badge { background: rgba(16, 185, 129, 0.15); color: #a7f3d0; }
         .card.slide .badge { background: rgba(124, 58, 237, 0.15); color: #c4b5fd; }
+        .card.risk .badge { background: rgba(220, 38, 38, 0.18); color: #fecaca; }
 
         .card-desc {
             font-size: 0.95rem;
@@ -189,6 +194,7 @@
         .card.claude .btn { background: var(--accent-claude-gradient); }
         .card.antigravity .btn { background: var(--accent-antigravity-gradient); }
         .card.slide .btn { background: var(--accent-slide-gradient); }
+        .card.risk .btn { background: var(--accent-risk-gradient); }
 
         .btn:hover {
             filter: brightness(1.1);
@@ -314,6 +320,21 @@
                 <p class="card-desc">3つのエージェント（Claude / Codex / Antigravity）を横断して使う応用ハンズオン。Slidev・Marp・HTML でスライドを生成し、Playwright MCP/CLI で AI 自身がスクショを撮りながらデザインの崩れをチェック・修正する「自律ループ」を体験します。</p>
             </div>
             <a href="howToCreateSlide.html" class="btn">スライド作成ガイドを開始 ➔</a>
+        </div>
+
+        <!-- AI リスク & ガバナンス（リテラシー編） -->
+        <div class="card risk">
+            <div class="card-header">
+                <span class="card-icon">🛡️</span>
+                <h2 class="card-title">AI リスク &amp; ガバナンス</h2>
+                <div class="badges">
+                    <span class="badge">バイブコーディング</span>
+                    <span class="badge">セキュリティ</span>
+                    <span class="badge">社内ポリシー</span>
+                </div>
+                <p class="card-desc">AI コーディングエージェントを「正しく怖がる」ためのリテラシー講座。バイブコーディングの落とし穴、ハルシネーション／情報漏えい／プロンプトインジェクション等の代表リスク、そして 1 ページで作れる社内ガバナンスのテンプレートまでを一気通貫で学びます。</p>
+            </div>
+            <a href="risk-governance.html" class="btn">リスク &amp; ガバナンス講座を開始 ➔</a>
         </div>
     </main>
 
