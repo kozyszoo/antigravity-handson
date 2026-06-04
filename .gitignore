@@ -47,3 +47,7 @@ temp/
 # Marp outputs (keep the main ones, ignore temp)
 *.html.tmp
 *.pdf.tmp
+
+# Antigravity & Playwright MCP
+.antigravitycli/
+.playwright-mcp/
