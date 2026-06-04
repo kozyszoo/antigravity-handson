@@ -3,6 +3,8 @@
 .agent/cache/
 *.codex
 
+tmp/
+
 # Serena MCP（ローカル解析キャッシュ・メモリ）
 .serena/
 

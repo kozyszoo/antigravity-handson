@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Apps Script (GAS) ハンズオンガイド ｜ 発展編</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* 発展編は「生成 AI 活用」を象徴するパープルを基調にする */
+            --primary: #7c3aed;
+            --bg-dark: #f6f4fb;
+            --bg-mid: #ffffff;
+            --bg-light: #ece6f7;
+            --text: #251f33;
+            --muted: #645a73;
+            --green: #188038;
+            --blue: #1a73e8;
+            --orange: #e8710a;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-mid), var(--bg-light));
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--green);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: #f0ebfa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #241b33;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid var(--bg-light);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #ece6f7;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        .callout {
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .callout-warn {
+            background: #fff4e5;
+            border-left: 4px solid var(--orange);
+            color: #7a4a06;
+        }
+
+        .callout-info {
+            background: #e8f0fe;
+            border-left: 4px solid var(--blue);
+            color: #174ea6;
+        }
+
+        .callout-tip {
+            background: #f0e9fb;
+            border-left: 4px solid var(--primary);
+            color: #5b21b6;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .badge-level {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-time {
+            background: var(--green);
+            color: white;
+        }
+
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .screenshot-sm {
+            max-width: 640px;
+        }
+
+        /* プロンプト例カード */
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .prompt-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 18px 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .prompt-card .prompt-title {
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .prompt-card .prompt-body {
+            background: var(--bg-mid);
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 0.88rem;
+            color: var(--muted);
+            border: 1px dashed var(--primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🚀 GAS 発展編</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="gas-beginner.html" style="font-weight: bold; color: var(--green); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">science</span>初級編に戻る</a></li>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#step1">Step 1: AI を相棒にする流れ</a></li>
+                <li><a href="#step2">Step 2: 1通にまとめる</a></li>
+                <li><a href="#step3">Step 3: 優先度をつける</a></li>
+                <li><a href="#step4">Step 4: 完了状況を管理</a></li>
+                <li><a href="#step5">Step 5: カレンダー連携</a></li>
+                <li><a href="#step6">Step 6: OpenAI API 連携</a></li>
+                <li><a href="#deep-dive">📺 さらに深掘り</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <span class="badge badge-level">発展編</span>
+            <h1>🚀 生成AI活用コーディングハンズオン<br>～ Google Apps Script (GAS) 応用と発展 ～</h1>
+            <p style="margin-top:8px;">初級編で作ったタスク通知アプリに、<strong>生成 AI を相棒にして</strong>オリジナルの機能を追加していきます。「自分でゼロから書く」のではなく「AI に書かせて動かす」体験がテーマです。</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">前提: 初級編のタスク通知アプリが完成していること</p>
+        </div>
+
+        <!-- Intro -->
+        <section class="section" id="intro">
+            <h2>はじめに</h2>
+            <div class="callout callout-info">
+                ℹ️ この発展編は<strong>初級編の続き</strong>です。まだの方は先に
+                <a href="gas-beginner.html" style="font-weight:700;">初級編（タスク通知アプリ作成）</a>
+                を完了させてから戻ってきてください。
+            </div>
+
+            <p>初級編では、毎日のタスクを Gmail で自動通知するアプリを作りました。発展編では、各自が契約・利用している<strong>文章系の生成 AI（ChatGPT / Gemini / Claude など）</strong>を活用して、このアプリにオリジナルの要素を付け加えていきます。</p>
+
+            <h3>🎯 この発展編のゴール</h3>
+            <ul>
+                <li>「やりたいこと」を生成 AI に伝えてコードを書いてもらう<strong>進め方のコツ</strong>を身につける</li>
+                <li>タスク通知アプリを 5 つの方向に拡張する例を体験する（まとめ送信 / 優先度 / 完了管理 / カレンダー連携 / OpenAI API）</li>
+                <li>エラーが出ても、AI に質問しながら自走できるようになる</li>
+            </ul>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">🧩 拡張アイデア一覧</div>
+                <table style="margin: 0;">
+                    <tr><th>機能</th><th>やること</th></tr>
+                    <tr><td>📬 1通にまとめる</td><td>複数タスクのお知らせを 1 通のメールで送る</td></tr>
+                    <tr><td>🔺 優先度</td><td>タスクの重要度に応じて通知を強調する</td></tr>
+                    <tr><td>✅ 完了管理</td><td>未完了のタスクだけ通知する</td></tr>
+                    <tr><td>📅 カレンダー連携</td><td>Google カレンダーの予定もタスクとして通知</td></tr>
+                    <tr><td>🤖 OpenAI 連携</td><td>秘書風の文面を AI に生成させる</td></tr>
+                </table>
+            </div>
+
+            <div class="nav-btns">
+                <a href="gas-beginner.html" class="btn">← 初級編</a>
+                <a href="#step1" class="btn">Step 1 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="section" id="step1">
+            <span class="badge badge-time">基本姿勢</span>
+            <h2>Step 1: 生成 AI を相棒にする「進め方」</h2>
+            <p>発展編で一番大事なのは、コードを丸暗記することではなく、<strong>生成 AI とのやり取り方</strong>を覚えることです。実装は次のサイクルを回すだけで進みます。</p>
+
+            <img class="screenshot" src="img/gas-35.png"
+                alt="実装する時の流れの図。「やりたいこと/わからないことを ChatGPT 等に相談する」→「返答に沿って実装を進めてみる」→「わからないことにぶつかる」→ 最初に戻る、というループを表したフローチャート">
+
+            <h3>🔑 AI に質問するときの 3 つのコツ</h3>
+            <ol>
+                <li><strong>今のスクリプトを丸ごと貼り付ける</strong> … AI はあなたのコードを見られません。まずは現状のコード全文を貼り、その上で依頼します。</li>
+                <li><strong>「何をしたいか」を一文で伝える</strong> … 例:「このスクリプトの複数のタスクのお知らせを1つのメールで送信できるようにして」</li>
+                <li><strong>エラーはそのままコピペして聞く</strong> … 実行ログに出たエラー文を貼って「このエラーの原因と直し方を教えて」と聞くのが最速です。</li>
+            </ol>
+
+            <div class="callout callout-tip">
+                💡 <strong>基本のプロンプトのかたち</strong><br>
+                <code>（スクリプトを全文貼り付け）</code> の後に、改行して
+                <code>↑このスクリプトで、〇〇できるようにして</code> と添えるだけ。これだけで AI が書き換え案を返してくれます。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#intro" class="btn">← はじめに</a>
+                <a href="#step2" class="btn">Step 2 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="section" id="step2">
+            <span class="badge badge-time">📬 まとめ送信</span>
+            <h2>Step 2: 複数タスクを 1 通のメールにまとめる</h2>
+            <p>初級編のコードは、今日のタスクが 3 件あればメールも 3 通届いてしまいます。これを<strong>1 通にまとめて送る</strong>ように変えてみましょう。</p>
+
+            <h4>🤖 プロンプト例</h4>
+            <div class="prompt-card">
+                <div class="prompt-body">このスクリプトの複数のタスクのお知らせを1つのメールで送信できるようにして</div>
+            </div>
+
+            <h4>💡 AI が返してくるコードのイメージ</h4>
+            <p>ポイントは、<code>forEach</code> でその都度送るのをやめて、いったん<strong>本文を 1 つの文字列に組み立ててから、最後に 1 回だけ送る</strong>ことです。</p>
+            <pre><code>// 今日のタスク（tasksToday）が抽出された後...
+
+// タスクが1件もなければ送らない
+if (tasksToday.length === 0) return;
+
+const recipientEmail = 'your.email@example.com'; // 自分のアドレスに置き換える
+
+// 本文を1つにまとめる（箇条書き）
+let body = '本日のタスクは以下の通りです。<br><ul>';
+tasksToday.forEach(task => {
+  body += `<li>${task[0]}</li>`; // task[0] = タスク名
+});
+body += '</ul>';
+
+// まとめて1通だけ送信
+MailApp.sendEmail({
+  to: recipientEmail,
+  subject: `本日のタスク（${tasksToday.length}件）`,
+  htmlBody: body
+});</code></pre>
+
+            <div class="callout callout-info">
+                ℹ️ <code>htmlBody</code> に <code>&lt;ul&gt;&lt;li&gt;</code> などの HTML タグを書くと、メールが<strong>箇条書きで見やすく</strong>表示されます。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step1" class="btn">← Step 1</a>
+                <a href="#step3" class="btn">Step 3 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="section" id="step3">
+            <span class="badge badge-time">🔺 優先度</span>
+            <h2>Step 3: タスクに優先度を追加する</h2>
+            <p>タスクの重要度に応じて優先度を設定し、通知で<strong>強調表示</strong>することで、重要なタスクに注意を向けやすくできます。</p>
+
+            <h4>📋 準備</h4>
+            <ol>
+                <li>スプレッドシートに <strong>「優先度」列（C 列など）</strong>を追加する</li>
+                <li>各タスクに「高」「中」「低」などの値を入力する</li>
+            </ol>
+
+            <h4>🤖 プロンプト例</h4>
+            <div class="prompt-card">
+                <div class="prompt-body">このスクリプトに、タスクの優先度を追加できるようにして</div>
+            </div>
+
+            <h4>💡 実装イメージ</h4>
+            <p>優先度の列（例: <code>task[3]</code>）を読み取り、値に応じてメッセージを変えます。</p>
+            <pre><code>tasksToday.forEach(task => {
+  const taskName = task[0];
+  const recipientEmail = task[2]; // 通知先（メール列を使う場合）
+  const priority = task[3];       // 優先度を取得
+
+  // 優先度に応じてメッセージを変更
+  let message = `本日のタスク: ${taskName}`;
+  if (priority === "高") {
+    message = `<h1>重要!</h1> 本日のタスク: ${taskName}`; // HTML タグで強調
+  } else if (priority === "低") {
+    message = `本日のタスク: ${taskName} (優先度: 低)`;
+  }
+
+  // ...（Gmail 送信処理）...
+});</code></pre>
+
+            <div class="nav-btns">
+                <a href="#step2" class="btn">← Step 2</a>
+                <a href="#step4" class="btn">Step 4 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section class="section" id="step4">
+            <span class="badge badge-time">✅ 完了管理</span>
+            <h2>Step 4: タスクの完了状況を管理する</h2>
+            <p>完了状況をスプレッドシートで管理し、<strong>未完了のタスクだけ通知</strong>すれば、終わったタスクの通知に煩わされなくなります。</p>
+
+            <h4>📋 準備</h4>
+            <ol>
+                <li>スプレッドシートに <strong>「完了状況」列</strong>を追加する</li>
+                <li>タスクが終わったら「完了」と入力する</li>
+            </ol>
+
+            <h4>🤖 プロンプト例</h4>
+            <div class="prompt-card">
+                <div class="prompt-body">このスクリプトの、タスクが未完了のものだけ通知するようにして</div>
+            </div>
+
+            <h4>💡 実装イメージ</h4>
+            <p>完了状況の列（例: <code>task[4]</code>）が「完了」のものを通知対象から外す、もしくは取り消し線で表示します。</p>
+            <pre><code>tasksToday.forEach(task => {
+  // ...
+  const status = task[4]; // 完了状況を取得
+
+  // 完了状況に応じてメッセージを変更
+  if (status === "完了") {
+    message = `<strike>${message}</strike> (完了)`; // 取り消し線で表示
+  }
+
+  // ...（Gmail 送信処理）...
+});</code></pre>
+
+            <div class="callout callout-tip">
+                💡 「<strong>完了したタスクは通知自体を飛ばしたい</strong>」場合は、<code>if (status === "完了") return;</code> のように <code>forEach</code> 内で <code>return</code> させると、その行はスキップされます。AI に「未完了だけ送って」と依頼すればこの形を提案してくれます。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step3" class="btn">← Step 3</a>
+                <a href="#step5" class="btn">Step 5 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 5 -->
+        <section class="section" id="step5">
+            <span class="badge badge-time">📅 カレンダー連携</span>
+            <h2>Step 5: Google カレンダーと連携する</h2>
+            <p>Google カレンダーの予定をタスクとして扱い、Gmail で通知すれば、<strong>スケジュール管理とタスク管理を統合</strong>できます。</p>
+
+            <h4>🤖 プロンプト例</h4>
+            <div class="prompt-card">
+                <div class="prompt-body">このスクリプトで、Google カレンダーと連携できるようにして</div>
+            </div>
+
+            <h4>💡 実装イメージ</h4>
+            <p>GAS には標準で <code>CalendarApp</code> が用意されており、その日の予定を簡単に取得できます。取得した予定を、タスクの配列に追加してから通知します。</p>
+            <pre><code>// Google カレンダーから今日の予定を取得
+const calendarId = 'your.calendar.id@group.calendar.google.com'; // カレンダー ID に置き換える
+const events = CalendarApp.getCalendarById(calendarId).getEventsForDay(today);
+
+// 予定をタスクとして追加
+events.forEach(event => {
+  tasksToday.push([event.getTitle(), formattedToday, 'your.email@example.com']);
+});
+
+// ...（この後、通常どおり Gmail 通知を送信）...</code></pre>
+
+            <div class="callout callout-info">
+                ℹ️ <strong>カレンダー ID</strong> は、Google カレンダーの「設定と共有」→「カレンダーの統合」から確認できます。自分のメインカレンダーなら、ご自身の Gmail アドレスがそのまま ID になります。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step4" class="btn">← Step 4</a>
+                <a href="#step6" class="btn">Step 6 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 6 -->
+        <section class="section" id="step6">
+            <span class="badge badge-time">🤖 AI 連携</span>
+            <h2>Step 6: 文章生成 AI（OpenAI API）の活用</h2>
+            <p>仕上げに、OpenAI などの<strong>文章生成 AI を GAS から呼び出して</strong>、タスク名から通知文を自動生成させてみましょう。たとえば「秘書風の文面」で通知させる、といった遊びができます。</p>
+
+            <h4>🤖 プロンプト例</h4>
+            <div class="prompt-card">
+                <div class="prompt-body">このスクリプトのメール送信で、秘書風に返答を通知するように OpenAI API の使い方を教えて</div>
+            </div>
+
+            <h4>📋 準備</h4>
+            <ol>
+                <li>OpenAI のアカウントを作成し、<strong>API キー</strong>を取得する</li>
+                <li>GAS から <code>UrlFetchApp</code> を使って OpenAI の API を呼び出す</li>
+            </ol>
+
+            <h4>💡 実装イメージ</h4>
+            <p>GAS には外部 API を叩くための <code>UrlFetchApp</code> があります。タスク名を渡して、件名や本文を AI に作らせます。</p>
+            <pre><code>// タスク名から、秘書風の通知文を OpenAI に生成してもらう関数
+function generateMessage(taskName) {
+  const apiKey = 'YOUR_OPENAI_API_KEY'; // 自分の API キーに置き換える
+  const url = 'https://api.openai.com/v1/chat/completions';
+
+  const payload = {
+    model: 'gpt-4o-mini',
+    messages: [
+      { role: 'system', content: 'あなたは丁寧な秘書です。' },
+      { role: 'user', content: `本日のタスク「${taskName}」を、秘書風に一言添えて知らせて。` }
+    ]
+  };
+
+  const options = {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { Authorization: 'Bearer ' + apiKey },
+    payload: JSON.stringify(payload)
+  };
+
+  const response = UrlFetchApp.fetch(url, options);
+  const json = JSON.parse(response.getContentText());
+  return json.choices[0].message.content; // 生成された文章を返す
+}</code></pre>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong>API キーの取り扱いに注意！</strong> API キーは<strong>パスワードと同じ</strong>です。スクリプトをそのまま他人に共有・公開すると不正利用される恐れがあります。共有時はキーを削除するか、<code>PropertiesService</code>（スクリプトプロパティ）に保管する方法を AI に聞いてみましょう。
+            </div>
+
+            <div class="callout callout-info">
+                ℹ️ OpenAI API の利用には<strong>料金（従量課金）</strong>が発生します。少額から使えますが、無料ではない点に注意してください。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step5" class="btn">← Step 5</a>
+                <a href="#deep-dive" class="btn">📺 さらに深掘り →</a>
+            </div>
+        </section>
+
+        <!-- 📺 さらに深掘り -->
+        <section class="section" id="deep-dive">
+            <h2>📺 さらに深掘り</h2>
+            <p>発展編で扱った技術をさらに掘り下げるための参考リンク集です。</p>
+            <h3>📚 公式リファレンス</h3>
+            <ul>
+                <li>CalendarApp（カレンダー操作）: <a href="https://developers.google.com/apps-script/reference/calendar" target="_blank" rel="noopener">https://developers.google.com/apps-script/reference/calendar</a></li>
+                <li>UrlFetchApp（外部 API 呼び出し）: <a href="https://developers.google.com/apps-script/reference/url-fetch" target="_blank" rel="noopener">https://developers.google.com/apps-script/reference/url-fetch</a></li>
+                <li>PropertiesService（APIキーの安全な保管）: <a href="https://developers.google.com/apps-script/reference/properties" target="_blank" rel="noopener">https://developers.google.com/apps-script/reference/properties</a></li>
+                <li>OpenAI API ドキュメント: <a href="https://platform.openai.com/docs" target="_blank" rel="noopener">https://platform.openai.com/docs</a></li>
+            </ul>
+            <h3>💡 次のチャレンジ案</h3>
+            <ul>
+                <li>Slack や LINE への通知に変えてみる（Webhook を <code>UrlFetchApp</code> で叩く）</li>
+                <li>スプレッドシートに「通知済み」フラグを書き戻して、二重送信を防ぐ</li>
+                <li>フォームの回答をトリガーに、自動で返信メールを送る</li>
+            </ul>
+
+            <div class="nav-btns">
+                <a href="#step6" class="btn">← Step 6</a>
+                <a href="#outro" class="btn">おわりに →</a>
+            </div>
+        </section>
+
+        <!-- おわりに -->
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <p>おつかれさまでした！<br>
+                発展編では、生成 AI を相棒にしてアプリを育てる感覚を体験しました。<strong>「やりたいことを言葉にして、AI に書かせて、動かして、また直す」</strong>——このサイクルが回せるようになれば、もう怖いものはありません。ぜひ自分だけのオリジナルツールを作ってみてください。</p>
+
+            <!-- 今後のイベント -->
+            <h3>🎪 今後のイベント</h3>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 16px 0;">
+                <div class="card" style="border-left: 4px solid var(--primary); background: var(--bg-mid);">
+                    <div style="color: var(--primary); font-weight: 700; font-size: 1rem; margin-bottom: 8px;">🛠️ AIDD
+                        もくもく会</div>
+                    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 10px;">「AI
+                        駆動開発（AIDD）」をテーマに、各自が持ち寄った課題を AI と共に解決するもくもく会。プロンプトや知見をみんなで共有します。</p>
+                    <div style="font-size: 0.82rem; color: var(--muted);">📅 日程調整中 ｜ 🖥️ オンライン（Discord / Zoom）</div>
+                </div>
+                <div class="card" style="border-left: 4px solid var(--blue); background: var(--bg-mid);">
+                    <div style="color: var(--blue); font-weight: 700; font-size: 1rem; margin-bottom: 8px;">📚 AI
+                        活用勉強会・登壇</div>
+                    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 10px;">社内外の技術勉強会や登壇情報を随時発信中。気になる方は
+                        X をフォローしてください！</p>
+                    <div style="font-size: 0.82rem; color: var(--muted);">📅 随時開催</div>
+                </div>
+            </div>
+
+            <!-- 書籍紹介カード -->
+            <div class="card"
+                style="margin-bottom: 24px; border: 1px solid var(--primary); border-radius: 12px; padding: 24px; background: var(--bg-mid);">
+                <h3
+                    style="margin-top: 0; margin-bottom: 16px; font-size: 1.3rem; border-bottom: none; display: flex; align-items: center; gap: 8px; color: var(--primary);">
+                    <span style="font-size: 1.5rem;">📗</span> 書籍のご紹介
+                </h3>
+
+                <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+                    <div style="flex: 3; min-width: 200px;">
+                        <img src="img/book-cover.jpeg" alt="開発系エンジニアのためのGit/GitHub絵とき入門"
+                            style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--bg-light); box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                    </div>
+                    <div style="flex: 7; min-width: 300px;">
+                        <h4 style="color: var(--text); font-size: 1.2rem; margin-top: 0; margin-bottom: 8px;">
+                            開発系エンジニアのためのGit/GitHub絵とき入門</h4>
+                        <div style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">
+                            著者: 山岡 滉治（やまおか こうじ） ｜ 出版: 秀和システム ｜ 発売: 2025年3月
+                        </div>
+                        <p style="font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">
+                            Git/GitHub の仕組みを「絵解き」でわかりやすく解説した入門書。チーム開発のフロー・ブランチ戦略・PR レビューまでカバーしています。エンジニア初心者から中級者まで必読！
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <a href="https://amzn.to/4ld2hGf" target="_blank" rel="noopener noreferrer"
+                                style="display: inline-block; background: #FF9900; color: #111; font-weight: bold; text-decoration: none; padding: 10px 24px; border-radius: 6px; align-self: flex-start;">
+                                Amazon で詳細を見る
+                            </a>
+                            <a href="https://x.com/kozzy0919" target="_blank" rel="noopener noreferrer"
+                                style="display: inline-block; background: #000; color: #fff; font-weight: bold; text-decoration: none; padding: 10px 24px; border-radius: 6px; align-self: flex-start; border: 1px solid #333;">
+                                X で著者をフォロー @kozzy0919
+                            </a>
+                            <div style="font-size: 0.75rem; color: var(--muted);">
+                                ※上記リンクはAmazonアソシエイトリンクです。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SNS フォロー -->
+            <h3>📣 SNS でつながろう</h3>
+            <div class="card" style="text-align: center; padding: 24px; background: var(--bg-mid);">
+                <div style="font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px;">
+                    X で最新情報を発信中！</div>
+                <div style="color: var(--muted); margin-bottom: 16px; font-size: 0.95rem;">イベント告知・AI 活用の
+                    Tips・登壇情報などを随時ポスト中です。</div>
+                <a href="https://x.com/kozzy0919" target="_blank" rel="noopener noreferrer"
+                    style="display: inline-block; font-size: 1.5rem; color: var(--primary); font-weight: 700; text-decoration: none; padding: 12px 24px; border: 2px solid var(--primary); border-radius: 8px;">
+                    @kozzy0919
+                </a>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#deep-dive" class="btn">← さらに深掘り</a>
+                <a href="gas-beginner.html" class="btn">初級編に戻る →</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // スクロールに応じてサイドバーのアクティブリンクを更新する
+        const sections = document.querySelectorAll('.section');
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    sidebarLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+
+        sections.forEach(s => observer.observe(s));
+    </script>
+</body>
+
+</html>

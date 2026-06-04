@@ -20,11 +20,17 @@
             --accent-antigravity: #059669;
             --accent-slide: #7c3aed;
             --accent-risk: #dc2626;
+            --accent-gas: #188038;
+            --accent-gas2: #7c3aed;
+            --accent-banana: #d99e00;
             --accent-codex-gradient: linear-gradient(135deg, #6366f1, #4f46e5);
             --accent-claude-gradient: linear-gradient(135deg, #f59e0b, #d97706);
             --accent-antigravity-gradient: linear-gradient(135deg, #10b981, #059669);
             --accent-slide-gradient: linear-gradient(135deg, #a78bfa, #7c3aed);
             --accent-risk-gradient: linear-gradient(135deg, #f87171, #dc2626);
+            --accent-gas-gradient: linear-gradient(135deg, #34a853, #188038);
+            --accent-gas2-gradient: linear-gradient(135deg, #a78bfa, #7c3aed);
+            --accent-banana-gradient: linear-gradient(135deg, #fbbf24, #d99e00);
         }
 
         * {
@@ -113,6 +119,9 @@
         .card.antigravity::before { background: var(--accent-antigravity-gradient); }
         .card.slide::before { background: var(--accent-slide-gradient); }
         .card.risk::before { background: var(--accent-risk-gradient); }
+        .card.gas::before { background: var(--accent-gas-gradient); }
+        .card.gas2::before { background: var(--accent-gas2-gradient); }
+        .card.banana::before { background: var(--accent-banana-gradient); }
 
         .card:hover {
             transform: translateY(-8px);
@@ -125,6 +134,9 @@
         .card.antigravity:hover { box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1); }
         .card.slide:hover { box-shadow: 0 20px 40px rgba(124, 58, 237, 0.1); }
         .card.risk:hover { box-shadow: 0 20px 40px rgba(220, 38, 38, 0.12); }
+        .card.gas:hover { box-shadow: 0 20px 40px rgba(24, 128, 56, 0.12); }
+        .card.gas2:hover { box-shadow: 0 20px 40px rgba(124, 58, 237, 0.1); }
+        .card.banana:hover { box-shadow: 0 20px 40px rgba(217, 158, 0, 0.15); }
 
         .card-header {
             margin-bottom: 2rem;
@@ -165,6 +177,9 @@
         .card.antigravity .badge { background: rgba(16, 185, 129, 0.15); color: #a7f3d0; }
         .card.slide .badge { background: rgba(124, 58, 237, 0.15); color: #c4b5fd; }
         .card.risk .badge { background: rgba(220, 38, 38, 0.18); color: #fecaca; }
+        .card.gas .badge { background: rgba(24, 128, 56, 0.18); color: #86efac; }
+        .card.gas2 .badge { background: rgba(124, 58, 237, 0.15); color: #c4b5fd; }
+        .card.banana .badge { background: rgba(217, 158, 0, 0.18); color: #fcd34d; }
 
         .card-desc {
             font-size: 0.95rem;
@@ -195,6 +210,9 @@
         .card.antigravity .btn { background: var(--accent-antigravity-gradient); }
         .card.slide .btn { background: var(--accent-slide-gradient); }
         .card.risk .btn { background: var(--accent-risk-gradient); }
+        .card.gas .btn { background: var(--accent-gas-gradient); }
+        .card.gas2 .btn { background: var(--accent-gas2-gradient); }
+        .card.banana .btn { background: var(--accent-banana-gradient); }
 
         .btn:hover {
             filter: brightness(1.1);
@@ -305,6 +323,51 @@
                 <p class="card-desc">Googleの最新2.0仕様に対応したスタンドアロン型エージェント。Dynamic Subagents による並列タスク分割と安全な Worktree 制御、Gemini 3.1 Pro と Nano Banana Pro による極上のビジュアル構築を体感します。</p>
             </div>
             <a href="antigravity.html" class="btn">Antigravity ガイドを開始 ➔</a>
+        </div>
+
+        <!-- GAS ハンズオン 初級編 -->
+        <div class="card gas">
+            <div class="card-header">
+                <span class="card-icon">🧪</span>
+                <h2 class="card-title">GAS ハンズオン <span style="font-size: 0.6em; color: #86efac; font-weight: 600; vertical-align: middle;">初級編</span></h2>
+                <div class="badges">
+                    <span class="badge">Google Apps Script</span>
+                    <span class="badge">スプレッドシート × Gmail</span>
+                    <span class="badge">ノーサーバー自動化</span>
+                </div>
+                <p class="card-desc">Google スプレッドシート・GAS・Gmail を使って「毎日のタスクを自動でメール通知するアプリ」をゼロから作る入門ハンズオン。コピペ中心の丁寧な手順とスクショで、プログラミング初心者でもトリガーによる定期実行まで到達できます。</p>
+            </div>
+            <a href="gas-beginner.html" class="btn">GAS 初級編を開始 ➔</a>
+        </div>
+
+        <!-- GAS ハンズオン 発展編 -->
+        <div class="card gas2">
+            <div class="card-header">
+                <span class="card-icon">🚀</span>
+                <h2 class="card-title">GAS ハンズオン <span style="font-size: 0.6em; color: #c4b5fd; font-weight: 600; vertical-align: middle;">発展編</span></h2>
+                <div class="badges">
+                    <span class="badge">生成 AI 活用</span>
+                    <span class="badge">カレンダー連携</span>
+                    <span class="badge">OpenAI API</span>
+                </div>
+                <p class="card-desc">初級編で作ったタスク通知アプリを、生成 AI を相棒に拡張する応用ハンズオン。複数タスクのまとめ送信・優先度・完了管理・Google カレンダー連携・OpenAI API での秘書風文面生成まで、「AI に書かせて動かす」流れを体験します。</p>
+            </div>
+            <a href="gas-advanced.html" class="btn">GAS 発展編を開始 ➔</a>
+        </div>
+
+        <!-- Nano Banana ハンズオン -->
+        <div class="card banana">
+            <div class="card-header">
+                <span class="card-icon">🍌</span>
+                <h2 class="card-title">Nano Banana ハンズオン</h2>
+                <div class="badges">
+                    <span class="badge">Gemini 画像生成</span>
+                    <span class="badge">コード不要</span>
+                    <span class="badge">ブランドキット制作</span>
+                </div>
+                <p class="card-desc">Google の最新画像生成・編集モデル Nano Banana を、ブラウザの Gemini アプリだけで体験。会話で直せる部分編集・キャラクターの一貫性保持・複数画像の合成・正確な文字入れを使い、1 つのモチーフから「ロゴ・アイコン・バナー・商品モックアップ」一式をゼロから作り上げます。</p>
+            </div>
+            <a href="nanobanana.html" class="btn">Nano Banana ハンズオンを開始 ➔</a>
         </div>
 
         <!-- AI スライド自動生成（応用編） -->

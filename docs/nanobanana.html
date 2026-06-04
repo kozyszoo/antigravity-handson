@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nano Banana ハンズオンガイド ｜ Gemini で作るブランドキット</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Nano Banana = バナナイエローを基調にしたテーマ */
+            --primary: #d99e00;
+            --primary-deep: #b07d00;
+            --bg-dark: #fbf7ec;
+            --bg-mid: #ffffff;
+            --bg-light: #f6ecca;
+            --text: #2c2615;
+            --muted: #74694a;
+            --purple: #8e44ad;
+            --blue: #1a73e8;
+            --orange: #e8710a;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4, .sidebar h2, .btn {
+            font-family: 'Outfit', 'Inter', sans-serif;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary-deep);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary-deep);
+            padding-left: 14px;
+        }
+
+        .sidebar .sub-link {
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .sidebar .sub-link:hover {
+            color: var(--primary-deep);
+        }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-mid), var(--bg-light));
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary-deep);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary-deep);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--purple);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary-deep);
+            font-weight: 600;
+        }
+
+        code {
+            background: #f3ead0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #2a2412;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid var(--bg-light);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #f3ecd6;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        blockquote a {
+            color: var(--primary-deep);
+        }
+
+        .card {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 16px 0;
+            border: 1px solid rgba(217, 158, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(217, 158, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(217, 158, 0, 0.12);
+        }
+
+        /* 注意・補足のコールアウト */
+        .callout {
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .callout-warn {
+            background: #fff4e5;
+            border-left: 4px solid var(--orange);
+            color: #7a4a06;
+        }
+
+        .callout-info {
+            background: #e8f0fe;
+            border-left: 4px solid var(--blue);
+            color: #174ea6;
+        }
+
+        .callout-tip {
+            background: #fdf6d8;
+            border-left: 4px solid var(--primary);
+            color: #7a5b00;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .badge-time {
+            background: var(--purple);
+            color: white;
+        }
+
+        .badge-level {
+            background: var(--primary);
+            color: white;
+        }
+
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .screenshot-sm {
+            max-width: 520px;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .step-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(217, 158, 0, 0.1);
+        }
+
+        .step-card .step-num {
+            color: var(--primary-deep);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-card h4 {
+            color: var(--text);
+            margin: 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 0;
+        }
+
+        /* プロンプト例のラベル */
+        .code-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin: 16px 0 4px;
+        }
+
+        .code-label.prompt {
+            background: #fdf0c2;
+            color: #7a5b00;
+        }
+
+        .code-label.tip {
+            background: #d7eddd;
+            color: #0d652d;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(217, 158, 0, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* 作品事例ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px;
+            margin: 24px 0;
+        }
+
+        .work-card {
+            background: var(--bg-mid);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(217, 158, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(217, 158, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .work-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(217, 158, 0, 0.14);
+        }
+
+        .work-card .work-img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            background: var(--bg-light);
+            display: block;
+        }
+
+        .work-card .work-body {
+            padding: 16px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .work-card h4 {
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.45;
+            margin: 0;
+        }
+
+        .work-card .work-author {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .work-card .work-desc {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .work-card .work-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 2px;
+        }
+
+        .work-card .work-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 2px 9px;
+            border-radius: 999px;
+            background: var(--bg-light);
+            color: var(--primary-deep);
+        }
+
+        .work-card .work-link {
+            margin-top: auto;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary-deep);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .work-card .work-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🍌 Nano Banana</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#basics">Step 1: Gemini で1枚生成してみる</a></li>
+                <li><a href="#edit">Step 2: 部分編集（描き込み・差し替え）</a></li>
+                <li><a href="#consistency">Step 3: キャラクターを固定する</a></li>
+                <li><a href="#compose">Step 4: 複数画像を合成する</a></li>
+                <li><a href="#text">Step 5: 文字を入れてバナーにする</a></li>
+                <li><a href="#kit">Step 6: ブランドキットを仕上げる</a></li>
+                <li><a href="#deep-dive">📺 さらに深掘り</a></li>
+                <li><a href="#showcase">🎨 みんなの作品事例</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <span class="badge badge-level">初級〜中級編</span>
+            <h1>🍌 生成AI活用ハンズオン<br>～ Nano Banana で作るブランドキット ～</h1>
+            <p style="margin-top:8px;">Google の最新画像生成・編集モデル <strong>Nano Banana</strong>（Gemini 画像モデル）を、ブラウザの Gemini アプリだけで体験します。1 枚の写真から、自分の「ロゴ・アイコン・SNS バナー・商品モックアップ」一式（＝ブランドキット）を作り上げます。コードは書きません。プロンプト（指示文）だけで進められます。</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 60〜90 分</p>
+            <img class="screenshot" src="img/nb-hero.png" style="margin-bottom:0;"
+                alt="笑顔で手を振るバナナのマスコットを中心に、同じキャラクターを使ったロゴ・SNSアイコン・横長バナー・マグカップの商品モックアップが並ぶ、ブランドキット一式のイメージ">
+            <p style="margin:8px 0 0; font-size:0.82rem; color: var(--muted); text-align:center;">↑ このページで作る「ブランドキット」の完成イメージ（すべて Nano Banana で生成・編集した例）</p>
+        </div>
+
+        <!-- Intro -->
+        <section class="section" id="intro">
+            <h2>はじめに</h2>
+            <h3>登壇者 自己紹介</h3>
+
+            <!-- 自己紹介カード -->
+            <div class="card"
+                style="margin-bottom: 24px; border: 1px solid var(--primary); border-radius: 12px; padding: 24px; background: var(--bg-mid);">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <div style="font-size: 3rem;">👨‍💻</div>
+                    <div>
+                        <div style="font-size: 1.4rem; font-weight: 700; color: var(--primary-deep);">kozzy</div>
+                        <div style="color: var(--muted); font-size: 0.95rem; margin-top: 4px;">データ・AI企画推進 /
+                            Developer Relations</div>
+                    </div>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                    <div style="background: var(--bg-dark); border-radius: 8px; padding: 16px;">
+                        <div style="color: var(--blue); font-weight: 700; margin-bottom: 8px;">📌 経歴</div>
+                        <p style="font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.6;">
+                            新卒よりBtoBクラウドのインフラ/サーバーエンジニア → Web サービス開発 → 現在は<strong
+                                style="color: var(--text);">生成AI活用の企画・推進</strong>を担当</p>
+                    </div>
+
+                    <div style="background: var(--bg-dark); border-radius: 8px; padding: 16px;">
+                        <div style="color: var(--blue); font-weight: 700; margin-bottom: 8px;">🏆 主要実績</div>
+                        <ul
+                            style="font-size: 0.85rem; color: var(--muted); margin: 0; padding-left: 16px; line-height: 1.8;">
+                            <li>社内生成AIコミュニティを <strong style="color: var(--primary-deep);">200名 → 2,000名以上</strong> に成長（1年）
+                            </li>
+                            <li>学生向けハッカソン PM（年間800名規模・2年間）</li>
+                            <li>社内外技術勉強会の企画・運営（延べ1,000名以上）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: var(--bg-dark); border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                    <div style="color: var(--primary-deep); font-weight: 700; margin-bottom: 8px;">👨‍🏫 エンジニア教育実績</div>
+                    <ul
+                        style="font-size: 0.85rem; color: var(--muted); margin: 0; padding-left: 16px; line-height: 1.8;">
+                        <li><strong style="color: var(--text);">Qiita 2019年 年間ランキング Top20</strong>「Git
+                            チートシート」記事が多くのエンジニアに活用される</li>
+                        <li><strong style="color: var(--text);">京都市内の私立高校</strong>で生成AI活用講義・ワークショップ実施（20名対象）</li>
+                        <li><strong style="color: var(--text);">京都市内の大学</strong>でハッカソン授業の講師を担当</li>
+                        <li><strong style="color: var(--text);">学生向けハッカソン Open Hack U 2020 〜 Hack U 2024 企画・運営</strong>
+                            メンター（学生向け大規模ハッカソン）</li>
+                        <li><strong style="color: var(--text);">SOZOコラボ 公式アンバサダー</strong>として生成AIコミュニティでハンズオン・イベント運営</li>
+                        <li><strong style="color: var(--text);">コミュニティ運営勉強会</strong>でのLT登壇（複数回、知識共有とコミュニティ育成に貢献）</li>
+                    </ul>
+                </div>
+
+                <div style="background: var(--bg-dark); border-radius: 8px; padding: 14px; margin-bottom: 0;">
+                    <div style="color: var(--purple); font-weight: 700; margin-bottom: 8px;">📚 その他の活動</div>
+                    <div style="display: flex; gap: 16px; align-items: center;">
+                        <img src="img/book-cover.jpeg" alt="開発系エンジニアのためのGit/GitHub絵とき入門"
+                            style="width: 80px; height: auto; border-radius: 4px; border: 1px solid var(--bg-light); box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                        <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.8;">
+                            📖 2025年3月（昨年）「<strong
+                                style="color: var(--text);">開発系エンジニアのためのGit/GitHub絵とき入門</strong>」出版（秀和システム）<br>
+                            👨‍🏫 小中学生向けプログラミングスクール講師（副業）　|　🎓 アクティブ・ブック・ダイアローグ®︎ 認定ファシリテーター
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🍌 そもそも Nano Banana とは？</h3>
+            <p><strong>Nano Banana（ナノバナナ）</strong>は、Google が提供する画像生成・編集モデルの愛称です。正式には <strong>Gemini の画像生成モデル</strong>（Gemini 2.5 Flash Image / Gemini 3 Pro Image。後者は <strong>Nano Banana Pro</strong> とも呼ばれます）にあたります。テキストで画像を作るだけでなく、<strong>「会話しながら画像を直していける」</strong>のが最大の特徴です。</p>
+
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">✨ 特徴 1</div>
+                    <h4>会話で編集できる</h4>
+                    <p>「背景を夜に」「ロゴを左上へ」のように、言葉で何度でも修正を重ねられます。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">✨ 特徴 2</div>
+                    <h4>同じ人物・物を保てる</h4>
+                    <p>同じキャラクターや商品を、ポーズや背景を変えても崩さず描き続けられます（一貫性）。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">✨ 特徴 3</div>
+                    <h4>複数画像を合成できる</h4>
+                    <p>「この人物 ＋ この背景 ＋ このロゴ」を 1 枚に自然に組み合わせられます。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">✨ 特徴 4</div>
+                    <h4>文字をきれいに描ける</h4>
+                    <p>従来 AI が苦手だった、画像内の<strong>正確な文字入れ</strong>が得意になりました。</p>
+                </div>
+            </div>
+
+            <h3>🎯 このハンズオンで作るもの</h3>
+            <p>このハンズオンでは、Nano Banana を使って<strong>自分（または架空の店・サービス）のブランドキット</strong>を作ります。1 つのモチーフを軸に、用途の違う画像を一式そろえるのがゴールです。</p>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary-deep); margin-bottom: 8px;">🎁 完成イメージ（成果物）</div>
+                <ol style="margin: 0; padding-left: 20px;">
+                    <li><strong>マスコット／ロゴ</strong>（Step 1・3 で生成し、ポーズ違いを量産）</li>
+                    <li><strong>商品・サービスのモックアップ</strong>（Step 2・4 で編集・合成）</li>
+                    <li><strong>SNS 用バナー</strong>（Step 5 で文字入れ）</li>
+                    <li><strong>アイコン・OGP 画像など一式</strong>（Step 6 でまとめて仕上げ）</li>
+                </ol>
+            </div>
+
+            <h3>✅ 必要な環境</h3>
+            <ul>
+                <li><strong>Google アカウント</strong>（普段お使いのもので OK）</li>
+                <li><strong>Gemini アプリ（ブラウザ）</strong> … <a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com/</a> にアクセスできれば OK。スマホアプリでも可。</li>
+                <li><strong>素材写真を 1〜2 枚</strong>（任意） … 自分の似顔絵のもとにしたい写真、商品の写真、好きなロゴなど。なくても進められます。</li>
+            </ul>
+
+            <div class="callout callout-info">
+                ℹ️ Nano Banana は <strong>Google AI Studio</strong> や <strong>Gemini API</strong> からも使えますが、今回は<strong>コード不要で全員が確実に動かせる</strong> Gemini アプリ（Web）を使います。API での使い方は最後の「さらに深掘り」で触れます。
+            </div>
+
+            <div class="callout callout-warn">
+                ⚠️ 生成画像には Google の電子透かし（<strong>SynthID</strong>）が埋め込まれます。また、<strong>実在の人物・他者の著作物・ブランドロゴ</strong>をそのまま使うと権利上の問題になり得ます。ハンズオンでは<strong>自分の写真</strong>か<strong>架空のモチーフ</strong>を使いましょう。
+            </div>
+
+            <div class="nav-btns">
+                <a href="index.html" class="btn">← ポータル</a>
+                <a href="#basics" class="btn">Step 1 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="section" id="basics">
+            <span class="badge badge-time">⏱ 約 10 分</span>
+            <h2>Step 1: Gemini で1枚生成してみる</h2>
+            <p>まずは「テキストから画像を作る」感覚をつかみましょう。難しく考えず、思いついた言葉をそのまま打ち込むのがコツです。</p>
+
+            <h3>1-1. Gemini を開く</h3>
+            <p><a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com/</a> にアクセスし、Google アカウントでログインします。入力欄の上または下に、モデルや「画像を作成」系の選択肢が出る場合は<strong>画像生成（Nano Banana）が使える状態</strong>にしておきます。</p>
+
+            <div class="callout callout-info">
+                ℹ️ Gemini はバージョンによって画面が少し変わります。<strong>「画像を作って」と日本語で頼めば</strong>、自動的に画像生成モデル（Nano Banana）が呼び出されます。専用の画像モードがあればそれを選んでも構いません。
+            </div>
+
+            <h3>1-2. 最初のプロンプトを打つ</h3>
+            <p>今回の「ブランドの主役（マスコット）」を 1 体作ります。下記をそのまま貼り付けて送信してみましょう。<strong>あとで全ステップで使い回す主役</strong>なので、気に入る 1 枚ができるまで何度か作り直して構いません。</p>
+
+            <span class="code-label prompt">📝 プロンプト例（コピペして送信）</span>
+            <pre><code>かわいいバナナのキャラクターを作ってください。
+- 二足歩行で、笑顔で手を振っている
+- フラットでシンプルなマスコットデザイン（太めの輪郭線）
+- 背景は無地のパステルイエロー
+- 正方形（1:1）、ロゴにも使える清潔感のあるテイスト</code></pre>
+
+            <img class="screenshot screenshot-sm" src="img/nb-mascot.png"
+                alt="笑顔で手を振る、太い輪郭線のかわいいバナナのマスコットキャラクター。背景は無地のパステルイエロー">
+            <p style="margin:8px 0 0; font-size:0.82rem; color: var(--muted); text-align:center;">↑ 上のプロンプトで生成したマスコットの例（この子を「主役」として全ステップで使い回します）</p>
+
+            <div class="callout callout-tip">
+                💡 <strong>プロンプトのコツ</strong>は「①何を ②どんな見た目で ③背景・構図 ④用途」の順で書くこと。箇条書きでも自然文でも伝わります。英語に直す必要はありません。
+            </div>
+
+            <h3>1-3. 言葉で修正してみる</h3>
+            <p>生成された画像が少しイメージと違っても大丈夫。<strong>そのまま会話を続けて</strong>直していきます。これが Nano Banana の本領です。</p>
+
+            <span class="code-label prompt">📝 修正プロンプト例</span>
+            <pre><code>いい感じです！もう少しだけ目を大きく、色を鮮やかな黄色にしてください。
+背景は今のままで OK です。</code></pre>
+
+            <h3>1-4. 画像を保存する</h3>
+            <p>気に入った画像が出たら、画像にマウスを乗せて表示される<strong>ダウンロードアイコン</strong>（または右クリック →「画像を保存」）で手元に保存します。<strong>このマスコットを「main-mascot.png」などの名前で保存</strong>しておきましょう。以降のステップで使います。</p>
+
+            <div class="callout callout-warn">
+                ⚠️ 思い通りにならないときは、いきなり全部を変えず<strong>「1 回につき 1 つだけ」修正</strong>を頼むと、狙った所だけ変わりやすくなります。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#intro" class="btn">← はじめに</a>
+                <a href="#edit" class="btn">Step 2 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="section" id="edit">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <h2>Step 2: 部分編集（描き込み・差し替え）</h2>
+            <p>次は「すでにある画像の一部だけを直す」編集です。アップロードした写真にも、Step 1 で作ったマスコットにも使えます。</p>
+
+            <h3>2-1. 画像をアップロードする</h3>
+            <p>入力欄の <strong>＋（画像を追加）アイコン</strong>から、編集したい画像をアップロードします。手元の素材写真がなければ、Step 1 で保存したマスコットを使ってください。</p>
+
+            <h3>2-2. 「ここだけ変えて」と頼む（テキスト指示）</h3>
+            <p>画像全体を作り直すのではなく、チャットで<strong>場所と変更内容を具体的に指定</strong>して、その部分だけを編集します。</p>
+
+            <span class="code-label prompt">📝 プロンプト例（背景の差し替え）</span>
+            <pre><code>アップロードした画像のキャラクターはそのまま残し、
+背景だけを「明るいカフェの店内」に変えてください。
+キャラクターの形・色・表情は変更しないでください。</code></pre>
+
+            <span class="code-label prompt">📝 プロンプト例（物の追加・削除）</span>
+            <pre><code>このキャラクターの手に、湯気の立つコーヒーカップを持たせてください。
+他の部分はそのままにしてください。</code></pre>
+
+            <div class="callout callout-info">
+                ℹ️ 「<strong>他は変えないで</strong>」「<strong>形・色はそのまま</strong>」と添えるのが、テキストによる部分編集を成功させる最大のコツです。これがないと全体が描き直されてしまうことがあります。
+            </div>
+
+            <h3>2-3. ブラシツール（インペイント）で編集箇所を指定する（最新機能）</h3>
+            <p>現在の Gemini アプリ（Web版）では、アップロードした画像または生成された画像をクリックすると、右上に<strong>「画像を編集」（ブラシ型のアイコン）</strong>が表示されます。これを使うと、より直感的に部分修正が行えます。</p>
+            <ol style="margin-left: 24px; margin-bottom: 12px;">
+                <li style="margin-bottom: 6px;">編集したい画像をクリックして拡大表示します。</li>
+                <li style="margin-bottom: 6px;">右上の<strong>「画像を編集（ブラシ型アイコン）」</strong>をクリックします。</li>
+                <li style="margin-bottom: 6px;">変更したい部分（背景や手元など）を<strong>ブラシで塗りつぶします</strong>。</li>
+                <li style="margin-bottom: 6px;">入力欄に「ここを明るいカフェの店内に変更して」「コーヒーカップを持たせて」などのプロンプトを入力して送信します。</li>
+            </ol>
+
+            <div class="callout callout-tip">
+                💡 <strong>ブラシツールのコツ:</strong> 輪郭を少しはみ出すくらい大まかに塗ることで、AI が境界線を自然になじませてくれます。
+            </div>
+
+            <h3>2-4. 不要なものを消す</h3>
+            <p>写真から邪魔な要素を消すこともできます（いわゆる「消しゴムマジック」的な編集）。</p>
+
+            <span class="code-label prompt">📝 プロンプト例（消す）</span>
+            <pre><code>背景に写っている通行人を自然に消して、
+その部分を周囲の風景になじむように補完してください。</code></pre>
+
+            <div class="callout callout-tip">
+                💡 商品写真があれば、ここで<strong>背景を白に飛ばす・余計な映り込みを消す</strong>とそのまま EC 用の商品画像になります。これも立派なブランドキットの 1 枚です。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#basics" class="btn">← Step 1</a>
+                <a href="#consistency" class="btn">Step 3 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="section" id="consistency">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <h2>Step 3: キャラクターを固定する（一貫性）</h2>
+            <p>Nano Banana の真骨頂が<strong>「同じキャラクターを、別のシーンでも崩さず描く」</strong>こと。Step 1 のマスコットを主役に、ポーズ違い・シーン違いを量産します。</p>
+
+            <h3>3-1. 主役の画像を添えて指示する</h3>
+            <p>Step 1 のマスコット画像をアップロードした状態で、<strong>「この子のまま」</strong>と前置きして別シーンを頼みます。</p>
+
+            <span class="code-label prompt">📝 プロンプト例</span>
+            <pre><code>アップロードしたこのバナナのキャラクターを主役にして、
+同じ顔・同じ配色・同じ画風のまま、次のシーンを描いてください。
+
+シーン: ノートパソコンの前に座って、楽しそうにタイピングしている
+背景: 観葉植物のある明るい部屋
+構図: 横長（16:9）</code></pre>
+
+            <h3>3-2. ポーズ違いを一気に並べる</h3>
+            <p>1 回のプロンプトで複数バリエーションを頼むこともできます。LINE スタンプ風の展開です。</p>
+
+            <span class="code-label prompt">📝 プロンプト例（バリエーション）</span>
+            <pre><code>同じキャラクター・同じ画風のまま、表情とポーズ違いを4種類、
+1枚の画像に2×2のグリッドで並べてください。
+「喜ぶ / 考える / 困る / 親指を立てる」の4パターンでお願いします。</code></pre>
+
+            <img class="screenshot screenshot-sm" src="img/nb-poses.png"
+                alt="同じバナナのマスコットを、喜ぶ・考える・困る・親指を立てるの4つの表情とポーズで2×2グリッドに並べた画像。すべて同じ顔・同じ配色で一貫している">
+            <p style="margin:8px 0 0; font-size:0.82rem; color: var(--muted); text-align:center;">↑ 同じ主役のまま、表情・ポーズ違いを一度に生成した例（LINE スタンプ風の展開）</p>
+
+            <div class="callout callout-info">
+                ℹ️ うまく似なかったら、<strong>もとの画像をもう一度アップロードし直し</strong>、「<strong>顔の形と色は厳密にこの画像に合わせて</strong>」と強めに指定すると一貫性が上がります。
+            </div>
+
+            <div class="callout callout-tip">
+                💡 これは商品でも同じです。<strong>自分の商品写真</strong>を主役にすれば、「同じ商品を別の背景・別アングルで撮ったような画像」を何枚も作れます。撮影し直さずにカタログが増やせます。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#edit" class="btn">← Step 2</a>
+                <a href="#compose" class="btn">Step 4 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section class="section" id="compose">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <h2>Step 4: 複数画像を合成する</h2>
+            <p>「人物（またはマスコット）＋ 背景 ＋ 小物」など、<strong>複数の画像を 1 枚に組み合わせる</strong>編集です。コラージュではなく、自然になじませてくれます。</p>
+
+            <h3>4-1. 2枚以上の画像をまとめてアップロード</h3>
+            <p>＋アイコンから<strong>複数の画像を同時にアップロード</strong>します。たとえば「① マスコット」「② 商品写真」の 2 枚。</p>
+
+            <h3>4-2. どれをどう組み合わせるか伝える</h3>
+            <p>どの画像が何なのかを<strong>言葉でひも付け</strong>してあげると、狙い通りに合成されます。</p>
+
+            <span class="code-label prompt">📝 プロンプト例（商品モックアップ）</span>
+            <pre><code>1枚目はマスコットキャラクター、2枚目は商品（マグカップ）です。
+このマグカップに、マスコットのイラストをプリントしたデザインにして、
+木目のテーブルの上に置いた商品写真風の1枚を作ってください。
+照明は自然光、構図は正方形でお願いします。</code></pre>
+
+            <img class="screenshot screenshot-sm" src="img/nb-mockup.png"
+                alt="マスコットのバナナのイラストがプリントされた白いマグカップが、木目のテーブルの上に置かれている商品写真風の画像">
+            <p style="margin:8px 0 0; font-size:0.82rem; color: var(--muted); text-align:center;">↑ 「マスコット」＋「マグカップ」の2枚を合成して作った商品モックアップの例</p>
+
+            <span class="code-label prompt">📝 プロンプト例（着せ替え・持ち物の合成）</span>
+            <pre><code>1枚目の人物が、2枚目のTシャツデザインのTシャツを着ている様子を
+自然に合成してください。顔と体型は1枚目のままにしてください。</code></pre>
+
+            <div class="callout callout-info">
+                ℹ️ <strong>「1枚目は〜、2枚目は〜」</strong>と各画像の役割を最初に説明するのがコツです。枚数が増えるほど、この説明が効いてきます。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#consistency" class="btn">← Step 3</a>
+                <a href="#text" class="btn">Step 5 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 5 -->
+        <section class="section" id="text">
+            <span class="badge badge-time">⏱ 約 10 分</span>
+            <h2>Step 5: 文字を入れてバナーにする</h2>
+            <p>従来の画像 AI は<strong>文字が苦手</strong>でしたが、Nano Banana は<strong>正確な文字入れ</strong>が得意です。SNS バナーやサムネイルを作りましょう。</p>
+
+            <h3>5-1. 文字を「カギカッコで正確に」指定する</h3>
+            <p>入れたい文字は<strong>そのままの表記をカギカッコ等で明示</strong>します。フォントの雰囲気や配置も言葉で指定できます。</p>
+
+            <span class="code-label prompt">📝 プロンプト例（SNS バナー）</span>
+            <pre><code>横長（16:9）のSNS用バナーを作ってください。
+- 主役: アップロードしたバナナのマスコット（右側に配置）
+- 左側に大きく見出しテキスト「バナナ商店、開店！」
+- その下に小さめのサブテキスト「毎週日曜オープン」
+- 配色はイエロー基調でポップに、文字ははっきり読める太めの書体</code></pre>
+
+            <img class="screenshot" src="img/nb-banner.png"
+                alt="左側に「バナナ商店、開店！」の大きな見出しと「毎週日曜オープン」のサブテキスト、右側に手を振るバナナのマスコットが配置された、イエロー基調のSNSバナー">
+            <p style="margin:8px 0 0; font-size:0.82rem; color: var(--muted); text-align:center;">↑ 文字入れの例。日本語の「バナナ商店、開店！」「毎週日曜オープン」も崩れず描けます</p>
+
+            <h3>5-2. 文字だけ直す</h3>
+            <p>文字の打ち間違いや変更も、会話で直せます。</p>
+
+            <span class="code-label prompt">📝 プロンプト例（文字修正）</span>
+            <pre><code>デザインはそのままで、サブテキストだけ
+「毎週日曜オープン」から「毎週土日オープン」に変えてください。</code></pre>
+
+            <div class="callout callout-warn">
+                ⚠️ 長い文章や、漢字・記号が多い文字は<strong>まれに崩れる</strong>ことがあります。崩れたら「<strong>この部分の文字を『〇〇』に直して</strong>」と再指定するか、文字数を減らすと安定します。
+            </div>
+
+            <div class="callout callout-tip">
+                💡 縦長（9:16）を指定すれば<strong>ストーリーズ／ショート動画のサムネ</strong>、横長（16:9）なら<strong>YouTube サムネや OGP</strong>に。サイズ違いで何枚か作っておくと便利です。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#compose" class="btn">← Step 4</a>
+                <a href="#kit" class="btn">Step 6 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 6 -->
+        <section class="section" id="kit">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <h2>Step 6: ブランドキットを仕上げる</h2>
+            <p>ここまでで作った主役・シーン・バナーを使って、<strong>用途別の画像一式</strong>に整えます。これで「自分のブランドキット」の完成です。</p>
+
+            <h3>6-1. アイコン（正方形）を作る</h3>
+            <span class="code-label prompt">📝 プロンプト例</span>
+            <pre><code>このマスコットの顔をアップにした、SNSアイコン用の正方形画像を作ってください。
+背景は無地のイエロー、シンプルで小さく表示しても分かりやすいデザインで。</code></pre>
+
+            <h3>6-2. ヘッダー／OGP（横長）を作る</h3>
+            <span class="code-label prompt">📝 プロンプト例</span>
+            <pre><code>同じマスコットと配色で、横長（16:9）のヘッダー画像を作ってください。
+中央にサービス名「Banana Shop」のロゴ風テキストを入れて、
+余白を広めにとった、清潔感のあるデザインでお願いします。</code></pre>
+
+            <h3>6-3. 仕上げチェック表</h3>
+            <p>下の一覧がそろえば、立派なブランドキットの完成です。作った画像をフォルダにまとめておきましょう。</p>
+            <table>
+                <tr><th>用途</th><th>サイズの目安</th><th>使ったステップ</th></tr>
+                <tr><td>マスコット／ロゴ</td><td>1:1（正方形）</td><td>Step 1・3</td></tr>
+                <tr><td>SNS アイコン</td><td>1:1（正方形）</td><td>Step 6-1</td></tr>
+                <tr><td>商品モックアップ</td><td>1:1 または 4:3</td><td>Step 2・4</td></tr>
+                <tr><td>SNS バナー</td><td>16:9（横長）</td><td>Step 5</td></tr>
+                <tr><td>ヘッダー／OGP</td><td>16:9（横長）</td><td>Step 6-2</td></tr>
+            </table>
+
+            <div class="callout callout-tip">
+                🎉 おつかれさまでした！<strong>1 つのモチーフから、用途の違う画像を一式</strong>そろえる流れを体験できました。同じ手順で、あなたの実際のお店・サービス・推し活グッズなどにも応用できます。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#text" class="btn">← Step 5</a>
+                <a href="#deep-dive" class="btn">📺 さらに深掘り →</a>
+            </div>
+        </section>
+
+        <!-- 📺 さらに深掘り -->
+        <section class="section" id="deep-dive">
+            <h2>📺 さらに深掘り</h2>
+            <p>Nano Banana（Gemini 画像モデル）をさらに使いこなすための参考情報とリンク集です。慣れてきたら、コードからの自動化にも挑戦してみてください。</p>
+
+            <h3>🧑‍💻 コードから使う（Gemini API / AI Studio）</h3>
+            <p>画像生成モデルは <strong>Google AI Studio</strong> で API キーを取得すれば、Python や Node.js から呼び出せます。大量生成や、他システムへの組み込みに向いています。API で呼び出す際の最新モデル名は <code>imagen-3.0-generate-002</code> です。</p>
+
+            <span class="code-label tip">🐍 Python での画像生成例</span>
+            <pre><code>import google.generativeai as genai
+from PIL import Image
+import io
+
+genai.configure(api_key="YOUR_API_KEY")
+
+# Imagen 3 モデルの指定
+model = genai.GenerativeModel("imagen-3.0-generate-002")
+
+# 画像生成の実行
+result = model.generate_images(
+    prompt="A cute banana character sitting in front of a laptop, digital art",
+    number_of_images=1,
+    aspect_ratio="1:1"
+)
+
+# 生成された画像の保存
+for i, generated_image in enumerate(result.generated_images):
+    image = Image.open(io.BytesIO(generated_image.image.image_bytes))
+    image.save(f"generated_banana_{i}.png")
+    print(f"画像を保存しました: generated_banana_{i}.png")
+</code></pre>
+
+            <ul>
+                <li>Google AI Studio: <a href="https://aistudio.google.com/" target="_blank" rel="noopener">https://aistudio.google.com/</a></li>
+                <li>Gemini API 画像生成ドキュメント: <a href="https://ai.google.dev/gemini-api/docs/image-generation" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs/image-generation</a></li>
+            </ul>
+
+            <h3>📚 公式リファレンス</h3>
+            <ul>
+                <li>Gemini アプリ: <a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com/</a></li>
+                <li>Gemini API 公式ドキュメント: <a href="https://ai.google.dev/gemini-api/docs" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs</a></li>
+                <li>SynthID（電子透かし）について: <a href="https://deepmind.google/technologies/synthid/" target="_blank" rel="noopener">https://deepmind.google/technologies/synthid/</a></li>
+            </ul>
+
+            <h3>🍌 プロンプト早見表</h3>
+            <table>
+                <tr><th>やりたいこと</th><th>言い回しのコツ</th></tr>
+                <tr><td>一部だけ直す</td><td>「〇〇だけ変えて、他はそのまま」</td></tr>
+                <tr><td>同じキャラを保つ</td><td>「同じ顔・同じ配色・同じ画風のまま」</td></tr>
+                <tr><td>合成する</td><td>「1枚目は〜、2枚目は〜」と役割を説明</td></tr>
+                <tr><td>文字を入れる</td><td>入れる文字を「カギカッコ」で正確に書く</td></tr>
+                <tr><td>サイズを変える</td><td>「正方形(1:1)」「横長(16:9)」「縦長(9:16)」</td></tr>
+            </table>
+
+            <div class="nav-btns">
+                <a href="#kit" class="btn">← Step 6</a>
+                <a href="#showcase" class="btn">みんなの作品事例 →</a>
+            </div>
+        </section>
+
+        <!-- 作品事例 -->
+        <section class="section" id="showcase">
+            <h2>🎨 みんなの作品事例</h2>
+            <p>Google AI 学生コミュニティの Discord「クリエイティブ・エンタメ」チャンネルに投稿された、<strong>Nano Banana（Gemini 画像モデル）で作られた実際の作品</strong>を紹介します。「自分でもこんなことができるんだ！」というイメージづくりの参考にしてください。どれもコードを書かず、プロンプト（指示文）だけで作られています。</p>
+
+            <div class="callout callout-info">
+                💡 各カードの「Discord で見る →」から、投稿者ご本人の解説や使ったプロンプトの全文が読めます（コミュニティメンバー限定）。
+            </div>
+
+            <div class="gallery">
+                <!-- 1: モネ風肖像画 -->
+                <div class="work-card">
+                    <img class="work-img" src="img/nb-case-monet.jpg"
+                        alt="自分の写真をクロード・モネ風の印象派肖像画に描き換えた作品。柔らかい光と筆のタッチで、水色のドレスと真珠のネックレスをまとった人物が描かれている">
+                    <div class="work-body">
+                        <h4>大好きな画家に肖像画を依頼してみた（モネ風）</h4>
+                        <div class="work-author">by e9eef3_</div>
+                        <p class="work-desc">自分の写真を「クロード・モネが描いた印象派風の肖像画」に変換。たった1回のプロンプトで、柔らかな光の表現とドレス・真珠のネックレスまで描き足された作品に。さらに Gemini の動画モデルで“動く肖像画”にも発展させています。</p>
+                        <div class="work-tags">
+                            <span class="work-tag">写真→画風変換</span>
+                            <span class="work-tag">肖像画</span>
+                            <span class="work-tag">動画化</span>
+                        </div>
+                        <a class="work-link" href="https://discord.com/channels/1383669603741466736/1402829462155956264/1511696235810263240" target="_blank" rel="noopener">Discord で見る →</a>
+                    </div>
+                </div>
+
+                <!-- 2: 3D箱庭世界 -->
+                <div class="work-card">
+                    <img class="work-img" src="img/nb-case-diorama.jpg"
+                        alt="複数の思い出写真を素材に、アイソメトリック視点のミニチュアジオラマとして再構築した「MY 2025 WORLD」のポスター作品。浮島の上にビーチや食べ物などのミニチュアシーンが並ぶ">
+                    <div class="work-body">
+                        <h4>思い出写真を「3D箱庭世界」にするポスター</h4>
+                        <div class="work-author">by rei_shibaura</div>
+                        <p class="work-desc">3〜5枚の思い出写真を読み込ませ、アイソメトリック（斜め見下ろし）のミニチュアジオラマに再構築。ビーチ・ディナー・ペットなどがピクサー映画のような3Dオブジェに変身します。再現用のプロンプト全文も共有されています。</p>
+                        <div class="work-tags">
+                            <span class="work-tag">複数画像合成</span>
+                            <span class="work-tag">3Dジオラマ</span>
+                            <span class="work-tag">プロンプト公開</span>
+                        </div>
+                        <a class="work-link" href="https://discord.com/channels/1383669603741466736/1402829462155956264/1447471195476721787" target="_blank" rel="noopener">Discord で見る →</a>
+                    </div>
+                </div>
+
+                <!-- 3: ハロウィンステッカー -->
+                <div class="work-card">
+                    <img class="work-img" src="img/nb-case-sticker.jpg"
+                        alt="Nano Banana で生成したハロウィン柄のかわいいステッカーデザイン。実際に印刷してシール状に仕上げた作品">
+                    <div class="work-body">
+                        <h4>ハロウィンのステッカーを作って印刷してみた</h4>
+                        <div class="work-author">by ayaka3939</div>
+                        <p class="work-desc">Nano Banana でハロウィン柄のステッカーをデザインし、実際に印刷して可愛いシールに。AI で作ったデザインを“現実のグッズ”に落とし込む、ブランドキットづくりにも通じる活用例です。</p>
+                        <div class="work-tags">
+                            <span class="work-tag">ステッカー</span>
+                            <span class="work-tag">グッズ化</span>
+                            <span class="work-tag">印刷</span>
+                        </div>
+                        <a class="work-link" href="https://discord.com/channels/1383669603741466736/1402829462155956264/1431923133798940672" target="_blank" rel="noopener">Discord で見る →</a>
+                    </div>
+                </div>
+
+                <!-- 4: AI漫画 -->
+                <div class="work-card">
+                    <img class="work-img" src="img/nb-case-manga.png"
+                        alt="Nano Banana Pro で生成したモノクロ漫画のコマ。強いコントラストの劇画調で、黒髪の少年と王子様風の青年が描かれている AI 漫画作品">
+                    <div class="work-body">
+                        <h4>AI漫画『はじめまして、何百回目の春。』</h4>
+                        <div class="work-author">by nchan_nutrition</div>
+                        <p class="work-desc">自作の小説アイデアを Gemini に脚本家役として渡し、Nano Banana Pro 用のプロンプト（YAML形式）を書いてもらってモノクロ漫画を生成。ストーリーやコマ割りは人間、作画と演出補助は AI という分業が見どころです。</p>
+                        <div class="work-tags">
+                            <span class="work-tag">AI漫画</span>
+                            <span class="work-tag">キャラ固定</span>
+                            <span class="work-tag">YAMLプロンプト</span>
+                        </div>
+                        <a class="work-link" href="https://discord.com/channels/1383669603741466736/1402829462155956264/1493650820288352477" target="_blank" rel="noopener">Discord で見る →</a>
+                    </div>
+                </div>
+
+                <!-- 5: 青学に花火 -->
+                <div class="work-card">
+                    <img class="work-img" src="img/nb-case-hanabi.jpg"
+                        alt="大学キャンパスの夜空に色とりどりの花火を合成した写真作品。Nano Banana で花火を描き加え、その後 Veo で動画化した素材">
+                    <div class="work-body">
+                        <h4>キャンパスに花火を咲かせてみた</h4>
+                        <div class="work-author">by shota_a1013</div>
+                        <p class="work-desc">大学の風景写真に Nano Banana で花火を描き加え、さらに Gemini の動画モデル（Veo）で動く花火に発展させた作品。「写真を撮ったあとから、現実には無かった演出を足す」という Nano Banana ならではの使い方です。</p>
+                        <div class="work-tags">
+                            <span class="work-tag">写真編集</span>
+                            <span class="work-tag">要素の描き足し</span>
+                            <span class="work-tag">動画化</span>
+                        </div>
+                        <a class="work-link" href="https://discord.com/channels/1383669603741466736/1402829462155956264/1441996146619842621" target="_blank" rel="noopener">Discord で見る →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout callout-tip">
+                🍌 ここで紹介した作品はほんの一部です。コミュニティにはまだまだたくさんの作例があります。あなたも作品ができたら、ぜひ「クリエイティブ・エンタメ」チャンネルにシェアしてみてください！
+            </div>
+
+            <div class="nav-btns">
+                <a href="#deep-dive" class="btn">← さらに深掘り</a>
+                <a href="#outro" class="btn">おわりに →</a>
+            </div>
+        </section>
+
+        <!-- おわりに -->
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <p>本日はご参加いただきありがとうございました！<br>
+                Nano Banana は「<strong>言葉で、何度でも、思い通りに直せる</strong>」のが何よりの強みです。今回作ったブランドキットを足がかりに、ぜひ自分の仕事や趣味の場面でも「これ、画像で作れないかな？」と発想してみてください。</p>
+
+            <!-- SNS フォロー -->
+            <h3>📣 SNS でつながろう</h3>
+            <div class="card" style="text-align: center; padding: 24px; background: var(--bg-mid);">
+                <div style="font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px;">
+                    X で最新情報を発信中！</div>
+                <div style="color: var(--muted); margin-bottom: 16px; font-size: 0.95rem;">イベント告知・AI 活用の
+                    Tips・登壇情報などを随時ポスト中です。</div>
+                <a href="https://x.com/kozzy0919" target="_blank" rel="noopener noreferrer"
+                    style="display: inline-block; font-size: 1.5rem; color: var(--primary-deep); font-weight: 700; text-decoration: none; padding: 12px 24px; border: 2px solid var(--primary); border-radius: 8px; transition: background 0.2s, color 0.2s;">
+                    @kozzy0919
+                </a>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#showcase" class="btn">← みんなの作品事例</a>
+                <a href="index.html" class="btn">ポータルへ戻る →</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // スクロールに応じてサイドバーのアクティブリンクを更新する
+        const sections = document.querySelectorAll('.section');
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    sidebarLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+
+        sections.forEach(s => observer.observe(s));
+    </script>
+</body>
+
+</html>
