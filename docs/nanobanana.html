@@ -547,7 +547,7 @@
             <div class="callout callout-warn" style="margin-top: 12px; margin-bottom: 12px;">
                 ⚠️ <strong>ご注意:</strong> 本資料は Google 公式のドキュメントではなく、コミュニティおよび有志による非公式のハンズオン資料です。
             </div>
-            <p style="margin-top:8px;">Google の最新画像生成・編集モデル <strong>Imagen 3</strong> を使い、「Nano Banana」という架空のバナナブランドをテーマにしたブランドキットを作る体験を、ブラウザの Gemini アプリだけで行います。1 枚の写真から、自分の「ロゴ・アイコン・SNS バナー・商品モックアップ」一式（＝ブランドキット）を作り上げます。コードは書きません。プロンプト（指示文）だけで進められます。</p>
+            <p style="margin-top:8px;">Google の画像生成・編集モデル <strong>Nano Banana（Gemini 2.5 Flash Image / 後継の Gemini 3 系 Flash Image）</strong> を使い、架空のバナナブランドをテーマにしたブランドキットを作る体験を、ブラウザの Gemini アプリだけで行います。1 枚の写真から、自分の「ロゴ・アイコン・SNS バナー・商品モックアップ」一式（＝ブランドキット）を作り上げます。コードは書きません。プロンプト（指示文）だけで進められます。</p>
             <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 60〜90 分</p>
             <img class="screenshot" src="img/nb-hero.png" style="margin-bottom:0;"
                 alt="笑顔で手を振るバナナのマスコットを中心に、同じキャラクターを使ったロゴ・SNSアイコン・横長バナー・マグカップの商品モックアップが並ぶ、ブランドキット一式のイメージ">
@@ -622,7 +622,7 @@
             </div>
 
             <h3>🍌 そもそも Nano Banana とは？</h3>
-            <p><strong>Nano Banana（ナノバナナ）</strong>は、本ハンズオンで作成する架空のキャラクター名およびブランドのテーマです。画像生成と編集に使用するAIは、Google が提供する最新の画像生成モデル <strong>Imagen 3</strong> （Gemini アプリに内蔵）です。テキストで画像を作るだけでなく、<strong>「会話しながら画像を直していける」</strong>のが最大の特徴です。</p>
+            <p><strong>Nano Banana（ナノバナナ）</strong>は、本ハンズオンで作成する架空のキャラクター名およびブランドのテーマでもあり、同時に Google の最新画像生成・編集モデルの愛称でもあります。正式なモデル名は <strong>Gemini 2.5 Flash Image</strong>（Gemini アプリに内蔵。後継として Gemini 3 系の Flash Image も登場）です。テキストで画像を作るだけでなく、<strong>「会話しながら画像を直していける」</strong>のが最大の特徴です。</p>
 
             <div class="step-grid">
                 <div class="step-card">
@@ -668,7 +668,7 @@
             </ul>
 
             <div class="callout callout-info">
-                ℹ️ 画像生成モデルである <strong>Imagen 3</strong> は <strong>Google AI Studio</strong> や <strong>Gemini API</strong> からも使えますが、今回は<strong>コード不要で全員が確実に動かせる</strong> Gemini アプリ（Web）を使います。API での使い方は最後の「さらに深掘り」で触れます。
+                ℹ️ 画像生成モデルである <strong>Nano Banana（Gemini 2.5 Flash Image）</strong> は <strong>Google AI Studio</strong> や <strong>Gemini API</strong> からも使えますが、今回は<strong>コード不要で全員が確実に動かせる</strong> Gemini アプリ（Web）を使います。API での使い方は最後の「さらに深掘り」で触れます。
             </div>
 
             <div class="callout callout-warn">
@@ -683,8 +683,8 @@
                     <tr><th>プラン</th><th>画像生成の1日あたり目安</th><th>備考</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td><strong>無料（通常アカウント）</strong></td><td>おおよそ <strong>数十枚／日</strong>（時期により ~20〜100 枚程度）</td><td>標準モデル（Imagen 3）。混雑状況により制限される場合あり</td></tr>
-                    <tr><td><strong>Gemini Advanced</strong>（月額 約 2,900円）</td><td>さらに余裕のある上限</td><td>優先アクセス。高画質画像生成や、動画生成（Veo）なども解放</td></tr>
+                    <tr><td><strong>無料（通常アカウント）</strong></td><td>おおよそ <strong>数十枚／日</strong>（時期により ~20〜100 枚程度）</td><td>標準モデル（Nano Banana）。混雑状況により制限される場合あり</td></tr>
+                    <tr><td><strong>Google AI Pro</strong>（旧 Gemini Advanced、月額 約 2,900円）</td><td>さらに余裕のある上限</td><td>優先アクセス。高画質画像生成や、動画生成（Veo）なども解放</td></tr>
                     <tr><td><strong>Google AI Studio (API)</strong></td><td>無料枠あり / 従量課金</td><td>API経由でプログラムから呼び出す場合。無料枠の範囲内でもテスト可能</td></tr>
                 </tbody>
             </table>
@@ -698,7 +698,7 @@
                 ・上限は<strong>毎日リセット</strong>されます（米国太平洋時間の深夜＝日本のおおよそ夕方ごろ）。翌日また使えます<br>
                 ・<strong>1回で決める</strong>意識を。箇条書きで条件をそろえてから送ると、作り直し回数を減らせます（Step 1 のコツ参照）<br>
                 ・コードが書ける人は <strong>Google AI Studio</strong>（Web）や <strong>Gemini API</strong> の無料枠も別枠で使えます（「さらに深掘り」参照）<br>
-                ・どうしても枚数が必要なら <strong>Google AI Pro</strong> の検討を。ただし本ハンズオンは無料枠で十分こなせる範囲に設計しています
+                ・どうしても枚数が必要なら <strong>Google AI Pro / Ultra</strong> の検討を。ただし本ハンズオンは無料枠で十分こなせる範囲に設計しています
             </div>
 
             <div class="nav-btns">
@@ -714,15 +714,15 @@
             <p>まずは「テキストから画像を作る」感覚をつかみましょう。難しく考えず、思いついた言葉をそのまま打ち込むのがコツです。</p>
 
             <h3>1-1. Gemini を開く</h3>
-            <p><a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com/</a> にアクセスし、Google アカウントでログインします。入力欄の上または下に、モデルや「画像を作成」系の選択肢が出る場合は<strong>画像生成（Imagen 3）が使える状態</strong>にしておきます。</p>
+            <p><a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com/</a> にアクセスし、Google アカウントでログインします。中央に入力欄が表示されるので、左側の <strong>＋（「アップロードとツール」）</strong> ボタンを開き、メニュー内の <strong>「画像を作成」</strong> が選べることを確認しましょう。</p>
 
             <div class="callout callout-info">
-                ℹ️ Gemini はバージョンによって画面が少し変わります。<strong>「画像を作って」と日本語で頼めば</strong>、自動的に画像生成モデル（Imagen 3）が呼び出されます。専用の画像モードがあればそれを選んでも構いません。
+                ℹ️ Gemini はバージョンによって画面が少し変わります。<strong>「画像を作って」と日本語で頼むだけ</strong>でも、自動的に画像生成モデル（Nano Banana）が呼び出されます。なお、入力欄右側のモデル選択ドロップダウン（例: 3.1 Pro / 3.x Flash など）には Nano Banana 自体は表示されません。テキスト用モデルの選択肢として並んでいる、というイメージで OK です。
             </div>
 
             <img class="screenshot" src="img/nb-step1-open.png"
-                alt="Gemini を開いた直後のトップ画面。中央に「次はどうしましょうか？」の見出しと入力欄、左下に＋ボタン">
-            <p style="margin:8px 0 0; font-size:0.82rem; color: var(--muted); text-align:center;">↑ Gemini を開いた直後の画面。中央の入力欄に文章を打ち、左の <strong>＋ ボタン</strong>から画像のアップロードや「画像を作成」が選べます</p>
+                alt="Gemini を開いた直後のトップ画面。中央に「○○さん、ご用件をお聞かせください。」の見出しと入力欄、左側に＋ボタン（アップロードとツール）が並ぶ">
+            <p style="margin:8px 0 0; font-size:0.82rem; color: var(--muted); text-align:center;">↑ Gemini を開いた直後の画面。中央の入力欄に文章を打ち、左の <strong>＋ ボタン（「アップロードとツール」）</strong>から画像のアップロードや「画像を作成」が選べます</p>
 
             <h3>1-2. 最初のプロンプトを打つ</h3>
             <p>今回の「ブランドの主役（マスコット）」を 1 体作ります。下記をそのまま貼り付けて送信してみましょう。<strong>あとで全ステップで使い回す主役</strong>なので、気に入る 1 枚ができるまで何度か作り直して構いません。</p>
@@ -747,18 +747,18 @@
             </div>
 
             <h3>1-3. 言葉で修正してみる</h3>
-            <p>生成された画像が少しイメージと違っても大丈夫。<strong>そのまま会話を続けて</strong>直していきます。これが Gemini アプリ内蔵の Imagen 3 による編集機能の本領です。</p>
+            <p>生成された画像が少しイメージと違っても大丈夫。<strong>そのまま会話を続けて</strong>直していきます。これが Gemini アプリ内蔵の Nano Banana による編集機能の本領です。</p>
 
             <span class="code-label prompt">📝 修正プロンプト例</span>
             <pre><code>いい感じです！もう少しだけ目を大きく、色を鮮やかな黄色にしてください。
 背景は今のままで OK です。</code></pre>
 
             <h3>1-4. 画像を保存する</h3>
-            <p>気に入った画像が出たら、画像にマウスを乗せて表示される<strong>ダウンロードアイコン</strong>（または右クリック →「画像を保存」）で手元に保存します。<strong>このマスコットを「main-mascot.png」などの名前で保存</strong>しておきましょう。以降のステップで使います。</p>
+            <p>気に入った画像が出たら、画像にマウスを乗せると<strong>右上に表示される 3 つのアイコン</strong>（共有・コピー・<strong>ダウンロード（↓）</strong>）から「ダウンロード」を押して手元に保存します（または画像を右クリック →「画像を保存」でも OK）。<strong>このマスコットを「main-mascot.png」などの名前で保存</strong>しておきましょう。以降のステップで使います。</p>
 
             <img class="screenshot" src="img/nb-step1-result.png"
-                alt="プロンプトの吹き出しの下に生成されたバナナマスコット画像。画像の下に共有・コピー・ダウンロードなどの操作ボタンが並ぶ">
-            <p style="margin:8px 0 0; font-size:0.82rem; color: var(--muted); text-align:center;">↑ 生成結果の画面。画像の下に並ぶアイコンのうち <strong>ダウンロード（↓）</strong>で手元に保存できます（共有・コピーも可能）</p>
+                alt="プロンプトの吹き出しの下に生成されたバナナマスコット画像。画像の右上に共有・コピー・ダウンロードなどの操作ボタンが並ぶ">
+            <p style="margin:8px 0 0; font-size:0.82rem; color: var(--muted); text-align:center;">↑ 生成結果の画面。画像の <strong>右上に並ぶアイコン</strong>のうち <strong>ダウンロード（↓）</strong>で手元に保存できます（共有・コピーも可能）</p>
 
             <div class="callout callout-warn">
                 ⚠️ 思い通りにならないときは、いきなり全部を変えず<strong>「1 回につき 1 つだけ」修正</strong>を頼むと、狙った所だけ変わりやすくなります。
@@ -799,17 +799,17 @@
                 ℹ️ 「<strong>他は変えないで</strong>」「<strong>形・色はそのまま</strong>」と添えるのが、テキストによる部分編集を成功させる最大のコツです。これがないと全体が描き直されてしまうことがあります。
             </div>
 
-            <h3>2-3. ブラシツール（インペイント）で編集箇所を指定する（最新機能）</h3>
-            <p>現在の Gemini アプリ（Web版）では、アップロードした画像または生成された画像をクリックすると、右上に<strong>「画像を編集」（ブラシ型のアイコン）</strong>が表示されます。これを使うと、より直感的に部分修正が行えます。</p>
+            <h3>2-3. スケッチツール（インペイント）で編集箇所を指定する（最新機能）</h3>
+            <p>現在の Gemini アプリ（Web版）では、アップロードした画像または生成された画像を<strong>クリックすると拡大表示モードに入ります</strong>。このとき画像の下に<strong>カラーパレットと「スケッチ」「テキスト」ツール</strong>が並びます。「スケッチ」を使うと、より直感的に部分修正が行えます。</p>
             <ol style="margin-left: 24px; margin-bottom: 12px;">
                 <li style="margin-bottom: 6px;">編集したい画像をクリックして拡大表示します。</li>
-                <li style="margin-bottom: 6px;">右上の<strong>「画像を編集（ブラシ型アイコン）」</strong>をクリックします。</li>
+                <li style="margin-bottom: 6px;">画像の下に並ぶ <strong>「スケッチ」（鉛筆型のアイコン）</strong> をクリックします（必要なら色も選択）。</li>
                 <li style="margin-bottom: 6px;">変更したい部分（背景や手元など）を<strong>ブラシで塗りつぶします</strong>。</li>
                 <li style="margin-bottom: 6px;">入力欄に「ここを明るいカフェの店内に変更して」「コーヒーカップを持たせて」などのプロンプトを入力して送信します。</li>
             </ol>
 
             <div class="callout callout-tip">
-                💡 <strong>ブラシツールのコツ:</strong> 輪郭を少しはみ出すくらい大まかに塗ることで、AI が境界線を自然になじませてくれます。
+                💡 <strong>スケッチツールのコツ:</strong> 輪郭を少しはみ出すくらい大まかに塗ることで、AI が境界線を自然になじませてくれます。「テキスト」ツールを使うと、画像内の特定の位置に文字を書き込む指示も出せます。
             </div>
 
             <h3>2-4. 不要なものを消す</h3>
@@ -833,7 +833,7 @@
         <section class="section" id="consistency">
             <span class="badge badge-time">⏱ 約 15 分</span>
             <h2>Step 3: キャラクターを固定する（一貫性）</h2>
-            <p>Imagen 3 の真骨頂が<strong>「同じキャラクターを、別のシーンでも崩さず描く」</strong>こと（キャラクターの一貫性保持）。Step 1 のマスコットを主役に、ポーズ違い・シーン違いを量産します。</p>
+            <p>Nano Banana の真骨頂が<strong>「同じキャラクターを、別のシーンでも崩さず描く」</strong>こと（キャラクターの一貫性保持）。Step 1 のマスコットを主役に、ポーズ違い・シーン違いを量産します。</p>
 
             <h3>3-1. 主役の画像を添えて指示する</h3>
             <p>Step 1 のマスコット画像をアップロードした状態で、<strong>「この子のまま」</strong>と前置きして別シーンを頼みます。</p>
@@ -912,7 +912,7 @@
         <section class="section" id="text">
             <span class="badge badge-time">⏱ 約 10 分</span>
             <h2>Step 5: 文字を入れてバナーにする</h2>
-            <p>従来の画像 AI は<strong>文字が苦手</strong>でしたが、Imagen 3 は<strong>正確な文字入れ</strong>が得意です。SNS バナーやサムネイルを作りましょう。</p>
+            <p>従来の画像 AI は<strong>文字が苦手</strong>でしたが、Nano Banana は<strong>正確な文字入れ</strong>が得意です。SNS バナーやサムネイルを作りましょう。</p>
 
             <h3>5-1. 文字を「カギカッコで正確に」指定する</h3>
             <p>入れたい文字は<strong>そのままの表記をカギカッコ等で明示</strong>します。フォントの雰囲気や配置も言葉で指定できます。</p>
@@ -990,10 +990,10 @@
         <!-- 📺 さらに深掘り -->
         <section class="section" id="deep-dive">
             <h2>📺 さらに深掘り</h2>
-            <p>Imagen 3（Gemini 画像モデル）をさらに使いこなすための参考情報とリンク集です。慣れてきたら、コードからの自動化にも挑戦してみてください。</p>
+            <p>Nano Banana（Gemini 画像モデル）をさらに使いこなすための参考情報とリンク集です。慣れてきたら、コードからの自動化にも挑戦してみてください。</p>
 
             <h3>🧑‍💻 コードから使う（Gemini API / AI Studio）</h3>
-            <p>画像生成モデルは <strong>Google AI Studio</strong> で API キーを取得すれば、Python や Node.js から呼び出せます。大量生成や、他システムへの組み込みに向いています。API で呼び出す際の最新モデル名は <code>imagen-3.0-generate-002</code> です。</p>
+            <p>画像生成モデルは <strong>Google AI Studio</strong> で API キーを取得すれば、Python や Node.js から呼び出せます。大量生成や、他システムへの組み込みに向いています。Nano Banana を API で呼び出す際のモデル名は <code>gemini-2.5-flash-image</code>（最新世代は <code>gemini-3-flash-image</code> 系。公式ドキュメントで最新のモデル名を必ず確認してください）です。なお、Imagen 系（例: <code>imagen-4.0-generate-001</code>）も並行して提供されており、用途で使い分けが可能です。</p>
 
             <span class="code-label tip">🐍 Python での画像生成例</span>
             <pre><code>from google import genai
@@ -1003,26 +1003,26 @@ import io
 # クライアントの初期化（APIキーは環境変数 GEMINI_API_KEY または引数から読み込みます）
 client = genai.Client(api_key="YOUR_API_KEY")
 
-# Imagen 3 による画像生成の実行
-result = client.models.generate_images(
-    model="imagen-3.0-generate-002",
-    prompt="A cute banana character sitting in front of a laptop, digital art",
-    config=dict(
-        number_of_images=1,
-        aspect_ratio="1:1"
-    )
+# Nano Banana（Gemini 2.5 Flash Image）による画像生成
+result = client.models.generate_content(
+    model="gemini-2.5-flash-image",
+    contents="A cute banana character sitting in front of a laptop, digital art",
 )
 
-# 生成された画像の保存
-for i, generated_image in enumerate(result.generated_images):
-    image = Image.open(io.BytesIO(generated_image.image.image_bytes))
-    image.save(f"generated_banana_{i}.png")
-    print(f"画像を保存しました: generated_banana_{i}.png")
+# 生成された画像の保存（レスポンスから画像パートを取り出す）
+image_index = 0
+for part in result.candidates[0].content.parts:
+    if getattr(part, "inline_data", None) and part.inline_data.data:
+        image = Image.open(io.BytesIO(part.inline_data.data))
+        image.save(f"generated_banana_{image_index}.png")
+        print(f"画像を保存しました: generated_banana_{image_index}.png")
+        image_index += 1
 </code></pre>
 
             <ul>
                 <li>Google AI Studio: <a href="https://aistudio.google.com/" target="_blank" rel="noopener">https://aistudio.google.com/</a></li>
                 <li>Gemini API 画像生成ドキュメント: <a href="https://ai.google.dev/gemini-api/docs/image-generation" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs/image-generation</a></li>
+                <li>Nano Banana（Gemini 2.5 Flash Image）モデルページ: <a href="https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-image" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-image</a></li>
             </ul>
 
             <h3>📚 公式リファレンス</h3>
@@ -1051,7 +1051,7 @@ for i, generated_image in enumerate(result.generated_images):
         <!-- 作品事例 -->
         <section class="section" id="showcase">
             <h2>🎨 みんなの作品事例</h2>
-            <p>Google AI 学生コミュニティの Discord「クリエイティブ・エンタメ」チャンネルに投稿された、<strong>Gemini / Imagen 3（画像モデル）で作られた実際の作品</strong>を紹介します。「自分でもこんなことができるんだ！」というイメージづくりの参考にしてください。どれもコードを書かず、プロンプト（指示文）だけで作られています。</p>
+            <p>Google AI 学生コミュニティの Discord「クリエイティブ・エンタメ」チャンネルに投稿された、<strong>Gemini / Nano Banana（Gemini Image モデル）で作られた実際の作品</strong>を紹介します。「自分でもこんなことができるんだ！」というイメージづくりの参考にしてください。どれもコードを書かず、プロンプト（指示文）だけで作られています。</p>
 
             <div class="callout callout-info">
                 💡 各カードの「Discord で見る →」から、投稿者ご本人の解説や使ったプロンプトの全文が読めます（コミュニティメンバー限定）。
