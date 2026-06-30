@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「即戦力」AIツール実践ハンズオン ｜ NotebookLM × Deep Research × Google Sites</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* コースB（即戦力ツール）のエメラルドグリーンを基調にしたテーマ */
+            --primary: #059669;
+            --bg-dark: #f3f8f6;
+            --bg-mid: #ffffff;
+            --bg-light: #d9f0e6;
+            --text: #14241d;
+            --muted: #5b6e66;
+            --purple: #7c3aed;
+            --blue: #1a73e8;
+            --orange: #e8710a;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        .sidebar .sub-link {
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .sidebar .sub-link:hover {
+            color: var(--primary);
+        }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-mid), var(--bg-light));
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--purple);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: #e6f0eb;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #16231d;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid var(--bg-light);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #e8f0ea;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        blockquote a {
+            color: var(--primary);
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        /* 注意・補足のコールアウト */
+        .callout {
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .callout-warn {
+            background: #fff4e5;
+            border-left: 4px solid var(--orange);
+            color: #7a4a06;
+        }
+
+        .callout-info {
+            background: #e8f0fe;
+            border-left: 4px solid var(--blue);
+            color: #174ea6;
+        }
+
+        .callout-tip {
+            background: #e6f4ea;
+            border-left: 4px solid var(--primary);
+            color: #0d652d;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .badge-time {
+            background: var(--purple);
+            color: white;
+        }
+
+        .badge-level {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-tool {
+            background: var(--blue);
+            color: white;
+            margin-right: 6px;
+        }
+
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .screenshot-sm {
+            max-width: 520px;
+        }
+
+        /* 画像が未用意のときのプレースホルダ */
+        .img-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 140px;
+            margin: 20px 0;
+            padding: 24px;
+            border-radius: 8px;
+            border: 2px dashed var(--primary);
+            background: var(--bg-dark);
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .step-card .step-num {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-card h4 {
+            color: var(--text);
+            margin: 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 0;
+        }
+
+        /* プロンプト例のボックス */
+        .prompt-box {
+            background: #16231d;
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin: 14px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .prompt-box .prompt-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #6ee7b7;
+            margin-bottom: 8px;
+            letter-spacing: 0.04em;
+        }
+
+        .prompt-box p {
+            color: #e8f0ea;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🚀 即戦力AIツール実践</h2>
+        <nav>
+            <ul>
+                <li><a href="../index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#overview">全体像 — 3ツールの連携フロー</a></li>
+                <li><a href="#step1">Step 1: テーマを決める</a></li>
+                <li><a href="#step2">Step 2: Deep Research で調査</a></li>
+                <li><a href="#step3">Step 3: NotebookLM で整理・要約</a></li>
+                <li><a href="#step4">Step 4: Google Sites で公開</a></li>
+                <li><a href="#step5">Step 5: 仕上げと共有</a></li>
+                <li><a href="#checklist">✅ 完成チェックリスト</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <span class="badge badge-level">コースB ／ アンバサダー向け</span>
+            <h1>🚀 「即戦力」AIツール実践ハンズオン</h1>
+            <p style="margin-top:8px; font-size:1.05rem; color: var(--text);"><strong>NotebookLM × Deep Research × Google Sites</strong></p>
+            <p style="margin-top:8px;">最新の AI でリサーチ・分析を行い、その成果を<strong>ノンコードで Web ページとして公開する</strong>までの一連の流れを、1 つのテーマを題材に最後まで体験します。コードは一切書きません。ブラウザだけで完結します。</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 60〜75 分 ／ レベル: 初〜中級（コーディング不要）</p>
+        </div>
+
+        <!-- Intro -->
+        <section class="section" id="intro">
+            <h2>はじめに</h2>
+
+            <h3>このハンズオンで作るもの</h3>
+            <p>このハンズオンでは、3 つの最新 AI / Web ツールを<strong>バケツリレーのようにつなぎ</strong>、1 つの調べものから「公開できる Web ページ」までを一気に作り上げます。題材は、アンバサダー活動でよくある<strong>「イベント告知ページ」や「特定テーマの紹介ページ」</strong>を想定しています。</p>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">🎯 ゴール（完成イメージ）</div>
+                <p style="margin:0;">「あるテーマ（例: <em>学生向け生成 AI 活用イベント</em>）について AI で網羅的に調査し、要点を整理し、それを<strong>誰でもアクセスできる Google Sites のページ</strong>として 1 時間で公開する」——この一連を自分の手で再現できるようになります。</p>
+            </div>
+
+            <h3>🧩 そもそも、この3つのツールは何？</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ツール</th>
+                        <th>ひとことで言うと</th>
+                        <th>このハンズオンでの役割</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Deep Research</strong><br><span style="font-size:0.82rem;color:var(--muted);">(Gemini / ChatGPT 等)</span></td>
+                        <td>AI が自分で何十ものサイトを巡回し、出典付きで網羅的なレポートを書いてくれる調査エージェント</td>
+                        <td>テーマの「素材集め」。広く深い一次情報を集める</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NotebookLM</strong><br><span style="font-size:0.82rem;color:var(--muted);">(Google)</span></td>
+                        <td>自分が渡した資料 <em>だけ</em> を根拠に、要約・比較・FAQ・音声解説を作る「資料特化 AI」</td>
+                        <td>集めた情報の「整理・要約」。ハルシネーションを抑え、出典に紐づけて読みやすくする</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google Sites</strong><br><span style="font-size:0.82rem;color:var(--muted);">(Google)</span></td>
+                        <td>ドラッグ＆ドロップだけで Web ページが作れる無料のノーコードツール</td>
+                        <td>整理した情報の「公開」。コード不要で告知ページにする</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-info">
+                💡 <strong>なぜこの順番なのか？</strong> 「広く集める（Deep Research）→ 絞って整理する（NotebookLM）→ 形にして出す（Google Sites）」は、リサーチ系アウトプットの王道の流れです。1 つのツールで全部やろうとすると、情報が浅くなったり、根拠が曖昧になったりします。<strong>役割を分けることが品質のコツ</strong>です。
+            </div>
+
+            <h3>✅ 必要な環境</h3>
+            <ul>
+                <li><strong>Google アカウント</strong>（NotebookLM・Google Sites で使用。普段お使いのもので OK）</li>
+                <li><strong>Deep Research が使える AI</strong>（Gemini / ChatGPT / Genspark など、お使いのものでOK）
+                    <div class="callout callout-warn" style="margin-top: 8px;">
+                        ⚠️ Deep Research 機能は提供元やプラン（無料/有料）によって名称・使える回数が異なります。お使いの環境で「Deep Research」「詳細リサーチ」などと表示される機能を使ってください。<strong>無い場合でも、通常のチャットで代用する手順</strong>を Step 2 で案内します。
+                    </div>
+                </li>
+                <li><strong>ブラウザ</strong>（Google Chrome 推奨）</li>
+            </ul>
+
+            <div class="nav-btns">
+                <a href="../index.html" class="btn">← ポータル</a>
+                <a href="#overview" class="btn">全体像へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Overview -->
+        <section class="section" id="overview">
+            <h2>全体像 — 3ツールの連携フロー</h2>
+            <p>このハンズオンは、次の 5 ステップで進みます。各ツールが「前のツールの成果物」を受け取って次に渡していく、<strong>バトンリレー型</strong>のワークフローです。</p>
+
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">Step 1（5分）</div>
+                    <h4>🎯 テーマを決める</h4>
+                    <p>調べて公開したいテーマと「誰に届けるか」を 1 行で言語化します。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 2（15分）</div>
+                    <h4>🔍 Deep Research で調査</h4>
+                    <p>AI 自律ブラウジングで、出典付きの網羅的レポートを生成します。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 3（20分）</div>
+                    <h4>📓 NotebookLM で整理</h4>
+                    <p>調査結果をソースに、要約・比較表・FAQ・音声解説を作ります。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 4（15分）</div>
+                    <h4>🌐 Google Sites で公開</h4>
+                    <p>整理した内容をノーコードで告知ページに組み立て、公開します。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 5（10分）</div>
+                    <h4>✨ 仕上げと共有</h4>
+                    <p>公開範囲・URL を整え、Discord 等でシェアできる状態にします。</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">🔗 成果物の受け渡し（何が次に渡るか）</div>
+                <ol style="margin: 0; padding-left: 20px;">
+                    <li><strong>Step1 → Step2</strong>: テーマ文（リサーチの問い）</li>
+                    <li><strong>Step2 → Step3</strong>: Deep Research のレポート（テキスト/リンク）</li>
+                    <li><strong>Step3 → Step4</strong>: NotebookLM で整理した要約・FAQ・見出し案</li>
+                    <li><strong>Step4 → Step5</strong>: 公開直前の Google Sites ページ</li>
+                </ol>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#intro" class="btn">← はじめに</a>
+                <a href="#step1" class="btn">Step 1 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="section" id="step1">
+            <span class="badge badge-time">⏱ 約 5 分</span>
+            <h2>Step 1: テーマを決める</h2>
+            <p>最初に、これから調べて公開する<strong>テーマ</strong>を 1 つ決めます。ここが曖昧だと、後ろのステップ全部がブレます。逆にここをしっかり決めれば、AI への指示も Web ページの構成も自然と決まります。</p>
+
+            <h3>1-1. 「テーマ × 読者 × 目的」を 1 行で書く</h3>
+            <p>次のテンプレートの空欄を埋めて、テーマを 1 文にしてみましょう。</p>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <p style="margin:0; font-size:1.05rem;">
+                    「<strong style="color:var(--blue);">＿＿＿（読者）</strong>に向けて、<strong style="color:var(--purple);">＿＿＿（テーマ）</strong>について調べ、<strong style="color:var(--primary);">＿＿＿（目的）</strong>するための紹介ページを作る」
+                </p>
+            </div>
+
+            <h4>📝 記入例</h4>
+            <ul>
+                <li>「<strong>大学1〜2年生</strong>に向けて、<strong>学生が無料で使える生成 AI ツール</strong>について調べ、<strong>勉強会の参加を促す</strong>ための紹介ページを作る」</li>
+                <li>「<strong>地域コミュニティの運営メンバー</strong>に向けて、<strong>AI を使ったイベント運営の事例</strong>を調べ、<strong>次回イベントの企画材料にする</strong>ための紹介ページを作る」</li>
+            </ul>
+
+            <div class="callout callout-tip">
+                💡 <strong>コツ</strong>: テーマは「広すぎず・狭すぎず」がベスト。"生成 AI 全般" は広すぎて散らかり、"特定製品の特定バージョンのバグ" は狭すぎて素材が集まりません。<strong>イベント1回分の告知に使える</strong>くらいの粒度が目安です。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#overview" class="btn">← 全体像</a>
+                <a href="#step2" class="btn">Step 2 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="section" id="step2">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <span class="badge badge-tool">Deep Research</span>
+            <h2>Step 2: Deep Research で網羅的に調査する</h2>
+            <p>Step 1 で決めたテーマを、<strong>Deep Research</strong>（AI 自律ブラウジング）に渡して、出典付きの調査レポートを作ってもらいます。これは「自分で何十ページも検索して読む」作業を AI に肩代わりさせる工程です。</p>
+
+            <h3>2-1. Deep Research を起動する</h3>
+            <p>お使いの AI（Gemini / ChatGPT など）で、<strong>「Deep Research」「詳細リサーチ」</strong>などのモードを ON にします。チャット入力欄の近くにあるトグルやメニューから選べることが多いです。</p>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（Deep Research モードを ON にした画面）
+            </div>
+
+            <h3>2-2. リサーチ用プロンプトを書く</h3>
+            <p>ただテーマを貼るのではなく、<strong>「観点」「出力フォーマット」「出典の扱い」</strong>を指定すると、後で NotebookLM・Google Sites に流し込みやすいレポートになります。次のプロンプトをベースに、Step 1 のテーマを差し込んでください。</p>
+
+            <div class="prompt-box">
+                <span class="prompt-label">▶ コピペ用プロンプト（リサーチ依頼）</span>
+                <p>あなたは優秀なリサーチアシスタントです。次のテーマについて、信頼できる一次情報を中心に網羅的に調査してください。
+
+【テーマ】
+（ここに Step 1 で決めた 1 行を貼る）
+
+【調べてほしい観点】
+1. 概要と背景（なぜ今これが注目されているか）
+2. 代表的な具体例・事例（できれば 5 件以上、それぞれ出典 URL つき）
+3. 読者（上の 1 行で指定した相手）にとってのメリット・注意点
+4. よくある疑問（FAQ）と、その簡潔な回答
+
+【出力形式】
+- 見出し付きの Markdown
+- 主張ごとに出典の URL を併記
+- 最後に「参考リンク一覧」をまとめる</p>
+            </div>
+
+            <div class="callout callout-warn">
+                🤔 <strong>「なぜこのプロンプトになったのか」（発想プロセス）</strong><br>
+                ① <strong>目的の明確化</strong>＝「網羅的に調査」と役割を与える → ② <strong>制約の指定</strong>＝観点を 4 つに絞り、事例には出典を必須にする（後で NotebookLM が根拠として使える）→ ③ <strong>出力フォーマットの固定</strong>＝Markdown ＋ 参考リンク一覧（NotebookLM / Google Sites にそのまま渡せる形）。<br>このように「相手・制約・形」を先に決めると、AI の出力が一気に使いやすくなります。
+            </div>
+
+            <h3>2-3. 結果を受け取って保存する</h3>
+            <p>Deep Research は数分かけてレポートを生成します。完成したら、次のどちらかの形で<strong>手元に保存</strong>しておきます（Step 3 で NotebookLM のソースにします）。</p>
+            <ul>
+                <li>レポート本文を<strong>コピーしてテキストファイル / Google ドキュメント</strong>に貼る</li>
+                <li>レポート末尾の<strong>参考リンク一覧（URL）</strong>を別途控えておく（NotebookLM にリンクのまま渡せます）</li>
+            </ul>
+
+            <div class="callout callout-info">
+                💡 <strong>Deep Research が無い環境の場合</strong>: 通常のチャットでも代用できます。上のプロンプトを送ったあと、「<strong>各事例について、出典 URL を実在するものだけ挙げて。曖昧なものは『要確認』と明記して</strong>」と追記すると、ハルシネーション（存在しない URL の捏造）をある程度抑えられます。出典は Step 3 以降で必ず人の目で確認します。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step1" class="btn">← Step 1</a>
+                <a href="#step3" class="btn">Step 3 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="section" id="step3">
+            <span class="badge badge-time">⏱ 約 20 分</span>
+            <span class="badge badge-tool">NotebookLM</span>
+            <h2>Step 3: NotebookLM で整理・要約する</h2>
+            <p><strong>NotebookLM</strong> は、自分が渡した資料 <em>だけ</em> を根拠に答えてくれる Google の AI です。Step 2 のレポートやリンクを「ソース」として読み込ませることで、<strong>出典に紐づいた信頼できる要約・FAQ</strong>を作れます。ここが、Web ページに載せる「中身」を磨く工程です。</p>
+
+            <h3>3-1. ノートブックを新規作成し、ソースを追加する</h3>
+            <ol>
+                <li><a href="https://notebooklm.google.com/" target="_blank" rel="noopener">https://notebooklm.google.com/</a> を開き、Google アカウントでログインします。</li>
+                <li><strong>「新規作成（Create new）」</strong>でノートブックを作ります。</li>
+                <li><strong>「ソースを追加」</strong>から、Step 2 の成果物を投入します。
+                    <ul>
+                        <li>レポート本文 → <strong>「コピーしたテキスト」</strong>として貼り付け</li>
+                        <li>参考リンク → <strong>「ウェブサイト」</strong>として URL を 1 つずつ追加</li>
+                        <li>関連 PDF があれば → <strong>PDF アップロード</strong></li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（NotebookLM のソース追加ダイアログ）
+            </div>
+
+            <div class="callout callout-tip">
+                💡 ソースは複数入れるほど、要約や比較の精度が上がります。Deep Research のレポート 1 本だけでなく、<strong>元になった参考リンクも数本入れておく</strong>と、NotebookLM が出典をきちんと引用してくれます。
+            </div>
+
+            <h3>3-2. 要約・FAQ・比較を作る</h3>
+            <p>ソースを入れたら、NotebookLM のチャット欄に指示を出して、Web ページに載せる「パーツ」を作っていきます。次の 3 つを順に作りましょう。</p>
+
+            <h4>① ページ冒頭の「概要文」</h4>
+            <div class="prompt-box">
+                <span class="prompt-label">▶ NotebookLM への指示</span>
+                <p>このノートブックの内容を、（Step1で決めた読者）向けに、3〜4 文の「導入文」にまとめてください。専門用語はかみくだき、読み手がこのページを読むメリットが伝わるようにしてください。</p>
+            </div>
+
+            <h4>② よくある質問（FAQ）</h4>
+            <div class="prompt-box">
+                <span class="prompt-label">▶ NotebookLM への指示</span>
+                <p>このノートブックの内容から、読者が抱きそうな疑問を「Q&A」形式で 5 つ作ってください。回答は 2〜3 文で簡潔に、必ずソースに基づいて答えてください。</p>
+            </div>
+
+            <h4>③ 事例の比較表</h4>
+            <div class="prompt-box">
+                <span class="prompt-label">▶ NotebookLM への指示</span>
+                <p>調査に出てきた具体例・事例を、「名称／特徴／対象者／参考リンク」の 4 列の表に整理してください。ソースに無い情報は補わないでください。</p>
+            </div>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong>ハルシネーション対策（とても重要）</strong><br>
+                NotebookLM は基本ソースに忠実ですが、過信は禁物です。各回答の文末に表示される<strong>引用（ソースの番号）をクリックし、元の記述と照合</strong>してください。引用が付いていない断定文や、リンク先と食い違う記述は、Web ページに載せる前に必ず人の目で確認・修正します。
+            </div>
+
+            <h3>3-3. （任意）音声解説で内容を耳でチェック</h3>
+            <p>NotebookLM の<strong>「音声概要（Audio Overview）」</strong>を生成すると、2 人の AI がポッドキャスト風に内容を解説してくれます。テキストを読み返すより<strong>「話の筋が通っているか」を素早く確認</strong>でき、抜け漏れにも気づけます。移動中の最終チェックにも便利です。</p>
+
+            <div class="nav-btns">
+                <a href="#step2" class="btn">← Step 2</a>
+                <a href="#step4" class="btn">Step 4 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section class="section" id="step4">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <span class="badge badge-tool">Google Sites</span>
+            <h2>Step 4: Google Sites でページを公開する</h2>
+            <p>いよいよ仕上げです。Step 3 で NotebookLM が整理してくれた「概要文・FAQ・比較表」を、<strong>Google Sites</strong> に貼り付けて告知ページを組み立てます。ドラッグ＆ドロップだけ、コードは書きません。</p>
+
+            <h3>4-1. 新しいサイトを作る</h3>
+            <ol>
+                <li><a href="https://sites.google.com/new" target="_blank" rel="noopener">https://sites.google.com/new</a> を開きます。</li>
+                <li><strong>「空白」</strong>のサイトを新規作成します。</li>
+                <li>左上のサイト名と、ページ上部の<strong>タイトル（ヘッダー）</strong>を、テーマに合わせて入力します。</li>
+            </ol>
+
+            <h3>4-2. 中身を流し込む（おすすめの構成）</h3>
+            <p>右側の<strong>「挿入」</strong>パネルから、テキストボックスや表を置いていきます。次の順番で組むと、告知ページとして読みやすくなります。</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>セクション</th>
+                        <th>使う Google Sites の要素</th>
+                        <th>入れる中身（Step 3 の成果物）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>① タイトル / キャッチ</td>
+                        <td>ヘッダー（タイトル）</td>
+                        <td>テーマ名 ＋ ひとことキャッチ</td>
+                    </tr>
+                    <tr>
+                        <td>② このページについて</td>
+                        <td>テキストボックス</td>
+                        <td>NotebookLM の「概要文」（①）</td>
+                    </tr>
+                    <tr>
+                        <td>③ 事例 / おすすめ</td>
+                        <td>表（テキストボックスに貼付）</td>
+                        <td>NotebookLM の「比較表」（③）</td>
+                    </tr>
+                    <tr>
+                        <td>④ よくある質問</td>
+                        <td>折りたたみテキスト</td>
+                        <td>NotebookLM の「FAQ」（②）</td>
+                    </tr>
+                    <tr>
+                        <td>⑤ 参考リンク</td>
+                        <td>テキスト（箇条書き）</td>
+                        <td>Deep Research の参考リンク一覧</td>
+                    </tr>
+                    <tr>
+                        <td>⑥ 申込 / 次のアクション</td>
+                        <td>ボタン</td>
+                        <td>申込フォーム / Discord 等の URL</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（Google Sites の編集画面 — 挿入パネルとページ構成）
+            </div>
+
+            <div class="callout callout-tip">
+                💡 <strong>FAQ には「折りたたみテキスト」が便利</strong>: 挿入パネルの「折りたたみ可能なテキスト」を使うと、質問をクリックで開閉できる Q&A になり、ページがすっきりします。
+            </div>
+
+            <h3>4-3. 見た目を整える</h3>
+            <ul>
+                <li>右上の<strong>「テーマ」</strong>から配色・フォントを選ぶ（テーマカラーを 1 つ決めると統一感が出ます）</li>
+                <li>ヘッダーに<strong>イメージ画像</strong>を入れる（フリー素材や、Nano Banana 等で作った画像でも OK）</li>
+                <li><strong>プレビュー（スマホ表示）</strong>で、文字が詰まりすぎていないか確認する</li>
+            </ul>
+
+            <h3>4-4. 公開する</h3>
+            <ol>
+                <li>右上の<strong>「公開」</strong>ボタンを押します。</li>
+                <li>ページの <strong>URL（ウェブアドレス）</strong>の末尾を、わかりやすい文字列に設定します。</li>
+                <li>公開範囲を選びます（後述の Step 5 で詳しく確認します）。</li>
+            </ol>
+
+            <div class="nav-btns">
+                <a href="#step3" class="btn">← Step 3</a>
+                <a href="#step5" class="btn">Step 5 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 5 -->
+        <section class="section" id="step5">
+            <span class="badge badge-time">⏱ 約 10 分</span>
+            <h2>Step 5: 仕上げと共有</h2>
+            <p>公開しただけで終わりにせず、<strong>「正しく見える状態」「シェアできる状態」</strong>に整えます。</p>
+
+            <h3>5-1. 公開範囲を確認する</h3>
+            <p>Google Sites の公開設定では、<strong>誰がこのページを見られるか</strong>を選べます。用途に応じて選びましょう。</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>公開範囲</th>
+                        <th>こんなときに</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>リンクを知っている全員</td>
+                        <td>一般公開のイベント告知。URL を配れば誰でも見られる</td>
+                    </tr>
+                    <tr>
+                        <td>特定のドメイン / ユーザーのみ</td>
+                        <td>組織内・コミュニティ内限定の共有</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong>公開前の最終チェック</strong>: ページに載せた情報（特に日時・場所・申込先・引用した事実）が正しいか、もう一度確認してください。AI が整理してくれた内容でも、<strong>公開した瞬間にあなたの発信</strong>になります。出典の確認は責任ある発信の基本です。
+            </div>
+
+            <h3>5-2. シェアする</h3>
+            <p>公開 URL を、Discord・SNS などで共有します。シェア文も AI に作ってもらえます。</p>
+            <div class="prompt-box">
+                <span class="prompt-label">▶ シェア文を作るプロンプト</span>
+                <p>次の Web ページを、（読者）向けに紹介する Discord 投稿文を作ってください。3 行以内、絵文字を 1〜2 個、最後にページ URL を置いてください。
+URL: （公開した Google Sites の URL）
+ページの趣旨: （Step1 で決めた 1 行）</p>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step4" class="btn">← Step 4</a>
+                <a href="#checklist" class="btn">チェックリストへ →</a>
+            </div>
+        </section>
+
+        <!-- Checklist -->
+        <section class="section" id="checklist">
+            <h2>✅ 完成チェックリスト</h2>
+            <p>すべてにチェックが付けば、このハンズオンは完了です。</p>
+            <div class="card" style="background: var(--bg-mid);">
+                <ul style="list-style: none; margin-left: 0;">
+                    <li style="margin-bottom:10px;">☐ テーマを「読者 × テーマ × 目的」の 1 行で書けた（Step 1）</li>
+                    <li style="margin-bottom:10px;">☐ Deep Research で出典付きの調査レポートを得た（Step 2）</li>
+                    <li style="margin-bottom:10px;">☐ NotebookLM に調査結果をソースとして読み込ませた（Step 3）</li>
+                    <li style="margin-bottom:10px;">☐ 概要文・FAQ・比較表を作り、引用を照合した（Step 3）</li>
+                    <li style="margin-bottom:10px;">☐ Google Sites に流し込み、見た目を整えた（Step 4）</li>
+                    <li style="margin-bottom:10px;">☐ 公開範囲を確認し、ページを公開した（Step 4・5）</li>
+                    <li style="margin-bottom:0;">☐ シェア用の URL と紹介文を用意した（Step 5）</li>
+                </ul>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step5" class="btn">← Step 5</a>
+                <a href="#outro" class="btn">おわりに →</a>
+            </div>
+        </section>
+
+        <!-- Outro -->
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <p>おつかれさまでした！ このハンズオンでは、<strong>「調べる → 整理する → 公開する」</strong>という、リサーチ系アウトプットの一連の流れを、3 つの AI / Web ツールを連携させて体験しました。</p>
+
+            <h3>🌱 今日学んだことの応用</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">応用 1</div>
+                    <h4>研究・レポート作成</h4>
+                    <p>Deep Research × NotebookLM は、卒論やレポートの文献調査・整理にもそのまま使えます。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">応用 2</div>
+                    <h4>アンバサダー紹介ページ</h4>
+                    <p>テーマを「メンバー紹介」に変えれば、コミュニティの紹介サイトが作れます。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">応用 3</div>
+                    <h4>定例の情報まとめ</h4>
+                    <p>「今月の AI ニュース」などを毎月このフローで作れば、定期発信のテンプレになります。</p>
+                </div>
+            </div>
+
+            <div class="callout callout-tip">
+                💡 <strong>大事な心構え</strong>: AI は「素材集めと下書き」をものすごく速くしてくれますが、<strong>最後に出典を確認し、責任を持って公開するのは人間</strong>です。スピードと正確さ、その両方を握っているのがアンバサダーの強みです。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#checklist" class="btn">← チェックリスト</a>
+                <a href="../index.html" class="btn">ポータルに戻る →</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // サイドバーのスクロール連動ハイライト
+        const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+        const sections = document.querySelectorAll('.section[id]');
+
+        function onScroll() {
+            let current = '';
+            sections.forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        }
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+
+        // モバイルでリンクを押したらメニューを閉じる
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.remove('open');
+            });
+        });
+    </script>
+</body>
+
+</html>

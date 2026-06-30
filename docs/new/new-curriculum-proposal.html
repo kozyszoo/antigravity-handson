@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規カリキュラム提案 | AI 駆動開発ハンズオンポータル</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            /* 各コースのアクセントカラー（既存ポータルのトーンに合わせる） */
+            --accent-a: #dc2626;   /* コースA: セキュリティ */
+            --accent-b: #059669;   /* コースB: 即戦力ツール */
+            --accent-c: #4f46e5;   /* コースC: 入門・準備編 */
+            --accent-d: #d97706;   /* コースD: AI倫理 */
+            --accent-e: #7c3aed;   /* コースE: マルチAI */
+            --accent-f: #ec4899;   /* コースF: アウトリーチ */
+            --accent-g: #06b6d4;   /* コースG: ポートフォリオ */
+            --accent-h: #84cc16;   /* コースH: 音楽・動画 */
+            --accent-a-gradient: linear-gradient(135deg, #f87171, #dc2626);
+            --accent-b-gradient: linear-gradient(135deg, #10b981, #059669);
+            --accent-c-gradient: linear-gradient(135deg, #6366f1, #4f46e5);
+            --accent-d-gradient: linear-gradient(135deg, #f59e0b, #d97706);
+            --accent-e-gradient: linear-gradient(135deg, #a78bfa, #7c3aed);
+            --accent-f-gradient: linear-gradient(135deg, #f472b6, #ec4899);
+            --accent-g-gradient: linear-gradient(135deg, #22d3ee, #06b6d4);
+            --accent-h-gradient: linear-gradient(135deg, #a3e635, #84cc16);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.7;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+        }
+
+        /* ===== ヘッダー ===== */
+        header {
+            text-align: center;
+            padding: 5rem 2rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #a5b4fc;
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            padding: 0.4rem 1rem;
+            border-radius: 99px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #ffffff, #a5b4fc, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* ===== レイアウト共通 ===== */
+        main {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        .section {
+            margin-bottom: 4.5rem;
+        }
+
+        .section-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #818cf8;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 760px;
+            margin-bottom: 2.25rem;
+        }
+
+        /* ===== 課題分析カード（3つの課題） ===== */
+        .issue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .issue-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 1.75rem;
+            backdrop-filter: blur(16px);
+            transition: all 0.3s ease;
+        }
+
+        .issue-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .issue-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            margin-bottom: 1rem;
+        }
+
+        .issue-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .issue-card p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .voices {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .voices li {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid rgba(129, 140, 248, 0.5);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* ===== コースカード（A〜E） ===== */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 22px;
+            padding: 2.25rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .course-card.a::before { background: var(--accent-a-gradient); }
+        .course-card.b::before { background: var(--accent-b-gradient); }
+        .course-card.c::before { background: var(--accent-c-gradient); }
+        .course-card.d::before { background: var(--accent-d-gradient); }
+        .course-card.e::before { background: var(--accent-e-gradient); }
+        .course-card.f::before { background: var(--accent-f-gradient); }
+        .course-card.g::before { background: var(--accent-g-gradient); }
+        .course-card.h::before { background: var(--accent-h-gradient); }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .course-head {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .course-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .course-tag {
+            display: inline-block;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.6rem;
+            border-radius: 99px;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-card.a .course-tag { background: rgba(220, 38, 38, 0.18); color: #fecaca; }
+        .course-card.b .course-tag { background: rgba(16, 185, 129, 0.18); color: #a7f3d0; }
+        .course-card.c .course-tag { background: rgba(99, 102, 241, 0.18); color: #c7d2fe; }
+        .course-card.d .course-tag { background: rgba(217, 119, 6, 0.18); color: #fde68a; }
+        .course-card.e .course-tag { background: rgba(124, 58, 237, 0.18); color: #ddd6fe; }
+        .course-card.f .course-tag { background: rgba(236, 72, 153, 0.18); color: #fbcfe8; }
+        .course-card.g .course-tag { background: rgba(6, 182, 212, 0.18); color: #cffafe; }
+        .course-card.h .course-tag { background: rgba(132, 204, 22, 0.18); color: #ecfccb; }
+
+        .course-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+        }
+
+        .course-lead {
+            font-size: 0.92rem;
+            color: #cbd5e1;
+            font-style: italic;
+            margin-bottom: 1.25rem;
+        }
+
+        .course-aim {
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .course-aim strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .course-card h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .course-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .course-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .course-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: 700;
+        }
+
+        .course-card.a .course-list li::before { color: var(--accent-a); }
+        .course-card.b .course-list li::before { color: var(--accent-b); }
+        .course-card.c .course-list li::before { color: #818cf8; }
+        .course-card.d .course-list li::before { color: var(--accent-d); }
+        .course-card.e .course-list li::before { color: #a78bfa; }
+        .course-card.f .course-list li::before { color: var(--accent-f); }
+        .course-card.g .course-list li::before { color: var(--accent-g); }
+        .course-card.h .course-list li::before { color: var(--accent-h); }
+
+        .course-list strong {
+            color: #e5e7eb;
+            font-weight: 600;
+        }
+
+        /* ===== 運営・進行の改善提案 ===== */
+        .ops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .ops-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 1.75rem;
+            backdrop-filter: blur(16px);
+            transition: all 0.3s ease;
+        }
+
+        .ops-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .ops-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .ops-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+        }
+
+        .ops-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== フッター ===== */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--card-border);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: rgba(10, 15, 30, 0.5);
+            backdrop-filter: blur(8px);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            header { padding: 3rem 1.5rem 1.5rem; }
+            main { padding: 1.5rem 1.5rem 3rem; }
+            .section-title { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span class="eyebrow">Curriculum Proposal</span>
+        <h1>新規カリキュラム提案</h1>
+        <p class="subtitle">
+            過去のトレーニングアワー（2026/05/25・06/08・06/22 実施分）のアンケート回答を分析し、<br>
+            参加者のニーズを反映した <strong>8つの新コース</strong> と <strong>運営改善案</strong> を提案します。
+        </p>
+    </header>
+
+    <main>
+        <!-- ===== 1. 課題分析 ===== -->
+        <section class="section">
+            <p class="section-label">01 — Analysis</p>
+            <h2 class="section-title">アンケートから抽出された3つの課題</h2>
+            <p class="section-desc">
+                アンケートデータを分析した結果、参加者の声から以下の3つの主要な課題・ニーズが浮かび上がりました。
+                新コースは、これらの課題を直接解消することを狙いとして設計しています。
+            </p>
+
+            <div class="issue-grid">
+                <!-- 課題① -->
+                <div class="issue-card">
+                    <span class="issue-num">①</span>
+                    <h3>レベル差・進行スピードと<br>環境構築の壁</h3>
+                    <p>初学者や1年生が、CLI/CUI・MCP・IDE などの専門用語や Git/GitHub 連携、環境構築の段階でついていけなくなるケースが見られます。</p>
+                    <ul class="voices">
+                        <li>「事前の知識が不足していた、説明のスピードが速すぎた」</li>
+                        <li>「CLI や MCP、IDE などの専門用語の説明が省略されていた」</li>
+                        <li>「環境構築や Git、GitHub の整理の仕方に苦戦した」</li>
+                        <li>「最速で終わらせると次のミッションが出て、深く学べない」</li>
+                    </ul>
+                </div>
+
+                <!-- 課題② -->
+                <div class="issue-card">
+                    <span class="issue-num">②</span>
+                    <h3>セキュリティと権限設定への<br>強い不安</h3>
+                    <p>AI エージェント（Claude Code や Antigravity 等）を実務や個人開発で使うにあたり、セキュリティ上の懸念や適切な権限（Read/Write/Command 実行）の与え方を学びたいという要望があります。</p>
+                    <ul class="voices">
+                        <li>「セキュリティ面が不安。どこまで権限を与えるべきか」</li>
+                        <li>「個人 PC から仕事の資料にアクセスできる環境が不安」</li>
+                        <li>「個人用 PC を2台持ちにすべきか迷っている」</li>
+                    </ul>
+                </div>
+
+                <!-- 課題③ -->
+                <div class="issue-card">
+                    <span class="issue-num">③</span>
+                    <h3>すぐ使える実践的ツールの<br>活用ニーズ</h3>
+                    <p>画像生成を一歩進めたプロンプトエンジニアリングの思考プロセスや、特定ツール（NotebookLM・Deep Research・Google Sites）を組み合わせた実践的カリキュラムが求められています。</p>
+                    <ul class="voices">
+                        <li>「プロンプトをどう思いつけばいいのか追いつけなかった」</li>
+                        <li>「NotebookLM の活用方法や実際の活用例を知りたい」</li>
+                        <li>「研究開発分野での生成 AI 利用法（Deep Research 等）」</li>
+                        <li>「Google Sites 等で簡単にホームページが作れると嬉しい」</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 2. 新規コース ===== -->
+        <section class="section">
+            <p class="section-label">02 — New Courses</p>
+            <h2 class="section-title">新規カリキュラム提案（8つの新コース）</h2>
+            <p class="section-desc">
+                抽出した課題・ニーズに基づき、レベル別・テーマ別に8つの新規ハンズオンコースを提案します。
+            </p>
+
+            <div class="course-grid">
+                <!-- コースA -->
+                <div class="course-card a">
+                    <div class="course-head">
+                        <span class="course-icon">🛡️</span>
+                        <div>
+                            <span class="course-tag">コースA ／ 中〜上級者向け</span>
+                            <h3 class="course-title">AIエージェント時代の<br>セキュリティ＆開発ガバナンス実践</h3>
+                        </div>
+                    </div>
+                    <p class="course-lead">AI コーディングエージェント（Antigravity, Claude Code 等）を安全に利用するためのセキュリティ特化コース</p>
+                    <p class="course-aim"><strong>狙い：</strong>AI エージェントに与える権限のリスクを正しく理解し、安全な開発環境を構築する。</p>
+                    <h4>主な内容</h4>
+                    <ul class="course-list">
+                        <li>AI エージェントが要求する権限（<strong>Read / Write / Command 実行</strong>）の仕組みとリスク分析</li>
+                        <li>サンドボックス環境（Docker 等）や独立した <strong>Worktree</strong> を用いた安全な実行環境の構築</li>
+                        <li>個人 PC と仕事用データの適切な分離方法、機密情報の漏洩を防ぐフィルタリング設定</li>
+                        <li>AI エージェントの利用ガイドライン（<strong>ガバナンス</strong>）の策定ハンズオン</li>
+                    </ul>
+                </div>
+
+                <!-- コースB -->
+                <div class="course-card b">
+                    <div class="course-head">
+                        <span class="course-icon">🚀</span>
+                        <div>
+                            <span class="course-tag">コースB ／ アンバサダー向け</span>
+                            <h3 class="course-title">「即戦力」AIツール実践<br><span style="font-size:0.8em;font-weight:600;">NotebookLM × Deep Research × Google Sites</span></h3>
+                        </div>
+                    </div>
+                    <p class="course-lead">複数の最新 AI/Web ツールを組み合わせて、研究や情報発信のアウトプットを作るコース</p>
+                    <p class="course-aim"><strong>狙い：</strong>最新 AI でリサーチ・分析を行い、その成果をノンコードで Web ページとして公開する一連の流れを体験する。</p>
+                    <h4>主な内容</h4>
+                    <ul class="course-list">
+                        <li><strong>Deep Research：</strong>AI 自律ブラウジングを用いた網羅的・専門的な文献調査</li>
+                        <li><strong>NotebookLM：</strong>複数の PDF・リンク・メモをソースに、要約・比較・FAQ を生成</li>
+                        <li><strong>Google Sites：</strong>整理した情報を基に、イベント告知やアンバサダー紹介ページを15分で構築</li>
+                    </ul>
+                </div>
+
+                <!-- コースC -->
+                <div class="course-card c">
+                    <div class="course-head">
+                        <span class="course-icon">🌱</span>
+                        <div>
+                            <span class="course-tag">コースC ／ 初学者・準備編</span>
+                            <h3 class="course-title">ゼロから始める<br>Git/GitHub & AIエージェント入門</h3>
+                        </div>
+                    </div>
+                    <p class="course-lead">専門用語や環境構築の壁を取り払い、Antigravity 等を動かすための土台を作るコース</p>
+                    <p class="course-aim"><strong>狙い：</strong>CLI 操作や Git/GitHub、AI エージェントの起動に必要な基本知識を、手を動かしながらゆっくり学ぶ。</p>
+                    <h4>主な内容</h4>
+                    <ul class="course-list">
+                        <li>専門用語のやさしい解説（<strong>CLI・IDE・MCP・エージェントとは？</strong>）</li>
+                        <li>Git/GitHub の基本（クローン・ブランチ・コミット・Push）と、AI 生成物のファイリング・整理のコツ</li>
+                        <li>Antigravity 等の基本セットアップを講師と一緒に1ステップずつ完了（トラブルシューティング体験付き）</li>
+                        <li>つまずいた時の対処法（ログの読み方、やり直し方）</li>
+                    </ul>
+                </div>
+
+                <!-- コースD -->
+                <div class="course-card d">
+                    <div class="course-head">
+                        <span class="course-icon">⚖️</span>
+                        <div>
+                            <span class="course-tag">コースD ／ 中級者向け</span>
+                            <h3 class="course-title">実践！責任あるAI（AI Ethics）＆<br>ハルシネーション評価ワークショップ</h3>
+                        </div>
+                    </div>
+                    <p class="course-lead">AI の倫理リスクや偽情報（ハルシネーション）を評価・対策し、信頼性の高いアウトプットを作るコース</p>
+                    <p class="course-aim"><strong>狙い：</strong>生成 AI の倫理的な問題点や技術的限界（ハルシネーション、バイアス）を理解し、責任ある AI 活用ができるようになる。</p>
+                    <h4>主な内容</h4>
+                    <ul class="course-list">
+                        <li>AI Ethics の基本：著作権・プライバシー・バイアス・公平性に関するディスカッション</li>
+                        <li>ハルシネーションの発生メカニズムと、出力情報の信頼性を検証（<strong>Fact-checking</strong>）するプロセス</li>
+                        <li>プロンプトレベルでのバイアス・リスク軽減策（セーフガードの設定方法）</li>
+                        <li>アンバサダーとしての倫理的な発信方法と、責任ある AI 利用のチェックリスト作成</li>
+                    </ul>
+                </div>
+
+                <!-- コースE -->
+                <div class="course-card e">
+                    <div class="course-head">
+                        <span class="course-icon">🔀</span>
+                        <div>
+                            <span class="course-tag">コースE ／ 上級者向け</span>
+                            <h3 class="course-title">マルチAI・ハイブリッド開発ワークフロー<br><span style="font-size:0.8em;font-weight:600;">Codex × Claude × Antigravity 使い分け編</span></h3>
+                        </div>
+                    </div>
+                    <p class="course-lead">各 AI コーディングエージェントの特性を理解し、タスクに応じて最適なツールを選択・連携するコース</p>
+                    <p class="course-aim"><strong>狙い：</strong>複数の AI エージェントの強みを活かし、1つのプロジェクトでハイブリッドに使いこなすプロの開発フローを体感する。</p>
+                    <h4>主な内容</h4>
+                    <ul class="course-list">
+                        <li>3大 AI エージェントの特徴比較とユースケース別の使い分け（デバッグ・新規実装・ドキュメント・テスト自動化など）</li>
+                        <li>CLI ツールとエージェント連携のメリット・デメリット</li>
+                        <li>実践タスク：Claude Code で超高速デバッグ → Antigravity の並列マルチエージェントでリファクタリング → Git ワークフローで PR 作成</li>
+                        <li>複数 AI を同時利用する際の設定と、環境干渉を防ぐベストプラクティス</li>
+                    </ul>
+                </div>
+
+                <!-- コースF -->
+                <div class="course-card f">
+                    <div class="course-head">
+                        <span class="course-icon">📣</span>
+                        <div>
+                            <span class="course-tag">コースF ／ 初〜中級者向け</span>
+                            <h3 class="course-title">AI×デザイン：アンバサダーのための<br>効果的なSNS発信＆アウトリーチ戦略</h3>
+                        </div>
+                    </div>
+                    <p class="course-lead">生成AIを活用し、ターゲットに響くコンテンツ作成と情報発信を実践するコース</p>
+                    <p class="course-aim"><strong>狙い：</strong>AIによるターゲット分析・コピーライティング・画像生成を組み合わせ、広報活動の質とスピードを飛躍的に高める。</p>
+                    <h4>主な内容</h4>
+                    <ul class="course-list">
+                        <li>AIを用いたターゲットペルソナ分析と興味関心の言語化</li>
+                        <li>エンゲージメントを高めるSNS告知テキストのドラフト自動生成</li>
+                        <li>画像生成AI（<strong>Nano Banana</strong> 等）によるブランドイメージに沿ったアイキャッチ画像制作</li>
+                        <li>クリック率を高めるレイアウト配置と、AIを活用した発信プランの策定</li>
+                    </ul>
+                </div>
+
+                <!-- コースG -->
+                <div class="course-card g">
+                    <div class="course-head">
+                        <span class="course-icon">🌐</span>
+                        <div>
+                            <span class="course-tag">コースG ／ 初〜中級者向け</span>
+                            <h3 class="course-title">対話でつくる！個人ホームページ＆<br>ポートフォリオサイト爆速構築</h3>
+                        </div>
+                    </div>
+                    <p class="course-lead">AI エージェントを相棒に、自分だけのWebサイトをノンコードから構築する入門コース</p>
+                    <p class="course-aim"><strong>狙い：</strong>HTML/CSSの基礎を学びつつ、AIの指示だけでレスポンシブなWebページを完成させ、インターネット上に公開する。</p>
+                    <h4>主な内容</h4>
+                    <ul class="course-list">
+                        <li>AIエージェントへの適切な指示出し（プロンプト）によるWebデザインの選定</li>
+                        <li>対話型で進めるHTML/CSSコーディングとレスポンシブ対応（スマホ表示）</li>
+                        <li>AIが作ったコードの構造理解と、簡単なテキスト・画像変更のやり方</li>
+                        <li><strong>GitHub Pages</strong> を使った完全無料でのWebサイト公開手順</li>
+                    </ul>
+                </div>
+
+                <!-- コースH -->
+                <div class="course-card h">
+                    <div class="course-head">
+                        <span class="course-icon">🎵</span>
+                        <div>
+                            <span class="course-tag">コースH ／ 中級者向け</span>
+                            <h3 class="course-title">AIと創る音と映像：MusicFX ×<br>画像生成で作るプロモーション動画</h3>
+                        </div>
+                    </div>
+                    <p class="course-lead">音楽生成AIと画像生成AIを駆使し、30秒のイベント告知ショート動画を作るコース</p>
+                    <p class="course-aim"><strong>狙い：</strong>AI（MusicFXやSuno等）による作曲・BGM生成と、画像素材を組み合わせ、クリエイティブな映像を制作する。</p>
+                    <h4>主な内容</h4>
+                    <ul class="course-list">
+                        <li>音楽生成AI（<strong>MusicFX</strong> 等）を用いたイベントの雰囲気に合うBGM/効果音の作成</li>
+                        <li>告知テキストとマスコット画像を組み合わせたシーン素材の画像生成</li>
+                        <li>AI生成した音声・画像アセットを動画編集ツールで統合するワークフロー</li>
+                        <li>テンポを合わせた30秒ショート動画（縦型・横型）の書き出しと発信方法</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 3. 運営改善 ===== -->
+        <section class="section">
+            <p class="section-label">03 — Operations</p>
+            <h2 class="section-title">運営・進行の改善提案</h2>
+            <p class="section-desc">
+                「スピードが速すぎる」「時間の制約」というアンケートの指摘を解消するため、以下の運営改善を行います。
+            </p>
+
+            <div class="ops-grid">
+                <div class="ops-card">
+                    <span class="ops-icon">📋</span>
+                    <h3>事前のアジェンダ・アセット共有</h3>
+                    <p>当日デバイスを切り替えた際にも迷わないよう、Discord 等で事前にタイムラインと進行 URL（アジェンダ）を共有します。</p>
+                </div>
+                <div class="ops-card">
+                    <span class="ops-icon">💡</span>
+                    <h3>「プロンプト発想プロセス」の解説</h3>
+                    <p>コピペ用プロンプトの提示だけでなく、「なぜこのプロンプトになったのか」の思考ステップ（目的の明確化 → 制約の指定 → 出力フォーマットの固定）を可視化して説明します。</p>
+                </div>
+                <div class="ops-card">
+                    <span class="ops-icon">📺</span>
+                    <h3>アーカイブと自習資料の導線強化</h3>
+                    <p>スピードについていけなかった参加者が後から自分のペースで復習できるよう、トラブルシューティング付きの解説動画／ドキュメント（<code>docs/</code> 配下）を体系化して案内します。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 AI Driving Development Hands-on Portal. Created by 山岡 滉治 (kozzy)</p>
+            <p style="margin-top:0.75rem;font-size:0.8rem;opacity:0.7;">本提案書はトレーニングアワーのアンケート分析に基づく内部検討用ドラフトです。</p>
+        </div>
+    </footer>
+</body>
+</html>

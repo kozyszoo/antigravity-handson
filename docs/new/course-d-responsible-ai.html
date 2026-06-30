@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実践！責任あるAI ＆ ハルシネーション評価ワークショップ ｜ AI Ethics ハンズオン</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* コースD（責任あるAI）の橙（アンバー）系を基調にしたテーマ */
+            --primary: #d97706;
+            --bg-dark: #fcf8f2;
+            --bg-mid: #ffffff;
+            --bg-light: #fbe6cf;
+            --text: #2a2014;
+            --muted: #6e5c43;
+            --purple: #7c3aed;
+            --blue: #1a73e8;
+            --orange: #e8710a;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        .sidebar .sub-link {
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .sidebar .sub-link:hover {
+            color: var(--primary);
+        }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-mid), var(--bg-light));
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--purple);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: #f6e8d3;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #2a2014;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid var(--bg-light);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #f0ebe2;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        blockquote a {
+            color: var(--primary);
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        /* 注意・補足のコールアウト */
+        .callout {
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .callout-warn {
+            background: #fff4e5;
+            border-left: 4px solid var(--orange);
+            color: #7a4a06;
+        }
+
+        .callout-info {
+            background: #e8f0fe;
+            border-left: 4px solid var(--blue);
+            color: #174ea6;
+        }
+
+        .callout-tip {
+            background: #fdf0d8;
+            border-left: 4px solid var(--primary);
+            color: #92590a;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .badge-time {
+            background: var(--purple);
+            color: white;
+        }
+
+        .badge-level {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-tool {
+            background: var(--blue);
+            color: white;
+            margin-right: 6px;
+        }
+
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .screenshot-sm {
+            max-width: 520px;
+        }
+
+        /* 画像が未用意のときのプレースホルダ */
+        .img-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 140px;
+            margin: 20px 0;
+            padding: 24px;
+            border-radius: 8px;
+            border: 2px dashed var(--primary);
+            background: var(--bg-dark);
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .step-card .step-num {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-card h4 {
+            color: var(--text);
+            margin: 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 0;
+        }
+
+        /* プロンプト例のボックス */
+        .prompt-box {
+            background: #2a2014;
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin: 14px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .prompt-box .prompt-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #fcd34d;
+            margin-bottom: 8px;
+            letter-spacing: 0.04em;
+        }
+
+        .prompt-box p {
+            color: #f0ebe2;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>⚖️ 責任あるAI実践</h2>
+        <nav>
+            <ul>
+                <li><a href="../index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#overview">全体像 — 4ステップの流れ</a></li>
+                <li><a href="#step1">Step 1: あえて怪しい主張を出させる</a></li>
+                <li><a href="#step2">Step 2: ファクトチェックで検証する</a></li>
+                <li><a href="#step3">Step 3: バイアスを軽減する</a></li>
+                <li><a href="#step4">Step 4: 責任ある発信チェックリスト</a></li>
+                <li><a href="#checklist">✅ 完成チェックリスト</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <span class="badge badge-level">コースD ／ 中級者向け</span>
+            <h1>⚖️ 実践！責任あるAI ＆ ハルシネーション評価ワークショップ</h1>
+            <p style="margin-top:8px; font-size:1.05rem; color: var(--text);"><strong>AI Ethics × ファクトチェック × バイアス軽減 × 責任ある発信</strong></p>
+            <p style="margin-top:8px;">生成 AI の「うそ（ハルシネーション）」や「かたより（バイアス）」を、知識として学ぶだけでなく<strong>実際に自分の手で起こし・見つけ・直す</strong>ところまで体験します。最後は、自分が発信するときに使える「責任あるAI活用チェックリスト」を完成させます。</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 60〜75 分 ／ レベル: 中級（生成 AI を日常的に触っている方向け・コーディング不要）</p>
+        </div>
+
+        <!-- Intro -->
+        <section class="section" id="intro">
+            <h2>はじめに</h2>
+
+            <h3>このワークショップで身につくこと</h3>
+            <p>生成 AI はとても便利ですが、<strong>もっともらしい「うそ」を堂々と返してくる</strong>ことがあります。また、学習データに含まれる<strong>かたより（バイアス）</strong>をそのまま出力に反映してしまうこともあります。これらを知らないまま発信すると、誤情報を広げたり、特定の人を傷つけたりするリスクがあります。</p>
+            <p>このワークショップでは、これらの問題を「怖いもの」として遠ざけるのではなく、<strong>仕組みを理解し、検証し、対処する</strong>スキルとして身につけます。最終的には、アンバサダーとして<strong>責任を持って AI を使い・発信する</strong>ための自分専用チェックリストを手に入れます。</p>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">🎯 ゴール（完成イメージ）</div>
+                <p style="margin:0;">「AI に<strong>あえて怪しい主張を出させ → 事実を検証（ファクトチェック）し → かたよりを減らすプロンプトに書き換え → 責任ある発信のチェックリストを作る</strong>」——この一連の流れを自分で再現でき、日々の発信に落とし込めるようになります。</p>
+            </div>
+
+            <h3>🧩 まず押さえる4つのキーワード</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>キーワード</th>
+                        <th>ひとことで言うと</th>
+                        <th>なぜ問題になるか</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ハルシネーション</strong><br><span style="font-size:0.82rem;color:var(--muted);">(幻覚・もっともらしい嘘)</span></td>
+                        <td>AI が事実ではない内容を、自信たっぷりに本当のことのように出力する現象</td>
+                        <td>存在しない論文・統計・URL を「あるかのように」提示し、誤情報の拡散につながる</td>
+                    </tr>
+                    <tr>
+                        <td><strong>バイアス</strong><br><span style="font-size:0.82rem;color:var(--muted);">(かたより)</span></td>
+                        <td>学習データに含まれる偏見や固定観念が、AI の出力にそのまま反映されること</td>
+                        <td>性別・国籍・職業などへの決めつけや、一面的なものの見方を助長する</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ファクトチェック</strong><br><span style="font-size:0.82rem;color:var(--muted);">(事実確認)</span></td>
+                        <td>出力された主張が本当に正しいか、一次情報・信頼できる出典で裏取りする作業</td>
+                        <td>これを省くと、AI の誤りをそのまま自分の発信として広めてしまう</td>
+                    </tr>
+                    <tr>
+                        <td><strong>セーフガード</strong><br><span style="font-size:0.82rem;color:var(--muted);">(安全装置)</span></td>
+                        <td>プロンプトの書き方でリスクを下げる工夫（出典必須・断定回避・多面性の要求など）</td>
+                        <td>無い場合、AI は「それっぽさ」を優先して断定しがちになる</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-info">
+                💡 <strong>なぜ「あえて嘘を出させる」のか？</strong> 失敗を実際に見ておくと、リスクが「自分ごと」になります。本ワークショップは、AI を悪く言うためのものではありません。<strong>限界を知ったうえで、上手に・責任を持って使いこなす</strong>ための実践トレーニングです。
+            </div>
+
+            <h3>🧠 ハルシネーションはなぜ起きる？（発生メカニズム）</h3>
+            <p>大規模言語モデル（LLM）は、文章の意味を「理解」しているのではなく、<strong>「次に来そうな単語」を確率的に予測して文章を作っている</strong>仕組みです。そのため、次のような場面でハルシネーションが起きやすくなります。</p>
+            <ul>
+                <li><strong>知らないことを聞かれたとき</strong>: 「わかりません」より「それっぽい答え」を生成してしまう（自信ありげに見えるのはこのため）</li>
+                <li><strong>学習データが古い・少ない領域</strong>: 最新の出来事やニッチな分野では特に間違えやすい</li>
+                <li><strong>具体的な数字・固有名詞・URL</strong>: 「形式が正しそうな」存在しない値を作ってしまうことがある</li>
+            </ul>
+
+            <div class="callout callout-warn">
+                ⚠️ 重要なのは、<strong>AI は「うそをつこう」としているわけではない</strong>という点です。仕組み上「もっともらしさ」を優先するだけで、本人（AI）に悪意はありません。だからこそ、<strong>使う人間の側で検証する仕組み（次のステップ）</strong>が必要になります。
+            </div>
+
+            <h3>✅ 必要な環境</h3>
+            <ul>
+                <li><strong>生成 AI チャット</strong>（Gemini / ChatGPT など、普段お使いのものでOK）</li>
+                <li><strong>ブラウザ</strong>（出典の裏取り・検索に使用。Google Chrome 推奨）</li>
+                <li><strong>メモを取れるもの</strong>（テキストエディタ / Google ドキュメント。最後にチェックリストを作ります）</li>
+            </ul>
+
+            <div class="nav-btns">
+                <a href="../index.html" class="btn">← ポータル</a>
+                <a href="#overview" class="btn">全体像へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Overview -->
+        <section class="section" id="overview">
+            <h2>全体像 — 4ステップの流れ</h2>
+            <p>このワークショップは、次の 4 ステップで進みます。<strong>1 つのテーマ（題材）を最後まで使い回す</strong>ので、最初に身近なテーマを 1 つ思い浮かべておくとスムーズです（例: 自分の専攻分野、好きな歴史上の人物、最近のテック動向など）。</p>
+
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">Step 1（15分）</div>
+                    <h4>🎭 あえて怪しい主張を出させる</h4>
+                    <p>AI に断定的な主張を生成させ、ハルシネーションが起きる様子を実際に観察します。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 2（20分）</div>
+                    <h4>🔎 ファクトチェックで検証</h4>
+                    <p>出力された主張を一次情報・信頼できる出典で裏取りし、真偽を判定します。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 3（15分）</div>
+                    <h4>🛡️ バイアスを軽減する</h4>
+                    <p>かたよりを減らすセーフガード付きプロンプトに書き換え、出力の変化を比べます。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 4（15分）</div>
+                    <h4>📋 責任ある発信チェックリスト</h4>
+                    <p>学びを「自分が発信する前のチェックリスト」として 1 枚にまとめます。</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">🔗 学びの積み上がり方（何が次に渡るか）</div>
+                <ol style="margin: 0; padding-left: 20px;">
+                    <li><strong>Step1 → Step2</strong>: 検証対象となる「怪しい主張」のリスト</li>
+                    <li><strong>Step2 → Step3</strong>: 「どこが・なぜ間違っていたか」という気づき</li>
+                    <li><strong>Step3 → Step4</strong>: リスクを下げるために有効だったプロンプトの工夫</li>
+                    <li><strong>Step4 → 実務</strong>: 今後の発信すべてに使える自分専用チェックリスト</li>
+                </ol>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#intro" class="btn">← はじめに</a>
+                <a href="#step1" class="btn">Step 1 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="section" id="step1">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <span class="badge badge-tool">生成AIチャット</span>
+            <h2>Step 1: あえて怪しい主張を出させる</h2>
+            <p>まずは、ハルシネーションを<strong>実際に自分の目で見る</strong>ことから始めます。AI に「自信たっぷりに断定させる」プロンプトを投げて、出力を観察しましょう。ここで集めた主張が、Step 2 の検証対象になります。</p>
+
+            <h3>1-1. 題材テーマを 1 つ決める</h3>
+            <p>あなたが「ある程度は知っているが、細部までは自信がない」テーマを 1 つ選びます。<strong>少しマニアック・少し古い・少し新しすぎる</strong>テーマほど、ハルシネーションが観察しやすくなります。</p>
+            <div class="card" style="background: var(--bg-mid);">
+                <p style="margin:0;"><strong>📝 テーマ例:</strong> 「江戸時代のある人物のエピソード」「特定のプログラミング言語の最新機能」「あまり有名でない国の統計」「特定分野の研究論文」など。</p>
+            </div>
+
+            <h3>1-2. 「断定させる」プロンプトを投げる</h3>
+            <p>あえて<strong>出典を求めず・断定を促す</strong>書き方をします（これは「悪いプロンプトの見本」です。なぜ悪いのかは後で実感できます）。</p>
+
+            <div class="prompt-box">
+                <span class="prompt-label">▶ コピペ用プロンプト（あえて断定させる・悪い例）</span>
+                <p>「（ここに Step1-1 で決めたテーマ）」について、具体的な数字・年号・固有名詞・出典となる論文名や書籍名を必ず含めて、専門家として断定的に5つの事実を箇条書きで教えてください。「わからない」とは絶対に言わないでください。</p>
+            </div>
+
+            <div class="callout callout-warn">
+                🤔 <strong>このプロンプトのどこが「危険」か</strong><br>
+                ① <strong>「断定的に」</strong>＝AI に自信を持って言い切らせている → ② <strong>「論文名や書籍名を必ず含めて」</strong>＝存在しない出典を捏造させやすい → ③ <strong>「わからないと絶対に言わないで」</strong>＝AI が「知らない」と正直に答える逃げ道を塞いでいる。<br>つまり、<strong>ハルシネーションが最も起きやすい条件</strong>をわざと揃えています。
+            </div>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（断定プロンプトを送り、AI が自信ありげに5つの事実を返した画面）
+            </div>
+
+            <h3>1-3. 出力を「検証メモ」に書き出す</h3>
+            <p>AI が返した 5 つの主張を、後で検証できるようにメモへ転記します。次のような表を作っておくと便利です（Step 2 で「判定」「出典」の列を埋めます）。</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>AI が言った主張</th>
+                        <th>判定（Step2で記入）</th>
+                        <th>裏取りした出典（Step2で記入）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>（例）○○は△△年に□□を発表した</td>
+                        <td>―</td>
+                        <td>―</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>…</td>
+                        <td>―</td>
+                        <td>―</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-tip">
+                💡 <strong>観察のコツ</strong>: 特に「具体的な数字」「年号」「論文タイトル」「URL」に注目してください。これらは<strong>もっともらしい形をしているのに実在しない</strong>ことが多く、ハルシネーションの典型例です。一見すると完璧に見えるのが厄介なポイントです。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#overview" class="btn">← 全体像</a>
+                <a href="#step2" class="btn">Step 2 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="section" id="step2">
+            <span class="badge badge-time">⏱ 約 20 分</span>
+            <span class="badge badge-tool">ブラウザ検索</span>
+            <h2>Step 2: ファクトチェックで検証する</h2>
+            <p>Step 1 で集めた主張を、1 つずつ<strong>裏取り（ファクトチェック）</strong>していきます。これがこのワークショップの中心となる工程です。「AI が言ったから本当」ではなく、<strong>「人間が確かめたから本当」</strong>に変えていきます。</p>
+
+            <h3>2-1. ファクトチェックの3ステップ</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">手順 A</div>
+                    <h4>主張を分解する</h4>
+                    <p>1 つの文に複数の事実が混ざっていたら、検証できる最小単位に分けます（人名・年号・出来事など）。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">手順 B</div>
+                    <h4>一次情報で確かめる</h4>
+                    <p>公式サイト・原典・公的統計・査読論文など、信頼できる出典で検索します。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">手順 C</div>
+                    <h4>判定する</h4>
+                    <p>「正しい / 誤り / 一部正しい / 確認できない」の4段階で判定し、メモに記入します。</p>
+                </div>
+            </div>
+
+            <h3>2-2. 出典の「信頼度」を見分ける</h3>
+            <p>検索で出てきた情報なら何でも良いわけではありません。次の順で信頼度が高いと考えると安全です。</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>信頼度</th>
+                        <th>出典の種類</th>
+                        <th>例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>★★★ 高</td>
+                        <td>一次情報・公的機関・査読済み論文</td>
+                        <td>政府統計、公式発表、学術データベース（Google Scholar 等）</td>
+                    </tr>
+                    <tr>
+                        <td>★★ 中</td>
+                        <td>専門メディア・編集体制のある報道</td>
+                        <td>大手報道機関、専門誌、企業の公式技術ブログ</td>
+                    </tr>
+                    <tr>
+                        <td>★ 低</td>
+                        <td>個人発信・出典不明のまとめ</td>
+                        <td>匿名の投稿、出典のないまとめサイト、SNS の伝聞</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong>「AI に AI を検証させる」だけで満足しない</strong><br>
+                「さっきの回答は本当ですか？」と同じ AI に聞き返すと、それっぽい訂正や追認を返しますが、<strong>それ自体がまたハルシネーションかもしれません</strong>。AI の自己申告は「ヒント」にとどめ、<strong>最終確認は必ず外部の一次情報（ブラウザ検索）で</strong>行ってください。
+            </div>
+
+            <h3>2-3. 「出典を実在で要求する」プロンプトで再検証</h3>
+            <p>検証を助けるために、AI に対して<strong>出典の実在性を厳しく問い直す</strong>プロンプトも使えます。Step 1 の「悪い例」と読み比べてみてください。</p>
+
+            <div class="prompt-box">
+                <span class="prompt-label">▶ コピペ用プロンプト（検証を助ける・良い例）</span>
+                <p>先ほどの5つの主張について、それぞれ次の形式で見直してください。
+1. 主張
+2. 確信度（高 / 中 / 低）
+3. その根拠となる出典（実在が確認できるものだけ。URLやタイトルがあいまい・不確かな場合は「出典不明」と正直に書く）
+4. 確認できない場合は、なぜ確認できないのかの説明
+
+捏造した出典を絶対に作らないでください。「わからない」「確認できない」と答えてかまいません。</p>
+            </div>
+
+            <div class="callout callout-info">
+                💡 Step 1 のプロンプトが「断定させた」のに対し、こちらは<strong>「確信度を出させ」「不明は不明と言わせ」「捏造を禁止する」</strong>点が違います。同じテーマでも、<strong>プロンプト次第で出力の誠実さが大きく変わる</strong>ことを体感してください。これが次の Step 3「セーフガード」の入り口です。
+            </div>
+
+            <h3>2-4. 検証メモを完成させる</h3>
+            <p>Step 1 で作った表の「判定」「出典」の列を埋めます。終わったら、次の問いに答えてみましょう（Step 4 のチェックリストの材料になります）。</p>
+            <ul>
+                <li>5 つのうち、<strong>誤り・確認できなかった主張はいくつ</strong>ありましたか？</li>
+                <li>最も<strong>だまされそうになった（もっともらしかった）</strong>のはどれでしたか？ それはなぜ？</li>
+                <li>裏取りに<strong>一番役立った出典の種類</strong>は何でしたか？</li>
+            </ul>
+
+            <div class="nav-btns">
+                <a href="#step1" class="btn">← Step 1</a>
+                <a href="#step3" class="btn">Step 3 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="section" id="step3">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <span class="badge badge-tool">生成AIチャット</span>
+            <h2>Step 3: バイアスを軽減する（セーフガードの設定）</h2>
+            <p>ハルシネーションと並ぶもう 1 つの落とし穴が<strong>バイアス（かたより）</strong>です。ここでは、バイアスが出やすい質問を投げて観察し、<strong>プロンプトに「セーフガード」を組み込んで</strong>出力がどう変わるかを比べます。</p>
+
+            <h3>3-1. まずはバイアスを観察する</h3>
+            <p>次のような、つい一面的な答えを誘いやすい質問を投げてみます。</p>
+            <div class="prompt-box">
+                <span class="prompt-label">▶ コピペ用プロンプト（バイアスが出やすい・観察用）</span>
+                <p>「優秀なエンジニア」「理想的なリーダー」を、それぞれ1人の人物像として具体的に描写してください。性別・年齢・国籍・働き方も含めて、できるだけ詳しく書いてください。</p>
+            </div>
+            <p>出力を見て、次の点をチェックします。性別・年齢・国籍などが<strong>特定の像に偏っていないか</strong>？ ある働き方や価値観を<strong>「理想」として決めつけていないか</strong>？</p>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（人物像の描写に偏り（例: 特定の性別・国籍に集中）が見られる出力例）
+            </div>
+
+            <div class="callout callout-warn">
+                ⚠️ バイアスはハルシネーションと違い、<strong>「事実として間違っている」とは限らない</strong>のが難しい点です。「よくある像」を返しているだけのこともあります。問題は、それを<strong>そのまま発信すると固定観念を強化してしまう</strong>ことにあります。
+            </div>
+
+            <h3>3-2. セーフガードを組み込んで書き換える</h3>
+            <p>では、同じ質問にいくつかの<strong>「安全装置（セーフガード）」</strong>を足してみましょう。下のプロンプトは、多面性・前提の明示・決めつけ回避を組み込んだものです。</p>
+
+            <div class="prompt-box">
+                <span class="prompt-label">▶ コピペ用プロンプト（セーフガード付き・改善版）</span>
+                <p>「優秀なエンジニア」について説明してください。ただし次のルールを守ってください。
+1. 性別・年齢・国籍などの属性で人物像を固定しない（特定の属性を前提にしない）
+2. 「優秀さ」は文脈や役割によって異なることを前提に、複数の異なるタイプを挙げる
+3. 一般化する場合は「あくまで一例」「人によって異なる」と明記する
+4. 断定を避け、多様な視点があることがわかる書き方にする</p>
+            </div>
+
+            <h3>3-3. Before / After を比べる</h3>
+            <p>2 つの出力を並べて、何が変わったかを言葉にしてみましょう。</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>観点</th>
+                        <th>Before（3-1）</th>
+                        <th>After（3-2）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>属性の固定</td>
+                        <td>特定の像に偏りがち</td>
+                        <td>属性で固定しない記述になる</td>
+                    </tr>
+                    <tr>
+                        <td>視点の数</td>
+                        <td>1 つの「正解」像</td>
+                        <td>複数のタイプ・多面的</td>
+                    </tr>
+                    <tr>
+                        <td>断定の強さ</td>
+                        <td>言い切り</td>
+                        <td>「一例」「人による」と留保</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-tip">
+                💡 <strong>使えるセーフガードの型（覚えておくと便利）</strong><br>
+                ・<strong>多面性の要求</strong>「複数の異なる視点を挙げて」<br>
+                ・<strong>属性固定の禁止</strong>「性別や国籍を前提にしないで」<br>
+                ・<strong>留保の明示</strong>「一般化する場合は『一例』と書いて」<br>
+                ・<strong>出典・確信度の要求</strong>「根拠と確信度を添えて／不明は不明と言って」（Step 2 で使ったもの）<br>
+                これらを質問の末尾に足すだけで、AI の出力はぐっと誠実になります。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step2" class="btn">← Step 2</a>
+                <a href="#step4" class="btn">Step 4 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section class="section" id="step4">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <h2>Step 4: 責任ある発信チェックリストを作る</h2>
+            <p>最後に、ここまでの学びを<strong>「自分が AI を使って発信する前のチェックリスト」</strong>として 1 枚にまとめます。これがこのワークショップの「持ち帰る成果物」です。</p>
+
+            <h3>4-1. アンバサダーとしての倫理的な発信の3原則</h3>
+            <p>チェックリストを作る前に、土台となる考え方を確認します。発信者として影響力を持つほど、これらは重要になります。</p>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">原則 1</div>
+                    <h4>裏取りしてから出す</h4>
+                    <p>AI の出力は「下書き」。事実は必ず一次情報で確認してから発信する。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">原則 2</div>
+                    <h4>AI 利用を隠さない</h4>
+                    <p>必要に応じて「AI を使って作成」と明示し、透明性を保つ。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">原則 3</div>
+                    <h4>権利と多様性を尊重する</h4>
+                    <p>著作権・プライバシーに配慮し、特定の人を傷つける偏りを避ける。</p>
+                </div>
+            </div>
+
+            <div class="callout callout-info">
+                💡 <strong>著作権・プライバシーの基本</strong>: AI 生成物が<strong>既存の作品に酷似していないか</strong>、画像に<strong>実在の人物や個人情報が写り込んでいないか</strong>を確認しましょう。「AI が作ったから自由に使える」とは限りません。出典・素材のライセンスは自分で確かめるのが原則です。
+            </div>
+
+            <h3>4-2. チェックリストを完成させる（テンプレート）</h3>
+            <p>下のテンプレートをメモにコピーし、Step 1〜3 で気づいたことを足して<strong>自分専用版</strong>にしてください。AI に整えてもらうこともできます。</p>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">📋 責任あるAI活用チェックリスト（たたき台）</div>
+                <p style="margin:0 0 6px; font-weight:600;">【事実・ハルシネーション】</p>
+                <ul style="list-style:none; margin-left:0;">
+                    <li>☐ 数字・年号・固有名詞・URL を一次情報で裏取りしたか</li>
+                    <li>☐ 出典は信頼できる種類か（公的機関・原典・専門メディア）</li>
+                    <li>☐ 「確認できなかったこと」を断定で書いていないか</li>
+                </ul>
+                <p style="margin:12px 0 6px; font-weight:600;">【バイアス・公平性】</p>
+                <ul style="list-style:none; margin-left:0;">
+                    <li>☐ 特定の属性（性別・国籍など）への決めつけがないか</li>
+                    <li>☐ 一面的な「正解」を押し付けていないか</li>
+                    <li>☐ 多様な視点・例外に触れているか</li>
+                </ul>
+                <p style="margin:12px 0 6px; font-weight:600;">【権利・透明性】</p>
+                <ul style="list-style:none; margin-left:0;">
+                    <li>☐ 著作権・ライセンスに問題はないか</li>
+                    <li>☐ 個人情報・プライバシーへの配慮はできているか</li>
+                    <li>☐ 必要に応じて AI 利用を明示したか</li>
+                </ul>
+            </div>
+
+            <div class="prompt-box">
+                <span class="prompt-label">▶ チェックリストを自分用に整えるプロンプト</span>
+                <p>次のチェックリストのたたき台を、私の発信スタイル（（例: 学生コミュニティ向けの Discord 投稿））に合わせて整理し、抜けている観点があれば追加してください。各項目は「発信前に1分で確認できる」短い文にしてください。
+（ここに上のたたき台を貼り、Step1〜3で気づいたことを書き足す）</p>
+            </div>
+
+            <h3>4-3. 仕上げ — 実際の発信に1回使ってみる</h3>
+            <p>完成したチェックリストを、直近で発信予定の文章（または Step 2 で検証したテーマの紹介文）に<strong>1 回実際に当ててみましょう</strong>。チェックが付かなかった項目こそ、あなたが今後気をつけるべきポイントです。</p>
+
+            <div class="nav-btns">
+                <a href="#step3" class="btn">← Step 3</a>
+                <a href="#checklist" class="btn">チェックリストへ →</a>
+            </div>
+        </section>
+
+        <!-- Checklist -->
+        <section class="section" id="checklist">
+            <h2>✅ 完成チェックリスト</h2>
+            <p>すべてにチェックが付けば、このワークショップは完了です。</p>
+            <div class="card" style="background: var(--bg-mid);">
+                <ul style="list-style: none; margin-left: 0;">
+                    <li style="margin-bottom:10px;">☐ 題材テーマを 1 つ決め、AI に断定的な主張を出させた（Step 1）</li>
+                    <li style="margin-bottom:10px;">☐ 5 つの主張を検証メモに書き出した（Step 1）</li>
+                    <li style="margin-bottom:10px;">☐ 各主張を一次情報で裏取りし、4 段階で判定した（Step 2）</li>
+                    <li style="margin-bottom:10px;">☐ 「もっともらしい嘘」を実際に 1 つ以上見つけた（Step 2）</li>
+                    <li style="margin-bottom:10px;">☐ バイアスが出やすい質問で出力の偏りを観察した（Step 3）</li>
+                    <li style="margin-bottom:10px;">☐ セーフガード付きプロンプトで Before / After を比較した（Step 3）</li>
+                    <li style="margin-bottom:10px;">☐ 責任あるAI活用チェックリストを自分用に完成させた（Step 4）</li>
+                    <li style="margin-bottom:0;">☐ 完成したチェックリストを実際の発信文に 1 回当ててみた（Step 4）</li>
+                </ul>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step4" class="btn">← Step 4</a>
+                <a href="#outro" class="btn">おわりに →</a>
+            </div>
+        </section>
+
+        <!-- Outro -->
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <p>おつかれさまでした！ このワークショップでは、生成 AI の<strong>「ハルシネーション」と「バイアス」</strong>を、知識ではなく<strong>実際に起こして・見つけて・直す</strong>体験として学びました。そして、その学びを<strong>責任ある発信のチェックリスト</strong>という持ち帰れる形にしました。</p>
+
+            <h3>🌱 今日学んだことの応用</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">応用 1</div>
+                    <h4>日々の発信の標準工程に</h4>
+                    <p>作ったチェックリストを Discord 投稿・記事・スライド作成の「公開前ルーティン」に組み込みましょう。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">応用 2</div>
+                    <h4>仲間に共有する</h4>
+                    <p>「セーフガードの型」やチェックリストをコミュニティで共有すれば、全体の発信品質が上がります。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">応用 3</div>
+                    <h4>勉強会の題材にする</h4>
+                    <p>「あえて嘘を出させて検証する」流れは、そのまま AI リテラシー勉強会のワークにできます。</p>
+                </div>
+            </div>
+
+            <div class="callout callout-tip">
+                💡 <strong>大事な心構え</strong>: AI は素早く・大量に下書きを作ってくれますが、<strong>「これは本当か」「誰かを傷つけないか」を最後に問うのは人間</strong>です。便利さに乗りつつ、その一手間を惜しまない——それが、責任あるアンバサダーの信頼を作ります。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#checklist" class="btn">← チェックリスト</a>
+                <a href="../index.html" class="btn">ポータルに戻る →</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // サイドバーのスクロール連動ハイライト
+        const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+        const sections = document.querySelectorAll('.section[id]');
+
+        function onScroll() {
+            let current = '';
+            sections.forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        }
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+
+        // モバイルでリンクを押したらメニューを閉じる
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.remove('open');
+            });
+        });
+    </script>
+</body>
+
+</html>

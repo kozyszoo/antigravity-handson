@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remotion 入門ハンズオン ｜ React のコードで動画(MP4)を作る</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Remotion テーマ（青系） */
+            --primary: #2563eb;
+            --bg-dark: #f4f7fd;
+            --bg-mid: #ffffff;
+            --bg-light: #dbe7fb;
+            --text: #14213d;
+            --muted: #5b6987;
+            --purple: #7c3aed;
+            --blue: #1a73e8;
+            --orange: #e8710a;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        .sidebar .sub-link {
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .sidebar .sub-link:hover {
+            color: var(--primary);
+        }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-mid), var(--bg-light));
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--purple);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: #e3ecfb;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #15203a;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid var(--bg-light);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #e8eefa;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        blockquote a {
+            color: var(--primary);
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        /* 注意・補足のコールアウト */
+        .callout {
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .callout-warn {
+            background: #fff4e5;
+            border-left: 4px solid var(--orange);
+            color: #7a4a06;
+        }
+
+        .callout-info {
+            background: #e8f0fe;
+            border-left: 4px solid var(--blue);
+            color: #174ea6;
+        }
+
+        .callout-tip {
+            background: #e6f4ea;
+            border-left: 4px solid #059669;
+            color: #0d652d;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .badge-time {
+            background: var(--purple);
+            color: white;
+        }
+
+        .badge-level {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-tool {
+            background: var(--blue);
+            color: white;
+            margin-right: 6px;
+        }
+
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .screenshot-sm {
+            max-width: 520px;
+        }
+
+        /* 画像が未用意のときのプレースホルダ */
+        .img-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 140px;
+            margin: 20px 0;
+            padding: 24px;
+            border-radius: 8px;
+            border: 2px dashed var(--primary);
+            background: var(--bg-dark);
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .step-card .step-num {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-card h4 {
+            color: var(--text);
+            margin: 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 0;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🎬 Remotion 入門</h2>
+        <nav>
+            <ul>
+                <li><a href="../index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#overview">全体像 — コードで動画を作るとは</a></li>
+                <li><a href="#step1">Step 1: 環境構築</a></li>
+                <li><a href="#step2">Step 2: 最初のコンポジション</a></li>
+                <li><a href="#step3">Step 3: アニメーションをつける</a></li>
+                <li><a href="#step4">Step 4: 仕上げ（要素の合成）</a></li>
+                <li><a href="#step5">Step 5: レンダリング(MP4)</a></li>
+                <li><a href="#advanced">（任意）応用</a></li>
+                <li><a href="#checklist">✅ 完成チェックリスト</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <span class="badge badge-level">入門</span>
+            <h1>🎬 Remotion 入門ハンズオン</h1>
+            <p style="margin-top:8px; font-size:1.05rem; color: var(--text);"><strong>React のコードで動画(MP4)を作る</strong></p>
+            <p style="margin-top:8px;">Remotion は、タイムラインを GUI で編集する代わりに、<strong>React のコンポーネントとして「各フレームの見た目」をプログラムで定義して動画を作る</strong>オープンソースツールです。このハンズオンでは、ゼロから短い動画を 1 本作り、MP4 として書き出すまでを実際に手を動かして体験します。</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 60〜80 分 ／ レベル: 入門（Node.js と React の基礎が少しあると安心）</p>
+        </div>
+
+        <!-- Intro -->
+        <section class="section" id="intro">
+            <h2>はじめに</h2>
+
+            <h3>Remotion とは何か</h3>
+            <p><strong>Remotion</strong> は、ふだん Web 制作で使う <strong>React（JavaScript / TypeScript）のコード</strong>で動画を作るためのフレームワークです。動画編集ソフトのようにタイムライン上でクリップを並べるのではなく、<strong>「このフレームのときに画面はこう見える」を関数として書く</strong>と、Remotion がそれを 1 枚ずつ画像にして連結し、MP4 にしてくれます。</p>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">🎯 ゴール（完成イメージ）</div>
+                <p style="margin:0;">「テキストがフェードインし、図形がバネのように飛び出してくる、数秒の動画」を Remotion で作り、<code>npx remotion render</code> で MP4 ファイルとして書き出せるようになります。コードでアニメーションを表現する感覚をつかむのが目標です。</p>
+            </div>
+
+            <h3>🤔 何が嬉しいの？（動画編集ソフトとの違い）</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>観点</th>
+                        <th>一般的な動画編集ソフト</th>
+                        <th>Remotion（コードで作る）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>作り方</td>
+                        <td>マウスでクリップを並べる</td>
+                        <td>React コンポーネントを書く</td>
+                    </tr>
+                    <tr>
+                        <td>再現性 / 修正</td>
+                        <td>手作業のやり直しが多い</td>
+                        <td>コードを直せば全フレームに即反映</td>
+                    </tr>
+                    <tr>
+                        <td>量産</td>
+                        <td>1 本ずつ手作業</td>
+                        <td><strong>データを差し替えるだけで自動量産</strong>（例: 100 人分の表彰動画）</td>
+                    </tr>
+                    <tr>
+                        <td>Web 技術の活用</td>
+                        <td>専用ソフト内で完結</td>
+                        <td>HTML / CSS / npm パッケージがそのまま使える</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-info">
+                💡 <strong>一言でいうと</strong>: 「Web ページを作る要領で動画が作れる」ツールです。すでに React や CSS を触ったことがある人なら、新しい概念は<strong>「フレーム」と「fps」</strong>だけ覚えれば動画が作れます。
+            </div>
+
+            <h3>✅ 必要な環境（前提知識）</h3>
+            <ul>
+                <li><strong>Node.js</strong>（推奨 v18 以上）— Remotion は Node.js 上で動きます</li>
+                <li><strong>JavaScript / React の基礎</strong>— コンポーネント・JSX・props がなんとなく分かれば十分です（深い知識は不要）</li>
+                <li><strong>ターミナル（コマンドライン）</strong>が少し使えること（<code>cd</code> や <code>npm</code> を打てればOK）</li>
+                <li><strong>エディタ</strong>（VS Code など）</li>
+            </ul>
+
+            <div class="callout callout-tip">
+                💡 React を触ったことがなくても大丈夫です。このハンズオンのコードは<strong>すべてコピペできる完成形</strong>で示し、どこが何をしているかを 1 つずつ日本語で説明します。
+            </div>
+
+            <div class="nav-btns">
+                <a href="../index.html" class="btn">← ポータル</a>
+                <a href="#overview" class="btn">全体像へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Overview -->
+        <section class="section" id="overview">
+            <h2>全体像 — コードで動画を作るとは</h2>
+            <p>Remotion を触る前に、たった 2 つの考え方だけ押さえておきましょう。これが分かれば、後のコードはすべて理解できます。</p>
+
+            <h3>① 動画は「パラパラ漫画」＝フレームの集まり</h3>
+            <p>どんな動画も、実は<strong>静止画（フレーム）を高速でめくっているだけ</strong>です。Remotion でも考え方は同じで、<strong>「今が何フレーム目か」に応じて画面の見た目を変える</strong>と、それがアニメーションになります。</p>
+
+            <h3>② fps（1秒あたりのフレーム数）と durationInFrames（総フレーム数）</h3>
+            <ul>
+                <li><strong>fps</strong>: 1 秒間に何枚の絵を見せるか。<code>30</code> なら 1 秒 = 30 フレーム。</li>
+                <li><strong>durationInFrames</strong>: 動画全体が何フレームあるか。これが動画の長さを決めます。</li>
+            </ul>
+            <div class="card">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 6px;">🧮 長さの計算式</div>
+                <p style="margin:0;"><strong>動画の秒数 = durationInFrames ÷ fps</strong><br>
+                例) <code>fps = 30</code>、<code>durationInFrames = 90</code> → 90 ÷ 30 = <strong>3 秒の動画</strong></p>
+            </div>
+
+            <div class="callout callout-info">
+                💡 Remotion では <code>useCurrentFrame()</code> というフックで「今のフレーム番号」を取得し、その数字をもとに位置・透明度・大きさを計算します。<strong>「フレーム番号 → 見た目」の関数を書く</strong>のが Remotion の本質です。
+            </div>
+
+            <h3>このハンズオンの進み方</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">Step 1（15分）</div>
+                    <h4>🛠 環境構築</h4>
+                    <p>Node.js を確認し、Remotion プロジェクトを作って Studio を起動します。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 2（15分）</div>
+                    <h4>📺 最初のコンポジション</h4>
+                    <p>Composition を定義し、テキストを表示する自作コンポーネントを作ります。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 3（20分）</div>
+                    <h4>✨ アニメーション</h4>
+                    <p>useCurrentFrame・interpolate・spring で動きをつけます。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 4（15分）</div>
+                    <h4>🎨 仕上げ</h4>
+                    <p>背景・複数要素・Sequence で時間差表示を組み合わせます。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 5（10分）</div>
+                    <h4>🎞 レンダリング</h4>
+                    <p>npx remotion render で MP4 に書き出します。</p>
+                </div>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#intro" class="btn">← はじめに</a>
+                <a href="#step1" class="btn">Step 1 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="section" id="step1">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <h2>Step 1: 環境構築</h2>
+            <p>まずは Remotion を動かす準備をします。やることは「Node.js の確認 → プロジェクト作成 → Studio 起動」の 3 つだけです。</p>
+
+            <h3>1-1. Node.js が入っているか確認する</h3>
+            <p>ターミナルを開いて、次のコマンドでバージョンを確認します。<strong>v18 以上</strong>が表示されれば OK です。</p>
+            <pre><code># Node.js のバージョンを確認（v18 以上が望ましい）
+node -v
+
+# npm（パッケージ管理ツール）のバージョンも確認
+npm -v</code></pre>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong>コマンドが見つからない / 古い場合</strong>: Node.js が未インストール、または古い可能性があります。<a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js 公式サイト</a>から LTS 版をインストールしてください。インストール後はターミナルを開き直すと反映されます。
+            </div>
+
+            <h3>1-2. Remotion プロジェクトを作成する</h3>
+            <p>Remotion 公式の作成コマンドを実行します。テンプレートを選ぶ画面が出たら、まずは <strong>「Hello World」テンプレート</strong>（TypeScript）を選びましょう。</p>
+            <pre><code># 対話形式で Remotion プロジェクトを作成する
+npm create video@latest</code></pre>
+            <p>途中で「プロジェクト名」を聞かれるので、たとえば <code>my-first-video</code> と入力します。完了すると、その名前のフォルダが作られます。</p>
+
+            <div class="callout callout-info">
+                💡 <strong>このコマンドが何をしているか</strong>: <code>create video</code> は Remotion 公式の「ひな型生成ツール」です。必要なファイル一式（設定・サンプルのコンポジション・package.json）を自動で用意し、依存パッケージのインストールまで行ってくれます。手作業の初期設定が不要になります。
+            </div>
+
+            <h3>1-3. Studio（プレビュー）を起動する</h3>
+            <p>作られたフォルダに移動し、開発サーバー（Remotion Studio）を起動します。</p>
+            <pre><code># 作成したプロジェクトフォルダに移動
+cd my-first-video
+
+# Remotion Studio（プレビュー）を起動
+npm run dev</code></pre>
+            <p>ブラウザが自動で開き、<strong>Remotion Studio</strong> が表示されます。左にコンポジション一覧、中央にプレビュー、下に再生バー（タイムライン）があります。再生ボタンを押すと、サンプル動画がフレーム単位で再生されます。</p>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（Remotion Studio の初期画面 — 左にコンポジション一覧、中央にプレビュー、下に再生バー）
+            </div>
+
+            <div class="callout callout-tip">
+                💡 Studio は<strong>コードを保存すると自動で再描画</strong>されます。以降のステップでは、この Studio を開いたままコードを書き換えて、結果をすぐ確認していきます。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#overview" class="btn">← 全体像</a>
+                <a href="#step2" class="btn">Step 2 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="section" id="step2">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <h2>Step 2: 最初のコンポジション</h2>
+            <p>ここからコードを書きます。Remotion で動画を作るには、<strong>「コンポジション（Composition）」</strong>を定義する必要があります。コンポジションとは <em>動画 1 本の設定（サイズ・長さ・fps）と、中身のコンポーネントの組み合わせ</em> のことです。</p>
+
+            <h3>2-1. registerRoot と Composition の関係</h3>
+            <p>Remotion のプロジェクトには、必ず<strong>「ルート（Root）」</strong>を登録するファイルがあります。ひな型では <code>src/index.ts</code> がエントリーポイントで、そこから <code>registerRoot()</code> でルートコンポーネントを登録しています。</p>
+            <pre><code>// src/index.ts — Remotion に「ここが入口だよ」と教えるファイル
+import { registerRoot } from 'remotion';
+import { RemotionRoot } from './Root';
+
+// ルートコンポーネントを登録する（これが動画一覧の大元になる）
+registerRoot(RemotionRoot);</code></pre>
+
+            <p>そのルートの中で、<code>&lt;Composition&gt;</code> を並べて「どんな動画があるか」を宣言します。次が今回作る最小のルートです。</p>
+            <pre><code>// src/Root.tsx — どんな動画(コンポジション)があるかを宣言する場所
+import { Composition } from 'remotion';
+import { MyVideo } from './MyVideo';
+
+export const RemotionRoot = () => {
+  return (
+    &lt;&gt;
+      {/* 1つの動画 = 1つの Composition */}
+      &lt;Composition
+        id="MyVideo"            // Studio 上での表示名・render 時の指定名
+        component={MyVideo}     // 実際に描画するコンポーネント
+        durationInFrames={90}   // 総フレーム数（90 ÷ 30fps = 3秒）
+        fps={30}                // 1秒あたり 30 フレーム
+        width={1280}            // 動画の横幅(px)
+        height={720}            // 動画の高さ(px)
+      /&gt;
+    &lt;/&gt;
+  );
+};</code></pre>
+
+            <div class="callout callout-info">
+                💡 <strong>Composition の属性が動画の「枠」を決める</strong>: <code>width / height</code> が解像度、<code>fps</code> がなめらかさ、<code>durationInFrames</code> が長さです。ここを変えるだけで、縦長(ショート動画)や長尺にも対応できます。
+            </div>
+
+            <h3>2-2. テキストを表示するコンポーネントを作る</h3>
+            <p>次に、<code>component</code> に指定した中身（<code>MyVideo</code>）を作ります。画面いっぱいに要素を置くには <code>&lt;AbsoluteFill&gt;</code> を使うと便利です。これは「画面全体を覆う div」だと思ってください。</p>
+            <pre><code>// src/MyVideo.tsx — 実際の見た目を定義するコンポーネント
+import { AbsoluteFill } from 'remotion';
+
+export const MyVideo = () => {
+  return (
+    // AbsoluteFill = 画面全体を覆うコンテナ（中央寄せ等もCSSで指定）
+    &lt;AbsoluteFill
+      style={{
+        backgroundColor: '#15203a',   // 背景色
+        justifyContent: 'center',     // 縦中央
+        alignItems: 'center',         // 横中央
+      }}
+    &gt;
+      &lt;h1 style={{ color: 'white', fontSize: 80 }}&gt;
+        Hello Remotion!
+      &lt;/h1&gt;
+    &lt;/AbsoluteFill&gt;
+  );
+};</code></pre>
+
+            <p>保存すると Studio のプレビューが更新され、紺色の背景に「Hello Remotion!」が中央表示されます。まだ動きはありませんが、これが<strong>動画の 1 フレーム（＝全フレーム同じ絵）</strong>です。次のステップで動かします。</p>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（中央に "Hello Remotion!" が表示された Studio プレビュー）
+            </div>
+
+            <div class="callout callout-tip">
+                💡 ここまでは普通の React と同じです。<strong>JSX で書いた見た目が、そのまま動画のフレームになる</strong>——この感覚がつかめれば、もう Remotion の半分は理解できています。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step1" class="btn">← Step 1</a>
+                <a href="#step3" class="btn">Step 3 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="section" id="step3">
+            <span class="badge badge-time">⏱ 約 20 分</span>
+            <h2>Step 3: アニメーションをつける</h2>
+            <p>いよいよ動きをつけます。Remotion のアニメーションは、<strong>「今のフレーム番号」を取得し、その数字から見た目の値（透明度・位置・大きさ）を計算する</strong>だけです。難しい再生制御はありません。</p>
+
+            <h3>3-1. useCurrentFrame() で「今のフレーム」を知る</h3>
+            <p>まずは現在のフレーム番号を表示してみましょう。<code>useCurrentFrame()</code> は再生位置が進むたびに増える数字を返します。</p>
+            <pre><code>import { AbsoluteFill, useCurrentFrame } from 'remotion';
+
+export const MyVideo = () => {
+  // 今が何フレーム目か（0, 1, 2, ... と進む）
+  const frame = useCurrentFrame();
+
+  return (
+    &lt;AbsoluteFill style={{ backgroundColor: '#15203a', justifyContent: 'center', alignItems: 'center' }}&gt;
+      &lt;h1 style={{ color: 'white', fontSize: 80 }}&gt;frame: {frame}&lt;/h1&gt;
+    &lt;/AbsoluteFill&gt;
+  );
+};</code></pre>
+            <p>再生すると数字が 0 から増えていきます。これが「動画は時間とともに frame が進む」という Remotion の心臓部です。</p>
+
+            <h3>3-2. interpolate() でフェードインする</h3>
+            <p><code>interpolate()</code> は「<strong>ある範囲の入力を、別の範囲の出力に変換する</strong>」関数です。たとえば「フレーム 0〜30 を、透明度 0〜1 に対応させる」と書けば、最初の 1 秒でじわっと現れる<strong>フェードイン</strong>になります。</p>
+            <pre><code>import { AbsoluteFill, useCurrentFrame, interpolate } from 'remotion';
+
+export const MyVideo = () => {
+  const frame = useCurrentFrame();
+
+  // frame が 0→30 に進む間に、opacity を 0→1 へ変化させる
+  const opacity = interpolate(
+    frame,        // 入力：今のフレーム
+    [0, 30],      // 入力の範囲（0〜30フレーム）
+    [0, 1],       // 出力の範囲（透明→不透明）
+    {
+      // 範囲外でも値が飛び出さないように両端で止める
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+    }
+  );
+
+  return (
+    &lt;AbsoluteFill style={{ backgroundColor: '#15203a', justifyContent: 'center', alignItems: 'center' }}&gt;
+      {/* 計算した opacity をスタイルに渡すだけ */}
+      &lt;h1 style={{ color: 'white', fontSize: 80, opacity }}&gt;Hello Remotion!&lt;/h1&gt;
+    &lt;/AbsoluteFill&gt;
+  );
+};</code></pre>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong><code>extrapolateLeft / Right: 'clamp'</code> を忘れずに</strong>。これが無いと、入力範囲(0〜30)の外側でも値が計算され続け、opacity が 1 を超えたりマイナスになったりします。<strong>「両端で止める」= clamp</strong> と覚えておくと安全です。
+            </div>
+
+            <h3>3-3. spring() でバネのような動きを出す</h3>
+            <p>直線的な動きだと機械的に見えます。<code>spring()</code> を使うと、<strong>バネのようにふわっと弾む自然な動き</strong>になります。ここでは図形を下から飛び出させてみましょう。</p>
+            <pre><code>import { AbsoluteFill, useCurrentFrame, useVideoConfig, spring, interpolate } from 'remotion';
+
+export const MyVideo = () => {
+  const frame = useCurrentFrame();
+  // fps は spring の動きの速さ計算に必要なので取得する
+  const { fps } = useVideoConfig();
+
+  // 0 → 1 へ「バネのように」変化する値（弾む動き）
+  const progress = spring({
+    frame,    // 今のフレーム
+    fps,      // コンポジションの fps
+    config: { damping: 12 },  // damping を小さくするほどよく弾む
+  });
+
+  // progress(0→1) を、Y方向の移動量(300px下→0)に変換
+  const translateY = interpolate(progress, [0, 1], [300, 0]);
+
+  return (
+    &lt;AbsoluteFill style={{ backgroundColor: '#15203a', justifyContent: 'center', alignItems: 'center' }}&gt;
+      &lt;div
+        style={{
+          width: 200,
+          height: 200,
+          borderRadius: 24,
+          backgroundColor: '#2563eb',
+          // 計算した値で位置と大きさを動かす
+          transform: \`translateY(\${translateY}px) scale(\${progress})\`,
+        }}
+      /&gt;
+    &lt;/AbsoluteFill&gt;
+  );
+};</code></pre>
+            <p>再生すると、青い四角が下からバネのように跳ねて中央に収まります。<code>spring()</code> が返す 0→1 の値を <code>interpolate()</code> で「移動量」や「拡大率」に変換するのが、Remotion アニメーションの定番パターンです。</p>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（青い四角がバネのように飛び出すアニメーションの途中フレーム）
+            </div>
+
+            <div class="callout callout-info">
+                💡 <strong>3 つのフックの役割まとめ</strong>:<br>
+                ・<code>useCurrentFrame()</code> … 今のフレーム番号を取得<br>
+                ・<code>interpolate()</code> … 数値を別の範囲へ変換（位置・透明度・大きさ）<br>
+                ・<code>spring()</code> … 自然な弾みのある 0→1 の値を生成<br>
+                この 3 つの組み合わせだけで、ほとんどの基本アニメーションが作れます。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step2" class="btn">← Step 2</a>
+                <a href="#step4" class="btn">Step 4 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section class="section" id="step4">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <h2>Step 4: 仕上げ（背景・複数要素・Sequence）</h2>
+            <p>動きが分かったら、要素を組み合わせて「ちゃんとした 1 本」に仕上げます。ポイントは <strong>背景の作り込み</strong> と、<code>&lt;Sequence&gt;</code> による <strong>時間差での表示</strong> です。</p>
+
+            <h3>4-1. Sequence で「いつ表示するか」をずらす</h3>
+            <p><code>&lt;Sequence&gt;</code> は、中の要素を<strong>「指定したフレームから登場させる」</strong>ためのコンポーネントです。<code>from</code> で開始フレーム、<code>durationInFrames</code> で表示する長さを指定します。これでテキストと図形を<strong>時間差で出す</strong>演出ができます。</p>
+            <pre><code>import { AbsoluteFill, Sequence } from 'remotion';
+import { Title } from './Title';   // Step3 で作ったような部品を分割
+import { Box } from './Box';
+
+export const MyVideo = () => {
+  return (
+    &lt;AbsoluteFill style={{ backgroundColor: '#15203a' }}&gt;
+      {/* 0フレーム目から、まず図形を登場させる */}
+      &lt;Sequence from={0} durationInFrames={90}&gt;
+        &lt;Box /&gt;
+      &lt;/Sequence&gt;
+
+      {/* 30フレーム目（1秒後）から、遅れてテキストを登場させる */}
+      &lt;Sequence from={30} durationInFrames={60}&gt;
+        &lt;Title /&gt;
+      &lt;/Sequence&gt;
+    &lt;/AbsoluteFill&gt;
+  );
+};</code></pre>
+
+            <div class="callout callout-info">
+                💡 <strong>Sequence の中では frame が 0 にリセットされる</strong>のが重要ポイントです。<code>from={30}</code> の Sequence の中で <code>useCurrentFrame()</code> を呼ぶと、動画全体の 30 フレーム目でも<strong>その部品にとっては 0 フレーム目</strong>として扱われます。だから各部品は「自分が出てくる瞬間を 0」としてアニメーションを書けます。
+            </div>
+
+            <h3>4-2. 背景に動きをつける（おまけ）</h3>
+            <p>背景を一色ベタ塗りではなく、ゆっくり変化するグラデーションにすると、ぐっと「動画らしさ」が出ます。これも frame をもとに色を計算するだけです。</p>
+            <pre><code>import { AbsoluteFill, useCurrentFrame, interpolate } from 'remotion';
+
+export const Background = () =&gt; {
+  const frame = useCurrentFrame();
+  // フレームに応じてグラデーションの角度をゆっくり回す
+  const angle = interpolate(frame, [0, 90], [0, 60]);
+
+  return (
+    &lt;AbsoluteFill
+      style={{
+        background: \`linear-gradient(\${angle}deg, #15203a, #2563eb)\`,
+      }}
+    /&gt;
+  );
+};</code></pre>
+            <p>この <code>Background</code> を <code>MyVideo</code> の一番下（最初の子要素）に置けば、その上にテキストや図形が重なって表示されます。<strong>要素を重ねる順番＝記述する順番</strong>です（後に書いたものが手前）。</p>
+
+            <div class="callout callout-tip">
+                💡 <strong>部品を分けるコツ</strong>: 背景・タイトル・図形を別々のコンポーネント（<code>Background</code> / <code>Title</code> / <code>Box</code>）に分けると、それぞれが「自分のアニメーション」に集中でき、コードが読みやすくなります。Sequence で並べるだけで構成を組み替えられます。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step3" class="btn">← Step 3</a>
+                <a href="#step5" class="btn">Step 5 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 5 -->
+        <section class="section" id="step5">
+            <span class="badge badge-time">⏱ 約 10 分</span>
+            <h2>Step 5: レンダリング（MP4 に書き出す）</h2>
+            <p>プレビューで満足できたら、最後に<strong>MP4 ファイルとして書き出し</strong>ます。Studio はあくまでプレビューなので、配布できる動画ファイルにするにはレンダリングが必要です。</p>
+
+            <h3>5-1. render コマンドで書き出す</h3>
+            <p>プロジェクトのフォルダで、次のコマンドを実行します。<code>MyVideo</code> の部分は、Step 2 で <code>&lt;Composition&gt;</code> に付けた <code>id</code> を指定します。</p>
+            <pre><code># 形式: npx remotion render &lt;コンポジションid&gt; &lt;出力ファイル名&gt;
+npx remotion render MyVideo out/video.mp4</code></pre>
+            <p>初回は動画化に必要なブラウザ（Chrome Headless Shell）のダウンロードが入ることがあります。完了すると、進捗バーが表示され、最後に出力先のパスが表示されます。</p>
+
+            <div class="callout callout-info">
+                💡 <strong>裏側で何が起きているか</strong>: Remotion はヘッドレスブラウザで各フレームを 1 枚ずつスクリーンショットのように描画し、それを <strong>FFmpeg</strong> で連結して MP4 にエンコードしています。つまり「Studio で見えていた絵」がそのまま動画ファイルになります。
+            </div>
+
+            <h3>5-2. 出力先を確認する</h3>
+            <p>上のコマンドなら、プロジェクト内の <code>out/video.mp4</code> に動画が保存されます。ファイルを開いて、Studio のプレビューと同じ動きになっているか確認しましょう。</p>
+            <pre><code># 出力されたフォルダの中身を確認（mac / Linux）
+ls -lh out/
+
+# 動画を開く（mac の場合）
+open out/video.mp4</code></pre>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（render 実行中の進捗バーと、書き出された out/video.mp4）
+            </div>
+
+            <div class="callout callout-tip">
+                💡 <strong>よく使うオプション</strong>: <code>--codec=h264</code>（既定。一般的な MP4）、<code>--props='{"name":"Taro"}'</code>（後述のデータ駆動でコンポーネントに値を渡す）、<code>--frames=0-30</code>（一部だけ書き出してチェック）など。まずは引数なしのシンプルな形で 1 本出せれば十分です。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step4" class="btn">← Step 4</a>
+                <a href="#advanced" class="btn">応用へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Advanced -->
+        <section class="section" id="advanced">
+            <span class="badge badge-level">任意</span>
+            <h2>（任意）応用 — もっと Remotion を活かす</h2>
+            <p>基本ができたら、次のような発展も Remotion の得意分野です。興味があるものを 1 つ試してみてください。</p>
+
+            <h3>① 音声・BGM をつける</h3>
+            <p><code>&lt;Audio&gt;</code> コンポーネントで音声ファイルを重ねられます。<code>public/</code> フォルダに音源を置き、<code>staticFile()</code> で参照します。</p>
+            <pre><code>import { AbsoluteFill, Audio, staticFile } from 'remotion';
+
+export const MyVideo = () =&gt; {
+  return (
+    &lt;AbsoluteFill&gt;
+      {/* public/bgm.mp3 を動画に重ねる */}
+      &lt;Audio src={staticFile('bgm.mp3')} /&gt;
+      {/* ...映像の中身... */}
+    &lt;/AbsoluteFill&gt;
+  );
+};</code></pre>
+
+            <h3>② データ駆動で動画を量産する</h3>
+            <p>コンポーネントに <strong>props</strong> を受け取らせ、レンダリング時に <code>--props</code> で値を差し替えれば、<strong>同じテンプレートで中身違いの動画を何本も自動生成</strong>できます（例: 受賞者名だけ変えた表彰動画を人数分）。</p>
+            <pre><code>// 名前を受け取って表示するコンポーネント
+type Props = { name: string };
+
+export const Award: React.FC&lt;Props&gt; = ({ name }) =&gt; {
+  return &lt;h1&gt;祝・{name} さん 受賞！&lt;/h1&gt;;
+};</code></pre>
+            <pre><code># レンダリング時に props を渡して中身を差し替える
+npx remotion render Award out/taro.mp4  --props='{"name":"山田太郎"}'
+npx remotion render Award out/hanako.mp4 --props='{"name":"佐藤花子"}'</code></pre>
+
+            <div class="callout callout-info">
+                💡 さらに進めると、CSV やスプレッドシートの行を読み込んでループで <code>renderMedia()</code>（Node.js API）を呼び、<strong>数百本を完全自動で書き出す</strong>こともできます。「コードで動画を作る」最大の強みがここです。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step5" class="btn">← Step 5</a>
+                <a href="#checklist" class="btn">チェックリストへ →</a>
+            </div>
+        </section>
+
+        <!-- Checklist -->
+        <section class="section" id="checklist">
+            <h2>✅ 完成チェックリスト</h2>
+            <p>すべてにチェックが付けば、このハンズオンは完了です。</p>
+            <div class="card" style="background: var(--bg-mid);">
+                <ul style="list-style: none; margin-left: 0;">
+                    <li style="margin-bottom:10px;">☐ Node.js のバージョンを確認した（Step 1）</li>
+                    <li style="margin-bottom:10px;">☐ <code>npm create video@latest</code> でプロジェクトを作成した（Step 1）</li>
+                    <li style="margin-bottom:10px;">☐ <code>npm run dev</code> で Remotion Studio を起動できた（Step 1）</li>
+                    <li style="margin-bottom:10px;">☐ Composition を定義し、テキストを表示できた（Step 2）</li>
+                    <li style="margin-bottom:10px;">☐ interpolate でフェードインを作った（Step 3）</li>
+                    <li style="margin-bottom:10px;">☐ spring でバネのような動きを作った（Step 3）</li>
+                    <li style="margin-bottom:10px;">☐ Sequence で要素を時間差表示した（Step 4）</li>
+                    <li style="margin-bottom:0;">☐ <code>npx remotion render</code> で MP4 を書き出した（Step 5）</li>
+                </ul>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#advanced" class="btn">← 応用</a>
+                <a href="#outro" class="btn">おわりに →</a>
+            </div>
+        </section>
+
+        <!-- Outro -->
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <p>おつかれさまでした！ このハンズオンでは、<strong>「React のコードで動画を組み立て、MP4 として書き出す」</strong>という Remotion の一連の流れを、実際に手を動かして体験しました。<code>useCurrentFrame</code> でフレームを取り、<code>interpolate</code> と <code>spring</code> で見た目を変える——この基本がつかめれば、あとは表現を広げるだけです。</p>
+
+            <h3>🌱 今日学んだことの応用</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">応用 1</div>
+                    <h4>イベント告知ムービー</h4>
+                    <p>タイトル・日時・QRコードを差し替えれば、コミュニティの告知動画を量産できます。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">応用 2</div>
+                    <h4>解説・チュートリアル動画</h4>
+                    <p>コードや図解を順番に出す技術解説動画は、Remotion が特に得意な分野です。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">応用 3</div>
+                    <h4>データ可視化アニメ</h4>
+                    <p>グラフライブラリと組み合わせ、数値の変化をアニメーションで見せられます。</p>
+                </div>
+            </div>
+
+            <div class="callout callout-tip">
+                💡 <strong>次の一歩</strong>: 公式ドキュメント（<a href="https://www.remotion.dev/docs" target="_blank" rel="noopener">remotion.dev/docs</a>）には、トランジション・グラフ・字幕など豊富なサンプルがあります。「やりたい表現 → ドキュメントで該当 API を探す」を繰り返すと、表現の幅が一気に広がります。
+            </div>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong>ライセンスについて</strong>: Remotion は個人や小規模での利用は無料ですが、一定規模以上の企業利用では有償ライセンスが必要です。業務で使う前に<a href="https://www.remotion.dev/docs/license" target="_blank" rel="noopener">公式のライセンス条件</a>を必ず確認してください。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#checklist" class="btn">← チェックリスト</a>
+                <a href="../index.html" class="btn">ポータルに戻る →</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // サイドバーのスクロール連動ハイライト
+        const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+        const sections = document.querySelectorAll('.section[id]');
+
+        function onScroll() {
+            let current = '';
+            sections.forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        }
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+
+        // モバイルでリンクを押したらメニューを閉じる
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.remove('open');
+            });
+        });
+    </script>
+</body>
+
+</html>

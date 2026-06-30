@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マルチAI・ハイブリッド開発ワークフロー ｜ Codex × Claude Code × Antigravity 使い分け編</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* コースE（マルチAI・ハイブリッド開発）の紫を基調にしたテーマ */
+            --primary: #7c3aed;
+            --bg-dark: #f6f4fb;
+            --bg-mid: #ffffff;
+            --bg-light: #e9e2f8;
+            --text: #1e1b2e;
+            --muted: #65607a;
+            --purple: #7c3aed;
+            --blue: #1a73e8;
+            --orange: #e8710a;
+            --green: #059669;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        .sidebar .sub-link {
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .sidebar .sub-link:hover {
+            color: var(--primary);
+        }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-mid), var(--bg-light));
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--purple);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+            vertical-align: top;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: #ece5fb;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #1c1830;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid var(--bg-light);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #ece8f5;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        blockquote a {
+            color: var(--primary);
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        /* 注意・補足のコールアウト */
+        .callout {
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .callout-warn {
+            background: #fff4e5;
+            border-left: 4px solid var(--orange);
+            color: #7a4a06;
+        }
+
+        .callout-info {
+            background: #e8f0fe;
+            border-left: 4px solid var(--blue);
+            color: #174ea6;
+        }
+
+        .callout-tip {
+            background: #efe9fc;
+            border-left: 4px solid var(--primary);
+            color: #4c1d95;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .badge-time {
+            background: var(--orange);
+            color: white;
+        }
+
+        .badge-level {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-tool {
+            background: var(--blue);
+            color: white;
+            margin-right: 6px;
+        }
+
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .screenshot-sm {
+            max-width: 520px;
+        }
+
+        /* 画像が未用意のときのプレースホルダ */
+        .img-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 140px;
+            margin: 20px 0;
+            padding: 24px;
+            border-radius: 8px;
+            border: 2px dashed var(--primary);
+            background: var(--bg-dark);
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .step-card .step-num {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-card h4 {
+            color: var(--text);
+            margin: 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 0;
+        }
+
+        /* プロンプト例のボックス */
+        .prompt-box {
+            background: #1c1830;
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin: 14px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .prompt-box .prompt-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #c4b5fd;
+            margin-bottom: 8px;
+            letter-spacing: 0.04em;
+        }
+
+        .prompt-box p {
+            color: #ece8f5;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🧠 マルチAI開発</h2>
+        <nav>
+            <ul>
+                <li><a href="../index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#compare">3大AIエージェント徹底比較</a></li>
+                <li><a href="#overview">全体像 — ハイブリッド開発フロー</a></li>
+                <li><a href="#step1">Step 1: 環境準備とブランチ戦略</a></li>
+                <li><a href="#step2">Step 2: Claude Code で高速デバッグ</a></li>
+                <li><a href="#step3">Step 3: Antigravity で並列リファクタリング</a></li>
+                <li><a href="#step4">Step 4: Git で統合し PR を作成</a></li>
+                <li><a href="#step5">Step 5: 複数AI併用のベストプラクティス</a></li>
+                <li><a href="#checklist">✅ 完成チェックリスト</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <span class="badge badge-level">コースE ／ 上級者向け</span>
+            <h1>🧠 マルチAI・ハイブリッド開発ワークフロー</h1>
+            <p style="margin-top:8px; font-size:1.05rem; color: var(--text);"><strong>Codex × Claude Code × Antigravity 使い分け編</strong></p>
+            <p style="margin-top:8px;">複数の AI エージェント（Codex・Claude Code・Antigravity）の強みを活かし、<strong>1 つのプロジェクトでハイブリッドに使いこなすプロの開発フロー</strong>を体感します。バグ修正・並列リファクタリング・Git ワークフローによる PR 作成までを一気通貫で手を動かして学びます。</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 90〜120 分 ／ レベル: 上級（Git・CLI の基本操作を前提とします）</p>
+        </div>
+
+        <!-- Intro -->
+        <section class="section" id="intro">
+            <h2>はじめに</h2>
+
+            <h3>このハンズオンで体験すること</h3>
+            <p>AI コーディングエージェントは「どれか 1 つを選ぶ」時代から、<strong>「適材適所で使い分ける」時代</strong>に入りました。このハンズオンでは、特性の異なる 3 つのエージェントを 1 つのプロジェクトに同居させ、それぞれの得意分野を活かして開発を進める「ハイブリッドワークフロー」を実践します。</p>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">🎯 ゴール（完成イメージ）</div>
+                <p style="margin:0;">「バグを含む小さなアプリ（例: ToDo リスト）を題材に、<strong>Claude Code でバグを高速デバッグ</strong>し、<strong>Antigravity で並列リファクタリング</strong>を行い、<strong>Git ワークフローで安全に統合して GitHub に PR を出す</strong>」——この一連を、複数 AI を干渉させずに回せるようになります。</p>
+            </div>
+
+            <h3>🧩 そもそも、この3つのエージェントは何が違う？</h3>
+            <p>いずれも「自然言語でコードを書かせる AI エージェント」ですが、得意な土俵が異なります。詳しくは次の比較セクションで見ますが、まずはざっくりのイメージを掴んでください。</p>
+            <ul>
+                <li><strong>Codex</strong>（OpenAI）: クラウド/CLI で動く実装エージェント。タスクを投げて並列に走らせる「委任型」が得意。</li>
+                <li><strong>Claude Code</strong>（Anthropic）: ターミナル常駐の対話型エージェント。大規模なコードベースの把握と、対話しながらの高速デバッグが得意。</li>
+                <li><strong>Antigravity</strong>（Google）: エディタ統合型のエージェント開発環境。複数エージェントを並列に走らせ、ブラウザ操作まで含めた検証ができる。</li>
+            </ul>
+
+            <div class="callout callout-info">
+                💡 <strong>なぜ「使い分け」なのか？</strong> 1 つのエージェントで全工程をやらせると、得意でない作業で時間を浪費したり、品質がブレたりします。<strong>「調査・デバッグはこれ」「並列実装はこれ」「統合とレビューは人間 ＋ Git」</strong>と役割を分けることが、プロの現場で品質とスピードを両立させるコツです。
+            </div>
+
+            <h3>✅ 必要な環境</h3>
+            <ul>
+                <li><strong>Git</strong>（2.23.0 以降を推奨。<code>git switch</code> / <code>git worktree</code> を使います）と <strong>GitHub アカウント</strong></li>
+                <li><strong>Claude Code</strong>（CLI。<code>claude</code> コマンドが使える状態）</li>
+                <li><strong>Antigravity</strong>（インストール済みのエディタ環境）</li>
+                <li><strong>Codex</strong>（任意。CLI または Web 版。比較・補助として登場します）</li>
+                <li><strong>Node.js</strong>（題材アプリの実行に使用。お使いのバージョンで OK）</li>
+            </ul>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong>上級者向けの前提</strong>: このハンズオンは <code>git add</code> / <code>commit</code> / <code>push</code> / <code>branch</code> といった Git の基本操作を一通り触ったことがある方を想定しています。とはいえ復習できるよう、Step 4 で著者本人の Git 教材（<em>『開発系エンジニアのための Git/GitHub 絵とき入門』</em>）のエッセンスを交えながら丁寧に解説します。
+            </div>
+
+            <div class="nav-btns">
+                <a href="../index.html" class="btn">← ポータル</a>
+                <a href="#compare" class="btn">3大エージェント比較へ →</a>
+            </div>
+        </section>
+
+        <!-- Compare -->
+        <section class="section" id="compare">
+            <h2>3大AIエージェント徹底比較</h2>
+            <p>まずは 3 つのエージェントの特性を整理します。「どれが優れているか」ではなく、<strong>「どの場面でどれを呼ぶか」</strong>の地図を頭に入れましょう。</p>
+
+            <h3>特徴の比較表</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>観点</th>
+                        <th>Codex<br><span style="font-size:0.78rem;color:var(--muted);font-weight:400;">(OpenAI)</span></th>
+                        <th>Claude Code<br><span style="font-size:0.78rem;color:var(--muted);font-weight:400;">(Anthropic)</span></th>
+                        <th>Antigravity<br><span style="font-size:0.78rem;color:var(--muted);font-weight:400;">(Google)</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>形態</strong></td>
+                        <td>CLI ／ クラウド委任型エージェント</td>
+                        <td>ターミナル常駐の対話型 CLI エージェント</td>
+                        <td>エディタ統合のエージェント開発環境（IDE 型）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>いちばんの強み</strong></td>
+                        <td>明確なタスクを「投げて任せる」並列実装・自動化</td>
+                        <td>大規模コードベースの読解と、対話しながらの高速デバッグ</td>
+                        <td>複数エージェントの並列実行と、ブラウザ操作を含む検証</td>
+                    </tr>
+                    <tr>
+                        <td><strong>対話スタイル</strong></td>
+                        <td>非同期・委任（投げて結果を待つ）</td>
+                        <td>同期・対話（壁打ちしながら詰める）</td>
+                        <td>計画提示 → 並列実行 → 成果物（Artifacts）確認</td>
+                    </tr>
+                    <tr>
+                        <td><strong>得意なフェーズ</strong></td>
+                        <td>定型実装・テスト雛形生成・一括変換</td>
+                        <td>原因調査・バグ修正・既存コードの理解</td>
+                        <td>大規模リファクタ・並列タスク・UI 検証</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Git との相性</strong></td>
+                        <td>タスクごとにブランチ/PR を切る運用と好相性</td>
+                        <td>差分の説明・コミットメッセージ生成が得意</td>
+                        <td>worktree で並列ブランチ作業がしやすい</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-info">
+                💡 <strong>用語補足 — エージェント（Agent）</strong>: ここでの「エージェント」は、人間の指示を受けて<strong>自律的にファイルを読み・編集し・コマンドを実行する</strong> AI のこと。単発の補完（オートコンプリート）と違い、複数ステップの作業を自分で進めてくれます。
+            </div>
+
+            <h3>ユースケース別「どれを呼ぶか」早見表</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>やりたいこと</th>
+                        <th>第一候補</th>
+                        <th>理由</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>原因不明のバグを調べて直したい（デバッグ）</td>
+                        <td><strong>Claude Code</strong></td>
+                        <td>コード全体を読み、仮説 → 検証を対話で素早く回せる</td>
+                    </tr>
+                    <tr>
+                        <td>新機能をまとめて実装したい</td>
+                        <td><strong>Codex</strong></td>
+                        <td>仕様が固まっていれば「投げて任せる」のが速い</td>
+                    </tr>
+                    <tr>
+                        <td>大規模な書き換え・並列で複数箇所を直す</td>
+                        <td><strong>Antigravity</strong></td>
+                        <td>複数エージェントを並列実行し、worktree で衝突を避けられる</td>
+                    </tr>
+                    <tr>
+                        <td>ドキュメント・README を整える</td>
+                        <td><strong>Codex / Claude Code</strong></td>
+                        <td>定型化しやすく、委任でも対話でも質が出る</td>
+                    </tr>
+                    <tr>
+                        <td>テストを自動生成・実行したい</td>
+                        <td><strong>Codex（生成）＋ Claude Code（修正）</strong></td>
+                        <td>雛形は委任で量産し、落ちたテストは対話で直す</td>
+                    </tr>
+                    <tr>
+                        <td>UI の見た目・ブラウザ挙動を確認したい</td>
+                        <td><strong>Antigravity</strong></td>
+                        <td>ブラウザ操作を含めた検証フローを持つ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>CLI 型とエージェント連携のメリット・デメリット</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>CLI 型（Codex CLI ／ Claude Code）</th>
+                        <th>IDE 統合型（Antigravity）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>メリット</strong></td>
+                        <td>スクリプト化・自動化しやすい／ Git や CI とつなげやすい／ 軽量で並列起動しやすい</td>
+                        <td>計画・差分・ブラウザ検証を 1 画面で確認できる／ 並列エージェントの状態を可視化できる</td>
+                    </tr>
+                    <tr>
+                        <td><strong>デメリット</strong></td>
+                        <td>ターミナル操作に慣れが必要／ 視覚的な確認は別途必要</td>
+                        <td>環境がやや重い／ 複数同時起動はリソースを食う</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-tip">
+                💡 <strong>連携のコツ</strong>: CLI 型は「<strong>Git・シェル・CI と地続き</strong>」なのが最大の利点です。後半の Step 4 では、Claude Code に差分の要約やコミットメッセージを作らせて、そのまま <code>git commit</code> / <code>gh pr create</code> につなぐ流れを体験します。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#intro" class="btn">← はじめに</a>
+                <a href="#overview" class="btn">全体像へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Overview -->
+        <section class="section" id="overview">
+            <h2>全体像 — ハイブリッド開発フロー</h2>
+            <p>このハンズオンは、次の 5 ステップで進みます。1 つのリポジトリの中で、各エージェントが<strong>別々のブランチ／worktree</strong>で並行作業し、最後に Git で安全に統合して PR を出す、という上級ワークフローです。</p>
+
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">Step 1（15分）</div>
+                    <h4>🌿 環境準備とブランチ戦略</h4>
+                    <p>題材リポジトリを用意し、AI ごとにブランチ／worktree を分ける戦略を立てます。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 2（25分）</div>
+                    <h4>🐛 Claude Code で高速デバッグ</h4>
+                    <p>仕込まれたバグを Claude Code で原因特定し、修正してコミットします。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 3（25分）</div>
+                    <h4>⚡ Antigravity で並列リファクタリング</h4>
+                    <p>別ブランチ（worktree）で並列エージェントによるリファクタを行います。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 4（25分）</div>
+                    <h4>🔀 Git で統合し PR を作成</h4>
+                    <p>add/commit/push → merge → PR → コンフリクト解決まで通します。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">Step 5（15分）</div>
+                    <h4>🛡 複数AI併用のベストプラクティス</h4>
+                    <p>環境干渉を防ぐ設定・運用ルールを整理します。</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">🔗 役割分担（誰がどのブランチで何をするか）</div>
+                <ol style="margin: 0; padding-left: 20px;">
+                    <li><strong>Claude Code</strong> → <code>fix/bug-todo</code> ブランチでバグ修正（Step 2）</li>
+                    <li><strong>Antigravity</strong> → <code>refactor/todo</code> ブランチ（worktree）でリファクタ（Step 3）</li>
+                    <li><strong>人間 ＋ Git</strong> → 2 つのブランチを <code>main</code> に統合し、PR を作成（Step 4）</li>
+                </ol>
+            </div>
+
+            <div class="callout callout-info">
+                💡 <strong>キモは「同じファイルを別 AI が同時に触らない」こと</strong>。AI ごとにブランチ（できれば worktree）を分けることで、お互いの編集が衝突せず、Git の履歴上でも「誰が何をやったか」が綺麗に残ります。これが本コースの背骨です。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#compare" class="btn">← 比較</a>
+                <a href="#step1" class="btn">Step 1 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="section" id="step1">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <h2>Step 1: 環境準備とブランチ戦略</h2>
+            <p>まず題材となるリポジトリを用意し、<strong>「どの AI がどのブランチで作業するか」</strong>を先に決めます。ここを設計してから AI を動かすのが、マルチAI開発で破綻しないための第一歩です。</p>
+
+            <h3>1-1. Git のユーザー設定を確認する</h3>
+            <p>コミットログに自分の情報が記録されるよう、Git のユーザー名とメールアドレスを設定しておきます（設定済みなら飛ばして OK）。</p>
+            <pre><code># すべてのリポジトリ共通の設定（--global）
+$ git config --global user.name "あなたの名前"
+$ git config --global user.email "you@example.com"
+
+# 設定確認
+$ git config --global --list</code></pre>
+            <blockquote>
+                <code>git config</code> は、コミットに記録される著者情報を決めるコマンドです。<br>
+                ＜参考: 著書『開発系エンジニアのための Git/GitHub 絵とき入門』4 章＞
+            </blockquote>
+
+            <h3>1-2. 題材リポジトリを用意する</h3>
+            <p>バグを 1 つ仕込んだ小さな ToDo アプリを題材にします。お手元に題材がなければ、次のように最小構成を作って初期化してください。</p>
+            <pre><code># 作業フォルダを作って Git 初期化
+$ mkdir todo-multi-ai && cd todo-multi-ai
+$ git init
+$ git branch -M main
+
+# 題材ファイル（バグ入り）を作成 ※後述
+# ... ファイルを作成したら ...
+$ git add .
+$ git commit -m "chore: 初期コミット（バグ入り ToDo アプリ）"
+
+# GitHub にリポジトリを作って push（gh CLI を使う例）
+$ gh repo create todo-multi-ai --private --source=. --push</code></pre>
+
+            <div class="callout callout-tip">
+                💡 <strong>題材アプリの中身（例）</strong>: <code>app.js</code> に「完了済みタスクを除外する関数」を入れておき、そこに <em>等価演算子の取り違え</em>（<code>==</code> と <code>===</code>、あるいはフィルタ条件の反転）のようなバグを 1 つ仕込みます。Step 2 でこれを Claude Code に直させます。
+            </div>
+
+            <h3>1-3. ブランチ戦略を決める（AI ごとに分ける）</h3>
+            <p>このハンズオンの肝です。<strong>AI ごとに作業ブランチを分け</strong>、Antigravity 側は <code>git worktree</code> で物理的に別フォルダにして並行作業できるようにします。</p>
+
+            <h4>ブランチ作成 / 切り替え（git branch・git switch）</h4>
+            <pre><code># Claude Code 用ブランチを作成して切り替え（-c で作成と同時に切替）
+$ git switch -c fix/bug-todo
+
+# 現在のブランチ一覧を確認（* が現在のブランチ）
+$ git branch</code></pre>
+            <blockquote>
+                <code>git branch &lt;名前&gt;</code> でブランチ作成、<code>git switch &lt;名前&gt;</code> で切り替え。<code>git switch -c &lt;名前&gt;</code> なら作成と切替を一度に行えます（Git 2.23.0 以降）。ブランチ名は <code>fix/...</code>・<code>refactor/...</code> のように目的が分かる命名にしましょう。<br>
+                ＜参考: 同書 4 章「ブランチを作成する／切り替える」＞
+            </blockquote>
+
+            <h4>worktree で「別フォルダの別ブランチ」を用意する</h4>
+            <p><code>git worktree</code> は、<strong>1 つのリポジトリから複数の作業ディレクトリを切り出す</strong>機能です。これにより、Claude Code は <code>todo-multi-ai/</code> で、Antigravity は別フォルダで、それぞれ別ブランチを<strong>同時に</strong>触れます。AI 同士の編集衝突を物理的に防げるのが利点です。</p>
+            <pre><code># main から refactor/todo ブランチを、隣のフォルダとして切り出す
+$ git worktree add ../todo-refactor -b refactor/todo
+
+# 現在の worktree 一覧を確認
+$ git worktree list
+# /path/todo-multi-ai     abc1234 [fix/bug-todo]
+# /path/todo-refactor     def5678 [refactor/todo]</code></pre>
+
+            <div class="callout callout-info">
+                💡 <strong>用語補足 — worktree（ワークツリー）</strong>: 通常 1 リポジトリ＝1 作業フォルダですが、<code>git worktree</code> を使うと同じ <code>.git</code> を共有したまま<strong>複数のフォルダ</strong>を作れます。各フォルダで別ブランチをチェックアウトできるので、「ブランチを切り替えるたびに作業が中断する」問題が起きません。<strong>並列 AI 開発と非常に相性が良い</strong>機能です。
+            </div>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（git worktree list の出力 ＝ 2 つの作業フォルダが別ブランチを指している様子）
+            </div>
+
+            <div class="nav-btns">
+                <a href="#overview" class="btn">← 全体像</a>
+                <a href="#step2" class="btn">Step 2 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="section" id="step2">
+            <span class="badge badge-time">⏱ 約 25 分</span>
+            <span class="badge badge-tool">Claude Code</span>
+            <h2>Step 2: Claude Code で高速デバッグ</h2>
+            <p>本体フォルダ（<code>fix/bug-todo</code> ブランチ）で、仕込まれたバグを <strong>Claude Code</strong> に調査・修正させます。Claude Code は<strong>コードベース全体を読んだうえで対話的に原因を絞り込む</strong>のが得意なので、デバッグにうってつけです。</p>
+
+            <h3>2-1. Claude Code を起動する</h3>
+            <p>本体フォルダ（<code>fix/bug-todo</code> ブランチにいることを確認）で、Claude Code を起動します。</p>
+            <pre><code># 今いるブランチを確認（fix/bug-todo であること）
+$ git branch --show-current
+
+# Claude Code を起動
+$ claude</code></pre>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（fix/bug-todo ブランチで claude を起動した直後のターミナル）
+            </div>
+
+            <h3>2-2. バグを再現させ、原因を調べさせる</h3>
+            <p>いきなり「直して」ではなく、<strong>「再現 → 原因特定 → 修正方針の提示」</strong>の順で対話するのが高速デバッグのコツです。次のプロンプトを使ってください。</p>
+
+            <div class="prompt-box">
+                <span class="prompt-label">▶ Claude Code へのプロンプト（原因調査）</span>
+                <p>この ToDo アプリで「完了済みタスクが一覧から消えない」というバグが報告されています。
+まず、関連しそうなコードを読んで挙動を説明してください。
+次に、バグの根本原因を 1 つに特定し、なぜそれが原因なのかを根拠（該当行）とともに示してください。
+この時点ではまだコードは修正せず、原因の特定だけ行ってください。</p>
+            </div>
+
+            <div class="callout callout-warn">
+                🤔 <strong>「なぜ修正を急がせないのか」（プロの作法）</strong><br>
+                ① <strong>再現と原因の言語化を先にやらせる</strong> → ② 人間が原因の妥当性を確認する → ③ 納得してから修正させる。この順を守ると、<strong>「直ったように見えて別の場所を壊す」事故</strong>を防げます。AI に主導権を渡しつつ、判断のチェックポイントは人間が握るのが上級者の使い方です。
+            </div>
+
+            <h3>2-3. 修正させて、差分を確認する</h3>
+            <p>原因に納得できたら、最小限の修正を依頼します。修正後は必ず <code>git diff</code> で<strong>自分の目で差分を確認</strong>します。</p>
+
+            <div class="prompt-box">
+                <span class="prompt-label">▶ Claude Code へのプロンプト（修正依頼）</span>
+                <p>特定してくれた原因に対して、最小限の修正を加えてください。
+既存の挙動を壊さないよう、変更は該当箇所のみに留めてください。
+修正後、何をどう変えたかを 3 行以内で要約してください。</p>
+            </div>
+
+            <pre><code># Claude Code が編集したファイルの差分を自分の目で確認
+$ git diff
+
+# 動作確認（題材アプリの実行）
+$ node app.js   # もしくは npm test など</code></pre>
+            <blockquote>
+                <code>git diff</code> は、ワークツリー（編集中の状態）とステージングエリアの差分を表示するコマンドです。AI が編集した内容は、コミット前に必ずこれで確認しましょう。<br>
+                ＜参考: 同書 4 章「変更内容を確認する／<code>git diff</code>」＞
+            </blockquote>
+
+            <h3>2-4. add → commit でバグ修正を記録する</h3>
+            <p>動作確認できたら、修正をステージング（<code>git add</code>）してコミット（<code>git commit</code>）します。コミットメッセージは Claude Code に作らせると速くて綺麗です。</p>
+            <pre><code># 変更をステージングエリアに追加
+$ git add .
+
+# 状態を確認（何がステージされたか）
+$ git status
+
+# コミット（メッセージは簡潔・明確に）
+$ git commit -m "fix: 完了済みタスクのフィルタ条件を修正"
+
+# リモートに push
+$ git push origin fix/bug-todo</code></pre>
+            <blockquote>
+                <code>git add</code> で変更をステージングエリアに移し、<code>git commit -m</code> でリポジトリに記録、<code>git push</code> でリモート（GitHub）に反映します。コミットメッセージは履歴を追う目印なので、簡潔かつ明確に書きましょう。<br>
+                ＜参考: 同書 4 章「<code>git add</code> / <code>git status</code> / <code>git commit</code> / <code>git push</code>」＞
+            </blockquote>
+
+            <div class="callout callout-tip">
+                💡 <strong>コミットメッセージも AI に任せる</strong>: Claude Code に「<code>git diff --cached</code> の内容から、Conventional Commits 形式のコミットメッセージを 1 行で提案して」と頼むと、差分から適切なメッセージを作ってくれます。CLI 型エージェントが Git と地続きであることの恩恵です。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step1" class="btn">← Step 1</a>
+                <a href="#step3" class="btn">Step 3 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="section" id="step3">
+            <span class="badge badge-time">⏱ 約 25 分</span>
+            <span class="badge badge-tool">Antigravity</span>
+            <h2>Step 3: Antigravity で並列リファクタリング</h2>
+            <p>今度は、Step 1 で切り出した <strong>別フォルダ（worktree）</strong>の <code>refactor/todo</code> ブランチで作業します。ここでは <strong>Antigravity</strong> の<strong>並列マルチエージェント</strong>機能を使い、コードの構造改善（リファクタリング）を行います。Claude Code が触っているフォルダとは別なので、編集が衝突しません。</p>
+
+            <h3>3-1. worktree フォルダを Antigravity で開く</h3>
+            <p>Step 1 で作った <code>../todo-refactor</code> フォルダを Antigravity で開きます。本体フォルダ（Claude Code 側）はそのまま並行して動かしておいて構いません。</p>
+            <pre><code># worktree のフォルダへ移動して中身を確認
+$ cd ../todo-refactor
+$ git branch --show-current   # refactor/todo であること
+
+# このフォルダを Antigravity で開く（コマンド名は環境に合わせて）
+# 例: antigravity .   もしくは GUI からフォルダを開く</code></pre>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（Antigravity で todo-refactor フォルダを開き、refactor/todo ブランチが表示されている様子）
+            </div>
+
+            <div class="callout callout-info">
+                💡 <strong>用語補足 — リファクタリング</strong>: 外から見た<strong>動作（挙動）を変えずに、内部の構造だけを綺麗にする</strong>作業のこと。「重複したコードを関数にまとめる」「長すぎる関数を分割する」「変数名を分かりやすくする」などが典型例です。動作が変わっていないことをテストで担保するのが鉄則です。
+            </div>
+
+            <h3>3-2. 並列マルチエージェントでリファクタを依頼する</h3>
+            <p>Antigravity の強みは、<strong>独立した複数のタスクを並列に走らせられる</strong>こと。リファクタを「重複処理の関数化」「命名の改善」「コメント・型注釈の追加」のように分割し、それぞれをエージェントに割り当てます。</p>
+
+            <div class="prompt-box">
+                <span class="prompt-label">▶ Antigravity への指示（並列タスクの計画）</span>
+                <p>この ToDo アプリを、動作を変えずにリファクタリングしたいです。
+次の 3 つを独立したタスクとして並列に進めてください。
+1. 重複しているタスク操作ロジックを共通関数に切り出す
+2. 変数・関数の命名を意図が伝わるものに改善する（camelCase 統一）
+3. 主要関数に日本語のコメントを追加する
+各タスクの変更は互いに矛盾しないよう調整し、最後に全体の差分概要を示してください。</p>
+            </div>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong>並列実行で気をつけること</strong>: 複数エージェントを同時に走らせると、<strong>同じファイルの同じ箇所を別々に書き換えて矛盾する</strong>ことがあります。タスクは「触る範囲が重ならない単位」に分割し、Antigravity が提示する計画（Plan）と成果物（Artifacts）を人間が確認してから適用しましょう。
+            </div>
+
+            <h3>3-3. 動作確認してコミットする</h3>
+            <p>リファクタは「動作が変わっていないこと」が命です。テストや実行で挙動を確認してから、<code>refactor/todo</code> ブランチにコミットします。</p>
+            <pre><code># worktree フォルダ内で動作確認
+$ node app.js   # もしくは npm test
+
+# 差分を確認してコミット
+$ git add .
+$ git commit -m "refactor: 重複ロジックの共通化と命名・コメントの改善"
+$ git push origin refactor/todo</code></pre>
+
+            <div class="callout callout-tip">
+                💡 <strong>ここまでの状態</strong>: <code>fix/bug-todo</code>（Claude Code のバグ修正）と <code>refactor/todo</code>（Antigravity のリファクタ）という、<strong>2 本の独立したブランチ</strong>が GitHub 上に push されました。次の Step 4 で、これらを Git の作法に従って安全に統合します。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step2" class="btn">← Step 2</a>
+                <a href="#step4" class="btn">Step 4 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section class="section" id="step4">
+            <span class="badge badge-time">⏱ 約 25 分</span>
+            <span class="badge badge-tool">Git / GitHub</span>
+            <h2>Step 4: Git で統合し PR を作成</h2>
+            <p>ここが本コースの集大成です。2 つの AI が別ブランチで作った成果を、<strong>Git ワークフローに従って安全に統合し、GitHub に PR（プルリクエスト）を出す</strong>までを通します。著者本人の Git 教材（<em>『開発系エンジニアのための Git/GitHub 絵とき入門』5〜7 章</em>）のエッセンスを、マルチAI開発の文脈に合わせて使います。</p>
+
+            <h3>4-1. main を最新化する（git pull）</h3>
+            <p>統合作業の前に、ローカルの <code>main</code> をリモートの最新状態に揃えます。チーム開発では、誰かの変更が先に入っていることがあるためです。</p>
+            <pre><code># 本体フォルダで main に切り替えて最新化
+$ git switch main
+$ git pull origin main</code></pre>
+            <blockquote>
+                <code>git pull</code> は <code>git fetch</code>（取得）と <code>git merge</code>（統合）をまとめて行うコマンドです。統合前に <code>main</code> を最新にしておくと、後のコンフリクトを減らせます。<br>
+                ＜参考: 同書 6 章「変更内容を取得してすぐに反映する／<code>git pull</code>」＞
+            </blockquote>
+
+            <h3>4-2. バグ修正ブランチを main にマージする（git merge）</h3>
+            <p>まず Claude Code のバグ修正（<code>fix/bug-todo</code>）を <code>main</code> に統合します。</p>
+            <pre><code># マージ先（main）にいることを確認してからマージ
+$ git switch main
+$ git merge fix/bug-todo</code></pre>
+            <blockquote>
+                <code>git merge &lt;ブランチ名&gt;</code> は、指定したブランチの変更を現在のブランチに統合します。マージは必ず<strong>「マージ先（取り込む側）」に切り替えてから</strong>実行します。<br>
+                ＜参考: 同書 5 章「ブランチをマージする／<code>git merge</code>」＞
+            </blockquote>
+
+            <h3>4-3. リファクタ用に PR を作成する（プルリクエスト）</h3>
+            <p>もう一方の <code>refactor/todo</code> は、いきなり merge せず<strong>プルリクエストを通してレビューしてもらう</strong>流れにします。これが「変更を他の人に確認してもらう」正攻法です。</p>
+            <pre><code># GitHub CLI で PR を作成（refactor/todo → main）
+$ gh pr create --base main --head refactor/todo \
+    --title "refactor: ToDo アプリの構造改善" \
+    --body "Antigravity の並列エージェントで重複ロジックの共通化と命名改善を実施。動作は不変。"
+
+# ブラウザで PR を確認
+$ gh pr view --web</code></pre>
+            <blockquote>
+                プルリクエスト（PR）は、自分の変更を他の人に見てもらい、レビュー・承認を求める仕組みです。GitHub 上で「New pull request」→ ベースブランチ（<code>main</code>）と変更ブランチ（<code>refactor/todo</code>）を選び、タイトルと説明を書いて作成します。<br>
+                ＜参考: 同書 6 章「プルリクエストを送信するまでの手順」＞
+            </blockquote>
+
+            <div class="img-placeholder">
+                📷 スクリーンショット差し込み位置<br>（GitHub の PR 作成画面 — base: main / compare: refactor/todo）
+            </div>
+
+            <div class="callout callout-tip">
+                💡 <strong>マルチAIならではの PR の使い方</strong>: PR の説明欄に「<strong>どの AI が・どのブランチで・何をやったか</strong>」を明記しておくと、レビュー時に「この変更は Antigravity の並列リファクタ由来」と一目で分かり、レビューの精度が上がります。さらに別の AI（Codex など）に PR の差分レビューを依頼するのも有効です。
+            </div>
+
+            <h3>4-4. コンフリクトが起きたら解決する（conflict）</h3>
+            <p>バグ修正とリファクタが<strong>同じファイルの同じ行</strong>を触っていた場合、PR のマージ時に<strong>コンフリクト（衝突）</strong>が起きます。マルチAI開発では「別 AI が同じ箇所を直す」ことがあるため、避けて通れません。落ち着いて解決しましょう。</p>
+            <pre><code># PR をマージしようとしてコンフリクトが出たら、ローカルで解決する
+$ git switch refactor/todo
+$ git merge main          # ここでコンフリクト発生
+
+# どのファイルが衝突したか確認
+$ git status</code></pre>
+            <p>衝突したファイルを開くと、次のような<strong>コンフリクトマーカー</strong>が入っています。どちらを残すか（または両方を活かすか）を判断し、マーカーごと正しい形に書き直します。</p>
+            <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+（refactor/todo 側 ＝ Antigravity の変更）
+=======
+（main 側 ＝ Claude Code のバグ修正）
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; main</code></pre>
+            <pre><code># 解決したらマーカーを消して保存し、ステージング→コミット
+$ git add app.js
+$ git commit -m "fix: バグ修正とリファクタのコンフリクトを解決"
+$ git push origin refactor/todo   # PR が自動更新される</code></pre>
+            <blockquote>
+                コンフリクトは、同じファイルの同じ箇所を別々に変更したときに発生します。<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> / <code>=======</code> / <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> のマーカーを目印に正しい内容へ直し、マーカーを削除して <code>git add</code> → <code>git commit</code> で解決を記録します。片方だけ採用するなら <code>git checkout --ours</code> / <code>--theirs</code> も使えます。<br>
+                ＜参考: 同書 7 章「複数の人が行った変更の交通整理をしよう（コンフリクト）」＞
+            </blockquote>
+
+            <h3>4-5. マージしてブランチを片付ける</h3>
+            <p>レビューが通ったら PR をマージし、不要になったブランチと worktree を掃除します。</p>
+            <pre><code># PR をマージ（GitHub 上の「Merge pull request」でも可）
+$ gh pr merge refactor/todo --merge --delete-branch
+
+# ローカルの後片付け：worktree を外し、ブランチを削除
+$ git worktree remove ../todo-refactor
+$ git switch main
+$ git pull origin main
+$ git branch -d fix/bug-todo refactor/todo</code></pre>
+            <blockquote>
+                マージ済みのローカルブランチは <code>git branch -d &lt;名前&gt;</code> で削除できます（未マージを強制削除する <code>-D</code> は慎重に）。リモートブランチは <code>git push origin --delete &lt;名前&gt;</code> または GitHub の「Delete branch」で削除します。<br>
+                ＜参考: 同書 5 章「ブランチを削除する」・6 章「リモートブランチの削除」＞
+            </blockquote>
+
+            <div class="nav-btns">
+                <a href="#step3" class="btn">← Step 3</a>
+                <a href="#step5" class="btn">Step 5 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 5 -->
+        <section class="section" id="step5">
+            <span class="badge badge-time">⏱ 約 15 分</span>
+            <h2>Step 5: 複数AI併用のベストプラクティス</h2>
+            <p>最後に、複数の AI エージェントを同時に使うときに<strong>環境を干渉させない</strong>ためのコツを整理します。ここを押さえると、マルチAI開発が「速いけど壊れる」から「速くて安全」に変わります。</p>
+
+            <h3>5-1. 干渉を防ぐ 4 つの原則</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>原則</th>
+                        <th>具体策</th>
+                        <th>なぜ効くか</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>① 作業領域を分ける</strong></td>
+                        <td>AI ごとにブランチ＋ <code>git worktree</code> で別フォルダにする</td>
+                        <td>同じファイルを同時に書き換える事故を物理的に防ぐ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>② 役割を分ける</strong></td>
+                        <td>「調査・デバッグ＝Claude Code」「並列実装＝Antigravity / Codex」と固定</td>
+                        <td>得意分野に集中させ、品質とスピードを両立</td>
+                    </tr>
+                    <tr>
+                        <td><strong>③ 統合は人間＋Git</strong></td>
+                        <td>マージ・PR・コンフリクト解決は人間が Git で行う</td>
+                        <td>最終判断の責任を人間が握り、履歴を綺麗に保つ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>④ 設定を共有しすぎない</strong></td>
+                        <td>グローバル設定・依存・ポートが衝突しないか確認</td>
+                        <td>複数 AI 起動時のリソース・ポート競合を避ける</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>5-2. 環境干渉のよくある落とし穴と対策</h3>
+            <ul>
+                <li><strong>同じポートで開発サーバーを起動して衝突</strong> → worktree ごとにポートを分ける（例: 本体 3000 / リファクタ 3001）。</li>
+                <li><strong>node_modules の共有による不整合</strong> → worktree は依存を共有しないため、各フォルダで <code>npm install</code> を実行する。</li>
+                <li><strong>2 つの AI が同時に同じブランチへ commit</strong> → ブランチは「1 AI 1 ブランチ」を厳守。原則 ② と ① の合わせ技で防ぐ。</li>
+                <li><strong>AI が勝手に <code>git push --force</code> 等の破壊的操作</strong> → 破壊的コマンドは人間が手動で。AI には「push や force は行わず提案だけして」と伝える。</li>
+            </ul>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong>いちばん危険なのは <code>git reset --hard</code> と force push</strong>。これらは変更を復元できない形で消す可能性があります。AI に任せず、必要なときだけ人間が内容を理解した上で実行してください。<br>
+                ＜参考: 同書 4 章「<code>git reset</code> / <code>git checkout</code>」の注意書き＞
+            </div>
+
+            <h3>5-3. チームに展開するときの指針</h3>
+            <div class="card" style="background: var(--bg-mid);">
+                <ul style="margin:0;">
+                    <li><strong>命名規則を決める</strong>: <code>fix/</code>・<code>refactor/</code>・<code>feat/</code> の接頭辞で、どの種類の作業かを一目で分かるようにする。</li>
+                    <li><strong>PR テンプレに「使った AI」を書く欄を作る</strong>: レビュー時の文脈になる。</li>
+                    <li><strong>CI でテストを必須化</strong>: AI のリファクタが「動作を変えていない」ことを機械的に担保する。</li>
+                </ul>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step4" class="btn">← Step 4</a>
+                <a href="#checklist" class="btn">チェックリストへ →</a>
+            </div>
+        </section>
+
+        <!-- Checklist -->
+        <section class="section" id="checklist">
+            <h2>✅ 完成チェックリスト</h2>
+            <p>すべてにチェックが付けば、このハンズオンは完了です。</p>
+            <div class="card" style="background: var(--bg-mid);">
+                <ul style="list-style: none; margin-left: 0;">
+                    <li style="margin-bottom:10px;">☐ 3 大エージェントの特徴と「どれを呼ぶか」を説明できる（比較）</li>
+                    <li style="margin-bottom:10px;">☐ AI ごとにブランチ／worktree を分けて環境を準備した（Step 1）</li>
+                    <li style="margin-bottom:10px;">☐ Claude Code でバグの原因を特定し、修正してコミットした（Step 2）</li>
+                    <li style="margin-bottom:10px;">☐ Antigravity の並列エージェントで別ブランチをリファクタした（Step 3）</li>
+                    <li style="margin-bottom:10px;">☐ git merge / PR でブランチを統合した（Step 4）</li>
+                    <li style="margin-bottom:10px;">☐ コンフリクトをマーカーを読み解いて解決した（Step 4）</li>
+                    <li style="margin-bottom:10px;">☐ worktree とブランチを正しく後片付けした（Step 4）</li>
+                    <li style="margin-bottom:0;">☐ 環境干渉を防ぐ 4 原則を自分の言葉で言える（Step 5）</li>
+                </ul>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step5" class="btn">← Step 5</a>
+                <a href="#outro" class="btn">おわりに →</a>
+            </div>
+        </section>
+
+        <!-- Outro -->
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <p>おつかれさまでした！ このハンズオンでは、<strong>性格の違う 3 つの AI エージェントを 1 つのプロジェクトに同居させ、Git で安全に統合する</strong>という、現場レベルのハイブリッド開発フローを体験しました。</p>
+
+            <h3>🌱 今日学んだことの応用</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">応用 1</div>
+                    <h4>大規模リポジトリへの展開</h4>
+                    <p>worktree ＋ ブランチ戦略は、巨大なモノレポでこそ威力を発揮します。機能単位で AI を割り当てましょう。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">応用 2</div>
+                    <h4>AI 同士のクロスレビュー</h4>
+                    <p>Claude Code が書いた PR を Codex にレビューさせるなど、AI に相互チェックさせると品質が上がります。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">応用 3</div>
+                    <h4>CI / CD への組み込み</h4>
+                    <p>AI のリファクタを「テスト必須の PR」として回せば、速さと安全を両立した自動化ラインになります。</p>
+                </div>
+            </div>
+
+            <div class="callout callout-tip">
+                💡 <strong>大事な心構え</strong>: AI はそれぞれ得意分野が違う「チームメンバー」です。<strong>役割を分け、作業領域を分け、最終判断は人間が Git で握る</strong>——この 3 点さえ守れば、何台 AI を増やしても破綻しません。マルチAI時代の開発リードに必要なのは、賢いコードを書く力以上に、<strong>「AI たちの交通整理をする力」</strong>です。
+            </div>
+
+            <blockquote>
+                本コースの Git 解説パートは、著者 kozzy の著書<strong>『開発系エンジニアのための Git/GitHub 絵とき入門』</strong>（4〜7 章）のエッセンスを、マルチAI開発の文脈に合わせて再構成したものです。Git の各操作をより深く学びたい方は、ぜひ原典もあたってみてください。
+            </blockquote>
+
+            <div class="nav-btns">
+                <a href="#checklist" class="btn">← チェックリスト</a>
+                <a href="../index.html" class="btn">ポータルに戻る →</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // サイドバーのスクロール連動ハイライト
+        const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+        const sections = document.querySelectorAll('.section[id]');
+
+        function onScroll() {
+            let current = '';
+            sections.forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        }
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+
+        // モバイルでリンクを押したらメニューを閉じる
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.remove('open');
+            });
+        });
+    </script>
+</body>
+
+</html>

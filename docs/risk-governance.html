@@ -484,6 +484,12 @@
                 <li><a href="#risk-table" class="sub-link">└ リスク一覧表</a></li>
                 <li><a href="#risk-deep" class="sub-link">└ ケース別解説</a></li>
                 <li><a href="#copyright-deep" class="sub-link">　└ 著作権 詳説</a></li>
+                <li><a href="#agent-permission">実践編: エージェント権限とサンドボックス</a></li>
+                <li><a href="#perm-three" class="sub-link">└ 権限の3階層</a></li>
+                <li><a href="#perm-sandbox" class="sub-link">└ Docker サンドボックス</a></li>
+                <li><a href="#perm-worktree" class="sub-link">└ Git Worktree で分離</a></li>
+                <li><a href="#perm-separation" class="sub-link">└ 個人/仕事データ分離</a></li>
+                <li><a href="#perm-handson" class="sub-link">└ ハンズオン: 権限ガイドライン</a></li>
                 <li><a href="#chapter3">第3章: 組織のAIガバナンス</a></li>
                 <li><a href="#gov-policy" class="sub-link">└ 利用ポリシー</a></li>
                 <li><a href="#gov-log" class="sub-link">└ ログと監査</a></li>
@@ -1268,6 +1274,177 @@ $ そのまま実行 → 実は誰かが直前に公開した悪意ある同名�
                 「AIがそう言ったから」は、<strong>責任を引き受けない言い訳</strong>として通用しません。
                 これは技術論ではなく組織論で、次章のガバナンスの話につながります。
             </p>
+        </section>
+
+        <!-- ===== 実践編: AIエージェントの権限とサンドボックス ===== -->
+        <section class="section" id="agent-permission">
+            <h2>実践編: AIエージェントの権限とサンドボックス</h2>
+            <p>
+                第2章のリスクの多くは、突き詰めると「<strong>AIエージェントに、どこまでの権限を渡したか</strong>」に行き着きます。
+                ファイルを読む・書く・コマンドを実行する——この 3 つの権限を無防備に渡すと、ハルシネーションや
+                プロンプトインジェクションが「<strong>事故</strong>」から「<strong>実害</strong>」に変わります。
+                ここでは、Antigravity・Claude Code・Codex などのコーディングエージェントを<strong>安全に走らせるための実務的な対策</strong>を、手を動かせる形で整理します。
+            </p>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-agent-permission.png" alt="AIエージェントに渡す3つの権限（Read=読む / Write=書く / Command=実行する）を、車のペダルに見立てた図。Read は軽いブレーキ、Write はアクセル、Command は急加速のターボに対応し、それぞれにリスクレベル（低・中・高）と、対策（承認モード・サンドボックス・分離）が矢印で結ばれている。中央に「権限は最小から始めて、必要な分だけ開ける」というキャプション。">
+            </div>
+
+            <h3 id="perm-three">権限の3階層 — Read / Write / Command</h3>
+            <p>
+                エージェントが要求する権限は、おおまかに次の 3 段階です。<strong>下に行くほど取り返しがつかなくなる</strong>と覚えてください。
+            </p>
+
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">権限 1 ・低リスク</div>
+                    <h4>👀 Read（読む）</h4>
+                    <p>ファイルやコードを<strong>読む</strong>だけ。ただし「読めるものは外部に送れる」ため、機密が読める場所に置くと情報漏えいの入口になる。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">権限 2 ・中リスク</div>
+                    <h4>✏️ Write（書く）</h4>
+                    <p>ファイルを<strong>作成・変更・削除</strong>する。誤った変更や、見えない場所への書き込みが起きうる。Git 管理下なら巻き戻せるのが救い。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">権限 3 ・高リスク</div>
+                    <h4>⚡ Command（実行する）</h4>
+                    <p>シェルコマンドを<strong>実行</strong>する。<code>rm -rf</code>・外部送信・パッケージ導入など、PC とネットワークに対して何でもできてしまう最も危険な権限。</p>
+                </div>
+            </div>
+
+            <div class="card warn">
+                <p style="margin:0;">
+                    ⚠️ <strong>「全部許可（YOLOモード）」は最後の手段</strong><br>
+                    多くのエージェントには「以後すべて自動承認」のモードがあります。速くて快適ですが、これは
+                    <strong>Read+Write+Command の全権限を無条件で渡す</strong>状態です。第2章のプロンプトインジェクションと
+                    組み合わさると、外部に仕込まれた命令でファイルを読み出され外部送信される、といった事故が現実になります。
+                    <strong>業務リポジトリでは原則オフ</strong>、使うなら次に述べるサンドボックス内に限定しましょう。
+                </p>
+            </div>
+
+            <h3 id="perm-sandbox">対策1: サンドボックス（Docker）で隔離する</h3>
+            <p>
+                一番確実なのは「<strong>壊れても困らない箱の中で動かす</strong>」ことです。Docker コンテナなどのサンドボックス内で
+                エージェントを動かせば、たとえ <code>rm -rf /</code> を実行されても、消えるのは<strong>コンテナの中だけ</strong>。
+                ホスト PC や本番環境には届きません。
+            </p>
+            <pre><code># 例: 作業ディレクトリだけをマウントした隔離コンテナで動かす
+# （ホストの $HOME や ~/.ssh はマウントしない＝見えない・触れない）
+docker run --rm -it \
+  -v "$(pwd)":/workspace \   # 今のプロジェクトだけを /workspace に渡す
+  -w /workspace \
+  --network none \           # ネットワーク遮断（外部送信を物理的に防ぐ・必要時のみ開放）
+  node:22 bash
+
+# このコンテナの中でエージェント／ビルド／テストを実行する
+# → 事故ってもコンテナを捨てれば終わり。ホストは無傷
+</code></pre>
+            <div class="card info">
+                <p style="margin:0;">
+                    💡 <strong>ポイント</strong>: サンドボックスの本質は「<strong>渡さないものを決める</strong>」ことです。
+                    <code>-v</code> でマウントしたフォルダ <em>だけ</em> がエージェントから見えます。<code>~/.ssh</code> やパスワードマネージャ、
+                    他プロジェクトをマウントしなければ、そもそも読まれようがありません。<code>--network none</code> を付ければ、
+                    読めたとしても<strong>外に送る経路がない</strong>状態を作れます。
+                </p>
+            </div>
+
+            <h3 id="perm-worktree">対策2: Git Worktree で「作業の箱」を分ける</h3>
+            <p>
+                サンドボックスほど厳重でなくても、<strong>Git Worktree</strong> を使えば「エージェントの作業領域」を
+                本流（main）から物理的に切り離せます。1 つのリポジトリから複数の作業フォルダを切り出す仕組みで、
+                エージェントには<strong>専用ブランチの専用フォルダ</strong>だけを触らせ、問題があればフォルダごと破棄できます。
+            </p>
+            <pre><code># main から、エージェント専用の作業ツリーを切り出す
+git worktree add ../myproject-agent -b agent/refactor
+
+# → ../myproject-agent が agent/refactor ブランチの作業フォルダになる
+# エージェントにはこのフォルダだけを渡す。main は別フォルダのまま無傷
+
+# 気に入らなければフォルダごと捨てる（main には一切影響しない）
+git worktree remove ../myproject-agent
+</code></pre>
+            <div class="card ok">
+                <p style="margin:0;">
+                    ✅ <strong>並列マルチエージェントとの相性が良い</strong><br>
+                    Antigravity のように複数エージェントを並列で動かす場合、エージェントごとに別 worktree を割り当てると、
+                    <strong>お互いの変更が衝突しません</strong>。「誰がどのフォルダ＝どのブランチを触っているか」が明確になり、
+                    レビューと巻き戻しも容易になります。
+                </p>
+            </div>
+
+            <h3 id="perm-separation">対策3: 個人PCと仕事用データを分離する</h3>
+            <p>
+                アンケートでも「<strong>個人PCから仕事の資料にアクセスできる環境が不安</strong>」「PCを2台持ちにすべきか」という声が
+                多くありました。物理的に PC を分けるのが最も確実ですが、1 台でも<strong>分離の工夫</strong>はできます。
+            </p>
+            <table>
+                <thead>
+                    <tr><th>分離のレベル</th><th>やり方</th><th>守れるもの</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>① OS ユーザーを分ける</td>
+                        <td>仕事用と個人用で macOS / Windows のログインユーザーを分ける</td>
+                        <td>ホームフォルダごと分離。最も手軽で効果大</td>
+                    </tr>
+                    <tr>
+                        <td>② フォルダと権限を絞る</td>
+                        <td>エージェントの作業ルートを <code>~/work/&lt;案件&gt;</code> に固定し、そこ以外はマウント/許可しない</td>
+                        <td>仕事資料・個人写真・鍵への到達を遮断</td>
+                    </tr>
+                    <tr>
+                        <td>③ 秘密情報を環境から追い出す</td>
+                        <td>APIキー等は <code>.env</code> ＋ <code>.gitignore</code>、または OS のキーチェーン/シークレットマネージャへ</td>
+                        <td>コードや会話に鍵が紛れ込む事故を防ぐ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card warn">
+                <p style="margin:0;">
+                    ⚠️ <strong>「読めるもの = 漏れうるもの」</strong><br>
+                    エージェントに Read 権限を渡した瞬間、その範囲の<strong>すべてが外部 LLM に送られる可能性</strong>がある、と考えてください。
+                    だからこそ「<strong>そもそも見える場所に機密を置かない</strong>」分離が、フィルタリングや後追いの監査よりも確実な防御になります。
+                </p>
+            </div>
+
+            <h3 id="perm-handson">ハンズオン: 自分のエージェント利用ガイドラインを 1 枚で作る</h3>
+            <p>
+                ここまでの内容を踏まえ、<strong>自分（またはチーム）のエージェント権限ガイドライン</strong>を A4 1 枚で作りましょう。
+                次のテンプレの空欄を埋めるだけで、明日から運用できます。
+            </p>
+            <pre><code># 私の AI エージェント権限ガイドライン (v0.1)
+
+## 1. 既定の権限レベル
+- Read:    [ 許可 / 都度承認 ]
+- Write:   [ 都度承認 ]  ← Git 管理下のフォルダのみ
+- Command: [ 都度承認 ]  ← 危険コマンド（rm/curl/外部送信）は必ず内容確認
+
+## 2. 全自動（YOLO）モードを使ってよい条件
+- [ ] Docker サンドボックス内である
+- [ ] または捨ててよい Git worktree 内である
+- [ ] ネットワーク遮断（--network none）または信頼できる範囲のみ
+
+## 3. エージェントに「見せない」もの（マウント/許可しない）
+- ~/.ssh / パスワードマネージャ / 個人フォルダ / 他案件のコード
+- 本番DBへの接続情報・APIキー（.env は .gitignore 済みを確認）
+
+## 4. 作業の分離
+- 作業ルート: ~/work/&lt;案件名&gt; に固定
+- 並列実行時: エージェントごとに別 worktree を割り当てる
+
+## 5. 事故ったときの初動
+- まず Command 権限を切る → 変更を git で確認（git status / diff）
+- 巻き戻し: git restore / git reset、worktree なら remove
+</code></pre>
+
+            <div class="card info">
+                <p style="margin:0;">
+                    💡 このガイドラインは、第3章の「組織のAIガバナンス」を<strong>個人レベルに落とし込んだもの</strong>です。
+                    まず自分の 1 枚を作り、チームで持ち寄ると、そのまま組織ポリシーのたたき台になります。
+                </p>
+            </div>
         </section>
 
         <!-- ===== 第3章 ===== -->
