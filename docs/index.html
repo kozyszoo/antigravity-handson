@@ -23,6 +23,7 @@
             --accent-gas: #188038;
             --accent-gas2: #7c3aed;
             --accent-banana: #d99e00;
+            --accent-expense: #b45309;
             --accent-codex-gradient: linear-gradient(135deg, #6366f1, #4f46e5);
             --accent-claude-gradient: linear-gradient(135deg, #f59e0b, #d97706);
             --accent-antigravity-gradient: linear-gradient(135deg, #10b981, #059669);
@@ -31,6 +32,7 @@
             --accent-gas-gradient: linear-gradient(135deg, #34a853, #188038);
             --accent-gas2-gradient: linear-gradient(135deg, #a78bfa, #7c3aed);
             --accent-banana-gradient: linear-gradient(135deg, #fbbf24, #d99e00);
+            --accent-expense-gradient: linear-gradient(135deg, #f59e0b, #b45309);
         }
 
         * {
@@ -122,6 +124,7 @@
         .card.gas::before { background: var(--accent-gas-gradient); }
         .card.gas2::before { background: var(--accent-gas2-gradient); }
         .card.banana::before { background: var(--accent-banana-gradient); }
+        .card.expense::before { background: var(--accent-expense-gradient); }
 
         .card:hover {
             transform: translateY(-8px);
@@ -137,6 +140,7 @@
         .card.gas:hover { box-shadow: 0 20px 40px rgba(24, 128, 56, 0.12); }
         .card.gas2:hover { box-shadow: 0 20px 40px rgba(124, 58, 237, 0.1); }
         .card.banana:hover { box-shadow: 0 20px 40px rgba(217, 158, 0, 0.15); }
+        .card.expense:hover { box-shadow: 0 20px 40px rgba(180, 83, 9, 0.14); }
 
         .card-header {
             margin-bottom: 2rem;
@@ -180,6 +184,7 @@
         .card.gas .badge { background: rgba(24, 128, 56, 0.18); color: #86efac; }
         .card.gas2 .badge { background: rgba(124, 58, 237, 0.15); color: #c4b5fd; }
         .card.banana .badge { background: rgba(217, 158, 0, 0.18); color: #fcd34d; }
+        .card.expense .badge { background: rgba(180, 83, 9, 0.18); color: #fcd9a3; }
 
         .card-desc {
             font-size: 0.95rem;
@@ -213,6 +218,7 @@
         .card.gas .btn { background: var(--accent-gas-gradient); }
         .card.gas2 .btn { background: var(--accent-gas2-gradient); }
         .card.banana .btn { background: var(--accent-banana-gradient); }
+        .card.expense .btn { background: var(--accent-expense-gradient); }
 
         .btn:hover {
             filter: brightness(1.1);
@@ -353,6 +359,21 @@
                 <p class="card-desc">初級編で作ったタスク通知アプリを、生成 AI を相棒に拡張する応用ハンズオン。複数タスクのまとめ送信・優先度・完了管理・Google カレンダー連携・OpenAI API での秘書風文面生成まで、「AI に書かせて動かす」流れを体験します。</p>
             </div>
             <a href="gas-advanced.html" class="btn">GAS 発展編を開始 ➔</a>
+        </div>
+
+        <!-- GAS ハンズオン 領収書・経費仕分け編 -->
+        <div class="card expense">
+            <div class="card-header">
+                <span class="card-icon">🧾</span>
+                <h2 class="card-title">GAS ハンズオン <span style="font-size: 0.6em; color: #fcd9a3; font-weight: 600; vertical-align: middle;">領収書・経費仕分け編</span></h2>
+                <div class="badges">
+                    <span class="badge">Gmail 自動仕分け</span>
+                    <span class="badge">スプレッドシート集計</span>
+                    <span class="badge">経費精算</span>
+                </div>
+                <p class="card-desc">Gmail に届いた領収書メールを GAS が読み取り、金額の抽出・カテゴリ判定・スプレッドシートへの仕分けまでを全自動化するハンズオン。正規表現による金額抽出、キーワードルールでの自動分類、ラベルによる二重取り込み防止、トリガーでの定期実行と月次集計までを、コピペ中心で学びます。</p>
+            </div>
+            <a href="gas-receipt-expense.html" class="btn">経費仕分け編を開始 ➔</a>
         </div>
 
         <!-- Nano Banana ハンズオン -->

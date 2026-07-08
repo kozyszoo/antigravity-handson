@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Apps Script (GAS) ハンズオンガイド ｜ 領収書・経費仕分け編</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* アンバー（経理帳票イメージ）を基調にした経費仕分け編テーマ */
+            --primary: #b45309;
+            --bg-dark: #f7f4ef;
+            --bg-mid: #ffffff;
+            --bg-light: #f1e7d6;
+            --text: #2d241a;
+            --muted: #6b5f4f;
+            --purple: #8e44ad;
+            --blue: #1a73e8;
+            --orange: #e8710a;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        .sidebar .sub-link {
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .sidebar .sub-link:hover {
+            color: var(--primary);
+        }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-mid), var(--bg-light));
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--purple);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: #f2e9dc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #2a2320;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid var(--bg-light);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #f0e9df;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        blockquote a {
+            color: var(--primary);
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        /* 注意・補足のコールアウト */
+        .callout {
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .callout-warn {
+            background: #fff4e5;
+            border-left: 4px solid var(--orange);
+            color: #7a4a06;
+        }
+
+        .callout-info {
+            background: #e8f0fe;
+            border-left: 4px solid var(--blue);
+            color: #174ea6;
+        }
+
+        .callout-tip {
+            background: #e6f4ea;
+            border-left: 4px solid #0d652d;
+            color: #0d652d;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .badge-time {
+            background: var(--purple);
+            color: white;
+        }
+
+        .badge-level {
+            background: var(--primary);
+            color: white;
+        }
+
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .screenshot-sm {
+            max-width: 520px;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .step-card .step-num {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-card h4 {
+            color: var(--text);
+            margin: 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 0;
+        }
+
+        /* Before / After コードの並び */
+        .code-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin: 16px 0 4px;
+        }
+
+        .code-label.before {
+            background: #fde2e1;
+            color: #b91c1c;
+        }
+
+        .code-label.after {
+            background: #d7eddd;
+            color: #0d652d;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(180, 83, 9, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🧾 経費仕分け編</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="#intro">はじめに（完成イメージ）</a></li>
+                <li><a href="#step1">Step 1: スプレッドシート準備</a></li>
+                <li><a href="#step2">Step 2: GAS プロジェクト作成</a></li>
+                <li><a href="#step3">Step 3: 領収書メールの送り方</a></li>
+                <li><a href="#step4">Step 4: 仕分けスクリプトの実装</a></li>
+                <li><a href="#step5">Step 5: 手動実行で動作確認</a></li>
+                <li><a href="#step6">Step 6: トリガーで自動化</a></li>
+                <li><a href="#deep-dive">さらに深掘り（集計・発展）</a></li>
+                <li><a href="#outro">おわりに</a></li>
+                <li><a href="gas-beginner.html" style="font-weight: bold; color: var(--muted); border-top: 1px solid var(--bg-light); margin-top: 10px; padding-top: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">school</span>GAS 初級編を見る</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <span class="badge badge-level">応用ハンズオン</span>
+            <h1>🧾 Gmail の領収書を<br>経費カテゴリに自動仕分けしよう ～ GAS ～</h1>
+            <p style="margin-top:8px;">Gmail に届いた「領収書メール」を Google Apps Script (GAS) が読み取り、<strong>金額の抽出・カテゴリ判定・スプレッドシートへの仕分け</strong>までを全自動で行う仕組みを作ります。経費精算の面倒な転記作業を、あなたの代わりに GAS が片づけてくれます。</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 60〜80 分 ／ 前提知識: GAS 初級編（スプレッドシート × Gmail）を終えているとスムーズです</p>
+        </div>
+
+        <!-- Intro -->
+        <section class="section" id="intro">
+            <h2>はじめに（完成イメージ）</h2>
+            <p>このハンズオンで作るのは、<strong>「Gmail に送った領収書を、経費カテゴリごとにスプレッドシートへ自動で振り分ける」</strong>仕組みです。完成すると、次のような流れがボタン 1 つ（または定期実行）で回るようになります。</p>
+
+            <h3>仕組みの全体図</h3>
+            <div class="card" style="background: var(--bg-mid);">
+                <p style="margin:0; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 2;">
+                    ① 領収書の内容をメールで Gmail に送る<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;（例: 件名「領収書 1200円 JR東日本」）<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+                    ② GAS が Gmail を検索し、未処理の領収書メールを取得<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+                    ③ 件名・本文から「金額」を抽出し、「カテゴリ」を判定<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;（交通費 / 飲食費 / 備品・消耗品 / その他）<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+                    ④ スプレッドシート「経費一覧」に 1 行追記<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+                    ⑤ 処理済みメールにラベルを付けて二重取り込みを防止<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+                    ⑥ トリガーで定期実行（例: 1 時間ごと）＆ 月次集計
+                </p>
+            </div>
+
+            <div class="callout callout-info">
+                ℹ️ このハンズオンでは、領収書の「金額・店名」を<strong>メールの件名や本文にテキストで書いて送る</strong>方式にします。PDF や写真の中身を読み取る（OCR）方式は少し高度なので、最後の「さらに深掘り」で発展の道筋だけ紹介します。まずは<strong>テキストで確実に動く仕組み</strong>を完成させましょう。
+            </div>
+
+            <h3>このハンズオンで学べること</h3>
+            <ul>
+                <li><code>GmailApp</code> でメールを検索・取得する方法</li>
+                <li>正規表現でテキストから<strong>金額を抜き出す</strong>方法（<code>extractAmount</code>）</li>
+                <li><strong>キーワードルール</strong>で自動的にカテゴリ分けする考え方（<code>categorize</code>）</li>
+                <li>Gmail ラベルを使って<strong>同じメールを二重に取り込まない</strong>工夫</li>
+                <li>トリガーによる定期自動実行と、スプレッドシートでの月次集計</li>
+            </ul>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="section" id="step1">
+            <span class="badge badge-time">⏱ 約 10 分</span>
+            <h2>Step 1: スプレッドシートを準備する</h2>
+            <p>まずは仕分け結果を書き込む<strong>台帳（スプレッドシート）</strong>を用意します。Google ドライブで新しいスプレッドシートを作成し、シート名（左下のタブ）を <code>経費一覧</code> に変更してください。</p>
+
+            <h3>1-1. ヘッダー（1 行目）を作る</h3>
+            <p>1 行目に、次の 7 つの見出しを A 列から順に入力します。この<strong>列の順番が、あとで書くコードの並び順と対応</strong>するので、正確に入れましょう。</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>列</th>
+                        <th>見出し</th>
+                        <th>入る内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>取込日時</td><td>GAS が取り込んだ日時（自動）</td></tr>
+                    <tr><td>B</td><td>カテゴリ</td><td>交通費 / 飲食費 / 備品・消耗品 / その他</td></tr>
+                    <tr><td>C</td><td>金額</td><td>抽出した金額（数値）</td></tr>
+                    <tr><td>D</td><td>店名・摘要</td><td>メール件名から流用（あとで手直し可）</td></tr>
+                    <tr><td>E</td><td>メール件名</td><td>元メールの件名</td></tr>
+                    <tr><td>F</td><td>送信元</td><td>メールの From</td></tr>
+                    <tr><td>G</td><td>メールID</td><td>重複チェック用の Gmail メッセージ ID</td></tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-tip">
+                💡 見出しの文言は自由に変えて構いませんが、<strong>列の順番（A〜G の役割）</strong>だけはコードと必ず揃えてください。順番がずれると、金額の列にカテゴリが入る…といったズレが起きます。
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="section" id="step2">
+            <span class="badge badge-time">⏱ 約 5 分</span>
+            <h2>Step 2: GAS プロジェクトを作成する</h2>
+            <p>スプレッドシートに紐づく形で GAS（プログラムを書く場所）を開きます。</p>
+            <ol>
+                <li>スプレッドシート上部のメニューから <strong>「拡張機能」→「Apps Script」</strong> をクリック</li>
+                <li>新しいタブでスクリプトエディタが開きます</li>
+                <li>最初から書かれている <code>function myFunction() { }</code> は、次の Step ですべて書き換えるので、そのままで OK です</li>
+            </ol>
+
+            <div class="callout callout-info">
+                ℹ️ この方法で開いた GAS は、<strong>そのスプレッドシートを「操作対象」として最初から知っている</strong>状態になります（<code>SpreadsheetApp.getActiveSpreadsheet()</code> でシートを取得できます）。初級編のように ID を指定する必要がないぶん、少しシンプルになります。
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="section" id="step3">
+            <span class="badge badge-time">⏱ 約 10 分</span>
+            <h2>Step 3: 領収書メールの「送り方ルール」を決める</h2>
+            <p>GAS が仕分けしやすいように、領収書をメールで送るときの<strong>ちょっとした型（フォーマット）</strong>を決めておきます。今回は「件名（や本文）に<strong>金額と店名</strong>を入れる」というシンプルなルールにします。</p>
+
+            <h3>3-1. 件名フォーマットの例</h3>
+            <table>
+                <thead>
+                    <tr><th>件名の例</th><th>抽出される金額</th><th>判定されるカテゴリ</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>領収書 1200円 JR東日本</td><td>1200</td><td>交通費</td></tr>
+                    <tr><td>領収書 800円 スターバックス</td><td>800</td><td>飲食費</td></tr>
+                    <tr><td>領収書 3,480円 Amazon 文具</td><td>3480</td><td>備品・消耗品</td></tr>
+                    <tr><td>領収書 5000円 ○○ホテル</td><td>5000</td><td>その他</td></tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-tip">
+                💡 ポイントは 2 つだけ。① 件名の<strong>どこかに「領収書」という言葉を入れる</strong>（GAS が検索で見つけるため）。② <strong>「◯◯円」の形で金額を書く</strong>（GAS が金額を抜き出すため）。店名はカテゴリ判定のヒントになります。
+            </div>
+
+            <h3>3-2. テスト用メールを送る</h3>
+            <p>動作確認用に、<strong>自分のメールアドレス宛て</strong>に上記のような領収書メールを 3〜4 通送っておきましょう。件名だけでも、本文に情報を書いても構いません。</p>
+
+            <div class="callout callout-warn">
+                ⚠️ 送り先は<strong>この GAS を動かす Google アカウント自身のアドレス</strong>にしてください。別アカウントに送ると、GAS からは見つけられません。
+            </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section class="section" id="step4">
+            <span class="badge badge-time">⏱ 約 25 分</span>
+            <h2>Step 4: 仕分けスクリプトを実装する</h2>
+            <p>いよいよ本題です。<strong>Gmail を検索 → 金額を抽出 → カテゴリを判定 → シートに追記 → 処理済みラベルを付ける</strong>という流れを、部品（関数）を組み合わせて作っていきます。まずは 3 つの小さな「部品関数」から作り、最後にそれらを呼び出す本体を組み立てます。</p>
+
+            <h3>4-1. 設定とカテゴリ判定ルールを書く</h3>
+            <p>スクリプトエディタの中身をすべて消して、まずは<strong>設定（自分の環境に合わせて変える値）</strong>と<strong>カテゴリ判定ルール</strong>を書きます。ルールは「キーワードが含まれていたら、このカテゴリ」という表（配列）で管理すると、あとから増やすのがとても簡単です。</p>
+
+            <span class="code-label after">After（設定とルールの定義）</span>
+            <pre><code>// ▼ 設定（自分の環境に合わせて書き換える）
+const SHEET_NAME = '経費一覧';                          // 書き込み先のシート名
+const SEARCH_QUERY = 'subject:領収書 -label:経費処理済み'; // Gmail の検索条件
+const DONE_LABEL_NAME = '経費処理済み';                  // 処理済みメールに付けるラベル名
+
+// ▼ カテゴリ判定ルール（上から順にチェックし、キーワードが含まれたらそのカテゴリにする）
+const CATEGORY_RULES = [
+  { category: '交通費',       keywords: ['JR', 'Suica', 'PASMO', 'タクシー', '新幹線', 'ANA', 'JAL', 'メトロ', '交通'] },
+  { category: '飲食費',       keywords: ['スターバックス', 'スタバ', 'カフェ', 'レストラン', 'ランチ', '居酒屋', '食堂', 'ドトール'] },
+  { category: '備品・消耗品', keywords: ['Amazon', 'ヨドバシ', 'ビックカメラ', '文具', '事務用品', 'Office'] },
+];
+// ↑ どのルールにも当てはまらなければ「その他」に分類します（判定は 4-3 で実装）</code></pre>
+
+            <div class="callout callout-info">
+                ℹ️ <code>const</code> で定義した値は「定数」です。<code>SEARCH_QUERY</code> の <code>-label:経費処理済み</code> は「<strong>『経費処理済み』ラベルが付いていないメールだけ</strong>」という意味で、これが二重取り込みを防ぐ仕掛けになります（ラベルは 4-4 で付けます）。
+            </div>
+
+            <h3>4-2. 金額を抜き出す部品「extractAmount」</h3>
+            <p>次に、テキスト（件名＋本文）から<strong>金額を数値で取り出す</strong>関数を作ります。「◯◯円」や「¥◯◯」の形を正規表現で探します。下のコードを、先ほどの続きに書き足してください。</p>
+
+            <span class="code-label after">After（金額抽出の部品を追加）</span>
+            <pre><code>/**
+ * テキストから金額（円）を数値で取り出す。見つからなければ 0 を返す。
+ */
+function extractAmount(text) {
+  // まず「1,200円」のように「円」が付く数字を探す
+  let match = text.match(/([0-9,]+)\s*円/);
+  // 見つからなければ「¥1,200」「￥1,200」のように通貨記号が付く数字を探す
+  if (!match) match = text.match(/[¥￥]\s*([0-9,]+)/);
+  if (!match) return 0;                       // どちらも無ければ 0
+  return Number(match[1].replace(/,/g, ''));  // カンマ（桁区切り）を除いて数値にする
+}</code></pre>
+
+            <div class="callout callout-tip">
+                💡 <code>match[1]</code> は「カッコ <code>( )</code> で囲んだ部分」＝数字だけを指します。<code>replace(/,/g, '')</code> で「3,480」→「3480」に直してから <code>Number()</code> で数値化しています。
+            </div>
+
+            <h3>4-3. カテゴリを判定する部品「categorize」</h3>
+            <p>4-1 で作った <code>CATEGORY_RULES</code> を上から順に調べ、<strong>キーワードが 1 つでも含まれていたらそのカテゴリ</strong>を返す関数です。どれにも当てはまらなければ「その他」にします。</p>
+
+            <span class="code-label after">After（カテゴリ判定の部品を追加）</span>
+            <pre><code>/**
+ * テキストをキーワードルールで判定し、カテゴリ名を返す。
+ * どのルールにも一致しなければ 'その他' を返す。
+ */
+function categorize(text) {
+  for (const rule of CATEGORY_RULES) {
+    // rule.keywords のどれか 1 つでも text に含まれていれば true
+    const isMatch = rule.keywords.some(keyword => text.includes(keyword));
+    if (isMatch) return rule.category;
+  }
+  return 'その他';
+}</code></pre>
+
+            <h3>4-4. ラベルを用意する部品「getOrCreateLabel」</h3>
+            <p>処理済みメールに付ける Gmail ラベルを取得します。<strong>まだ存在しなければ新しく作る</strong>ようにしておくと、初回実行でも安全です。</p>
+
+            <span class="code-label after">After（ラベル取得の部品を追加）</span>
+            <pre><code>/**
+ * 指定した名前の Gmail ラベルを取得する。無ければ新規作成して返す。
+ */
+function getOrCreateLabel(labelName) {
+  const label = GmailApp.getUserLabelByName(labelName);
+  return label ? label : GmailApp.createLabel(labelName);
+}</code></pre>
+
+            <h3>4-5. 本体「sortReceipts」を組み立てる</h3>
+            <p>最後に、これまでの部品を呼び出す<strong>本体の関数</strong>を作ります。この <code>sortReceipts</code> が、実際に実行するメイン関数です。</p>
+
+            <span class="code-label after">After（メイン関数を追加・これで完成）</span>
+            <pre><code>/**
+ * Gmail の領収書メールを読み取り、カテゴリを判定してスプレッドシートに仕分けするメイン関数
+ */
+function sortReceipts() {
+  // 1. 書き込み先のシートを取得（このスクリプトが紐づくスプレッドシートから）
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+
+  // 2. 処理済みラベルを用意（無ければ作成）
+  const doneLabel = getOrCreateLabel(DONE_LABEL_NAME);
+
+  // 3. 未処理の領収書メールを検索する
+  const threads = GmailApp.search(SEARCH_QUERY);
+
+  // 4. スレッド（メールのまとまり）ごとに処理する
+  threads.forEach(thread => {
+    thread.getMessages().forEach(message => {
+      const subject = message.getSubject();          // 件名
+      const body = message.getPlainBody();           // 本文（テキスト）
+      const text = subject + ' ' + body;             // 件名＋本文をまとめて判定材料にする
+
+      const amount = extractAmount(text);            // 金額を抽出
+      const category = categorize(text);             // カテゴリを判定
+
+      // シートに 1 行追記する（並び順は Step 1 のヘッダー A〜G と揃える）
+      sheet.appendRow([
+        new Date(),          // A: 取込日時
+        category,            // B: カテゴリ
+        amount,              // C: 金額
+        subject,             // D: 店名・摘要（まずは件名を流用）
+        subject,             // E: メール件名
+        message.getFrom(),   // F: 送信元
+        message.getId(),     // G: メールID（重複チェック用）
+      ]);
+    });
+
+    // 5. スレッドに「処理済み」ラベルを付け、次回の検索対象から外す
+    thread.addLabel(doneLabel);
+  });
+
+  // 実行結果をログに残す（[実行ログ] で確認できる）
+  Logger.log(threads.length + ' 件のメールスレッドを仕分けしました');
+}</code></pre>
+
+            <div class="callout callout-warn">
+                ⚠️ 書けたら必ず<strong>フロッピーアイコン（💾 保存）</strong>を押してください。保存しないと、次のステップで実行しても古い状態のままになってしまいます。
+            </div>
+        </section>
+
+        <!-- Step 5 -->
+        <section class="section" id="step5">
+            <span class="badge badge-time">⏱ 約 10 分</span>
+            <h2>Step 5: 手動で実行して動作確認する</h2>
+            <p>スクリプトエディタ上部の<strong>関数を選ぶプルダウンで <code>sortReceipts</code> を選び</strong>、「▶ 実行」ボタンを押します。初回は Google の<strong>認証（承認）</strong>を求められます。</p>
+
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">① 承認が必要</div>
+                    <h4>「承認が必要です」</h4>
+                    <p>初回実行時に表示されます。「権限を確認」を押して進みます。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">② アカウント選択</div>
+                    <h4>自分のアカウントを選択</h4>
+                    <p>このスクリプトを動かす Google アカウントを選びます。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">③ 警告画面</div>
+                    <h4>「安全ではないページ」</h4>
+                    <p>自作スクリプトのため表示されます。「詳細」→「（プロジェクト名）に移動」を押します。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">④ 許可</div>
+                    <h4>Gmail とシートへのアクセスを許可</h4>
+                    <p>メールの読み取り・ラベル操作・シート編集を許可します。</p>
+                </div>
+            </div>
+
+            <div class="callout callout-info">
+                ℹ️ 今回は Gmail を「読む・ラベルを付ける」操作と、スプレッドシートを「編集する」操作を行うため、その両方の権限を求められます。自分専用の便利ツールを作るための許可なので、内容を確認して進めて大丈夫です。
+            </div>
+
+            <h3>5-1. 結果を確認する</h3>
+            <p>実行が終わったら、スプレッドシートの「経費一覧」シートを見てみましょう。テスト送信した領収書メールが、<strong>カテゴリ・金額つきで 1 行ずつ追記</strong>されていれば成功です！</p>
+            <p>あわせて Gmail を開くと、取り込んだメールに <strong>「経費処理済み」ラベル</strong>が付いているはずです。もう一度 <code>sortReceipts</code> を実行しても、<strong>同じメールは二重に追加されません</strong>（検索条件でラベル付きを除外しているため）。</p>
+
+            <div class="callout callout-tip">
+                💡 うまく動かないときは、スクリプトエディタの<strong>「実行ログ」</strong>を確認しましょう。「0 件のメールスレッドを仕分けしました」と出る場合は、① 領収書メールが届いているか、② 件名に「領収書」が入っているか、③ すでに「経費処理済み」ラベルが付いていないか、を見直してください。
+            </div>
+        </section>
+
+        <!-- Step 6 -->
+        <section class="section" id="step6">
+            <span class="badge badge-time">⏱ 約 10 分</span>
+            <h2>Step 6: トリガーで定期実行を自動化する</h2>
+            <p>毎回手で実行するのは大変なので、<strong>「時間主導型トリガー」</strong>を設定して、GAS に定期的に自動実行させましょう。</p>
+            <ol>
+                <li>スクリプトエディタ左側の<strong>時計アイコン（トリガー）</strong>をクリック</li>
+                <li>右下の<strong>「トリガーを追加」</strong>を押す</li>
+                <li>実行する関数: <code>sortReceipts</code> を選択</li>
+                <li>イベントのソース: <strong>「時間主導型」</strong></li>
+                <li>時間ベースのトリガー: <strong>「時間ベースのタイマー」→「1 時間おき」</strong>（お好みで変更可）</li>
+                <li>「保存」を押す</li>
+            </ol>
+
+            <div class="callout callout-tip">
+                💡 これで、領収書メールを送っておけば<strong>1 時間以内に自動で仕分け</strong>されます。「メールを送るだけで経費台帳ができあがる」状態の完成です！
+            </div>
+
+            <div class="callout callout-warn">
+                ⚠️ トリガーの実行にも先ほどの権限が使われます。頻度を上げすぎると Google の 1 日あたりの実行時間上限に近づくことがあるため、個人利用なら<strong>1 時間〜1 日おき</strong>で十分です。
+            </div>
+        </section>
+
+        <!-- Deep dive -->
+        <section class="section" id="deep-dive">
+            <h2>さらに深掘り（集計・カスタマイズ・発展）</h2>
+
+            <h3>① カテゴリのルールを増やす・変える</h3>
+            <p>カテゴリ判定は <code>CATEGORY_RULES</code> の配列を編集するだけで自由にカスタマイズできます。たとえば「通信費」を追加したいなら、次の 1 行を足すだけです。</p>
+            <span class="code-label after">After（ルールを 1 つ追加）</span>
+            <pre><code>const CATEGORY_RULES = [
+  { category: '交通費',       keywords: ['JR', 'Suica', 'PASMO', 'タクシー', '新幹線'] },
+  { category: '飲食費',       keywords: ['スターバックス', 'カフェ', 'レストラン', 'ランチ'] },
+  { category: '備品・消耗品', keywords: ['Amazon', 'ヨドバシ', '文具'] },
+  { category: '通信費',       keywords: ['携帯', 'モバイル', 'Wi-Fi', 'プロバイダ', 'docomo', 'au'] }, // ← 追加
+];</code></pre>
+
+            <h3>② 件名タグ方式で「確実に」分類する</h3>
+            <p>キーワードで迷いやすい店（例: コンビニ）は、<strong>送るときに自分でカテゴリを件名に書いておく</strong>方式と併用すると確実です。例: 件名 <code>領収書 [交通費] 1200円 タクシー</code>。判定関数の先頭に、次の「タグ優先」処理を足します。</p>
+            <span class="code-label after">After（件名の [カテゴリ] を最優先で使う）</span>
+            <pre><code>function categorize(text) {
+  // 件名などに [交通費] のようなタグがあれば、それを最優先で採用する
+  const tag = text.match(/\[(.+?)\]/);
+  if (tag) return tag[1];
+
+  // タグが無ければ、これまで通りキーワードルールで判定する
+  for (const rule of CATEGORY_RULES) {
+    if (rule.keywords.some(keyword => text.includes(keyword))) return rule.category;
+  }
+  return 'その他';
+}</code></pre>
+
+            <h3>③ 月ごとにカテゴリ別の合計を出す</h3>
+            <p>集計はコードを書かなくても、スプレッドシートの関数だけでできます。空いているセルに次の式を入れると、<strong>カテゴリごとの合計金額</strong>が出ます（C 列＝金額、B 列＝カテゴリの場合）。</p>
+            <span class="code-label after">スプレッドシートのセルに入力</span>
+            <pre><code>=SUMIF(B:B, "交通費", C:C)</code></pre>
+            <p>「ピボットテーブル」（挿入 → ピボットテーブル）を使えば、<strong>月 × カテゴリのクロス集計表</strong>もクリック操作だけで作れます。</p>
+
+            <h3>④ さらに発展: PDF・写真の領収書を読み取る</h3>
+            <p>「テキストではなく、PDF や写真の領収書をそのまま送りたい」場合は、次のような発展が考えられます（本ハンズオンの範囲外ですが、道筋として）。</p>
+            <ul>
+                <li><strong>添付ファイルの取得</strong>: <code>message.getAttachments()</code> で PDF・画像を取り出す</li>
+                <li><strong>OCR（文字認識）</strong>: Google Drive API や Cloud Vision、生成 AI（OpenAI / Gemini）の API に画像を渡して金額・店名を読み取る</li>
+                <li>読み取った結果を、今回作った <code>extractAmount</code> / <code>categorize</code> に通せば、同じ仕組みで仕分けできます</li>
+            </ul>
+            <div class="callout callout-info">
+                ℹ️ 生成 AI の API を GAS から呼び出す流れは、<a href="gas-advanced.html" style="color: var(--primary); font-weight:700;">GAS 発展編</a>で扱う「OpenAI API 連携」がそのまま応用できます。まずは本編のテキスト方式を土台に、少しずつ拡張していくのがおすすめです。
+            </div>
+        </section>
+
+        <!-- Outro -->
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <p>おつかれさまでした！<br>
+                「Gmail に領収書を送るだけで、経費カテゴリごとにスプレッドシートへ自動で仕分けされる」仕組みが完成しました。今回学んだ<strong>「検索 → 抽出 → 判定 → 記録 → 重複防止」</strong>という流れは、問い合わせメールの自動振り分けなど、さまざまな業務自動化にそのまま応用できます。</p>
+
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--purple); margin-bottom: 8px;">🚀 次のステップ</div>
+                <p style="margin: 0 0 12px;">生成 AI の API 連携やカレンダー連携など、さらに一歩進んだ自動化に挑戦してみましょう。</p>
+                <a href="gas-advanced.html" class="btn" style="background: var(--purple);">GAS 発展編（AI 連携）へ →</a>
+            </div>
+
+            <div class="nav-btns">
+                <a href="#deep-dive" class="btn">← さらに深掘り</a>
+                <a href="index.html" class="btn">ポータルに戻る →</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // スクロールに応じてサイドバーのアクティブリンクを更新する
+        const sections = document.querySelectorAll('.section');
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    sidebarLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+
+        sections.forEach(s => observer.observe(s));
+    </script>
+</body>
+
+</html>
