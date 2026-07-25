@@ -31,6 +31,10 @@
             --accent-gas-gradient: linear-gradient(135deg, #34a853, #188038);
             --accent-gas2-gradient: linear-gradient(135deg, #a78bfa, #7c3aed);
             --accent-banana-gradient: linear-gradient(135deg, #fbbf24, #d99e00);
+            --accent-toolkit-gradient: linear-gradient(135deg, #38bdf8, #0284c7);
+            --accent-ethics-gradient: linear-gradient(135deg, #94a3b8, #475569);
+            --accent-multiai-gradient: linear-gradient(135deg, #f472b6, #db2777);
+            --accent-remotion-gradient: linear-gradient(135deg, #22d3ee, #0891b2);
         }
 
         * {
@@ -122,6 +126,10 @@
         .card.gas::before { background: var(--accent-gas-gradient); }
         .card.gas2::before { background: var(--accent-gas2-gradient); }
         .card.banana::before { background: var(--accent-banana-gradient); }
+        .card.toolkit::before { background: var(--accent-toolkit-gradient); }
+        .card.ethics::before { background: var(--accent-ethics-gradient); }
+        .card.multiai::before { background: var(--accent-multiai-gradient); }
+        .card.remotion::before { background: var(--accent-remotion-gradient); }
 
         .card:hover {
             transform: translateY(-8px);
@@ -137,6 +145,10 @@
         .card.gas:hover { box-shadow: 0 20px 40px rgba(24, 128, 56, 0.12); }
         .card.gas2:hover { box-shadow: 0 20px 40px rgba(124, 58, 237, 0.1); }
         .card.banana:hover { box-shadow: 0 20px 40px rgba(217, 158, 0, 0.15); }
+        .card.toolkit:hover { box-shadow: 0 20px 40px rgba(2, 132, 199, 0.14); }
+        .card.ethics:hover { box-shadow: 0 20px 40px rgba(71, 85, 105, 0.14); }
+        .card.multiai:hover { box-shadow: 0 20px 40px rgba(219, 39, 119, 0.13); }
+        .card.remotion:hover { box-shadow: 0 20px 40px rgba(8, 145, 178, 0.14); }
 
         .card-header {
             margin-bottom: 2rem;
@@ -180,6 +192,10 @@
         .card.gas .badge { background: rgba(24, 128, 56, 0.18); color: #86efac; }
         .card.gas2 .badge { background: rgba(124, 58, 237, 0.15); color: #c4b5fd; }
         .card.banana .badge { background: rgba(217, 158, 0, 0.18); color: #fcd34d; }
+        .card.toolkit .badge { background: rgba(2, 132, 199, 0.18); color: #7dd3fc; }
+        .card.ethics .badge { background: rgba(71, 85, 105, 0.22); color: #cbd5e1; }
+        .card.multiai .badge { background: rgba(219, 39, 119, 0.18); color: #fbcfe8; }
+        .card.remotion .badge { background: rgba(8, 145, 178, 0.18); color: #67e8f9; }
 
         .card-desc {
             font-size: 0.95rem;
@@ -398,6 +414,83 @@
                 <p class="card-desc">AI コーディングエージェントを「正しく怖がる」ためのリテラシー講座。バイブコーディングの落とし穴、ハルシネーション／情報漏えい／プロンプトインジェクション等の代表リスク、そして 1 ページで作れる社内ガバナンスのテンプレートまでを一気通貫で学びます。</p>
             </div>
             <a href="risk-governance.html" class="btn">リスク &amp; ガバナンス講座を開始 ➔</a>
+        </div>
+
+        <!-- コースB: 即戦力AIツール実践 -->
+        <div class="card toolkit">
+            <div class="card-header">
+                <span class="card-icon">🚀</span>
+                <h2 class="card-title">即戦力AIツール実践 <span style="font-size: 0.6em; color: #7dd3fc; font-weight: 600; vertical-align: middle;">コースB</span></h2>
+                <div class="badges">
+                    <span class="badge">NotebookLM</span>
+                    <span class="badge">Deep Research</span>
+                    <span class="badge">Google Sites</span>
+                    <span class="badge">コーディング不要</span>
+                </div>
+                <p class="card-desc">3 つの AI / Web ツールをバケツリレーのようにつなぎ、1 つの調べものから「公開できる Web ページ」までを一気に作り上げます。コードは一切書かず、ブラウザだけで完結。所要時間の目安は約 60〜75 分です。</p>
+            </div>
+            <a href="new/course-b-ai-toolkit.html" class="btn">コースB を開始 ➔</a>
+        </div>
+
+        <!-- コースD: 責任あるAI＆ハルシネーション評価 -->
+        <div class="card ethics">
+            <div class="card-header">
+                <span class="card-icon">⚖️</span>
+                <h2 class="card-title">責任あるAI ＆ ハルシネーション評価 <span style="font-size: 0.6em; color: #cbd5e1; font-weight: 600; vertical-align: middle;">コースD</span></h2>
+                <div class="badges">
+                    <span class="badge">AI Ethics</span>
+                    <span class="badge">ハルシネーション</span>
+                    <span class="badge">バイアス</span>
+                    <span class="badge">ワークショップ</span>
+                </div>
+                <p class="card-desc">生成 AI の「うそ（ハルシネーション）」や「かたより（バイアス）」を、知識として学ぶだけでなく実際に自分の手で起こし・見つけ・直すところまで体験します。最後に「責任あるAI活用チェックリスト」を完成させます。</p>
+            </div>
+            <a href="new/course-d-responsible-ai.html" class="btn">コースD を開始 ➔</a>
+        </div>
+
+        <!-- コースE: マルチAI・ハイブリッド開発ワークフロー -->
+        <div class="card multiai">
+            <div class="card-header">
+                <span class="card-icon">🧠</span>
+                <h2 class="card-title">マルチAI・ハイブリッド開発 <span style="font-size: 0.6em; color: #fbcfe8; font-weight: 600; vertical-align: middle;">コースE</span></h2>
+                <div class="badges">
+                    <span class="badge">Codex</span>
+                    <span class="badge">Claude Code</span>
+                    <span class="badge">Antigravity</span>
+                    <span class="badge">使い分け</span>
+                </div>
+                <p class="card-desc">複数の AI エージェント（Codex・Claude Code・Antigravity）の強みを活かし、1 つのプロジェクトでハイブリッドに使いこなす開発フローを体感します。バグ修正・並列リファクタリング・Git ワークフローによる PR 作成までを一気通貫で。</p>
+            </div>
+            <a href="new/course-e-multi-ai-workflow.html" class="btn">コースE を開始 ➔</a>
+        </div>
+
+        <!-- Remotion 入門 -->
+        <div class="card remotion">
+            <div class="card-header">
+                <span class="card-icon">🎬</span>
+                <h2 class="card-title">Remotion 入門</h2>
+                <div class="badges">
+                    <span class="badge">React</span>
+                    <span class="badge">動画生成</span>
+                    <span class="badge">MP4</span>
+                </div>
+                <p class="card-desc">タイムラインを GUI で編集する代わりに、React のコンポーネントとして「各フレームの見た目」をプログラムで定義して動画を作ります。ゼロから短い動画を 1 本作り、MP4 として書き出すまでを手を動かして体験します。</p>
+            </div>
+            <a href="new/remotion-intro.html" class="btn">Remotion 入門を開始 ➔</a>
+        </div>
+
+        <!-- 新規カリキュラム提案 -->
+        <div class="card gas2">
+            <div class="card-header">
+                <span class="card-icon">🗂️</span>
+                <h2 class="card-title">新規カリキュラム提案</h2>
+                <div class="badges">
+                    <span class="badge">提案書</span>
+                    <span class="badge">コース一覧</span>
+                </div>
+                <p class="card-desc">今後追加を検討しているコース（A〜H）の到達目標・想定時間・対象者をまとめた提案書。上記のコースB／D／E はこの提案から作られたもので、未作成のコースもここで確認できます。</p>
+            </div>
+            <a href="new/new-curriculum-proposal.html" class="btn">提案書を開く ➔</a>
         </div>
     </main>
 
