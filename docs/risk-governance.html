@@ -710,7 +710,7 @@ CREATE TABLE users(id INT, email TEXT, plan TEXT);
                         <ul>
                             <li>Codex: <code>approval_policy = "on-request"</code>（<a href="https://developers.openai.com/codex/agent-approvals-security" target="_blank" rel="noopener" style="color: var(--primary);">公式 docs</a>）</li>
                             <li>Claude Code: <code>--dangerously-skip-permissions</code> は本番リポジトリで<strong>絶対使わない</strong>（<a href="https://code.claude.com/docs/en/permissions" target="_blank" rel="noopener" style="color: var(--primary);">公式 docs</a>）</li>
-                            <li>Antigravity: 業務リポジトリは <strong>Worktree モード必須</strong>（<a href="https://antigravity.google/docs/browser-subagent" target="_blank" rel="noopener" style="color: var(--primary);">公式 docs</a>）</li>
+                            <li>Antigravity: Subagent の workspace は公式では inherit / branch / share の選択制。業務リポジトリでは<strong>Worktree 隔離（branch）を本講座の標準</strong>にする（<a href="https://antigravity.google/docs/subagents" target="_blank" rel="noopener" style="color: var(--primary);">公式 docs</a>）</li>
                         </ul>
                     </li>
                     <li>
@@ -935,8 +935,8 @@ $ そのまま実行 → 実は誰かが直前に公開した悪意ある同名�
                         <td>Antigravity</td>
                         <td>Worktree 隔離 / Subagent 権限</td>
                         <td>
-                            業務リポジトリは<strong>Worktree モード必須</strong><br>
-                            <a href="https://antigravity.google/docs/browser-subagent" target="_blank" rel="noopener" style="color: var(--primary); font-size: 0.85rem;">📖 Subagent docs (公式)</a>
+                            業務リポジトリは<strong>Worktree 隔離を推奨</strong>（公式は inherit / branch / share の選択制）<br>
+                            <a href="https://antigravity.google/docs/subagents" target="_blank" rel="noopener" style="color: var(--primary); font-size: 0.85rem;">📖 Subagents docs (公式)</a>
                         </td>
                     </tr>
                 </tbody>
@@ -1287,7 +1287,7 @@ $ そのまま実行 → 実は誰かが直前に公開した悪意ある同名�
             </p>
 
             <div class="fig-container">
-                <img class="fig-image" src="img/fig-rg-agent-permission.png" alt="AIエージェントに渡す3つの権限（Read=読む / Write=書く / Command=実行する）を、車のペダルに見立てた図。Read は軽いブレーキ、Write はアクセル、Command は急加速のターボに対応し、それぞれにリスクレベル（低・中・高）と、対策（承認モード・サンドボックス・分離）が矢印で結ばれている。中央に「権限は最小から始めて、必要な分だけ開ける」というキャプション。">
+                <img class="fig-image" src="img/fig-rg-agent-permission.png" alt="AIエージェントに渡す3つの権限（Read=読む / Write=書く / Command=実行）を、車のペダルに見立てた図。Read はブレーキペダルで低リスク（対策: 見せる範囲を絞る）、Write はアクセルペダルで中リスク（対策: 承認モード）、Command は急加速のターボで高リスク（対策: サンドボックス隔離）。下部に「権限は最小から始めて、必要な分だけ開ける」というキャプション。">
             </div>
 
             <h3 id="perm-three">権限の3階層 — Read / Write / Command</h3>
@@ -1326,19 +1326,22 @@ $ そのまま実行 → 実は誰かが直前に公開した悪意ある同名�
             <h3 id="perm-sandbox">対策1: サンドボックス（Docker）で隔離する</h3>
             <p>
                 一番確実なのは「<strong>壊れても困らない箱の中で動かす</strong>」ことです。Docker コンテナなどのサンドボックス内で
-                エージェントを動かせば、たとえ <code>rm -rf /</code> を実行されても、消えるのは<strong>コンテナの中だけ</strong>。
-                ホスト PC や本番環境には届きません。
+                エージェントを動かせば、たとえ <code>rm -rf /</code> を実行されても、消えるのは<strong>コンテナの中と、マウントした作業フォルダだけ</strong>。
+                マウントしていないホスト領域（<code>$HOME</code>・<code>~/.ssh</code>・他プロジェクト）や本番環境には届きません。
+                マウントした作業フォルダは<strong>コンテナから読み書きできる</strong>ため、Git 管理下に置き、いつでも巻き戻せる状態で渡すのが前提です。
             </p>
             <pre><code># 例: 作業ディレクトリだけをマウントした隔離コンテナで動かす
-# （ホストの $HOME や ~/.ssh はマウントしない＝見えない・触れない）
+# ・マウントするのは今のプロジェクト（$(pwd)）だけ。$HOME や ~/.ssh は渡さない
+# ・--network none でネットワーク遮断（外部送信を物理的に防ぐ・必要時のみ開放）
+# ・注意: マウントした $(pwd) はコンテナから読み書きできる（Git で巻き戻せる状態にしておく）
 docker run --rm -it \
-  -v "$(pwd)":/workspace \   # 今のプロジェクトだけを /workspace に渡す
+  -v "$(pwd)":/workspace \
   -w /workspace \
-  --network none \           # ネットワーク遮断（外部送信を物理的に防ぐ・必要時のみ開放）
+  --network none \
   node:22 bash
 
-# このコンテナの中でエージェント／ビルド／テストを実行する
-# → 事故ってもコンテナを捨てれば終わり。ホストは無傷
+# このコンテナの中でビルド／テストを実行する
+# → 事故ってもコンテナを捨てれば終わり。マウントしていない場所は無傷
 </code></pre>
             <div class="card info">
                 <p style="margin:0;">
@@ -1346,22 +1349,26 @@ docker run --rm -it \
                     <code>-v</code> でマウントしたフォルダ <em>だけ</em> がエージェントから見えます。<code>~/.ssh</code> やパスワードマネージャ、
                     他プロジェクトをマウントしなければ、そもそも読まれようがありません。<code>--network none</code> を付ければ、
                     読めたとしても<strong>外に送る経路がない</strong>状態を作れます。
+                    逆に、マウントしたフォルダは<strong>読み書きされる前提</strong>で考え、<code>.env</code> などの機密は
+                    マウント範囲に置かない（OS のキーチェーンやシークレットマネージャへ逃がす）ようにしましょう。
                 </p>
             </div>
 
             <h3 id="perm-worktree">対策2: Git Worktree で「作業の箱」を分ける</h3>
             <p>
-                サンドボックスほど厳重でなくても、<strong>Git Worktree</strong> を使えば「エージェントの作業領域」を
-                本流（main）から物理的に切り離せます。1 つのリポジトリから複数の作業フォルダを切り出す仕組みで、
-                エージェントには<strong>専用ブランチの専用フォルダ</strong>だけを触らせ、問題があればフォルダごと破棄できます。
+                もう 1 つの実務的な工夫が <strong>Git Worktree</strong> です。1 つのリポジトリから複数の作業フォルダを切り出す仕組みで、
+                エージェントには<strong>専用ブランチの専用フォルダ</strong>を作業場所として割り当て、問題があれば変更ごと破棄できます。
+                ただし、これは<strong>「作業とブランチの分離」であって、権限の隔離ではありません</strong>。
+                Worktree 同士は同じリポジトリを共有しており、エージェントのファイルアクセス自体を制限する仕組みではないため、
+                <strong>承認モードやサンドボックス（対策1）と必ず併用</strong>してください。
             </p>
-            <pre><code># main から、エージェント専用の作業ツリーを切り出す
+            <pre><code># 現在のブランチを基点に、エージェント専用の作業ツリーを切り出す
 git worktree add ../myproject-agent -b agent/refactor
 
 # → ../myproject-agent が agent/refactor ブランチの作業フォルダになる
-# エージェントにはこのフォルダだけを渡す。main は別フォルダのまま無傷
+# エージェントにはこのフォルダを作業場所として指定する（main の作業フォルダと分離される）
 
-# 気に入らなければフォルダごと捨てる（main には一切影響しない）
+# 気に入らなければ作業ツリーごと捨てる（未コミットの変更が残っている場合は --force が必要）
 git worktree remove ../myproject-agent
 </code></pre>
             <div class="card ok">
@@ -1422,8 +1429,7 @@ git worktree remove ../myproject-agent
 - Command: [ 都度承認 ]  ← 危険コマンド（rm/curl/外部送信）は必ず内容確認
 
 ## 2. 全自動（YOLO）モードを使ってよい条件
-- [ ] Docker サンドボックス内である
-- [ ] または捨ててよい Git worktree 内である
+- [ ] Docker サンドボックス内である（Worktree は作業分離のみで権限は隔離されないため、単独では不可）
 - [ ] ネットワーク遮断（--network none）または信頼できる範囲のみ
 
 ## 3. エージェントに「見せない」もの（マウント/許可しない）
