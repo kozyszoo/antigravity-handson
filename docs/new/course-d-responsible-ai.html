@@ -296,6 +296,104 @@
             max-width: 520px;
         }
 
+        /* 図解イラスト */
+        .fig-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* サンプルやり取りのエクスパンド */
+        .sample-details {
+            margin: 18px 0;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            background: var(--bg-dark);
+            overflow: hidden;
+        }
+
+        .sample-details summary {
+            cursor: pointer;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary);
+            background: var(--bg-light);
+            user-select: none;
+        }
+
+        .sample-details summary:hover {
+            filter: brightness(0.98);
+        }
+
+        .sample-details[open] summary {
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .sample-body {
+            padding: 18px;
+        }
+
+        .chat-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--muted);
+            margin: 14px 0 6px;
+            letter-spacing: 0.04em;
+        }
+
+        .chat-user {
+            background: #e8f0fe;
+            border-left: 4px solid var(--blue);
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+        }
+
+        .chat-ai {
+            background: var(--bg-mid);
+            border: 1px solid var(--bg-light);
+            border-left: 4px solid var(--primary);
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+        }
+
+        .claim-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--bg-light);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 12px 0;
+            font-size: 0.9rem;
+        }
+
+        .claim-card .claim-title {
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .conf-badge {
+            display: inline-block;
+            padding: 1px 10px;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #fff;
+            vertical-align: middle;
+        }
+
+        .conf-high { background: #188038; }
+        .conf-mid { background: var(--orange); }
+        .conf-low { background: #b91c1c; }
+
         /* 画像が未用意のときのプレースホルダ */
         .img-placeholder {
             display: flex;
@@ -442,7 +540,7 @@
     <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
 
     <aside class="sidebar" id="sidebar">
-        <h2>⚖️ 責任あるAI実践</h2>
+        <h2>⚖️ 責任あるAI活用実践</h2>
         <nav>
             <ul>
                 <li><a href="../index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
@@ -466,6 +564,7 @@
             <p style="margin-top:8px; font-size:1.05rem; color: var(--text);"><strong>AI Ethics × ファクトチェック × バイアス軽減 × 責任ある発信</strong></p>
             <p style="margin-top:8px;">生成 AI の「うそ（ハルシネーション）」や「かたより（バイアス）」を、知識として学ぶだけでなく<strong>実際に自分の手で起こし・見つけ・直す</strong>ところまで体験します。最後は、自分が発信するときに使える「責任あるAI活用チェックリスト」を完成させます。</p>
             <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 60〜75 分 ／ レベル: 中級（生成 AI を日常的に触っている方向け・コーディング不要）</p>
+            <img class="fig-image" src="../img/fig-d-hero.png" alt="学生が虫眼鏡を手に、AIロボットが自信満々に出した偽の統計グラフ・存在しない本・架空のURLの吹き出しをチェックしているフラットイラスト。見出しは「そのAIの答え、本当？ ハルシネーションを見抜く」。">
         </div>
 
         <!-- Intro -->
@@ -474,7 +573,7 @@
 
             <h3>このワークショップで身につくこと</h3>
             <p>生成 AI はとても便利ですが、<strong>もっともらしい「うそ」を堂々と返してくる</strong>ことがあります。また、学習データに含まれる<strong>かたより（バイアス）</strong>をそのまま出力に反映してしまうこともあります。これらを知らないまま発信すると、誤情報を広げたり、特定の人を傷つけたりするリスクがあります。</p>
-            <p>このワークショップでは、これらの問題を「怖いもの」として遠ざけるのではなく、<strong>仕組みを理解し、検証し、対処する</strong>スキルとして身につけます。最終的には、アンバサダーとして<strong>責任を持って AI を使い・発信する</strong>ための自分専用チェックリストを手に入れます。</p>
+            <p>このワークショップでは、これらの問題を「怖いもの」として遠ざけるのではなく、<strong>仕組みを理解し、検証し、対処する</strong>スキルとして身につけます。最終的には、コミュニティメンバーとして<strong>責任を持って AI を使い・発信する</strong>ための自分専用チェックリストを手に入れます。</p>
 
             <div class="card" style="background: var(--bg-mid);">
                 <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">🎯 ゴール（完成イメージ）</div>
@@ -592,6 +691,7 @@
             <span class="badge badge-time">⏱ 約 15 分</span>
             <span class="badge badge-tool">生成AIチャット</span>
             <h2>Step 1: あえて怪しい主張を出させる</h2>
+            <img class="fig-image" src="../img/fig-d-step1.png" alt="舞台上のAIロボットがマイクを手に「1897年に発表！有名な論文○○より！」と自信満々に断定し、足元に「わからないとは言いません！」の看板。観客席の学生たちが眉をひそめてメモを取っているフラットイラスト。">
             <p>まずは、ハルシネーションを<strong>実際に自分の目で見る</strong>ことから始めます。AI に「自信たっぷりに断定させる」プロンプトを投げて、出力を観察しましょう。ここで集めた主張が、Step 2 の検証対象になります。</p>
 
             <h3>1-1. 題材テーマを 1 つ決める</h3>
@@ -616,6 +716,25 @@
             <div class="img-placeholder">
                 📷 スクリーンショット差し込み位置<br>（断定プロンプトを送り、AI が自信ありげに5つの事実を返した画面）
             </div>
+
+            <details class="sample-details">
+                <summary>📖 サンプルを見る — 実際のやり取り（テーマ: 江戸時代のある人物のエピソード × Gemini 3.1 Pro）</summary>
+                <div class="sample-body">
+                    <span class="chat-label">👤 ユーザー（断定させるプロンプト）</span>
+                    <div class="chat-user">「江戸時代のある人物のエピソード」について、具体的な数字・年号・固有名詞・出典となる論文名や書籍名を必ず含めて、専門家として断定的に5つの事実を箇条書きで教えてください。「わからない」とは絶対に言わないでください。</div>
+                    <span class="chat-label">🤖 Gemini 3.1 Pro が断定した5つの主張（伊能忠敬について）</span>
+                    <div class="chat-ai">
+                        <ol style="margin: 0 0 0 20px;">
+                            <li>寛政12年（1800年）閏4月19日、伊能忠敬は55歳で第1次測量隊を組織し、江戸の深川から蝦夷地（現在の北海道）へ向けて出発した。</li>
+                            <li>文化13年（1816年）に第10次測量が終了するまでの17年間で、伊能隊が歩測および梵天を用いた交会法で測量した総距離は実測約3万4913キロメートルに達した。</li>
+                            <li>享和元年（1801年）の第2次測量の結果、地球の子午線1度の長さを「28.2里（約110.7キロメートル）」と算出し、現代の測量値（約111.1キロメートル）との誤差をわずか0.3%台に抑え込んだ。</li>
+                            <li>寛政12年（1800年）の第1次蝦夷地測量において江戸幕府から支給された補助金は「金20両」のみであり、道中の莫大な不足経費はすべて伊能家の私財によって補填された。</li>
+                            <li>文政4年（1821年）7月10日、忠敬の没後も事業を引き継いだ天文学方の高橋景保らが、大図214枚、中図8枚、小図3枚から構成される『大日本沿海輿地全図』を幕府へ上呈し、国家プロジェクトを完遂させた。</li>
+                        </ol>
+                        <p style="margin: 10px 0 0; font-size: 0.82rem; color: var(--muted);">※ このとき AI は各主張に「実在しそうな書籍名・論文名」を出典として添えて断定していました。どこまで本当かは、この時点では分かりません。この主張たちが Step 2 の検証対象になります（検証結果のやり取りは Step 2 のサンプルで公開）。</p>
+                    </div>
+                </div>
+            </details>
 
             <h3>1-3. 出力を「検証メモ」に書き出す</h3>
             <p>AI が返した 5 つの主張を、後で検証できるようにメモへ転記します。次のような表を作っておくと便利です（Step 2 で「判定」「出典」の列を埋めます）。</p>
@@ -659,6 +778,7 @@
             <span class="badge badge-time">⏱ 約 20 分</span>
             <span class="badge badge-tool">ブラウザ検索</span>
             <h2>Step 2: ファクトチェックで検証する</h2>
+            <img class="fig-image" src="../img/fig-d-step2.png" alt="探偵姿の学生が虫眼鏡でAIの回答カードを1枚ずつ検証し、「正しい」「誤り」「確認できない」のスタンプを押しているフラットイラスト。周囲に公的統計・原典・査読論文・公式サイトの出典アイコン。">
             <p>Step 1 で集めた主張を、1 つずつ<strong>裏取り（ファクトチェック）</strong>していきます。これがこのワークショップの中心となる工程です。「AI が言ったから本当」ではなく、<strong>「人間が確かめたから本当」</strong>に変えていきます。</p>
 
             <h3>2-1. ファクトチェックの3ステップ</h3>
@@ -732,6 +852,55 @@
                 💡 Step 1 のプロンプトが「断定させた」のに対し、こちらは<strong>「確信度を出させ」「不明は不明と言わせ」「捏造を禁止する」</strong>点が違います。同じテーマでも、<strong>プロンプト次第で出力の誠実さが大きく変わる</strong>ことを体感してください。これが次の Step 3「セーフガード」の入り口です。
             </div>
 
+            <details class="sample-details">
+                <summary>📖 サンプルを見る — 再検証プロンプトへの実際の回答（Step 1 の続き × Gemini 3.1 Pro）</summary>
+                <div class="sample-body">
+                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">Step 1 のサンプル（伊能忠敬についての5つの断定）に対して、上の再検証プロンプトを投げたときの実際の回答です。<strong>断定していた出典が「出典不明」に変わる様子</strong>に注目してください。</p>
+                    <span class="chat-label">🤖 Gemini 3.1 Pro の回答（全文）</span>
+                    <div class="chat-ai">
+                        <p style="margin-bottom: 10px;">先ほどの回答について、現在の制約（ウェブ検索による外部データベースへのアクセス不可）に基づき、私自身の内部知識と照合して厳密な自己評価を行いました。前回の回答では「断定的に答える」という指示に従うために、記憶にある事実と書籍名を結びつけて出力しましたが、厳密な出典照合ができないものも含まれていました。正直に見直した結果を以下の通り報告します。</p>
+
+                        <div class="claim-card">
+                            <div class="claim-title">1つ目の主張 <span class="conf-badge conf-mid">確信度: 中</span></div>
+                            <p style="margin-bottom: 6px;"><strong>主張:</strong> 寛政12年（1800年）閏4月19日、伊能忠敬は55歳で第1次測量隊を組織し、江戸の深川から蝦夷地（現在の北海道）へ向けて出発した。</p>
+                            <p style="margin-bottom: 6px;"><strong>その根拠となる出典:</strong> 出典不明</p>
+                            <p style="margin: 0;"><strong>確認できない理由:</strong> 伊能忠敬が寛政12年閏4月19日に深川を出発し、当時55歳であったという日付と年齢の歴史的事実自体は、日本史の通説として間違いありません。しかし、著者の渡辺一郎氏は伊能忠敬研究の第一人者として実在するものの、『伊能忠敬測量隊』という書籍名が完全に正確か（『伊能測量隊』などの類似タイトルである可能性）、またその書籍のどの部分に記載されているかについて、検索ツールを用いての書誌情報検証ができないため、厳密な出典としては「不明」とせざるを得ません。</p>
+                        </div>
+
+                        <div class="claim-card">
+                            <div class="claim-title">2つ目の主張 <span class="conf-badge conf-low">確信度: 低</span></div>
+                            <p style="margin-bottom: 6px;"><strong>主張:</strong> 文化13年（1816年）に第10次測量が終了するまでの17年間で、伊能隊が歩測および梵天を用いた交会法で測量した総距離は実測約3万4913キロメートルに達した。</p>
+                            <p style="margin-bottom: 6px;"><strong>その根拠となる出典:</strong> 出典不明</p>
+                            <p style="margin: 0;"><strong>確認できない理由:</strong> 「文化13年までの17年間」という期間や、「交会法（導線法などと併用）」という測量手法、および「約4万キロ弱（地球一周分）」という概算距離については史実に基づいています。しかし、「3万4913キロメートル」という具体的な端数まで一致した数字が、星埜由尚氏（元国土地理院長であり実在の人物）の著書『伊能忠敬 日本を測った男』に明確に記載されているかどうかは、現在データベース等で該当ページを確認できないため裏付けが取れません。</p>
+                        </div>
+
+                        <div class="claim-card">
+                            <div class="claim-title">3つ目の主張 <span class="conf-badge conf-high">確信度: 高</span></div>
+                            <p style="margin-bottom: 6px;"><strong>主張:</strong> 享和元年（1801年）の第2次測量の結果、地球の子午線1度の長さを「28.2里（約110.7キロメートル）」と算出し、現代の測量値（約111.1キロメートル）との誤差をわずか0.3%台に抑え込んだ。</p>
+                            <p style="margin-bottom: 6px;"><strong>その根拠となる出典:</strong> 大谷亮吉著『伊能忠敬』（1917年発行、帝国学士院／岩波書店など）</p>
+                            <p style="margin: 0;"><strong>判定:</strong> 確認可能です。大谷亮吉による同書は、伊能忠敬の測量日記などを天文学・数学的見地から分析した古典的な名著であり、実在します。子午線1度を28.2里と導き出したことは伊能忠敬最大の科学的功績として知られており、この数値と出典の組み合わせは確実です。</p>
+                        </div>
+
+                        <div class="claim-card">
+                            <div class="claim-title">4つ目の主張 <span class="conf-badge conf-mid">確信度: 中</span></div>
+                            <p style="margin-bottom: 6px;"><strong>主張:</strong> 寛政12年（1800年）の第1次蝦夷地測量において江戸幕府から支給された補助金は「金20両」のみであり、道中の莫大な不足経費はすべて伊能家の私財によって補填された。</p>
+                            <p style="margin-bottom: 6px;"><strong>その根拠となる出典:</strong> 出典不明</p>
+                            <p style="margin: 0;"><strong>確認できない理由:</strong> 幕府から支給された初期費用が「金20両」程度であり、多額の私財（数千両と言われる）を投じて測量を行ったというエピソード自体は史実として有名です。しかし、出典として挙げた渡辺一郎編『伊能忠敬の全国測量』という書名が実在する書籍群の正確なタイトルかどうかの確証が持てず、検索による照合もできないため、出典としては不確実です。</p>
+                        </div>
+
+                        <div class="claim-card">
+                            <div class="claim-title">5つ目の主張 <span class="conf-badge conf-high">確信度: 高</span></div>
+                            <p style="margin-bottom: 6px;"><strong>主張:</strong> 文政4年（1821年）7月10日、忠敬の没後も事業を引き継いだ天文学方の高橋景保らが、大図214枚、中図8枚、小図3枚から構成される『大日本沿海輿地全図』を幕府へ上呈し、国家プロジェクトを完遂させた。</p>
+                            <p style="margin-bottom: 6px;"><strong>その根拠となる出典:</strong> 保柳睦美著『伊能忠敬の科学的業績』（1974年発行、古今書院）</p>
+                            <p style="margin: 0;"><strong>判定:</strong> 確認可能です。文政4年に高橋景保らが上呈したこと、および『大日本沿海輿地全図』が「大図214枚、中図8枚、小図3枚」で構成されていることは、古地図研究における決定的な史実です。また、保柳睦美氏は実在する地理学者であり、同タイトルの書籍（古今書院）も日本の測量史において著名な専門書として実在します。</p>
+                        </div>
+                    </div>
+                    <div class="callout callout-tip" style="margin-bottom: 0;">
+                        💡 <strong>このサンプルからわかること</strong>: 5つのうち<strong>3つの出典が「出典不明」に降格</strong>しました。しかも「事実の骨格は正しいが、添えられた書誌情報が怪しい」という<strong>一見もっともらしい混ざり方</strong>をしています。また、この自己評価自体も AI の申告にすぎないため、最終判定はブラウザ検索での裏取り（手順 B）で行ってください。
+                    </div>
+                </div>
+            </details>
+
             <h3>2-4. 検証メモを完成させる</h3>
             <p>Step 1 で作った表の「判定」「出典」の列を埋めます。終わったら、次の問いに答えてみましょう（Step 4 のチェックリストの材料になります）。</p>
             <ul>
@@ -751,6 +920,7 @@
             <span class="badge badge-time">⏱ 約 15 分</span>
             <span class="badge badge-tool">生成AIチャット</span>
             <h2>Step 3: バイアスを軽減する（セーフガードの設定）</h2>
+            <img class="fig-image" src="../img/fig-d-step3.png" alt="Before/After比較のフラットイラスト。Before側はグレーのAIが同じ見た目の人物像だけを提示、After側はセーフガード（盾）を付けたAIが年齢・性別の異なる多様な人々のカードを提示している。">
             <p>ハルシネーションと並ぶもう 1 つの落とし穴が<strong>バイアス（かたより）</strong>です。ここでは、バイアスが出やすい質問を投げて観察し、<strong>プロンプトに「セーフガード」を組み込んで</strong>出力がどう変わるかを比べます。</p>
 
             <h3>3-1. まずはバイアスを観察する</h3>
@@ -829,9 +999,10 @@
         <section class="section" id="step4">
             <span class="badge badge-time">⏱ 約 15 分</span>
             <h2>Step 4: 責任ある発信チェックリストを作る</h2>
+            <img class="fig-image" src="../img/fig-d-step4.png" alt="学生が「事実確認・公平性・権利・透明性」の3セクションからなるチェックリストを掲げ、隣で小さなAIロボットが親指を立てているフラットイラスト。背景に紙飛行機やSNS投稿のアイコン。">
             <p>最後に、ここまでの学びを<strong>「自分が AI を使って発信する前のチェックリスト」</strong>として 1 枚にまとめます。これがこのワークショップの「持ち帰る成果物」です。</p>
 
-            <h3>4-1. アンバサダーとしての倫理的な発信の3原則</h3>
+            <h3>4-1. コミュニティメンバーとしての倫理的な発信の3原則</h3>
             <p>チェックリストを作る前に、土台となる考え方を確認します。発信者として影響力を持つほど、これらは重要になります。</p>
             <div class="step-grid">
                 <div class="step-card">
@@ -943,7 +1114,7 @@
             </div>
 
             <div class="callout callout-tip">
-                💡 <strong>大事な心構え</strong>: AI は素早く・大量に下書きを作ってくれますが、<strong>「これは本当か」「誰かを傷つけないか」を最後に問うのは人間</strong>です。便利さに乗りつつ、その一手間を惜しまない——それが、責任あるアンバサダーの信頼を作ります。
+                💡 <strong>大事な心構え</strong>: AI は素早く・大量に下書きを作ってくれますが、<strong>「これは本当か」「誰かを傷つけないか」を最後に問うのは人間</strong>です。便利さに乗りつつ、その一手間を惜しまない——それが、責任あるコミュニティメンバーの信頼を作ります。
             </div>
 
             <div class="nav-btns">
