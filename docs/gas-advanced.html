@@ -275,6 +275,28 @@
             max-width: 640px;
         }
 
+
+        /* 画面の狭い端末でも横スクロールさせない */
+        .screenshot,
+        .screenshot-sm {
+            max-width: 100%;
+        }
+
+        @media (min-width: 700px) {
+            .screenshot-sm {
+                max-width: 640px;
+            }
+        }
+
+        /* 長い URL などがはみ出さないように折り返す */
+        code {
+            overflow-wrap: anywhere;
+        }
+
+        pre code {
+            overflow-wrap: normal;
+        }
+
         /* プロンプト例カード */
         .prompt-grid {
             display: grid;
@@ -595,8 +617,8 @@ MailApp.sendEmail({
 
             <h4>📋 準備</h4>
             <ol>
-                <li>スプレッドシートに <strong>「優先度」列（C 列など）</strong>を追加する</li>
-                <li>各タスクに「高」「中」「低」などの値を入力する</li>
+                <li>スプレッドシートに <strong>C 列「通知先メール」</strong>を追加し、各行に送り先のアドレスを入れる</li>
+                <li>その隣に <strong>D 列「優先度」</strong>を追加し、各タスクに「高」「中」「低」などの値を入力する</li>
             </ol>
 
             <div class="prompt-card">
@@ -610,7 +632,15 @@ MailApp.sendEmail({
             <details class="sample-details">
                 <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
                 <div class="sample-body">
-                    <p>優先度の列（例: <code>task[3]</code>）を読み取り、値に応じてメッセージを変えます。</p>
+                    <p>優先度の列を読み取り、値に応じてメッセージを変えます。<strong>列の番号は 0 から数える</strong>ので、A列＝<code>task[0]</code>、B列＝<code>task[1]</code>、C列＝<code>task[2]</code>、D列＝<code>task[3]</code> になります。</p>
+
+                    <table>
+                        <tr><th>列</th><th>中身</th><th>コードでの書き方</th></tr>
+                        <tr><td>A</td><td>タスク名</td><td><code>task[0]</code></td></tr>
+                        <tr><td>B</td><td>実施日</td><td><code>task[1]</code></td></tr>
+                        <tr><td>C</td><td>通知先メール</td><td><code>task[2]</code></td></tr>
+                        <tr><td>D</td><td>優先度</td><td><code>task[3]</code></td></tr>
+                    </table>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step3">コピー</button>
                         <pre id="c-step3"><code>tasksToday.forEach(task => {
@@ -646,7 +676,7 @@ MailApp.sendEmail({
 
             <h4>📋 準備</h4>
             <ol>
-                <li>スプレッドシートに <strong>「完了状況」列</strong>を追加する</li>
+                <li>スプレッドシートに <strong>E 列「完了状況」</strong>を追加する（Step 3 で D 列まで使ったので、その隣）</li>
                 <li>タスクが終わったら「完了」と入力する</li>
             </ol>
 
@@ -655,13 +685,13 @@ MailApp.sendEmail({
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step4">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step4">このスクリプトの、タスクが未完了のものだけ通知するようにして</div>
+                <div class="prompt-body" id="p-step4">このスクリプトで、タスクが未完了のものだけ通知するようにして</div>
             </div>
 
             <details class="sample-details">
                 <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
                 <div class="sample-body">
-                    <p>完了状況の列（例: <code>task[4]</code>）が「完了」のものを通知対象から外す、もしくは取り消し線で表示します。</p>
+                    <p>完了状況の列（E 列＝<code>task[4]</code>）が「完了」のものを通知対象から外す、もしくは取り消し線で表示します。</p>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step4">コピー</button>
                         <pre id="c-step4"><code>tasksToday.forEach(task => {
@@ -700,7 +730,7 @@ MailApp.sendEmail({
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step5">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step5">このスクリプトで、Google カレンダーと連携できるようにして</div>
+                <div class="prompt-body" id="p-step5">このスクリプトで、Google カレンダーから今日の予定も取ってきて、タスクと一緒に通知できるようにして</div>
             </div>
 
             <details class="sample-details">
@@ -744,7 +774,7 @@ events.forEach(event => {
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step6">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step6">このスクリプトのメール送信で、秘書風に返答を通知するように Gemini API の使い方を教えて</div>
+                <div class="prompt-body" id="p-step6">このスクリプトから Gemini API を呼び出して、通知の文面を秘書風に書いてもらうように書き換えて</div>
             </div>
 
             <h4>📋 準備</h4>
@@ -789,6 +819,23 @@ function generateMessage(taskName) {
   const json = JSON.parse(response.getContentText());
   return json.candidates[0].content.parts[0].text; // 生成された文章を返す
 }</code></pre>
+                    </div>
+
+                    <p>この関数を作っただけでは何も変わりません。<strong>メールを送っているところから呼び出して</strong>、生成された文章を本文に使います。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step6-call">コピー</button>
+                        <pre id="c-step6-call"><code>tasksToday.forEach(task =&gt; {
+  const taskName = task[0];
+
+  // Gemini に秘書風の文面を書いてもらう
+  const message = generateMessage(taskName);
+
+  MailApp.sendEmail({
+    to: recipientEmail,
+    subject: `本日のタスク: ${taskName}`,
+    htmlBody: message // 生成された文章をそのまま本文にする
+  });
+});</code></pre>
                     </div>
 
                     <div class="callout callout-warn">

@@ -290,6 +290,28 @@
             max-width: 520px;
         }
 
+
+        /* 画面の狭い端末でも横スクロールさせない */
+        .screenshot,
+        .screenshot-sm {
+            max-width: 100%;
+        }
+
+        @media (min-width: 700px) {
+            .screenshot-sm {
+                max-width: 520px;
+            }
+        }
+
+        /* 長い URL などがはみ出さないように折り返す */
+        code {
+            overflow-wrap: anywhere;
+        }
+
+        pre code {
+            overflow-wrap: normal;
+        }
+
         /* プロンプト例カード */
         .prompt-grid {
             display: grid;
