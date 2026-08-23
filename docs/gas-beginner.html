@@ -290,6 +290,107 @@
             max-width: 520px;
         }
 
+        /* プロンプト例カード */
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .prompt-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 18px 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .prompt-card .prompt-title {
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .prompt-card .prompt-body {
+            background: var(--bg-mid);
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 0.88rem;
+            color: var(--muted);
+            border: 1px dashed var(--primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* 折りたたみ（答え合わせ用コード） */
+        .sample-details {
+            margin: 18px 0;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            background: var(--bg-dark);
+            overflow: hidden;
+        }
+
+        .sample-details summary {
+            cursor: pointer;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary);
+            background: var(--bg-light);
+            user-select: none;
+        }
+
+        .sample-details summary:hover {
+            filter: brightness(0.98);
+        }
+
+        .sample-details[open] summary {
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .sample-body {
+            padding: 18px;
+        }
+
+        .copy-btn {
+            flex-shrink: 0;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            background: var(--primary);
+            color: var(--bg-mid);
+            padding: 6px 12px;
+            font: inherit;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            filter: brightness(0.94);
+        }
+
+        .code-wrap {
+            position: relative;
+        }
+
+        .code-wrap .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 1;
+            background: var(--bg-mid);
+            color: var(--text);
+        }
+
+        .code-wrap pre {
+            padding-top: 52px;
+        }
+
         .step-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -436,7 +537,7 @@
         <div class="hero">
             <span class="badge badge-level">初級編</span>
             <h1>🧪 生成AI活用コーディングハンズオン<br>～ Google Apps Script (GAS) ～</h1>
-            <p style="margin-top:8px;">Google スプレッドシート × GAS × Gmail で「毎日のタスクを自動でメール通知するアプリ」をゼロから作ります。プログラミング初心者でも、コピペと丁寧な手順で必ず動かせます。</p>
+            <p style="margin-top:8px;">Google スプレッドシート × GAS × Gmail で「毎日のタスクを自動でメール通知するアプリ」をゼロから作ります。コードは Gemini に書いてもらうので、プログラミング初心者でも丁寧な手順で必ず動かせます。</p>
             <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 60〜90 分</p>
         </div>
 
@@ -535,6 +636,15 @@
                 </li>
             </ul>
 
+            <h3>🤖 このハンズオンの進め方</h3>
+            <p>コードを丸暗記しなくて大丈夫です。分からないところは <a href="https://gemini.google.com/" target="_blank" rel="noopener">Gemini</a> に聞きながら進めましょう。</p>
+            <ol>
+                <li>各 Step の「🤖 Gemini にこう聞く」カードにあるプロンプトをコピーして、Gemini に貼ります。</li>
+                <li>返ってきたコードを Apps Script エディタへ貼って動かします。</li>
+                <li>うまく動かないときは、エラー文をそのままコピーして Gemini に「このエラーの原因と直し方を教えて」と聞きます。</li>
+                <li>どうしても進めないときは、各 Step の折りたたみを開けば答えのコードを確認できます。</li>
+            </ol>
+
             <div class="nav-btns">
                 <a href="index.html" class="btn">← ポータル</a>
                 <a href="#step1" class="btn">Step 1 へ進む →</a>
@@ -545,7 +655,7 @@
         <section class="section" id="step1">
             <span class="badge badge-time">⏱ 約 20 分</span>
             <h2>Step 1: Google Apps Script を動かしてみよう</h2>
-            <p>まずは「GAS なるもの」を実際に動かして、スプレッドシートに文字が自動で入る感覚をつかみましょう。難しいことは考えず、まずはコピペで動かすのがコツです。</p>
+            <p>まずは「GAS なるもの」を実際に動かして、スプレッドシートに文字が自動で入る感覚をつかみましょう。難しいことは考えず、まずは Gemini にコードを書いてもらって動かすのがコツです。</p>
 
             <h3>1-1. スプレッドシートを作成する</h3>
             <p><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank" rel="noopener">https://docs.google.com/spreadsheets/u/0/</a> にアクセスし、Google スプレッドシートで<strong>新しいシート</strong>を作成します。ここでは分かりやすいように、シートの名前を「GASハンズオン」などにしておきましょう。</p>
@@ -573,15 +683,28 @@
             <img class="screenshot" src="img/gas-05.png"
                 alt="Apps Script のエディタ画面。左にファイル一覧（コード.gs）、右に function myFunction() {} という空の関数が表示されている初期状態のスクリーンショット">
 
-            <h3>1-4. まずはコピペして動かす</h3>
-            <p>下記のコードを、エディタの内容をすべて消してからそのまま貼り付けます。「セル A1 に Hello World! と書き込む」だけのシンプルなコードです。</p>
+            <h3>1-4. まずは Gemini にコードを書いてもらう</h3>
+            <p>「セル A1 に Hello World! と書き込む」だけのシンプルなコードを作ります。下のプロンプトをコピーして Gemini に貼り、返ってきたコードを<strong>エディタの内容をすべて消してから貼り付けて</strong>ください。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step1">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step1">Google Apps Script を初めて書きます。スプレッドシートを ID で開いて、指定した名前のシートのセル A1 に「Hello World!」と書き込む myFunction という関数を作ってください。スプレッドシートの ID とシート名は、あとから自分の値に差し替えられるように関数の先頭で定数にまとめてください。初心者向けに、各行が何をしているか日本語のコメントを付けてください。</div>
+            </div>
 
             <div class="callout callout-warn">
                 ⚠️ <strong>1-2 で控えた スプレッドシート ID とシート名への置き換えを忘れずに！</strong> <code>YOUR_SPREADSHEET_ID</code> と <code>YOUR_SHEET_NAME</code> の部分を、ご自身の値に書き換えてください。
             </div>
 
-            <span class="code-label after">After（このコードに置き換える）</span>
-            <pre><code>function myFunction() {
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <span class="code-label after">After（このコードに置き換える）</span>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step1">コピー</button>
+                        <pre id="c-step1"><code>function myFunction() {
   // スプレッドシートの ID とシート名
   const spreadsheetId = 'YOUR_SPREADSHEET_ID'; // スプレッドシートの ID に置き換える
   const sheetName = 'YOUR_SHEET_NAME';         // シート名に置き換える
@@ -593,6 +716,9 @@
   // セル(A1)に "Hello World!" と挿入する
   sheet.getRange("A1").setValue("Hello World!");
 }</code></pre>
+                    </div>
+                </div>
+            </details>
 
             <img class="screenshot" src="img/gas-06.png"
                 alt="Apps Script エディタに Hello World! を書き込む myFunction のコードが貼り付けられている状態のスクリーンショット">
@@ -701,14 +827,27 @@
             <img class="screenshot screenshot-sm" src="img/gas-20.png"
                 alt="スプレッドシートの拡張機能メニューから Apps Script を選択する画面。A1 セルには Hello World! が入っているスクリーンショット">
 
-            <p>既存の <code>myFunction</code> の下に、新しく <code>sendEMail</code> 関数を追加します。下記の「After」のように、<code>// ここから追加</code> から <code>// ここまで追加</code> までを書き足してください。</p>
+            <p>既存の <code>myFunction</code> はそのまま残して、その下に新しく <code>sendEMail</code> 関数を追加します。下のプロンプトを Gemini に貼り、返ってきた <code>sendEMail</code> 関数をエディタへ書き足してください。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step3">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step3">Google Apps Script で、自分のGmailアカウントからテストメールを1通送る sendEMail という関数を追加してください。送信者と受信者のメールアドレスは、あとから差し替えられるように関数の先頭で定数にまとめてください。件名は「テストメール」、本文は「これはテストメールです。」にしてください。いま書いてある myFunction はそのまま残して、その下に追加する形で書いてください。日本語のコメントを付けてください。</div>
+            </div>
 
             <div class="callout callout-warn">
                 ⚠️ <code>senderEmail</code> と <code>recipientEmail</code> を<strong>ご自身のメールアドレス</strong>に置き換えるのを忘れずに！（テストなので送信者・受信者ともに自分のアドレスで OK です）
             </div>
 
-            <span class="code-label after">After（sendEMail を追加）</span>
-            <pre><code>function myFunction() {
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <span class="code-label after">After（sendEMail を追加）</span>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step3">コピー</button>
+                        <pre id="c-step3"><code>function myFunction() {
   // スプレッドシートの ID とシート名
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
@@ -739,6 +878,9 @@ function sendEMail() {
   });
 }
 // ここまで追加</code></pre>
+                    </div>
+                </div>
+            </details>
 
             <img class="screenshot" src="img/gas-22.png"
                 alt="Apps Script エディタで関数選択のドロップダウンに myFunction と sendEMail が並んで表示され、sendEMail のコードが書かれているスクリーンショット">
@@ -800,10 +942,23 @@ function sendEMail() {
             <p>いよいよ本題です。<strong>スプレッドシートから今日のタスクを読み取り、メールで通知する</strong>処理を、4 つのステップに分けて少しずつ組み立てていきます。今回は <code>myFunction</code> を書き換えていきます。</p>
 
             <h3>4-1. スプレッドシートからデータを読み込む</h3>
-            <p>まずはスプレッドシートの全データを読み込む処理に書き換えます。<code>// この行を削除</code> の行を消し、<code>// この行に変更</code> の行を追加しましょう。</p>
+            <p>まずは A1 に文字を書き込む処理をやめて、スプレッドシートの全データを読み込む処理に書き換えます。ここから先は<strong>いまエディタにあるコードを全文コピーして Gemini に貼り、そのあとにプロンプトを続ける</strong>形で進めます。</p>
 
-            <span class="code-label before">Before（A1 に書き込む処理を削除）</span>
-            <pre><code>function myFunction() {
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step4-1">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step4-1">（いまのコードを全文貼り付けてから）↑このスクリプトを書き換えて、A1に文字を書き込む処理をやめて、代わりにシートの全データを二次元配列として読み込むようにしてください。読み込んだ結果は data という定数に入れてください。日本語のコメントを付けてください。</div>
+            </div>
+
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <span class="code-label before">Before（A1 に書き込む処理を削除）</span>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step4-1">コピー</button>
+                        <pre id="c-step4-1"><code>function myFunction() {
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const ss = SpreadsheetApp.openById(spreadsheetId);
@@ -811,9 +966,12 @@ function sendEMail() {
 
   sheet.getRange("A1").setValue("Hello World!"); // この行を削除
 }</code></pre>
+                    </div>
 
-            <span class="code-label after">After（データを取得する処理に変更）</span>
-            <pre><code>function myFunction() {
+                    <span class="code-label after">After（データを取得する処理に変更）</span>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step4-1-after">コピー</button>
+                        <pre id="c-step4-1-after"><code>function myFunction() {
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const ss = SpreadsheetApp.openById(spreadsheetId);
@@ -822,12 +980,28 @@ function sendEMail() {
   // データを取得（シートの全行を二次元配列で受け取る）
   const data = sheet.getDataRange().getValues();
 }</code></pre>
+                    </div>
+                </div>
+            </details>
 
             <h3>4-2. 今日の日付を取得する</h3>
-            <p>次に、<strong>今日の日付</strong>を「yyyy/MM/dd」形式の文字列で取得する処理を、<code>// ここから追加</code> 〜 <code>// ここまで追加</code> の間に書き足します。</p>
+            <p>次に、<strong>今日の日付</strong>を「yyyy/MM/dd」形式の文字列で取得する処理を足します。日付どうしを比べるために、文字列に揃えておくのがポイントです。</p>
 
-            <span class="code-label after">After（今日の日付を追加）</span>
-            <pre><code>function myFunction() {
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step4-2">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step4-2">（いまのコードを全文貼り付けてから）↑このスクリプトに、今日の日付を日本時間で「yyyy/MM/dd」の形式の文字列として取り出す処理を足してください。あとで日付の文字列どうしを比べたいので、Utilities.formatDate を使ってください。日本語のコメントを付けてください。</div>
+            </div>
+
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <span class="code-label after">After（今日の日付を追加）</span>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step4-2">コピー</button>
+                        <pre id="c-step4-2"><code>function myFunction() {
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const ss = SpreadsheetApp.openById(spreadsheetId);
@@ -842,12 +1016,28 @@ function sendEMail() {
   const formattedToday = Utilities.formatDate(today, 'JST', 'yyyy/MM/dd');
   // ここまで追加
 }</code></pre>
+                    </div>
+                </div>
+            </details>
 
             <h3>4-3. 今日実施予定のタスクを抽出する</h3>
             <p>読み込んだデータから、<strong>実施日が今日のタスクだけ</strong>を抜き出します。1 行目はヘッダー（見出し）なので <code>shift()</code> で取り除いてから、<code>filter()</code> で絞り込みます。</p>
 
-            <span class="code-label after">After（タスクの抽出を追加）</span>
-            <pre><code>function myFunction() {
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step4-3">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step4-3">（いまのコードを全文貼り付けてから）↑このスクリプトに、読み込んだデータから今日実施するタスクだけを抜き出す処理を足してください。データの1行目は「タスク名」「実施日」というヘッダーなので取り除いてください。実施日は2列目に入っています。抜き出した結果は tasksToday という定数に入れてください。日本語のコメントを付けてください。</div>
+            </div>
+
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <span class="code-label after">After（タスクの抽出を追加）</span>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step4-3">コピー</button>
+                        <pre id="c-step4-3"><code>function myFunction() {
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const ss = SpreadsheetApp.openById(spreadsheetId);
@@ -867,6 +1057,9 @@ function sendEMail() {
   );
   // ここまで追加
 }</code></pre>
+                    </div>
+                </div>
+            </details>
 
             <div class="callout callout-info">
                 ℹ️ <code>row[0]</code> が「タスク名」（A 列）、<code>row[1]</code> が「実施日」（B 列）です。配列の番号は <strong>0 から</strong>始まることに注意しましょう。
@@ -875,12 +1068,25 @@ function sendEMail() {
             <h3>4-4. Gmail 送信処理を実装する</h3>
             <p>最後に、抽出したタスクごとに通知メールを送信する処理を追加します。</p>
 
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step4-4">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step4-4">（いまのコードを全文貼り付けてから）↑このスクリプトに、抜き出した今日のタスクを1件ずつメールで通知する処理を足してください。件名と本文はどちらも「本日のタスク: （タスク名）」にしてください。宛先のメールアドレスは、あとから自分のアドレスに差し替えられるようにしてください。日本語のコメントを付けてください。</div>
+            </div>
+
             <div class="callout callout-warn">
                 ⚠️ <code>recipientEmail</code> を<strong>ご自身のメールアドレス</strong>に置き換えるのを忘れずに！
             </div>
 
-            <span class="code-label after">After（Gmail 送信処理を追加・これで完成）</span>
-            <pre><code>function myFunction() {
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <span class="code-label after">After（Gmail 送信処理を追加・これで完成）</span>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step4-4">コピー</button>
+                        <pre id="c-step4-4"><code>function myFunction() {
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const ss = SpreadsheetApp.openById(spreadsheetId);
@@ -912,6 +1118,9 @@ function sendEMail() {
   });
   // ここまで追加
 }</code></pre>
+                    </div>
+                </div>
+            </details>
 
             <h3>4-5. タスク管理スプレッドシートにタスクを入力</h3>
             <p>スプレッドシートに以下の情報を入力します。<strong>1 行目はヘッダー</strong>として「タスク名」「実施日」と入れ、2 行目以降に実際のタスクを書きます。</p>
@@ -944,7 +1153,15 @@ function sendEMail() {
             <img class="screenshot" src="img/gas-31.png"
                 alt="GAS の実行ログにエラーが赤字で出力されている例。Exception: Unexpected error while getting the method or property openById on object SpreadsheetApp と表示されているスクリーンショット">
             <div class="callout callout-tip">
-                💡 原因がわからないときは、<strong>このエラー文をスクリーンショットまたはコピペして ChatGPT などの生成 AI に質問</strong>すると、原因と直し方を教えてくれます（発展編で詳しく扱います）。
+                💡 原因がわからないときは、<strong>このエラー文をそのままコピーして Gemini に質問</strong>すると、原因と直し方を教えてくれます。
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 エラーが出たら Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-error">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-error">（実行ログに出たエラー文をそのまま貼り付けてから）↑これは Google Apps Script を実行したときに出たエラーです。原因と直し方を、初心者にも分かるように教えてください。直したコードも見せてください。</div>
             </div>
 
             <div class="callout callout-tip">
@@ -1087,6 +1304,65 @@ function sendEMail() {
         }, { rootMargin: '-30% 0px -60% 0px' });
 
         sections.forEach(s => observer.observe(s));
+
+        // プロンプトと答え合わせ用コードをクリップボードへコピーする
+        const copyTimers = new WeakMap();
+        const copyAttempts = new WeakMap();
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.setAttribute('readonly', '');
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+
+            let copied = false;
+            try {
+                copied = document.execCommand('copy');
+            } catch (error) {
+                copied = false;
+            } finally {
+                document.body.removeChild(textArea);
+            }
+            return copied;
+        }
+
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', async () => {
+                const previousTimer = copyTimers.get(button);
+                if (previousTimer) clearTimeout(previousTimer);
+                const attempt = (copyAttempts.get(button) || 0) + 1;
+                copyAttempts.set(button, attempt);
+
+                const target = document.getElementById(button.dataset.copyTarget);
+                let copied = false;
+
+                if (target) {
+                    const text = target.textContent;
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        try {
+                            await navigator.clipboard.writeText(text);
+                            copied = true;
+                        } catch (error) {
+                            copied = fallbackCopy(text);
+                        }
+                    } else {
+                        copied = fallbackCopy(text);
+                    }
+                }
+
+                if (copyAttempts.get(button) !== attempt) return;
+
+                button.textContent = copied ? 'コピーしました' : 'コピーできません';
+                const timer = setTimeout(() => {
+                    button.textContent = 'コピー';
+                    copyTimers.delete(button);
+                }, 1500);
+                copyTimers.set(button, timer);
+            });
+        });
     </script>
 </body>
 

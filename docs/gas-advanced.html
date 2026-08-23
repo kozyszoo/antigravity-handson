@@ -295,6 +295,10 @@
             color: var(--text);
             margin-bottom: 8px;
             font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
         }
 
         .prompt-card .prompt-body {
@@ -305,6 +309,71 @@
             color: var(--muted);
             border: 1px dashed var(--primary);
             font-family: 'Courier New', monospace;
+        }
+
+        /* 折りたたみ（答え合わせ用コード） */
+        .sample-details {
+            margin: 18px 0;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            background: var(--bg-dark);
+            overflow: hidden;
+        }
+
+        .sample-details summary {
+            cursor: pointer;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary);
+            background: var(--bg-light);
+            user-select: none;
+        }
+
+        .sample-details summary:hover {
+            filter: brightness(0.98);
+        }
+
+        .sample-details[open] summary {
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .sample-body {
+            padding: 18px;
+        }
+
+        .copy-btn {
+            flex-shrink: 0;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            background: var(--primary);
+            color: var(--bg-mid);
+            padding: 6px 12px;
+            font: inherit;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            filter: brightness(0.94);
+        }
+
+        .code-wrap {
+            position: relative;
+        }
+
+        .code-wrap .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 1;
+            background: var(--bg-mid);
+            color: var(--text);
+        }
+
+        .code-wrap pre {
+            padding-top: 52px;
         }
 
         .nav-btns {
@@ -470,14 +539,21 @@
             <h2>Step 2: 複数タスクを 1 通のメールにまとめる</h2>
             <p>初級編のコードは、今日のタスクが 3 件あればメールも 3 通届いてしまいます。これを<strong>1 通にまとめて送る</strong>ように変えてみましょう。</p>
 
-            <h4>🤖 プロンプト例</h4>
             <div class="prompt-card">
-                <div class="prompt-body">このスクリプトの複数のタスクのお知らせを1つのメールで送信できるようにして</div>
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step2">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step2">このスクリプトの複数のタスクのお知らせを1つのメールで送信できるようにして</div>
             </div>
 
-            <h4>💡 AI が返してくるコードのイメージ</h4>
-            <p>ポイントは、<code>forEach</code> でその都度送るのをやめて、いったん<strong>本文を 1 つの文字列に組み立ててから、最後に 1 回だけ送る</strong>ことです。</p>
-            <pre><code>// 今日のタスク（tasksToday）が抽出された後...
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>ポイントは、<code>forEach</code> でその都度送るのをやめて、いったん<strong>本文を 1 つの文字列に組み立ててから、最後に 1 回だけ送る</strong>ことです。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step2">コピー</button>
+                        <pre id="c-step2"><code>// 今日のタスク（tasksToday）が抽出された後...
 
 // タスクが1件もなければ送らない
 if (tasksToday.length === 0) return;
@@ -485,11 +561,11 @@ if (tasksToday.length === 0) return;
 const recipientEmail = 'your.email@example.com'; // 自分のアドレスに置き換える
 
 // 本文を1つにまとめる（箇条書き）
-let body = '本日のタスクは以下の通りです。<br><ul>';
+let body = '本日のタスクは以下の通りです。&lt;br&gt;&lt;ul&gt;';
 tasksToday.forEach(task => {
-  body += `<li>${task[0]}</li>`; // task[0] = タスク名
+  body += `&lt;li&gt;${task[0]}&lt;/li&gt;`; // task[0] = タスク名
 });
-body += '</ul>';
+body += '&lt;/ul&gt;';
 
 // まとめて1通だけ送信
 MailApp.sendEmail({
@@ -497,10 +573,13 @@ MailApp.sendEmail({
   subject: `本日のタスク（${tasksToday.length}件）`,
   htmlBody: body
 });</code></pre>
+                    </div>
 
-            <div class="callout callout-info">
-                ℹ️ <code>htmlBody</code> に <code>&lt;ul&gt;&lt;li&gt;</code> などの HTML タグを書くと、メールが<strong>箇条書きで見やすく</strong>表示されます。
-            </div>
+                    <div class="callout callout-info">
+                        ℹ️ <code>htmlBody</code> に <code>&lt;ul&gt;&lt;li&gt;</code> などの HTML タグを書くと、メールが<strong>箇条書きで見やすく</strong>表示されます。
+                    </div>
+                </div>
+            </details>
 
             <div class="nav-btns">
                 <a href="#step1" class="btn">← Step 1</a>
@@ -520,14 +599,21 @@ MailApp.sendEmail({
                 <li>各タスクに「高」「中」「低」などの値を入力する</li>
             </ol>
 
-            <h4>🤖 プロンプト例</h4>
             <div class="prompt-card">
-                <div class="prompt-body">このスクリプトに、タスクの優先度を追加できるようにして</div>
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step3">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step3">このスクリプトに、タスクの優先度を追加できるようにして</div>
             </div>
 
-            <h4>💡 実装イメージ</h4>
-            <p>優先度の列（例: <code>task[3]</code>）を読み取り、値に応じてメッセージを変えます。</p>
-            <pre><code>tasksToday.forEach(task => {
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>優先度の列（例: <code>task[3]</code>）を読み取り、値に応じてメッセージを変えます。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step3">コピー</button>
+                        <pre id="c-step3"><code>tasksToday.forEach(task => {
   const taskName = task[0];
   const recipientEmail = task[2]; // 通知先（メール列を使う場合）
   const priority = task[3];       // 優先度を取得
@@ -535,13 +621,16 @@ MailApp.sendEmail({
   // 優先度に応じてメッセージを変更
   let message = `本日のタスク: ${taskName}`;
   if (priority === "高") {
-    message = `<h1>重要!</h1> 本日のタスク: ${taskName}`; // HTML タグで強調
+    message = `&lt;h1&gt;重要!&lt;/h1&gt; 本日のタスク: ${taskName}`; // HTML タグで強調
   } else if (priority === "低") {
     message = `本日のタスク: ${taskName} (優先度: 低)`;
   }
 
   // ...（Gmail 送信処理）...
 });</code></pre>
+                    </div>
+                </div>
+            </details>
 
             <div class="nav-btns">
                 <a href="#step2" class="btn">← Step 2</a>
@@ -561,28 +650,38 @@ MailApp.sendEmail({
                 <li>タスクが終わったら「完了」と入力する</li>
             </ol>
 
-            <h4>🤖 プロンプト例</h4>
             <div class="prompt-card">
-                <div class="prompt-body">このスクリプトの、タスクが未完了のものだけ通知するようにして</div>
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step4">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step4">このスクリプトの、タスクが未完了のものだけ通知するようにして</div>
             </div>
 
-            <h4>💡 実装イメージ</h4>
-            <p>完了状況の列（例: <code>task[4]</code>）が「完了」のものを通知対象から外す、もしくは取り消し線で表示します。</p>
-            <pre><code>tasksToday.forEach(task => {
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>完了状況の列（例: <code>task[4]</code>）が「完了」のものを通知対象から外す、もしくは取り消し線で表示します。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step4">コピー</button>
+                        <pre id="c-step4"><code>tasksToday.forEach(task => {
   // ...
   const status = task[4]; // 完了状況を取得
 
   // 完了状況に応じてメッセージを変更
   if (status === "完了") {
-    message = `<strike>${message}</strike> (完了)`; // 取り消し線で表示
+    message = `&lt;strike&gt;${message}&lt;/strike&gt; (完了)`; // 取り消し線で表示
   }
 
   // ...（Gmail 送信処理）...
 });</code></pre>
+                    </div>
 
-            <div class="callout callout-tip">
-                💡 「<strong>完了したタスクは通知自体を飛ばしたい</strong>」場合は、<code>if (status === "完了") return;</code> のように <code>forEach</code> 内で <code>return</code> させると、その行はスキップされます。AI に「未完了だけ送って」と依頼すればこの形を提案してくれます。
-            </div>
+                    <div class="callout callout-tip">
+                        💡 「<strong>完了したタスクは通知自体を飛ばしたい</strong>」場合は、<code>if (status === "完了") return;</code> のように <code>forEach</code> 内で <code>return</code> させると、その行はスキップされます。AI に「未完了だけ送って」と依頼すればこの形を提案してくれます。
+                    </div>
+                </div>
+            </details>
 
             <div class="nav-btns">
                 <a href="#step3" class="btn">← Step 3</a>
@@ -596,14 +695,21 @@ MailApp.sendEmail({
             <h2>Step 5: Google カレンダーと連携する</h2>
             <p>Google カレンダーの予定をタスクとして扱い、Gmail で通知すれば、<strong>スケジュール管理とタスク管理を統合</strong>できます。</p>
 
-            <h4>🤖 プロンプト例</h4>
             <div class="prompt-card">
-                <div class="prompt-body">このスクリプトで、Google カレンダーと連携できるようにして</div>
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step5">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step5">このスクリプトで、Google カレンダーと連携できるようにして</div>
             </div>
 
-            <h4>💡 実装イメージ</h4>
-            <p>GAS には標準で <code>CalendarApp</code> が用意されており、その日の予定を簡単に取得できます。取得した予定を、タスクの配列に追加してから通知します。</p>
-            <pre><code>// Google カレンダーから今日の予定を取得
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>GAS には標準で <code>CalendarApp</code> が用意されており、その日の予定を簡単に取得できます。取得した予定を、タスクの配列に追加してから通知します。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step5">コピー</button>
+                        <pre id="c-step5"><code>// Google カレンダーから今日の予定を取得
 const calendarId = 'your.calendar.id@group.calendar.google.com'; // カレンダー ID に置き換える
 const events = CalendarApp.getCalendarById(calendarId).getEventsForDay(today);
 
@@ -613,10 +719,13 @@ events.forEach(event => {
 });
 
 // ...（この後、通常どおり Gmail 通知を送信）...</code></pre>
+                    </div>
 
-            <div class="callout callout-info">
-                ℹ️ <strong>カレンダー ID</strong> は、Google カレンダーの「設定と共有」→「カレンダーの統合」から確認できます。自分のメインカレンダーなら、ご自身の Gmail アドレスがそのまま ID になります。
-            </div>
+                    <div class="callout callout-info">
+                        ℹ️ <strong>カレンダー ID</strong> は、Google カレンダーの「設定と共有」→「カレンダーの統合」から確認できます。自分のメインカレンダーなら、ご自身の Gmail アドレスがそのまま ID になります。
+                    </div>
+                </div>
+            </details>
 
             <div class="nav-btns">
                 <a href="#step4" class="btn">← Step 4</a>
@@ -630,9 +739,12 @@ events.forEach(event => {
             <h2>Step 6: 文章生成 AI（OpenAI API）の活用</h2>
             <p>仕上げに、OpenAI などの<strong>文章生成 AI を GAS から呼び出して</strong>、タスク名から通知文を自動生成させてみましょう。たとえば「秘書風の文面」で通知させる、といった遊びができます。</p>
 
-            <h4>🤖 プロンプト例</h4>
             <div class="prompt-card">
-                <div class="prompt-body">このスクリプトのメール送信で、秘書風に返答を通知するように OpenAI API の使い方を教えて</div>
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step6">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step6">このスクリプトのメール送信で、秘書風に返答を通知するように OpenAI API の使い方を教えて</div>
             </div>
 
             <h4>📋 準備</h4>
@@ -641,9 +753,13 @@ events.forEach(event => {
                 <li>GAS から <code>UrlFetchApp</code> を使って OpenAI の API を呼び出す</li>
             </ol>
 
-            <h4>💡 実装イメージ</h4>
-            <p>GAS には外部 API を叩くための <code>UrlFetchApp</code> があります。タスク名を渡して、件名や本文を AI に作らせます。</p>
-            <pre><code>// タスク名から、秘書風の通知文を OpenAI に生成してもらう関数
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>GAS には外部 API を叩くための <code>UrlFetchApp</code> があります。タスク名を渡して、件名や本文を AI に作らせます。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step6">コピー</button>
+                        <pre id="c-step6"><code>// タスク名から、秘書風の通知文を OpenAI に生成してもらう関数
 function generateMessage(taskName) {
   const apiKey = 'YOUR_OPENAI_API_KEY'; // 自分の API キーに置き換える
   const url = 'https://api.openai.com/v1/chat/completions';
@@ -667,14 +783,17 @@ function generateMessage(taskName) {
   const json = JSON.parse(response.getContentText());
   return json.choices[0].message.content; // 生成された文章を返す
 }</code></pre>
+                    </div>
 
-            <div class="callout callout-warn">
-                ⚠️ <strong>API キーの取り扱いに注意！</strong> API キーは<strong>パスワードと同じ</strong>です。スクリプトをそのまま他人に共有・公開すると不正利用される恐れがあります。共有時はキーを削除するか、<code>PropertiesService</code>（スクリプトプロパティ）に保管する方法を AI に聞いてみましょう。
-            </div>
+                    <div class="callout callout-warn">
+                        ⚠️ <strong>API キーの取り扱いに注意！</strong> API キーは<strong>パスワードと同じ</strong>です。スクリプトをそのまま他人に共有・公開すると不正利用される恐れがあります。共有時はキーを削除するか、<code>PropertiesService</code>（スクリプトプロパティ）に保管する方法を AI に聞いてみましょう。
+                    </div>
 
-            <div class="callout callout-info">
-                ℹ️ OpenAI API の利用には<strong>料金（従量課金）</strong>が発生します。少額から使えますが、無料ではない点に注意してください。
-            </div>
+                    <div class="callout callout-info">
+                        ℹ️ OpenAI API の利用には<strong>料金（従量課金）</strong>が発生します。少額から使えますが、無料ではない点に注意してください。
+                    </div>
+                </div>
+            </details>
 
             <div class="nav-btns">
                 <a href="#step5" class="btn">← Step 5</a>
@@ -811,6 +930,65 @@ function generateMessage(taskName) {
         }, { rootMargin: '-30% 0px -60% 0px' });
 
         sections.forEach(s => observer.observe(s));
+
+        // プロンプトと答え合わせ用コードをクリップボードへコピーする
+        const copyTimers = new WeakMap();
+        const copyAttempts = new WeakMap();
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.setAttribute('readonly', '');
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+
+            let copied = false;
+            try {
+                copied = document.execCommand('copy');
+            } catch (error) {
+                copied = false;
+            } finally {
+                document.body.removeChild(textArea);
+            }
+            return copied;
+        }
+
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', async () => {
+                const previousTimer = copyTimers.get(button);
+                if (previousTimer) clearTimeout(previousTimer);
+                const attempt = (copyAttempts.get(button) || 0) + 1;
+                copyAttempts.set(button, attempt);
+
+                const target = document.getElementById(button.dataset.copyTarget);
+                let copied = false;
+
+                if (target) {
+                    const text = target.textContent;
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        try {
+                            await navigator.clipboard.writeText(text);
+                            copied = true;
+                        } catch (error) {
+                            copied = fallbackCopy(text);
+                        }
+                    } else {
+                        copied = fallbackCopy(text);
+                    }
+                }
+
+                if (copyAttempts.get(button) !== attempt) return;
+
+                button.textContent = copied ? 'コピーしました' : 'コピーできません';
+                const timer = setTimeout(() => {
+                    button.textContent = 'コピー';
+                    copyTimers.delete(button);
+                }, 1500);
+                copyTimers.set(button, timer);
+            });
+        });
     </script>
 </body>
 
