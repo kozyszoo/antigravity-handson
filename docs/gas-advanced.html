@@ -453,7 +453,7 @@
                 <li><a href="#step3">Step 3: 優先度をつける</a></li>
                 <li><a href="#step4">Step 4: 完了状況を管理</a></li>
                 <li><a href="#step5">Step 5: カレンダー連携</a></li>
-                <li><a href="#step6">Step 6: OpenAI API 連携</a></li>
+                <li><a href="#step6">Step 6: Gemini API 連携</a></li>
                 <li><a href="#deep-dive">📺 さらに深掘り</a></li>
                 <li><a href="#outro">おわりに</a></li>
             </ul>
@@ -483,7 +483,7 @@
             <h3>🎯 この発展編のゴール</h3>
             <ul>
                 <li>「やりたいこと」を生成 AI に伝えてコードを書いてもらう<strong>進め方のコツ</strong>を身につける</li>
-                <li>タスク通知アプリを 5 つの方向に拡張する例を体験する（まとめ送信 / 優先度 / 完了管理 / カレンダー連携 / OpenAI API）</li>
+                <li>タスク通知アプリを 5 つの方向に拡張する例を体験する（まとめ送信 / 優先度 / 完了管理 / カレンダー連携 / Gemini API）</li>
                 <li>エラーが出ても、AI に質問しながら自走できるようになる</li>
             </ul>
 
@@ -495,7 +495,7 @@
                     <tr><td>🔺 優先度</td><td>タスクの重要度に応じて通知を強調する</td></tr>
                     <tr><td>✅ 完了管理</td><td>未完了のタスクだけ通知する</td></tr>
                     <tr><td>📅 カレンダー連携</td><td>Google カレンダーの予定もタスクとして通知</td></tr>
-                    <tr><td>🤖 OpenAI 連携</td><td>秘書風の文面を AI に生成させる</td></tr>
+                    <tr><td>🤖 Gemini 連携</td><td>秘書風の文面を AI に生成させる</td></tr>
                 </table>
             </div>
 
@@ -736,52 +736,58 @@ events.forEach(event => {
         <!-- Step 6 -->
         <section class="section" id="step6">
             <span class="badge badge-time">🤖 AI 連携</span>
-            <h2>Step 6: 文章生成 AI（OpenAI API）の活用</h2>
-            <p>仕上げに、OpenAI などの<strong>文章生成 AI を GAS から呼び出して</strong>、タスク名から通知文を自動生成させてみましょう。たとえば「秘書風の文面」で通知させる、といった遊びができます。</p>
+            <h2>Step 6: 文章生成 AI（Gemini API）の活用</h2>
+            <p>仕上げに、<strong>Gemini を GAS から呼び出して</strong>、タスク名から通知文を自動生成させてみましょう。たとえば「秘書風の文面」で通知させる、といった遊びができます。ここまでは画面の Gemini に聞きながら進めてきましたが、今度は<strong>スクリプトの中から Gemini を呼び出す</strong>わけです。</p>
 
             <div class="prompt-card">
                 <div class="prompt-title">
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step6">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step6">このスクリプトのメール送信で、秘書風に返答を通知するように OpenAI API の使い方を教えて</div>
+                <div class="prompt-body" id="p-step6">このスクリプトのメール送信で、秘書風に返答を通知するように Gemini API の使い方を教えて</div>
             </div>
 
             <h4>📋 準備</h4>
             <ol>
-                <li>OpenAI のアカウントを作成し、<strong>API キー</strong>を取得する</li>
-                <li>GAS から <code>UrlFetchApp</code> を使って OpenAI の API を呼び出す</li>
+                <li><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> で <strong>API キー</strong>を取得する（普段使っている Google アカウントでそのまま作れます）</li>
+                <li>GAS から <code>UrlFetchApp</code> を使って Gemini の API を呼び出す</li>
             </ol>
+
+            <div class="callout callout-tip">
+                💡 <strong>無料の枠内で試せます。</strong> Gemini API には無料枠があり、クレジットカードの登録なしで始められます。このハンズオンで動かす回数なら、無料枠に十分おさまります。
+            </div>
 
             <details class="sample-details">
                 <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
                 <div class="sample-body">
-                    <p>GAS には外部 API を叩くための <code>UrlFetchApp</code> があります。タスク名を渡して、件名や本文を AI に作らせます。</p>
+                    <p>GAS には外部 API を叩くための <code>UrlFetchApp</code> があります。タスク名を渡して、件名や本文を Gemini に作らせます。</p>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step6">コピー</button>
-                        <pre id="c-step6"><code>// タスク名から、秘書風の通知文を OpenAI に生成してもらう関数
+                        <pre id="c-step6"><code>// タスク名から、秘書風の通知文を Gemini に生成してもらう関数
 function generateMessage(taskName) {
-  const apiKey = 'YOUR_OPENAI_API_KEY'; // 自分の API キーに置き換える
-  const url = 'https://api.openai.com/v1/chat/completions';
+  const apiKey = 'YOUR_GEMINI_API_KEY'; // 自分の API キーに置き換える
+  const model = 'gemini-flash-latest';  // 速くて安いモデル
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
   const payload = {
-    model: 'gpt-4o-mini',
-    messages: [
-      { role: 'system', content: 'あなたは丁寧な秘書です。' },
-      { role: 'user', content: `本日のタスク「${taskName}」を、秘書風に一言添えて知らせて。` }
-    ]
+    systemInstruction: {
+      parts: [{ text: 'あなたは丁寧な秘書です。' }]
+    },
+    contents: [{
+      parts: [{ text: `本日のタスク「${taskName}」を、秘書風に一言添えて知らせて。` }]
+    }]
   };
 
   const options = {
     method: 'post',
     contentType: 'application/json',
-    headers: { Authorization: 'Bearer ' + apiKey },
+    headers: { 'x-goog-api-key': apiKey }, // API キーはヘッダーで渡す
     payload: JSON.stringify(payload)
   };
 
   const response = UrlFetchApp.fetch(url, options);
   const json = JSON.parse(response.getContentText());
-  return json.choices[0].message.content; // 生成された文章を返す
+  return json.candidates[0].content.parts[0].text; // 生成された文章を返す
 }</code></pre>
                     </div>
 
@@ -790,7 +796,7 @@ function generateMessage(taskName) {
                     </div>
 
                     <div class="callout callout-info">
-                        ℹ️ OpenAI API の利用には<strong>料金（従量課金）</strong>が発生します。少額から使えますが、無料ではない点に注意してください。
+                        ℹ️ モデル名に <code>gemini-flash-latest</code> と書いておくと、Google 側で新しい版が出たときに自動でそちらを向きます。特定の版に固定したいときは <code>gemini-3.7-flash</code> のようにバージョンを書きます。無料枠には1分あたり・1日あたりの回数制限があり、超えるとエラー（429）が返ります。<strong>請求の設定をしない限り、勝手に課金されることはありません。</strong>
                     </div>
                 </div>
             </details>
@@ -810,7 +816,8 @@ function generateMessage(taskName) {
                 <li>CalendarApp（カレンダー操作）: <a href="https://developers.google.com/apps-script/reference/calendar" target="_blank" rel="noopener">https://developers.google.com/apps-script/reference/calendar</a></li>
                 <li>UrlFetchApp（外部 API 呼び出し）: <a href="https://developers.google.com/apps-script/reference/url-fetch" target="_blank" rel="noopener">https://developers.google.com/apps-script/reference/url-fetch</a></li>
                 <li>PropertiesService（APIキーの安全な保管）: <a href="https://developers.google.com/apps-script/reference/properties" target="_blank" rel="noopener">https://developers.google.com/apps-script/reference/properties</a></li>
-                <li>OpenAI API ドキュメント: <a href="https://platform.openai.com/docs" target="_blank" rel="noopener">https://platform.openai.com/docs</a></li>
+                <li>Gemini API ドキュメント: <a href="https://ai.google.dev/gemini-api/docs" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs</a></li>
+                <li>Gemini API キーの取得（Google AI Studio）: <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">https://aistudio.google.com/apikey</a></li>
             </ul>
             <h3>💡 次のチャレンジ案</h3>
             <ul>
