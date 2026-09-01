@@ -136,6 +136,12 @@
             margin: 18px 0 8px;
         }
 
+        .section h3.preparation-heading {
+            color: var(--green);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
         .section p {
             margin-bottom: 12px;
         }
@@ -240,6 +246,13 @@
             background: #f0e9fb;
             border-left: 4px solid var(--primary);
             color: #5b21b6;
+        }
+
+        /* callout の背景と code の背景がほぼ同色で、囲みの中だと code が沈む。
+           白地に細い枠線を与えて、地の文と区別できるようにする。 */
+        .callout code {
+            background: #ffffff;
+            border: 1px solid rgba(91, 33, 182, 0.25);
         }
 
         .badge {
@@ -531,10 +544,7 @@
         <section class="section" id="step1">
             <span class="badge badge-time">基本姿勢</span>
             <h2>Step 1: 生成 AI を相棒にする「進め方」</h2>
-            <p>発展編で一番大事なのは、コードを丸暗記することではなく、<strong>生成 AI とのやり取り方</strong>を覚えることです。実装は次のサイクルを回すだけで進みます。</p>
-
-            <img class="screenshot" src="img/gas-35.png"
-                alt="実装する時の流れの図。「やりたいこと/わからないことを Gemini 等に相談する」→「返答に沿って実装を進めてみる」→「わからないことにぶつかる」→ 最初に戻る、というループを表したフローチャート">
+            <p>基本の進め方は、初級編の「<a href="gas-beginner.html#intro">🤖 このハンズオンの進め方</a>」を確認してください。</p>
 
             <h3>🔑 AI に質問するときの 3 つのコツ</h3>
             <ol>
@@ -615,10 +625,9 @@ MailApp.sendEmail({
             <h2>Step 3: タスクに優先度を追加する</h2>
             <p>タスクの重要度に応じて優先度を設定し、通知で<strong>強調表示</strong>することで、重要なタスクに注意を向けやすくできます。</p>
 
-            <h4>📋 準備</h4>
+            <h3 class="preparation-heading">📋 準備</h3>
             <ol>
-                <li>スプレッドシートに <strong>C 列「通知先メール」</strong>を追加し、各行に送り先のアドレスを入れる</li>
-                <li>その隣に <strong>D 列「優先度」</strong>を追加し、各タスクに「高」「中」「低」などの値を入力する</li>
+                <li>スプレッドシートに <strong>C 列「優先度」</strong>を追加し、各行に「高」「中」「低」などの値を入力する</li>
             </ol>
 
             <div class="prompt-card">
@@ -632,31 +641,44 @@ MailApp.sendEmail({
             <details class="sample-details">
                 <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
                 <div class="sample-body">
-                    <p>優先度の列を読み取り、値に応じてメッセージを変えます。<strong>列の番号は 0 から数える</strong>ので、A列＝<code>task[0]</code>、B列＝<code>task[1]</code>、C列＝<code>task[2]</code>、D列＝<code>task[3]</code> になります。</p>
+                    <p>優先度の列を読み取り、値に応じてメッセージを変えます。<strong>列の番号は 0 から数える</strong>ので、A列＝<code>task[0]</code>、B列＝<code>task[1]</code>、C列＝<code>task[2]</code> になります。</p>
 
                     <table>
                         <tr><th>列</th><th>中身</th><th>コードでの書き方</th></tr>
                         <tr><td>A</td><td>タスク名</td><td><code>task[0]</code></td></tr>
                         <tr><td>B</td><td>実施日</td><td><code>task[1]</code></td></tr>
-                        <tr><td>C</td><td>通知先メール</td><td><code>task[2]</code></td></tr>
-                        <tr><td>D</td><td>優先度</td><td><code>task[3]</code></td></tr>
+                        <tr><td>C</td><td>優先度</td><td><code>task[2]</code></td></tr>
                     </table>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step3">コピー</button>
-                        <pre id="c-step3"><code>tasksToday.forEach(task => {
+                        <pre id="c-step3"><code>// タスクが1件もなければ送らない
+if (tasksToday.length === 0) return;
+
+const recipientEmail = 'your.email@example.com'; // 自分のアドレスに置き換える
+
+// 優先度を反映しながら、本文を1つにまとめる
+let body = '本日のタスクは以下の通りです。&lt;br&gt;&lt;ul&gt;';
+tasksToday.forEach(task => {
   const taskName = task[0];
-  const recipientEmail = task[2]; // 通知先（メール列を使う場合）
-  const priority = task[3];       // 優先度を取得
+  const priority = task[2]; // 優先度を取得
 
   // 優先度に応じてメッセージを変更
-  let message = `本日のタスク: ${taskName}`;
+  let message = taskName;
   if (priority === "高") {
-    message = `&lt;h1&gt;重要!&lt;/h1&gt; 本日のタスク: ${taskName}`; // HTML タグで強調
+    message = `&lt;strong&gt;🔺 重要!&lt;/strong&gt; ${taskName}`;
   } else if (priority === "低") {
-    message = `本日のタスク: ${taskName} (優先度: 低)`;
+    message = `${taskName} (優先度: 低)`;
   }
 
-  // ...（Gmail 送信処理）...
+  body += `&lt;li&gt;${message}&lt;/li&gt;`;
+});
+body += '&lt;/ul&gt;';
+
+// まとめて1通だけ送信
+MailApp.sendEmail({
+  to: recipientEmail,
+  subject: `本日のタスク（${tasksToday.length}件）`,
+  htmlBody: body
 });</code></pre>
                     </div>
                 </div>
@@ -674,9 +696,9 @@ MailApp.sendEmail({
             <h2>Step 4: タスクの完了状況を管理する</h2>
             <p>完了状況をスプレッドシートで管理し、<strong>未完了のタスクだけ通知</strong>すれば、終わったタスクの通知に煩わされなくなります。</p>
 
-            <h4>📋 準備</h4>
+            <h3 class="preparation-heading">📋 準備</h3>
             <ol>
-                <li>スプレッドシートに <strong>E 列「完了状況」</strong>を追加する（Step 3 で D 列まで使ったので、その隣）</li>
+                <li>スプレッドシートに <strong>D 列「完了状況」</strong>を追加する（Step 3 で C 列まで使ったので、その隣）</li>
                 <li>タスクが終わったら「完了」と入力する</li>
             </ol>
 
@@ -691,24 +713,51 @@ MailApp.sendEmail({
             <details class="sample-details">
                 <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
                 <div class="sample-body">
-                    <p>完了状況の列（E 列＝<code>task[4]</code>）が「完了」のものを通知対象から外す、もしくは取り消し線で表示します。</p>
+                    <p>完了状況の列（D 列＝<code>task[3]</code>）が「完了」のものを通知対象から外し、未完了のタスクだけを1通にまとめます。</p>
+                    <table>
+                        <tr><th>列</th><th>中身</th><th>コードでの書き方</th></tr>
+                        <tr><td>A</td><td>タスク名</td><td><code>task[0]</code></td></tr>
+                        <tr><td>B</td><td>実施日</td><td><code>task[1]</code></td></tr>
+                        <tr><td>C</td><td>優先度</td><td><code>task[2]</code></td></tr>
+                        <tr><td>D</td><td>完了状況</td><td><code>task[3]</code></td></tr>
+                    </table>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step4">コピー</button>
-                        <pre id="c-step4"><code>tasksToday.forEach(task => {
-  // ...
-  const status = task[4]; // 完了状況を取得
+                        <pre id="c-step4"><code>// D列が「完了」ではないタスクだけに絞る
+const incompleteTasks = tasksToday.filter(task => task[3] !== "完了");
 
-  // 完了状況に応じてメッセージを変更
-  if (status === "完了") {
-    message = `&lt;strike&gt;${message}&lt;/strike&gt; (完了)`; // 取り消し線で表示
+// 未完了のタスクが1件もなければ送らない
+if (incompleteTasks.length === 0) return;
+
+const recipientEmail = 'your.email@example.com'; // 自分のアドレスに置き換える
+
+// 優先度を反映しながら、本文を1つにまとめる
+let body = '本日の未完了タスクは以下の通りです。&lt;br&gt;&lt;ul&gt;';
+incompleteTasks.forEach(task => {
+  const taskName = task[0];
+  const priority = task[2];
+
+  let message = taskName;
+  if (priority === "高") {
+    message = `&lt;strong&gt;🔺 重要!&lt;/strong&gt; ${taskName}`;
+  } else if (priority === "低") {
+    message = `${taskName} (優先度: 低)`;
   }
 
-  // ...（Gmail 送信処理）...
+  body += `&lt;li&gt;${message}&lt;/li&gt;`;
+});
+body += '&lt;/ul&gt;';
+
+// まとめて1通だけ送信
+MailApp.sendEmail({
+  to: recipientEmail,
+  subject: `本日の未完了タスク（${incompleteTasks.length}件）`,
+  htmlBody: body
 });</code></pre>
                     </div>
 
                     <div class="callout callout-tip">
-                        💡 「<strong>完了したタスクは通知自体を飛ばしたい</strong>」場合は、<code>if (status === "完了") return;</code> のように <code>forEach</code> 内で <code>return</code> させると、その行はスキップされます。AI に「未完了だけ送って」と依頼すればこの形を提案してくれます。
+                        💡 <code>filter</code> で先に未完了のタスクだけへ絞ると、メール本文の組み立てと件数の表示を分かりやすく保てます。
                     </div>
                 </div>
             </details>
@@ -745,7 +794,7 @@ const events = CalendarApp.getCalendarById(calendarId).getEventsForDay(today);
 
 // 予定をタスクとして追加
 events.forEach(event => {
-  tasksToday.push([event.getTitle(), formattedToday, 'your.email@example.com']);
+  tasksToday.push([event.getTitle(), formattedToday, '中', '未完了']);
 });
 
 // ...（この後、通常どおり Gmail 通知を送信）...</code></pre>
@@ -777,7 +826,7 @@ events.forEach(event => {
                 <div class="prompt-body" id="p-step6">このスクリプトから Gemini API を呼び出して、通知の文面を秘書風に書いてもらうように書き換えて</div>
             </div>
 
-            <h4>📋 準備</h4>
+            <h3 class="preparation-heading">📋 準備</h3>
             <ol>
                 <li><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> で <strong>API キー</strong>を取得する（普段使っている Google アカウントでそのまま作れます）</li>
                 <li>GAS から <code>UrlFetchApp</code> を使って Gemini の API を呼び出す</li>
@@ -824,17 +873,28 @@ function generateMessage(taskName) {
                     <p>この関数を作っただけでは何も変わりません。<strong>メールを送っているところから呼び出して</strong>、生成された文章を本文に使います。</p>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step6-call">コピー</button>
-                        <pre id="c-step6-call"><code>tasksToday.forEach(task =&gt; {
+                        <pre id="c-step6-call"><code>// タスクが1件もなければ送らない
+if (tasksToday.length === 0) return;
+
+const recipientEmail = 'your.email@example.com'; // 自分のアドレスに置き換える
+
+// Gemini が作った文面を、1通分の本文にまとめる
+let body = '本日のタスクは以下の通りです。&lt;br&gt;&lt;ul&gt;';
+tasksToday.forEach(task =&gt; {
   const taskName = task[0];
 
   // Gemini に秘書風の文面を書いてもらう
   const message = generateMessage(taskName);
 
-  MailApp.sendEmail({
-    to: recipientEmail,
-    subject: `本日のタスク: ${taskName}`,
-    htmlBody: message // 生成された文章をそのまま本文にする
-  });
+  body += `&lt;li&gt;${message}&lt;/li&gt;`;
+});
+body += '&lt;/ul&gt;';
+
+// まとめて1通だけ送信
+MailApp.sendEmail({
+  to: recipientEmail,
+  subject: `本日のタスク（${tasksToday.length}件）`,
+  htmlBody: body
 });</code></pre>
                     </div>
 

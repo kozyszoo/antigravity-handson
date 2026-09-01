@@ -257,6 +257,13 @@
             color: #0d652d;
         }
 
+        /* callout の背景と code の背景がほぼ同色で、囲みの中だと code が沈む。
+           白地に細い枠線を与えて、地の文と区別できるようにする。 */
+        .callout code {
+            background: #ffffff;
+            border: 1px solid rgba(13, 101, 45, 0.25);
+        }
+
         .badge {
             display: inline-block;
             padding: 3px 10px;
@@ -700,7 +707,7 @@
                 </ul>
             </div>
 
-            <h3>1-3. スクリプトエディタを開く</h3>
+            <h3>1-3. Apps Script エディタを開く</h3>
             <p>スプレッドシートのメニューバーから <strong>拡張機能 &gt; Apps Script</strong> を開きます。</p>
             <img class="screenshot screenshot-sm" src="img/gas-04.png"
                 alt="スプレッドシートの拡張機能メニューを開き、アドオン・マクロの下にある Apps Script の項目がハイライトされているスクリーンショット">
@@ -773,7 +780,7 @@
                 alt="スプレッドシートの A1 セルに Hello World! という文字が自動的に入力された結果のスクリーンショット">
 
             <div class="callout callout-tip">
-                🎬 <strong>2章 解説動画</strong>（無音ですが、字幕に解説を入れています。字幕を ON にしてご視聴ください）<br>
+                🎬 <strong>Step 1 解説動画</strong>（無音ですが、字幕に解説を入れています。字幕を ON にしてご視聴ください）<br>
                 <a href="https://youtu.be/1mAB227eClM" target="_blank" rel="noopener">https://youtu.be/1mAB227eClM</a>
             </div>
 
@@ -950,7 +957,7 @@ function sendEMail() {
                 alt="Gmail の受信トレイに件名テストメール、本文これはテストメールですというメールが届いているスクリーンショット">
 
             <div class="callout callout-tip">
-                🎬 <strong>3章 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
+                🎬 <strong>Step 3 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
                 <a href="https://youtu.be/ZI6RCDsOk4o" target="_blank" rel="noopener">https://youtu.be/ZI6RCDsOk4o</a>
             </div>
 
@@ -1151,7 +1158,7 @@ function sendEMail() {
             <p>スプレッドシートに以下の情報を入力します。<strong>1 行目はヘッダー</strong>として「タスク名」「実施日」と入れ、2 行目以降に実際のタスクを書きます。</p>
             <ul>
                 <li><strong>A 列: タスク名</strong> … 実施するタスクの名前（例: テストタスクA）</li>
-                <li><strong>B 列: 実施日</strong> … タスクを実施する日付（yyyy/MM/dd 形式。例: 2024/10/14 ※スプレッドシート側で勝手に日付形式に変換される分には問題ありません）</li>
+                <li><strong>B 列: 実施日</strong> … タスクを実施する日付（yyyy/MM/dd 形式。例: 2026/10/14 ※スプレッドシート側で勝手に日付形式に変換される分には問題ありません）</li>
             </ul>
             <img class="screenshot screenshot-sm" src="img/gas-29.png"
                 alt="スプレッドシートにタスク名と実施日のヘッダーがあり、2行目にテストタスクAと10/14/2024 が入力されているスクリーンショット">
@@ -1174,7 +1181,7 @@ function sendEMail() {
                 <li>受信者メールアドレスが正しく置き換えられているか</li>
                 <li>スクリプトにエラーがないか</li>
             </ul>
-            <p>エラーが発生している場合は、GAS エディタ下部の<strong>「実行ログ」</strong>に内容が出力されます。</p>
+            <p>エラーが発生している場合は、Apps Script エディタ下部の<strong>「実行ログ」</strong>に内容が出力されます。</p>
             <img class="screenshot" src="img/gas-31.png"
                 alt="GAS の実行ログにエラーが赤字で出力されている例。Exception: Unexpected error while getting the method or property openById on object SpreadsheetApp と表示されているスクリーンショット">
             <div class="callout callout-tip">
@@ -1190,7 +1197,7 @@ function sendEMail() {
             </div>
 
             <div class="callout callout-tip">
-                🎬 <strong>4章 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
+                🎬 <strong>Step 4 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
                 <a href="https://youtu.be/17ci6yQjaBg" target="_blank" rel="noopener">https://youtu.be/17ci6yQjaBg</a>
             </div>
 
@@ -1210,7 +1217,7 @@ function sendEMail() {
             <p>GAS トリガーとは、<strong>スクリプトを自動的に実行するための仕組み</strong>です。「特定のイベントが起きたとき」や「指定した時間になったとき」にスクリプトを実行できます。今回は毎日決まった時間に通知を送るため、<strong>「時間主導型」トリガー</strong>を使います。</p>
 
             <h3>5-2. 時間主導型トリガーを設定する</h3>
-            <p>① GAS エディタの左側メニューから <strong>「トリガー」</strong>（時計のアイコン）を選択します。</p>
+            <p>① Apps Script エディタの左側メニューから <strong>「トリガー」</strong>（時計のアイコン）を選択します。</p>
             <img class="screenshot screenshot-sm" src="img/gas-32.png"
                 alt="Apps Script の左サイドメニューで、エディタ・プロジェクト履歴の下にあるトリガー（時計アイコン）がハイライトされているスクリーンショット">
 
@@ -1224,10 +1231,10 @@ function sendEMail() {
                 <tr><td>実行する関数を選択</td><td><code>myFunction</code></td></tr>
                 <tr><td>実行するデプロイを選択</td><td><code>Head</code>（既定のまま）</td></tr>
                 <tr><td>イベントのソースを選択</td><td>時間主導型</td></tr>
-                <tr><td>時間ベースのトリガーのタイプ</td><td>特定の日時（例: <code>2024-10-14 20:30</code>）</td></tr>
+                <tr><td>時間ベースのトリガーのタイプ</td><td>特定の日時（例: <code>2026-10-14 20:30</code>）</td></tr>
             </table>
             <img class="screenshot screenshot-sm" src="img/gas-34.png"
-                alt="トリガーを追加する設定画面。実行する関数 myFunction、時間主導型、特定の日時 2024-10-14 20:30 が設定され、保存ボタンがあるスクリーンショット">
+                alt="トリガーを追加する設定画面。実行する関数 myFunction、時間主導型、特定の日時が設定され、保存ボタンがあるスクリーンショット">
 
             <div class="callout callout-info">
                 ℹ️ 「特定の日時」を <strong>「時間ベースのタイマー」「日付ベースのタイマー」</strong>に変えると、<strong>毎日◯時に実行</strong>のような定期実行も設定できます。実運用ではこちらを使います。
@@ -1237,7 +1244,7 @@ function sendEMail() {
             <p>設定した時刻になると <code>myFunction()</code> が自動実行され、Gmail にタスク通知が届きます。Gmail を確認し、正しく送信されていれば完成です 🎉🎉</p>
 
             <div class="callout callout-tip">
-                🎬 <strong>5章 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
+                🎬 <strong>Step 5 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
                 <a href="https://youtu.be/MgiqigZFCS0" target="_blank" rel="noopener">https://youtu.be/MgiqigZFCS0</a>
             </div>
 
@@ -1257,13 +1264,15 @@ function sendEMail() {
         <section class="section" id="deep-dive">
             <h2>📺 さらに深掘り</h2>
             <p>GAS の世界をさらに広げるための参考リンク集です。手を動かして慣れてきたら、ぜひ覗いてみてください。</p>
-            <h3>🎬 本ハンズオンの解説動画（章別）</h3>
+            <h3>🎬 本ハンズオンの解説動画（Step 別）</h3>
+            <p>動画のタイトルは「◯章」表記になっています。このページの Step 番号との対応は次のとおりです。</p>
             <ul>
-                <li>2章（GAS を動かす）: <a href="https://youtu.be/1mAB227eClM" target="_blank" rel="noopener">https://youtu.be/1mAB227eClM</a></li>
-                <li>3章（Gmail 送信テスト）: <a href="https://youtu.be/ZI6RCDsOk4o" target="_blank" rel="noopener">https://youtu.be/ZI6RCDsOk4o</a></li>
-                <li>4章（スクリプト作成）: <a href="https://youtu.be/17ci6yQjaBg" target="_blank" rel="noopener">https://youtu.be/17ci6yQjaBg</a></li>
-                <li>5章（トリガー設定）: <a href="https://youtu.be/MgiqigZFCS0" target="_blank" rel="noopener">https://youtu.be/MgiqigZFCS0</a></li>
+                <li>Step 1（GAS を動かす）＝動画「2章」: <a href="https://youtu.be/1mAB227eClM" target="_blank" rel="noopener">https://youtu.be/1mAB227eClM</a></li>
+                <li>Step 3（Gmail 送信テスト）＝動画「3章」: <a href="https://youtu.be/ZI6RCDsOk4o" target="_blank" rel="noopener">https://youtu.be/ZI6RCDsOk4o</a></li>
+                <li>Step 4（スクリプト作成）＝動画「4章」: <a href="https://youtu.be/17ci6yQjaBg" target="_blank" rel="noopener">https://youtu.be/17ci6yQjaBg</a></li>
+                <li>Step 5（トリガー設定）＝動画「5章」: <a href="https://youtu.be/MgiqigZFCS0" target="_blank" rel="noopener">https://youtu.be/MgiqigZFCS0</a></li>
             </ul>
+            <p style="font-size:0.9rem; color: var(--muted);">Step 2（Gmail API の設定）に対応する動画はありません。</p>
             <h3>📚 公式リファレンス</h3>
             <ul>
                 <li>Google Apps Script 公式ドキュメント: <a href="https://developers.google.com/apps-script" target="_blank" rel="noopener">https://developers.google.com/apps-script</a></li>
