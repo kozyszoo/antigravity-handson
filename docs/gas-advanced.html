@@ -663,7 +663,7 @@ tasksToday.forEach(task => {
   const priority = task[2]; // 優先度を取得
 
   // 優先度に応じてメッセージを変更
-  let message = taskName;
+  let message = taskName; // 先に既定を入れておくと「中」や空欄のときの else が要らない
   if (priority === "高") {
     message = `&lt;strong&gt;🔺 重要!&lt;/strong&gt; ${taskName}`;
   } else if (priority === "低") {
@@ -737,7 +737,7 @@ incompleteTasks.forEach(task => {
   const taskName = task[0];
   const priority = task[2];
 
-  let message = taskName;
+  let message = taskName; // 先に既定を入れておくと「中」や空欄のときの else が要らない
   if (priority === "高") {
     message = `&lt;strong&gt;🔺 重要!&lt;/strong&gt; ${taskName}`;
   } else if (priority === "低") {
