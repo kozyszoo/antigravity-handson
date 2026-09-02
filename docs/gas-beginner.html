@@ -550,10 +550,9 @@
                 <li><a href="index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
                 <li><a href="#intro">はじめに</a></li>
                 <li><a href="#step1">Step 1: GAS を動かしてみよう</a></li>
-                <li><a href="#step2">Step 2: Gmail API の設定</a></li>
-                <li><a href="#step3">Step 3: 送信テスト</a></li>
-                <li><a href="#step4">Step 4: タスク通知の実装</a></li>
-                <li><a href="#step5">Step 5: トリガーで自動化</a></li>
+                <li><a href="#step2">Step 2: 送信テスト</a></li>
+                <li><a href="#step3">Step 3: タスク通知の実装</a></li>
+                <li><a href="#step4">Step 4: トリガーで自動化</a></li>
                 <li><a href="#deep-dive">📺 さらに深掘り</a></li>
                 <li><a href="#outro">おわりに</a></li>
                 <li><a href="gas-advanced.html" style="font-weight: bold; color: var(--purple); border-top: 1px solid var(--bg-light); margin-top: 10px; padding-top: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">rocket_launch</span>発展編へ進む</a></li>
@@ -567,7 +566,7 @@
             <span class="badge badge-level">初級編</span>
             <h1>🧪 生成AI活用コーディングハンズオン<br>～ Google Apps Script (GAS) ～</h1>
             <p style="margin-top:8px;">Google スプレッドシート × GAS × Gmail で「毎日のタスクを自動でメール通知するアプリ」をゼロから作ります。コードは Gemini に書いてもらうので、プログラミング初心者でも丁寧な手順で必ず動かせます。</p>
-            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 60〜90 分</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 45〜75 分</p>
         </div>
 
         <!-- Intro -->
@@ -653,16 +652,11 @@
             <h4>Google Apps Script (GAS)</h4>
             <p>GAS は、Google が提供する<strong>サーバーサイド JavaScript の実行環境</strong>です。Google スプレッドシート、ドキュメント、フォームなどの Google Workspace アプリを操作したり、外部サービスと連携したりするスクリプトを作成できます。<strong>サーバーの準備が一切不要</strong>で、業務の自動化や効率化を手軽に実現できるのが大きな魅力です。</p>
             <h4>Gmail（メール送信機能）</h4>
-            <p>GAS には Gmail を操作するための機能（<code>MailApp</code> や Gmail API）が用意されており、メールの送信・受信・ラベル付けなど様々な操作を行えます。本ハンズオンではこの機能を使って、タスク通知メールを自動送信します。</p>
+            <p>GAS にはメールを送信するための標準サービス <code>MailApp</code> が用意されています。本ハンズオンでは <code>MailApp</code> を使って、タスク通知メールを自動送信します。</p>
 
             <h3>✅ 必要な環境</h3>
             <ul>
                 <li><strong>Google アカウント</strong>（普段お使いのもので OK）</li>
-                <li><strong>Google Cloud Platform アカウント</strong>（無料枠で Gmail API を利用します）
-                    <div class="callout callout-warn" style="margin-top: 8px;">
-                        ⚠️ Google Cloud のアカウント作成時に<strong>クレジットカードの登録</strong>が必要になります。お手元にご準備ください。なお<strong>無料期間が過ぎても、自動で課金されることはありません</strong>（明示的に有料化しない限り請求されません）。
-                    </div>
-                </li>
             </ul>
 
             <h3>🤖 このハンズオンの進め方</h3>
@@ -792,69 +786,11 @@
 
         <!-- Step 2 -->
         <section class="section" id="step2">
-            <span class="badge badge-time">⏱ 約 15 分</span>
-            <h2>Step 2: Gmail API の設定</h2>
-            <p>タスクをメールで通知するために、Gmail API を有効化します。ここでは Google Cloud Platform（GCP）の無料枠を使います。</p>
-
-            <h3>2-1. Google Cloud Console にアクセス</h3>
-            <p><a href="https://console.cloud.google.com/" target="_blank" rel="noopener">https://console.cloud.google.com/</a> にアクセスします。初回はアカウントの初期設定が必要です。</p>
-
-            <img class="screenshot" src="img/gas-11.png"
-                alt="Google Cloud Console のウェルカム画面。プロジェクト情報や Quick access のメニューが並んでいるスクリーンショット">
-
-            <p>初回利用時は、国の選択と利用規約への同意を求められます。<strong>国を「日本」</strong>に設定し、規約に同意して <strong>「AGREE AND CONTINUE（同意して続行）」</strong>を押します。</p>
-            <img class="screenshot screenshot-sm" src="img/gas-12.png"
-                alt="Google Cloud の Welcome 画面。国に Japan を選択し、利用規約のチェックボックスにチェックを入れて AGREE AND CONTINUE ボタンを押す画面のスクリーンショット">
-
-            <h3>2-2. 無料トライアルの開始</h3>
-            <p>続いて <strong>「無料で利用開始」</strong> もしくは <strong>「無料トライアルを試す」</strong>を選択します。$300 分の無料クレジットが付与され、90 日間利用できます。</p>
-            <img class="screenshot" src="img/gas-13.png"
-                alt="$300 分の無料クレジットで Google Cloud を試してみましょうという案内画面。無料トライアルを試すボタンが表示されているスクリーンショット">
-
-            <p>① アカウント情報を入力します（国は日本）。</p>
-            <img class="screenshot screenshot-sm" src="img/gas-14.png"
-                alt="ステップ1/2 アカウント情報の入力画面。国に日本を選び、同意して続行ボタンを押す画面のスクリーンショット">
-
-            <p>② お支払い情報（クレジットカード）を入力します。</p>
-            <img class="screenshot screenshot-sm" src="img/gas-15.png"
-                alt="ステップ2/2 お支払い情報の確認画面。お支払いプロファイルを作成するダイアログで郵便番号・住所などを入力する画面のスクリーンショット">
-            <img class="screenshot screenshot-sm" src="img/gas-result-mail.png"
-                alt="ステップ2/2 お支払い情報の確認画面。VISA カード情報が登録され、無料トライアルを開始ボタンが表示されているスクリーンショット">
-
-            <div class="callout callout-warn">
-                ⚠️ クレジットカードの登録が必要ですが、<strong>無料期間終了後に自動で請求されることはありません</strong>。安心して進めてください。
-            </div>
-
-            <h3>2-3. Gmail API を有効化する</h3>
-            <p>左側のメニューから <strong>「API とサービス」&gt;「ライブラリ」</strong>を選択します。</p>
-            <img class="screenshot" src="img/gas-16.png"
-                alt="Google Cloud のナビゲーションメニューで APIs & Services を開き、Library（ライブラリ）の項目がハイライトされているスクリーンショット">
-
-            <p>検索ボックスに <strong>「Gmail API」</strong>と入力して検索し、表示された <strong>Gmail API</strong> を選択します。</p>
-            <img class="screenshot" src="img/gas-17.png"
-                alt="API Library の検索ボックスに Gmail API と入力している画面のスクリーンショット">
-
-            <p>Gmail API の詳細画面で <strong>「ENABLE（有効にする）」</strong>をクリックします。</p>
-            <img class="screenshot screenshot-sm" src="img/gas-18.png"
-                alt="Gmail API の Product details 画面。ENABLE ボタンと TRY THIS API ボタンが表示されているスクリーンショット">
-
-            <p>下記のように「ステータス: 有効」となる画面に遷移すれば設定完了です 🎉</p>
-            <img class="screenshot" src="img/gas-19.png"
-                alt="Gmail API のサービス詳細画面。ステータスが有効になり、ドキュメントへのリンクが並んでいるスクリーンショット">
-
-            <div class="nav-btns">
-                <a href="#step1" class="btn">← Step 1</a>
-                <a href="#step3" class="btn">Step 3 へ進む →</a>
-            </div>
-        </section>
-
-        <!-- Step 3 -->
-        <section class="section" id="step3">
             <span class="badge badge-time">⏱ 約 10 分</span>
-            <h2>Step 3: Gmail 送信テスト</h2>
-            <p>Gmail API が正しく使えるか確認するために、テストメールを 1 通送ってみましょう。</p>
+            <h2>Step 2: Gmail 送信テスト</h2>
+            <p>メールを送る部分が正しく動くか確認するために、テストメールを 1 通送ってみましょう。</p>
 
-            <h3>3-1. テスト用のコードを追加する</h3>
+            <h3>2-1. テスト用のコードを追加する</h3>
             <p>スプレッドシートのメニューから <strong>拡張機能 &gt; Apps Script</strong> を再度開きます。</p>
             <img class="screenshot screenshot-sm" src="img/gas-20.png"
                 alt="スプレッドシートの拡張機能メニューから Apps Script を選択する画面。A1 セルには Hello World! が入っているスクリーンショット">
@@ -864,13 +800,14 @@
             <div class="prompt-card">
                 <div class="prompt-title">
                     <span>🤖 Gemini にこう聞く</span>
-                    <button class="copy-btn" type="button" data-copy-target="p-step3">コピー</button>
+                    <button class="copy-btn" type="button" data-copy-target="p-step2">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step3">Google Apps Script で、自分のGmailアカウントからテストメールを1通送る sendEMail という関数を追加してください。送信者と受信者のメールアドレスは、あとから差し替えられるように関数の先頭で定数にまとめてください。件名は「テストメール」、本文は「これはテストメールです。」にしてください。いま書いてある myFunction はそのまま残して、その下に追加する形で書いてください。日本語のコメントを付けてください。</div>
+                <div class="prompt-body" id="p-step2">Google Apps Script で、自分のGmailアカウントからテストメールを1通送る sendEMail という関数を追加してください。宛先のメールアドレスは、あとから差し替えられるように関数の先頭で定数にまとめてください。件名は「テストメール」、本文は「これはテストメールです。」にしてください。いま書いてある myFunction はそのまま残して、その下に追加する形で書いてください。日本語のコメントを付けてください。</div>
             </div>
 
             <div class="callout callout-warn">
-                ⚠️ <code>senderEmail</code> と <code>recipientEmail</code> を<strong>ご自身のメールアドレス</strong>に置き換えるのを忘れずに！（テストなので送信者・受信者ともに自分のアドレスで OK です）
+                ⚠️ <code>recipientEmail</code> を<strong>ご自身のメールアドレス</strong>に置き換えるのを忘れずに！（テストなので自分あてに送って構いません）<br>
+                なお<strong>送信元は、いまログインしている自分のアカウントに決まります</strong>。コードから差し替えることはできません。
             </div>
 
             <details class="sample-details">
@@ -878,8 +815,8 @@
                 <div class="sample-body">
                     <span class="code-label after">After（sendEMail を追加）</span>
                     <div class="code-wrap">
-                        <button class="copy-btn" type="button" data-copy-target="c-step3">コピー</button>
-                        <pre id="c-step3"><code>function myFunction() {
+                        <button class="copy-btn" type="button" data-copy-target="c-step2">コピー</button>
+                        <pre id="c-step2"><code>function myFunction() {
   // スプレッドシートの ID とシート名
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
@@ -894,9 +831,8 @@
 
 // ここから追加
 function sendEMail() {
-  // 送信者と受信者のメールアドレス
-  const senderEmail = 'your.email@example.com';    // 送信者のメールアドレスに置き換える
-  const recipientEmail = 'your.email@example.com'; // 受信者のメールアドレスに置き換える
+  // 宛先のメールアドレス（送信元は自分のアカウントに決まる）
+  const recipientEmail = 'your.email@example.com'; // 自分のアドレスに置き換える
 
   // メール本文
   const subject = 'テストメール';
@@ -917,7 +853,7 @@ function sendEMail() {
             <img class="screenshot" src="img/gas-22.png"
                 alt="Apps Script エディタで関数選択のドロップダウンに myFunction と sendEMail が並んで表示され、sendEMail のコードが書かれているスクリーンショット">
 
-            <h3>3-2. sendEMail を実行する</h3>
+            <h3>2-2. sendEMail を実行する</h3>
             <p>コードを保存したら、画面上部の<strong>関数選択ドロップダウンで「sendEMail」を選択</strong>してから <strong>「▶️ 実行」</strong>を押します。</p>
             <img class="screenshot screenshot-sm" src="img/gas-28.png"
                 alt="Apps Script の関数選択ドロップダウンを開き、myFunction と sendEMail が並んでいて sendEMail を選ぼうとしている状態のスクリーンショット">
@@ -951,37 +887,37 @@ function sendEMail() {
             <img class="screenshot screenshot-sm" src="img/gas-26.png"
                 alt="プロジェクトが Google アカウントへのアクセスをリクエストしています、という許可画面。許可ボタンが表示されているスクリーンショット">
 
-            <h3>3-3. メール受信を確認する</h3>
+            <h3>2-3. メール受信を確認する</h3>
             <p>指定したメールアドレスに、件名「テストメール」のメールが届いていれば設定は完了です 🎉</p>
             <img class="screenshot screenshot-sm" src="img/gas-27.png"
                 alt="Gmail の受信トレイに件名テストメール、本文これはテストメールですというメールが届いているスクリーンショット">
 
             <div class="callout callout-tip">
-                🎬 <strong>Step 3 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
+                🎬 <strong>Step 2 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
                 <a href="https://youtu.be/ZI6RCDsOk4o" target="_blank" rel="noopener">https://youtu.be/ZI6RCDsOk4o</a>
             </div>
 
             <div class="nav-btns">
-                <a href="#step2" class="btn">← Step 2</a>
-                <a href="#step4" class="btn">Step 4 へ進む →</a>
+                <a href="#step1" class="btn">← Step 1</a>
+                <a href="#step3" class="btn">Step 3 へ進む →</a>
             </div>
         </section>
 
-        <!-- Step 4 -->
-        <section class="section" id="step4">
+        <!-- Step 3 -->
+        <section class="section" id="step3">
             <span class="badge badge-time">⏱ 約 20 分</span>
-            <h2>Step 4: タスク通知スクリプトの作成</h2>
+            <h2>Step 3: タスク通知スクリプトの作成</h2>
             <p>いよいよ本題です。<strong>スプレッドシートから今日のタスクを読み取り、メールで通知する</strong>処理を、4 つのステップに分けて少しずつ組み立てていきます。今回は <code>myFunction</code> を書き換えていきます。</p>
 
-            <h3>4-1. スプレッドシートからデータを読み込む</h3>
+            <h3>3-1. スプレッドシートからデータを読み込む</h3>
             <p>まずは A1 に文字を書き込む処理をやめて、スプレッドシートの全データを読み込む処理に書き換えます。ここから先は<strong>いまエディタにあるコードを全文コピーして Gemini に貼り、そのあとにプロンプトを続ける</strong>形で進めます。</p>
 
             <div class="prompt-card">
                 <div class="prompt-title">
                     <span>🤖 Gemini にこう聞く</span>
-                    <button class="copy-btn" type="button" data-copy-target="p-step4-1">コピー</button>
+                    <button class="copy-btn" type="button" data-copy-target="p-step3-1">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step4-1">（いまのコードを全文貼り付けてから）↑このスクリプトを書き換えて、A1に文字を書き込む処理をやめて、代わりにシートの全データを二次元配列として読み込むようにしてください。読み込んだ結果は data という定数に入れてください。日本語のコメントを付けてください。</div>
+                <div class="prompt-body" id="p-step3-1">（いまのコードを全文貼り付けてから）↑このスクリプトを書き換えて、A1に文字を書き込む処理をやめて、代わりにシートの全データを二次元配列として読み込むようにしてください。読み込んだ結果は data という定数に入れてください。日本語のコメントを付けてください。</div>
             </div>
 
             <details class="sample-details">
@@ -989,8 +925,8 @@ function sendEMail() {
                 <div class="sample-body">
                     <span class="code-label before">Before（A1 に書き込む処理を削除）</span>
                     <div class="code-wrap">
-                        <button class="copy-btn" type="button" data-copy-target="c-step4-1">コピー</button>
-                        <pre id="c-step4-1"><code>function myFunction() {
+                        <button class="copy-btn" type="button" data-copy-target="c-step3-1">コピー</button>
+                        <pre id="c-step3-1"><code>function myFunction() {
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const ss = SpreadsheetApp.openById(spreadsheetId);
@@ -1002,8 +938,8 @@ function sendEMail() {
 
                     <span class="code-label after">After（データを取得する処理に変更）</span>
                     <div class="code-wrap">
-                        <button class="copy-btn" type="button" data-copy-target="c-step4-1-after">コピー</button>
-                        <pre id="c-step4-1-after"><code>function myFunction() {
+                        <button class="copy-btn" type="button" data-copy-target="c-step3-1-after">コピー</button>
+                        <pre id="c-step3-1-after"><code>function myFunction() {
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const ss = SpreadsheetApp.openById(spreadsheetId);
@@ -1016,15 +952,15 @@ function sendEMail() {
                 </div>
             </details>
 
-            <h3>4-2. 今日の日付を取得する</h3>
+            <h3>3-2. 今日の日付を取得する</h3>
             <p>次に、<strong>今日の日付</strong>を「yyyy/MM/dd」形式の文字列で取得する処理を足します。日付どうしを比べるために、文字列に揃えておくのがポイントです。</p>
 
             <div class="prompt-card">
                 <div class="prompt-title">
                     <span>🤖 Gemini にこう聞く</span>
-                    <button class="copy-btn" type="button" data-copy-target="p-step4-2">コピー</button>
+                    <button class="copy-btn" type="button" data-copy-target="p-step3-2">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step4-2">（いまのコードを全文貼り付けてから）↑このスクリプトに、今日の日付を日本時間で「yyyy/MM/dd」の形式の文字列として取り出す処理を足してください。あとで日付の文字列どうしを比べたいので、Utilities.formatDate を使ってください。日本語のコメントを付けてください。</div>
+                <div class="prompt-body" id="p-step3-2">（いまのコードを全文貼り付けてから）↑このスクリプトに、今日の日付を日本時間で「yyyy/MM/dd」の形式の文字列として取り出す処理を足してください。あとで日付の文字列どうしを比べたいので、Utilities.formatDate を使ってください。日本語のコメントを付けてください。</div>
             </div>
 
             <details class="sample-details">
@@ -1032,8 +968,8 @@ function sendEMail() {
                 <div class="sample-body">
                     <span class="code-label after">After（今日の日付を追加）</span>
                     <div class="code-wrap">
-                        <button class="copy-btn" type="button" data-copy-target="c-step4-2">コピー</button>
-                        <pre id="c-step4-2"><code>function myFunction() {
+                        <button class="copy-btn" type="button" data-copy-target="c-step3-2">コピー</button>
+                        <pre id="c-step3-2"><code>function myFunction() {
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const ss = SpreadsheetApp.openById(spreadsheetId);
@@ -1052,15 +988,15 @@ function sendEMail() {
                 </div>
             </details>
 
-            <h3>4-3. 今日実施予定のタスクを抽出する</h3>
+            <h3>3-3. 今日実施予定のタスクを抽出する</h3>
             <p>読み込んだデータから、<strong>実施日が今日のタスクだけ</strong>を抜き出します。1 行目はヘッダー（見出し）なので <code>shift()</code> で取り除いてから、<code>filter()</code> で絞り込みます。</p>
 
             <div class="prompt-card">
                 <div class="prompt-title">
                     <span>🤖 Gemini にこう聞く</span>
-                    <button class="copy-btn" type="button" data-copy-target="p-step4-3">コピー</button>
+                    <button class="copy-btn" type="button" data-copy-target="p-step3-3">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step4-3">（いまのコードを全文貼り付けてから）↑このスクリプトに、読み込んだデータから今日実施するタスクだけを抜き出す処理を足してください。データの1行目は「タスク名」「実施日」というヘッダーなので取り除いてください。実施日は2列目に入っています。抜き出した結果は tasksToday という定数に入れてください。日本語のコメントを付けてください。</div>
+                <div class="prompt-body" id="p-step3-3">（いまのコードを全文貼り付けてから）↑このスクリプトに、読み込んだデータから今日実施するタスクだけを抜き出す処理を足してください。データの1行目は「タスク名」「実施日」というヘッダーなので取り除いてください。実施日は2列目に入っています。抜き出した結果は tasksToday という定数に入れてください。日本語のコメントを付けてください。</div>
             </div>
 
             <details class="sample-details">
@@ -1068,8 +1004,8 @@ function sendEMail() {
                 <div class="sample-body">
                     <span class="code-label after">After（タスクの抽出を追加）</span>
                     <div class="code-wrap">
-                        <button class="copy-btn" type="button" data-copy-target="c-step4-3">コピー</button>
-                        <pre id="c-step4-3"><code>function myFunction() {
+                        <button class="copy-btn" type="button" data-copy-target="c-step3-3">コピー</button>
+                        <pre id="c-step3-3"><code>function myFunction() {
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const ss = SpreadsheetApp.openById(spreadsheetId);
@@ -1097,15 +1033,15 @@ function sendEMail() {
                 ℹ️ <code>row[0]</code> が「タスク名」（A 列）、<code>row[1]</code> が「実施日」（B 列）です。配列の番号は <strong>0 から</strong>始まることに注意しましょう。
             </div>
 
-            <h3>4-4. Gmail 送信処理を実装する</h3>
+            <h3>3-4. Gmail 送信処理を実装する</h3>
             <p>最後に、抽出したタスクごとに通知メールを送信する処理を追加します。</p>
 
             <div class="prompt-card">
                 <div class="prompt-title">
                     <span>🤖 Gemini にこう聞く</span>
-                    <button class="copy-btn" type="button" data-copy-target="p-step4-4">コピー</button>
+                    <button class="copy-btn" type="button" data-copy-target="p-step3-4">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step4-4">（いまのコードを全文貼り付けてから）↑このスクリプトに、抜き出した今日のタスクを1件ずつメールで通知する処理を足してください。件名と本文はどちらも「本日のタスク: （タスク名）」にしてください。宛先のメールアドレスは、あとから自分のアドレスに差し替えられるようにしてください。日本語のコメントを付けてください。</div>
+                <div class="prompt-body" id="p-step3-4">（いまのコードを全文貼り付けてから）↑このスクリプトに、抜き出した今日のタスクを1件ずつメールで通知する処理を足してください。件名と本文はどちらも「本日のタスク: （タスク名）」にしてください。宛先のメールアドレスは、あとから自分のアドレスに差し替えられるようにしてください。日本語のコメントを付けてください。</div>
             </div>
 
             <div class="callout callout-warn">
@@ -1117,8 +1053,8 @@ function sendEMail() {
                 <div class="sample-body">
                     <span class="code-label after">After（Gmail 送信処理を追加・これで完成）</span>
                     <div class="code-wrap">
-                        <button class="copy-btn" type="button" data-copy-target="c-step4-4">コピー</button>
-                        <pre id="c-step4-4"><code>function myFunction() {
+                        <button class="copy-btn" type="button" data-copy-target="c-step3-4">コピー</button>
+                        <pre id="c-step3-4"><code>function myFunction() {
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const ss = SpreadsheetApp.openById(spreadsheetId);
@@ -1154,7 +1090,7 @@ function sendEMail() {
                 </div>
             </details>
 
-            <h3>4-5. タスク管理スプレッドシートにタスクを入力</h3>
+            <h3>3-5. タスク管理スプレッドシートにタスクを入力</h3>
             <p>スプレッドシートに以下の情報を入力します。<strong>1 行目はヘッダー</strong>として「タスク名」「実施日」と入れ、2 行目以降に実際のタスクを書きます。</p>
             <ul>
                 <li><strong>A 列: タスク名</strong> … 実施するタスクの名前（例: テストタスクA）</li>
@@ -1167,17 +1103,16 @@ function sendEMail() {
                 💡 動作確認のため、<strong>実施日には「今日の日付」</strong>を入れておきましょう。そうすれば実行時にすぐメールが届きます。
             </div>
 
-            <h3>4-6. スクリプトを実行する</h3>
+            <h3>3-6. スクリプトを実行する</h3>
             <p>関数選択を <strong>「myFunction」</strong>に戻して <strong>「▶️ 実行」</strong>を押します。うまくいけば、こんなメールが届いているはずです 🎉</p>
             <img class="screenshot screenshot-sm" src="img/gas-30.png"
                 alt="Gmail に件名・本文ともに 本日のタスク: テストタスクA というメールが届いているスクリーンショット">
-            <p>次の Step 5 では、この <code>myFunction()</code> を<strong>毎日決まった時間に自動実行</strong>させる設定を行います。</p>
+            <p>次の Step 4 では、この <code>myFunction()</code> を<strong>毎日決まった時間に自動実行</strong>させる設定を行います。</p>
 
-            <h3>4-7. トラブルシューティング</h3>
+            <h3>3-7. トラブルシューティング</h3>
             <p>もし Gmail 通知が送信されない場合は、以下の点をチェックしてください。</p>
             <ul>
                 <li>スプレッドシートの ID とシート名が正しく設定されているか</li>
-                <li>Gmail API が有効になっているか（Step 2）</li>
                 <li>受信者メールアドレスが正しく置き換えられているか</li>
                 <li>スクリプトにエラーがないか</li>
             </ul>
@@ -1197,26 +1132,26 @@ function sendEMail() {
             </div>
 
             <div class="callout callout-tip">
-                🎬 <strong>Step 4 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
+                🎬 <strong>Step 3 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
                 <a href="https://youtu.be/17ci6yQjaBg" target="_blank" rel="noopener">https://youtu.be/17ci6yQjaBg</a>
             </div>
 
             <div class="nav-btns">
-                <a href="#step3" class="btn">← Step 3</a>
-                <a href="#step5" class="btn">Step 5 へ進む →</a>
+                <a href="#step2" class="btn">← Step 2</a>
+                <a href="#step4" class="btn">Step 4 へ進む →</a>
             </div>
         </section>
 
-        <!-- Step 5 -->
-        <section class="section" id="step5">
+        <!-- Step 4 -->
+        <section class="section" id="step4">
             <span class="badge badge-time">⏱ 約 10 分</span>
-            <h2>Step 5: GAS トリガーで自動化する</h2>
+            <h2>Step 4: GAS トリガーで自動化する</h2>
             <p>最後に、作った <code>myFunction()</code> を<strong>毎日決まった時間に自動実行</strong>させましょう。これを実現するのが <strong>GAS トリガー</strong>です。</p>
 
-            <h3>5-1. GAS トリガーとは</h3>
+            <h3>4-1. GAS トリガーとは</h3>
             <p>GAS トリガーとは、<strong>スクリプトを自動的に実行するための仕組み</strong>です。「特定のイベントが起きたとき」や「指定した時間になったとき」にスクリプトを実行できます。今回は毎日決まった時間に通知を送るため、<strong>「時間主導型」トリガー</strong>を使います。</p>
 
-            <h3>5-2. 時間主導型トリガーを設定する</h3>
+            <h3>4-2. 時間主導型トリガーを設定する</h3>
             <p>① Apps Script エディタの左側メニューから <strong>「トリガー」</strong>（時計のアイコン）を選択します。</p>
             <img class="screenshot screenshot-sm" src="img/gas-32.png"
                 alt="Apps Script の左サイドメニューで、エディタ・プロジェクト履歴の下にあるトリガー（時計アイコン）がハイライトされているスクリーンショット">
@@ -1240,11 +1175,11 @@ function sendEMail() {
                 ℹ️ 「特定の日時」を <strong>「時間ベースのタイマー」「日付ベースのタイマー」</strong>に変えると、<strong>毎日◯時に実行</strong>のような定期実行も設定できます。実運用ではこちらを使います。
             </div>
 
-            <h3>5-3. 指定時刻に通知が届くことを確認</h3>
+            <h3>4-3. 指定時刻に通知が届くことを確認</h3>
             <p>設定した時刻になると <code>myFunction()</code> が自動実行され、Gmail にタスク通知が届きます。Gmail を確認し、正しく送信されていれば完成です 🎉🎉</p>
 
             <div class="callout callout-tip">
-                🎬 <strong>Step 5 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
+                🎬 <strong>Step 4 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
                 <a href="https://youtu.be/MgiqigZFCS0" target="_blank" rel="noopener">https://youtu.be/MgiqigZFCS0</a>
             </div>
 
@@ -1255,7 +1190,7 @@ function sendEMail() {
             </div>
 
             <div class="nav-btns">
-                <a href="#step4" class="btn">← Step 4</a>
+                <a href="#step3" class="btn">← Step 3</a>
                 <a href="#deep-dive" class="btn">📺 さらに深掘り →</a>
             </div>
         </section>
@@ -1268,11 +1203,10 @@ function sendEMail() {
             <p>動画のタイトルは「◯章」表記になっています。このページの Step 番号との対応は次のとおりです。</p>
             <ul>
                 <li>Step 1（GAS を動かす）＝動画「2章」: <a href="https://youtu.be/1mAB227eClM" target="_blank" rel="noopener">https://youtu.be/1mAB227eClM</a></li>
-                <li>Step 3（Gmail 送信テスト）＝動画「3章」: <a href="https://youtu.be/ZI6RCDsOk4o" target="_blank" rel="noopener">https://youtu.be/ZI6RCDsOk4o</a></li>
-                <li>Step 4（スクリプト作成）＝動画「4章」: <a href="https://youtu.be/17ci6yQjaBg" target="_blank" rel="noopener">https://youtu.be/17ci6yQjaBg</a></li>
-                <li>Step 5（トリガー設定）＝動画「5章」: <a href="https://youtu.be/MgiqigZFCS0" target="_blank" rel="noopener">https://youtu.be/MgiqigZFCS0</a></li>
+                <li>Step 2（Gmail 送信テスト）＝動画「3章」: <a href="https://youtu.be/ZI6RCDsOk4o" target="_blank" rel="noopener">https://youtu.be/ZI6RCDsOk4o</a></li>
+                <li>Step 3（タスク通知の実装）＝動画「4章」: <a href="https://youtu.be/17ci6yQjaBg" target="_blank" rel="noopener">https://youtu.be/17ci6yQjaBg</a></li>
+                <li>Step 4（トリガー設定）＝動画「5章」: <a href="https://youtu.be/MgiqigZFCS0" target="_blank" rel="noopener">https://youtu.be/MgiqigZFCS0</a></li>
             </ul>
-            <p style="font-size:0.9rem; color: var(--muted);">Step 2（Gmail API の設定）に対応する動画はありません。</p>
             <h3>📚 公式リファレンス</h3>
             <ul>
                 <li>Google Apps Script 公式ドキュメント: <a href="https://developers.google.com/apps-script" target="_blank" rel="noopener">https://developers.google.com/apps-script</a></li>
@@ -1281,7 +1215,7 @@ function sendEMail() {
             </ul>
 
             <div class="nav-btns">
-                <a href="#step5" class="btn">← Step 5</a>
+                <a href="#step4" class="btn">← Step 4</a>
                 <a href="#outro" class="btn">おわりに →</a>
             </div>
         </section>
