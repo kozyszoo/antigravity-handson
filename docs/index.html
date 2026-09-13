@@ -35,6 +35,7 @@
             --accent-ethics-gradient: linear-gradient(135deg, #94a3b8, #475569);
             --accent-multiai-gradient: linear-gradient(135deg, #f472b6, #db2777);
             --accent-remotion-gradient: linear-gradient(135deg, #22d3ee, #0891b2);
+            --accent-personal-gradient: linear-gradient(135deg, #fb923c, #ea580c);
         }
 
         * {
@@ -130,6 +131,7 @@
         .card.ethics::before { background: var(--accent-ethics-gradient); }
         .card.multiai::before { background: var(--accent-multiai-gradient); }
         .card.remotion::before { background: var(--accent-remotion-gradient); }
+        .card.personal::before { background: var(--accent-personal-gradient); }
 
         .card:hover {
             transform: translateY(-8px);
@@ -149,6 +151,7 @@
         .card.ethics:hover { box-shadow: 0 20px 40px rgba(71, 85, 105, 0.14); }
         .card.multiai:hover { box-shadow: 0 20px 40px rgba(219, 39, 119, 0.13); }
         .card.remotion:hover { box-shadow: 0 20px 40px rgba(8, 145, 178, 0.14); }
+        .card.personal:hover { box-shadow: 0 20px 40px rgba(234, 88, 12, 0.14); }
 
         .card-header {
             margin-bottom: 2rem;
@@ -196,6 +199,7 @@
         .card.ethics .badge { background: rgba(71, 85, 105, 0.22); color: #cbd5e1; }
         .card.multiai .badge { background: rgba(219, 39, 119, 0.18); color: #fbcfe8; }
         .card.remotion .badge { background: rgba(8, 145, 178, 0.18); color: #67e8f9; }
+        .card.personal .badge { background: rgba(234, 88, 12, 0.18); color: #fdba74; }
 
         .card-desc {
             font-size: 0.95rem;
@@ -229,6 +233,7 @@
         .card.gas .btn { background: var(--accent-gas-gradient); }
         .card.gas2 .btn { background: var(--accent-gas2-gradient); }
         .card.banana .btn { background: var(--accent-banana-gradient); }
+        .card.personal .btn { background: var(--accent-personal-gradient); }
 
         .btn:hover {
             filter: brightness(1.1);
@@ -414,6 +419,22 @@
                 <p class="card-desc">AI コーディングエージェントを「正しく怖がる」ためのリテラシー講座。バイブコーディングの落とし穴、ハルシネーション／情報漏えい／プロンプトインジェクション等の代表リスク、そして 1 ページで作れる社内ガバナンスのテンプレートまでを一気通貫で学びます。</p>
             </div>
             <a href="risk-governance.html" class="btn">リスク &amp; ガバナンス講座を開始 ➔</a>
+        </div>
+
+        <!-- 個人でできる AI 活用のセキュリティ & ガバナンス対策（啓発セミナー） -->
+        <div class="card personal">
+            <div class="card-header">
+                <span class="card-icon">🔐</span>
+                <h2 class="card-title">個人でできる AI セキュリティ対策 <span style="font-size: 0.6em; color: #fdba74; font-weight: 600; vertical-align: middle;">セミナー資料</span></h2>
+                <div class="badges">
+                    <span class="badge">非エンジニア向け</span>
+                    <span class="badge">入力・権限・出力</span>
+                    <span class="badge">チェックリスト</span>
+                    <span class="badge">60分進行表つき</span>
+                </div>
+                <p class="card-desc">会社のルールを待たずに、自分の手元で今日から始められる AI 活用の守り方。「何を渡すか・何をさせるか・何を信じるか」の3つの問いに沿って、データの4段階・エージェント権限の3段階・出す前の確認・アカウント保護・自分のルール1枚を整理します。判断クイズと講師向け進行表つき。</p>
+            </div>
+            <a href="personal-ai-security.html" class="btn">セミナー資料を開く ➔</a>
         </div>
 
         <!-- コースB: 即戦力AIツール実践 -->

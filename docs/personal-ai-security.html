@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人でできる AI 活用のセキュリティ &amp; ガバナンス対策 ― 啓発セミナー資料</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #f97316;
+            --primary-soft: #fdba74;
+            --bg-dark: #1a1a2e;
+            --bg-mid: #16213e;
+            --bg-light: #0f3460;
+            --bg: #1a1a2e;
+            --text: #e8e8e8;
+            --text-light: #c8c8c8;
+            --muted: #a0a0a0;
+            --purple: #9b82b5;
+            --blue: #6daad8;
+            --green: #4ecca3;
+            --orange: #f4a261;
+            --yellow: #f4c542;
+            --danger: #ef4444;
+            --warn: #f59e0b;
+            --ok: #10b981;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 4px; }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        .sidebar .sub-link {
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .sidebar .sub-link:hover { color: var(--primary); }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-mid), var(--bg-light));
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero p { color: var(--muted); font-size: 1rem; }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--purple);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p { margin-bottom: 12px; }
+
+        .section ul, .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li { margin-bottom: 6px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+            vertical-align: top;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: var(--bg-dark);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: var(--bg-dark);
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid var(--bg-light);
+            white-space: pre-wrap;
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--text);
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        blockquote a { color: var(--primary); }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        .card.info { border-color: var(--blue); }
+        .card.warn { border-color: var(--warn); }
+        .card.ok { border-color: var(--ok); }
+        .card.danger { border-color: var(--danger); }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            background: rgba(249, 115, 22, 0.18);
+            color: var(--primary-soft);
+        }
+
+        .badge.warn { background: rgba(245, 158, 11, 0.18); color: var(--warn); }
+        .badge.info { background: rgba(109, 170, 216, 0.18); color: var(--blue); }
+        .badge.ok { background: rgba(16, 185, 129, 0.18); color: var(--ok); }
+        .badge.danger { background: rgba(239, 68, 68, 0.18); color: #fca5a5; }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .step-card:hover { transform: translateY(-2px); }
+
+        .step-card .step-num {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-card h4 {
+            color: var(--text);
+            margin: 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 0;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* 重大度ラベル */
+        .sev {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-right: 4px;
+            white-space: nowrap;
+        }
+        .sev.high { background: rgba(239, 68, 68, 0.22); color: #fca5a5; }
+        .sev.mid  { background: rgba(245, 158, 11, 0.20); color: var(--warn); }
+        .sev.low  { background: rgba(16, 185, 129, 0.20); color: var(--ok); }
+
+        .do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .do-dont .col {
+            border-radius: 10px;
+            padding: 18px;
+            background: var(--bg-light);
+        }
+        .do-dont .col.do  { border-left: 4px solid var(--ok); }
+        .do-dont .col.dont { border-left: 4px solid var(--danger); }
+        .do-dont h4 { margin-top: 0; }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0 !important;
+        }
+        .checklist li {
+            padding: 8px 12px 8px 36px;
+            position: relative;
+            background: var(--bg-dark);
+            border-radius: 6px;
+            margin-bottom: 6px;
+        }
+        .checklist li::before {
+            content: "☐";
+            position: absolute;
+            left: 12px;
+            top: 8px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* 図表 */
+        .fig-container {
+            text-align: center;
+            margin: 24px 0;
+        }
+        .fig-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--bg-light);
+        }
+
+        /* 3つの問い（横並びの大きい札） */
+        .three-q {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .three-q .q {
+            background: var(--bg-dark);
+            border: 1px solid var(--bg-light);
+            border-top: 4px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .three-q .q .q-no {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .three-q .q h4 {
+            color: var(--text);
+            font-size: 1.25rem;
+            margin: 4px 0 8px;
+        }
+        .three-q .q p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* データ4分類の色札 */
+        .lv {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        .lv.l1 { background: rgba(16, 185, 129, 0.2); color: var(--ok); }
+        .lv.l2 { background: rgba(109, 170, 216, 0.2); color: var(--blue); }
+        .lv.l3 { background: rgba(245, 158, 11, 0.2); color: var(--warn); }
+        .lv.l4 { background: rgba(239, 68, 68, 0.22); color: #fca5a5; }
+
+        /* クイズ（答えは折りたたみ） */
+        details.quiz {
+            background: var(--bg-dark);
+            border: 1px solid var(--bg-light);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 12px 0;
+        }
+        details.quiz summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--primary-soft);
+        }
+        details.quiz .answer {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--bg-light);
+        }
+
+        /* 進行表 */
+        .timeline th:first-child { width: 14%; }
+
+
+        /* 例え話・なぜ必要か・図解 */
+        .analogy {
+            background: rgba(109, 170, 216, 0.08);
+            border: 1px solid var(--blue);
+            border-left: 6px solid var(--blue);
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin: 16px 0;
+        }
+        .analogy .tag, .why .tag {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 999px;
+            margin-bottom: 8px;
+            letter-spacing: 0.04em;
+        }
+        .analogy .tag { background: rgba(109, 170, 216, 0.2); color: var(--blue); }
+        .analogy p:last-child { margin-bottom: 0; }
+        .why {
+            background: rgba(249, 115, 22, 0.08);
+            border: 1px solid var(--primary);
+            border-left: 6px solid var(--primary);
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin: 16px 0;
+        }
+        .why .tag { background: rgba(249, 115, 22, 0.2); color: var(--primary-soft); }
+        .why p:last-child { margin-bottom: 0; }
+        .diagram {
+            margin: 20px 0;
+            background: var(--bg-dark);
+            border: 1px solid var(--bg-light);
+            border-radius: 10px;
+            padding: 12px;
+        }
+        .diagram svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            font-family: 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+        }
+        .diagram .caption {
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-align: center;
+            margin: 8px 0 0;
+        }
+        .svg-box { fill: #0f3460; stroke: #6daad8; stroke-width: 1.5; }
+        .svg-box.warn { stroke: #f59e0b; }
+        .svg-box.danger { stroke: #ef4444; }
+        .svg-box.ok { stroke: #10b981; }
+        .svg-box.primary { stroke: #f97316; }
+        .svg-t { fill: #e8e8e8; font-size: 16px; }
+        .svg-t.b { font-weight: 700; }
+        .svg-t.s { font-size: 13px; fill: #a0a0a0; }
+        .svg-t.o { fill: #fdba74; }
+        .svg-t.r { fill: #fca5a5; }
+        .svg-t.g { fill: #6ee7b7; }
+        .svg-t.bl { fill: #93c5fd; }
+        .svg-line { stroke: #a0a0a0; stroke-width: 2; fill: none; }
+        .svg-line.o { stroke: #f97316; }
+        .svg-line.r { stroke: #ef4444; }
+        .svg-line.g { stroke: #10b981; }
+        .svg-line.dash { stroke-dasharray: 6 5; }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            .sidebar.open { transform: translateX(0); }
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+            .menu-toggle { display: block; }
+            .do-dont { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.6rem; }
+        }
+
+        @media print {
+            .sidebar, .menu-toggle, .nav-btns { display: none; }
+            .main { margin-left: 0; padding: 0; max-width: none; }
+            body { background: #fff; color: #111; }
+            .section, .hero, .card, .step-card, .three-q .q, details.quiz, .checklist li, table, pre {
+                background: #fff; color: #111; border-color: #ccc;
+            }
+            details.quiz { }
+            details.quiz[open] .answer { display: block; }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🔐 個人でできる AI 対策</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html"
+                        style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#chapter1">第1章: AI を使う前の3つの問い</a></li>
+                <li><a href="#chapter2">第2章: 何を渡すか（入力）</a></li>
+                <li><a href="#data-levels" class="sub-link">└ データの4段階</a></li>
+                <li><a href="#masking" class="sub-link">└ 置き換えて渡す</a></li>
+                <li><a href="#training-optout" class="sub-link">└ 学習に使わせない設定</a></li>
+                <li><a href="#chapter3">第3章: 何をさせるか（権限）</a></li>
+                <li><a href="#perm-three" class="sub-link">└ 見る・作り替える・実行する</a></li>
+                <li><a href="#perm-connect" class="sub-link">└ 連携アプリの付け方</a></li>
+                <li><a href="#perm-agent" class="sub-link">└ コーディングエージェントの箱</a></li>
+                <li><a href="#chapter4">第4章: 何を信じるか（出力）</a></li>
+                <li><a href="#hallucination" class="sub-link">└ もっともらしい間違い</a></li>
+                <li><a href="#before-send" class="sub-link">└ 外に出す前の確認</a></li>
+                <li><a href="#chapter5">第5章: 入口を守る（アカウントと端末）</a></li>
+                <li><a href="#chapter6">第6章: 自分のルールを1枚にする</a></li>
+                <li><a href="#chapter7">第7章: チェックリスト</a></li>
+                <li><a href="#quiz">演習: 判断クイズ</a></li>
+                <li><a href="#facilitation">講師向け: 進行のめやす</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>🔐 個人でできる AI 活用のセキュリティ &amp; ガバナンス対策</h1>
+            <p style="margin-top:8px; font-size:0.95rem;">
+                2026年9月 ／ 会社のルールを待たずに、<strong style="color: var(--primary);">今日から自分で始められる守り方</strong>
+            </p>
+            <p style="margin-top:6px; font-size:0.9rem; color: var(--text-light);">
+                ChatGPT・Gemini・Claude などの対話 AI と、ファイルの読み書きやアプリ操作まで代わりにやる「AI エージェント」を
+                仕事で使う人向けの啓発セミナー資料です。プログラミングの知識は前提にしません。
+                「何を渡すか」「何をさせるか」「何を信じるか」の3つの問いに沿って、個人でできる対策を整理します。
+                各章は<strong>「例え話 → 図 → なぜ必要か」</strong>の順に置き、対策の手順だけでなく、なぜその手順が要るのかを先に説明します。
+            </p>
+        </div>
+
+        <!-- Intro -->
+        <section class="section" id="intro">
+            <h2>はじめに：なぜ「個人の対策」が要るのか</h2>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-hero.png" alt="エンジニアと AI ロボットが並んで座り、AI が高速で走る車を運転している。人間側はシートベルトと STOP ボタンに手をかけている。AI 活用を安全に走らせる「ブレーキとシートベルト」の比喩。">
+            </div>
+            <p>
+                AI を仕事で使う人は増えましたが、<strong>会社のルールが追いついていない</strong>職場が多いのが実情です。
+                ルールがない間も、事故は起きます。しかも、起きたときに責任を問われるのは、多くの場合「入力した本人」です。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    <strong>会社の防火設備が整うまで、自分の机に消火器を置いておく</strong>ようなものです。
+                    ビルの消火設備（会社のルール）は、あとから必ず整います。でも、火事（事故）は整う前にも起きます。
+                    自分の机の消火器（個人の対策）は、今日買ってきて置けます。設備ができたら、消火器はそのまま予備として役に立ちます。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-fire-extinguisher-desk.jpg" alt="会社員が自分の机の横に赤い消火器を置いて仕事をしている。窓の外ではビルの消火設備がまだ工事中で足場が組まれている。会社のルールが整う前に個人でできる備えの例え。">
+            </div>
+
+            <div class="diagram" role="img" aria-label="時間軸の図。今からルール整備までの間に事故が起き、個人の対策が空白を埋める">
+                <svg viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a0a0a0"/></marker><marker id="ah-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f97316"/></marker><marker id="ah-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/></marker><marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#10b981"/></marker></defs>
+<line x1="60" y1="150" x2="860" y2="150" class="svg-line" marker-end="url(#ah)"/>
+<text x="60" y="185" class="svg-t s">時間 →</text>
+<circle cx="120" cy="150" r="8" fill="#f97316"/>
+<text x="120" y="125" class="svg-t b o" text-anchor="middle">今</text>
+<text x="120" y="215" class="svg-t s" text-anchor="middle">AI を使い始めた</text>
+<circle cx="760" cy="150" r="8" fill="#6daad8"/>
+<text x="760" y="125" class="svg-t b bl" text-anchor="middle">会社のルールができる</text>
+<text x="760" y="215" class="svg-t s" text-anchor="middle">数か月〜数年後</text>
+<rect x="150" y="60" width="580" height="44" rx="8" class="svg-box danger"/>
+<text x="440" y="88" class="svg-t b r" text-anchor="middle">この間も事故は起きる。責任は「入力した本人」に来る</text>
+<rect x="150" y="160" width="580" height="44" rx="8" class="svg-box ok"/>
+<text x="440" y="188" class="svg-t b g" text-anchor="middle">個人の対策で空白を埋める（設定変更・貼る前の数秒・任せる範囲）</text>
+<line x1="440" y1="104" x2="440" y2="160" class="svg-line dash"/>
+</svg>
+                <p class="caption">図0: 会社のルールができるまでの空白期間を、個人の対策で埋める</p>
+            </div>
+
+            <div class="why">
+                <span class="tag">なぜ必要か</span>
+                <p>
+                    事故が起きたとき、会社は「誰が、何を、どの AI に入れたか」を調べます。
+                    そのとき<strong>「決めたルールに沿って使っていた」と言えるかどうか</strong>で、扱いが変わります。
+                    会社のルールが無い期間は、自分のルールしか根拠になりません。
+                </p>
+            </div>
+            <p>実際に起きているのは、たとえば次のような事故です。</p>
+            <ul>
+                <li><strong>顧客名簿や議事録をそのまま AI に貼り付けた</strong> → 社外への情報持ち出しとして扱われた</li>
+                <li><strong>AI が作った文章を確認せずに送った</strong> → 存在しない法律・数字・人名が入っていた</li>
+                <li><strong>AI エージェントに「全部やっておいて」と任せた</strong> → 必要なファイルまで消された、メールが勝手に送られた</li>
+                <li><strong>AI の便利ツールを名乗る偽アプリ・偽拡張機能を入れた</strong> → パスワードや会話内容を抜かれた</li>
+                <li><strong>AI に作らせた画像・文章をそのまま公開した</strong> → 他人の作品に似ていて問い合わせが来た</li>
+            </ul>
+            <p>
+                この資料は、AI を使わないための資料ではありません。
+                <strong>会社のルールができる前でも、自分の手元で止められる事故を止める</strong>ための資料です。
+                対策はどれも、設定の変更か、使う前の数秒の確認でできます。
+            </p>
+
+            <div class="card info" style="margin-top: 16px;">
+                <span class="badge info">この資料のゴール</span>
+                <ul style="margin-top: 8px;">
+                    <li>AI に<strong>渡してよい情報・渡してはいけない情報</strong>を、自分で判断できる</li>
+                    <li>AI エージェントに<strong>どこまで任せるか</strong>の線引きを、権限の3段階で説明できる</li>
+                    <li>AI の出力を<strong>外に出す前に確認する項目</strong>が言える</li>
+                    <li><strong>自分の AI 利用ルール</strong>を A4 1枚で書ける</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== 第1章 ===== -->
+        <section class="section" id="chapter1">
+            <h2>第1章: AI を使う前の3つの問い</h2>
+            <p>
+                AI 活用のリスクは種類が多く見えますが、個人の手元で起きる事故は、ほとんどが次の3つのどれかに当てはまります。
+                この資料の第2章〜第4章は、この3つの問いにそれぞれ対応しています。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    <strong>新しく入った派遣スタッフに仕事を頼む場面</strong>を思い浮かべてください。
+                    渡す書類に顧客名簿を混ぜないか（<strong>何を渡すか</strong>）、印鑑や金庫の鍵まで預けるか（<strong>何をさせるか</strong>）、
+                    上がってきた報告書を読まずに社長へ回すか（<strong>何を信じるか</strong>）。
+                    人が相手なら自然に気をつけることを、AI 相手だと「便利だから」で飛ばしてしまう。この資料は、その3か所に立ち止まる場所を作ります。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-temp-staff-three-handoffs.jpg" alt="上司と新人スタッフの3場面。左は書類の束を渡す、中央は鍵束と会社の印鑑を差し出す、右は上がってきた報告書を虫眼鏡で確かめる。何を渡すか・何をさせるか・何を信じるかの例え。">
+            </div>
+
+            <div class="diagram" role="img" aria-label="AI に仕事を頼む流れの図。渡す・させる・信じるの3か所に問いがある">
+                <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a0a0a0"/></marker><marker id="ah-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f97316"/></marker><marker id="ah-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/></marker><marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#10b981"/></marker></defs>
+<rect x="30" y="90" width="150" height="70" rx="10" class="svg-box"/>
+<text x="105" y="120" class="svg-t b" text-anchor="middle">あなた</text>
+<text x="105" y="143" class="svg-t s" text-anchor="middle">仕事を頼む人</text>
+<rect x="375" y="90" width="150" height="70" rx="10" class="svg-box primary"/>
+<text x="450" y="120" class="svg-t b o" text-anchor="middle">AI</text>
+<text x="450" y="143" class="svg-t s" text-anchor="middle">頼まれた側</text>
+<rect x="720" y="90" width="150" height="70" rx="10" class="svg-box"/>
+<text x="795" y="120" class="svg-t b" text-anchor="middle">あなた</text>
+<text x="795" y="143" class="svg-t s" text-anchor="middle">結果を受け取る人</text>
+<line x1="185" y1="115" x2="370" y2="115" class="svg-line o" marker-end="url(#ah-o)"/>
+<text x="277" y="105" class="svg-t b o" text-anchor="middle">問い1 何を渡すか</text>
+<text x="277" y="140" class="svg-t s" text-anchor="middle">文章・ファイル・画面</text>
+<line x1="530" y1="115" x2="715" y2="115" class="svg-line o" marker-end="url(#ah-o)"/>
+<text x="622" y="105" class="svg-t b o" text-anchor="middle">問い3 何を信じるか</text>
+<text x="622" y="140" class="svg-t s" text-anchor="middle">答え・文章・画像</text>
+<line x1="450" y1="165" x2="450" y2="215" class="svg-line o" marker-end="url(#ah-o)"/>
+<text x="470" y="195" class="svg-t b o">問い2 何をさせるか</text>
+<rect x="250" y="220" width="120" height="44" rx="8" class="svg-box ok"/>
+<text x="310" y="248" class="svg-t g" text-anchor="middle">見る</text>
+<rect x="390" y="220" width="120" height="44" rx="8" class="svg-box warn"/>
+<text x="450" y="248" class="svg-t" text-anchor="middle" fill="#fcd34d">作り替える</text>
+<rect x="530" y="220" width="120" height="44" rx="8" class="svg-box danger"/>
+<text x="590" y="248" class="svg-t r" text-anchor="middle">実行する</text>
+<text x="450" y="290" class="svg-t s" text-anchor="middle">ファイル・メール・アプリ・お金に対して AI が直接触る範囲</text>
+<text x="450" y="40" class="svg-t b" text-anchor="middle">AI に仕事を頼む流れは、人に頼むときと同じ3か所で事故が起きる</text>
+</svg>
+                <p class="caption">図1: 「渡す」「させる」「信じる」の3か所。第2章・第3章・第4章がそれぞれ対応する</p>
+            </div>
+
+            <div class="three-q">
+                <div class="q">
+                    <div class="q-no">問い 1 ／ 入力</div>
+                    <h4>何を渡すか</h4>
+                    <p>AI に貼り付けた文章・ファイル・画面は、自分の手元を離れます。渡してよいものかを、貼る前に判断します。→ 第2章</p>
+                </div>
+                <div class="q">
+                    <div class="q-no">問い 2 ／ 権限</div>
+                    <h4>何をさせるか</h4>
+                    <p>AI エージェントは「読む」だけでなく「書き換える」「実行する」ができます。どこまで任せるかを先に決めます。→ 第3章</p>
+                </div>
+                <div class="q">
+                    <div class="q-no">問い 3 ／ 出力</div>
+                    <h4>何を信じるか</h4>
+                    <p>AI の答えは、正しく見えて間違っていることがあります。外に出す前に、何を確認するかを決めます。→ 第4章</p>
+                </div>
+            </div>
+
+            <p>
+                この3つに加えて、AI そのものではなく<strong>AI を使う入口（アカウントと端末）</strong>を守る話を第5章で扱います。
+                入口が破られると、3つの問いにどれだけ気をつけていても意味がなくなるためです。
+            </p>
+
+            <div class="card warn">
+                <p style="margin:0;">
+                    ⚠️ <strong>「個人利用」と「仕事利用」は別物として扱う</strong><br>
+                    同じ AI アプリでも、無料の個人アカウントと、会社が契約した法人向けプランでは、
+                    <strong>入力した内容の扱い（学習に使われるか、社外に保管されるか）</strong>が違います。
+                    仕事の情報は、会社が用意した窓口（法人契約のアカウント）がある場合はそちらを使い、
+                    無い場合は第2章の「データの4段階」で <span class="lv l1">公開</span> と <span class="lv l2">社内一般</span> に当たるものだけを渡します。
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== 第2章 ===== -->
+        <section class="section" id="chapter2">
+            <h2>第2章: 何を渡すか（入力の対策）</h2>
+            <p>
+                AI に文章を貼り付けた時点で、その内容は<strong>AI を提供する会社のサーバーに送られています</strong>。
+                会話を消しても、送った事実は消せません。だから、対策は「貼った後」ではなく「貼る前」に行います。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    AI に文章を貼るのは、<strong>ポストに手紙を入れる</strong>のと同じです。投函した瞬間に手元を離れ、あとから「やっぱり返して」は通りません。
+                    「会話を消す」は、自分の手元の控えを捨てることであって、相手に届いた手紙を回収することではありません。
+                    だから確認は、投函する前（貼る前）にしかできません。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-letter-in-mailbox.jpg" alt="赤い郵便ポストに封筒を入れる手。封筒は口の中へ落ちていき、点線の矢印が戻れないことを示す。AI に貼った内容は取り戻せないことの例え。">
+            </div>
+
+            <div class="diagram" role="img" aria-label="貼り付けからサーバー送信、削除までの流れ。削除しても送った事実は残る">
+                <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a0a0a0"/></marker><marker id="ah-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f97316"/></marker><marker id="ah-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/></marker><marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#10b981"/></marker></defs>
+<text x="450" y="35" class="svg-t b" text-anchor="middle">「会話を消す」で消えるのは自分の画面だけ</text>
+<rect x="30" y="70" width="180" height="60" rx="10" class="svg-box"/>
+<text x="120" y="96" class="svg-t b" text-anchor="middle">① 貼り付ける</text>
+<text x="120" y="118" class="svg-t s" text-anchor="middle">自分の画面</text>
+<line x1="215" y1="100" x2="300" y2="100" class="svg-line o" marker-end="url(#ah-o)"/>
+<text x="257" y="90" class="svg-t s" text-anchor="middle">送信</text>
+<rect x="305" y="70" width="220" height="60" rx="10" class="svg-box danger"/>
+<text x="415" y="96" class="svg-t b r" text-anchor="middle">② AI 会社のサーバーへ</text>
+<text x="415" y="118" class="svg-t s" text-anchor="middle">ここで手元を離れる</text>
+<line x1="530" y1="100" x2="615" y2="100" class="svg-line" marker-end="url(#ah)"/>
+<rect x="620" y="70" width="250" height="60" rx="10" class="svg-box"/>
+<text x="745" y="96" class="svg-t b" text-anchor="middle">③ 会話を削除する</text>
+<text x="745" y="118" class="svg-t s" text-anchor="middle">自分の画面からは消える</text>
+<line x1="745" y1="135" x2="745" y2="175" class="svg-line dash r"/>
+<rect x="560" y="180" width="310" height="50" rx="8" class="svg-box danger"/>
+<text x="715" y="211" class="svg-t r" text-anchor="middle">送った事実・保管されたログは残る</text>
+<rect x="30" y="180" width="380" height="50" rx="8" class="svg-box ok"/>
+<text x="220" y="211" class="svg-t g" text-anchor="middle">対策が効くのは ① の手前だけ（貼る前の数秒）</text>
+<line x1="120" y1="175" x2="120" y2="135" class="svg-line g" marker-end="url(#ah-g)"/>
+</svg>
+                <p class="caption">図2: 貼り付けた内容は②で手元を離れる。③で消しても②は残る</p>
+            </div>
+
+            <div class="why">
+                <span class="tag">なぜ必要か</span>
+                <p>
+                    貼った内容は、AI 会社の規約に沿ってサーバーに保管され、場合によっては AI の改善（学習）に使われます。
+                    顧客名簿や未公開の売上を貼ると、<strong>会社から見れば「社外の事業者に情報を渡した」</strong>ことになります。
+                    貼った本人に悪気がなくても、扱いは同じです。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-trust-boundary.png" alt="同心円状の信頼境界図。中心から外に向かって「自分のPC」「社内ネットワーク」「社内 AI 窓口」「外部の AI サービス」の4層。中心から外へ向かう赤い矢印がデータを運ぼうとして、途中のマスキング処理で止められている。">
+            </div>
+
+            <h3 id="data-levels">データの4段階 ― 貼る前に、どの段階かを見る</h3>
+            <p>
+                情報を4段階に分けておくと、貼る前の判断が数秒で済みます。迷ったら<strong>1つ上の段階として扱います</strong>。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    信号機と同じで、<strong>色を見てから渡る</strong>ようにします。緑（公開）はそのまま、青（社内一般）は周りを見て、黄（機密）は止まる、赤（個人情報・認証情報）は渡らない。
+                    毎回「これは大丈夫か」と考えるのではなく、<strong>色を決めておく</strong>ことで、判断が数秒で済みます。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-traffic-light-data.jpg" alt="緑・青・黄・赤の4灯が縦に並ぶ信号機。各灯の横にメガホン、ビル、鍵付きフォルダ、社員証の人物のアイコン。データの4段階を信号の色で見る例え。">
+            </div>
+            <table>
+                <thead>
+                    <tr><th>段階</th><th>例</th><th>AI に渡してよいか</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="lv l1">1. 公開</span></td>
+                        <td>自社サイトの文章、プレスリリース、公開済みの資料、一般的な業務の相談</td>
+                        <td>渡してよい</td>
+                    </tr>
+                    <tr>
+                        <td><span class="lv l2">2. 社内一般</span></td>
+                        <td>社内向けの案内文、会議の段取り、社名や人名を含まない業務メモ</td>
+                        <td>法人契約のアカウントなら渡してよい。個人アカウントなら固有名詞を置き換えてから</td>
+                    </tr>
+                    <tr>
+                        <td><span class="lv l3">3. 機密</span></td>
+                        <td>未公開の売上・価格・契約条件、取引先名を含む議事録、社内の人事情報、未発表の製品情報</td>
+                        <td>会社が「AI に入れてよい」と明示した窓口以外には渡さない</td>
+                    </tr>
+                    <tr>
+                        <td><span class="lv l4">4. 個人情報・認証情報</span></td>
+                        <td>氏名＋連絡先の一覧、マイナンバー、健康情報、パスワード、API キー、ログイン中の画面のスクリーンショット</td>
+                        <td>渡さない。必要なら第2章の「置き換え」で情報を消してから</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card danger">
+                <span class="badge danger">見落としやすいもの</span>
+                <ul style="margin-top:8px;">
+                    <li><strong>スクリーンショット</strong>: 画面の端にメールの件名・チャットの相手名・ブラウザのタブが写っている</li>
+                    <li><strong>添付ファイルのプロパティ</strong>: Word や Excel の「作成者」「会社名」、写真の位置情報</li>
+                    <li><strong>会話の続き</strong>: 前の会話で貼った機密が、同じチャットの中に残ったまま別の質問をしている</li>
+                    <li><strong>音声の文字起こし</strong>: 会議の録音をそのまま AI に渡すと、雑談の中の個人情報も一緒に送られる</li>
+                </ul>
+            </div>
+
+            <h3 id="masking">置き換えて渡す（マスキング）</h3>
+            <p>
+                機密や個人情報が入っていても、<strong>そこだけ置き換えれば AI に相談できる</strong>ことがほとんどです。
+                AI は「A社」「担当者X」のままでも、文章の直しや要約はできます。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    役所が公開する文書の<strong>黒塗り</strong>と同じです。文書の中身（構成・論点）は残し、名前・金額・連絡先だけを塗る。
+                    AI が必要としているのは文章の形であって、誰の何円かではありません。塗ってから渡し、返ってきた文章に自分で戻します。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-redacted-document.jpg" alt="机の上の書類の数行を黒いマーカーで塗りつぶしている手。残りの文章は灰色の線で表現。名前や金額だけ黒塗りしてから渡すマスキングの例え。">
+            </div>
+            <div class="do-dont">
+                <div class="col dont">
+                    <h4>❌ そのまま貼る</h4>
+                    <pre><code>山田太郎さん（yamada@example.co.jp）から、
+株式会社〇〇との契約を 1,200万円で
+締結したいと連絡がありました。
+返信文を作ってください。</code></pre>
+                </div>
+                <div class="col do">
+                    <h4>✅ 置き換えてから貼る</h4>
+                    <pre><code>担当者Aから、取引先Bとの契約を
+[金額]で締結したいと連絡がありました。
+返信文を作ってください。
+
+※ 返ってきた文章に、後で自分で
+　 名前と金額を戻す</code></pre>
+                </div>
+            </div>
+            <p>置き換えの決まりを、自分の中で固定しておくと速くなります。</p>
+            <ul>
+                <li>人名 → <code>担当者A</code>、<code>Bさん</code></li>
+                <li>会社名 → <code>取引先X</code>、<code>自社</code></li>
+                <li>金額・日付・件数 → <code>[金額]</code>、<code>[日付]</code>（形だけ残す）</li>
+                <li>メールアドレス・電話番号・住所 → 消す（AI に必要な情報ではない）</li>
+            </ul>
+
+            <h3 id="training-optout">学習に使わせない設定を確認する</h3>
+            <p>
+                多くの対話 AI には、<strong>入力内容を「AI の改善（学習）」に使わせない設定</strong>があります。
+                個人アカウントでは、この設定が「使う」側になっていることがあるため、仕事で使う前に一度確認します。
+            </p>
+            <table>
+                <thead>
+                    <tr><th>サービス</th><th>確認する場所（2026年9月時点の目安）</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ChatGPT（OpenAI）</td>
+                        <td>設定 → データコントロール → 「すべての人のためにモデルを改善する」をオフ</td>
+                    </tr>
+                    <tr>
+                        <td>Gemini（Google）</td>
+                        <td>Gemini アプリの「アクティビティ」設定 → 会話の保存と改善への利用をオフ</td>
+                    </tr>
+                    <tr>
+                        <td>Claude（Anthropic）</td>
+                        <td>設定 → プライバシー → モデル改善への利用をオフ</td>
+                    </tr>
+                    <tr>
+                        <td>法人向けプラン（各社）</td>
+                        <td>契約上、入力内容を学習に使わない設定が既定になっていることが多い。会社の管理者に確認する</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="card info">
+                <p style="margin:0;">
+                    💡 <strong>設定の場所と名前は、更新でよく変わります。</strong>
+                    「サービス名 ＋ 学習 オプトアウト」で検索して、その時点の公式ヘルプを見てください。
+                    また、この設定は「学習に使わせない」だけで、<strong>「サーバーに送らない」ではありません</strong>。
+                    段階3・4の情報を渡してよくなるわけではない点に注意してください。
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== 第3章 ===== -->
+        <section class="section" id="chapter3">
+            <h2>第3章: 何をさせるか（権限の対策）</h2>
+            <p>
+                対話 AI は「答えを返す」だけですが、<strong>AI エージェント</strong>は、ファイルを読み、書き換え、アプリを操作し、
+                メールを送るところまで代わりにやります。便利さの分だけ、<strong>間違えたときの被害も大きくなります</strong>。
+                この章の考え方は、コーディングエージェント（Claude Code・Codex・Antigravity など）だけでなく、
+                Gmail や Google ドライブと連携する AI、ブラウザを操作する AI にも共通です。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    新人に<strong>どの鍵を渡すか</strong>の話です。見学パス（見る）なら、何かあっても戻せます。事務室の鍵（作り替える）なら、書類を直されても控えがあれば戻せます。
+                    金庫の鍵と会社の印鑑（実行する）は、使われたら戻せません。
+                    「全部自動で承認」は、<strong>初日の新人に金庫の鍵と印鑑をまとめて渡し、「あとは任せた」と席を外す</strong>のと同じです。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-three-keys-ladder.jpg" alt="左から順に、首から下げる見学パス、オレンジのタグが付いた事務室の鍵、大きな金庫の鍵と赤い会社印。右へ行くほど大きく重くなり、下に右向きの矢印。見る・作り替える・実行するの権限3段階の例え。">
+            </div>
+
+            <div class="diagram" role="img" aria-label="3つの鍵の図。見学パス、事務室の鍵、金庫の鍵と印鑑。右へ行くほど取り消せない">
+                <svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a0a0a0"/></marker><marker id="ah-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f97316"/></marker><marker id="ah-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/></marker><marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#10b981"/></marker></defs>
+<text x="450" y="35" class="svg-t b" text-anchor="middle">渡す鍵が増えるほど、間違えたときに戻せなくなる</text>
+<rect x="40" y="70" width="250" height="200" rx="12" class="svg-box ok"/>
+<text x="165" y="100" class="svg-t b g" text-anchor="middle">段階1 見る</text>
+<text x="165" y="130" class="svg-t" text-anchor="middle">🎫 見学パス</text>
+<text x="165" y="160" class="svg-t s" text-anchor="middle">書類を読める</text>
+<text x="165" y="182" class="svg-t s" text-anchor="middle">何も変えられない</text>
+<text x="165" y="225" class="svg-t g" text-anchor="middle">戻す: 不要</text>
+<text x="165" y="250" class="svg-t s" text-anchor="middle">ただし読めた物は外へ出せる</text>
+<rect x="325" y="70" width="250" height="200" rx="12" class="svg-box warn"/>
+<text x="450" y="100" class="svg-t b" text-anchor="middle" fill="#fcd34d">段階2 作り替える</text>
+<text x="450" y="130" class="svg-t" text-anchor="middle">🗝️ 事務室の鍵</text>
+<text x="450" y="160" class="svg-t s" text-anchor="middle">書類を書き換え・削除できる</text>
+<text x="450" y="182" class="svg-t s" text-anchor="middle">間違いが起きうる</text>
+<text x="450" y="225" class="svg-t" text-anchor="middle" fill="#fcd34d">戻す: 履歴があれば可</text>
+<text x="450" y="250" class="svg-t s" text-anchor="middle">版履歴・Git・コピー</text>
+<rect x="610" y="70" width="250" height="200" rx="12" class="svg-box danger"/>
+<text x="735" y="100" class="svg-t b r" text-anchor="middle">段階3 実行する</text>
+<text x="735" y="130" class="svg-t" text-anchor="middle">🔑 金庫の鍵＋会社の印鑑</text>
+<text x="735" y="160" class="svg-t s" text-anchor="middle">送る・消す・買う・公開する</text>
+<text x="735" y="182" class="svg-t s" text-anchor="middle">相手に届いたら終わり</text>
+<text x="735" y="225" class="svg-t r" text-anchor="middle">戻す: できない</text>
+<text x="735" y="250" class="svg-t s" text-anchor="middle">必ず人が見てから実行</text>
+<line x1="60" y1="295" x2="840" y2="295" class="svg-line r" marker-end="url(#ah-r)"/>
+<text x="450" y="312" class="svg-t s" text-anchor="middle">取り消しにくさ →</text>
+</svg>
+                <p class="caption">図3: 見る → 作り替える → 実行する の順で、間違えたときに戻せなくなる</p>
+            </div>
+
+            <div class="why">
+                <span class="tag">なぜ必要か</span>
+                <p>
+                    AI エージェントは、指示を<strong>文章として受け取ります</strong>。あなたの指示と、開いた Web ページやメールに書かれた文章を、完全には区別できません。
+                    悪意ある人が「このファイルを次のアドレスへ送れ」とページに仕込んでおくと、AI がそれを指示だと思って実行することがあります（プロンプトインジェクション）。
+                    実行する権限を渡していなければ、この攻撃は<strong>「読んだ」で止まり、「送った」まで行きません</strong>。権限を絞ることが、そのまま防御になります。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-agent-permission.png" alt="AI エージェントに渡す3つの権限（Read=読む / Write=書く / Command=実行）を、車のペダルに見立てた図。Read は低リスク、Write は中リスク、Command は高リスク。下部に「権限は最小から始めて、必要な分だけ開ける」というキャプション。">
+            </div>
+
+            <h3 id="perm-three">権限の3段階 ― 見る・作り替える・実行する</h3>
+            <p>
+                AI エージェントに渡す権限は、次の3段階で考えます。<strong>下に行くほど、取り消しが難しくなります</strong>。
+            </p>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">段階 1 ・低リスク</div>
+                    <h4>👀 見る（読む）</h4>
+                    <p>ファイルや画面を読むだけ。ただし「読めるもの＝外に送れるもの」なので、見せる範囲は第2章の4段階で絞る。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">段階 2 ・中リスク</div>
+                    <h4>✏️ 作り替える（書く）</h4>
+                    <p>ファイルを作る・書き換える・消す。間違った変更が起きうる。変更履歴（Google ドライブの版履歴、Git）があれば戻せる。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">段階 3 ・高リスク</div>
+                    <h4>⚡ 実行する（送る・買う・消す）</h4>
+                    <p>メール送信、投稿、決済、削除、外部への送信。<strong>取り消せない</strong>操作が含まれる。必ず人が確認してから実行させる。</p>
+                </div>
+            </div>
+
+            <div class="card warn">
+                <p style="margin:0;">
+                    ⚠️ <strong>「全部自動で承認」は、箱の中でだけ使う</strong><br>
+                    多くのエージェントには「以後すべて自動で承認する」モードがあります。速くて快適ですが、
+                    段階1〜3の全権限を無条件で渡す状態です。外部のサイトやファイルに仕込まれた指示に AI が従ってしまう
+                    「プロンプトインジェクション」と組み合わさると、<strong>自分の知らないところで情報が送られたり、ファイルが消されたりします</strong>。
+                    使うなら、次の「箱」の中だけに限定します。
+                </p>
+            </div>
+
+            <h3 id="perm-connect">連携アプリの付け方 ― 必要な分だけ、必要な間だけ</h3>
+            <p>
+                Gmail・Google ドライブ・Slack・カレンダーなどを AI に接続すると、その AI は<strong>接続した範囲を全部読める</strong>ようになります。
+                「メールの要約に使いたい」だけなら、受信トレイ全体ではなく、必要なラベルやフォルダだけを渡す設定がないかを先に探します。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    連携は<strong>合鍵を渡す</strong>ことです。「郵便受けを見てほしい」だけなら郵便受けの鍵で足りるのに、家の鍵一式を渡していないか。
+                    そして、用が済んだら合鍵は返してもらう。付けっぱなしの連携は、返してもらっていない合鍵です。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-spare-key-handover.jpg" alt="カウンター越しに合鍵を渡そうとする人と、代わりに小さな郵便受けの鍵だけを差し出す手。壁のカレンダーには返却日に丸印。必要な分だけ、必要な間だけ連携する例え。">
+            </div>
+            <ul>
+                <li><strong>接続時に出る「許可の一覧」を読む。</strong>「読み取り」だけで済むのに「送信」「削除」まで求めていたら、その連携は付けない</li>
+                <li><strong>使い終わったら外す。</strong>Google アカウントの「サードパーティのアクセス」、Slack の「アプリ管理」で、付けっぱなしの連携を月1で見直す</li>
+                <li><strong>会社のアカウントに個人契約の AI を接続しない。</strong>会社の情報が、会社の管理外の場所に出ていく形になる</li>
+            </ul>
+
+            <h3 id="perm-agent">コーディングエージェントを使うなら「箱」を決める</h3>
+            <p>
+                Claude Code・Codex・Antigravity のようなコーディングエージェントを触る場合は、
+                <strong>エージェントが見てよい場所を1つのフォルダに固定</strong>します。プログラマーでなくても、この1つの決まりで事故の大半を防げます。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    工作をするとき、<strong>作業台を1つ決めて、その上だけで作業する</strong>のと同じです。
+                    作業台の上なら、失敗して壊れても作業台の上の物だけで済みます。家中どこでも作業してよいことにすると、壊れる範囲が家全体になります。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-single-workbench.jpg" alt="道具と作りかけの模型でごちゃついた作業台と、その隣の片付いた机とパソコン。散らかるのは作業台の上だけで、部屋の他の場所は無傷。エージェントの作業を1つのフォルダに閉じ込める例え。">
+            </div>
+            <table>
+                <thead>
+                    <tr><th>やること</th><th>具体的には</th><th>防げる事故</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>① 専用フォルダを作る</td>
+                        <td>例: <code>書類/AI作業/案件名</code>。エージェントはこのフォルダの中でだけ動かす</td>
+                        <td>他の案件の資料、個人の写真、パスワード類に触られない</td>
+                    </tr>
+                    <tr>
+                        <td>② 機密は箱の外に置く</td>
+                        <td>API キーやパスワードは、フォルダの中のファイルに書かない。OS のパスワード管理機能へ</td>
+                        <td>AI が読んだ内容に鍵が混ざって、外に送られる</td>
+                    </tr>
+                    <tr>
+                        <td>③ 戻せる状態で渡す</td>
+                        <td>フォルダを Git 管理下に置くか、渡す前にコピーを取る</td>
+                        <td>書き換え・削除をされても元に戻せる</td>
+                    </tr>
+                    <tr>
+                        <td>④ 実行系は都度確認にする</td>
+                        <td>エージェントの設定で「コマンド実行」「送信」は毎回承認にする</td>
+                        <td>削除・送信・購入の事故</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="card info">
+                <p style="margin:0;">
+                    💡 ここをもっと踏み込んで知りたい方（Docker での隔離、Git Worktree での分離）は、
+                    姉妹資料 <a href="risk-governance.html#agent-permission" style="color: var(--primary);">「AI リスク &amp; ガバナンス講座」の実践編</a> を参照してください。
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== 第4章 ===== -->
+        <section class="section" id="chapter4">
+            <h2>第4章: 何を信じるか（出力の対策）</h2>
+            <p>
+                AI の答えは、文章として自然で、自信を持って書かれています。<strong>だから間違いに気づきにくい</strong>のが問題です。
+                入力と権限を守れていても、出力をそのまま使うと事故になります。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    AI は、<strong>「分かりません」と言わない優秀な新人</strong>です。聞かれたことには必ず、それらしい答えを堂々と返します。
+                    人間の新人なら「たぶん」「確認します」と言うところを、AI は言いません。だから、報告書の出来がよいほど、読む側が疑う手を止めてしまいます。
+                    優秀な新人の報告書でも、社外に出す前に上司が数字と固有名詞を見るのと同じことを、AI の出力にもやります。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-confident-new-hire-report.jpg" alt="笑顔の若い社員がきれいに整った報告書を差し出し、年配の同僚が参考書と電卓で数字を照らし合わせている。自信のある AI の出力も出す前に確かめる例え。">
+            </div>
+
+            <div class="why">
+                <span class="tag">なぜ必要か</span>
+                <p>
+                    AI は「知っている事実」を取り出しているのではなく、<strong>「次に来そうな言葉」を並べています</strong>。
+                    だから、存在しない法律の条文番号や、実在しない論文のタイトルが、正しい形式で出てきます。
+                    社外に出した文章の間違いは、<strong>AI ではなく出した人の間違い</strong>として扱われます。
+                </p>
+            </div>
+
+            <div class="diagram" role="img" aria-label="AI の出力が3つの門を通って社外へ出る図。門を通らなければ出さない">
+                <svg viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a0a0a0"/></marker><marker id="ah-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f97316"/></marker><marker id="ah-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/></marker><marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#10b981"/></marker></defs>
+<text x="450" y="35" class="svg-t b" text-anchor="middle">AI の出力を社外へ出す前に、3つの門を通す</text>
+<rect x="20" y="90" width="130" height="70" rx="10" class="svg-box primary"/>
+<text x="85" y="120" class="svg-t b o" text-anchor="middle">AI の出力</text>
+<text x="85" y="143" class="svg-t s" text-anchor="middle">自然で自信あり</text>
+<line x1="155" y1="125" x2="200" y2="125" class="svg-line" marker-end="url(#ah)"/>
+<rect x="205" y="80" width="170" height="90" rx="10" class="svg-box"/>
+<text x="290" y="108" class="svg-t b" text-anchor="middle">門1</text>
+<text x="290" y="132" class="svg-t" text-anchor="middle">自分で説明</text>
+<text x="290" y="154" class="svg-t" text-anchor="middle">できるか</text>
+<line x1="380" y1="125" x2="425" y2="125" class="svg-line" marker-end="url(#ah)"/>
+<rect x="430" y="80" width="170" height="90" rx="10" class="svg-box"/>
+<text x="515" y="108" class="svg-t b" text-anchor="middle">門2</text>
+<text x="515" y="132" class="svg-t" text-anchor="middle">固有名詞・数字を</text>
+<text x="515" y="154" class="svg-t" text-anchor="middle">原文で確かめたか</text>
+<line x1="605" y1="125" x2="650" y2="125" class="svg-line" marker-end="url(#ah)"/>
+<rect x="655" y="80" width="170" height="90" rx="10" class="svg-box"/>
+<text x="740" y="108" class="svg-t b" text-anchor="middle">門3</text>
+<text x="740" y="132" class="svg-t" text-anchor="middle">他人の権利に</text>
+<text x="740" y="154" class="svg-t" text-anchor="middle">触れていないか</text>
+<line x1="830" y1="125" x2="880" y2="125" class="svg-line g" marker-end="url(#ah-g)"/>
+<text x="855" y="110" class="svg-t s g" text-anchor="middle">社外へ</text>
+<line x1="290" y1="175" x2="290" y2="205" class="svg-line r" marker-end="url(#ah-r)"/>
+<line x1="515" y1="175" x2="515" y2="205" class="svg-line r" marker-end="url(#ah-r)"/>
+<line x1="740" y1="175" x2="740" y2="205" class="svg-line r" marker-end="url(#ah-r)"/>
+<text x="515" y="232" class="svg-t r" text-anchor="middle">どれか1つでも通らなければ、その部分は出さない（削る・聞き直す・作り直す）</text>
+</svg>
+                <p class="caption">図4: 出す前に通す3つの門。通らない部分だけ止める</p>
+            </div>
+
+            <h3 id="hallucination">もっともらしい間違い（ハルシネーション）</h3>
+            <p>
+                AI は「知らない」と言うより、「それらしい答えを作る」ほうが得意です。次の種類の情報は、AI が作った時点では<strong>存在するかどうか分からない</strong>と考えます。
+            </p>
+            <table>
+                <thead>
+                    <tr><th>種類</th><th>起きること</th><th>確認のしかた</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="sev high">高</span> 法律・制度・規約</td>
+                        <td>存在しない条文、古い制度、他国のルールを日本の話として出す</td>
+                        <td>官公庁・公式サイトの原文を開く。AI に「出典の URL」を出させて、実際に開いて本文を読む</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sev high">高</span> 数字・統計・日付</td>
+                        <td>桁の違い、古い年の数字、計算間違い</td>
+                        <td>元データを自分で見る。計算は表計算ソフトで検算する</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sev high">高</span> 人名・会社名・肩書</td>
+                        <td>実在しない人物、別人の経歴、退任済みの役職</td>
+                        <td>公式サイト・公開プロフィールで確認。確認できないものは書かない</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sev mid">中</span> 引用・論文・書籍</td>
+                        <td>存在しない論文、実在する著者の架空の本</td>
+                        <td>タイトルで検索して現物を見つける。見つからなければ引用しない</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sev mid">中</span> 手順・操作方法</td>
+                        <td>古いバージョンのメニュー名、存在しない設定項目</td>
+                        <td>実際にその画面を開いて、書いてある場所にあるか確かめる</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sev low">低</span> 文章の言い回し・構成</td>
+                        <td>言い回しが不自然、意図と違う要約</td>
+                        <td>自分で読み、自分の言葉に直す。ここは AI の得意分野なので確認は軽くてよい</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card ok">
+                <p style="margin:0;">
+                    ✅ <strong>「検索モード」「出典つき」でも、開いて読むまでは信じない</strong><br>
+                    最近の AI は検索結果と一緒に出典を示しますが、<strong>出典が本当にその内容を書いているか</strong>までは保証しません。
+                    リンクを開いて、該当する箇所を自分の目で読んでから使います。
+                </p>
+            </div>
+
+            <h3 id="before-send">外に出す前の確認 ― 3つの質問</h3>
+            <p>
+                AI が作った文章・資料・画像を、社外や公開の場に出す前に、次の3つを自分に聞きます。
+            </p>
+            <div class="three-q">
+                <div class="q">
+                    <div class="q-no">確認 1</div>
+                    <h4>中身を自分で説明できるか</h4>
+                    <p>相手に「これはどういう意味？」と聞かれて答えられない箇所は、出さない。分からないところは AI に聞き直すか、削る。</p>
+                </div>
+                <div class="q">
+                    <div class="q-no">確認 2</div>
+                    <h4>固有名詞と数字を確かめたか</h4>
+                    <p>上の表の「高」に当たるものは、全部確認する。1つでも未確認なら、その部分は出さない。</p>
+                </div>
+                <div class="q">
+                    <div class="q-no">確認 3</div>
+                    <h4>他人の権利に触れていないか</h4>
+                    <p>画像・文章が特定の作品や人物に似すぎていないか。実在の人物の顔・声・名前を使っていないか。</p>
+                </div>
+            </div>
+
+            <h4>AI 生成物と著作権 ― 個人が押さえる3点</h4>
+            <ul>
+                <li><strong>AI が作った画像・文章は、既存の作品に似ることがある。</strong>似ていると気づいたら使わない。特にキャラクター・ロゴ・有名人の顔</li>
+                <li><strong>「AI で作った」と伝えたほうがよい場面がある。</strong>社外向け資料、採用・広報、コンテストなど。隠して後で分かるほうが損失が大きい</li>
+                <li><strong>AI に他人の文章・画像を「そのまま」加工させて公開しない。</strong>元の作品の権利は残る。自分に権利がないものは、AI を通しても自分のものにならない</li>
+            </ul>
+            <div class="card info">
+                <p style="margin:0;">
+                    💡 著作権の詳しい解説（日本法ベース）は、姉妹資料
+                    <a href="risk-governance.html#copyright-deep" style="color: var(--primary);">「AI リスク &amp; ガバナンス講座」の著作権 詳説</a> にあります。
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== 第5章 ===== -->
+        <section class="section" id="chapter5">
+            <h2>第5章: 入口を守る（アカウントと端末）</h2>
+            <p>
+                AI のアカウントが乗っ取られると、<strong>これまでの会話（貼り付けた資料を含む）が全部相手に見えます</strong>。
+                連携したドライブやメールがあれば、そこも読まれます。ここは AI 固有の話ではありませんが、被害の大きさが AI で増えたため、この資料に入れています。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    AI のアカウントは、<strong>これまで渡した書類と合鍵をまとめて入れた引き出し</strong>です。引き出しの鍵（パスワード）1本で開くなら、鍵を盗まれた時点で全部持っていかれます。
+                    2段階認証は、引き出しに<strong>鍵と暗証番号の両方</strong>を付けることです。鍵を盗まれても、暗証番号（手元のスマホ）が無ければ開きません。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-drawer-key-and-pin.jpg" alt="書類と合鍵が詰まったオレンジ色の引き出し。前面に鍵穴とテンキーの両方が付き、横のスマホに6桁のコードが表示されている。2段階認証の例え。">
+            </div>
+
+            <div class="diagram" role="img" aria-label="AI アカウントを中心に、乗っ取られると見えるものが4方向へ広がる図">
+                <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a0a0a0"/></marker><marker id="ah-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f97316"/></marker><marker id="ah-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/></marker><marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#10b981"/></marker></defs>
+<text x="450" y="35" class="svg-t b" text-anchor="middle">アカウントは、貼った資料と連携先すべてへの入口</text>
+<circle cx="450" cy="170" r="55" fill="#0f3460" stroke="#ef4444" stroke-width="2"/>
+<text x="450" y="165" class="svg-t b r" text-anchor="middle">AI アカウント</text>
+<text x="450" y="188" class="svg-t s" text-anchor="middle">乗っ取られると</text>
+<line x1="395" y1="150" x2="230" y2="100" class="svg-line r" marker-end="url(#ah-r)"/>
+<rect x="40" y="70" width="190" height="60" rx="10" class="svg-box danger"/>
+<text x="135" y="95" class="svg-t" text-anchor="middle">これまでの会話</text>
+<text x="135" y="118" class="svg-t s" text-anchor="middle">貼った資料ごと見える</text>
+<line x1="395" y1="190" x2="230" y2="240" class="svg-line r" marker-end="url(#ah-r)"/>
+<rect x="40" y="210" width="190" height="60" rx="10" class="svg-box danger"/>
+<text x="135" y="235" class="svg-t" text-anchor="middle">連携したドライブ</text>
+<text x="135" y="258" class="svg-t s" text-anchor="middle">ファイルを読まれる</text>
+<line x1="505" y1="150" x2="670" y2="100" class="svg-line r" marker-end="url(#ah-r)"/>
+<rect x="670" y="70" width="190" height="60" rx="10" class="svg-box danger"/>
+<text x="765" y="95" class="svg-t" text-anchor="middle">連携したメール</text>
+<text x="765" y="118" class="svg-t s" text-anchor="middle">読む・送るができる</text>
+<line x1="505" y1="190" x2="670" y2="240" class="svg-line r" marker-end="url(#ah-r)"/>
+<rect x="670" y="210" width="190" height="60" rx="10" class="svg-box danger"/>
+<text x="765" y="235" class="svg-t" text-anchor="middle">あなたの名前で AI を操作</text>
+<text x="765" y="258" class="svg-t s" text-anchor="middle">なりすまし</text>
+<rect x="330" y="250" width="240" height="40" rx="8" class="svg-box ok"/>
+<text x="450" y="276" class="svg-t g" text-anchor="middle">🔐 2段階認証で入口を二重にする</text>
+</svg>
+                <p class="caption">図5: 1つのアカウントから、会話・ドライブ・メール・なりすましへ広がる</p>
+            </div>
+
+            <div class="why">
+                <span class="tag">なぜ必要か</span>
+                <p>
+                    AI アプリのアカウントは、他のサービスと同じパスワードを使い回している人が多く、<strong>別サービスの漏えいからそのまま入られます</strong>。
+                    しかも、AI の会話履歴には「仕事の資料をそのまま貼った文章」が残っています。メールや SNS の乗っ取りより、<strong>1回で持っていかれる情報の量が多い</strong>のが AI アカウントの特徴です。
+                </p>
+            </div>
+
+            <h3>今日 15 分でできる5つ</h3>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">1 ／ 5分</div>
+                    <h4>🔑 2段階認証をオンにする</h4>
+                    <p>AI アプリ本体と、ログインに使っている Google / Microsoft / Apple アカウントの両方。可能ならパスキーか認証アプリ。SMS だけよりも強い。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2 ／ 3分</div>
+                    <h4>🧰 パスワードの使い回しをやめる</h4>
+                    <p>AI アプリのパスワードが、他のサービスと同じなら変える。ブラウザや OS のパスワード管理機能を使えば覚えなくてよい。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3 ／ 3分</div>
+                    <h4>🧩 入れた拡張機能・アプリを見る</h4>
+                    <p>「ChatGPT 便利ツール」「AI 要約」を名乗るブラウザ拡張機能は、会話内容を読める。開発元が分からないものは外す。公式アプリはストアの開発元名を確認。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">4 ／ 2分</div>
+                    <h4>🔗 共有リンクの公開範囲を見る</h4>
+                    <p>AI の会話を「共有リンク」で渡すとき、「リンクを知っている全員」になっていないか。渡し終えたらリンクを無効にする。</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">5 ／ 2分</div>
+                    <h4>📱 端末のロックと自動更新</h4>
+                    <p>スマホ・PC の画面ロック（1分以内）、OS とブラウザの自動更新をオン。紛失時に遠隔で消せる設定（「探す」機能）をオン。</p>
+                </div>
+            </div>
+
+            <h3>偽の AI ツールに注意する</h3>
+            <p>
+                AI の人気に乗じて、<strong>本物そっくりの偽サイト・偽アプリ・偽拡張機能</strong>が出回っています。見分け方は次のとおりです。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    <strong>「宅配便です」と名乗ってドアを開けさせる</strong>手口と同じです。制服（ロゴ）と話し方（画面デザイン）は真似できます。
+                    本物かどうかは、名乗りではなく<strong>どこから来たか（URL・開発元）</strong>で見ます。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-fake-courier-at-door.jpg" alt="ドアののぞき穴から外を見る人。外には荷物を持った配達員風の人物が立っているが、壁に映る影は袋を担いだ泥棒の形。公式を名乗る偽アプリの例え。">
+            </div>
+            <ul>
+                <li><strong>URL を見る。</strong>公式の URL（<code>chatgpt.com</code>、<code>gemini.google.com</code>、<code>claude.ai</code> など）と1文字でも違えば偽物。検索広告の1番上が偽物のこともある</li>
+                <li><strong>ログイン情報を別サイトに入力しない。</strong>「Google でログイン」を押した先が、見慣れない画面でパスワードを求めてきたら閉じる</li>
+                <li><strong>「無料で GPT-5 が使い放題」のような、公式にない条件</strong>を掲げるものは疑う</li>
+                <li><strong>アプリストアでは開発元の名前を見る。</strong>OpenAI / Google / Anthropic 以外の開発元が公式を名乗っていたら入れない</li>
+            </ul>
+        </section>
+
+        <!-- ===== 第6章 ===== -->
+        <section class="section" id="chapter6">
+            <h2>第6章: 自分のルールを1枚にする（個人のガバナンス）</h2>
+            <p>
+                「ガバナンス」は、会社が決める大きなルールのことだけを指す言葉ではありません。
+                <strong>自分が AI をどう使うかを、決めて・書いて・見直す</strong>ことも、個人のガバナンスです。
+                書いておく理由は3つあります。
+            </p>
+
+            <div class="analogy">
+                <span class="tag">例えると</span>
+                <p>
+                    <strong>「飲んだら乗らない」を先に決めておく</strong>のと同じです。飲んだあとに「今日は少しだから」と考え始めると、判断が甘くなります。
+                    先に決めてあれば、その場で考えません。AI も同じで、「この資料、貼っていいかな」と締切前に考えると、たいてい貼ってしまいます。
+                    <strong>迷う前に決めてある状態</strong>を作るのが、1枚のルールの目的です。
+                </p>
+            </div>
+
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-ps-decide-before-drinking.jpg" alt="バーのカウンター。車の鍵は家のマークが付いた小さなトレイに置かれ、ビールの横で本人は笑顔で水を飲んでいる。先に決めておけばその場で迷わない例え。">
+            </div>
+            <ol>
+                <li><strong>迷う時間が減る。</strong>貼る前に「4段階のどれか」を見るだけになる</li>
+                <li><strong>何かあったとき、説明できる。</strong>「決めたルールに沿って使っていた」と言えるかどうかで、扱いが変わる</li>
+                <li><strong>会社のルールができたとき、すぐ合わせられる。</strong>自分のルールと会社のルールの差分だけ直せばよい</li>
+            </ol>
+
+            <div class="diagram" role="img" aria-label="決める、書く、使う、見直すの4段階を回す図">
+                <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a0a0a0"/></marker><marker id="ah-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f97316"/></marker><marker id="ah-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/></marker><marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#10b981"/></marker></defs>
+<text x="450" y="35" class="svg-t b" text-anchor="middle">先に決めておくと、その場で迷わない・あとで説明できる</text>
+<rect x="30" y="80" width="170" height="70" rx="10" class="svg-box primary"/>
+<text x="115" y="110" class="svg-t b o" text-anchor="middle">① 決める</text>
+<text x="115" y="133" class="svg-t s" text-anchor="middle">渡す範囲・任せる範囲</text>
+<line x1="205" y1="115" x2="250" y2="115" class="svg-line o" marker-end="url(#ah-o)"/>
+<rect x="255" y="80" width="170" height="70" rx="10" class="svg-box primary"/>
+<text x="340" y="110" class="svg-t b o" text-anchor="middle">② 書く</text>
+<text x="340" y="133" class="svg-t s" text-anchor="middle">A4 1枚のテンプレ</text>
+<line x1="430" y1="115" x2="475" y2="115" class="svg-line o" marker-end="url(#ah-o)"/>
+<rect x="480" y="80" width="170" height="70" rx="10" class="svg-box ok"/>
+<text x="565" y="110" class="svg-t b g" text-anchor="middle">③ 使う</text>
+<text x="565" y="133" class="svg-t s" text-anchor="middle">色を見るだけ・迷わない</text>
+<line x1="655" y1="115" x2="700" y2="115" class="svg-line o" marker-end="url(#ah-o)"/>
+<rect x="705" y="80" width="170" height="70" rx="10" class="svg-box"/>
+<text x="790" y="110" class="svg-t b bl" text-anchor="middle">④ 見直す</text>
+<text x="790" y="133" class="svg-t s" text-anchor="middle">月1回・10分</text>
+<path d="M790,155 L790,200 L115,200 L115,155" class="svg-line dash" marker-end="url(#ah)"/>
+<rect x="300" y="215" width="300" height="36" rx="8" class="svg-box"/>
+<text x="450" y="239" class="svg-t bl" text-anchor="middle">会社のルールが出たら、差分だけ直す</text>
+</svg>
+                <p class="caption">図6: 決める → 書く → 使う → 見直す。会社のルールが出たら差分だけ直す</p>
+            </div>
+
+            <h3>テンプレート ― 空欄を埋めるだけ</h3>
+            <pre><code># 私の AI 利用ルール（v0.1 ／ 作成日: 2026-__-__）
+
+## 1. 使う AI と、そのアカウント
+- 仕事で使う AI: [ ChatGPT / Gemini / Claude / その他 ]
+- アカウント: [ 会社契約 / 個人契約 ]  ← 個人契約なら「学習に使わない」設定を確認済み [ ]
+
+## 2. 渡してよい情報（第2章の4段階）
+- 段階1（公開）: そのまま渡す
+- 段階2（社内一般）: [ そのまま / 固有名詞を置き換えて ] 渡す
+- 段階3（機密）: 渡さない（会社が指定した窓口だけ）
+- 段階4（個人情報・認証情報）: 渡さない
+
+## 3. AI エージェントに任せる範囲（第3章の3段階）
+- 見る: [ 専用フォルダの中だけ ]
+- 作り替える: [ 都度確認 / 専用フォルダの中なら自動 ]
+- 実行する（送信・削除・購入）: [ 必ず都度確認 ]
+- 連携しているアプリ: [ 一覧を書く ] → 月1で見直す
+
+## 4. 出す前に確認すること（第4章）
+- [ ] 中身を自分で説明できる
+- [ ] 法律・数字・人名・引用を原文で確認した
+- [ ] 他人の作品・人物に似ていない
+- [ ] 社外向けなら「AI を使った」と伝えるか決めた
+
+## 5. 事故ったときの初動
+- まず: 連携を外す／パスワードを変える／該当の会話を消す
+- 次に: [ 上司・情報システム担当・誰に ] へ [ 何分以内に ] 伝える
+- 記録: 何を・いつ・どこに入れたかをメモに残す
+
+## 6. 見直し
+- 次の見直し日: 2026-__-__（月1回）
+- 会社のルールが出たら、この紙との差分を直す
+</code></pre>
+
+            <h3>「入れたものの記録」を残す</h3>
+            <p>
+                会社によっては、AI の利用ログが取られています。取られていない場合でも、<strong>自分で簡単な記録を残しておく</strong>と、
+                事故が起きたときに「何が漏れた可能性があるか」をすぐに答えられます。
+            </p>
+            <ul>
+                <li>記録するのは3つだけ: <strong>日付・使った AI・渡した情報の種類（4段階のどれか）</strong></li>
+                <li>段階1（公開）は記録しなくてよい。段階2以上を渡したときだけ書く</li>
+                <li>置き場所は、手帳でも、メモアプリでも、表計算でもよい。<strong>同じ場所に続けて書く</strong>ことが大事</li>
+            </ul>
+
+            <h3>事故ったとき ― 隠さず、早く</h3>
+            <div class="card danger">
+                <p style="margin:0;">
+                    機密や個人情報を AI に入れてしまったと気づいたら、<strong>その日のうちに、決めておいた相手に伝えます</strong>。
+                    「消したから大丈夫」ではありません。送った事実は残るためです。
+                    早く伝えれば、会社は提供元への削除依頼や関係者への連絡を打てます。時間が経つほど、打てる手が減ります。
+                    伝えるときは、<strong>いつ・どの AI に・何を（4段階のどれを）</strong>の3点を持っていきます。
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== 第7章 ===== -->
+        <section class="section" id="chapter7">
+            <h2>第7章: チェックリスト</h2>
+            <p>
+                ここまでの内容を、そのまま使える形にまとめました。印刷するか、ブックマークしてください。
+            </p>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-checklist-mock.png" alt="A4 縦の紙に印刷されたチェックリストの俯瞰イラスト。チェックボックス付きの項目が並び、最下部にサインと日付欄がある。">
+            </div>
+
+            <h3>7-1. 今日やる（一度やれば終わり・合計 30 分）</h3>
+            <ul class="checklist">
+                <li>使っている AI の「学習に使わない」設定を確認した（第2章）</li>
+                <li>AI アプリと、ログインに使うアカウントの 2段階認証をオンにした（第5章）</li>
+                <li>AI 関連のブラウザ拡張機能・アプリを見直し、開発元が不明なものを外した（第5章）</li>
+                <li>AI に接続している連携アプリ（ドライブ・メール・Slack）の一覧を見て、不要なものを外した（第3章）</li>
+                <li>コーディングエージェントを使うなら、専用フォルダを1つ決めた（第3章）</li>
+                <li>「私の AI 利用ルール」の空欄を埋めた（第6章）</li>
+            </ul>
+
+            <h3>7-2. 毎回やる（貼る前・出す前の数秒）</h3>
+            <ul class="checklist">
+                <li><strong>貼る前:</strong> この情報は4段階のどれか。段階3・4なら貼らない、または置き換える</li>
+                <li><strong>貼る前:</strong> スクリーンショット・添付ファイルに、余計なもの（相手名・件名・プロパティ）が写っていないか</li>
+                <li><strong>任せる前:</strong> エージェントの操作に「送る・消す・買う」が含まれるなら、都度確認になっているか</li>
+                <li><strong>出す前:</strong> 法律・数字・人名・引用を原文で確認したか</li>
+                <li><strong>出す前:</strong> 中身を自分の言葉で説明できるか</li>
+                <li><strong>出す前:</strong> 他人の作品・人物に似ていないか。社外向けなら AI 利用を伝えるか決めたか</li>
+            </ul>
+
+            <h3>7-3. 月に1回（10 分）</h3>
+            <ul class="checklist">
+                <li>連携アプリの一覧を見直した</li>
+                <li>「入れたものの記録」を見返し、段階3・4を入れていないか確かめた</li>
+                <li>使っている AI の設定画面を開き、学習・保存の設定が変わっていないか見た</li>
+                <li>会社から新しいルール・通知が出ていないか確認し、自分のルールとの差分を直した</li>
+                <li>「私の AI 利用ルール」の見直し日を更新した</li>
+            </ul>
+        </section>
+
+        <!-- ===== 演習 ===== -->
+        <section class="section" id="quiz">
+            <h2>演習: 判断クイズ（セミナー用）</h2>
+            <p>
+                3つの問い（渡すか・させるか・信じるか）を、場面で練習します。
+                セミナーでは、各問を1〜2分で隣の人と話してから答えを開きます。答えは「正解」より、<strong>どの段階・どの権限に当たるかを言えること</strong>を重視します。
+            </p>
+
+            <details class="quiz">
+                <summary>Q1. 取引先との打ち合わせ議事録（社名・担当者名・見積額あり）を AI に要約させたい。個人契約の ChatGPT しかない。どうする？</summary>
+                <div class="answer">
+                    <p><strong>考え方:</strong> 段階3（機密）と段階4（個人情報）が混ざっている。個人契約のアカウントには渡さない。</p>
+                    <p><strong>できること:</strong> 社名→「取引先A」、担当者名→「先方B」、見積額→「[金額]」に置き換えてから要約させ、返ってきた文章に自分で戻す。
+                    または、会社に法人契約の窓口があるか確認する。</p>
+                </div>
+            </details>
+
+            <details class="quiz">
+                <summary>Q2. AI エージェントに Gmail を接続して、受信メールの仕分けと返信の下書きをさせたい。接続時に「メールの読み取り・送信・削除」の許可を求められた。</summary>
+                <div class="answer">
+                    <p><strong>考え方:</strong> やりたいのは「読む」と「下書きを作る（書く）」。「送信」「削除」は段階3（実行する）で、今回は不要。</p>
+                    <p><strong>できること:</strong> 読み取りと下書き作成だけの許可で済む設定があれば、それを選ぶ。無ければ、送信・削除を「都度確認」にできるかを見る。
+                    それもできないなら、この連携は付けず、必要なメールだけコピーして渡す。</p>
+                </div>
+            </details>
+
+            <details class="quiz">
+                <summary>Q3. AI に「〇〇に関する法改正の要点」をまとめさせたら、条文番号と施行日つきの分かりやすい文章が返ってきた。出典リンクも付いている。社内に共有してよい？</summary>
+                <div class="answer">
+                    <p><strong>考え方:</strong> 法律・日付は「高」リスクの種類。出典リンクがあっても、その出典が本当にそう書いているかは開くまで分からない。</p>
+                    <p><strong>できること:</strong> 出典リンクを開き、条文番号と施行日を原文で照らし合わせる。合っていれば共有、1つでも違えば直してから。
+                    共有文には「AI で下書きし、原文で確認済み」と添えると、受け取る側も扱いやすい。</p>
+                </div>
+            </details>
+
+            <details class="quiz">
+                <summary>Q4. 社内報の挿絵を AI で作った。有名なアニメのキャラクターに少し似ている気がするが、社内だけの配布なので問題ない？</summary>
+                <div class="answer">
+                    <p><strong>考え方:</strong> 「社内だけ」でも配布は配布。似ていると自分で気づいた時点で、使わない判断が安全。</p>
+                    <p><strong>できること:</strong> 「特定の作品に似ないように」「オリジナルの動物のキャラクターで」と指示を変えて作り直す。生成した画像が誰かの作品に似ていないかは、画像検索で確かめる方法もある。</p>
+                </div>
+            </details>
+
+            <details class="quiz">
+                <summary>Q5. 昨日、うっかり顧客の連絡先一覧を AI に貼ってしまった。会話はすぐ消した。誰にも言わなくてよい？</summary>
+                <div class="answer">
+                    <p><strong>考え方:</strong> 消しても、送った事実は残る。段階4（個人情報）なので、会社として対応が要る場合がある。</p>
+                    <p><strong>できること:</strong> 今日中に、決めておいた相手（上司・情報システム担当）へ「いつ・どの AI に・何を」の3点で伝える。
+                    早いほど、提供元への削除依頼や関係者への連絡など、会社が打てる手が多い。</p>
+                </div>
+            </details>
+        </section>
+
+        <!-- ===== 講師向け ===== -->
+        <section class="section" id="facilitation">
+            <h2>講師向け: 進行のめやす（60 分版）</h2>
+            <p>
+                このページをそのまま画面に映して進められる構成です。90 分版にする場合は、演習を全問やり、第6章のテンプレートをその場で書く時間（15 分）を足します。
+            </p>
+            <table class="timeline">
+                <thead>
+                    <tr><th>時間</th><th>内容</th><th>参照する章</th><th>進め方</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>0–5 分</td><td>導入: 事故の例と、この資料のゴール</td><td>はじめに</td><td>「自分も貼ったことがある」と思う人に手を挙げてもらう</td></tr>
+                    <tr><td>5–10 分</td><td>3つの問い</td><td>第1章</td><td>「渡す・させる・信じる」を口に出して覚えてもらう</td></tr>
+                    <tr><td>10–22 分</td><td>何を渡すか: 4段階と置き換え</td><td>第2章</td><td>Q1 をここで実施。置き換え前後の例を画面で見せる</td></tr>
+                    <tr><td>22–32 分</td><td>何をさせるか: 権限の3段階と連携</td><td>第3章</td><td>Q2 をここで実施。参加者が使っている連携を聞く</td></tr>
+                    <tr><td>32–42 分</td><td>何を信じるか: 出す前の確認</td><td>第4章</td><td>Q3・Q4 をここで実施。出典リンクを実際に開いて見せる</td></tr>
+                    <tr><td>42–48 分</td><td>入口を守る: 今日 15 分の5つ</td><td>第5章</td><td>その場で 2段階認証の設定画面を開く時間を取ってもよい</td></tr>
+                    <tr><td>48–55 分</td><td>自分のルールを1枚にする</td><td>第6章</td><td>Q5 をここで実施。テンプレートの1〜2項目だけその場で埋める</td></tr>
+                    <tr><td>55–60 分</td><td>チェックリストと持ち帰り</td><td>第7章</td><td>「今日やる」から1つ選んで宣言してもらう</td></tr>
+                </tbody>
+            </table>
+
+            <h3>進行で気をつけること</h3>
+            <ul>
+                <li><strong>禁止の話で終えない。</strong>各章で「代わりにこうすればできる」（置き換え、都度確認、原文確認）を必ず示す</li>
+                <li><strong>例え話から入る。</strong>各章の「例えると」の箱を先に読み上げ、図を映してから本文の手順に進む。手順を先に出すと「なぜ」が抜けて、聞き手が自分の仕事に当てはめられない</li>
+                <li><strong>参加者の実際の環境で話す。</strong>冒頭で「会社契約の AI があるか」「エージェントを使っているか」を聞き、該当しない章は短くする</li>
+                <li><strong>設定画面は当日に確認する。</strong>第2章・第5章の設定名は変わるため、セミナー前日に各サービスの画面を開いて確かめる</li>
+                <li><strong>事故例は一般化して話す。</strong>実在の会社名・人名を出さない。「ある企業で」の形にする</li>
+            </ul>
+
+            <h3>配布物</h3>
+            <ul>
+                <li>このページの URL（スマホからも読める）</li>
+                <li>第6章のテンプレート（印刷して配ると、その場で書ける）</li>
+                <li>第7章のチェックリスト（ブラウザの印刷で A4 1〜2枚に収まる）</li>
+            </ul>
+        </section>
+
+        <!-- ===== おわりに ===== -->
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <div class="fig-container">
+                <img class="fig-image" src="img/fig-rg-summary.png" alt="AI を安全に使うための1枚まとめ。中央に「AI = 強力なアクセル、人間 = ブレーキ＆シートベルト」。左に「個人の習慣（読む・確認する・止める）」、右に「チームの仕組み（ポリシー / ログ / 役割）」、下に「定期的に見直す」の矢印。">
+            </div>
+            <p>
+                この資料で扱った対策は、すべて<strong>会社の許可を待たずに、自分の手元で今日始められるもの</strong>です。
+                設定を変える（第2章・第5章）、貼る前と出す前に数秒見る（第2章・第4章）、任せる範囲を先に決める（第3章）、1枚に書く（第6章）。
+                どれも、AI を使う量を減らさずにできます。
+            </p>
+            <p>
+                会社のルールが後からできたとき、自分のルールを持っている人は、差分を直すだけで済みます。
+                持っていない人は、ゼロから合わせることになります。
+                第7章の「今日やる」から、1つだけ選んで始めてください。
+            </p>
+
+            <div class="nav-btns">
+                <a href="index.html" class="btn">← ポータルに戻る</a>
+                <a href="risk-governance.html" class="btn">AI リスク &amp; ガバナンス講座（詳しい版）へ →</a>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
