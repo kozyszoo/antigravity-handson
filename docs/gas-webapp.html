@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Apps Script (GAS) ハンズオンガイド ｜ Web アプリ編</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Web アプリ編は発展編と同じパープル基調をそのまま引き継ぐ */
+            --primary: #7c3aed;
+            --bg-dark: #f6f4fb;
+            --bg-mid: #ffffff;
+            --bg-light: #ece6f7;
+            --text: #251f33;
+            --muted: #645a73;
+            --green: #188038;
+            --blue: #1a73e8;
+            --orange: #e8710a;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-mid), var(--bg-light));
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--green);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section h3.preparation-heading {
+            color: var(--green);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: #f0ebfa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #241b33;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid var(--bg-light);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #ece6f7;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        .callout {
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .callout-warn {
+            background: #fff4e5;
+            border-left: 4px solid var(--orange);
+            color: #7a4a06;
+        }
+
+        .callout-info {
+            background: #e8f0fe;
+            border-left: 4px solid var(--blue);
+            color: #174ea6;
+        }
+
+        .callout-tip {
+            background: #f0e9fb;
+            border-left: 4px solid var(--primary);
+            color: #5b21b6;
+        }
+
+        /* callout の背景と code の背景がほぼ同色で、囲みの中だと code が沈む。
+           白地に細い枠線を与えて、地の文と区別できるようにする。 */
+        .callout code {
+            background: #ffffff;
+            border: 1px solid rgba(91, 33, 182, 0.25);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .badge-level {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-time {
+            background: var(--green);
+            color: white;
+        }
+
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .screenshot-sm {
+            max-width: 640px;
+        }
+
+
+        /* 画面の狭い端末でも横スクロールさせない */
+        .screenshot,
+        .screenshot-sm {
+            max-width: 100%;
+        }
+
+        @media (min-width: 700px) {
+            .screenshot-sm {
+                max-width: 640px;
+            }
+        }
+
+        /* 長い URL などがはみ出さないように折り返す */
+        code {
+            overflow-wrap: anywhere;
+        }
+
+        pre code {
+            overflow-wrap: normal;
+        }
+
+        /* プロンプト例カード */
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .prompt-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 18px 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .prompt-card .prompt-title {
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .prompt-card .prompt-body {
+            background: var(--bg-mid);
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 0.88rem;
+            color: var(--muted);
+            border: 1px dashed var(--primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* 折りたたみ（答え合わせ用コード） */
+        .sample-details {
+            margin: 18px 0;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            background: var(--bg-dark);
+            overflow: hidden;
+        }
+
+        .sample-details summary {
+            cursor: pointer;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary);
+            background: var(--bg-light);
+            user-select: none;
+        }
+
+        .sample-details summary:hover {
+            filter: brightness(0.98);
+        }
+
+        .sample-details[open] summary {
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .sample-body {
+            padding: 18px;
+        }
+
+        .copy-btn {
+            flex-shrink: 0;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            background: var(--primary);
+            color: var(--bg-mid);
+            padding: 6px 12px;
+            font: inherit;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            filter: brightness(0.94);
+        }
+
+        .code-wrap {
+            position: relative;
+        }
+
+        .code-wrap .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 1;
+            background: var(--bg-mid);
+            color: var(--text);
+        }
+
+        .code-wrap pre {
+            padding-top: 52px;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🌐 GAS Web アプリ編</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="gas-beginner.html" style="font-weight: bold; color: var(--green); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">science</span>初級編に戻る</a></li>
+                <li><a href="gas-advanced.html" style="font-weight: bold; color: var(--primary); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">rocket_launch</span>発展編に戻る</a></li>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#step1">Step 1: 一番小さい Web アプリ</a></li>
+                <li><a href="#step2">Step 2: 見た目を HTML で作る</a></li>
+                <li><a href="#step3">Step 3: シートの中身を表示</a></li>
+                <li><a href="#step4">Step 4: ブラウザから書き込む</a></li>
+                <li><a href="#step5">Step 5: 誰が使えるかを決める</a></li>
+                <li><a href="#step6">Step 6: 直したら反映する</a></li>
+                <li><a href="#deep-dive">📺 さらに深掘り</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <!-- Hero -->
+        <div class="hero">
+            <span class="badge badge-level">Web アプリ編</span>
+            <h1>🌐 生成AI活用コーディングハンズオン<br>～ Google Apps Script (GAS) で Web アプリを作る ～</h1>
+            <p style="margin-top:8px;">ここまでは「決まった時間に動いて、こちらへ通知が来る」アプリでした。今度は<strong>自分の URL を持つ画面</strong>を作ります。ブラウザで開けて、人に渡せるものになります。</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">前提: 初級編・発展編のタスク通知アプリが動いていること（新しく作っても進められます）</p>
+        </div>
+
+        <!-- Intro -->
+        <section class="section" id="intro">
+            <h2>はじめに</h2>
+
+            <p>初級編と発展編で作ったアプリには、<strong>画面がありませんでした</strong>。動くのは決まった時間で、結果はメールやチャットに届く。こちらから何かを見たり、その場で操作したりはできません。</p>
+            <p>この Web アプリ編では、<strong>ブラウザで開ける URL</strong> を作ります。作った URL は人に渡せます。渡した相手は、GAS を知らなくても、スプレッドシートを開かなくても使えます。ここが今までとの一番の違いです。</p>
+
+            <h3>🎯 この編のゴール</h3>
+            <ul>
+                <li>GAS だけで<strong>ブラウザから開ける画面</strong>を作れるようになる</li>
+                <li>画面から入力して、<strong>スプレッドシートへ書き込める</strong>ようにする</li>
+                <li><strong>誰がその URL を使えるのか</strong>を自分で決められるようになる</li>
+                <li>直したものを<strong>公開中の URL へ反映する手順</strong>を身につける</li>
+            </ul>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">🧭 この編で作るもの</div>
+                <table style="margin: 0;">
+                    <tr><th>Step</th><th>できるようになること</th></tr>
+                    <tr><td>1. 一番小さい Web アプリ</td><td>文字が 1 行だけ出る URL を公開する</td></tr>
+                    <tr><td>2. 見た目を HTML で作る</td><td>スクリプトと見た目のファイルを分ける</td></tr>
+                    <tr><td>3. シートの中身を表示</td><td>今日のタスクを一覧で見られるようにする</td></tr>
+                    <tr><td>4. ブラウザから書き込む</td><td>画面から入力してシートへ 1 行足す</td></tr>
+                    <tr><td>5. 誰が使えるかを決める</td><td>自分だけ / 全員 の違いを理解して選ぶ</td></tr>
+                    <tr><td>6. 直したら反映する</td><td>コードの変更を公開中の URL へ反映する</td></tr>
+                </table>
+            </div>
+
+            <div class="callout callout-info">
+                ℹ️ <strong>初級編・発展編をやっていなくても進められます。</strong> Step 3 でタスクのスプレッドシートを使いますが、列が「タスク名 / 日付 / 優先度 / 状態」の並びになっていれば、その場で新しく作ったものでも構いません。
+            </div>
+
+            <div class="nav-btns">
+                <a href="gas-advanced.html" class="btn">← 発展編</a>
+                <a href="#step1" class="btn">Step 1 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="section" id="step1">
+            <span class="badge badge-time">🚪 最初の一歩</span>
+            <h2>Step 1: 一番小さい Web アプリを公開する</h2>
+            <p>いきなり作り込まず、<strong>文字が 1 行出るだけ</strong>のものを先に公開します。「自分の URL が持てた」ことを最初に確かめておくと、この後で詰まったときに<strong>どこが悪いのかを切り分けやすくなります</strong>。</p>
+
+            <p>GAS の Web アプリには、覚えることがひとつだけあります。<code>doGet</code> という名前の関数です。<strong>その URL がブラウザで開かれたとき、GAS はこの関数を探して実行します。</strong>名前が決まっているので、別の名前では動きません。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step1">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step1">GAS で、ブラウザで開くと「こんにちは」とだけ表示される一番簡単な Web アプリのコードを書いて</div>
+            </div>
+
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>これだけです。新しいスクリプトを作って、中身をこれに置き換えてください。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step1">コピー</button>
+                        <pre id="c-step1"><code>// ブラウザでこの URL が開かれたときに呼ばれる関数
+function doGet() {
+  return HtmlService.createHtmlOutput('こんにちは');
+}</code></pre>
+                    </div>
+                    <p><code>HtmlService.createHtmlOutput()</code> は「これをブラウザに表示してください」と GAS に渡す書き方です。<strong>返さないと何も表示されません。</strong><code>return</code> を書き忘れるとエラーになるので気をつけてください。</p>
+                </div>
+            </details>
+
+            <h3 class="preparation-heading">📋 公開する手順</h3>
+            <ol>
+                <li>GAS の画面右上「<strong>デプロイ</strong>」→「<strong>新しいデプロイ</strong>」</li>
+                <li>左の「⚙️ 種類の選択」→「<strong>ウェブアプリ</strong>」を選ぶ</li>
+                <li>「次のユーザーとして実行」→ <strong>自分</strong>（そのままで OK）</li>
+                <li>「アクセスできるユーザー」→ <strong>自分のみ</strong>（ここは Step 5 で詳しく扱います）</li>
+                <li>「デプロイ」を押す → <strong>アクセスを承認</strong>する</li>
+                <li>表示された <strong>ウェブアプリの URL</strong> をコピーして、ブラウザで開く</li>
+            </ol>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong>「承認されていません」という画面が出たら。</strong> 初めて公開するときは必ず出ます。「詳細」→「（プロジェクト名）に移動」→「許可」と進んでください。<strong>自分が書いたスクリプトに、自分のスプレッドシートを触る許可を出している</strong>だけです。これを通さないと動きません。
+            </div>
+
+            <div class="callout callout-tip">
+                💡 <strong>「こんにちは」が出たら、ここで一度止まってください。</strong> この URL は<strong>あなただけのもの</strong>で、いま世界に 1 つだけ存在しています。ここから先は、この画面の中身を作り込んでいくだけです。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#intro" class="btn">← はじめに</a>
+                <a href="#step2" class="btn">Step 2 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="section" id="step2">
+            <span class="badge badge-time">🎨 見た目を作る</span>
+            <h2>Step 2: 見た目を HTML のファイルに分ける</h2>
+            <p>Step 1 では、表示する文字をスクリプトの中に直接書きました。ですが画面を作り込んでいくと、この書き方はすぐ苦しくなります。<strong>見出しや入力欄やボタンを、全部スクリプトの文字列の中に詰め込むこと</strong>になるからです。</p>
+            <p>そこで、<strong>見た目は見た目で別のファイルに分けます。</strong> GAS のスクリプト（<code>.gs</code>）と、画面（<code>.html</code>）を別々に置いて、スクリプトから呼び出す形にします。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step2">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step2">GAS の Web アプリで、画面の HTML を別ファイルに分けて表示する形に書き換えて。HtmlService.createTemplateFromFile を使って</div>
+            </div>
+
+            <h3 class="preparation-heading">📋 準備</h3>
+            <ol>
+                <li>GAS の画面左「ファイル」の <strong>＋</strong> → <strong>HTML</strong> を選ぶ</li>
+                <li>名前を <strong><code>index</code></strong> にする（<code>.html</code> は自動で付きます）</li>
+            </ol>
+
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>まず <code>index.html</code> の中身です。ふつうの HTML がそのまま書けます。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step2-html">コピー</button>
+                        <pre id="c-step2-html"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;base target="_top"&gt;
+    &lt;style&gt;
+      body { font-family: sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; }
+      h1 { font-size: 1.4rem; }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;今日のタスク&lt;/h1&gt;
+    &lt;p&gt;ここに一覧を出します&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+
+                    <p>次に <code>コード.gs</code> のほうを、この HTML を読み込む形に書き換えます。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step2-gs">コピー</button>
+                        <pre id="c-step2-gs"><code>function doGet() {
+  // 'index' は作った HTML ファイルの名前（.html は書かない）
+  return HtmlService.createTemplateFromFile('index').evaluate();
+}</code></pre>
+                    </div>
+
+                    <div class="callout callout-info">
+                        ℹ️ <strong><code>&lt;base target="_top"&gt;</code> は消さないでください。</strong> GAS の Web アプリは、内側にもう 1 枚画面がはめ込まれた形で表示されます。この 1 行が無いと、ページ内のリンクを押したときに<strong>その小さい枠の中で開いてしまい</strong>、表示が崩れます。
+                    </div>
+                </div>
+            </details>
+
+            <div class="nav-btns">
+                <a href="#step1" class="btn">← Step 1</a>
+                <a href="#step3" class="btn">Step 3 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="section" id="step3">
+            <span class="badge badge-time">📄 読み取り</span>
+            <h2>Step 3: スプレッドシートの中身を画面に出す</h2>
+            <p>ここでようやく、<strong>これまで作ってきたタスク管理と合流します。</strong> スプレッドシートに入っているタスクを、画面に一覧で表示します。</p>
+            <p>やり方はいくつかありますが、まずは<strong>一番わかりやすい形</strong>から入ります。スクリプトの側でタスクを読んで、HTML を組み立ててから返す、という順番です。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step3">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step3">GAS の Web アプリで、スプレッドシートのタスク一覧を読んで画面にリストで表示するようにして。シートの列は「タスク名 / 日付 / 優先度 / 状態」の並び</div>
+            </div>
+
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>スクリプト側でタスクを読み、HTML の文字列を組み立てて、テンプレートへ渡します。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step3-gs">コピー</button>
+                        <pre id="c-step3-gs"><code>function doGet() {
+  const template = HtmlService.createTemplateFromFile('index');
+
+  // テンプレートへ渡す値は、template. のあとに好きな名前を付けて入れる
+  template.taskListHtml = buildTaskListHtml();
+
+  return template.evaluate().setTitle('今日のタスク');
+}
+
+// タスク一覧を &lt;li&gt; の並びとして組み立てる
+function buildTaskListHtml() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('タスク');
+  const rows = sheet.getDataRange().getValues();
+
+  // 1 行目は見出しなので除く
+  const tasks = rows.slice(1).filter(row =&gt; row[3] !== '完了');
+
+  if (tasks.length === 0) {
+    return '&lt;p&gt;未完了のタスクはありません&lt;/p&gt;';
+  }
+
+  let html = '&lt;ul&gt;';
+  tasks.forEach(task =&gt; {
+    html += `&lt;li&gt;${task[0]}（${task[2]}）&lt;/li&gt;`;
+  });
+  html += '&lt;/ul&gt;';
+
+  return html;
+}</code></pre>
+                    </div>
+
+                    <p>HTML 側では、渡ってきた値を <code>&lt;?!= ... ?&gt;</code> で埋め込みます。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step3-html">コピー</button>
+                        <pre id="c-step3-html"><code>&lt;body&gt;
+  &lt;h1&gt;今日のタスク&lt;/h1&gt;
+  &lt;?!= taskListHtml ?&gt;
+&lt;/body&gt;</code></pre>
+                    </div>
+
+                    <div class="callout callout-info">
+                        ℹ️ <strong>「!」の有無で意味が変わります。</strong> <code>&lt;?!= ?&gt;</code> は HTML としてそのまま出します。<code>&lt;?= ?&gt;</code> のほうは、タグをただの文字として出します。ここでは <code>&lt;li&gt;</code> をタグとして働かせたいので <code>&lt;?!= ?&gt;</code> を使います。逆に<strong>人が入力した文字を表示するときは <code>&lt;?= ?&gt;</code> のほう</strong>を使ってください。タグを書かれても、ただの文字として表示されるので安全です。
+                    </div>
+
+                    <div class="callout callout-warn">
+                        ⚠️ <strong>シート名が違うと動きません。</strong> <code>getSheetByName('タスク')</code> の部分は、自分のシートのタブ名と一致している必要があります。画面が真っ白になったときは、まずここを疑ってください。
+                    </div>
+                </div>
+            </details>
+
+            <div class="callout callout-tip">
+                💡 <strong>ここで一度、デプロイし直して確認してください。</strong> コードを直しただけでは、公開中の URL は<strong>古いままです</strong>。反映のしかたは Step 6 で扱いますが、先に知りたい方は「デプロイ」→「デプロイを管理」→ 鉛筆マーク →「バージョン」を<strong>新バージョン</strong>にして更新、です。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step2" class="btn">← Step 2</a>
+                <a href="#step4" class="btn">Step 4 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section class="section" id="step4">
+            <span class="badge badge-time">✍️ 書き込み</span>
+            <h2>Step 4: 画面から入力してシートへ書き込む</h2>
+            <p>ここが<strong>この編で一番大きい変わり目</strong>です。ここまでは「見るだけ」でしたが、画面から入力できるようにすると、<strong>スプレッドシートを開かなくてもタスクを足せる</strong>ようになります。</p>
+            <p>新しく出てくるのは <code>google.script.run</code> というひとつの書き方だけです。<strong>画面の側から、GAS の関数を名指しで呼ぶ</strong>ための仕組みです。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step4">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step4">この Web アプリに入力欄とボタンを足して、押したらスプレッドシートへタスクを 1 行追加するようにして。google.script.run を使って</div>
+            </div>
+
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>まずスクリプト側に、<strong>1 行足すだけの関数</strong>を用意します。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step4-gs">コピー</button>
+                        <pre id="c-step4-gs"><code>// 画面から呼ばれて、シートへ 1 行足す関数
+function addTask(taskName) {
+  // 空のまま送られてきたら、何もせず終わる
+  if (!taskName) return '入力してください';
+
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('タスク');
+  const today = Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/MM/dd');
+
+  sheet.appendRow([taskName, today, '中', '未完了']);
+
+  return '追加しました';
+}</code></pre>
+                    </div>
+
+                    <p>次に HTML 側です。入力欄とボタンを置いて、押されたら上の関数を呼びます。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step4-html">コピー</button>
+                        <pre id="c-step4-html"><code>&lt;body&gt;
+  &lt;h1&gt;今日のタスク&lt;/h1&gt;
+  &lt;?!= taskListHtml ?&gt;
+
+  &lt;h2&gt;タスクを追加&lt;/h2&gt;
+  &lt;input type="text" id="taskName" placeholder="やることを入力"&gt;
+  &lt;button onclick="send()"&gt;追加&lt;/button&gt;
+  &lt;p id="message"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function send() {
+      const name = document.getElementById('taskName').value;
+
+      google.script.run
+        .withSuccessHandler(onSuccess)  // 成功したらこれを呼ぶ
+        .withFailureHandler(onFailure)  // 失敗したらこれを呼ぶ
+        .addTask(name);                 // GAS 側の関数名をそのまま書く
+
+      document.getElementById('message').textContent = '送信中...';
+    }
+
+    function onSuccess(result) {
+      document.getElementById('message').textContent = result;
+      document.getElementById('taskName').value = ''; // 入力欄を空に戻す
+    }
+
+    function onFailure(error) {
+      document.getElementById('message').textContent = 'エラー: ' + error.message;
+    }
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+                    </div>
+
+                    <div class="callout callout-info">
+                        ℹ️ <strong>すぐには返ってきません。</strong> <code>google.script.run</code> は、頼んだらその場で次へ進みます。結果は<strong>あとから</strong><code>withSuccessHandler</code> に渡した関数へ届きます。だから「送信中...」を先に出しておいて、返ってきたら書き換える、という順番になります。
+                    </div>
+
+                    <div class="callout callout-tip">
+                        💡 <strong><code>withFailureHandler</code> を必ず書いてください。</strong> これが無いと、失敗したとき<strong>画面には何も起きません</strong>。押しても反応しないように見えて、原因がまったく分からなくなります。発展編の Step 8 と同じ考え方です。
+                    </div>
+                </div>
+            </details>
+
+            <div class="nav-btns">
+                <a href="#step3" class="btn">← Step 3</a>
+                <a href="#step5" class="btn">Step 5 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 5 -->
+        <section class="section" id="step5">
+            <span class="badge badge-time">🔐 公開範囲</span>
+            <h2>Step 5: 誰がこの URL を使えるのかを決める</h2>
+            <p>画面ができたので、<strong>人に渡せる状態</strong>になりました。ここで必ず決めておかないといけないことがあります。</p>
+            <p>デプロイのときに出てくる <strong>2 つの選択肢</strong>です。見落としやすいのですが、<strong>この 2 つの組み合わせで、アプリの性格が変わります。</strong></p>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">⚙️ デプロイの 2 つの設定</div>
+                <table style="margin: 0;">
+                    <tr><th>設定</th><th>意味</th></tr>
+                    <tr><td><strong>次のユーザーとして実行</strong></td><td><strong>誰の権限で動くか。</strong>「自分」にすると、他の人が使っても<strong>あなたのスプレッドシート</strong>を読み書きします</td></tr>
+                    <tr><td><strong>アクセスできるユーザー</strong></td><td><strong>誰がこの URL を開けるか。</strong>「自分のみ」「Google アカウントを持つ全員」などから選びます</td></tr>
+                </table>
+            </div>
+
+            <h3 class="preparation-heading">📋 よく使う組み合わせ</h3>
+            <ul>
+                <li><strong>自分専用のツールにする</strong><br>
+                    実行 = 自分 ／ アクセス = 自分のみ<br>
+                    <span style="color: var(--muted); font-size: 0.92rem;">練習中はこれで十分です。Step 1 で選んだのもこれです。</span></li>
+                <li><strong>チームに使ってもらう（シートは自分のものを共有）</strong><br>
+                    実行 = 自分 ／ アクセス = 全員<br>
+                    <span style="color: var(--muted); font-size: 0.92rem;">相手はシートの権限を持っていなくても使えます。<strong>あなたの権限で動く</strong>ためです。</span></li>
+            </ul>
+
+            <div class="callout callout-warn">
+                ⚠️ <strong>「実行 = 自分」＋「アクセス = 全員」は、便利な代わりに強い設定です。</strong> URL を知っている人は誰でも、<strong>あなたの権限で</strong>シートを書き換えられることになります。中身を消す処理を書いていれば、それも実行できてしまいます。人に渡すときは、<strong>渡す相手を選べる形</strong>（アクセス = 自分の組織内、など）から試してください。
+            </div>
+
+            <div class="callout callout-tip">
+                💡 <strong>URL は推測できない長さですが、パスワードではありません。</strong> 転送されれば、その先の人も開けます。発展編 Step 7 の Webhook と同じ考え方で、<strong>渡した先から広がりうる</strong>ものとして扱ってください。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step4" class="btn">← Step 4</a>
+                <a href="#step6" class="btn">Step 6 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 6 -->
+        <section class="section" id="step6">
+            <span class="badge badge-time">🔄 更新する</span>
+            <h2>Step 6: 直したものを公開中の URL へ反映する</h2>
+            <p>最後に、<strong>ここでほぼ全員が一度つまずく話</strong>をします。</p>
+            <p><strong>コードを直して保存しても、公開中の URL は古いままです。</strong> 「直したのに変わらない」「さっきのエラーがまだ出る」——これは壊れているのではなく、<strong>反映の操作をしていないだけ</strong>です。</p>
+
+            <h3 class="preparation-heading">📋 反映のしかた</h3>
+            <ol>
+                <li>「<strong>デプロイ</strong>」→「<strong>デプロイを管理</strong>」</li>
+                <li>右上の<strong>鉛筆マーク</strong>（編集）を押す</li>
+                <li>「バージョン」を「<strong>新バージョン</strong>」に変える</li>
+                <li>「<strong>デプロイ</strong>」を押す</li>
+            </ol>
+
+            <div class="callout callout-info">
+                ℹ️ <strong>URL は変わりません。</strong> この手順で更新するかぎり、渡した相手のリンクはそのまま使えます。一方「<strong>新しいデプロイ</strong>」を選ぶと<strong>別の URL が新しくできます</strong>。人に渡したあとでこれをやると、相手は古い画面を見続けることになるので注意してください。
+            </div>
+
+            <div class="callout callout-tip">
+                💡 <strong>直しながら試すときは、テスト用の URL が使えます。</strong> 「デプロイ」→「<strong>デプロイをテスト</strong>」で開く URL は、<strong>保存した最新のコードがそのまま動きます</strong>。毎回デプロイし直さずに確認できるので、作っている間はこちらが速いです。人に渡すときだけ、上の手順で正式に反映してください。
+            </div>
+
+            <div class="nav-btns">
+                <a href="#step5" class="btn">← Step 5</a>
+                <a href="#deep-dive" class="btn">📺 さらに深掘り →</a>
+            </div>
+        </section>
+
+        <!-- 📺 さらに深掘り -->
+        <section class="section" id="deep-dive">
+            <h2>📺 さらに深掘り</h2>
+            <p>Web アプリ編で扱った内容をさらに掘り下げるための参考リンク集です。</p>
+            <h3>📚 公式リファレンス</h3>
+            <ul>
+                <li>Web アプリとして公開する: <a href="https://developers.google.com/apps-script/guides/web" target="_blank" rel="noopener">https://developers.google.com/apps-script/guides/web</a></li>
+                <li>HtmlService（画面の表示）: <a href="https://developers.google.com/apps-script/reference/html" target="_blank" rel="noopener">https://developers.google.com/apps-script/reference/html</a></li>
+                <li>HTML テンプレート（<code>&lt;?= ?&gt;</code> の書き方）: <a href="https://developers.google.com/apps-script/guides/html/templates" target="_blank" rel="noopener">https://developers.google.com/apps-script/guides/html/templates</a></li>
+                <li>google.script.run（画面から GAS を呼ぶ）: <a href="https://developers.google.com/apps-script/guides/html/reference/run" target="_blank" rel="noopener">https://developers.google.com/apps-script/guides/html/reference/run</a></li>
+                <li>SpreadsheetApp（シートの読み書き）: <a href="https://developers.google.com/apps-script/reference/spreadsheet" target="_blank" rel="noopener">https://developers.google.com/apps-script/reference/spreadsheet</a></li>
+            </ul>
+            <h3>💡 次のチャレンジ案</h3>
+            <ul>
+                <li>一覧の各行に「完了」ボタンを付けて、押したらシートの状態を書き換える</li>
+                <li>誰が開いているかを <code>Session.getActiveUser().getEmail()</code> で取り、自分のタスクだけ表示する</li>
+                <li>発展編 Step 9 の優先度判定を、追加したその場で Gemini に判定させる</li>
+                <li>スマートフォンのホーム画面に URL を追加して、アプリのように開けるようにする</li>
+            </ul>
+
+            <div class="nav-btns">
+                <a href="#step6" class="btn">← Step 6</a>
+                <a href="#outro" class="btn">おわりに →</a>
+            </div>
+        </section>
+
+        <!-- おわりに -->
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <p>おつかれさまでした！<br>
+                ここまでで、<strong>自分の URL を持つ画面</strong>ができました。初級編では「決まった時間に動くもの」、発展編では「AI を相棒に育てるもの」、そしてこの編では「<strong>人に渡せるもの</strong>」になりました。</p>
+            <p>作ったものを誰かに使ってもらうと、<strong>自分では思いつかなかった注文</strong>が返ってきます。そこからまた直していく——ここから先がいちばん面白いところです。</p>
+
+            <div class="nav-btns">
+                <a href="#deep-dive" class="btn">← さらに深掘り</a>
+                <a href="gas-advanced.html" class="btn">発展編に戻る →</a>
+            </div>
+        </section>
+    </main>
+    <script>
+        // スクロールに応じてサイドバーのアクティブリンクを更新する
+        const sections = document.querySelectorAll('.section');
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    sidebarLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+
+        sections.forEach(s => observer.observe(s));
+
+        // プロンプトと答え合わせ用コードをクリップボードへコピーする
+        const copyTimers = new WeakMap();
+        const copyAttempts = new WeakMap();
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.setAttribute('readonly', '');
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+
+            let copied = false;
+            try {
+                copied = document.execCommand('copy');
+            } catch (error) {
+                copied = false;
+            } finally {
+                document.body.removeChild(textArea);
+            }
+            return copied;
+        }
+
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', async () => {
+                const previousTimer = copyTimers.get(button);
+                if (previousTimer) clearTimeout(previousTimer);
+                const attempt = (copyAttempts.get(button) || 0) + 1;
+                copyAttempts.set(button, attempt);
+
+                const target = document.getElementById(button.dataset.copyTarget);
+                let copied = false;
+
+                if (target) {
+                    const text = target.textContent;
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        try {
+                            await navigator.clipboard.writeText(text);
+                            copied = true;
+                        } catch (error) {
+                            copied = fallbackCopy(text);
+                        }
+                    } else {
+                        copied = fallbackCopy(text);
+                    }
+                }
+
+                if (copyAttempts.get(button) !== attempt) return;
+
+                button.textContent = copied ? 'コピーしました' : 'コピーできません';
+                const timer = setTimeout(() => {
+                    button.textContent = 'コピー';
+                    copyTimers.delete(button);
+                }, 1500);
+                copyTimers.set(button, timer);
+            });
+        });
+    </script>
+</body>
+
+</html>
