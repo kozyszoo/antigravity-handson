@@ -489,6 +489,9 @@
                 <li><a href="#step4">Step 4: 完了状況を管理</a></li>
                 <li><a href="#step5">Step 5: カレンダー連携</a></li>
                 <li><a href="#step6">Step 6: Gemini API 連携</a></li>
+                <li><a href="#step7">Step 7: Slack / Discord 通知</a></li>
+                <li><a href="#step8">Step 8: 止まったら気づく</a></li>
+                <li><a href="#step9">Step 9: 優先度を AI が判定</a></li>
                 <li><a href="#deep-dive">📺 さらに深掘り</a></li>
                 <li><a href="#outro">おわりに</a></li>
             </ul>
@@ -518,7 +521,7 @@
             <h3>🎯 この発展編のゴール</h3>
             <ul>
                 <li>「やりたいこと」を生成 AI に伝えてコードを書いてもらう<strong>進め方のコツ</strong>を身につける</li>
-                <li>タスク通知アプリを 5 つの方向に拡張する例を体験する（まとめ送信 / 優先度 / 完了管理 / カレンダー連携 / Gemini API）</li>
+                <li>タスク通知アプリを 8 つの方向に拡張する例を体験する（まとめ送信 / 優先度 / 完了管理 / カレンダー連携 / Gemini API / チャット通知 / エラー通知 / AI による判定）</li>
                 <li>エラーが出ても、AI に質問しながら自走できるようになる</li>
             </ul>
 
@@ -531,6 +534,9 @@
                     <tr><td>✅ 完了管理</td><td>未完了のタスクだけ通知する</td></tr>
                     <tr><td>📅 カレンダー連携</td><td>Google カレンダーの予定もタスクとして通知</td></tr>
                     <tr><td>🤖 Gemini 連携</td><td>秘書風の文面を AI に生成させる</td></tr>
+                    <tr><td>💬 チャット通知</td><td>メールではなく Slack / Discord へ流す</td></tr>
+                    <tr><td>🛡️ エラー通知</td><td>止まったときに自分へ知らせる</td></tr>
+                    <tr><td>🧠 AI が判定</td><td>優先度を Gemini に決めてもらう</td></tr>
                 </table>
             </div>
 
@@ -910,6 +916,222 @@ MailApp.sendEmail({
 
             <div class="nav-btns">
                 <a href="#step5" class="btn">← Step 5</a>
+                <a href="#step7" class="btn">Step 7 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 7 -->
+        <section class="section" id="step7">
+            <span class="badge badge-time">💬 チャット通知</span>
+            <h2>Step 7: Slack / Discord に通知する</h2>
+            <p>ここまで通知先はずっとメールでした。ですが実際に使ってみると、<strong>メールは他のメールに埋もれます</strong>。チームで使うなら、通知先を普段見ているチャットに変えたほうが目に入ります。</p>
+            <p>やることは Step 6 とほとんど同じです。<code>UrlFetchApp</code> で、渡された URL に文章を送るだけ。<strong>新しく覚えることはほぼありません。</strong></p>
+
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step7">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step7">このスクリプトの通知先を、メールではなく Discord の Webhook に変えて。Webhook の URL はスクリプトプロパティから読むようにして</div>
+            </div>
+
+            <h3 class="preparation-heading">📋 準備</h3>
+            <ol>
+                <li><strong>Webhook の URL を作る</strong>
+                    <ul>
+                        <li>Discord: 通知したいチャンネルの「⚙️ チャンネルの編集」→「連携サービス」→「ウェブフックを作成」→「ウェブフック URL をコピー」</li>
+                        <li>Slack: <a href="https://api.slack.com/messaging/webhooks" target="_blank" rel="noopener">Incoming Webhooks</a> からアプリを作ってチャンネルを選ぶ</li>
+                    </ul>
+                </li>
+                <li><strong>URL をスクリプトプロパティに保存する</strong><br>
+                    GAS の画面左「⚙️ プロジェクトの設定」→ 一番下「スクリプト プロパティ」→「スクリプト プロパティを追加」<br>
+                    プロパティ名に <code>WEBHOOK_URL</code>、値にコピーした URL を入れて保存
+                </li>
+            </ol>
+
+            <div class="callout callout-tip">
+                💡 <strong>スクリプトプロパティは「コードの外に置く金庫」です。</strong> Step 6 で「API キーはパスワードと同じ」と書きました。ここで使うのがその保管場所です。コードに直接書かないので、スクリプトを人に見せても URL やキーは漏れません。
+            </div>
+
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>まず、スクリプトプロパティから URL を読み出します。<code>PropertiesService</code> を使います。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step7">コピー</button>
+                        <pre id="c-step7"><code>// Discord に通知を送る関数
+function notifyToDiscord(text) {
+  // コードに URL を直接書かず、スクリプトプロパティから読む
+  const webhookUrl = PropertiesService.getScriptProperties().getProperty('WEBHOOK_URL');
+
+  const options = {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify({ content: text }) // Discord は content というキーで受け取る
+  };
+
+  UrlFetchApp.fetch(webhookUrl, options);
+}</code></pre>
+                    </div>
+
+                    <p>あとは、メールを送っていたところを、この関数の呼び出しに差し替えます。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step7-call">コピー</button>
+                        <pre id="c-step7-call"><code>// タスクが1件もなければ送らない
+if (tasksToday.length === 0) return;
+
+// チャットは HTML が使えないので、ただの文字列で組み立てる
+let text = `**本日のタスク（${tasksToday.length}件）**\n`;
+tasksToday.forEach(task =&gt; {
+  text += `・${task[0]}\n`;
+});
+
+notifyToDiscord(text);</code></pre>
+                    </div>
+
+                    <div class="callout callout-info">
+                        ℹ️ <strong>Slack にしたいときは 2 か所だけ変わります。</strong> キー名が <code>content</code> ではなく <code>text</code> になることと、太字の書き方が <code>**こう**</code> ではなく <code>*こう*</code> になることです。どちらも Gemini に「Slack 用に直して」と言えば書き換えてくれます。
+                    </div>
+
+                    <div class="callout callout-warn">
+                        ⚠️ <strong>Webhook の URL は、それ自体がパスワードです。</strong> 知っている人は誰でもそのチャンネルに書き込めます。スクリーンショットを撮って共有するときや、画面を共有しながら作業するときは、URL が写り込んでいないか気をつけてください。
+                    </div>
+                </div>
+            </details>
+
+            <div class="nav-btns">
+                <a href="#step6" class="btn">← Step 6</a>
+                <a href="#step8" class="btn">Step 8 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 8 -->
+        <section class="section" id="step8">
+            <span class="badge badge-time">🛡️ 動かし続ける</span>
+            <h2>Step 8: 止まったことに気づけるようにする</h2>
+            <p>ここまでで、毎朝かってに動くアプリができました。ここで一つ、実際に使い始めると必ずぶつかる問題があります。</p>
+            <p><strong>トリガーで動くスクリプトは、失敗しても誰も教えてくれません。</strong> 画面を見ていないので、エラーが出ても気づけません。「今日は通知が来ないな」と思ってから調べたら、3日前から止まっていた——これは本当によく起きます。</p>
+            <p>そこで、<strong>失敗したときだけ自分にメールが飛ぶ</strong>ようにします。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step8">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step8">この関数でエラーが出たときに、エラーの内容を自分宛てにメールで知らせるようにして。try catch を使って書き換えて</div>
+            </div>
+
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>処理全体を <code>try</code> で囲み、失敗したときの行き先を <code>catch</code> に書きます。<strong>いまの関数の中身はいじらず、外側を包むだけ</strong>です。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step8">コピー</button>
+                        <pre id="c-step8"><code>function notifyTasks() {
+  try {
+
+    // ここに、これまで書いてきた処理をそのまま入れる
+    // （スプレッドシートを読む → 絞り込む → 通知する）
+
+  } catch (error) {
+    // 失敗したときだけ、ここに来る
+    MailApp.sendEmail({
+      to: 'your.email@example.com', // 自分のアドレスに置き換える
+      subject: '【要確認】タスク通知が失敗しました',
+      body: `エラーの内容:\n${error.message}\n\n発生場所:\n${error.stack}`
+    });
+  }
+}</code></pre>
+                    </div>
+
+                    <p>うまく動いているかを確かめたいときは、<code>console.log()</code> で途中の値を出しておくと追いかけやすくなります。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step8-log">コピー</button>
+                        <pre id="c-step8-log"><code>console.log(`本日のタスクは ${tasksToday.length} 件でした`);</code></pre>
+                    </div>
+                    <p>出力した内容は、GAS の画面左「実行数」から、いつ・どの関数が・成功したか失敗したかと一緒に確認できます。</p>
+
+                    <div class="callout callout-tip">
+                        💡 <strong>わざと失敗させて試してください。</strong> スプレッドシートの名前を一時的に変えてから実行すると、シートが見つからずエラーになります。ここでメールが届けば、仕掛けがちゃんと働いています。確認したら名前を戻してください。
+                    </div>
+
+                    <div class="callout callout-info">
+                        ℹ️ <strong>GAS には 1 日に使える量の上限があります。</strong> 無料アカウントの場合、メール送信は 1 日 100 通、スクリプトの実行は合計 90 分までです。ふつうに 1 日 1 回動かす分には当たりませんが、トリガーを 5 分おきにしたり、タスク 1 件ごとに Gemini を呼んだりすると届いてしまうことがあります。
+                    </div>
+                </div>
+            </details>
+
+            <div class="nav-btns">
+                <a href="#step7" class="btn">← Step 7</a>
+                <a href="#step9" class="btn">Step 9 へ進む →</a>
+            </div>
+        </section>
+
+        <!-- Step 9 -->
+        <section class="section" id="step9">
+            <span class="badge badge-time">🧠 AI に任せる</span>
+            <h2>Step 9: 優先度を Gemini に決めてもらう</h2>
+            <p>Step 3 では、優先度を<strong>自分で手入力</strong>しました。Step 6 では Gemini に<strong>文章を書かせ</strong>ました。この 2 つを合わせます。</p>
+            <p>つまり、<strong>タスク名を見て優先度が何かを Gemini に判断させる</strong>わけです。同じ Gemini でも、文章を作らせるのと、決めさせるのとでは使いどころが変わります。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title">
+                    <span>🤖 Gemini にこう聞く</span>
+                    <button class="copy-btn" type="button" data-copy-target="p-step9">コピー</button>
+                </div>
+                <div class="prompt-body" id="p-step9">タスク名を渡すと、Gemini が「高」「中」「低」のどれかだけを返す関数を作って。余計な説明は付けずに一語だけ返させて</div>
+            </div>
+
+            <details class="sample-details">
+                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
+                <div class="sample-body">
+                    <p>Step 6 で作った <code>generateMessage</code> とほぼ同じ形です。違うのは、<strong>頼み方だけ</strong>。「一語だけ返して」と釘を刺すのがコツです。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step9">コピー</button>
+                        <pre id="c-step9"><code>// タスク名から優先度を判定してもらう関数
+function judgePriority(taskName) {
+  const apiKey = PropertiesService.getScriptProperties().getProperty('GEMINI_API_KEY');
+  const model = 'gemini-flash-latest';
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+
+  const payload = {
+    systemInstruction: {
+      // 「これ以外を返すな」と強く指定するのが大事
+      parts: [{ text: '優先度を判定し、「高」「中」「低」のいずれか一語だけを返してください。説明は一切不要です。' }]
+    },
+    contents: [{
+      parts: [{ text: `タスク: ${taskName}` }]
+    }]
+  };
+
+  const options = {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { 'x-goog-api-key': apiKey },
+    payload: JSON.stringify(payload)
+  };
+
+  const response = UrlFetchApp.fetch(url, options);
+  const json = JSON.parse(response.getContentText());
+  const result = json.candidates[0].content.parts[0].text.trim();
+
+  // 想定外の答えが返ってきたときの逃げ道を用意しておく
+  return ['高', '中', '低'].includes(result) ? result : '中';
+}</code></pre>
+                    </div>
+
+                    <div class="callout callout-tip">
+                        💡 <strong>最後の 1 行が肝です。</strong> 「一語だけ返して」と頼んでも、AI が「優先度は高です」と返してくることがあります。そのまま使うと表示が崩れるので、<strong>想定した 3 つ以外が来たら「中」にする</strong>と決めておきます。AI に任せるときは、<strong>外れた場合の行き先を先に決めておく</strong>——これが安心して使うコツです。
+                    </div>
+
+                    <div class="callout callout-warn">
+                        ⚠️ <strong>タスクの数だけ API を呼びます。</strong> タスクが 20 件あれば 20 回です。無料枠には 1 分あたりの回数制限があるので、件数が多いときはエラー（429）が返ることがあります。全部のタスクを 1 回のリクエストでまとめて判定させる書き方もあります。「タスク一覧をまとめて渡して、優先度を一度に判定させて」と Gemini に聞いてみてください。
+                    </div>
+                </div>
+            </details>
+
+            <div class="nav-btns">
+                <a href="#step8" class="btn">← Step 8</a>
                 <a href="#deep-dive" class="btn">📺 さらに深掘り →</a>
             </div>
         </section>
@@ -925,16 +1147,18 @@ MailApp.sendEmail({
                 <li>PropertiesService（APIキーの安全な保管）: <a href="https://developers.google.com/apps-script/reference/properties" target="_blank" rel="noopener">https://developers.google.com/apps-script/reference/properties</a></li>
                 <li>Gemini API ドキュメント: <a href="https://ai.google.dev/gemini-api/docs" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs</a></li>
                 <li>Gemini API キーの取得（Google AI Studio）: <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">https://aistudio.google.com/apikey</a></li>
+                <li>トリガーの種類と設定（時間主導・フォーム送信など）: <a href="https://developers.google.com/apps-script/guides/triggers/installable" target="_blank" rel="noopener">https://developers.google.com/apps-script/guides/triggers/installable</a></li>
+                <li>GAS の 1 日あたりの上限（割り当て）: <a href="https://developers.google.com/apps-script/guides/services/quotas" target="_blank" rel="noopener">https://developers.google.com/apps-script/guides/services/quotas</a></li>
             </ul>
             <h3>💡 次のチャレンジ案</h3>
             <ul>
-                <li>Slack や LINE への通知に変えてみる（Webhook を <code>UrlFetchApp</code> で叩く）</li>
+                <li>Google フォームの回答をトリガーに、タスクを自動で追加する（<code>onFormSubmit</code> を使う）</li>
                 <li>スプレッドシートに「通知済み」フラグを書き戻して、二重送信を防ぐ</li>
-                <li>フォームの回答をトリガーに、自動で返信メールを送る</li>
+                <li>スプレッドシートに独自メニューを足して、手元から実行できるボタンを作る（<code>onOpen</code> を使う）</li>
             </ul>
 
             <div class="nav-btns">
-                <a href="#step6" class="btn">← Step 6</a>
+                <a href="#step9" class="btn">← Step 9</a>
                 <a href="#outro" class="btn">おわりに →</a>
             </div>
         </section>
