@@ -724,13 +724,16 @@
 
             <h3>1-4. まずは Gemini にコードを書いてもらう</h3>
             <p>「セル A1 に Hello World! と書き込む」だけのシンプルなコードを作ります。下のプロンプトをコピーして Gemini に貼り、返ってきたコードを<strong>エディタの内容をすべて消してから貼り付けて</strong>ください。</p>
+            <div class="callout callout-tip">
+                💡 このページのプロンプトは短くしてあります。コードの意味を知りたいときは、<strong>「日本語のコメントを付けて」と一言足す</strong>と各行の説明が入ります。このあとの答え合わせ用コードにも、同じようにコメントを入れてあります。
+            </div>
 
             <div class="prompt-card">
                 <div class="prompt-title">
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step1">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step1">Google Apps Script を初めて書きます。スプレッドシートを ID で開いて、指定した名前のシートのセル A1 に「Hello World!」と書き込む myFunction という関数を作ってください。スプレッドシートの ID とシート名は、あとから自分の値に差し替えられるように関数の先頭で定数にまとめてください。初心者向けに、各行が何をしているか日本語のコメントを付けてください。</div>
+                <div class="prompt-body" id="p-step1">Google Apps Script で、スプレッドシートを ID で開き、指定した名前のシートの A1 に「Hello World!」と書き込む myFunction を作ってください。スプレッドシートの ID とシート名は、あとで差し替えられるよう先頭で定数にしてください。</div>
             </div>
 
             <div class="callout callout-warn">
@@ -815,7 +818,7 @@
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step2">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step2">Google Apps Script で、自分のGmailアカウントからテストメールを1通送る sendEMail という関数を追加してください。宛先のメールアドレスは、あとから差し替えられるように関数の先頭で定数にまとめてください。件名は「テストメール」、本文は「これはテストメールです。」にしてください。いま書いてある myFunction はそのまま残して、その下に追加する形で書いてください。日本語のコメントを付けてください。</div>
+                <div class="prompt-body" id="p-step2">Google Apps Script で、自分の Gmail からテストメールを1通送る sendEMail を追加してください。件名は「テストメール」、本文は「これはテストメールです。」。宛先は先頭で定数にしてください。いまの myFunction は残し、その下に足してください。</div>
             </div>
 
             <div class="callout callout-warn">
@@ -936,7 +939,7 @@ function sendEMail() {
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step3-1">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step3-1">（いまのコードを全文貼り付けてから）↑このスクリプトを書き換えて、次の3つをまとめて行うようにしてください。1つめ、A1に文字を書き込む処理をやめて、代わりにシートの全データを二次元配列として読み込み、data という定数に入れてください。2つめ、今日の日付を日本時間で「yyyy/MM/dd」の形式の文字列として取り出してください。あとで日付の文字列どうしを比べたいので、Utilities.formatDate を使ってください。3つめ、読み込んだデータから今日実施するタスクだけを抜き出してください。データの1行目は「タスク名」「実施日」というヘッダーなので取り除いてください。実施日は2列目に入っています。抜き出した結果は tasksToday という定数に入れてください。日本語のコメントを付けてください。</div>
+                <div class="prompt-body" id="p-step3-1">（いまのコードを全文貼り付けてから）↑これを書き換えて、A1 への書き込みをやめ、シートの全データを data に読み込んでください。今日の日付を Utilities.formatDate で JST の「yyyy/MM/dd」文字列にし、1行目のヘッダーを除いて、実施日（2列目）が今日の行だけを tasksToday に入れてください。</div>
             </div>
 
             <details class="sample-details">
@@ -995,7 +998,7 @@ function sendEMail() {
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step3-2">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step3-2">（いまのコードを全文貼り付けてから）↑このスクリプトに、抜き出した今日のタスクを1件ずつメールで通知する処理を足してください。件名と本文はどちらも「本日のタスク: （タスク名）」にしてください。宛先のメールアドレスは、あとから自分のアドレスに差し替えられるようにしてください。日本語のコメントを付けてください。</div>
+                <div class="prompt-body" id="p-step3-2">（いまのコードを全文貼り付けてから）↑これに、tasksToday を1件ずつメールで送る処理を足してください。件名と本文はどちらも「本日のタスク: （タスク名）」。宛先は、あとで自分のアドレスに差し替えられるようにしてください。</div>
             </div>
 
             <div class="callout callout-warn">
@@ -1082,7 +1085,7 @@ function sendEMail() {
                     <span>🤖 エラーが出たら Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-error">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-error">（実行ログに出たエラー文をそのまま貼り付けてから）↑これは Google Apps Script を実行したときに出たエラーです。原因と直し方を、初心者にも分かるように教えてください。直したコードも見せてください。</div>
+                <div class="prompt-body" id="p-error">（実行ログに出たエラー文をそのまま貼り付けてから）↑これは Google Apps Script のエラーです。原因と直し方を、初心者にも分かるように教えてください。直したコードも見せてください。</div>
             </div>
 
             <div class="callout callout-tip">
