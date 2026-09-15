@@ -920,17 +920,23 @@ function sendEMail() {
         <section class="section" id="step3">
             <span class="badge badge-time">⏱ 約 20 分</span>
             <h2>Step 3: タスク通知スクリプトの作成</h2>
-            <p>いよいよ本題です。<strong>スプレッドシートから今日のタスクを読み取り、メールで通知する</strong>処理を、4 つのステップに分けて少しずつ組み立てていきます。今回は <code>myFunction</code> を書き換えていきます。</p>
+            <p>いよいよ本題です。<strong>スプレッドシートから今日のタスクを読み取り、メールで通知する</strong>処理を、順番に組み立てていきます。今回は <code>myFunction</code> を書き換えていきます。</p>
 
-            <h3>3-1. スプレッドシートからデータを読み込む</h3>
-            <p>まずは A1 に文字を書き込む処理をやめて、スプレッドシートの全データを読み込む処理に書き換えます。ここから先は<strong>いまエディタにあるコードを全文コピーして Gemini に貼り、そのあとにプロンプトを続ける</strong>形で進めます。</p>
+            <h3>3-1. 今日のタスクを読み込んで抽出する</h3>
+            <p>まずは A1 に文字を書き込む処理をやめて、<strong>スプレッドシートの全データを読み込み、実施日が今日のタスクだけを抜き出す</strong>ところまで一気に書き換えます。ここから先は<strong>いまエディタにあるコードを全文コピーして Gemini に貼り、そのあとにプロンプトを続ける</strong>形で進めます。</p>
+            <p>やることは 3 つです。</p>
+            <ul>
+                <li>シートの全データを二次元配列で読み込む</li>
+                <li>今日の日付を「yyyy/MM/dd」形式の文字列で取り出す（日付どうしを比べるため文字列に揃えます）</li>
+                <li>1 行目のヘッダーを <code>shift()</code> で取り除き、<code>filter()</code> で今日のタスクだけに絞り込む</li>
+            </ul>
 
             <div class="prompt-card">
                 <div class="prompt-title">
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step3-1">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step3-1">（いまのコードを全文貼り付けてから）↑このスクリプトを書き換えて、A1に文字を書き込む処理をやめて、代わりにシートの全データを二次元配列として読み込むようにしてください。読み込んだ結果は data という定数に入れてください。日本語のコメントを付けてください。</div>
+                <div class="prompt-body" id="p-step3-1">（いまのコードを全文貼り付けてから）↑このスクリプトを書き換えて、次の3つをまとめて行うようにしてください。1つめ、A1に文字を書き込む処理をやめて、代わりにシートの全データを二次元配列として読み込み、data という定数に入れてください。2つめ、今日の日付を日本時間で「yyyy/MM/dd」の形式の文字列として取り出してください。あとで日付の文字列どうしを比べたいので、Utilities.formatDate を使ってください。3つめ、読み込んだデータから今日実施するタスクだけを抜き出してください。データの1行目は「タスク名」「実施日」というヘッダーなので取り除いてください。実施日は2列目に入っています。抜き出した結果は tasksToday という定数に入れてください。日本語のコメントを付けてください。</div>
             </div>
 
             <details class="sample-details">
@@ -949,7 +955,7 @@ function sendEMail() {
 }</code></pre>
                     </div>
 
-                    <span class="code-label after">After（データを取得する処理に変更）</span>
+                    <span class="code-label after">After（読み込み・今日の日付・抽出をまとめて追加）</span>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step3-1-after">コピー</button>
                         <pre id="c-step3-1-after"><code>function myFunction() {
@@ -960,75 +966,11 @@ function sendEMail() {
 
   // データを取得（シートの全行を二次元配列で受け取る）
   const data = sheet.getDataRange().getValues();
-}</code></pre>
-                    </div>
-                </div>
-            </details>
 
-            <h3>3-2. 今日の日付を取得する</h3>
-            <p>次に、<strong>今日の日付</strong>を「yyyy/MM/dd」形式の文字列で取得する処理を足します。日付どうしを比べるために、文字列に揃えておくのがポイントです。</p>
-
-            <div class="prompt-card">
-                <div class="prompt-title">
-                    <span>🤖 Gemini にこう聞く</span>
-                    <button class="copy-btn" type="button" data-copy-target="p-step3-2">コピー</button>
-                </div>
-                <div class="prompt-body" id="p-step3-2">（いまのコードを全文貼り付けてから）↑このスクリプトに、今日の日付を日本時間で「yyyy/MM/dd」の形式の文字列として取り出す処理を足してください。あとで日付の文字列どうしを比べたいので、Utilities.formatDate を使ってください。日本語のコメントを付けてください。</div>
-            </div>
-
-            <details class="sample-details">
-                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
-                <div class="sample-body">
-                    <span class="code-label after">After（今日の日付を追加）</span>
-                    <div class="code-wrap">
-                        <button class="copy-btn" type="button" data-copy-target="c-step3-2">コピー</button>
-                        <pre id="c-step3-2"><code>function myFunction() {
-  const spreadsheetId = 'YOUR_SPREADSHEET_ID';
-  const sheetName = 'YOUR_SHEET_NAME';
-  const ss = SpreadsheetApp.openById(spreadsheetId);
-  const sheet = ss.getSheetByName(sheetName);
-
-  // データを取得
-  const data = sheet.getDataRange().getValues();
-
-  // ここから追加
   // 今日の日付を取得（JST・yyyy/MM/dd 形式の文字列にする）
   const today = new Date();
   const formattedToday = Utilities.formatDate(today, 'JST', 'yyyy/MM/dd');
-  // ここまで追加
-}</code></pre>
-                    </div>
-                </div>
-            </details>
 
-            <h3>3-3. 今日実施予定のタスクを抽出する</h3>
-            <p>読み込んだデータから、<strong>実施日が今日のタスクだけ</strong>を抜き出します。1 行目はヘッダー（見出し）なので <code>shift()</code> で取り除いてから、<code>filter()</code> で絞り込みます。</p>
-
-            <div class="prompt-card">
-                <div class="prompt-title">
-                    <span>🤖 Gemini にこう聞く</span>
-                    <button class="copy-btn" type="button" data-copy-target="p-step3-3">コピー</button>
-                </div>
-                <div class="prompt-body" id="p-step3-3">（いまのコードを全文貼り付けてから）↑このスクリプトに、読み込んだデータから今日実施するタスクだけを抜き出す処理を足してください。データの1行目は「タスク名」「実施日」というヘッダーなので取り除いてください。実施日は2列目に入っています。抜き出した結果は tasksToday という定数に入れてください。日本語のコメントを付けてください。</div>
-            </div>
-
-            <details class="sample-details">
-                <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
-                <div class="sample-body">
-                    <span class="code-label after">After（タスクの抽出を追加）</span>
-                    <div class="code-wrap">
-                        <button class="copy-btn" type="button" data-copy-target="c-step3-3">コピー</button>
-                        <pre id="c-step3-3"><code>function myFunction() {
-  const spreadsheetId = 'YOUR_SPREADSHEET_ID';
-  const sheetName = 'YOUR_SHEET_NAME';
-  const ss = SpreadsheetApp.openById(spreadsheetId);
-  const sheet = ss.getSheetByName(sheetName);
-
-  const data = sheet.getDataRange().getValues();
-  const today = new Date();
-  const formattedToday = Utilities.formatDate(today, 'JST', 'yyyy/MM/dd');
-
-  // ここから追加
   // ヘッダー行（1行目の見出し）をスキップ
   data.shift();
 
@@ -1036,7 +978,6 @@ function sendEMail() {
   const tasksToday = data.filter(row =>
     Utilities.formatDate(row[1], 'JST', 'yyyy/MM/dd') === formattedToday
   );
-  // ここまで追加
 }</code></pre>
                     </div>
                 </div>
@@ -1046,15 +987,15 @@ function sendEMail() {
                 ℹ️ <code>row[0]</code> が「タスク名」（A 列）、<code>row[1]</code> が「実施日」（B 列）です。配列の番号は <strong>0 から</strong>始まることに注意しましょう。
             </div>
 
-            <h3>3-4. Gmail 送信処理を実装する</h3>
+            <h3>3-2. Gmail 送信処理を実装する</h3>
             <p>最後に、抽出したタスクごとに通知メールを送信する処理を追加します。</p>
 
             <div class="prompt-card">
                 <div class="prompt-title">
                     <span>🤖 Gemini にこう聞く</span>
-                    <button class="copy-btn" type="button" data-copy-target="p-step3-4">コピー</button>
+                    <button class="copy-btn" type="button" data-copy-target="p-step3-2">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step3-4">（いまのコードを全文貼り付けてから）↑このスクリプトに、抜き出した今日のタスクを1件ずつメールで通知する処理を足してください。件名と本文はどちらも「本日のタスク: （タスク名）」にしてください。宛先のメールアドレスは、あとから自分のアドレスに差し替えられるようにしてください。日本語のコメントを付けてください。</div>
+                <div class="prompt-body" id="p-step3-2">（いまのコードを全文貼り付けてから）↑このスクリプトに、抜き出した今日のタスクを1件ずつメールで通知する処理を足してください。件名と本文はどちらも「本日のタスク: （タスク名）」にしてください。宛先のメールアドレスは、あとから自分のアドレスに差し替えられるようにしてください。日本語のコメントを付けてください。</div>
             </div>
 
             <div class="callout callout-warn">
@@ -1066,8 +1007,8 @@ function sendEMail() {
                 <div class="sample-body">
                     <span class="code-label after">After（Gmail 送信処理を追加・これで完成）</span>
                     <div class="code-wrap">
-                        <button class="copy-btn" type="button" data-copy-target="c-step3-4">コピー</button>
-                        <pre id="c-step3-4"><code>function myFunction() {
+                        <button class="copy-btn" type="button" data-copy-target="c-step3-2">コピー</button>
+                        <pre id="c-step3-2"><code>function myFunction() {
   const spreadsheetId = 'YOUR_SPREADSHEET_ID';
   const sheetName = 'YOUR_SHEET_NAME';
   const ss = SpreadsheetApp.openById(spreadsheetId);
@@ -1103,7 +1044,7 @@ function sendEMail() {
                 </div>
             </details>
 
-            <h3>3-5. タスク管理スプレッドシートにタスクを入力</h3>
+            <h3>3-3. タスク管理スプレッドシートにタスクを入力</h3>
             <p>スプレッドシートに以下の情報を入力します。<strong>1 行目はヘッダー</strong>として「タスク名」「実施日」と入れ、2 行目以降に実際のタスクを書きます。</p>
             <ul>
                 <li><strong>A 列: タスク名</strong> … 実施するタスクの名前（例: テストタスクA）</li>
@@ -1116,13 +1057,13 @@ function sendEMail() {
                 💡 動作確認のため、<strong>実施日には「今日の日付」</strong>を入れておきましょう。そうすれば実行時にすぐメールが届きます。
             </div>
 
-            <h3>3-6. スクリプトを実行する</h3>
+            <h3>3-4. スクリプトを実行する</h3>
             <p>関数選択を <strong>「myFunction」</strong>に戻して <strong>「▶️ 実行」</strong>を押します。うまくいけば、こんなメールが届いているはずです 🎉</p>
             <img class="screenshot screenshot-sm" src="img/gas-30.png"
                 alt="Gmail に件名・本文ともに 本日のタスク: テストタスクA というメールが届いているスクリーンショット">
             <p>次の Step 4 では、この <code>myFunction()</code> を<strong>毎日決まった時間に自動実行</strong>させる設定を行います。</p>
 
-            <h3>3-7. トラブルシューティング</h3>
+            <h3>3-5. トラブルシューティング</h3>
             <p>もし Gmail 通知が送信されない場合は、以下の点をチェックしてください。</p>
             <ul>
                 <li>スプレッドシートの ID とシート名が正しく設定されているか</li>
