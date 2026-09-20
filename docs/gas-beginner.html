@@ -537,6 +537,10 @@
                 display: block;
             }
         }
+
+        .section a {
+            overflow-wrap: anywhere;
+        }
     </style>
 </head>
 
@@ -574,12 +578,52 @@
         <section class="section" id="videos">
             <h2>🎬 本ハンズオンの解説動画（Step 別）</h2>
             <p>動画のタイトルは「◯章」表記になっています。このページの Step 番号との対応は次のとおりです。</p>
-            <ul>
-                <li>Step 1（GAS を動かす）＝動画「2章」: <a href="https://youtu.be/1mAB227eClM" target="_blank" rel="noopener">https://youtu.be/1mAB227eClM</a></li>
-                <li>Step 2（Gmail 送信テスト）＝動画「3章」: <a href="https://youtu.be/ZI6RCDsOk4o" target="_blank" rel="noopener">https://youtu.be/ZI6RCDsOk4o</a></li>
-                <li>Step 3（タスク通知の実装）＝動画「4章」: <a href="https://youtu.be/17ci6yQjaBg" target="_blank" rel="noopener">https://youtu.be/17ci6yQjaBg</a></li>
-                <li>Step 4（トリガー設定）＝動画「5章」: <a href="https://youtu.be/MgiqigZFCS0" target="_blank" rel="noopener">https://youtu.be/MgiqigZFCS0</a></li>
-            </ul>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 16px 0;">
+                <div class="card" style="background: var(--bg-mid); margin: 0;">
+                    <div style="font-weight:700; color: var(--primary); margin-bottom: 10px;">Step 1（GAS を動かす）＝動画「2章」</div>
+                    <div style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 8px; overflow: hidden;">
+                        <iframe src="https://www.youtube-nocookie.com/embed/1mAB227eClM"
+                            title="Step 1: Google Apps Script を動かしてみよう（解説動画 2章）"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="card" style="background: var(--bg-mid); margin: 0;">
+                    <div style="font-weight:700; color: var(--primary); margin-bottom: 10px;">Step 2（Gmail 送信テスト）＝動画「3章」</div>
+                    <div style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 8px; overflow: hidden;">
+                        <iframe src="https://www.youtube-nocookie.com/embed/ZI6RCDsOk4o"
+                            title="Step 2: Gmail 送信テスト（解説動画 3章）"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="card" style="background: var(--bg-mid); margin: 0;">
+                    <div style="font-weight:700; color: var(--primary); margin-bottom: 10px;">Step 3（タスク通知の実装）＝動画「4章」</div>
+                    <div style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 8px; overflow: hidden;">
+                        <iframe src="https://www.youtube-nocookie.com/embed/17ci6yQjaBg"
+                            title="Step 3: タスク通知スクリプトの作成（解説動画 4章）"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="card" style="background: var(--bg-mid); margin: 0;">
+                    <div style="font-weight:700; color: var(--primary); margin-bottom: 10px;">Step 4（トリガー設定）＝動画「5章」</div>
+                    <div style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 8px; overflow: hidden;">
+                        <iframe src="https://www.youtube-nocookie.com/embed/MgiqigZFCS0"
+                            title="Step 4: GAS トリガーで自動化する（解説動画 5章）"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Intro -->
@@ -694,6 +738,73 @@
         <section class="section" id="step1">
             <span class="badge badge-time">⏱ 約 20 分</span>
             <h2>Step 1: Google Apps Script を動かしてみよう</h2>
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">📊 スプレッドシートと GAS のつながり</div>
+                <svg viewBox="0 0 900 390" style="max-width:100%; height:auto;" role="img">
+                    <title>スプレッドシートから Apps Script エディタを開き、myFunction がスプレッドシート ID とシート名の二つを使って対象を特定し、A1 セルへ書き込む流れ</title>
+                    <defs>
+                        <marker id="arrow-beg-step1-green" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#188038" style="fill: var(--primary, #188038);"></path></marker>
+                        <marker id="arrow-beg-step1-blue" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#1a73e8" style="fill: var(--blue, #1a73e8);"></path></marker>
+                        <marker id="arrow-beg-step1-purple" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#8e44ad" style="fill: var(--purple, #8e44ad);"></path></marker>
+                    </defs>
+
+                    <rect x="20" y="35" width="210" height="140" rx="12" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="125" y="66" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">スプレッドシート</text>
+                    <rect x="42" y="82" width="166" height="35" rx="6" fill="#e1efe6" stroke="#1a73e8" stroke-width="1.5" style="fill: var(--bg-light, #e1efe6); stroke: var(--blue, #1a73e8);"></rect>
+                    <text x="125" y="105" text-anchor="middle" fill="#1a73e8" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--blue, #1a73e8);">ID: 1BMln2...</text>
+                    <rect x="42" y="126" width="166" height="31" rx="6" fill="#ffffff" stroke="#8e44ad" stroke-width="1.5" style="fill: var(--bg-mid, #ffffff); stroke: var(--purple, #8e44ad);"></rect>
+                    <text x="125" y="147" text-anchor="middle" fill="#8e44ad" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--purple, #8e44ad);">タブ: シート1</text>
+
+                    <line x1="230" y1="105" x2="276" y2="105" stroke="#188038" stroke-width="3" marker-end="url(#arrow-beg-step1-green)" style="stroke: var(--primary, #188038);"></line>
+                    <rect x="280" y="53" width="180" height="104" rx="12" fill="#e1efe6" stroke="#188038" stroke-width="2" style="fill: var(--bg-light, #e1efe6); stroke: var(--primary, #188038);"></rect>
+                    <text x="370" y="86" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">拡張機能</text>
+                    <text x="370" y="111" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--primary, #188038);">Apps Script</text>
+                    <text x="370" y="137" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">エディタを開く</text>
+
+                    <line x1="460" y1="105" x2="506" y2="105" stroke="#188038" stroke-width="3" marker-end="url(#arrow-beg-step1-green)" style="stroke: var(--primary, #188038);"></line>
+                    <rect x="510" y="25" width="370" height="160" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="695" y="54" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">Apps Script エディタ：myFunction()</text>
+                    <text x="535" y="87" text-anchor="start" fill="#1a73e8" font-family="'Courier New', monospace" font-size="13" font-weight="700" style="fill: var(--blue, #1a73e8);">SpreadsheetApp.openById(ID)</text>
+                    <text x="535" y="116" text-anchor="start" fill="#8e44ad" font-family="'Courier New', monospace" font-size="13" font-weight="700" style="fill: var(--purple, #8e44ad);">getSheetByName(シート名)</text>
+                    <text x="535" y="145" text-anchor="start" fill="#251f33" font-family="'Courier New', monospace" font-size="13" style="fill: var(--text, #251f33);">getRange('A1')</text>
+                    <text x="535" y="170" text-anchor="start" fill="#188038" font-family="'Courier New', monospace" font-size="13" font-weight="700" style="fill: var(--primary, #188038);">setValue('Hello World!')</text>
+
+                    <rect x="20" y="245" width="200" height="68" rx="12" fill="#ffffff" stroke="#1a73e8" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--blue, #1a73e8);"></rect>
+                    <text x="120" y="272" text-anchor="middle" fill="#1a73e8" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--blue, #1a73e8);">スプレッドシート ID</text>
+                    <text x="120" y="297" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--text, #251f33);">1BMln2...</text>
+
+                    <rect x="250" y="245" width="180" height="68" rx="12" fill="#ffffff" stroke="#8e44ad" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--purple, #8e44ad);"></rect>
+                    <text x="340" y="272" text-anchor="middle" fill="#8e44ad" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--purple, #8e44ad);">シート名</text>
+                    <text x="340" y="297" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--text, #251f33);">シート1</text>
+
+                    <path d="M220 279 L235 279 L235 215 L455 215 L455 265 L466 265" fill="none" stroke="#1a73e8" stroke-width="3" marker-end="url(#arrow-beg-step1-blue)" style="stroke: var(--blue, #1a73e8);"></path>
+                    <line x1="430" y1="297" x2="466" y2="297" stroke="#8e44ad" stroke-width="3" marker-end="url(#arrow-beg-step1-purple)" style="stroke: var(--purple, #8e44ad);"></line>
+                    <rect x="470" y="230" width="240" height="105" rx="12" fill="#e1efe6" stroke="#188038" stroke-width="3" style="fill: var(--bg-light, #e1efe6); stroke: var(--primary, #188038);"></rect>
+                    <text x="590" y="260" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">対象のシートを特定</text>
+                    <text x="590" y="287" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">ID ＋ シート名</text>
+                    <text x="590" y="315" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">2 つとも必要</text>
+
+                    <line x1="710" y1="282" x2="756" y2="282" stroke="#188038" stroke-width="3" marker-end="url(#arrow-beg-step1-green)" style="stroke: var(--primary, #188038);"></line>
+                    <rect x="760" y="230" width="120" height="105" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="820" y="261" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">結果</text>
+                    <text x="820" y="287" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">A1</text>
+                    <text x="820" y="314" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--primary, #188038);">Hello World!</text>
+
+                    <text x="450" y="375" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">コードから指定した結果が、元のスプレッドシートに現れる</text>
+                </svg>
+            </div>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 10px;">🎬 Step 1 解説動画（2章）</div>
+                <div style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 8px; overflow: hidden;">
+                    <iframe src="https://www.youtube-nocookie.com/embed/1mAB227eClM"
+                        title="Step 1: Google Apps Script を動かしてみよう（解説動画 2章）"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
             <p>まずは「GAS なるもの」を実際に動かして、スプレッドシートに文字が自動で入る感覚をつかみましょう。難しいことは考えず、まずは Gemini にコードを書いてもらって動かすのがコツです。</p>
 
             <h3>1-1. スプレッドシートを作成する</h3>
@@ -791,7 +902,7 @@
 
             <div class="callout callout-tip">
                 🎬 <strong>Step 1 解説動画</strong>（無音ですが、字幕に解説を入れています。字幕を ON にしてご視聴ください）<br>
-                <a href="https://youtu.be/1mAB227eClM" target="_blank" rel="noopener">https://youtu.be/1mAB227eClM</a>
+                <a href="https://www.youtube.com/watch?v=1mAB227eClM" target="_blank" rel="noopener">https://www.youtube.com/watch?v=1mAB227eClM</a>
             </div>
 
             <div class="nav-btns">
@@ -804,6 +915,74 @@
         <section class="section" id="step2">
             <span class="badge badge-time">⏱ 約 10 分</span>
             <h2>Step 2: Gmail 送信テスト</h2>
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">✉️ sendEmail の引数がメールになるまで</div>
+                <svg viewBox="0 0 900 410" style="max-width:100%; height:auto;" role="img">
+                    <title>自分の Gmail から MailApp.sendEmail を実行し、初回のみ権限を承認して自分宛てにメールが届く流れと、to、subject、htmlBody がメールの宛先、件名、本文に対応する関係</title>
+                    <defs>
+                        <marker id="arrow-beg-step2-green" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#188038" style="fill: var(--primary, #188038);"></path></marker>
+                        <marker id="arrow-beg-step2-blue" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#1a73e8" style="fill: var(--blue, #1a73e8);"></path></marker>
+                        <marker id="arrow-beg-step2-purple" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#8e44ad" style="fill: var(--purple, #8e44ad);"></path></marker>
+                        <marker id="arrow-beg-step2-orange" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#e8710a" style="fill: var(--orange, #e8710a);"></path></marker>
+                    </defs>
+
+                    <rect x="20" y="30" width="155" height="90" rx="12" fill="#ffffff" stroke="#8e44ad" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--purple, #8e44ad);"></rect>
+                    <text x="97" y="63" text-anchor="middle" fill="#8e44ad" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--purple, #8e44ad);">自分の Gmail</text>
+                    <text x="97" y="91" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--text, #251f33);">送信元は自分</text>
+
+                    <line x1="175" y1="75" x2="211" y2="75" stroke="#8e44ad" stroke-width="3" marker-end="url(#arrow-beg-step2-purple)" style="stroke: var(--purple, #8e44ad);"></line>
+                    <rect x="215" y="30" width="190" height="90" rx="12" fill="#e1efe6" stroke="#188038" stroke-width="3" style="fill: var(--bg-light, #e1efe6); stroke: var(--primary, #188038);"></rect>
+                    <text x="310" y="64" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">MailApp.sendEmail</text>
+                    <text x="310" y="91" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">コードから呼ぶ</text>
+
+                    <line x1="405" y1="75" x2="441" y2="75" stroke="#e8710a" stroke-width="3" marker-end="url(#arrow-beg-step2-orange)" style="stroke: var(--orange, #e8710a);"></line>
+                    <rect x="445" y="30" width="190" height="90" rx="12" fill="#ffffff" stroke="#e8710a" stroke-width="2" stroke-dasharray="7 5" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="540" y="61" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">初回だけ</text>
+                    <text x="540" y="86" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">権限を確認・承認</text>
+                    <text x="540" y="107" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="12" style="fill: var(--muted, #645a73);">Gmail 送信の許可</text>
+
+                    <line x1="635" y1="75" x2="671" y2="75" stroke="#188038" stroke-width="3" marker-end="url(#arrow-beg-step2-green)" style="stroke: var(--primary, #188038);"></line>
+                    <rect x="675" y="30" width="205" height="90" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="777" y="63" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">自分宛てに届く</text>
+                    <text x="777" y="91" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--text, #251f33);">受信トレイで確認</text>
+
+                    <rect x="20" y="165" width="370" height="205" rx="12" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="205" y="195" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">MailApp.sendEmail({ ... })</text>
+                    <rect x="42" y="212" width="326" height="40" rx="7" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5" style="fill: #e8f0fe; stroke: var(--blue, #1a73e8);"></rect>
+                    <text x="60" y="237" text-anchor="start" fill="#1a73e8" font-family="'Courier New', monospace" font-size="13" font-weight="700" style="fill: var(--blue, #1a73e8);">to: recipientEmail</text>
+                    <rect x="42" y="263" width="326" height="40" rx="7" fill="#fff4e5" stroke="#e8710a" stroke-width="1.5" style="fill: #fff4e5; stroke: var(--orange, #e8710a);"></rect>
+                    <text x="60" y="288" text-anchor="start" fill="#e8710a" font-family="'Courier New', monospace" font-size="13" font-weight="700" style="fill: var(--orange, #e8710a);">subject: 'テストメール'</text>
+                    <rect x="42" y="314" width="326" height="40" rx="7" fill="#ece6f7" stroke="#8e44ad" stroke-width="1.5" style="fill: #ece6f7; stroke: var(--purple, #8e44ad);"></rect>
+                    <text x="60" y="339" text-anchor="start" fill="#8e44ad" font-family="'Courier New', monospace" font-size="13" font-weight="700" style="fill: var(--purple, #8e44ad);">htmlBody: 'これはテストメールです。'</text>
+
+                    <line x1="390" y1="232" x2="546" y2="232" stroke="#1a73e8" stroke-width="3" marker-end="url(#arrow-beg-step2-blue)" style="stroke: var(--blue, #1a73e8);"></line>
+                    <line x1="390" y1="283" x2="546" y2="283" stroke="#e8710a" stroke-width="3" marker-end="url(#arrow-beg-step2-orange)" style="stroke: var(--orange, #e8710a);"></line>
+                    <line x1="390" y1="334" x2="546" y2="334" stroke="#8e44ad" stroke-width="3" marker-end="url(#arrow-beg-step2-purple)" style="stroke: var(--purple, #8e44ad);"></line>
+
+                    <rect x="550" y="165" width="330" height="205" rx="12" fill="#ffffff" stroke="#645a73" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--muted, #645a73);"></rect>
+                    <rect x="550" y="165" width="330" height="38" rx="12" fill="#e1efe6" style="fill: var(--bg-light, #e1efe6);"></rect>
+                    <text x="715" y="190" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">届いたメール</text>
+                    <text x="575" y="237" text-anchor="start" fill="#1a73e8" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--blue, #1a73e8);">宛先：自分のアドレス</text>
+                    <line x1="570" y1="252" x2="860" y2="252" stroke="#e1efe6" stroke-width="1.5" style="stroke: var(--bg-light, #e1efe6);"></line>
+                    <text x="575" y="288" text-anchor="start" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--orange, #e8710a);">件名：テストメール</text>
+                    <line x1="570" y1="303" x2="860" y2="303" stroke="#e1efe6" stroke-width="1.5" style="stroke: var(--bg-light, #e1efe6);"></line>
+                    <text x="575" y="339" text-anchor="start" fill="#8e44ad" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--purple, #8e44ad);">本文：これはテストメールです。</text>
+
+                    <text x="450" y="398" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">3 つの引数が、そのままメールの宛先・件名・本文になる</text>
+                </svg>
+            </div>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 10px;">🎬 Step 2 解説動画（3章）</div>
+                <div style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 8px; overflow: hidden;">
+                    <iframe src="https://www.youtube-nocookie.com/embed/ZI6RCDsOk4o"
+                        title="Step 2: Gmail 送信テスト（解説動画 3章）"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
             <p>メールを送る部分が正しく動くか確認するために、テストメールを 1 通送ってみましょう。</p>
 
             <h3>2-1. テスト用のコードを追加する</h3>
@@ -910,7 +1089,7 @@ function sendEMail() {
 
             <div class="callout callout-tip">
                 🎬 <strong>Step 2 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
-                <a href="https://youtu.be/ZI6RCDsOk4o" target="_blank" rel="noopener">https://youtu.be/ZI6RCDsOk4o</a>
+                <a href="https://www.youtube.com/watch?v=ZI6RCDsOk4o" target="_blank" rel="noopener">https://www.youtube.com/watch?v=ZI6RCDsOk4o</a>
             </div>
 
             <div class="nav-btns">
@@ -923,6 +1102,89 @@ function sendEMail() {
         <section class="section" id="step3">
             <span class="badge badge-time">⏱ 約 20 分</span>
             <h2>Step 3: タスク通知スクリプトの作成</h2>
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">🔎 シート全体から今日のタスクだけを取り出す</div>
+                <svg viewBox="0 0 900 410" style="max-width:100%; height:auto;" role="img">
+                    <title>スプレッドシート全体を getValues で二次元配列にし、shift で見出しを除き、filter で B 列の日付が今日の行だけに絞り、残ったタスクごとに一通ずつメールを送る流れ</title>
+                    <defs>
+                        <marker id="arrow-beg-step3-green" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#188038" style="fill: var(--primary, #188038);"></path></marker>
+                        <marker id="arrow-beg-step3-purple" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#8e44ad" style="fill: var(--purple, #8e44ad);"></path></marker>
+                        <marker id="arrow-beg-step3-orange" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#e8710a" style="fill: var(--orange, #e8710a);"></path></marker>
+                    </defs>
+
+                    <rect x="15" y="35" width="145" height="210" rx="12" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="87" y="63" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">シート全体</text>
+                    <rect x="30" y="79" width="115" height="34" rx="5" fill="#e1efe6" style="fill: var(--bg-light, #e1efe6);"></rect>
+                    <text x="87" y="101" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="700" style="fill: var(--primary, #188038);">タスク｜実施日</text>
+                    <rect x="30" y="119" width="115" height="32" rx="5" fill="#ffffff" stroke="#e1efe6" stroke-width="1.5" style="fill: var(--bg-mid, #ffffff); stroke: var(--bg-light, #e1efe6);"></rect>
+                    <text x="87" y="140" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="11" style="fill: var(--text, #251f33);">資料｜今日</text>
+                    <rect x="30" y="157" width="115" height="32" rx="5" fill="#ffffff" stroke="#e1efe6" stroke-width="1.5" style="fill: var(--bg-mid, #ffffff); stroke: var(--bg-light, #e1efe6);"></rect>
+                    <text x="87" y="178" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="11" style="fill: var(--text, #251f33);">返信｜明日</text>
+                    <rect x="30" y="195" width="115" height="32" rx="5" fill="#ffffff" stroke="#e1efe6" stroke-width="1.5" style="fill: var(--bg-mid, #ffffff); stroke: var(--bg-light, #e1efe6);"></rect>
+                    <text x="87" y="216" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="11" style="fill: var(--text, #251f33);">会議｜今日</text>
+
+                    <line x1="160" y1="140" x2="191" y2="140" stroke="#188038" stroke-width="3" marker-end="url(#arrow-beg-step3-green)" style="stroke: var(--primary, #188038);"></line>
+                    <rect x="195" y="35" width="225" height="210" rx="12" fill="#e1efe6" stroke="#188038" stroke-width="2" style="fill: var(--bg-light, #e1efe6); stroke: var(--primary, #188038);"></rect>
+                    <text x="307" y="63" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">getDataRange().getValues()</text>
+                    <text x="307" y="87" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="12" style="fill: var(--muted, #645a73);">二次元配列になる</text>
+                    <text x="218" y="120" text-anchor="start" fill="#251f33" font-family="'Courier New', monospace" font-size="12" style="fill: var(--text, #251f33);">[</text>
+                    <text x="230" y="143" text-anchor="start" fill="#188038" font-family="'Courier New', monospace" font-size="12" font-weight="700" style="fill: var(--primary, #188038);">['タスク','実施日'],</text>
+                    <text x="230" y="166" text-anchor="start" fill="#251f33" font-family="'Courier New', monospace" font-size="12" style="fill: var(--text, #251f33);">['資料','今日'],</text>
+                    <text x="230" y="189" text-anchor="start" fill="#251f33" font-family="'Courier New', monospace" font-size="12" style="fill: var(--text, #251f33);">['返信','明日'],</text>
+                    <text x="230" y="212" text-anchor="start" fill="#251f33" font-family="'Courier New', monospace" font-size="12" style="fill: var(--text, #251f33);">['会議','今日']</text>
+                    <text x="218" y="233" text-anchor="start" fill="#251f33" font-family="'Courier New', monospace" font-size="12" style="fill: var(--text, #251f33);">]</text>
+
+                    <line x1="420" y1="140" x2="451" y2="140" stroke="#8e44ad" stroke-width="3" marker-end="url(#arrow-beg-step3-purple)" style="stroke: var(--purple, #8e44ad);"></line>
+                    <rect x="455" y="62" width="130" height="156" rx="12" fill="#ffffff" stroke="#8e44ad" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--purple, #8e44ad);"></rect>
+                    <text x="520" y="98" text-anchor="middle" fill="#8e44ad" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--purple, #8e44ad);">data.shift()</text>
+                    <text x="520" y="129" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--text, #251f33);">1 行目を</text>
+                    <text x="520" y="153" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--text, #251f33);">取り除く</text>
+                    <text x="520" y="188" text-anchor="middle" fill="#8e44ad" font-family="'Segoe UI', sans-serif" font-size="12" style="fill: var(--purple, #8e44ad);">見出しは不要</text>
+
+                    <line x1="585" y1="140" x2="616" y2="140" stroke="#e8710a" stroke-width="3" marker-end="url(#arrow-beg-step3-orange)" style="stroke: var(--orange, #e8710a);"></line>
+                    <rect x="620" y="62" width="130" height="156" rx="12" fill="#ffffff" stroke="#e8710a" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="685" y="98" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--orange, #e8710a);">filter</text>
+                    <text x="685" y="128" text-anchor="middle" fill="#251f33" font-family="'Courier New', monospace" font-size="13" font-weight="700" style="fill: var(--text, #251f33);">row[1]</text>
+                    <text x="685" y="153" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--text, #251f33);">B 列の日付</text>
+                    <text x="685" y="181" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--orange, #e8710a);">今日だけ通す</text>
+
+                    <line x1="750" y1="140" x2="781" y2="140" stroke="#188038" stroke-width="3" marker-end="url(#arrow-beg-step3-green)" style="stroke: var(--primary, #188038);"></line>
+                    <rect x="785" y="62" width="100" height="156" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="835" y="94" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">残る</text>
+                    <rect x="800" y="112" width="70" height="34" rx="7" fill="#e1efe6" style="fill: var(--bg-light, #e1efe6);"></rect>
+                    <text x="835" y="134" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="12" style="fill: var(--text, #251f33);">資料</text>
+                    <rect x="800" y="158" width="70" height="34" rx="7" fill="#e1efe6" style="fill: var(--bg-light, #e1efe6);"></rect>
+                    <text x="835" y="180" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="12" style="fill: var(--text, #251f33);">会議</text>
+
+                    <rect x="100" y="290" width="220" height="78" rx="12" fill="#e1efe6" stroke="#8e44ad" stroke-width="2" style="fill: var(--bg-light, #e1efe6); stroke: var(--purple, #8e44ad);"></rect>
+                    <text x="210" y="320" text-anchor="middle" fill="#8e44ad" font-family="'Courier New', monospace" font-size="14" font-weight="700" style="fill: var(--purple, #8e44ad);">tasksToday.forEach</text>
+                    <text x="210" y="348" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--text, #251f33);">残ったタスクごとに</text>
+
+                    <line x1="320" y1="329" x2="376" y2="329" stroke="#8e44ad" stroke-width="3" marker-end="url(#arrow-beg-step3-purple)" style="stroke: var(--purple, #8e44ad);"></line>
+                    <rect x="380" y="290" width="220" height="78" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="490" y="320" text-anchor="middle" fill="#188038" font-family="'Courier New', monospace" font-size="14" font-weight="700" style="fill: var(--primary, #188038);">MailApp.sendEmail</text>
+                    <text x="490" y="348" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--text, #251f33);">その場で 1 回呼ぶ</text>
+
+                    <line x1="600" y1="329" x2="656" y2="329" stroke="#188038" stroke-width="3" marker-end="url(#arrow-beg-step3-green)" style="stroke: var(--primary, #188038);"></line>
+                    <rect x="660" y="290" width="175" height="78" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="747" y="320" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--primary, #188038);">✉ 1 件 1 通</text>
+                    <text x="747" y="348" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">この時点の仕様</text>
+
+                    <text x="450" y="398" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">表 → 二次元配列 → 見出しを除外 → 今日の日付で絞り込み → 1 件ずつ送信</text>
+                </svg>
+            </div>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 10px;">🎬 Step 3 解説動画（4章）</div>
+                <div style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 8px; overflow: hidden;">
+                    <iframe src="https://www.youtube-nocookie.com/embed/17ci6yQjaBg"
+                        title="Step 3: タスク通知スクリプトの作成（解説動画 4章）"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
             <p>いよいよ本題です。<strong>スプレッドシートから今日のタスクを読み取り、メールで通知する</strong>処理を、順番に組み立てていきます。今回は <code>myFunction</code> を書き換えていきます。</p>
 
             <h3>3-1. 今日のタスクを読み込んで抽出する</h3>
@@ -1090,7 +1352,7 @@ function sendEMail() {
 
             <div class="callout callout-tip">
                 🎬 <strong>Step 3 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
-                <a href="https://youtu.be/17ci6yQjaBg" target="_blank" rel="noopener">https://youtu.be/17ci6yQjaBg</a>
+                <a href="https://www.youtube.com/watch?v=17ci6yQjaBg" target="_blank" rel="noopener">https://www.youtube.com/watch?v=17ci6yQjaBg</a>
             </div>
 
             <div class="nav-btns">
@@ -1103,6 +1365,78 @@ function sendEMail() {
         <section class="section" id="step4">
             <span class="badge badge-time">⏱ 約 10 分</span>
             <h2>Step 4: GAS トリガーで自動化する</h2>
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">⏰ 「実行」を押す人が、自分からトリガーに変わる</div>
+                <svg viewBox="0 0 900 360" style="max-width:100%; height:auto;" role="img">
+                    <title>自分が Apps Script エディタを開いて実行を押す手動実行と、時間主導型トリガーが毎朝 7 時に myFunction を呼ぶ自動実行の対比</title>
+                    <defs>
+                        <marker id="arrow-beg-step4-green" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#188038" style="fill: var(--primary, #188038);"></path></marker>
+                        <marker id="arrow-beg-step4-orange" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#e8710a" style="fill: var(--orange, #e8710a);"></path></marker>
+                    </defs>
+
+                    <rect x="15" y="25" width="410" height="285" rx="14" fill="#ffffff" stroke="#e8710a" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="220" y="57" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--orange, #e8710a);">いま：自分が呼ぶ</text>
+
+                    <rect x="35" y="82" width="105" height="100" rx="12" fill="#fff4e5" stroke="#e8710a" stroke-width="2" style="fill: #fff4e5; stroke: var(--orange, #e8710a);"></rect>
+                    <text x="87" y="119" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="24" style="fill: var(--text, #251f33);">👤</text>
+                    <text x="87" y="153" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--orange, #e8710a);">自分</text>
+
+                    <line x1="140" y1="132" x2="166" y2="132" stroke="#e8710a" stroke-width="3" marker-end="url(#arrow-beg-step4-orange)" style="stroke: var(--orange, #e8710a);"></line>
+                    <rect x="170" y="82" width="130" height="100" rx="12" fill="#ffffff" stroke="#e8710a" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="235" y="112" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--text, #251f33);">エディタを開く</text>
+                    <rect x="190" y="130" width="90" height="32" rx="16" fill="#e8710a" style="fill: var(--orange, #e8710a);"></rect>
+                    <text x="235" y="151" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700">▶ 実行</text>
+
+                    <line x1="300" y1="132" x2="326" y2="132" stroke="#e8710a" stroke-width="3" marker-end="url(#arrow-beg-step4-orange)" style="stroke: var(--orange, #e8710a);"></line>
+                    <rect x="330" y="82" width="75" height="100" rx="12" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="367" y="119" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--primary, #188038);">my</text>
+                    <text x="367" y="141" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--primary, #188038);">Function</text>
+                    <text x="367" y="164" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="11" style="fill: var(--muted, #645a73);">その時だけ</text>
+
+                    <rect x="55" y="220" width="330" height="58" rx="10" fill="#ffffff" stroke="#e8710a" stroke-width="1.5" stroke-dasharray="6 5" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="220" y="244" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--orange, #e8710a);">画面を開いて、毎回ボタンを押す</text>
+                    <text x="220" y="265" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="12" style="fill: var(--muted, #645a73);">押さない日は動かない</text>
+
+                    <line x1="450" y1="25" x2="450" y2="310" stroke="#645a73" stroke-width="1.5" stroke-dasharray="7 6" style="stroke: var(--muted, #645a73);"></line>
+
+                    <rect x="475" y="25" width="410" height="285" rx="14" fill="#e1efe6" stroke="#188038" stroke-width="3" style="fill: var(--bg-light, #e1efe6); stroke: var(--primary, #188038);"></rect>
+                    <text x="680" y="57" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--primary, #188038);">設定後：トリガーが呼ぶ</text>
+
+                    <rect x="495" y="82" width="125" height="100" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="557" y="113" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="24" style="fill: var(--primary, #188038);">⏰</text>
+                    <text x="557" y="143" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--primary, #188038);">時間主導型</text>
+                    <text x="557" y="164" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="700" style="fill: var(--text, #251f33);">毎朝 7 時</text>
+
+                    <line x1="620" y1="132" x2="651" y2="132" stroke="#188038" stroke-width="3" marker-end="url(#arrow-beg-step4-green)" style="stroke: var(--primary, #188038);"></line>
+                    <rect x="655" y="82" width="105" height="100" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="707" y="119" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--primary, #188038);">myFunction</text>
+                    <text x="707" y="146" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="12" style="fill: var(--muted, #645a73);">自動実行</text>
+
+                    <line x1="760" y1="132" x2="786" y2="132" stroke="#188038" stroke-width="3" marker-end="url(#arrow-beg-step4-green)" style="stroke: var(--primary, #188038);"></line>
+                    <rect x="790" y="82" width="75" height="100" rx="12" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="827" y="121" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="23" style="fill: var(--primary, #188038);">✉</text>
+                    <text x="827" y="151" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="700" style="fill: var(--text, #251f33);">通知</text>
+
+                    <rect x="515" y="220" width="330" height="58" rx="10" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="680" y="244" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--primary, #188038);">自分は何もしなくてよい</text>
+                    <text x="680" y="265" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="12" style="fill: var(--muted, #645a73);">エディタも画面も開いていなくて OK</text>
+
+                    <rect x="175" y="325" width="550" height="30" rx="15" fill="#ffffff" stroke="#188038" stroke-width="1.5" style="fill: var(--bg-mid, #ffffff); stroke: var(--primary, #188038);"></rect>
+                    <text x="450" y="346" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--primary, #188038);">変わるのはコードではなく「myFunction を呼ぶ人」</text>
+                </svg>
+            </div>
+
+            <div class="card" style="background: var(--bg-mid);">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 10px;">🎬 Step 4 解説動画（5章）</div>
+                <div style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 8px; overflow: hidden;">
+                    <iframe src="https://www.youtube-nocookie.com/embed/MgiqigZFCS0"
+                        title="Step 4: GAS トリガーで自動化する（解説動画 5章）"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
             <p>最後に、作った <code>myFunction()</code> を<strong>毎日決まった時間に自動実行</strong>させましょう。これを実現するのが <strong>GAS トリガー</strong>です。</p>
 
             <h3>4-1. GAS トリガーとは</h3>
@@ -1137,7 +1471,7 @@ function sendEMail() {
 
             <div class="callout callout-tip">
                 🎬 <strong>Step 4 解説動画</strong>（字幕を ON にしてご視聴ください）<br>
-                <a href="https://youtu.be/MgiqigZFCS0" target="_blank" rel="noopener">https://youtu.be/MgiqigZFCS0</a>
+                <a href="https://www.youtube.com/watch?v=MgiqigZFCS0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=MgiqigZFCS0</a>
             </div>
 
             <div class="card" style="background: var(--bg-mid); border-color: var(--purple);">
