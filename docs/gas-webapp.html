@@ -551,6 +551,48 @@
 
             <p>GAS の Web アプリには、覚えることがひとつだけあります。<code>doGet</code> という名前の関数です。<strong>その URL がブラウザで開かれたとき、GAS はこの関数を探して実行します。</strong>名前が決まっているので、別の名前では動きません。</p>
 
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">🌐 URL を開いてから画面が出るまで</div>
+                <svg viewBox="0 0 900 245" style="max-width:100%; height:auto;" role="img">
+                    <title>ブラウザで URL を開くと GAS が doGet 関数を探して実行し、HtmlService の結果が画面に表示される流れ</title>
+                    <defs>
+                        <marker id="arrow-step1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#7c3aed" style="fill: var(--primary, #7c3aed);"></path>
+                        </marker>
+                    </defs>
+
+                    <rect x="20" y="55" width="130" height="82" rx="12" fill="#ece6f7" stroke="#7c3aed" stroke-width="2" style="fill: var(--bg-light, #ece6f7); stroke: var(--primary, #7c3aed);"></rect>
+                    <text x="85" y="90" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">ブラウザ</text>
+                    <text x="85" y="115" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">画面を開く</text>
+
+                    <line x1="150" y1="96" x2="186" y2="96" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step1)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="190" y="55" width="140" height="82" rx="12" fill="#ffffff" stroke="#1a73e8" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--blue, #1a73e8);"></rect>
+                    <text x="260" y="90" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">URL を開く</text>
+                    <text x="260" y="115" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">GET リクエスト</text>
+
+                    <line x1="330" y1="96" x2="366" y2="96" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step1)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="370" y="45" width="180" height="102" rx="12" fill="#7c3aed" stroke="#7c3aed" stroke-width="2" style="fill: var(--primary, #7c3aed); stroke: var(--primary, #7c3aed);"></rect>
+                    <text x="460" y="79" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--bg-mid, #ffffff);">GAS が探す</text>
+                    <text x="460" y="105" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--bg-mid, #ffffff);">doGet()</text>
+                    <text x="460" y="130" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--bg-mid, #ffffff);">見つけて実行</text>
+
+                    <line x1="550" y1="96" x2="586" y2="96" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step1)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="590" y="55" width="150" height="82" rx="12" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--green, #188038);"></rect>
+                    <text x="665" y="90" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">HtmlService</text>
+                    <text x="665" y="115" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--green, #188038);">HTML を返す</text>
+
+                    <line x1="740" y1="96" x2="776" y2="96" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step1)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="780" y="55" width="100" height="82" rx="12" fill="#ece6f7" stroke="#7c3aed" stroke-width="2" style="fill: var(--bg-light, #ece6f7); stroke: var(--primary, #7c3aed);"></rect>
+                    <text x="830" y="90" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">画面</text>
+                    <text x="830" y="115" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">表示される</text>
+
+                    <line x1="460" y1="147" x2="460" y2="166" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow-step1)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="315" y="170" width="290" height="58" rx="10" fill="#ffffff" stroke="#e8710a" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="460" y="193" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--green, #188038);">✓ 関数名は doGet 固定</text>
+                    <text x="460" y="216" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--orange, #e8710a);">✕ showPage() などは呼ばれない</text>
+                </svg>
+            </div>
+
             <div class="prompt-card">
                 <div class="prompt-title">
                     <span>🤖 Gemini にこう聞く</span>
@@ -604,6 +646,38 @@ function doGet() {
             <h2>Step 2: 見た目を HTML のファイルに分ける</h2>
             <p>Step 1 では、表示する文字をスクリプトの中に直接書きました。ですが画面を作り込んでいくと、この書き方はすぐ苦しくなります。<strong>見出しや入力欄やボタンを、全部スクリプトの文字列の中に詰め込むこと</strong>になるからです。</p>
             <p>そこで、<strong>見た目は見た目で別のファイルに分けます。</strong> GAS のスクリプト（<code>.gs</code>）と、画面（<code>.html</code>）を別々に置いて、スクリプトから呼び出す形にします。</p>
+
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">🗂️ コードと見た目を分けてつなぐ</div>
+                <svg viewBox="0 0 900 260" style="max-width:100%; height:auto;" role="img">
+                    <title>コード.gs と index.html を別ファイルにし、createTemplateFromFile index で結び付ける関係</title>
+                    <defs>
+                        <marker id="arrow-step2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#7c3aed" style="fill: var(--primary, #7c3aed);"></path>
+                        </marker>
+                    </defs>
+
+                    <rect x="35" y="35" width="300" height="115" rx="14" fill="#ece6f7" stroke="#7c3aed" stroke-width="2" style="fill: var(--bg-light, #ece6f7); stroke: var(--primary, #7c3aed);"></rect>
+                    <rect x="35" y="35" width="300" height="34" rx="14" fill="#7c3aed" style="fill: var(--primary, #7c3aed);"></rect>
+                    <rect x="35" y="55" width="300" height="14" fill="#7c3aed" style="fill: var(--primary, #7c3aed);"></rect>
+                    <text x="185" y="58" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--bg-mid, #ffffff);">コード.gs</text>
+                    <text x="185" y="98" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">function doGet() { ... }</text>
+                    <text x="185" y="125" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">処理・データを担当</text>
+
+                    <rect x="565" y="35" width="300" height="115" rx="14" fill="#ffffff" stroke="#1a73e8" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--blue, #1a73e8);"></rect>
+                    <rect x="565" y="35" width="300" height="34" rx="14" fill="#1a73e8" style="fill: var(--blue, #1a73e8);"></rect>
+                    <rect x="565" y="55" width="300" height="14" fill="#1a73e8" style="fill: var(--blue, #1a73e8);"></rect>
+                    <text x="715" y="58" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--bg-mid, #ffffff);">index.html</text>
+                    <text x="715" y="98" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">&lt;h1&gt;今日のタスク&lt;/h1&gt;</text>
+                    <text x="715" y="125" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">画面の見た目を担当</text>
+
+                    <path d="M185 150 L185 186 L276 186" fill="none" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step2)" style="stroke: var(--primary, #7c3aed);"></path>
+                    <rect x="280" y="162" width="340" height="74" rx="12" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--green, #188038);"></rect>
+                    <text x="450" y="190" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--green, #188038);">doGet() から呼び出す</text>
+                    <text x="450" y="216" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">createTemplateFromFile('index')</text>
+                    <path d="M620 199 L715 199 L715 154" fill="none" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step2)" style="stroke: var(--primary, #7c3aed);"></path>
+                </svg>
+            </div>
 
             <div class="prompt-card">
                 <div class="prompt-title">
@@ -668,6 +742,51 @@ function doGet() {
             <h2>Step 3: スプレッドシートの中身を画面に出す</h2>
             <p>ここでようやく、<strong>これまで作ってきたタスク管理と合流します。</strong> スプレッドシートに入っているタスクを、画面に一覧で表示します。</p>
             <p>やり方はいくつかありますが、まずは<strong>一番わかりやすい形</strong>から入ります。スクリプトの側でタスクを読んで、HTML を組み立ててから返す、という順番です。</p>
+
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">📄 シートのデータが画面になるまで</div>
+                <svg viewBox="0 0 900 250" style="max-width:100%; height:auto;" role="img">
+                    <title>スプレッドシートをコード.gs が読み、HTML を組み立て、taskListHtml をテンプレートへ埋め込んで画面に表示する流れ</title>
+                    <defs>
+                        <marker id="arrow-step3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#7c3aed" style="fill: var(--primary, #7c3aed);"></path>
+                        </marker>
+                    </defs>
+
+                    <rect x="20" y="55" width="135" height="100" rx="12" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--green, #188038);"></rect>
+                    <text x="87" y="87" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--green, #188038);">スプレッド</text>
+                    <text x="87" y="110" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--green, #188038);">シート</text>
+                    <text x="87" y="137" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">タスクの行</text>
+
+                    <line x1="155" y1="105" x2="186" y2="105" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step3)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="190" y="55" width="140" height="100" rx="12" fill="#ece6f7" stroke="#7c3aed" stroke-width="2" style="fill: var(--bg-light, #ece6f7); stroke: var(--primary, #7c3aed);"></rect>
+                    <text x="260" y="89" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">コード.gs</text>
+                    <text x="260" y="114" text-anchor="middle" fill="#7c3aed" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--primary, #7c3aed);">データを読む</text>
+                    <text x="260" y="137" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">getValues()</text>
+
+                    <line x1="330" y1="105" x2="361" y2="105" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step3)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="365" y="55" width="145" height="100" rx="12" fill="#ffffff" stroke="#1a73e8" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--blue, #1a73e8);"></rect>
+                    <text x="437" y="89" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">HTML を組立</text>
+                    <text x="437" y="114" text-anchor="middle" fill="#1a73e8" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--blue, #1a73e8);">&lt;li&gt;...&lt;/li&gt;</text>
+                    <text x="437" y="137" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">文字列にする</text>
+
+                    <line x1="510" y1="105" x2="541" y2="105" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step3)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="545" y="45" width="205" height="120" rx="12" fill="#ece6f7" stroke="#7c3aed" stroke-width="3" style="fill: var(--bg-light, #ece6f7); stroke: var(--primary, #7c3aed);"></rect>
+                    <text x="647" y="77" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">index.html</text>
+                    <text x="647" y="103" text-anchor="middle" fill="#7c3aed" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #7c3aed);">&lt;?!= taskListHtml ?&gt;</text>
+                    <text x="647" y="129" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">ここへ埋め込む</text>
+                    <text x="647" y="151" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">テンプレート</text>
+
+                    <line x1="750" y1="105" x2="781" y2="105" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step3)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="785" y="55" width="95" height="100" rx="12" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--green, #188038);"></rect>
+                    <text x="832" y="96" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">画面</text>
+                    <text x="832" y="122" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--green, #188038);">一覧表示</text>
+
+                    <path d="M437 155 L437 205 L643 205 L643 169" fill="none" stroke="#e8710a" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow-step3)" style="stroke: var(--orange, #e8710a);"></path>
+                    <rect x="458" y="188" width="164" height="34" rx="8" fill="#ffffff" stroke="#e8710a" stroke-width="1.5" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="540" y="210" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--orange, #e8710a);">taskListHtml を渡す</text>
+                </svg>
+            </div>
 
             <div class="prompt-card">
                 <div class="prompt-title">
@@ -749,6 +868,60 @@ function buildTaskListHtml() {
             <h2>Step 4: 画面から入力してシートへ書き込む</h2>
             <p>ここが<strong>この編で一番大きい変わり目</strong>です。ここまでは「見るだけ」でしたが、画面から入力できるようにすると、<strong>スプレッドシートを開かなくてもタスクを足せる</strong>ようになります。</p>
             <p>新しく出てくるのは <code>google.script.run</code> というひとつの書き方だけです。<strong>画面の側から、GAS の関数を名指しで呼ぶ</strong>ための仕組みです。</p>
+
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">🔄 ブラウザと GAS の非同期の往復</div>
+                <svg viewBox="0 0 900 380" style="max-width:100%; height:auto;" role="img">
+                    <title>ブラウザの JavaScript から google.script.run で GAS の addTask を呼び、シートへ追記した結果が非同期で成功または失敗のハンドラーへ戻る流れ</title>
+                    <defs>
+                        <marker id="arrow-step4" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#7c3aed" style="fill: var(--primary, #7c3aed);"></path>
+                        </marker>
+                    </defs>
+
+                    <text x="24" y="24" text-anchor="start" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--muted, #645a73);">① 呼び出しは先へ進む</text>
+                    <rect x="25" y="42" width="150" height="108" rx="12" fill="#ece6f7" stroke="#7c3aed" stroke-width="2" style="fill: var(--bg-light, #ece6f7); stroke: var(--primary, #7c3aed);"></rect>
+                    <text x="100" y="78" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">ブラウザ側 JS</text>
+                    <text x="100" y="105" text-anchor="middle" fill="#7c3aed" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--primary, #7c3aed);">send()</text>
+                    <text x="100" y="130" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">ボタンを押す</text>
+
+                    <line x1="175" y1="96" x2="216" y2="96" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step4)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="220" y="42" width="180" height="108" rx="12" fill="#ffffff" stroke="#1a73e8" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--blue, #1a73e8);"></rect>
+                    <text x="310" y="79" text-anchor="middle" fill="#1a73e8" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--blue, #1a73e8);">google.script.run</text>
+                    <text x="310" y="106" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--text, #251f33);">GAS 関数を呼ぶ</text>
+                    <text x="310" y="131" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--orange, #e8710a);">待たずに次へ</text>
+
+                    <line x1="400" y1="96" x2="441" y2="96" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step4)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="445" y="42" width="155" height="108" rx="12" fill="#7c3aed" stroke="#7c3aed" stroke-width="2" style="fill: var(--primary, #7c3aed); stroke: var(--primary, #7c3aed);"></rect>
+                    <text x="522" y="80" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--bg-mid, #ffffff);">GAS</text>
+                    <text x="522" y="107" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--bg-mid, #ffffff);">addTask()</text>
+                    <text x="522" y="132" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--bg-mid, #ffffff);">1 行追加する</text>
+
+                    <line x1="600" y1="96" x2="641" y2="96" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step4)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <rect x="645" y="42" width="225" height="108" rx="12" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--green, #188038);"></rect>
+                    <text x="757" y="79" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--green, #188038);">スプレッドシート</text>
+                    <text x="757" y="106" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--text, #251f33);">appendRow(...)</text>
+                    <text x="757" y="131" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">新しい行を追記</text>
+
+                    <path d="M310 150 L310 177 L164 177 L164 195" fill="none" stroke="#e8710a" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow-step4)" style="stroke: var(--orange, #e8710a);"></path>
+                    <rect x="25" y="199" width="280" height="48" rx="10" fill="#ffffff" stroke="#e8710a" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="165" y="228" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">画面は先に「送信中...」を表示</text>
+
+                    <text x="466" y="190" text-anchor="start" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--muted, #645a73);">② 結果はあとから戻る（非同期）</text>
+                    <path d="M757 150 C757 210 650 224 526 224 L526 249" fill="none" stroke="#7c3aed" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#arrow-step4)" style="stroke: var(--primary, #7c3aed);"></path>
+                    <circle cx="526" cy="263" r="10" fill="#7c3aed" style="fill: var(--primary, #7c3aed);"></circle>
+
+                    <path d="M518 269 C480 292 415 296 373 296" fill="none" stroke="#188038" stroke-width="3" marker-end="url(#arrow-step4)" style="stroke: var(--green, #188038);"></path>
+                    <rect x="60" y="274" width="310" height="82" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--green, #188038);"></rect>
+                    <text x="215" y="307" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--green, #188038);">成功</text>
+                    <text x="215" y="334" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">withSuccessHandler(onSuccess)</text>
+
+                    <path d="M534 269 C572 292 637 296 679 296" fill="none" stroke="#e8710a" stroke-width="3" marker-end="url(#arrow-step4)" style="stroke: var(--orange, #e8710a);"></path>
+                    <rect x="680" y="274" width="190" height="82" rx="12" fill="#ffffff" stroke="#e8710a" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="775" y="307" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">失敗</text>
+                    <text x="775" y="334" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--text, #251f33);">withFailureHandler</text>
+                </svg>
+            </div>
 
             <div class="prompt-card">
                 <div class="prompt-title">
@@ -837,6 +1010,59 @@ function addTask(taskName) {
             <p>画面ができたので、<strong>人に渡せる状態</strong>になりました。ここで必ず決めておかないといけないことがあります。</p>
             <p>デプロイのときに出てくる <strong>2 つの選択肢</strong>です。見落としやすいのですが、<strong>この 2 つの組み合わせで、アプリの性格が変わります。</strong></p>
 
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">🔐 「実行する人」×「開ける人」の 2 軸</div>
+                <svg viewBox="0 0 900 385" style="max-width:100%; height:auto;" role="img">
+                    <title>次のユーザーとして実行とアクセスできるユーザーの組み合わせを示し、自分として実行し全員がアクセスできる設定を強調したマトリクス</title>
+                    <defs>
+                        <marker id="arrow-step5" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#7c3aed" style="fill: var(--primary, #7c3aed);"></path>
+                        </marker>
+                    </defs>
+
+                    <line x1="200" y1="42" x2="862" y2="42" stroke="#1a73e8" stroke-width="3" marker-end="url(#arrow-step5)" style="stroke: var(--blue, #1a73e8);"></line>
+                    <text x="531" y="24" text-anchor="middle" fill="#1a73e8" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--blue, #1a73e8);">アクセスできるユーザー（誰が URL を開けるか）</text>
+
+                    <text x="367" y="75" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">自分のみ</text>
+                    <text x="702" y="75" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">全員</text>
+
+                    <line x1="172" y1="94" x2="172" y2="333" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step5)" style="stroke: var(--primary, #7c3aed);"></line>
+                    <text x="20" y="84" text-anchor="start" fill="#7c3aed" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #7c3aed);">次のユーザーとして実行</text>
+                    <text x="20" y="105" text-anchor="start" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">誰の権限で動くか</text>
+
+                    <rect x="200" y="92" width="335" height="112" rx="10" fill="#ece6f7" stroke="#7c3aed" stroke-width="2" style="fill: var(--bg-light, #ece6f7); stroke: var(--primary, #7c3aed);"></rect>
+                    <text x="367" y="126" text-anchor="middle" fill="#7c3aed" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #7c3aed);">自分専用ツール</text>
+                    <text x="367" y="154" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" style="fill: var(--text, #251f33);">自分の権限で、自分だけが操作</text>
+                    <text x="367" y="181" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">練習・個人利用向け</text>
+
+                    <rect x="535" y="92" width="335" height="112" rx="10" fill="#ffffff" stroke="#e8710a" stroke-width="5" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <rect x="547" y="102" width="136" height="30" rx="15" fill="#e8710a" style="fill: var(--orange, #e8710a);"></rect>
+                    <text x="615" y="122" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--bg-mid, #ffffff);">⚠ 強い設定</text>
+                    <text x="702" y="154" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">全員があなたの権限で操作</text>
+                    <text x="702" y="181" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--text, #251f33);">URL を知る人への影響が大きい</text>
+
+                    <rect x="200" y="204" width="335" height="112" rx="10" fill="#ffffff" stroke="#1a73e8" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--blue, #1a73e8);"></rect>
+                    <text x="367" y="240" text-anchor="middle" fill="#1a73e8" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--blue, #1a73e8);">本人だけ</text>
+                    <text x="367" y="268" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" style="fill: var(--text, #251f33);">アクセスした本人の権限で動く</text>
+                    <text x="367" y="295" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">この組み合わせでは実質自分用</text>
+
+                    <rect x="535" y="204" width="335" height="112" rx="10" fill="#ffffff" stroke="#188038" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--green, #188038);"></rect>
+                    <text x="702" y="240" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--green, #188038);">利用者ごとの権限</text>
+                    <text x="702" y="268" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" style="fill: var(--text, #251f33);">各自の権限でシートを操作</text>
+                    <text x="702" y="295" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">利用者ごとに承認・権限が必要</text>
+
+                    <rect x="24" y="126" width="130" height="52" rx="9" fill="#ece6f7" stroke="#7c3aed" stroke-width="2" style="fill: var(--bg-light, #ece6f7); stroke: var(--primary, #7c3aed);"></rect>
+                    <text x="89" y="149" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--text, #251f33);">実行 = 自分</text>
+                    <text x="89" y="168" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">あなたの権限</text>
+
+                    <rect x="24" y="235" width="130" height="56" rx="9" fill="#ffffff" stroke="#1a73e8" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--blue, #1a73e8);"></rect>
+                    <text x="89" y="258" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--text, #251f33);">実行 = 利用者</text>
+                    <text x="89" y="280" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">各自の権限</text>
+
+                    <text x="535" y="355" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">同じ URL でも、2 つの設定の組み合わせで権限と公開範囲が変わる</text>
+                </svg>
+            </div>
+
             <div class="card" style="background: var(--bg-mid);">
                 <div style="font-weight:700; color: var(--primary); margin-bottom: 8px;">⚙️ デプロイの 2 つの設定</div>
                 <table style="margin: 0;">
@@ -876,6 +1102,47 @@ function addTask(taskName) {
             <h2>Step 6: 直したものを公開中の URL へ反映する</h2>
             <p>最後に、<strong>ここでほぼ全員が一度つまずく話</strong>をします。</p>
             <p><strong>コードを直して保存しても、公開中の URL は古いままです。</strong> 「直したのに変わらない」「さっきのエラーがまだ出る」——これは壊れているのではなく、<strong>反映の操作をしていないだけ</strong>です。</p>
+
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">🚀 保存とデプロイは別の操作</div>
+                <svg viewBox="0 0 900 350" style="max-width:100%; height:auto;" role="img">
+                    <title>コードを保存しただけでは公開中の URL は古いままで、新バージョンへの更新なら同じ URL、新しいデプロイなら別の URL になる分岐</title>
+                    <defs>
+                        <marker id="arrow-step6" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#7c3aed" style="fill: var(--primary, #7c3aed);"></path>
+                        </marker>
+                    </defs>
+
+                    <rect x="35" y="30" width="235" height="92" rx="12" fill="#ece6f7" stroke="#7c3aed" stroke-width="2" style="fill: var(--bg-light, #ece6f7); stroke: var(--primary, #7c3aed);"></rect>
+                    <text x="152" y="66" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">コードを修正して保存</text>
+                    <text x="152" y="94" text-anchor="middle" fill="#7c3aed" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--primary, #7c3aed);">エディタ上は最新版</text>
+
+                    <path d="M270 76 L606 76" fill="none" stroke="#e8710a" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#arrow-step6)" style="stroke: var(--orange, #e8710a);"></path>
+                    <rect x="326" y="46" width="224" height="28" rx="14" fill="#ffffff" style="fill: var(--bg-mid, #ffffff);"></rect>
+                    <text x="438" y="66" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--orange, #e8710a);">保存だけでは反映されない</text>
+
+                    <rect x="610" y="30" width="255" height="92" rx="12" fill="#ffffff" stroke="#e8710a" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="737" y="66" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">公開中の URL</text>
+                    <text x="737" y="94" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">旧バージョンのまま</text>
+
+                    <path d="M152 122 L152 173 L330 173" fill="none" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step6)" style="stroke: var(--primary, #7c3aed);"></path>
+                    <rect x="334" y="144" width="232" height="58" rx="12" fill="#7c3aed" stroke="#7c3aed" stroke-width="2" style="fill: var(--primary, #7c3aed); stroke: var(--primary, #7c3aed);"></rect>
+                    <text x="450" y="169" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--bg-mid, #ffffff);">反映操作をする</text>
+                    <text x="450" y="190" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--bg-mid, #ffffff);">方法を選ぶ</text>
+
+                    <path d="M430 202 C400 224 330 226 252 238" fill="none" stroke="#188038" stroke-width="3" marker-end="url(#arrow-step6)" style="stroke: var(--green, #188038);"></path>
+                    <rect x="35" y="242" width="365" height="88" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--green, #188038);"></rect>
+                    <text x="217" y="271" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--green, #188038);">新バージョンで更新</text>
+                    <text x="217" y="299" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" style="fill: var(--text, #251f33);">公開内容だけを最新版へ</text>
+                    <text x="217" y="320" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--green, #188038);">✓ 同じ URL のまま</text>
+
+                    <path d="M470 202 C500 224 570 226 648 238" fill="none" stroke="#e8710a" stroke-width="3" marker-end="url(#arrow-step6)" style="stroke: var(--orange, #e8710a);"></path>
+                    <rect x="500" y="242" width="365" height="88" rx="12" fill="#ffffff" stroke="#e8710a" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="682" y="271" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">新しいデプロイ</text>
+                    <text x="682" y="299" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" style="fill: var(--text, #251f33);">別の公開先を新しく作る</text>
+                    <text x="682" y="320" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--orange, #e8710a);">⚠ 別の URL ができる</text>
+                </svg>
+            </div>
 
             <h3 class="preparation-heading">📋 反映のしかた</h3>
             <ol>
