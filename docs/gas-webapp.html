@@ -604,7 +604,7 @@
             <details class="sample-details">
                 <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
                 <div class="sample-body">
-                    <p>これだけです。新しいスクリプトを作って、中身をこれに置き換えてください。</p>
+                    <p>既存のコードはそのまま残し、いちばん下に次の関数を追加してください。貼り付けたら 💾（保存）を押すか、<kbd>Ctrl</kbd> + <kbd>S</kbd> / <kbd>Cmd</kbd> + <kbd>S</kbd> で保存します。</p>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step1">コピー</button>
                         <pre id="c-step1"><code>// ブラウザでこの URL が開かれたときに呼ばれる関数
@@ -627,11 +627,11 @@ function doGet() {
             </ol>
 
             <div class="callout callout-warn">
-                ⚠️ <strong>「承認されていません」という画面が出たら。</strong> 初めて公開するときは必ず出ます。「詳細」→「（プロジェクト名）に移動」→「許可」と進んでください。<strong>自分が書いたスクリプトに、自分のスプレッドシートを触る許可を出している</strong>だけです。これを通さないと動きません。
+                ⚠️ 初めて公開するときは、「<strong>アクセスを承認</strong>」→ アカウントを選ぶ →「<strong>このアプリは Google で確認されていません</strong>」→ 左下の「<strong>詳細</strong>」→「<strong>（安全ではないページ）に移動</strong>」→「<strong>許可</strong>」の順に進みます。<strong>自分が書いたスクリプトに、自分のスプレッドシートを触る許可を出している</strong>ために必要な操作です。
             </div>
 
             <div class="callout callout-tip">
-                💡 <strong>「こんにちは」が出たら、ここで一度止まってください。</strong> この URL は<strong>あなただけのもの</strong>で、いま世界に 1 つだけ存在しています。ここから先は、この画面の中身を作り込んでいくだけです。
+                💡 ブラウザに「こんにちは」と表示されれば、Web アプリの公開は成功です。Step 2 へ進んでください。
             </div>
 
             <div class="nav-btns">
@@ -644,7 +644,7 @@ function doGet() {
         <section class="section" id="step2">
             <span class="badge badge-time">🎨 見た目を作る</span>
             <h2>Step 2: 見た目を HTML のファイルに分ける</h2>
-            <p>Step 1 では、表示する文字をスクリプトの中に直接書きました。ですが画面を作り込んでいくと、この書き方はすぐ苦しくなります。<strong>見出しや入力欄やボタンを、全部スクリプトの文字列の中に詰め込むこと</strong>になるからです。</p>
+            <p>Step 1 では、表示する文字をスクリプトの中に直接書きました。見出しや入力欄が増えると、スクリプトの中に文字列として HTML を書く形では管理しにくくなります。</p>
             <p>そこで、<strong>見た目は見た目で別のファイルに分けます。</strong> GAS のスクリプト（<code>.gs</code>）と、画面（<code>.html</code>）を別々に置いて、スクリプトから呼び出す形にします。</p>
 
             <div class="card" style="background: var(--bg-mid); text-align: center;">
@@ -740,13 +740,13 @@ function doGet() {
         <section class="section" id="step3">
             <span class="badge badge-time">📄 読み取り</span>
             <h2>Step 3: スプレッドシートの中身を画面に出す</h2>
-            <p>ここでようやく、<strong>これまで作ってきたタスク管理と合流します。</strong> スプレッドシートに入っているタスクを、画面に一覧で表示します。</p>
-            <p>やり方はいくつかありますが、まずは<strong>一番わかりやすい形</strong>から入ります。スクリプトの側でタスクを読んで、HTML を組み立ててから返す、という順番です。</p>
+            <p>スプレッドシートに入っているタスクを読み、画面に一覧で表示します。</p>
+            <p>スクリプト側でタスクを配列として読み、HTML 側で条件分岐とループを使って表示します。</p>
 
             <div class="card" style="background: var(--bg-mid); text-align: center;">
                 <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">📄 シートのデータが画面になるまで</div>
                 <svg viewBox="0 0 900 250" style="max-width:100%; height:auto;" role="img">
-                    <title>スプレッドシートをコード.gs が読み、HTML を組み立て、taskListHtml をテンプレートへ埋め込んで画面に表示する流れ</title>
+                    <title>スプレッドシートをコード.gs が読み、タスクの配列をテンプレートへ渡し、index.html がループして画面に表示する流れ</title>
                     <defs>
                         <marker id="arrow-step3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
                             <path d="M0,0 L0,6 L9,3 z" fill="#7c3aed" style="fill: var(--primary, #7c3aed);"></path>
@@ -766,15 +766,15 @@ function doGet() {
 
                     <line x1="330" y1="105" x2="361" y2="105" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step3)" style="stroke: var(--primary, #7c3aed);"></line>
                     <rect x="365" y="55" width="145" height="100" rx="12" fill="#ffffff" stroke="#1a73e8" stroke-width="2" style="fill: var(--bg-mid, #ffffff); stroke: var(--blue, #1a73e8);"></rect>
-                    <text x="437" y="89" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">HTML を組立</text>
-                    <text x="437" y="114" text-anchor="middle" fill="#1a73e8" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--blue, #1a73e8);">&lt;li&gt;...&lt;/li&gt;</text>
-                    <text x="437" y="137" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">文字列にする</text>
+                    <text x="437" y="89" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">getTasks()</text>
+                    <text x="437" y="114" text-anchor="middle" fill="#1a73e8" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--blue, #1a73e8);">未完了で絞る</text>
+                    <text x="437" y="137" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">配列のまま</text>
 
                     <line x1="510" y1="105" x2="541" y2="105" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step3)" style="stroke: var(--primary, #7c3aed);"></line>
                     <rect x="545" y="45" width="205" height="120" rx="12" fill="#ece6f7" stroke="#7c3aed" stroke-width="3" style="fill: var(--bg-light, #ece6f7); stroke: var(--primary, #7c3aed);"></rect>
                     <text x="647" y="77" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">index.html</text>
-                    <text x="647" y="103" text-anchor="middle" fill="#7c3aed" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #7c3aed);">&lt;?!= taskListHtml ?&gt;</text>
-                    <text x="647" y="129" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">ここへ埋め込む</text>
+                    <text x="647" y="103" text-anchor="middle" fill="#7c3aed" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #7c3aed);">&lt;?= tasks[i][0] ?&gt;</text>
+                    <text x="647" y="129" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">ループで 1 件ずつ</text>
                     <text x="647" y="151" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">テンプレート</text>
 
                     <line x1="750" y1="105" x2="781" y2="105" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-step3)" style="stroke: var(--primary, #7c3aed);"></line>
@@ -784,7 +784,7 @@ function doGet() {
 
                     <path d="M437 155 L437 205 L643 205 L643 169" fill="none" stroke="#e8710a" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow-step3)" style="stroke: var(--orange, #e8710a);"></path>
                     <rect x="458" y="188" width="164" height="34" rx="8" fill="#ffffff" stroke="#e8710a" stroke-width="1.5" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
-                    <text x="540" y="210" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--orange, #e8710a);">taskListHtml を渡す</text>
+                    <text x="540" y="210" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--orange, #e8710a);">tasks（配列）を渡す</text>
                 </svg>
             </div>
 
@@ -799,61 +799,65 @@ function doGet() {
             <details class="sample-details">
                 <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
                 <div class="sample-body">
-                    <p>スクリプト側でタスクを読み、HTML の文字列を組み立てて、テンプレートへ渡します。</p>
+                    <p>スクリプト側でタスクを読み、配列のままテンプレートへ渡します。</p>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step3-gs">コピー</button>
-                        <pre id="c-step3-gs"><code>function doGet() {
+                        <pre id="c-step3-gs"><code>// 自分のシート名に置き換える（初級編で控えたもの。既定は「シート1」）
+const SHEET_NAME = 'シート1';
+
+function doGet() {
   const template = HtmlService.createTemplateFromFile('index');
-
-  // テンプレートへ渡す値は、template. のあとに好きな名前を付けて入れる
-  template.taskListHtml = buildTaskListHtml();
-
+  template.tasks = getTasks();
   return template.evaluate().setTitle('今日のタスク');
 }
 
-// タスク一覧を &lt;li&gt; の並びとして組み立てる
-function buildTaskListHtml() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('タスク');
+// 未完了のタスクだけを配列で返す
+function getTasks() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
   const rows = sheet.getDataRange().getValues();
-
-  // 1 行目は見出しなので除く
-  const tasks = rows.slice(1).filter(row =&gt; row[3] !== '完了');
-
-  if (tasks.length === 0) {
-    return '&lt;p&gt;未完了のタスクはありません&lt;/p&gt;';
-  }
-
-  let html = '&lt;ul&gt;';
-  tasks.forEach(task =&gt; {
-    html += `&lt;li&gt;${task[0]}（${task[2]}）&lt;/li&gt;`;
-  });
-  html += '&lt;/ul&gt;';
-
-  return html;
+  return rows.slice(1).filter(row =&gt; row[3] !== '完了'); // 1 行目は見出しなので除く
 }</code></pre>
                     </div>
 
-                    <p>HTML 側では、渡ってきた値を <code>&lt;?!= ... ?&gt;</code> で埋め込みます。</p>
+                    <p>HTML 側では、渡ってきた配列をループして 1 件ずつ表示します。Step 2 で作った <code>&lt;base target="_top"&gt;</code> と CSS を含む完全な形です。</p>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step3-html">コピー</button>
-                        <pre id="c-step3-html"><code>&lt;body&gt;
-  &lt;h1&gt;今日のタスク&lt;/h1&gt;
-  &lt;?!= taskListHtml ?&gt;
-&lt;/body&gt;</code></pre>
+                        <pre id="c-step3-html"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;base target="_top"&gt;
+    &lt;style&gt;
+      body { font-family: sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; }
+      h1 { font-size: 1.4rem; }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;今日のタスク&lt;/h1&gt;
+    &lt;? if (tasks.length === 0) { ?&gt;
+      &lt;p&gt;未完了のタスクはありません&lt;/p&gt;
+    &lt;? } else { ?&gt;
+      &lt;ul&gt;
+        &lt;? for (let i = 0; i &lt; tasks.length; i++) { ?&gt;
+          &lt;li&gt;&lt;?= tasks[i][0] ?&gt;（&lt;?= tasks[i][2] ?&gt;）&lt;/li&gt;
+        &lt;? } ?&gt;
+      &lt;/ul&gt;
+    &lt;? } ?&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
                     </div>
 
                     <div class="callout callout-info">
-                        ℹ️ <strong>「!」の有無で意味が変わります。</strong> <code>&lt;?!= ?&gt;</code> は HTML としてそのまま出します。<code>&lt;?= ?&gt;</code> のほうは、タグをただの文字として出します。ここでは <code>&lt;li&gt;</code> をタグとして働かせたいので <code>&lt;?!= ?&gt;</code> を使います。逆に<strong>人が入力した文字を表示するときは <code>&lt;?= ?&gt;</code> のほう</strong>を使ってください。タグを書かれても、ただの文字として表示されるので安全です。
+                        ℹ️ <strong>テンプレート内の 3 つの書き方を区別します。</strong> <code>&lt;? ?&gt;</code> は値を出力せず、条件分岐やループに使います。<code>&lt;?= ?&gt;</code> は値を HTML エスケープして出力するため、人が入力したタスク名の表示に使います。<code>&lt;?!= ?&gt;</code> は HTML としてそのまま出力するため、人が入力した値には使いません。
                     </div>
 
                     <div class="callout callout-warn">
-                        ⚠️ <strong>シート名が違うと動きません。</strong> <code>getSheetByName('タスク')</code> の部分は、自分のシートのタブ名と一致している必要があります。画面が真っ白になったときは、まずここを疑ってください。
+                        ⚠️ <strong>置き換える場所はコード先頭の <code>const SHEET_NAME = 'シート1';</code> です。</strong> <code>'シート1'</code> を、初級編で控えた画面下のタブ名（<code>シート1</code> または <code>Sheet1</code> など）に置き換えてください。シート名が一致しないと画面を表示できません。
                     </div>
                 </div>
             </details>
 
             <div class="callout callout-tip">
-                💡 <strong>ここで一度、デプロイし直して確認してください。</strong> コードを直しただけでは、公開中の URL は<strong>古いままです</strong>。反映のしかたは Step 6 で扱いますが、先に知りたい方は「デプロイ」→「デプロイを管理」→ 鉛筆マーク →「バージョン」を<strong>新バージョン</strong>にして更新、です。
+                💡 <strong>保存したコードは「デプロイをテスト」で確認できます。</strong> 「デプロイ」→「<strong>デプロイをテスト</strong>」でテスト用 URL を開くと、正式なデプロイを更新せずに最新のコードを確認できます。公開用 URL へ反映する手順は Step 6 で扱います。
             </div>
 
             <div class="nav-btns">
@@ -866,7 +870,7 @@ function buildTaskListHtml() {
         <section class="section" id="step4">
             <span class="badge badge-time">✍️ 書き込み</span>
             <h2>Step 4: 画面から入力してシートへ書き込む</h2>
-            <p>ここが<strong>この編で一番大きい変わり目</strong>です。ここまでは「見るだけ」でしたが、画面から入力できるようにすると、<strong>スプレッドシートを開かなくてもタスクを足せる</strong>ようになります。</p>
+            <p>画面に入力欄とボタンを置いて、ブラウザからスプレッドシートへタスクを追加できるようにします。</p>
             <p>新しく出てくるのは <code>google.script.run</code> というひとつの書き方だけです。<strong>画面の側から、GAS の関数を名指しで呼ぶ</strong>ための仕組みです。</p>
 
             <div class="card" style="background: var(--bg-mid); text-align: center;">
@@ -934,7 +938,7 @@ function buildTaskListHtml() {
             <details class="sample-details">
                 <summary>💡 うまくいかないとき / 答え合わせ用のコードを見る</summary>
                 <div class="sample-body">
-                    <p>まずスクリプト側に、<strong>1 行足すだけの関数</strong>を用意します。</p>
+                    <p><code>コード.gs</code> の末尾に、次の関数を追加します（<code>doGet</code> と <code>getTasks</code>、先頭の <code>SHEET_NAME</code> はそのまま残します）。</p>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step4-gs">コピー</button>
                         <pre id="c-step4-gs"><code>// 画面から呼ばれて、シートへ 1 行足す関数
@@ -942,7 +946,7 @@ function addTask(taskName) {
   // 空のまま送られてきたら、何もせず終わる
   if (!taskName) return '入力してください';
 
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('タスク');
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
   const today = Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/MM/dd');
 
   sheet.appendRow([taskName, today, '中', '未完了']);
@@ -951,44 +955,66 @@ function addTask(taskName) {
 }</code></pre>
                     </div>
 
-                    <p>次に HTML 側です。入力欄とボタンを置いて、押されたら上の関数を呼びます。</p>
+                    <p>次に <code>index.html</code> を、入力欄とボタンを含む次の完全なコードに置き換えます。</p>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step4-html">コピー</button>
-                        <pre id="c-step4-html"><code>&lt;body&gt;
-  &lt;h1&gt;今日のタスク&lt;/h1&gt;
-  &lt;?!= taskListHtml ?&gt;
+                        <pre id="c-step4-html"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;base target="_top"&gt;
+    &lt;style&gt;
+      body { font-family: sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; }
+      h1 { font-size: 1.4rem; }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;今日のタスク&lt;/h1&gt;
+    &lt;? if (tasks.length === 0) { ?&gt;
+      &lt;p&gt;未完了のタスクはありません&lt;/p&gt;
+    &lt;? } else { ?&gt;
+      &lt;ul&gt;
+        &lt;? for (let i = 0; i &lt; tasks.length; i++) { ?&gt;
+          &lt;li&gt;&lt;?= tasks[i][0] ?&gt;（&lt;?= tasks[i][2] ?&gt;）&lt;/li&gt;
+        &lt;? } ?&gt;
+      &lt;/ul&gt;
+    &lt;? } ?&gt;
 
-  &lt;h2&gt;タスクを追加&lt;/h2&gt;
-  &lt;input type="text" id="taskName" placeholder="やることを入力"&gt;
-  &lt;button onclick="send()"&gt;追加&lt;/button&gt;
-  &lt;p id="message"&gt;&lt;/p&gt;
+    &lt;h2&gt;タスクを追加&lt;/h2&gt;
+    &lt;input type="text" id="taskName" placeholder="やることを入力"&gt;
+    &lt;button onclick="send()"&gt;追加&lt;/button&gt;
+    &lt;p id="message"&gt;&lt;/p&gt;
 
-  &lt;script&gt;
-    function send() {
-      const name = document.getElementById('taskName').value;
+    &lt;script&gt;
+      function send() {
+        const name = document.getElementById('taskName').value;
 
-      google.script.run
-        .withSuccessHandler(onSuccess)  // 成功したらこれを呼ぶ
-        .withFailureHandler(onFailure)  // 失敗したらこれを呼ぶ
-        .addTask(name);                 // GAS 側の関数名をそのまま書く
+        google.script.run
+          .withSuccessHandler(onSuccess)  // 成功したらこれを呼ぶ
+          .withFailureHandler(onFailure)  // 失敗したらこれを呼ぶ
+          .addTask(name);                 // GAS 側の関数名をそのまま書く
 
-      document.getElementById('message').textContent = '送信中...';
-    }
+        document.getElementById('message').textContent = '送信中...';
+      }
 
-    function onSuccess(result) {
-      document.getElementById('message').textContent = result;
-      document.getElementById('taskName').value = ''; // 入力欄を空に戻す
-    }
+      function onSuccess(result) {
+        document.getElementById('message').textContent = result;
+        document.getElementById('taskName').value = ''; // 入力欄を空に戻す
+      }
 
-    function onFailure(error) {
-      document.getElementById('message').textContent = 'エラー: ' + error.message;
-    }
-  &lt;/script&gt;
-&lt;/body&gt;</code></pre>
+      function onFailure(error) {
+        document.getElementById('message').textContent = 'エラー: ' + error.message;
+      }
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
                     </div>
 
                     <div class="callout callout-info">
                         ℹ️ <strong>すぐには返ってきません。</strong> <code>google.script.run</code> は、頼んだらその場で次へ進みます。結果は<strong>あとから</strong><code>withSuccessHandler</code> に渡した関数へ届きます。だから「送信中...」を先に出しておいて、返ってきたら書き換える、という順番になります。
+                    </div>
+
+                    <div class="callout callout-info">
+                        ℹ️ <strong>画面の一覧はブラウザを再読み込みすると更新されます。</strong> 「追加しました」と表示された時点で、シートにはタスクが追加されています。
                     </div>
 
                     <div class="callout callout-tip">
@@ -1100,8 +1126,7 @@ function addTask(taskName) {
         <section class="section" id="step6">
             <span class="badge badge-time">🔄 更新する</span>
             <h2>Step 6: 直したものを公開中の URL へ反映する</h2>
-            <p>最後に、<strong>ここでほぼ全員が一度つまずく話</strong>をします。</p>
-            <p><strong>コードを直して保存しても、公開中の URL は古いままです。</strong> 「直したのに変わらない」「さっきのエラーがまだ出る」——これは壊れているのではなく、<strong>反映の操作をしていないだけ</strong>です。</p>
+            <p>コードを直して保存しても、公開中の URL にはすぐには反映されません。反映にはデプロイの更新操作が必要です。</p>
 
             <div class="card" style="background: var(--bg-mid); text-align: center;">
                 <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">🚀 保存とデプロイは別の操作</div>
@@ -1195,9 +1220,8 @@ function addTask(taskName) {
         <!-- おわりに -->
         <section class="section" id="outro">
             <h2>おわりに</h2>
-            <p>おつかれさまでした！<br>
-                ここまでで、<strong>自分の URL を持つ画面</strong>ができました。初級編では「決まった時間に動くもの」、発展編では「AI を相棒に育てるもの」、そしてこの編では「<strong>人に渡せるもの</strong>」になりました。</p>
-            <p>作ったものを誰かに使ってもらうと、<strong>自分では思いつかなかった注文</strong>が返ってきます。そこからまた直していく——ここから先がいちばん面白いところです。</p>
+            <p>この編では、<code>doGet</code>・<code>HtmlService</code>・<code>google.script.run</code>・デプロイの設定を使って、ブラウザからタスクを見て追加できる画面を作りました。</p>
+            <p>「さらに深掘り」のチャレンジ案か、発展編で作った通知や Gemini 連携との組み合わせへ進んでください。</p>
 
             <div class="nav-btns">
                 <a href="#deep-dive" class="btn">← さらに深掘り</a>
