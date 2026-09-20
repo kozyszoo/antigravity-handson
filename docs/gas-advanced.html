@@ -643,7 +643,7 @@
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step2">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step2">このスクリプトの複数のタスクのお知らせを1つのメールで送信できるようにして</div>
+                <div class="prompt-body" id="p-step2">（いまのコードを全文貼り付けてから）このスクリプトの複数のタスクのお知らせを1つのメールで送信できるようにして</div>
             </div>
 
             <details class="sample-details">
@@ -702,7 +702,7 @@ MailApp.sendEmail({
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step3">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step3">このスクリプトに、タスクの優先度を追加できるようにして</div>
+                <div class="prompt-body" id="p-step3">（いまのコードを全文貼り付けてから）↑スプレッドシートの C 列に「優先度」（高・中・低）を追加しました。このスクリプトに、タスクの優先度を追加できるようにして</div>
             </div>
 
             <details class="sample-details">
@@ -827,7 +827,7 @@ MailApp.sendEmail({
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step4">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step4">このスクリプトで、タスクが未完了のものだけ通知するようにして</div>
+                <div class="prompt-body" id="p-step4">（いまのコードを全文貼り付けてから）↑スプレッドシートの D 列に「完了状況」を追加しました。このスクリプトで、タスクが未完了のものだけ通知するようにして</div>
             </div>
 
             <details class="sample-details">
@@ -941,7 +941,7 @@ MailApp.sendEmail({
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step5">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step5">このスクリプトで、Google カレンダーから今日の予定も取ってきて、タスクと一緒に通知できるようにして</div>
+                <div class="prompt-body" id="p-step5">（いまのコードを全文貼り付けてから）このスクリプトで、Google カレンダーから今日の予定も取ってきて、タスクと一緒に通知できるようにして</div>
             </div>
 
             <details class="sample-details">
@@ -952,7 +952,10 @@ MailApp.sendEmail({
                         <button class="copy-btn" type="button" data-copy-target="c-step5">コピー</button>
                         <pre id="c-step5"><code>// Google カレンダーから今日の予定を取得
 const calendarId = 'your.calendar.id@group.calendar.google.com'; // カレンダー ID に置き換える
-const events = CalendarApp.getCalendarById(calendarId).getEventsForDay(today);
+const calendar = CalendarApp.getCalendarById(calendarId);
+
+// ID が間違っていると null になるので、そのときは予定なしとして進む
+const events = calendar ? calendar.getEventsForDay(today) : [];
 
 // 予定をタスクとして追加
 events.forEach(event => {
@@ -964,6 +967,14 @@ events.forEach(event => {
 
                     <div class="callout callout-info">
                         ℹ️ <strong>カレンダー ID</strong> は、Google カレンダーの「設定と共有」→「カレンダーの統合」から確認できます。自分のメインカレンダーなら、ご自身の Gmail アドレスがそのまま ID になります。
+                    </div>
+
+                    <div class="callout callout-warn">
+                        ⚠️ <strong>カレンダー ID を置き換えないと予定は 0 件になります。</strong> ID が違うと <code>getCalendarById</code> は <code>null</code> を返します。上のコードは、そのときエラーで止まらず「予定なし」として進むようにしてあります。予定が出てこないときは、まず ID を見直してください。
+                    </div>
+
+                    <div class="callout callout-info">
+                        ℹ️ <strong>「承認が必要です」がまた出ます。</strong> Google カレンダーを読む権限が新しく要るためです。初級編と同じ手順で進めてください。「権限を確認」→ 自分のアカウントを選ぶ →「詳細」→「（安全ではないページ）に移動」→「許可」。
                     </div>
                 </div>
             </details>
@@ -978,7 +989,7 @@ events.forEach(event => {
         <section class="section" id="step6">
             <span class="badge badge-time">🤖 AI 連携</span>
             <h2>Step 6: 文章生成 AI（Gemini API）の活用</h2>
-            <p>仕上げに、<strong>Gemini を GAS から呼び出して</strong>、タスク名から通知文を自動生成させてみましょう。たとえば「秘書風の文面」で通知させる、といった遊びができます。ここまでは画面の Gemini に聞きながら進めてきましたが、今度は<strong>スクリプトの中から Gemini を呼び出す</strong>わけです。</p>
+            <p>仕上げに、<strong>Gemini を GAS から呼び出して</strong>、タスク名から通知文を自動生成させてみましょう。たとえば秘書風の案内文を生成させる、といった使い方ができます。ここまでは画面の Gemini に聞きながら進めてきましたが、今度は<strong>スクリプトの中から Gemini を呼び出す</strong>わけです。</p>
 
             <div class="card" style="background: var(--bg-mid); text-align: center;">
                 <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">🌐 GAS から外部 API へ出て、文章を取り出す</div>
@@ -1040,7 +1051,7 @@ events.forEach(event => {
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step6">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step6">このスクリプトから Gemini API を呼び出して、通知の文面を秘書風に書いてもらうように書き換えて</div>
+                <div class="prompt-body" id="p-step6">（いまのコードを全文貼り付けてから）このスクリプトから Gemini API を呼び出して、通知の文面を秘書風に書いてもらうように書き換えて</div>
             </div>
 
             <h3 class="preparation-heading">📋 準備</h3>
@@ -1061,7 +1072,7 @@ events.forEach(event => {
                         <button class="copy-btn" type="button" data-copy-target="c-step6">コピー</button>
                         <pre id="c-step6"><code>// タスク名から、秘書風の通知文を Gemini に生成してもらう関数
 function generateMessage(taskName) {
-  const apiKey = 'YOUR_GEMINI_API_KEY'; // 自分の API キーに置き換える
+  const apiKey = PropertiesService.getScriptProperties().getProperty('GEMINI_API_KEY');
   const model = 'gemini-flash-latest';  // 速くて安いモデル
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
@@ -1116,7 +1127,11 @@ MailApp.sendEmail({
                     </div>
 
                     <div class="callout callout-warn">
-                        ⚠️ <strong>API キーの取り扱いに注意！</strong> API キーは<strong>パスワードと同じ</strong>です。スクリプトをそのまま他人に共有・公開すると不正利用される恐れがあります。共有時はキーを削除するか、<code>PropertiesService</code>（スクリプトプロパティ）に保管する方法を AI に聞いてみましょう。
+                        ⚠️ <strong>API キーの取り扱いに注意！</strong> API キーは<strong>パスワードと同じ</strong>です。スクリプトをそのまま他人に共有・公開すると不正利用される恐れがあります。上のコードは <code>PropertiesService</code>（スクリプトプロパティ）からキーを読む形です。Step 9 で、API キーをスクリプトプロパティへ登録する手順を実際に行います。
+                    </div>
+
+                    <div class="callout callout-info">
+                        ℹ️ <strong>「承認が必要です」がまた出ます。</strong> <code>UrlFetchApp</code> で外部サービスへ接続する権限が新しく要るためです。初級編と同じ手順で進めてください。「権限を確認」→ 自分のアカウントを選ぶ →「詳細」→「（安全ではないページ）に移動」→「許可」。
                     </div>
 
                     <div class="callout callout-info">
@@ -1135,15 +1150,15 @@ MailApp.sendEmail({
         <section class="section" id="step7">
             <span class="badge badge-time">💬 チャット通知</span>
             <h2>Step 7: Slack / Discord に通知する</h2>
-            <p>ここまで通知先はずっとメールでした。ですが実際に使ってみると、<strong>メールは他のメールに埋もれます</strong>。チームで使うなら、通知先を普段見ているチャットに変えたほうが目に入ります。</p>
-            <p>やることは Step 6 とほとんど同じです。<code>UrlFetchApp</code> で、渡された URL に文章を送るだけ。<strong>新しく覚えることはほぼありません。</strong></p>
+            <p>通知先を Gmail からチャット（Discord または Slack）へ変えます。</p>
+            <p>やり方は Step 6 と同じです。<code>UrlFetchApp</code> で、渡された URL へ文章を送ります。</p>
 
             <div class="prompt-card">
                 <div class="prompt-title">
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step7">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step7">このスクリプトの通知先を、メールではなく Discord の Webhook に変えて。Webhook の URL はスクリプトプロパティから読むようにして</div>
+                <div class="prompt-body" id="p-step7">（いまのコードを全文貼り付けてから）このスクリプトの通知先を、メールではなく Discord の Webhook に変えて。Webhook の URL はスクリプトプロパティから読むようにして</div>
             </div>
 
             <h3 class="preparation-heading">📋 準備</h3>
@@ -1220,9 +1235,8 @@ notifyToDiscord(text);</code></pre>
         <section class="section" id="step8">
             <span class="badge badge-time">🛡️ 動かし続ける</span>
             <h2>Step 8: 止まったことに気づけるようにする</h2>
-            <p>ここまでで、毎朝かってに動くアプリができました。ここで一つ、実際に使い始めると必ずぶつかる問題があります。</p>
-            <p><strong>トリガーで動くスクリプトは、失敗しても誰も教えてくれません。</strong> 画面を見ていないので、エラーが出ても気づけません。「今日は通知が来ないな」と思ってから調べたら、3日前から止まっていた——これは本当によく起きます。</p>
-            <p>そこで、<strong>失敗したときだけ自分にメールが飛ぶ</strong>ようにします。</p>
+            <p>トリガーで動いている間はエディタを開いていないので、エラーが出ても画面に出ません。通知が来ないことに気づくまで、止まったままになります。</p>
+            <p><code>try...catch</code> で囲み、失敗したときだけ自分あてにエラーの内容をメールで送るようにします。</p>
 
             <div class="card" style="background: var(--bg-mid); text-align: center;">
                 <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">🛡️ 画面を見ていなくても、失敗をメールで知る</div>
@@ -1292,7 +1306,7 @@ notifyToDiscord(text);</code></pre>
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step8">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step8">この関数でエラーが出たときに、エラーの内容を自分宛てにメールで知らせるようにして。try catch を使って書き換えて</div>
+                <div class="prompt-body" id="p-step8">（いまのコードを全文貼り付けてから）この関数でエラーが出たときに、エラーの内容を自分宛てにメールで知らせるようにして。try catch を使って書き換えて</div>
             </div>
 
             <details class="sample-details">
@@ -1301,7 +1315,7 @@ notifyToDiscord(text);</code></pre>
                     <p>処理全体を <code>try</code> で囲み、失敗したときの行き先を <code>catch</code> に書きます。<strong>いまの関数の中身はいじらず、外側を包むだけ</strong>です。</p>
                     <div class="code-wrap">
                         <button class="copy-btn" type="button" data-copy-target="c-step8">コピー</button>
-                        <pre id="c-step8"><code>function notifyTasks() {
+                        <pre id="c-step8"><code>function myFunction() {
   try {
 
     // ここに、これまで書いてきた処理をそのまま入れる
@@ -1326,7 +1340,7 @@ notifyToDiscord(text);</code></pre>
                     <p>出力した内容は、GAS の画面左「実行数」から、いつ・どの関数が・成功したか失敗したかと一緒に確認できます。</p>
 
                     <div class="callout callout-tip">
-                        💡 <strong>わざと失敗させて試してください。</strong> スプレッドシートの名前を一時的に変えてから実行すると、シートが見つからずエラーになります。ここでメールが届けば、仕掛けがちゃんと働いています。確認したら名前を戻してください。
+                        💡 <strong>わざと失敗させて試してください。</strong> スプレッドシート下部のシートのタブ名（「シート1」など）を一時的に「シート99」に変えてから実行すると、指定したシートが見つからずエラーになります。ここでメールが届けば、仕掛けがちゃんと働いています。確認したらタブ名を元に戻してください。
                     </div>
 
                     <div class="callout callout-info">
@@ -1348,9 +1362,15 @@ notifyToDiscord(text);</code></pre>
             <p>Step 3 では、優先度を<strong>自分で手入力</strong>しました。Step 6 では Gemini に<strong>文章を書かせ</strong>ました。この 2 つを合わせます。</p>
             <p>つまり、<strong>タスク名を見て優先度が何かを Gemini に判断させる</strong>わけです。同じ Gemini でも、文章を作らせるのと、決めさせるのとでは使いどころが変わります。</p>
 
+            <h3 class="preparation-heading">📋 準備</h3>
+            <ol>
+                <li>GAS の画面左「⚙️ プロジェクトの設定」→ 一番下「スクリプト プロパティ」→「スクリプト プロパティを追加」</li>
+                <li>プロパティ名に <code>GEMINI_API_KEY</code>、値に Step 6 で取得した API キーを入れて保存</li>
+            </ol>
+
             <div class="card" style="background: var(--bg-mid); text-align: center;">
                 <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">🧠 想定外の答えには「中」という逃げ道を作る</div>
-                <svg viewBox="0 0 900 350" style="max-width:100%; height:auto;" role="img">
+                <svg viewBox="0 0 900 380" style="max-width:100%; height:auto;" role="img">
                     <title>タスク名をGeminiへ渡し、高中低の一語を求め、返答が3つのどれかなら採用し、想定外なら中にする安全な優先度判定</title>
                     <defs>
                         <marker id="arrow-adv-step9" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
@@ -1386,17 +1406,17 @@ notifyToDiscord(text);</code></pre>
                     <text x="732" y="210" text-anchor="middle" fill="#7c3aed" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--primary, #7c3aed);">高・中・低 のどれか？</text>
                     <text x="732" y="234" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--text, #251f33);">['高','中','低'].includes(result)</text>
 
-                    <path d="M655 250 L655 256 L346 256 L346 260" fill="none" stroke="#188038" stroke-width="3" marker-end="url(#arrow-adv-step9)" style="stroke: var(--green, #188038);"></path>
-                    <rect x="245" y="264" width="202" height="68" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--green, #188038);"></rect>
-                    <text x="346" y="291" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--green, #188038);">はい：そのまま採用</text>
-                    <text x="346" y="316" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">高 / 中 / 低</text>
+                    <path d="M600 250 L600 268 L346 268 L346 282" fill="none" stroke="#188038" stroke-width="3" marker-end="url(#arrow-adv-step9)" style="stroke: var(--green, #188038);"></path>
+                    <rect x="245" y="286" width="202" height="68" rx="12" fill="#ffffff" stroke="#188038" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--green, #188038);"></rect>
+                    <text x="346" y="313" text-anchor="middle" fill="#188038" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--green, #188038);">はい：そのまま採用</text>
+                    <text x="346" y="338" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--text, #251f33);">高 / 中 / 低</text>
 
-                    <path d="M797 250 C822 267 826 273 826 281" fill="none" stroke="#e8710a" stroke-width="4" marker-end="url(#arrow-adv-step9)" style="stroke: var(--orange, #e8710a);"></path>
-                    <rect x="585" y="264" width="295" height="68" rx="12" fill="#ffffff" stroke="#e8710a" stroke-width="4" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
-                    <text x="732" y="291" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">いいえ：想定外の逃げ道</text>
-                    <text x="732" y="318" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--text, #251f33);">必ず「中」にする</text>
+                    <path d="M800 250 L800 282" fill="none" stroke="#e8710a" stroke-width="4" marker-end="url(#arrow-adv-step9)" style="stroke: var(--orange, #e8710a);"></path>
+                    <rect x="585" y="286" width="295" height="68" rx="12" fill="#ffffff" stroke="#e8710a" stroke-width="4" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
+                    <text x="732" y="313" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">いいえ：想定外の逃げ道</text>
+                    <text x="732" y="340" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--text, #251f33);">必ず「中」にする</text>
 
-                    <text x="500" y="346" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--muted, #645a73);">AI の答えをそのまま信用せず、外れた場合の行き先を先に決める</text>
+                    <text x="500" y="374" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" style="fill: var(--muted, #645a73);">AI の答えをそのまま信用せず、外れた場合の行き先を先に決める</text>
                 </svg>
             </div>
 
@@ -1405,7 +1425,7 @@ notifyToDiscord(text);</code></pre>
                     <span>🤖 Gemini にこう聞く</span>
                     <button class="copy-btn" type="button" data-copy-target="p-step9">コピー</button>
                 </div>
-                <div class="prompt-body" id="p-step9">タスク名を渡すと、Gemini が「高」「中」「低」のどれかだけを返す関数を作って。余計な説明は付けずに一語だけ返させて</div>
+                <div class="prompt-body" id="p-step9">（いまのコードを全文貼り付けてから）タスク名を渡すと、Gemini が「高」「中」「低」のどれかだけを返す関数を作って。余計な説明は付けずに一語だけ返させて</div>
             </div>
 
             <details class="sample-details">
@@ -1446,8 +1466,32 @@ function judgePriority(taskName) {
 }</code></pre>
                     </div>
 
+                    <p>この関数を作っただけでは何も変わりません。<strong>本文を組み立てているところから呼び出して</strong>、判定された優先度を表示に使います。</p>
+                    <div class="code-wrap">
+                        <button class="copy-btn" type="button" data-copy-target="c-step9-call">コピー</button>
+                        <pre id="c-step9-call"><code>// 本文を組み立てるところで、優先度を Gemini に判定してもらう
+let body = '本日のタスクは以下の通りです。&lt;br&gt;&lt;ul&gt;';
+
+tasksToday.forEach(task =&gt; {
+  const taskName = task[0];
+
+  // C 列の値を使う代わりに、Gemini に判定させる
+  const priority = judgePriority(taskName);
+
+  let message = taskName;
+  if (priority === "高") {
+    message = `&lt;strong&gt;🔺 重要!&lt;/strong&gt; ${taskName}`;
+  } else if (priority === "低") {
+    message = `${taskName} (優先度: 低)`;
+  }
+
+  body += `&lt;li&gt;${message}&lt;/li&gt;`;
+});
+body += '&lt;/ul&gt;';</code></pre>
+                    </div>
+
                     <div class="callout callout-tip">
-                        💡 <strong>最後の 1 行が肝です。</strong> 「一語だけ返して」と頼んでも、AI が「優先度は高です」と返してくることがあります。そのまま使うと表示が崩れるので、<strong>想定した 3 つ以外が来たら「中」にする</strong>と決めておきます。AI に任せるときは、<strong>外れた場合の行き先を先に決めておく</strong>——これが安心して使うコツです。
+                        💡 <strong>最後の 1 行が肝です。</strong> 「一語だけ返して」と頼んでも、AI が「優先度は高です」と返してくることがあります。そのまま使うと表示が崩れるので、想定した 3 つ（「高」「中」「低」）以外が返ってきたときは「中」にする、と決めておきます。
                     </div>
 
                     <div class="callout callout-warn">
@@ -1492,8 +1536,7 @@ function judgePriority(taskName) {
         <!-- おわりに -->
         <section class="section" id="outro">
             <h2>おわりに</h2>
-            <p>おつかれさまでした！<br>
-                発展編では、生成 AI を相棒にしてアプリを育てる感覚を体験しました。<strong>「やりたいことを言葉にして、AI に書かせて、動かして、また直す」</strong>——このサイクルが回せるようになれば、もう怖いものはありません。ぜひ自分だけのオリジナルツールを作ってみてください。</p>
+            <p>発展編では、複数タスクのまとめ送信・優先度・完了管理・カレンダー連携・Gemini API・チャット通知・エラー通知・AI による優先度判定を追加しました。次の「Web アプリ編」では、ブラウザから開ける画面を作ります。</p>
 
             <div class="nav-btns">
                 <a href="#deep-dive" class="btn">← さらに深掘り</a>
