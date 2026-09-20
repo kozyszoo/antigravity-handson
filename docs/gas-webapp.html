@@ -537,6 +537,10 @@
                 ℹ️ <strong>初級編・発展編をやっていなくても進められます。</strong> Step 3 でタスクのスプレッドシートを使いますが、列が「タスク名 / 日付 / 優先度 / 状態」の並びになっていれば、その場で新しく作ったものでも構いません。
             </div>
 
+            <div class="callout callout-tip">
+                💡 <strong>この教材のコードは、実際に動かして確認しています。</strong>（2026-09-20 時点）そのままコピーして貼れば動きます。画面の見た目は Google 側の更新で変わることがあるので、違っていたら文章のほうを手がかりにしてください。
+            </div>
+
             <div class="nav-btns">
                 <a href="gas-advanced.html" class="btn">← 発展編</a>
                 <a href="#step1" class="btn">Step 1 へ進む →</a>
@@ -625,8 +629,17 @@ function doGet() {
             </ol>
 
             <div class="callout callout-warn">
-                ⚠️ 初めて公開するときは、「<strong>アクセスを承認</strong>」→ アカウントを選ぶ →「<strong>このアプリは Google で確認されていません</strong>」→ 左下の「<strong>詳細</strong>」→「<strong>（安全ではないページ）に移動</strong>」→「<strong>許可</strong>」の順に進みます。<strong>自分が書いたスクリプトに、自分のスプレッドシートを触る許可を出している</strong>ために必要な操作です。
+                ⚠️ <strong>初めて公開するときは、承認の画面が 2 つ出ます。</strong>
+                <ol style="margin: 8px 0 0 20px;">
+                    <li>「<strong>REVIEW PERMISSIONS</strong>」を押す（英語のままです）</li>
+                    <li>「このアプリは Google によって確認されていないため…」という黄色い枠が出ます。<strong>自分が書いたスクリプトなので、そのまま進めて構いません</strong></li>
+                    <li>下までスクロールして「<strong>許可</strong>」を押す</li>
+                </ol>
             </div>
+
+            <p>1 つ目は英語の小さなダイアログで、アプリ名の横に <code>(Unverified)</code> と赤字で出ます。ボタンは「<strong>REVIEW PERMISSIONS</strong>」の 1 つだけです。これを押すと、次の日本語の画面へ進みます。</p>
+            <img class="screenshot" src="img/gas-webapp-auth2.png"
+                alt="Google アカウントへのアクセス同意画面。未確認アプリについての黄色い注意枠、スプレッドシートへのアクセス権限、拒否と許可のボタンが表示されているスクリーンショット">
 
             <div class="callout callout-tip">
                 💡 ブラウザに「こんにちは」と表示されれば、Web アプリの公開は成功です。Step 2 へ進んでください。
@@ -852,6 +865,12 @@ function getTasks() {
             </details>
 
             <div class="callout callout-tip">
+                💡 <strong>こうなれば成功です。</strong> 未完了のタスクだけが一覧に出ます。「完了」と書いた行は出てきません。
+            </div>
+            <img class="screenshot" src="img/gas-webapp-list.png"
+                alt="Web アプリの画面。見出し「今日のタスク」の下に、未完了のタスクが優先度つきで箇条書きされているスクリーンショット">
+
+            <div class="callout callout-tip">
                 💡 <strong>保存したコードは「デプロイをテスト」で確認できます。</strong> 「デプロイ」→「<strong>デプロイをテスト</strong>」でテスト用 URL を開くと、正式なデプロイを更新せずに最新のコードを確認できます。公開用 URL へ反映する手順は Step 6 で扱います。
             </div>
 
@@ -1017,6 +1036,15 @@ function addTask(taskName) {
                     </div>
                 </div>
             </details>
+
+            <div class="callout callout-tip">
+                💡 <strong>こうなれば成功です。</strong> 入力して「追加」を押すと「追加しました」と出ます。ブラウザを再読み込みすると、一覧にも増えています。
+            </div>
+            <img class="screenshot" src="img/gas-webapp-addmsg.png"
+                alt="Web アプリの画面。入力欄に「打ち合わせの準備」と入れて追加ボタンを押した直後で、入力欄が空に戻り、下に「追加しました」と表示されているスクリーンショット">
+            <p>ブラウザを再読み込みすると、追加したタスクが一覧にも並びます。</p>
+            <img class="screenshot" src="img/gas-webapp-added.png"
+                alt="再読み込み後の Web アプリの画面。今日のタスクの一覧に「打ち合わせの準備（中）」が加わって 3 件になっているスクリーンショット">
 
             <div class="nav-btns">
                 <a href="#step3" class="btn">← Step 3</a>
