@@ -389,6 +389,39 @@
             text-decoration: underline;
         }
 
+        /* 折りたたみ（更新履歴などの長い一覧） */
+        details.expand {
+            background: var(--bg-dark);
+            border: 1px solid var(--bg-light);
+            border-radius: 8px;
+            padding: 0;
+            margin: 12px 0;
+        }
+        details.expand > summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 10px 14px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        details.expand > summary::-webkit-details-marker { display: none; }
+        details.expand > summary::before {
+            content: "▶";
+            font-size: 0.75rem;
+            transition: transform 0.15s;
+        }
+        details.expand[open] > summary::before { transform: rotate(90deg); }
+        details.expand > summary .hint {
+            font-weight: 400;
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+        details.expand > .expand-body { padding: 4px 16px 14px; }
+        details.expand > .expand-body > table { margin-top: 8px; }
+
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
@@ -549,9 +582,10 @@
                     <li><strong>Google AI Ultra プラン（$100/月）</strong> — Antigravity の利用枠が Pro の <strong>約5倍</strong>。長時間のオーバーナイト実行向け。</li>
                     <li><strong>Gemini 3.5 Flash → 3.6 → 3.7 → 3.8 Flash</strong> — 2.0 と同時に出た 3.5 Flash のあと、Flash 系が短い間隔で更新され、<strong>2026年9月1日に Gemini 3.8 Flash</strong> が Antigravity に入りました（6週間で3つ目の Flash）。Google は 3.8 Flash を「長時間のコーディングと自律エージェント向けの主力モデル」と位置づけています。3.7 Flash も計算効率を優先したい場面向けに残っています。</li>
                 </ul>
-                <p style="font-size: 0.93rem; line-height: 1.7; margin: 14px 0 8px;">
-                    <strong>2.0 のあと（2026年6月〜9月）に増えた主なもの</strong>（公式 Changelog より。バージョンと日付はデスクトップアプリのもの）
-                </p>
+                <details class="expand">
+                    <summary>2.0 のあと（2026年6月〜9月）に増えた主なもの <span class="hint">クリックで開く ／ 2.1.4〜2.15.1・CLI 1.2.8・Antigravity Agent 09-2026</span></summary>
+                    <div class="expand-body">
+                <p style="font-size: 0.88rem; color: var(--muted); margin: 8px 0 6px;">公式 Changelog より。バージョンと日付はデスクトップアプリのもの。</p>
                 <ul style="font-size: 0.9rem; line-height: 1.75; margin: 0 0 12px 22px; padding: 0;">
                     <li><strong>2.1.4（6/11）</strong> — <code>/btw</code>（今の会話の文脈のまま、横で1回だけ質問できる「サイド質問」）、PDF 添付、会話内検索（Cmd/Ctrl+F）、クォータ画面の刷新</li>
                     <li><strong>2.2.1（6/25）</strong> — <strong>Antigravity Guide スキル</strong>（Antigravity の使い方をエージェント自身に聞ける）、音声ファイルの再生</li>
@@ -571,6 +605,8 @@
                     <strong>CLI（<code>agy</code>）</strong>は別の番号で進み、2026年9月22日時点で <strong>1.2.8</strong>。8〜9月に Remote Control（<code>/remote-control</code>・<code>agy remote-control start</code>）、<code>/model &lt;名前&gt; &lt;指示&gt;</code>（1回だけ別モデルで実行）、<code>/skills reload</code>、ヘッドレス実行（<code>-p</code>）の既定タイムアウト撤廃と <code>AGY_ERROR</code> 形式の構造化エラーが入りました。
                     <strong>Gemini API 側</strong>では 2026年9月17日に <strong>Antigravity Agent 09-2026</strong>（<code>antigravity-preview-09-2026</code>）が出て、<code>antigravity-preview-05-2026</code> は <strong>2026年10月5日に停止</strong>予定です。
                 </p>
+                    </div>
+                </details>
                 <div style="font-size: 0.85rem; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap; align-items: center;">
                     <span>↳ 詳細は</span>
                     <a href="#step3-cli" style="color: var(--blue); text-decoration: none;">Step 3-1（CLI / SDK / Managed Agents）</a>
@@ -2621,6 +2657,9 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
             </div>
 
             <h3 id="step6-post2">🆕 2.0 のあとに増えた機能（2026年6月〜9月・v2.1〜v2.15）</h3>
+            <details class="expand">
+                <summary>機能一覧を開く <span class="hint">9項目 ＋ 出典（2026-09-22 確認）</span></summary>
+                <div class="expand-body">
             <p style="font-size: 0.93rem;">
                 上の表は 2.0 の時点のもの。その後 4 か月で入った主な機能を、ハンズオンで使う順に並べました（バージョンと日付は公式 Changelog）。
             </p>
@@ -2690,6 +2729,8 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     <li>CLI は <code>agy changelog</code>（1.2.8、2026-09-22）で確認</li>
                 </ul>
             </div>
+                </div>
+            </details>
 
             <h3>📰 活用 Tips</h3>
             <table>
