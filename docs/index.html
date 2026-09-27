@@ -36,6 +36,7 @@
             --accent-multiai-gradient: linear-gradient(135deg, #f472b6, #db2777);
             --accent-remotion-gradient: linear-gradient(135deg, #22d3ee, #0891b2);
             --accent-personal-gradient: linear-gradient(135deg, #fb923c, #ea580c);
+            --accent-cowork-gradient: linear-gradient(135deg, #e07a4f, #c2410c);
         }
 
         * {
@@ -127,6 +128,7 @@
         .card.gas::before { background: var(--accent-gas-gradient); }
         .card.gas2::before { background: var(--accent-gas2-gradient); }
         .card.banana::before { background: var(--accent-banana-gradient); }
+        .card.cowork::before { background: var(--accent-cowork-gradient); }
         .card.toolkit::before { background: var(--accent-toolkit-gradient); }
         .card.ethics::before { background: var(--accent-ethics-gradient); }
         .card.multiai::before { background: var(--accent-multiai-gradient); }
@@ -389,6 +391,22 @@
                 <p class="card-desc">通知するだけのアプリから一歩進んで、自分の URL を持つ画面を作るハンズオン。ブラウザで開ける画面の作り方、シートの中身の表示、画面からの書き込み、そして「誰がこの URL を使えるか」の決め方まで扱います。</p>
             </div>
             <a href="gas-webapp.html" class="btn">GAS Web アプリ編を開始 ➔</a>
+        </div>
+
+        <!-- Claude Cowork 活用ハンズオン -->
+        <div class="card cowork">
+            <div class="card-header">
+                <span class="card-icon">🗂️</span>
+                <h2 class="card-title">Claude Cowork 活用ハンズオン <span style="font-size: 0.6em; color: #fdba74; font-weight: 600; vertical-align: middle;">入門</span></h2>
+                <div class="badges">
+                    <span class="badge">フォルダを渡すだけ</span>
+                    <span class="badge">Excel・Word を自動作成</span>
+                    <span class="badge">プロンプトインジェクション体験</span>
+                    <span class="badge">90分進行表つき</span>
+                </div>
+                <p class="card-desc">Claude Desktop の Cowork に練習用フォルダを渡し、ファイルの整理・会議メモからの ToDo 表づくり・経費の集計を任せます。後半は、ファイルに隠れた指示で AI がだまされる場面を試し、渡すフォルダ・承認モード・確かめ方など安全に使う 5 つの約束を確認します（2026-09-27 時点の公式ヘルプで確認）。</p>
+            </div>
+            <a href="cowork.html" class="btn">Cowork ハンズオンを開始 ➔</a>
         </div>
 
         <!-- Nano Banana ハンズオン -->
