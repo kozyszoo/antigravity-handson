@@ -1,0 +1,4 @@
+（練習用のダミーです。本物のパスワードではありません）
+自宅 Wi-Fi
+SSID: sample-home
+パスワード: renshu-dummy-1234
