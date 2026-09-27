@@ -999,7 +999,12 @@ events.forEach(event => {
                     </div>
 
                     <div class="callout callout-info">
-                        ℹ️ <strong>「承認が必要です」がまた出ます。</strong> Google カレンダーを読む権限が新しく要るためです。初級編と同じ手順で進めてください。「権限を確認」→ 自分のアカウントを選ぶ →「詳細」→「（安全ではないページ）に移動」→「許可」。
+                        ℹ️ <strong>「承認が必要です」がまた出ます。</strong> Google カレンダーを読む権限が新しく要るためです。「権限を確認」を押し、アカウント選択が出たら自分のアカウントを選びます。次に表示された画面に合わせて進みます。
+                        <ul>
+                            <li>英語の小さなダイアログで、アプリ名の横に <code>(Unverified)</code> と出た場合：「<strong>REVIEW PERMISSIONS</strong>」を押すと、次の日本語の画面へ進みます。</li>
+                            <li>「このアプリは Google で確認されていません」と出た場合：「詳細」→「（プロジェクト名）（安全ではないページ）に移動」を選択します。</li>
+                        </ul>
+                        下までスクロールして「許可」を押します。権限ごとのチェック欄がある場合は、すべてにチェックを入れてから「許可」を押します。チェックしないと実行時にエラーになります。
                     </div>
                 </div>
             </details>
@@ -1080,9 +1085,15 @@ events.forEach(event => {
 
             <h3 class="preparation-heading">📋 準備</h3>
             <ol>
-                <li><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> で <strong>API キー</strong>を取得する（普段使っている Google アカウントでそのまま作れます）</li>
+                <li><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> で <strong>API キー</strong>を取得する（普段使っている Google アカウントでそのまま作れます）。Google AI Studio／Gemini API の利用は 18 歳以上が対象です。</li>
+                <li>GAS の画面左「⚙️ プロジェクトの設定」→ 一番下「スクリプト プロパティ」→「スクリプト プロパティを追加」を選ぶ。既に項目がある場合は「スクリプト プロパティを編集」から追加する</li>
+                <li>プロパティ名に <code>GEMINI_API_KEY</code>、値に取得した API キーを入れて保存する</li>
                 <li>GAS から <code>UrlFetchApp</code> を使って Gemini の API を呼び出す</li>
             </ol>
+
+            <div class="callout callout-warn">
+                ⚠️ 無料枠の Gemini API に送った内容は、Google の製品改善や人による確認に使われることがあります。実習では架空のタスク名・予定を使い、氏名や個人的な予定は送らないでください。
+            </div>
 
             <div class="callout callout-tip">
                 💡 <strong>無料の枠内で試せます。</strong> Gemini API には無料枠があり、クレジットカードの登録なしで始められます。このハンズオンで動かす回数なら、無料枠に十分おさまります。
@@ -1151,11 +1162,16 @@ MailApp.sendEmail({
                     </div>
 
                     <div class="callout callout-warn">
-                        ⚠️ <strong>API キーの取り扱いに注意！</strong> API キーは<strong>パスワードと同じ</strong>です。スクリプトをそのまま他人に共有・公開すると不正利用される恐れがあります。上のコードは <code>PropertiesService</code>（スクリプトプロパティ）からキーを読む形です。Step 9 で、API キーをスクリプトプロパティへ登録する手順を実際に行います。
+                        ⚠️ <strong>API キーの取り扱いに注意！</strong> API キーは<strong>パスワードと同じ</strong>です。スクリプトをそのまま他人に共有・公開すると不正利用される恐れがあります。上のコードは <code>PropertiesService</code>（スクリプトプロパティ）からキーを読む形です。Step 6 で登録したキーを Step 9 でも使います。
                     </div>
 
                     <div class="callout callout-info">
-                        ℹ️ <strong>「承認が必要です」がまた出ます。</strong> <code>UrlFetchApp</code> で外部サービスへ接続する権限が新しく要るためです。初級編と同じ手順で進めてください。「権限を確認」→ 自分のアカウントを選ぶ →「詳細」→「（安全ではないページ）に移動」→「許可」。
+                        ℹ️ <strong>「承認が必要です」がまた出ます。</strong> <code>UrlFetchApp</code> で外部サービスへ接続する権限が新しく要るためです。「権限を確認」を押し、アカウント選択が出たら自分のアカウントを選びます。次に表示された画面に合わせて進みます。
+                        <ul>
+                            <li>英語の小さなダイアログで、アプリ名の横に <code>(Unverified)</code> と出た場合：「<strong>REVIEW PERMISSIONS</strong>」を押すと、次の日本語の画面へ進みます。</li>
+                            <li>「このアプリは Google で確認されていません」と出た場合：「詳細」→「（プロジェクト名）（安全ではないページ）に移動」を選択します。</li>
+                        </ul>
+                        下までスクロールして「許可」を押します。権限ごとのチェック欄がある場合は、すべてにチェックを入れてから「許可」を押します。チェックしないと実行時にエラーになります。
                     </div>
 
                     <div class="callout callout-info">
@@ -1189,8 +1205,8 @@ MailApp.sendEmail({
             <ol>
                 <li><strong>Webhook の URL を作る</strong>
                     <ul>
-                        <li>Discord: 通知したいチャンネルの「⚙️ チャンネルの編集」→「連携サービス」→「ウェブフックを作成」→「ウェブフック URL をコピー」</li>
-                        <li>Slack: <a href="https://api.slack.com/messaging/webhooks" target="_blank" rel="noopener">Incoming Webhooks</a> からアプリを作ってチャンネルを選ぶ</li>
+                        <li>Discord: 自分で作った練習用サーバー、または「ウェブフックの管理」権限があるチャンネルで行います。通知したいチャンネルの「⚙️ チャンネルの編集」→「連携サービス」→「ウェブフックを作成」→「ウェブフック URL をコピー」</li>
+                        <li>Slack: <a href="https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks/" target="_blank" rel="noopener">Incoming Webhooks</a> からアプリを作ってチャンネルを選ぶ</li>
                     </ul>
                 </li>
                 <li><strong>URL をスクリプトプロパティに保存する</strong><br>
@@ -1200,7 +1216,7 @@ MailApp.sendEmail({
             </ol>
 
             <div class="callout callout-tip">
-                💡 <strong>スクリプトプロパティは「コードの外に置く金庫」です。</strong> Step 6 で「API キーはパスワードと同じ」と書きました。ここで使うのがその保管場所です。コードに直接書かないので、スクリプトを人に見せても URL やキーは漏れません。
+                💡 <strong>スクリプトプロパティは「コードの外に置く金庫」です。</strong> Step 6 で「API キーはパスワードと同じ」と書きました。ここで使うのがその保管場所です。コードに直接書かないので、スクリプトを人に見せても URL やキーは漏れません。ただし、プロジェクトの共同編集者には保存した値が見えます。人と共有するプロジェクトには自分のキーや URL を残さないでください。
             </div>
 
             <details class="sample-details">
@@ -1259,13 +1275,13 @@ notifyToDiscord(text);</code></pre>
         <section class="section" id="step8">
             <span class="badge badge-time">🛡️ 動かし続ける</span>
             <h2>Step 8: 止まったことに気づけるようにする</h2>
-            <p>トリガーで動いている間はエディタを開いていないので、エラーが出ても画面に出ません。通知が来ないことに気づくまで、止まったままになります。</p>
-            <p><code>try...catch</code> で囲み、失敗したときだけ自分あてにエラーの内容をメールで送るようにします。</p>
+            <p>トリガーで動いている間はエディタを開いていないので、エラーが出ても画面に出ません。Apps Script 標準の失敗通知メールが届きますが、英語の定型文で、届くまで時間がかかることもあります。</p>
+            <p>ここでは <code>try...catch</code> で囲み、失敗したときだけ、日本語で原因が分かる通知を自分あてにメールで送るようにします。</p>
 
             <div class="card" style="background: var(--bg-mid); text-align: center;">
                 <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">🛡️ 画面を見ていなくても、失敗をメールで知る</div>
                 <svg viewBox="0 0 900 450" style="max-width:100%; height:auto;" role="img">
-                    <title>画面を見ていないトリガー実行で、try catchがあれば成功時は通常通知、失敗時はcatchからエラーメールが届き、囲っていない場合は失敗が無音になる対比</title>
+                    <title>トリガー実行で、try catchがあれば失敗時に自分で日本語の通知を送り、囲っていない場合は英語の定型文の標準通知が届く対比。標準通知は届くまで時間がかかることもある</title>
                     <defs>
                         <marker id="arrow-adv-step8-green" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#188038" style="fill: var(--green, #188038);"></path></marker>
                         <marker id="arrow-adv-step8-primary" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#7c3aed" style="fill: var(--primary, #7c3aed);"></path></marker>
@@ -1304,7 +1320,7 @@ notifyToDiscord(text);</code></pre>
                     <text x="476" y="332" text-anchor="middle" fill="#251f33" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--text, #251f33);">エラーを受け取る</text>
                     <line x1="476" y1="349" x2="476" y2="372" stroke="#e8710a" stroke-width="3" marker-end="url(#arrow-adv-step8-orange)" style="stroke: var(--orange, #e8710a);"></line>
                     <rect x="350" y="376" width="201" height="36" rx="10" fill="#ece6f7" stroke="#e8710a" stroke-width="2" style="fill: var(--bg-light, #ece6f7); stroke: var(--orange, #e8710a);"></rect>
-                    <text x="450" y="400" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">自分へエラーメール</text>
+                    <text x="450" y="400" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">日本語で原因を通知</text>
 
                     <rect x="600" y="130" width="280" height="295" rx="14" fill="#ffffff" stroke="#e8710a" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
                     <text x="740" y="157" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">囲っていない場合</text>
@@ -1320,8 +1336,8 @@ notifyToDiscord(text);</code></pre>
                     <path d="M775 261 L810 297" fill="none" stroke="#e8710a" stroke-width="3" marker-end="url(#arrow-adv-step8-orange)" style="stroke: var(--orange, #e8710a);"></path>
                     <rect x="750" y="302" width="110" height="96" rx="10" fill="#ffffff" stroke="#e8710a" stroke-width="3" style="fill: var(--bg-mid, #ffffff); stroke: var(--orange, #e8710a);"></rect>
                     <text x="805" y="329" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" style="fill: var(--orange, #e8710a);">失敗</text>
-                    <text x="805" y="353" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--orange, #e8710a);">無音</text>
-                    <text x="805" y="378" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">誰にも届かない</text>
+                    <text x="805" y="353" text-anchor="middle" fill="#e8710a" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" style="fill: var(--orange, #e8710a);">標準通知</text>
+                    <text x="805" y="378" text-anchor="middle" fill="#645a73" font-family="'Segoe UI', sans-serif" font-size="13" style="fill: var(--muted, #645a73);">英語の定型文</text>
                 </svg>
             </div>
 
@@ -1368,7 +1384,7 @@ notifyToDiscord(text);</code></pre>
                     </div>
 
                     <div class="callout callout-info">
-                        ℹ️ <strong>GAS には 1 日に使える量の上限があります。</strong> 無料アカウントの場合、メール送信は 1 日 100 通、スクリプトの実行は合計 90 分までです。ふつうに 1 日 1 回動かす分には当たりませんが、トリガーを 5 分おきにしたり、タスク 1 件ごとに Gemini を呼んだりすると届いてしまうことがあります。
+                        ℹ️ <strong>GAS には 1 日に使える量の上限があります。</strong> 無料アカウントの場合、メールの宛先は 1 日に延べ 100 人まで、トリガーで動く実行は 1 日の合計 90 分までです（1 回の実行は最大 6 分）。ふつうに 1 日 1 回動かす分には当たりませんが、トリガーを 5 分おきにしたり、タスク 1 件ごとに Gemini を呼んだりすると届いてしまうことがあります。
                     </div>
                 </div>
             </details>
@@ -1387,6 +1403,7 @@ notifyToDiscord(text);</code></pre>
             <p>つまり、<strong>タスク名を見て優先度が何かを Gemini に判断させる</strong>わけです。同じ Gemini でも、文章を作らせるのと、決めさせるのとでは使いどころが変わります。</p>
 
             <h3 class="preparation-heading">📋 準備</h3>
+            <p>Step 6 で API キーの登録が済んでいれば、以下の手順は不要です。</p>
             <ol>
                 <li>GAS の画面左「⚙️ プロジェクトの設定」→ 一番下「スクリプト プロパティ」→「スクリプト プロパティを追加」</li>
                 <li>プロパティ名に <code>GEMINI_API_KEY</code>、値に Step 6 で取得した API キーを入れて保存</li>
