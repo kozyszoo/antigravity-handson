@@ -627,6 +627,7 @@
             </div>
 
             <h3>前提条件</h3>
+            <p>本文のコマンド例はmacOSのZsh向けです。</p>
             <table>
                 <thead>
                     <tr><th>項目</th><th>要件</th><th>確認コマンド</th></tr>
@@ -634,12 +635,12 @@
                 <tbody>
                     <tr>
                         <td>Node.js</td>
-                        <td>v18 以上（推奨 v22）</td>
+                        <td>Node.js 22以上のサポート中のLTS版</td>
                         <td><code>node --version</code></td>
                     </tr>
                     <tr>
                         <td>Anthropic アカウント</td>
-                        <td>API キーが必要</td>
+                        <td>Claude Codeに対応する有料プラン・組織の利用権、またはConsoleのAPI利用が必要</td>
                         <td>console.anthropic.com</td>
                     </tr>
                     <tr>
@@ -691,7 +692,7 @@
                         <td><strong>Claude Code</strong></td>
                         <td>Anthropic</td>
                         <td>ターミナル</td>
-                        <td>Claude Opus 4.7 / Sonnet 4.6 / Haiku 4.5</td>
+                        <td>Claude Opus 5.5 / Sonnet 5 / Haiku 4.5 など</td>
                         <td>MCP, CLAUDE.md, 長文コンテキスト</td>
                     </tr>
                     <tr>
@@ -717,6 +718,7 @@
                     </tr>
                 </tbody>
             </table>
+            <p>2026年9月27日確認。選べるモデルは契約や接続先によって異なります。</p>
 
             <div class="tip-box">
                 <strong>💡 Claude Code の強み</strong><br>
@@ -731,7 +733,7 @@
             <span class="badge badge-time">⏱ 30分</span>
 
             <h3>1-1. Node.js の確認</h3>
-            <pre><code># Node.js バージョン確認（v18 以上が必要）
+            <pre><code># Node.js バージョン確認（Node.js 22以上のサポート中のLTS版が必要）
 node --version
 
 # npm バージョン確認
@@ -750,25 +752,30 @@ npm install -g @anthropic-ai/claude-code
 # インストール確認
 claude --version</code></pre>
 
-            <h3>1-3. Anthropic API キーの取得</h3>
+            <h3>1-3. Anthropic API キーの取得（APIキーを使う場合）</h3>
+            <p>対応プランでログインする場合は、APIキーを設定せず <code>claude</code> を起動します。</p>
             <ol>
                 <li><a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> にアクセス</li>
                 <li>アカウントを作成 / ログイン</li>
                 <li>「API Keys」→「Create Key」</li>
                 <li>キーをコピー（表示は一度だけ）</li>
             </ol>
+            <p>API利用は原則前払いです。Consoleの「Settings → Billing」で残高を確認し、不足する場合は支払い担当者が「Buy credits」から購入します。</p>
 
             <div class="info-box">
                 <strong>💰 料金について</strong><br>
-                Claude Code は Anthropic の API を使います。ハンズオン（2時間程度）の使用で概ね <strong>$1〜3 程度</strong>です。
+                Claude Codeに対応する有料プラン・組織の利用権、またはConsoleのAPI利用が必要です。
+                APIキーは必須ではありませんが、APIキーで使った分は月額プランとは別料金です。
+                API利用の場合、ハンズオン（2時間程度）の使用で概ね <strong>$1〜3 程度</strong>です。
                 <code>Claude Haiku 4.5</code> など軽量モデルを選ぶとよりコストを抑えられます。
             </div>
 
-            <h3>1-4. API キーの設定</h3>
+            <h3>1-4. API キーの設定（APIキーを使う場合）</h3>
+            <p>対応プランでログインする場合は、APIキーを設定せず <code>claude</code> を起動します。</p>
             <pre><code># 環境変数に設定（今のターミナルセッションのみ有効）
 export ANTHROPIC_API_KEY="sk-ant-..."
 
-# 永続化する場合（~/.zshrc または ~/.bashrc に追記）
+# 永続化する場合（macOS・Zshの場合、~/.zshrc に追記）
 echo 'export ANTHROPIC_API_KEY="sk-ant-..."' >> ~/.zshrc
 source ~/.zshrc</code></pre>
 
@@ -837,10 +844,10 @@ claude
 
             <h3>2-4. コマンドライン引数で使う</h3>
             <pre><code># 直接指示を渡して実行（インタラクティブモードを開かない）
-claude "このフォルダにある JavaScript ファイルを一覧して"
+claude -p "このフォルダにある JavaScript ファイルを一覧して"
 
 # ファイルの内容を読んで質問
-claude "app.js を読んで、どんな処理をしているか説明して"</code></pre>
+claude -p "app.js を読んで、どんな処理をしているか説明して"</code></pre>
 
             <h3>2-5. 実習: はじめての Vibe Coding</h3>
             <div class="card">
@@ -1019,22 +1026,17 @@ claude mcp list
 # MCP を削除
 claude mcp remove playwright</code></pre>
 
-            <h3>4-3. 設定ファイル（.claude/settings.json）での管理</h3>
+            <h3>4-3. 設定ファイル（.mcp.json）での管理</h3>
+            <p>プロジェクト直下の <code>.mcp.json</code> に保存し、Claude Codeで使用を承認してから <code>/mcp</code> で接続を確認します。</p>
             <pre><code>{
   "mcpServers": {
     "playwright": {
       "command": "npx",
       "args": ["@playwright/mcp@latest"]
-    },
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_TOKEN": "ghp_..."
-      }
     }
   }
 }</code></pre>
+            <p>GitHub連携は、GitHub公式の <code>github/github-mcp-server</code> の<a href="https://github.com/github/github-mcp-server/blob/main/docs/installation-guides/install-claude.md" target="_blank" rel="noopener">Claude Code向け手順</a>で設定します。</p>
 
             <h3>4-4. MCP を使った実践例</h3>
             <div class="card">
@@ -1212,10 +1214,10 @@ gh auth login
             <h3>Tips 1: コンテキストを意識する</h3>
             <p>Claude Code には会話の長さ（コンテキスト）に上限があります。長い作業では定期的に <code>/compact</code> でコンテキストを圧縮しましょう。</p>
             <pre><code>> /compact
-# 会話を圧縮して新しいセッションとして続ける</code></pre>
+# これまでの会話を要約して、同じ会話を続ける</code></pre>
 
             <h3>Tips 2: スクリーンショットで UI 改善</h3>
-            <p>Claude Code（Claude 4.x 世代）は画像を理解できます。スクリーンショットを貼り付けて UI 改善を依頼できます。</p>
+            <p>Claude Codeにはスクリーンショットを添付して、画面の改善を依頼できます。</p>
             <pre><code>> [スクリーンショットを添付]
   このデザインをより洗練させてください。
   特にボタンのデザインとフォントを改善してください。</code></pre>
@@ -1248,8 +1250,9 @@ TypeError: Cannot read properties of undefined (reading 'map')
             <h3>Tips 7: Plan Mode で「設計してから実装」する</h3>
             <p>複雑なタスクや複数ファイルにまたがる変更は、いきなり実装させず <strong>Plan Mode</strong> を使いましょう。Claude
                 Code は Explore サブエージェントでリポジトリを調査し、関連ファイル・パターンを要約した実装計画を提示します。<strong>計画を承認してから実装に進む</strong>ことで、手戻りが激減します。</p>
-            <pre><code>> ユーザー認証機能を追加したい。まず実装計画を立てて。
+            <pre><code>> /plan ユーザー認証機能を追加したい。まず実装計画を立てて。
   （計画を確認・承認してから実装フェーズへ進む）</code></pre>
+            <p>画面でPlan Modeへの切り替わりを確認します。</p>
 
             <h3>Tips 8: 調査はサブエージェントに任せて本筋を汚さない</h3>
             <p>「多数のファイルを読む」「特定の使われ方を探す」といった調査は、<strong>サブエージェントに委譲</strong>すると別コンテキストで実行され、メインの会話がログで埋まりません。結論だけが返ってくるので、実装に集中できます。</p>
@@ -1336,6 +1339,7 @@ TypeError: Cannot read properties of undefined (reading 'map')
                     <span class="yt-tag">4月アップデート</span>
                     <h4>Claude Code 4月アップデート総まとめ</h4>
                     <p>2026年4月のデスクトップアプリ刷新、Routines（クラウド継続実行）、Ultra Plan モード、Auto Mode、CLI 新機能 4 種、新スラッシュ 6 種（<code>/ultra-review</code>・<code>/loop</code>・<code>/setup</code>・<code>/powerup</code>・<code>/spawn-PR</code>・<code>/usage</code>）を網羅。</p>
+                    <p>この動画は2026年4月時点の情報です。現在、Ultra Planは削除され、計画作成には <code>/plan</code>、クラウドでの詳細レビューには <code>/code-review ultra</code> を使います。</p>
                     <a class="yt-link" href="https://www.youtube.com/watch?v=umoAIATmPQo" target="_blank" rel="noopener">出典: https://www.youtube.com/watch?v=umoAIATmPQo</a>
                 </div>
 

@@ -496,7 +496,7 @@
         <!-- Hero -->
         <div class="hero">
             <h1>🚀 Google Antigravity ハンズオンガイド</h1>
-            <p style="margin-top:8px; font-size:0.9rem;">最終更新 2026年9月22日 ／ <strong style="color: var(--primary);">Antigravity 2.15.1（2026-09-19）・Antigravity CLI 1.2.8（2026-09-22）・Gemini 3.8 Flash</strong> 対応</p>
+            <p style="margin-top:8px; font-size:0.9rem;">最終更新 2026年9月27日 ／ 本編の対象：<strong style="color: var(--primary);">Antigravity IDE</strong>。2026年9月27日時点の公式配布版は IDE 2.5.5／デスクトップ 2.17.0／CLI 1.2.9</p>
         </div>
 
         <!-- Intro -->
@@ -586,15 +586,15 @@
             <img class="screenshot" src="img/fig-intro.png"
                 alt="AIエージェント（ロボット）とエンジニアが横並びでノートパソコンに向かい、コードを協力して書いているフラットイラスト。ダークな背景に青緑色のアクセントカラー。Antigravity ハンズオンのコンセプトイメージ">
 
-            <!-- Antigravity 2.0 リリース告知カード（I/O 2026 / 2026-05-24 リリース） -->
+            <!-- Antigravity 2.0 リリース告知カード（I/O 2026 / 2026-05-19 リリース） -->
             <div id="intro-v2" class="card"
                 style="margin: 24px 0; border: 1px solid var(--primary); border-radius: 12px; padding: 20px 24px; background: linear-gradient(135deg, rgba(78, 204, 163, 0.12), rgba(155, 130, 181, 0.10));">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span class="material-symbols-outlined" style="color: var(--primary); font-size: 1.6rem;">rocket_launch</span>
-                    <h3 style="margin: 0; color: var(--primary);">🆕 Antigravity 2.0（2026-05-24）と、その後の更新（〜2.15.1、2026-09-19）</h3>
+                    <h3 style="margin: 0; color: var(--primary);">🆕 Antigravity 2.0（2026-05-19）と、その後の更新（〜2.15.1、2026-09-19）</h3>
                 </div>
                 <p style="font-size: 0.93rem; line-height: 1.7; margin: 8px 0 12px;">
-                    2026年5月19日の <strong>Google I/O 2026</strong> で <strong>Antigravity 2.0</strong> が発表され、5月24日に <code>v2.0.0</code> / <code>v2.0.1</code> として一般公開されました。
+                    <strong>Antigravity 2.0</strong> は2026年5月19日に発表・公開されました（公式発表の日付）。
                     本ハンズオンも 2.0 を前提に構成しています。<strong>初めて触る方は普段どおり Step 1 から進めて OK</strong> ですが、すでに 1.x を使い込んでいる方は以下が新しく増えた要素です。
                 </p>
                 <ul style="font-size: 0.9rem; line-height: 1.75; margin: 0 0 12px 22px; padding: 0;">
@@ -789,7 +789,7 @@
                 <tbody>
                     <tr>
                         <td>macOS</td>
-                        <td>バージョン 12 (Monterey) 以上 ※ Apple Silicon のみ。X86 は非対応</td>
+                        <td>バージョン 12 (Monterey) 以上 ※ Apple Silicon／Intel に対応。公式ダウンロードページの Antigravity IDE 欄から、自分のMacに合う版を選んでください</td>
                     </tr>
                     <tr>
                         <td>Windows</td>
@@ -957,9 +957,8 @@
             </table>
 
             <h4>6. モデル選択</h4>
-            <p>Agent Manager の右上にあるモデル選択プルダウンから、タスクに応じて最適なモデルを切り替えられます。<br>
-                <strong>基本は <code>Gemini 3.1 Pro (High)</code> を選んでおけば間違いありません。</strong>使いすぎて Rate Limit
-                に達した場合は別モデルに切り替えましょう。
+            <p>会話入力欄の下にあるモデル選択プルダウンから、タスクに応じて最適なモデルを切り替えられます。<br>
+                <strong>基本は <code>Gemini 3.1 Pro (High)</code> を選んでおけば間違いありません。</strong>Rate Limit に達した場合は、利用状況画面で回復時刻を確認してください。Geminiモデル同士は利用枠を共有するため、切り替えても使い切った枠は回復しません。
             </p>
             <!-- 【画像挿入箇所】 モデル選択のプルダウンメニューが開いているスクショ -->
             <img class="screenshot" src="img/fig2.png"
@@ -980,7 +979,7 @@
                     </tr>
                     <tr>
                         <td>Gemini 3.1 Pro (Low)</td>
-                        <td>High と同じモデルだが計算リソースを抑えた設定。応答速度が若干速くなる場合がある。High が Rate Limit に達した際の代替としても有効。</td>
+                        <td>High と同じモデルだが計算リソースを抑えた設定。応答速度が若干速くなる場合がある。High と利用枠を共有するため、Rate Limit に達してから切り替えても枠は回復しません。</td>
                         <td>比較的シンプルなコード修正、High の代替</td>
                     </tr>
                     <tr>
@@ -995,7 +994,7 @@
                     </tr>
                     <tr>
                         <td>Claude Opus 4.6 (Thinking)</td>
-                        <td>Anthropic の最高精度モデル。非常に深い推論を行う。消費リソースが大きい分、最高峰の精度が求められる場面で真価を発揮する。</td>
+                        <td>Antigravityで利用できるAnthropic製の推論モデル。非常に深い推論を行う。</td>
                         <td>難易度の高いバグ解析、複雑なアーキテクチャ設計の検討</td>
                     </tr>
                     <tr>
@@ -1004,8 +1003,8 @@
                         <td>特定言語のコーディング、多角的なアイデア出しや代替案の作成</td>
                     </tr>
                     <tr>
-                        <td>Nano Banana Pro</td>
-                        <td>画像生成専用モデル。チャットで「〜な画像を生成して」と指示するとバックグラウンドで自動生成・保存してくれる。UIモックアップ・OGP・アイコンなどに活用できる。</td>
+                        <td>Nano Banana 2</td>
+                        <td>画像生成用の内蔵モデルです。モデル選択欄では切り替えず、チャットで画像生成を依頼します。チャットで「〜な画像を生成して」と指示するとバックグラウンドで自動生成・保存してくれる。UIモックアップ・OGP・アイコンなどに活用できる。</td>
                         <td>ヒーロー画像、アイコン、UIモックアップ、OGP画像の生成</td>
                     </tr>
                 </tbody>
@@ -1013,9 +1012,8 @@
             <div class="card">
                 <strong>💡 Rate Limit に達したときの対処法</strong>
                 <ul style="margin-top: 8px;">
-                    <li>Gemini 3.1 Pro (High) → <strong>Gemini 3.1 Pro (Low)</strong> または <strong>Claude Sonnet 4.6
-                            (Thinking)</strong> / <strong>Gemini 3.8 Flash</strong> に切り替える</li>
-                    <li>しばらく時間をおいてから再試行する（通常数分〜数十分でリセット）</li>
+                    <li>無料・Plusの利用枠は週ごと、Pro・Ultraは5時間ごとに回復しますが、週ごとの上限もあります。</li>
+                    <li>Geminiモデル同士は利用枠を共有するため、切り替えても使い切った枠は回復しません。利用状況画面で回復時刻を確認してください。</li>
                     <li>簡単な作業は <strong>Gemini 3.8 Flash</strong>（または 3.7 Flash）で素早く処理する</li>
                 </ul>
             </div>
@@ -1087,46 +1085,36 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Off</strong><br><span style="color: var(--primary); font-size: 0.8rem;">最も安全</span>
-                        </td>
-                        <td>許可リスト（Allowlist）に登録したコマンドのみ実行。それ以外はすべて手動承認が必要。AIが勝手にコマンドを実行することは一切ない。</td>
-                        <td>本番環境に近いリポジトリ、初めて使う場合、慎重に進めたいとき</td>
+                        <td><strong>Request Review</strong><br><span style="color: var(--primary); font-size: 0.8rem;">実習で使用</span></td>
+                        <td>許可リスト（Allowlist）の例外を除き、実行前に確認します。</td>
+                        <td>実習や、コマンドの内容と対象フォルダを確認してから進めるとき</td>
                     </tr>
                     <tr>
-                        <td><strong>Auto</strong><br><span
-                                style="color: var(--blue); font-size: 0.8rem;">推奨（バランス）</span></td>
-                        <td>AI の安全性モデルが各コマンドのリスクを自動判断。低リスクなコマンド（<code>npm install</code>・<code>git status</code>
-                            など）は自動実行し、リスクが高いコマンド（ファイル削除・外部送信など）は確認を求める。</td>
-                        <td>ハンズオン・個人開発・学習用プロジェクト。<strong>初心者はここから始めるのがおすすめ</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Turbo</strong><br><span
-                                style="color: var(--purple); font-size: 0.8rem;">最速・要注意</span></td>
-                        <td>すべてのコマンドを確認なしで即時実行。AI の判断にすべて委ねるため、開発スピードは最大になるが、意図しないファイル削除や変更のリスクも高まる。</td>
-                        <td>手順が完全に確定した単純繰り返し作業、慣れたユーザーが速度を最優先にするとき</td>
+                        <td><strong>Always Proceed</strong><br><span style="color: var(--purple); font-size: 0.8rem;">自動実行・要注意</span></td>
+                        <td>拒否リスト（Denylist）の例外を除き、自動実行します。意図しないファイル削除や変更のリスクも高まります。</td>
+                        <td>手順と対象を確認済みの作業を自動実行するとき</td>
                     </tr>
                 </tbody>
             </table>
             <div class="card">
                 <strong>⚠️ ハンズオンでの推奨設定</strong>
-                <p style="margin-top: 8px;">今日のハンズオンでは <strong>Auto</strong> に設定しておくことを推奨します。</p>
+                <p style="margin-top: 8px;">実習では <strong>Request Review</strong> を選び、表示されたコマンドと対象フォルダを確認してから承認してください。</p>
                 <ul>
-                    <li>AI が <code>npm install</code> や <code>git status</code> などの安全なコマンドを自動実行してくれるので作業がスムーズ</li>
-                    <li>危険なコマンド（ファイル削除など）は確認ダイアログが出るので誤操作を防げる</li>
-                    <li>「何をやっているか見たい」場合は <strong>Off</strong> にして一つ一つ確認するのも学習になる</li>
+                    <li>許可リストに登録されたコマンドは、確認なしで実行される場合があります。</li>
+                    <li>ファイル削除や外部送信などの操作は、実行内容と対象を確認してください。</li>
                 </ul>
             </div>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
-                <strong>💡 実際の動作例（Autoモードの場合）</strong>
+                <strong>💡 実際の動作例（Request Reviewの場合）</strong>
                 <ul style="margin-top: 8px; font-size: 0.9rem;">
-                    <li><strong>自動実行される例：</strong>
+                    <li><strong>許可リストに登録されていなければ確認される例：</strong>
                         <code>ls</code>（ファイル一覧表示）、<code>npm install</code>（パッケージインストール）、<code>git status</code>（Git状態確認）
                     </li>
-                    <li><strong>確認が求められる例：</strong>
+                    <li><strong>特に内容と対象の確認が必要な例：</strong>
                         <code>rm -rf フォルダ名</code>（フォルダ削除）、<code>git push --force</code>（強制プッシュ）
                     </li>
-                    <li>確認ダイアログが出たら、コマンドの内容を確認して「許可」または「拒否」を選択できます</li>
+                    <li>確認ダイアログが出たら、コマンドの内容と対象フォルダを確認して「許可」または「拒否」を選択できます</li>
                 </ul>
             </div>
 
@@ -1191,7 +1179,7 @@
                     </tr>
                     <tr>
                         <td>X86 Mac で起動しない</td>
-                        <td>Apple Silicon (M1 以降) のみ対応</td>
+                        <td>Apple Silicon／Intel に対応。公式ダウンロードページの Antigravity IDE 欄から、自分のMacに合う版を選んでください</td>
                     </tr>
                 </tbody>
             </table>
@@ -1228,14 +1216,6 @@
                     <tr>
                         <td><code>GEMINI.md</code></td>
                         <td>プロジェクトルートに配置。もっとも一般的</td>
-                    </tr>
-                    <tr>
-                        <td><code>AI_INSTRUCTIONS.md</code></td>
-                        <td>別名。機能は同じ</td>
-                    </tr>
-                    <tr>
-                        <td><code>ANTIGRAVITY.md</code></td>
-                        <td>別名。機能は同じ</td>
                     </tr>
                 </tbody>
             </table>
@@ -1317,7 +1297,7 @@
                 <ul style="margin-top: 8px; font-size: 0.9rem;">
                     <li><strong>そのまま使う（推奨）：</strong> 既存の <code>GEMINI.md</code> を開いて中身を読んでみる → そのまま「動作確認」セクションに進む</li>
                     <li><strong>差し替えたい場合：</strong> 既存ファイルを開いて、下のテンプレートで上書き保存する（<strong>新規作成は不要</strong>）</li>
-                    <li><strong>別名で作りたい場合：</strong> <code>ANTIGRAVITY.md</code> や <code>AI_INSTRUCTIONS.md</code> として作成すると既存ルールと併用できます</li>
+                    <li><strong>ルールを分けたい場合：</strong> Customizations → Rules → + Workspace から追加してください</li>
                 </ul>
             </div>
 
@@ -1338,7 +1318,7 @@
 
 ## 技術スタック
 - HTML / CSS / JavaScript（Vanilla）
-- Node.js (任意)
+- Node.js（発展編では必須）
 
 ## コーディング規約
 - 変数名: camelCase
@@ -1357,6 +1337,7 @@
                 alt="AIによって生成されたHTMLファイルのコード。GEMINI.md で指定した通り、日本語のコメントが含まれ、変数名にキャメルケースが適用されていることが確認できるスクリーンショット">
 
             <h3>応用: Workflows を体験しよう（任意）</h3>
+            <p>Workflowsは2026年11月1日に終了予定で、公式はSkillsへの移行を案内しています。</p>
             <p><code>.agent/workflows/</code> フォルダに <code>.md</code> ファイルを作成し、チャットで <code>/ワークフロー名</code> と入力して実行できます。
             </p>
             <pre><code># .agent/workflows/hello.md
@@ -1645,21 +1626,22 @@ description: 挨拶のテスト用ワークフロー
                 を例に、設定ファイルでの追加方法を学びます。</p>
 
             <h4>設定ファイルの場所</h4>
-            <p>Antigravity IDE の MCP 設定ファイルは、<strong>ユーザーのホームディレクトリ配下</strong>にあります（プロジェクト内ではない点に注意）：</p>
+            <p>Antigravity IDE の <strong>View raw config</strong> で開いた設定ファイルを編集してください。現在の公式保存先は共通設定が <code>~/.gemini/config/mcp_config.json</code>、プロジェクト専用設定が <code>.agents/mcp_config.json</code> です。以下は作者の実機確認例です：</p>
             <ul style="font-size: 0.9rem;">
                 <li><strong>macOS / Linux:</strong> <code>~/.gemini/antigravity-ide/mcp_config.json</code></li>
                 <li><strong>Windows:</strong> <code>%USERPROFILE%\.gemini\antigravity-ide\mcp_config.json</code></li>
             </ul>
             <p style="font-size: 0.85rem; color: var(--muted); margin-top: 8px;">
                 ※ 似た名前の <strong>Antigravity</strong>（Agent Manager 単体アプリ）も併用している場合、そちらの設定は <code>~/.gemini/antigravity/mcp_config.json</code>（バージョンによっては <code>~/.gemini/config/mcp_config.json</code> への symlink）に別途存在します。
-                <strong>本ハンズオンで編集するのは <code>antigravity-ide/</code> 配下</strong>です。
+                本ハンズオンでは <strong>Antigravity IDE の View raw config で開いた設定ファイル</strong>を編集します。
             </p>
             <p style="font-size: 0.9rem; color: var(--muted);">💡 パスを直接探さずに、次項の手順で Antigravity IDE 上から「Manage MCP Servers → View raw config」を開くのが、バージョン差に左右されず確実です（初回はファイルが自動生成されます）。</p>
 
             <h4>設定手順</h4>
+            <p>先に<a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank">公式手順</a>で uv をインストールし、ターミナルで <code>uv --version</code> と <code>uvx --version</code> が表示されることを確認して、Antigravity IDE を再起動してください。</p>
             <ol>
                 <li>Agent パネル右上の <code>...</code>（三点メニュー）をクリック</li>
-                <li><strong>Manage MCP Servers</strong> を選択</li>
+                <li><strong>Manage MCP Servers</strong> を選択。直接表示されない場合は、先に <strong>MCP Servers</strong> を選びます</li>
                 <li>メインタブの <strong>View raw config</strong> をクリック</li>
                 <li>以下の設定を <code>mcpServers</code> セクションに追加：
                     <pre><code>{
@@ -1774,7 +1756,7 @@ $ agy changelog
 $ agy --remote-control            # このセッションの間だけ
 $ agy remote-control start        # 常駐サービスとして登録（再起動後も有効）</code></pre>
                 <p style="font-size: 0.85rem; color: var(--muted); margin-top: 6px;">
-                    2026年9月22日時点の最新は <strong>1.2.8</strong>。<code>-p</code> の既定タイムアウトは無制限になり（1.2.6〜）、失敗時は <code>AGY_ERROR: {…}</code> の1行が stderr に出て終了コード 3 で終わります。<code>--mode</code> は <code>plan</code>（読み取りのみ）と <code>accept-edits</code>（編集を自動承認）の2つ。<code>--sandbox</code> でターミナル操作を隔離して動かせます。<br>
+                    2026年9月22日時点の最新は <strong>1.2.8</strong>。<code>-p</code> の既定タイムアウトは無制限になり（1.2.6〜）、エージェントやモデルAPIの障害時は、標準エラー出力に <code>AGY_ERROR: {…}</code> が出て終了コード3になります。引数の誤りなどでは別の終了コードになります。<code>--mode</code> は <code>plan</code>（計画立案。変更前に計画を提示しますが、ファイル変更を禁止する設定ではありません）と <code>accept-edits</code>（編集を自動承認）の2つ。<code>--sandbox</code> でターミナル操作を隔離して動かせます。<br>
                     📖 公式: <a href="https://antigravity.google/docs/cli/install" target="_blank" style="color: var(--blue);">Installation &amp; Auth</a> ／ <a href="https://antigravity.google/docs/cli/reference" target="_blank" style="color: var(--blue);">CLI Reference</a> ／ <a href="https://antigravity.google/docs/remote-control" target="_blank" style="color: var(--blue);">Remote Control</a><br>
                     💡 旧 <code>gemini</code> CLI を使っていた方は、最新版でメッセージ「Transitioning Gemini CLI to Antigravity CLI」が表示されます。<br>
                     👉 公式案内: <a href="https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/" target="_blank" style="color: var(--blue);">Transitioning Gemini CLI to Antigravity CLI (Google Developers Blog)</a>
@@ -1804,7 +1786,7 @@ $ agy remote-control start        # 常駐サービスとして登録（再起�
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--green); margin-top: 12px;">
                 <strong>📌 ハンズオン参加者への補足</strong>
                 <ul style="margin-top: 6px; font-size: 0.88rem; padding-left: 20px;">
-                    <li>本日の Step 4 までは <strong>すべて Antigravity IDE 単体で完結</strong>します。CLI / SDK / Managed Agents は使いません。</li>
+                    <li>Step 4 の <code>multi-ai-review</code> には、<strong>Codex・Gemini・Claude の各CLIのインストールと認証が別途必要です</strong>。</li>
                     <li>「自分の業務にも Antigravity を取り込みたい」と感じたら、<strong>まず CLI から</strong>触るのが一番手軽です。</li>
                     <li>API 仕様や料金は変動しやすいので、必ず <a href="https://antigravity.google/docs" target="_blank" style="color: var(--blue);">公式ドキュメント</a> と <a href="https://antigravity.google/changelog" target="_blank" style="color: var(--blue);">Changelog</a> で最新を確認してください。</li>
                 </ul>
@@ -1846,7 +1828,7 @@ $ agy remote-control start        # 常駐サービスとして登録（再起�
                     </tr>
                     <tr>
                         <td>Workflows</td>
-                        <td>定型タスクを自動化する</td>
+                        <td>定型タスクを自動化する。Workflowsは2026年11月1日に終了予定で、公式はSkillsへの移行を案内しています。</td>
                         <td><code>/ワークフロー名</code></td>
                     </tr>
                     <tr>
@@ -1902,10 +1884,10 @@ description: 特定のタスクを支援するスキル
             </p>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid #4ecca3;">
-                <strong>✅ このハンズオンでは追加作業は不要です</strong>
+                <strong>✅ Skillファイルの追加は不要です。利用するCLIの準備は別途必要です</strong>
                 <p style="margin-top: 8px; font-size: 0.9rem;">
                     後ほど Step 4 で使う <code>multi-ai-review</code> や <code>agent-team</code> をはじめ、代表的な Skill は<strong>すでに本リポジトリの
-                    <code>.agent/skills/</code> 配下に同梱済み</strong>です。下記の追加手順は、<strong>ハンズオン後に自分の別プロジェクトへ持ち込みたいとき</strong>の参考としてご覧ください。
+                    <code>.agent/skills/</code> 配下に同梱済み</strong>です。<code>multi-ai-review</code> には、Codex・Gemini・Claude の各CLIのインストールと認証が別途必要です。下記の追加手順は、<strong>ハンズオン後に自分の別プロジェクトへ持ち込みたいとき</strong>の参考としてご覧ください。
                 </p>
             </div>
 
@@ -1969,7 +1951,7 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
                 <tbody>
                     <tr>
                         <td><code>@multi-ai-review</code></td>
-                        <td>Codex, Gemini, Claude の3つに並列コードレビューを依頼し統合レポートを生成</td>
+                        <td>Codex, Gemini, Claude の3つに並列コードレビューを依頼し統合レポートを生成。各CLIのインストールと認証が別途必要です</td>
                     </tr>
                     <tr>
                         <td><code>@agent-team</code></td>
@@ -2188,6 +2170,7 @@ Step 6: デプロイ</code></pre>
             </div>
 
             <h4>Part 4: 実装（React + TailwindCSS）— 所要時間: 10分</h4>
+            <p>発展編には Node.js と npm が必要です。Vite が対応する Node.js 20.19以上または22.12以上を用意し、<code>node --version</code> と <code>npm --version</code> で確認してください。</p>
             <p><strong>目的：</strong> Part 2 で決めた構成と Part 3 で生成した画像を使い、本格的な React アプリとして実装します。</p>
             <p><strong>やること：</strong> AI に「Vite + React + TailwindCSS で構築して」と依頼すると、プロジェクトのセットアップからコンポーネント実装まで全自動で行われます。
             </p>
@@ -2221,6 +2204,7 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
             </div>
 
             <h4>Part 5: 品質チェック（Skills活用）— 所要時間: 5分</h4>
+            <p><code>multi-ai-review</code> には、Codex・Gemini・Claude の各CLIのインストールと認証が別途必要です。</p>
             <p><strong>目的：</strong> 実装したコードの品質を自動レビューし、バグやアンチパターンを事前に発見・修正します。</p>
             <p><strong>やること：</strong> <code>@multi-ai-review</code> Skill を呼び出すと、AI
                 が全コンポーネントをレビューし、改善すべき点をまとめた統合レポートを自動的に生成してくれます。</p>
@@ -2552,10 +2536,10 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
 
             <img class="screenshot" src="img/slide-cheatsheet.png" alt="Vibe Coding チートシート">
 
-            <!-- Antigravity 2.0（2026-05-24）で新しく増えた機能まとめ -->
+            <!-- Antigravity 2.0（2026-05-19）で新しく増えた機能まとめ -->
             <h3 id="step6-v2">🆕 Antigravity 2.0（2026-05）で増えた機能まとめ</h3>
             <p>
-                2026年5月19日の <strong>Google I/O 2026</strong> で発表され、5月24日に <code>v2.0.0</code> / <code>v2.0.1</code> として一般公開された <strong>Antigravity 2.0</strong> の主要な追加機能を、ハンズオン後の自習用に整理しました。<br>
+                2026年5月19日に発表・公開された <strong>Antigravity 2.0</strong>（公式発表の日付） の主要な追加機能を、ハンズオン後の自習用に整理しました。<br>
                 <span style="font-size: 0.88rem; color: var(--muted);">※ 一部の機能は今後の更新でさらに進化する可能性があります。最新は <a href="https://antigravity.google/changelog" target="_blank" style="color: var(--blue);">公式 Changelog</a> を必ず確認してください。</span>
             </p>
 
@@ -2665,7 +2649,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                                 <strong>Google AI Ultra プラン（$100/月）</strong>
                             </div>
                         </td>
-                        <td>Antigravity の利用枠が <strong>Pro の約5倍</strong>に拡大。長時間・並列・スケジュール実行を本格運用する人向けの上位プラン（期間限定のボーナスクレジット付き）。</td>
+                        <td>Antigravity の利用枠が <strong>Pro の約5倍</strong>に拡大。長時間・並列・スケジュール実行を本格運用する人向けの上位プラン。</td>
                         <td>オーバーナイト実行・複数 Dynamic Subagent の常時並列・チームでの高負荷利用。</td>
                     </tr>
                 </tbody>
@@ -2674,7 +2658,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
                 <strong>📚 出典 / 一次情報</strong>
                 <ul style="margin-top: 6px; font-size: 0.88rem; padding-left: 20px;">
-                    <li><a href="https://antigravity.google/changelog" target="_blank" style="color: var(--blue);">Antigravity 公式 Changelog</a>（v2.0.0 / v2.0.1, 2026-05-24）</li>
+                    <li><a href="https://antigravity.google/changelog" target="_blank" style="color: var(--blue);">Antigravity 公式 Changelog</a>（v2.0.0 / v2.0.1, 2026-05-19）</li>
                     <li><a href="https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/" target="_blank" style="color: var(--blue);">Google I/O 2026 developer highlights（公式ブログ）</a></li>
                     <li><a href="https://developers.googleblog.com/build-with-google-antigravity-our-new-agentic-development-platform/" target="_blank" style="color: var(--blue);">Build with Google Antigravity（Google Developers Blog）</a></li>
                     <li><a href="https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/" target="_blank" style="color: var(--blue);">Transitioning Gemini CLI to Antigravity CLI</a></li>
@@ -2791,8 +2775,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>Auto Execution の使い分け</td>
-                        <td>設計を壁打ちしたいときは <code>Off</code>（許可リスト以外はすべて手動承認）、単純作業を任せるときは
-                            <code>Turbo</code>（確認なしで爆速）に切り替える。慣れるまでは Step 1-1 で推奨した <code>Auto</code> がバランス良く安全。
+                        <td><code>Request Review</code> は許可リストの例外を除き、実行前に確認します。<code>Always Proceed</code> は拒否リストの例外を除き、自動実行します。実習では <code>Request Review</code> を選び、表示されたコマンドと対象フォルダを確認してから承認してください。
                         </td>
                     </tr>
                     <tr>
@@ -2805,8 +2788,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>Chrome拡張でクロスツール自律操作</td>
-                        <td>Antigravity 専用の Chrome
-                            拡張を入れると、AIがブラウザを実際に見て操作できるようになる。ターミナル実行→ブラウザ動作確認まで全自動。UIの実装精度が段違いに向上する。</td>
+                        <td>標準の Browser Agent は案内に従って専用 Chrome 拡張を入れて連携します（公式の自動化教材では拡張なしで動かす方法も紹介されています）。ターミナル実行→ブラウザ動作確認まで全自動。UIの実装精度が段違いに向上する。</td>
                     </tr>
                     <tr>
                         <td>スクショに直接コメントで指示する</td>
@@ -2814,8 +2796,8 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                         </td>
                     </tr>
                     <tr>
-                        <td>Nano Banana Pro で画像を即生成</td>
-                        <td>UIモックアップ・アーキテクチャ図・Webサイト用の画像アセットなどをAIが生成して直接プロジェクトに配置してくれる。デザイナーを待たずとも高品質な素材が数秒で手に入る。</td>
+                        <td>Nano Banana 2 で画像を即生成</td>
+                        <td>画像生成用の内蔵モデルです。モデル選択欄では切り替えず、チャットで画像生成を依頼します。UIモックアップ・アーキテクチャ図・Webサイト用の画像アセットなどをAIが生成して直接プロジェクトに配置してくれる。デザイナーを待たずとも高品質な素材が数秒で手に入る。</td>
                     </tr>
                     <tr>
                         <td>Artifact Review で実行前にモデル切り替え</td>
@@ -2845,18 +2827,15 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>無料枠のレート制限に注意</td>
-                        <td>プレビュー版では無料枠のレート制限が厳しく、数時間で上限に達する可能性がある。制限に達したら<strong>別モデルへ切り替え</strong>（Claude Sonnet 4.6
-                            は無料で利用可能）、またはエラー発生時は「続きを実装して」と依頼すると再開される。</td>
+                        <td>無料・Plusの利用枠は週ごと、Pro・Ultraは5時間ごとに回復しますが、週ごとの上限もあります。Geminiモデル同士は利用枠を共有するため、切り替えても使い切った枠は回復しません。利用状況画面で回復時刻を確認してください。</td>
                     </tr>
                     <tr>
                         <td>Review-driven development を活用</td>
-                        <td>ターミナル実行ポリシー（Auto Execution）を <code>Off</code> または <code>Auto</code>
-                            に設定すると、リスクの高いコマンドは実行前に確認が挟まり、AIが状況に応じて自動判断もしてくれる。要所で人間の確認を挟みながら作業を進められる。</td>
+                        <td>ターミナル実行ポリシー（Auto Execution）は <code>Request Review</code> を選び、表示されたコマンドと対象フォルダを確認してから承認してください。許可リストの例外を除き、実行前に確認します。</td>
                     </tr>
                     <tr>
                         <td>Browser Agent でデバッグ自動化</td>
-                        <td>Browser Agent
-                            拡張機能をインストールすると、エージェントに「ブラウザで確認するよう指示」するだけで、エラー画面を自動確認・デバッグ情報を収集できる。ターミナル実行→ブラウザ動作確認まで全自動になる。
+                        <td>標準の Browser Agent は案内に従って専用 Chrome 拡張を入れて連携します（公式の自動化教材では拡張なしで動かす方法も紹介されています）。エージェントに「ブラウザで確認するよう指示」すると、エラー画面を自動確認・デバッグ情報を収集できる。ターミナル実行→ブラウザ動作確認まで全自動になる。
                         </td>
                     </tr>
                     <tr>
@@ -2875,8 +2854,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>Rate Limit のリセット周期を把握して計画的に使う</td>
-                        <td>無料プランのレート制限は<strong>週次</strong>でリセットされるのに対し、Pro / Ultra
-                            などの有料プランは<strong>約5時間ごと</strong>に回復する。長時間のハンズオンや開発では、上限に達する前提で「重い設計フェーズは集中して回し、軽作業は別モデルに逃がす」と計画しておくと詰まりにくい。2026年1月には無料と
+                        <td>無料・Plusの利用枠は週ごと、Pro・Ultraは5時間ごとに回復しますが、週ごとの上限もあります。Geminiモデル同士は利用枠を共有するため、切り替えても使い切った枠は回復しません。利用状況画面で回復時刻を確認してください。2026年1月には無料と
                             Pro
                             の中間プラン（ストレージ200GBを Gmail / Drive と共有）も追加された。</td>
                     </tr>
