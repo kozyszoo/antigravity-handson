@@ -565,7 +565,7 @@
             <div class="callout callout-warn" style="margin-top: 12px; margin-bottom: 12px;">
                 ⚠️ <strong>ご注意:</strong> 本資料は Google 公式のドキュメントではなく、コミュニティおよび有志による非公式のハンズオン資料です。
             </div>
-            <p style="margin-top:8px;">Google の画像生成・編集モデル <strong>Nano Banana（Gemini 2.5 Flash Image / 後継の Gemini 3 系 Flash Image）</strong> を使い、架空のバナナブランドをテーマにしたブランドキットを作る体験を、ブラウザの Gemini アプリだけで行います。1 枚の写真から、自分の「ロゴ・アイコン・SNS バナー・商品モックアップ」一式（＝ブランドキット）を作り上げます。コードは書きません。プロンプト（指示文）だけで進められます。</p>
+            <p style="margin-top:8px;">Google の画像生成・編集モデル <strong>Nano Banana 2（Gemini 3.1 Flash Image）</strong> を使い、架空のバナナブランドをテーマにしたブランドキットを作る体験を、ブラウザの Gemini アプリだけで行います。1 枚の写真から、自分の「ロゴ・アイコン・SNS バナー・商品モックアップ」一式（＝ブランドキット）を作り上げます。コードは書きません。プロンプト（指示文）だけで進められます。</p>
             <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 60〜90 分</p>
             <img class="screenshot" src="img/nb-hero.png" style="margin-bottom:0;"
                 alt="笑顔で手を振るバナナのマスコットを中心に、同じキャラクターを使ったロゴ・SNSアイコン・横長バナー・マグカップの商品モックアップが並ぶ、ブランドキット一式のイメージ">
@@ -647,7 +647,7 @@
             </div>
 
             <h3>🍌 そもそも Nano Banana とは？</h3>
-            <p><strong>Nano Banana（ナノバナナ）</strong>は、本ハンズオンで作成する架空のキャラクター名およびブランドのテーマでもあり、同時に Google の最新画像生成・編集モデルの愛称でもあります。正式なモデル名は <strong>Gemini 2.5 Flash Image</strong>（Gemini アプリに内蔵。後継として Gemini 3 系の Flash Image も登場）です。テキストで画像を作るだけでなく、<strong>「会話しながら画像を直していける」</strong>のが最大の特徴です。</p>
+            <p><strong>Nano Banana（ナノバナナ）</strong>は、本ハンズオンで作成する架空のキャラクター名およびブランドのテーマでもあり、同時に Google の最新画像生成・編集モデルの愛称でもあります。この教材では <strong>Nano Banana 2（Gemini 3.1 Flash Image）</strong>を使います。テキストで画像を作るだけでなく、<strong>「会話しながら画像を直していける」</strong>のが最大の特徴です。</p>
 
             <div class="step-grid">
                 <div class="step-card">
@@ -687,13 +687,14 @@
 
             <h3>✅ 必要な環境</h3>
             <ul>
-                <li><strong>Google アカウント</strong>（普段お使いのもので OK）</li>
+                <li><strong>Google アカウント</strong> … Gemini の画像編集の利用は18歳以上が対象です。学校用アカウントは利用条件が異なるため、事前に確認してください。</li>
+                <li>Google AI Studio／Gemini API の利用は18歳以上が対象です。</li>
                 <li><strong>Gemini アプリ（ブラウザ）</strong> … <a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com/</a> にアクセスできれば OK。スマホアプリでも可。</li>
                 <li><strong>素材写真を 1〜2 枚</strong>（任意） … 自分の似顔絵のもとにしたい写真、商品の写真、好きなロゴなど。なくても進められます。</li>
             </ul>
 
             <div class="callout callout-info">
-                ℹ️ 画像生成モデルである <strong>Nano Banana（Gemini 2.5 Flash Image）</strong> は <strong>Google AI Studio</strong> や <strong>Gemini API</strong> からも使えますが、今回は<strong>コード不要で全員が確実に動かせる</strong> Gemini アプリ（Web）を使います。API での使い方は最後の「さらに深掘り」で触れます。
+                ℹ️ 画像生成モデルである <strong>Nano Banana 2（Gemini 3.1 Flash Image）</strong> は <strong>Google AI Studio</strong> や <strong>Gemini API</strong> からも使えますが、今回は<strong>コードを書かずに使える</strong> Gemini アプリ（Web）を使います。API での使い方は最後の「さらに深掘り」で触れます。
             </div>
 
             <div class="callout callout-warn">
@@ -701,29 +702,29 @@
             </div>
 
             <h3>💰 無料版でどれくらい作れる？（プランごとの目安）</h3>
-            <p><strong>無料の Google アカウントでも、このハンズオンは最後まで実施できます。</strong>ただし Gemini アプリの画像生成には<strong>1日あたりの回数の上限</strong>があり、無料版は有料プランより少なめです。たくさん作り直していると、途中で「上限に達しました」と出ることがあります。</p>
+            <p><strong>無料でも始められますが、年齢や利用上限によって途中の操作ができない場合があります。</strong>たくさん作り直していると、途中で「上限に達しました」と出ることがあります。</p>
 
             <table>
                 <thead>
-                    <tr><th>プラン</th><th>画像生成の1日あたり目安</th><th>備考</th></tr>
+                    <tr><th>プラン</th><th>画像生成の利用上限</th><th>備考</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td><strong>無料（通常アカウント）</strong></td><td>おおよそ <strong>数十枚／日</strong>（時期により ~20〜100 枚程度）</td><td>標準モデル（Nano Banana）。混雑状況により制限される場合あり</td></tr>
+                    <tr><td><strong>無料（通常アカウント）</strong></td><td>作れる枚数は固定ではありません</td><td>選択したモデルにより Nano Banana 2 または Nano Banana 2 Lite。混雑状況により制限される場合あり</td></tr>
                     <tr><td><strong>Google AI Pro</strong>（旧 Gemini Advanced、月額 約 2,900円）</td><td>さらに余裕のある上限</td><td>優先アクセス。高画質画像生成や、動画生成（Veo）なども解放</td></tr>
-                    <tr><td><strong>Google AI Studio (API)</strong></td><td>無料枠あり / 従量課金</td><td>API経由でプログラムから呼び出す場合。無料枠の範囲内でもテスト可能</td></tr>
+                    <tr><td><strong>Gemini API（画像生成）</strong></td><td>無料枠なし・従量課金</td><td>API経由でプログラムから呼び出す場合。この教材の画像生成APIは有料です</td></tr>
                 </tbody>
             </table>
 
             <div class="callout callout-warn">
-                ⚠️ <strong>上の枚数はあくまで目安です。</strong>Google は1日あたりの正確な回数を公式には明記しておらず、<strong>時期・地域・モデル・混雑状況によって頻繁に変わります</strong>。「○枚まで」と断言できる公式数字は無いと考えてください。最新の提供状況は <a href="https://support.google.com/gemini/answer/16275805?hl=ja" target="_blank" rel="noopener">Gemini ヘルプ（プラン別の機能一覧）</a> で確認できます。
+                ⚠️ <strong>個人アカウントの利用上限は、指示の複雑さや会話の長さなどで変わります。</strong>利用枠は5時間ごとに回復しますが、週の上限もあります。再開できる時刻は画面で確認してください。最新の提供状況は <a href="https://support.google.com/gemini/answer/16275805?hl=ja" target="_blank" rel="noopener">Gemini ヘルプ（プラン別の機能一覧）</a> で確認できます。
             </div>
 
             <div class="callout callout-tip">
                 💡 <strong>無料版で上限に当たったときのコツ</strong><br>
-                ・上限は<strong>毎日リセット</strong>されます（米国太平洋時間の深夜＝日本のおおよそ夕方ごろ）。翌日また使えます<br>
+                ・利用枠は<strong>5時間ごとに回復</strong>しますが、週の上限もあります。再開できる時刻は画面で確認してください<br>
                 ・<strong>1回で決める</strong>意識を。箇条書きで条件をそろえてから送ると、作り直し回数を減らせます（Step 1 のコツ参照）<br>
-                ・コードが書ける人は <strong>Google AI Studio</strong>（Web）や <strong>Gemini API</strong> の無料枠も別枠で使えます（「さらに深掘り」参照）<br>
-                ・どうしても枚数が必要なら <strong>Google AI Pro / Ultra</strong> の検討を。ただし本ハンズオンは無料枠で十分こなせる範囲に設計しています
+                ・この教材の画像生成APIは<strong>有料</strong>です。<strong>AI Studio</strong>の画面上で試す場合の条件は別に確認してください（「さらに深掘り」参照）<br>
+                ・どうしても枚数が必要なら <strong>Google AI Pro / Ultra</strong> の検討を
             </div>
 
             <div class="nav-btns">
@@ -742,7 +743,7 @@
             <p><a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com/</a> にアクセスし、Google アカウントでログインします。中央に入力欄が表示されるので、左側の <strong>＋（「アップロードとツール」）</strong> ボタンを開き、メニュー内の <strong>「画像を作成」</strong> が選べることを確認しましょう。</p>
 
             <div class="callout callout-info">
-                ℹ️ Gemini はバージョンによって画面が少し変わります。<strong>「画像を作って」と日本語で頼むだけ</strong>でも、自動的に画像生成モデル（Nano Banana）が呼び出されます。なお、入力欄右側のモデル選択ドロップダウン（例: 3.1 Pro / 3.x Flash など）には Nano Banana 自体は表示されません。テキスト用モデルの選択肢として並んでいる、というイメージで OK です。
+                ℹ️ Gemini はバージョンによって画面が少し変わります。<strong>「画像を作って」と日本語で頼むだけ</strong>でも、自動的に画像生成モデル（Nano Banana）が呼び出されます。画像生成前に<strong>「Flash」または「Pro」</strong>を選びます。「Flash-Lite」では、複数画像の参照や繰り返しの編集に対応しない Nano Banana 2 Lite が使われます。
             </div>
 
             <img class="screenshot" src="img/nb-step1-open.png"
@@ -824,17 +825,17 @@
                 ℹ️ 「<strong>他は変えないで</strong>」「<strong>形・色はそのまま</strong>」と添えるのが、テキストによる部分編集を成功させる最大のコツです。これがないと全体が描き直されてしまうことがあります。
             </div>
 
-            <h3>2-3. スケッチツール（インペイント）で編集箇所を指定する（最新機能）</h3>
+            <h3>2-3. スケッチツールで編集箇所を指定する（最新機能）</h3>
             <p>現在の Gemini アプリ（Web版）では、アップロードした画像または生成された画像を<strong>クリックすると拡大表示モードに入ります</strong>。このとき画像の下に<strong>カラーパレットと「スケッチ」「テキスト」ツール</strong>が並びます。「スケッチ」を使うと、より直感的に部分修正が行えます。</p>
             <ol style="margin-left: 24px; margin-bottom: 12px;">
                 <li style="margin-bottom: 6px;">編集したい画像をクリックして拡大表示します。</li>
                 <li style="margin-bottom: 6px;">画像の下に並ぶ <strong>「スケッチ」（鉛筆型のアイコン）</strong> をクリックします（必要なら色も選択）。</li>
-                <li style="margin-bottom: 6px;">変更したい部分（背景や手元など）を<strong>ブラシで塗りつぶします</strong>。</li>
+                <li style="margin-bottom: 6px;">変更したい場所（背景や手元など）を<strong>丸や描き込みで示します</strong>。</li>
                 <li style="margin-bottom: 6px;">入力欄に「ここを明るいカフェの店内に変更して」「コーヒーカップを持たせて」などのプロンプトを入力して送信します。</li>
             </ol>
 
             <div class="callout callout-tip">
-                💡 <strong>スケッチツールのコツ:</strong> 輪郭を少しはみ出すくらい大まかに塗ることで、AI が境界線を自然になじませてくれます。「テキスト」ツールを使うと、画像内の特定の位置に文字を書き込む指示も出せます。
+                💡 <strong>スケッチツールのコツ:</strong> 描き込みで場所を示し、変更内容は文章でも伝えます。「テキスト」ツールを使うと、画像内の特定の位置に文字を書き込む指示も出せます。
             </div>
 
             <h3>2-4. 不要なものを消す</h3>
@@ -1018,7 +1019,7 @@
             <p>Nano Banana（Gemini 画像モデル）をさらに使いこなすための参考情報とリンク集です。慣れてきたら、コードからの自動化にも挑戦してみてください。</p>
 
             <h3>🧑‍💻 コードから使う（Gemini API / AI Studio）</h3>
-            <p>画像生成モデルは <strong>Google AI Studio</strong> で API キーを取得すれば、Python や Node.js から呼び出せます。大量生成や、他システムへの組み込みに向いています。Nano Banana を API で呼び出す際のモデル名は <code>gemini-2.5-flash-image</code>（最新世代は <code>gemini-3-flash-image</code> 系。公式ドキュメントで最新のモデル名を必ず確認してください）です。なお、Imagen 系（例: <code>imagen-4.0-generate-001</code>）も並行して提供されており、用途で使い分けが可能です。</p>
+            <p>画像生成モデルは <strong>Google AI Studio</strong> で API キーを取得すれば、Python や Node.js から呼び出せます。大量生成や、他システムへの組み込みに向いています。Nano Banana 2 を API で呼び出す際のモデル名は <code>gemini-3.1-flash-image</code>です。公式ドキュメントで最新のモデル名を必ず確認してください。旧モデル Gemini 2.5 Flash Image は2026年10月2日に提供終了予定です。Imagen 4 は2026年8月17日に Gemini API での提供を終了しました。Pythonで実行する前に、課金設定と料金を確認してください。</p>
 
             <span class="code-label tip">🐍 Python での画像生成例</span>
             <pre><code>from google import genai
@@ -1028,9 +1029,9 @@ import io
 # クライアントの初期化（APIキーは環境変数 GEMINI_API_KEY または引数から読み込みます）
 client = genai.Client(api_key="YOUR_API_KEY")
 
-# Nano Banana（Gemini 2.5 Flash Image）による画像生成
+# Nano Banana 2（Gemini 3.1 Flash Image）による画像生成
 result = client.models.generate_content(
-    model="gemini-2.5-flash-image",
+    model="gemini-3.1-flash-image",
     contents="A cute banana character sitting in front of a laptop, digital art",
 )
 
@@ -1047,7 +1048,7 @@ for part in result.candidates[0].content.parts:
             <ul>
                 <li>Google AI Studio: <a href="https://aistudio.google.com/" target="_blank" rel="noopener">https://aistudio.google.com/</a></li>
                 <li>Gemini API 画像生成ドキュメント: <a href="https://ai.google.dev/gemini-api/docs/image-generation" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs/image-generation</a></li>
-                <li>Nano Banana（Gemini 2.5 Flash Image）モデルページ: <a href="https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-image" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-image</a></li>
+                <li>Nano Banana 2（Gemini 3.1 Flash Image）モデルページ: <a href="https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-image" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-image</a></li>
             </ul>
 
             <h3>📚 公式リファレンス</h3>

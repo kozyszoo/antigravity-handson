@@ -683,12 +683,12 @@
                 <tbody>
                     <tr>
                         <td>Node.js</td>
-                        <td>v18 以上（推奨 v20+）</td>
+                        <td>Node.js 22.12.0 以上の、サポート中の LTS 版</td>
                         <td><code>node --version</code></td>
                     </tr>
                     <tr>
                         <td>AI エージェント</td>
-                        <td>Claude Code / Codex / Antigravity のいずれか</td>
+                        <td>Claude Code / Codex / Antigravity のいずれか。Antigravity と個人向け Claude の利用は18歳以上が対象です。</td>
                         <td>各ガイド参照</td>
                     </tr>
                     <tr>
@@ -790,7 +790,7 @@
                     </tr>
                     <tr>
                         <td><strong>デザイン自由度</strong></td>
-                        <td>高（Vue/Tailwind/コンポーネント）</td>
+                        <td>高（Vue / UnoCSS［Tailwind互換］/ コンポーネント）</td>
                         <td>中（テーマ CSS）</td>
                         <td>最高（何でもできる）</td>
                     </tr>
@@ -860,7 +860,7 @@ mkdir ai-slides && cd ai-slides
 git init</code></pre>
 
             <h3>1-2. Node.js の確認</h3>
-            <pre><code># v18 以上が必要
+            <pre><code># Node.js 22.12.0 以上の、サポート中の LTS 版が必要
 node --version
 npm --version</code></pre>
 
@@ -883,7 +883,7 @@ npx playwright install chromium</code></pre>
 
             <div class="tip-box">
                 <strong>✅ チェックポイント</strong><br>
-                <code>node --version</code> が v18 以上を返し、作業フォルダで <code>git status</code> が動けば Step 1 完了です。
+                <code>node --version</code> で Node.js 22.12.0 以上の、サポート中の LTS 版であることを確認し、作業フォルダで <code>git status</code> が動けば Step 1 完了です。
             </div>
         </section>
 
@@ -909,7 +909,7 @@ claude mcp add playwright -- npx @playwright/mcp@latest
 claude mcp list</code></pre>
 
             <h4><span class="badge badge-codex">Codex</span> / <span class="badge badge-antigravity">Antigravity</span></h4>
-            <p>これらは設定ファイル（JSON）に MCP サーバーを登録します。形式は各ツールでほぼ共通です。</p>
+            <p>Codex は端末で <code>codex mcp add playwright -- npx -y @playwright/mcp@latest</code> を実行し、<code>codex mcp list</code> で確認します。下の JSON 例は Antigravity 用です。Codex の <code>config.toml</code> には貼り付けません。</p>
             <pre><code>{
   "mcpServers": {
     "playwright": {
@@ -920,7 +920,7 @@ claude mcp list</code></pre>
 }</code></pre>
             <div class="info-box">
                 <strong>📍 設定ファイルの場所</strong><br>
-                Codex は <code>~/.codex/config.toml</code>（または設定 UI）、Antigravity は設定パネルの「MCP / 拡張」項目から登録します。
+                Antigravity 2.0 は Settings → Customizations → Installed MCP Servers。Antigravity IDE で上の JSON を登録する場合は、エージェントパネル上部の … → MCP Servers → Manage MCP Servers → View raw config を開き、既存の設定に <code>playwright</code> を追加します。
                 詳細は <a href="codex.html#step4">Codex ガイド</a> / <a href="antigravity.html">Antigravity ガイド</a> の MCP セクションを参照してください。
             </div>
 
@@ -933,9 +933,10 @@ const browser = await chromium.launch();
 const page = await browser.newPage({
   viewport: { width: 1280, height: 720 } // スライドは 16:9
 });
-await page.goto('http://localhost:3030');   // Slidev の開発サーバー
+await page.goto('https://example.com');   // ブラウザ起動と撮影の確認用
 await page.screenshot({ path: 'slide-1.png' });
 await browser.close();</code></pre>
+            <p>Step 4 で Slidev を起動した後は、起動時に表示された URL に変えます。</p>
             <pre><code># 実行（playwright をローカルに入れてから）
 npm install -D playwright
 node shot.mjs
@@ -1218,6 +1219,15 @@ theme は default、paginate は true。
     justify-content: center; align-items: center;
     padding: 5vw;
   }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { margin: 0; }
+    .slide {
+      box-sizing: border-box;
+      width: 1280px; height: 720px;
+      break-after: page;
+    }
+  }
 &lt;/style&gt;
 
 &lt;section class="slide"&gt;&lt;h1&gt;AI 駆動開発入門&lt;/h1&gt;&lt;/section&gt;
@@ -1289,6 +1299,7 @@ Step 3 の自律デザインチェックを最大5ラウンド実施して仕上
             <span class="badge badge-time">⏱ 5分</span>
 
             <p>発表本番では PDF が安心です。各形式の書き出しコマンドをまとめます。</p>
+            <p>Slidev はプロジェクトのフォルダで <code>npm install -D playwright-chromium</code> を実行してから書き出します。Marp は Chrome・Edge・Firefox のいずれかが必要です。</p>
 
             <table>
                 <thead>
@@ -1297,13 +1308,13 @@ Step 3 の自律デザインチェックを最大5ラウンド実施して仕上
                 <tbody>
                     <tr>
                         <td><strong>Slidev</strong></td>
-                        <td><code>slidev export</code></td>
-                        <td><code>slidev export --format png</code></td>
+                        <td><code>npx slidev export</code></td>
+                        <td><code>npx slidev export --format png</code></td>
                     </tr>
                     <tr>
                         <td><strong>Marp</strong></td>
-                        <td><code>marp slides.md --pdf</code></td>
-                        <td><code>marp slides.md --images png</code></td>
+                        <td><code>npx @marp-team/marp-cli@latest slides.md --pdf</code></td>
+                        <td><code>npx @marp-team/marp-cli@latest slides.md --images png</code></td>
                     </tr>
                     <tr>
                         <td><strong>HTML</strong></td>
@@ -1320,7 +1331,7 @@ import { chromium } from 'playwright';
 const browser = await chromium.launch();
 const page = await browser.newPage();
 await page.goto('http://localhost:8000/slides.html');
-await page.pdf({ path: 'slides.pdf', landscape: true, printBackground: true });
+await page.pdf({ path: 'slides.pdf', preferCSSPageSize: true, printBackground: true });
 await browser.close();</code></pre>
 
             <div class="info-box">

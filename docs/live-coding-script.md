@@ -102,16 +102,15 @@ Step 5（10分）: AI-DLC 戦略
 
 ### 1. 2つの強力なインターフェース（5分）
 
-**スライド**: Antigravity Web版とCLIの比較図
+**スライド**: Antigravity アプリとCLIの比較図
 
 **デモポイント**:
-- **Antigravity Web版**: ChatGPT から直接利用。クラウドサンドボックスで安全に実行。
+- **Antigravity アプリ**: アプリから利用。ブラウザから操作する Remote Control も、接続先の PC で処理を実行します。
 - **Antigravity CLI**: ターミナルからローカル環境のコードを直接編集するエージェント。
 
 **トーク例**:
-> Antigravity には2つの強力なインターフェースがあります。
-> ChatGPT 上で完結するWeb版と、ローカル環境で直接ファイルを編集してくれる CLI 版です。
-> 今日はこの両方をマスターしていただきます。
+> Antigravity はアプリや CLI から利用します。
+> ブラウザから操作する Remote Control も、接続先の PC で処理を実行します。
 
 ### 2. GitHub とのシームレスな統合（5分）
 
@@ -129,18 +128,15 @@ Step 5（10分）: AI-DLC 戦略
 
 ### 3. 最先端の推論モデル（5分）
 
-**スライド**: OpenAI モデル選択画面
+**スライド**: Antigravity のモデル選択画面
 
 **デモポイント**:
-- GPT-4o（高速・マルチモーダル）
-- o1 / o3-mini（高度な推論・複雑なアルゴリズム）
-- 用途に応じて使い分け
+- モデル選択メニューに表示されるモデルを使います。
+- 実習で使うモデルは開始時に案内します。
 
 **トーク例**:
-> Antigravity の裏側では、OpenAI の最先端モデルが動いています。
-> 日常的なコーディングやUI構築には GPT-4o を、
-> 複雑なロジック設計やデバッグには o1 などの推論モデルを使い分けることで、
-> あらゆる開発タスクに対応できます。
+> モデル選択メニューに表示されるモデルを使います。
+> 実習で使うモデルは開始時に案内します。
 
 ---
 
@@ -150,39 +146,39 @@ Step 5（10分）: AI-DLC 戦略
 
 **デモポイント**:
 1. ターミナルを開く
-2. `npm install -g @google/antigravity` を実行
-3. `OPENAI_API_KEY` を環境変数として設定
+2. macOS・Linux は `curl -fsSL https://antigravity.google/cli/install.sh | bash`、Windows の PowerShell は `irm https://antigravity.google/cli/install.ps1 | iex` を実行
+3. 導入後、新しいターミナルで `agy` を実行し、ログイン画面が開いたら Google アカウントでログインする
 
 **トーク例**:
-> まずはローカル環境で Antigravity CLI を使えるようにしましょう。
-> Node.js があれば npm コマンド一行でインストールできます。
-> OpenAI の API キーを用意して設定してください。
+> macOS・Linux は `curl -fsSL https://antigravity.google/cli/install.sh | bash`、
+> Windows の PowerShell は `irm https://antigravity.google/cli/install.ps1 | iex` を実行します。
+> 導入後、新しいターミナルで `agy` を実行し、ログイン画面が開いたら Google アカウントでログインします。
 
 ### 2. 基本コマンドの確認と実行（10分）
 
 **デモポイント**:
-- ワークスペースで `antigravity` コマンドを実行
-- 承認モード（`suggest`, `auto-edit`）の説明
+- ワークスペースで `agy` コマンドを実行
+- 操作モード（`default`、`accept-edits`、`plan`）の説明
 
 **実演**:
-1. ターミナルで `antigravity --mode auto-edit "README.mdの中身を要約して"`
+1. ターミナルで `agy` を起動し、「README.mdを読み、内容を要約してください。ファイルは変更しないでください」と入力する
 2. AI が README の内容を読み取り、要約を作成する動きを確認
 
 **トーク例**:
-> ターミナルから `antigravity` コマンドで指示を出すだけで、
-> ファイルを読み書きしてくれます。本日は自動で編集を適用する
-> `auto-edit` モードを使ってサクサク進めましょう。
+> ターミナルで `agy` を起動し、入力欄から指示を出します。
+> `default` は編集前に変更内容を確認し、`accept-edits` はファイル編集を自動承認します。
+> `plan` は実装前に調査と計画を行います。
 
-### 3. 操作モード（Ask / Code）（10分）
+### 3. 操作モード（default / accept-edits / plan）（10分）
 
 **デモポイント**:
-- **Ask モード**: コードを変更せずに分析・回答
-- **Code モード**: コードを実際に変更・作成
+- **default モード**: 編集前に変更内容を確認
+- **accept-edits モード**: ファイル編集を自動承認
+- **plan モード**: 実装前に調査と計画を行う
 
 **トーク例**:
-> AIに質問するだけの時は Ask モード、
-> 実際に実装を依頼する時は Code モードと使い分けることで、
-> 安全かつ効率的に開発を進められます。
+> Shift＋Tab でモードを切り替えます。
+> 起動時にファイル編集の自動承認を指定する場合は、`agy --mode=accept-edits` を実行します。
 
 ---
 
@@ -205,7 +201,7 @@ Step 5（10分）: AI-DLC 戦略
 ```
 
 **デモポイント**:
-1. ターミナルで `antigravity "上記のプロンプト"` を実行
+1. `agy` の入力欄に上記のプロンプトを貼り付ける
 2. Antigravity CLI が HTML と CSS を生成する様子を実況
 3. ブラウザで作成された `profile.html` を確認
 4. 「文字のサイズを大きくして」などの追加指示を出して修正させる
@@ -248,7 +244,7 @@ index.html のヘッダーの色を、OpenAIの緑色（#10a37f）に変更し�
 4. GitHub の画面を開き、作成された PR の差分を確認
 
 **トーク例**:
-> 指示を出すだけで、環境構築なしにコードの修正から PR の作成まで
+> GitHub への接続設定・認証と、変更を送信できる権限を準備したうえで、コードの修正から PR の作成まで
 > すべて完了しました。開発者は GitHub でレビューしてマージするだけです。
 > チーム開発のスタイルが根本から変わります！
 
@@ -303,6 +299,8 @@ AI技術を活用したコーヒーショップのランディングページ（
 - **Learn**: AI にコードの解説や設計のベストプラクティスを学ぶ
 - **Create**: AI と対話しながら高速にプロダクトを共創する
 
+AWS が提唱する AI-DLC の3段階は、Inception（発案）・Construction（構築）・Operations（運用）で、この台本の Discover・Learn・Create とは異なります。
+
 **トーク例**:
 > 本日体験いただいた開発サイクルを、私たちは AI-DLC（AI-Driven Development Lifecycle）
 > と呼んでいます。このサイクルを素早く回すことで、開発スピードは劇的に向上します。
@@ -310,7 +308,7 @@ AI技術を活用したコーヒーショップのランディングページ（
 ### 2. ハッカソン活用Tips（3分）
 
 **キーメッセージ**:
-1. **アイデア出し**: GPT-4o や o1 モデルに壁打ち相手になってもらう
+1. **アイデア出し**: 選んだモデルにアイデアの相談相手になってもらう
 2. **プロトタイプ**: Antigravity を使って Vibe Coding でモックアップを高速実装
 3. **継続的な改善**: PR 自動作成機能を使い、チーム開発の効率を最大化
 
@@ -330,18 +328,17 @@ AI技術を活用したコーヒーショップのランディングページ（
 
 ### 事前準備チェックリスト
 
-- [ ] Node.js (v22+) のインストール確認
-- [ ] `npm install -g @google/antigravity` の実行と動作確認
-- [ ] `OPENAI_API_KEY` の環境変数セットアップ
-- [ ] ChatGPT アカウント（Plus などの有料プラン推奨）の用意とログイン
+- [ ] macOS・Linux は `curl -fsSL https://antigravity.google/cli/install.sh | bash`、Windows の PowerShell は `irm https://antigravity.google/cli/install.ps1 | iex` を実行し、導入後、新しいターミナルで `agy` を実行する
+- [ ] `agy` を起動し、ログイン画面が開いたら Google アカウントでログインする
+- [ ] Google アカウントの用意とログイン。Antigravity の利用は18歳以上が対象です。事前にログインし、年齢確認を求められた場合は済ませてください。
 - [ ] GitHub リポジトリ（ハンズオン用）の用意
 - [ ] 画面録画/配信設定を確認
 
 ### デモ実行時の注意点
 
 1. **Antigravity CLI のモード選択**
-   - ライブデモでは進行をスムーズにするため `--mode auto-edit` を推奨します。
-   - `suggest` モードは手動承認が必要なため、説明時のみ見せるのが良いでしょう。
+   - `agy --mode=accept-edits` で起動すると、ファイル編集を自動承認します。
+   - `default` は編集前に変更内容を確認し、`plan` は実装前に調査と計画を行います。Shift＋Tab でモードを切り替えます。
 
 2. **エラーが出た場合**
    - AI にエラーメッセージをそのまま食わせて「修正して」と依頼するリカバリの手腕を見せるチャンスです。
@@ -359,13 +356,13 @@ AI技術を活用したコーヒーショップのランディングページ（
 ### 質疑応答用FAQ
 
 **Q1: Antigravity CLI は無料で使えますか？**
-- A: CLI ツール自体はオープンソース（無料）ですが、API を呼び出すための OpenAI API 料金（従量課金）が発生します。
+- A: Google アカウントで利用する Antigravity には無料枠があり、契約プランによって利用上限が異なります。ChatGPT の有料契約や OpenAI API への課金は必要ありません。
 
 **Q2: セキュリティはどうなっていますか（コードは学習されますか）？**
-- A: OpenAI の API 経由のデータは、規約上モデルの学習には使用されません。Web版のクラウドサンドボックスもセキュアに隔離されています。
+- A: 個人向け Antigravity では、入力や操作のデータが製品や機械学習技術の改善に使われ、Google の担当者が確認する場合があります。設定画面でデータ利用の設定を変更できます。
 
-**Q3: ChatGPT の画面と CLI はどちらを使うべきですか？**
-- A: すでに手元にあるローカルのプロジェクトを編集したい場合は CLI、環境構築なしでゼロから始めたい場合や GitHub 上のコードをサクッと直したい場合は Web版（ChatGPT 内）がオススメです。
+**Q3: Antigravity はどこから利用しますか？**
+- A: Antigravity はアプリや CLI から利用します。ブラウザから操作する Remote Control も、接続先の PC で処理を実行します。
 
 **Q4: 他の言語やフレームワークでも使えますか？**
 - A: はい。Python, React, Go など、主要なプログラミング言語とフレームワークに幅広く対応しています。
@@ -377,11 +374,11 @@ AI技術を活用したコーヒーショップのランディングページ（
 
 ## 🔗 参考リンク
 
-- [OpenAI プレスリリース](https://openai.com/index/introducing-antigravity/)
-- [Antigravity GitHub リポジトリ](https://github.com/openai/antigravity)
-- [GitHub リポジトリ（本プロジェクト）](https://github.com/YOUR_USERNAME/antigravity_handson)
+- [Google公式発表](https://www.antigravity.google/blog/introducing-google-antigravity)
+- [Antigravity公式ドキュメント](https://antigravity.google/docs/)
+- [本教材のリポジトリ](https://github.com/kozyszoo/antigravity-handson)
 
 ---
 
-**最終更新**: 2026年3月16日
+**最終更新**: 2026年9月27日
 **バージョン**: 1.1
