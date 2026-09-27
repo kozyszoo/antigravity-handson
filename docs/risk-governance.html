@@ -464,6 +464,24 @@
             .do-dont { grid-template-columns: 1fr; }
         }
     </style>
+    <style id="page-toolbar-style">
+        /* ページ上部の PDF 保存ボタンと進捗リアクションのお願い */
+        .page-toolbar { display: flex; justify-content: flex-end; margin: 0 0 16px; }
+        .pdf-download-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #1a73e8; border-radius: 8px; background: #fff; color: #1a73e8; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+        .pdf-download-btn:hover { background: #e8f0fe; }
+        .progress-reaction-note { background: #fff8e1; border-left: 4px solid #f9ab00; border-radius: 8px; padding: 14px 18px; margin: 0 0 32px; color: #3c2f00; font-size: 0.95rem; line-height: 1.7; }
+        @media print {
+            .sidebar, .menu-toggle, .page-toolbar { display: none !important; }
+            .main { margin-left: 0 !important; max-width: none !important; padding: 0 !important; }
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+    <script>
+        // 印刷（PDF 保存）時は折りたたみを開いて、中身も PDF に入れる
+        window.addEventListener('beforeprint', function () {
+            document.querySelectorAll('details').forEach(function (d) { d.setAttribute('open', ''); });
+        });
+    </script>
 </head>
 
 <body>
@@ -518,6 +536,13 @@
         </div>
 
         <!-- Intro -->
+        <div class="page-toolbar">
+            <button type="button" class="pdf-download-btn" onclick="window.print()" title="印刷画面の送信先で「PDF に保存」を選んでください">📄 PDF でダウンロード</button>
+        </div>
+        <div class="progress-reaction-note">
+            🙋 みなさんの進捗状況を知りたいので、うまく進んでいる場合も、進んでいない場合も絵文字リアクションを積極的に返してください！進んでないよ、というときも遠慮なく！
+        </div>
+
         <section class="section" id="intro">
             <h2>はじめに：なぜ今この講座が必要か</h2>
             <div class="fig-container">
