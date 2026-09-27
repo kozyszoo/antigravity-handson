@@ -440,7 +440,7 @@
                 <li><a href="index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
                 <li><a href="#intro">はじめに</a></li>
                 <li><a href="#step1-1">Step 1-1: 環境セットアップ</a></li>
-                <li><a href="#step1-2">Step 1-2: CLAUDE.md 設定</a></li>
+                <li><a href="#step1-2">Step 1-2: AGENTS.md 設定</a></li>
                 <li><a href="#step2">Step 2: Vibe Coding 基礎編</a></li>
                 <li><a href="#step3-1">Step 3-1: MCP 接続</a></li>
                 <li><a href="#step3-2">Step 3-2: Agent Skills</a></li>
@@ -553,13 +553,13 @@
             <div class="step-grid">
                 <div class="step-card">
                     <div class="step-num">Step 1（15分）</div>
-                    <h4>環境セットアップ &amp; CLAUDE.md</h4>
+                    <h4>環境セットアップ &amp; AGENTS.md</h4>
                     <p>Codex の起動・設定と、AIへのルール定義ファイルの作成</p>
                 </div>
                 <div class="step-card">
                     <div class="step-num">Step 2（30分）</div>
                     <h4>Vibe Coding 基礎編</h4>
-                    <p>自然言語でWebページを作成し、DALL-E で画像生成も体験</p>
+                    <p>自然言語でWebページを作成し、画像生成機能を使って画像生成も体験</p>
                 </div>
                 <div class="step-card">
                     <div class="step-num">Step 3（20分）</div>
@@ -602,16 +602,16 @@
                     </tr>
                     <tr>
                         <td>Windows</td>
-                        <td>Windows 10 (64-bit) 以上</td>
+                        <td>Windowsは11を推奨します。Windows 10では事前に起動とコマンド実行を確認してください。</td>
                     </tr>
                     <tr>
                         <td>Linux</td>
-                        <td>glibc &gt;= 2.28, glibcxx &gt;= 3.4.25（Ubuntu 20, Debian 10 等）</td>
+                        <td>Linux版はプレビューで、Ubuntu 24.04／26.04、Debian 13、Fedora 43／44、更新済みのArch Linuxに対応しています。</td>
                     </tr>
                 </tbody>
             </table>
-            <blockquote>📚 公式ドキュメント: <a href="https://openai.com/index/introducing-codex/"
-                    target="_blank">openai.com/index/introducing-codex/</a></blockquote>
+            <blockquote>📚 公式ドキュメント: <a href="https://learn.chatgpt.com/docs"
+                    target="_blank">learn.chatgpt.com/docs</a></blockquote>
 
             <h3>チェックリスト</h3>
             <h4>1. Codex のインストール確認</h4>
@@ -622,6 +622,7 @@
             </ul>
 
             <h4>2. 初期設定（日本語化）</h4>
+            <blockquote>ここにあるVS Code用の日本語化・補完機能・ショートカットは、Codexデスクトップアプリ共通の操作ではありません。</blockquote>
             <ol>
                 <li>左側アイコンバーの「Extensions」をクリック</li>
                 <li>「Japanese Language Pack for Visual Studio Code」を検索してインストール</li>
@@ -644,7 +645,7 @@
             <ol>
                 <li>以下のコマンドをコピーします（マウスでドラッグして選択 → <code>Ctrl+C</code> または <code>Cmd+C</code>）：</li>
             </ol>
-            <pre><code>git clone https://github.com/kozyszoo/codex-handson.git</code></pre>
+            <pre><code>git clone https://github.com/kozyszoo/antigravity-handson.git codex-handson</code></pre>
             <ol start="2">
                 <li>ターミナル画面で右クリック → 「貼り付け」（または <code>Ctrl+V</code> / <code>Cmd+V</code>）</li>
                 <li><strong>Enter キー</strong>を押してコマンドを実行</li>
@@ -669,11 +670,11 @@
             <h5>方法2: Codex のターミナルでクローン（Codex 内で完結）</h5>
             <ol>
                 <li>Codex アプリを起動します</li>
-                <li>画面上部のメニューバーから <code>Terminal</code> → <code>New Terminal</code> をクリック</li>
+                <li>画面右上のターミナルアイコンを押します</li>
                 <li>画面下部にターミナルパネルが表示されます</li>
                 <li>以下のコマンドをコピーして、ターミナルパネルに貼り付け（右クリック → 貼り付け）：</li>
             </ol>
-            <pre><code>git clone https://github.com/kozyszoo/codex-handson.git</code></pre>
+            <pre><code>git clone https://github.com/kozyszoo/antigravity-handson.git codex-handson</code></pre>
             <ol start="5">
                 <li><strong>Enter キー</strong>を押してコマンドを実行</li>
                 <li>ダウンロードが完了したら、<code>File</code> → <code>Open Folder</code> をクリック</li>
@@ -691,10 +692,10 @@
 
             <h5>方法3: GitHub Desktop を使用</h5>
             <ol>
-                <li><a href="https://github.com/kozyszoo/codex-handson" target="_blank"
-                        style="color: var(--blue);">https://github.com/kozyszoo/codex-handson</a> にアクセス</li>
+                <li><a href="https://github.com/kozyszoo/antigravity-handson" target="_blank"
+                        style="color: var(--blue);">https://github.com/kozyszoo/antigravity-handson</a> にアクセス</li>
                 <li>緑色の <code>Code</code> ボタンをクリック</li>
-                <li><code>Open with GitHub Desktop</code> を選択してクローン</li>
+                <li><code>Open with GitHub Desktop</code> を選択し、保存先のフォルダ名を <code>codex-handson</code> にしてクローン</li>
             </ol>
 
             <h4>4. ワークスペースの作成</h4>
@@ -760,11 +761,11 @@
 
             <h4>6. モデル選択</h4>
             <p>Codex CLI の起動中に <code>/model</code> コマンドを実行するか、設定ファイルで、タスクに応じて最適なモデルを切り替えられます。<br>
-                <strong>基本はモデルピッカーに表示される推奨モデル（<code>GPT-5.5</code>。未提供の環境では <code>GPT-5.4</code>）を選んでおけば間違いありません。</strong>Codex CLI はモデル未指定時、推奨モデルを自動選択します。
+                <strong>利用中のアカウントとアプリに表示される推奨モデルを選んでください。</strong>Codex CLI はモデル未指定時、推奨モデルを自動選択します。
             </p>
             <!-- 【画像挿入箇所】 モデル選択のプルダウンメニューが開いているスクショ -->
             <img class="screenshot" src="img/fig2.png"
-                alt="利用可能なAIモデル（GPT-5.5, GPT-5.4, GPT-5.3-Codex, GPT-5.4-Mini など）を選択するプルダウンメニューのスクリーンショット">
+                alt="利用可能なAIモデル（GPT-6 系など）を選択するプルダウンメニューのスクリーンショット">
             <table>
                 <thead>
                     <tr>
@@ -775,24 +776,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>GPT-5.5</strong></td>
-                        <td>OpenAI の最新フラッグシップモデル。複雑なコーディング・Computer Use・知的作業・リサーチに最も優れる。モデルピッカーに表示される場合は、ほとんどの Codex タスクでこれを選べばよい。</td>
-                        <td>メイン開発、複雑なロジック、要件定義・設計の壁打ち、PR 作成</td>
-                    </tr>
-                    <tr>
-                        <td>GPT-5.4</td>
-                        <td>GPT-5.5 がまだ利用できない環境での標準モデル。高精度なコーディングと推論を両立する。GPT-5.5 が出るまではこちらを使えばよい。</td>
-                        <td>メイン開発全般、GPT-5.5 の代替</td>
-                    </tr>
-                    <tr>
-                        <td>GPT-5.3-Codex</td>
-                        <td>Codex 学習スタック（コーディング最適化）と GPT-5 の推論・汎用知能を組み合わせた専用モデル。前世代より約25%高速で、4段階の推論強度（reasoning effort）を切り替えられる。</td>
-                        <td>コード生成・バグ修正・テスト実行、速度と精度のバランス重視</td>
-                    </tr>
-                    <tr>
-                        <td>GPT-5.4-Mini</td>
-                        <td>軽量・低コストなモデル。マルチエージェント構成で「安価なサブエージェント」を多数動かしたい場合の現実的な選択肢。応答が速く、簡単な作業に向く。</td>
-                        <td>日常的なコード修正、素早い質問応答、サブエージェント</td>
+                        <td><strong>GPT-6 系</strong></td>
+                        <td>利用中のアカウントとアプリに表示される推奨モデルを選んでください。</td>
+                        <td>コード生成・バグ修正・テスト実行、要件定義・設計</td>
                     </tr>
                     <tr>
                         <td>画像生成（image gen）</td>
@@ -804,10 +790,8 @@
             <div class="card">
                 <strong>💡 Rate Limit に達したときの対処法</strong>
                 <ul style="margin-top: 8px;">
-                    <li>GPT-5.5 / GPT-5.4 → <strong>GPT-5.3-Codex</strong> または <strong>GPT-5.4-Mini</strong>
-                        に切り替える</li>
-                    <li>しばらく時間をおいてから再試行する（通常数分〜数十分でリセット）</li>
-                    <li>簡単な作業は <strong>GPT-5.4-Mini</strong> で素早く処理する</li>
+                    <li>利用上限に達したら、利用状況画面でリセット時刻を確認してください。</li>
+                    <li>5時間単位の枠に加え、週ごとの上限がある場合もあります。</li>
                 </ul>
             </div>
 
@@ -824,8 +808,8 @@
                 </p>
             </div>
 
-            <p>Codex は AI がターミナルコマンドを自動実行できます。「どこまで AI に任せるか」を <strong>Auto Execution</strong> ポリシーで制御します。<br>
-                設定は Codex Sidebar の設定アイコン（⚙️）→ <code>Auto Execution</code> から変更できます。</p>
+            <p>Codex は AI がターミナルコマンドを自動実行できます。「どこまで AI に任せるか」を権限メニューで設定します。<br>
+                <code>Ask for approval</code>／<code>Approve for me</code>／<code>Full access</code>／<code>Custom</code> から選びます。</p>
             <table>
                 <thead>
                     <tr>
@@ -836,44 +820,45 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Off</strong><br><span style="color: var(--primary); font-size: 0.8rem;">最も安全</span>
-                        </td>
-                        <td>許可リスト（Allowlist）に登録したコマンドのみ実行。それ以外はすべて手動承認が必要。AIが勝手にコマンドを実行することは一切ない。</td>
-                        <td>本番環境に近いリポジトリ、初めて使う場合、慎重に進めたいとき</td>
+                        <td><strong>Ask for approval</strong><br><span style="color: var(--blue); font-size: 0.8rem;">実習での推奨</span></td>
+                        <td>作業フォルダ内の編集や通常のコマンドは実行できます。ネット接続や作業範囲外へのアクセスでは確認を求めます。削除操作でも、必ず確認が出るとは限りません。</td>
+                        <td>ハンズオン・学習用プロジェクト</td>
                     </tr>
                     <tr>
-                        <td><strong>Auto</strong><br><span
-                                style="color: var(--blue); font-size: 0.8rem;">推奨（バランス）</span></td>
-                        <td>AI の安全性モデルが各コマンドのリスクを自動判断。低リスクなコマンド（<code>npm install</code>・<code>git status</code>
-                            など）は自動実行し、リスクが高いコマンド（ファイル削除・外部送信など）は確認を求める。</td>
-                        <td>ハンズオン・個人開発・学習用プロジェクト。<strong>初心者はここから始めるのがおすすめ</strong></td>
+                        <td><strong>Approve for me</strong></td>
+                        <td>承認の判断を Codex に任せます。</td>
+                        <td>権限と作業内容を確認し、承認判断を委任するとき</td>
                     </tr>
                     <tr>
-                        <td><strong>Turbo</strong><br><span
-                                style="color: var(--purple); font-size: 0.8rem;">最速・要注意</span></td>
-                        <td>すべてのコマンドを確認なしで即時実行。AI の判断にすべて委ねるため、開発スピードは最大になるが、意図しないファイル削除や変更のリスクも高まる。</td>
-                        <td>手順が完全に確定した単純繰り返し作業、慣れたユーザーが速度を最優先にするとき</td>
+                        <td><strong>Full access</strong></td>
+                        <td>ファイルやネットワークへのアクセス範囲が広がります。意図しないファイル削除や変更のリスクがあります。</td>
+                        <td>広いアクセス権が必要で、操作の影響を確認できるとき</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custom</strong></td>
+                        <td>権限を個別に設定します。</td>
+                        <td>作業に合わせて許可する範囲を設定するとき</td>
                     </tr>
                 </tbody>
             </table>
             <div class="card">
                 <strong>⚠️ ハンズオンでの推奨設定</strong>
-                <p style="margin-top: 8px;">今日のハンズオンでは <strong>Auto</strong> に設定しておくことを推奨します。</p>
+                <p style="margin-top: 8px;">今日のハンズオンでは <strong>Ask for approval</strong> に設定してください。</p>
                 <ul>
-                    <li>AI が <code>npm install</code> や <code>git status</code> などの安全なコマンドを自動実行してくれるので作業がスムーズ</li>
-                    <li>危険なコマンド（ファイル削除など）は確認ダイアログが出るので誤操作を防げる</li>
-                    <li>「何をやっているか見たい」場合は <strong>Off</strong> にして一つ一つ確認するのも学習になる</li>
+                    <li>作業フォルダ内の編集や通常のコマンドは実行できます。</li>
+                    <li>ネット接続や作業範囲外へのアクセスでは確認を求めます。</li>
+                    <li>削除操作でも、必ず確認が出るとは限りません。ファイル削除や外部送信など、操作の内容を確認してください。</li>
                 </ul>
             </div>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
-                <strong>💡 実際の動作例（Autoモードの場合）</strong>
+                <strong>💡 実際の動作例（Ask for approval の場合）</strong>
                 <ul style="margin-top: 8px; font-size: 0.9rem;">
                     <li><strong>自動実行される例：</strong>
-                        <code>ls</code>（ファイル一覧表示）、<code>npm install</code>（パッケージインストール）、<code>git status</code>（Git状態確認）
+                        <code>ls</code>（ファイル一覧表示）、<code>git status</code>（Git状態確認）
                     </li>
                     <li><strong>確認が求められる例：</strong>
-                        <code>rm -rf フォルダ名</code>（フォルダ削除）、<code>git push --force</code>（強制プッシュ）
+                        ネット接続を伴うパッケージのインストール、作業フォルダ外のファイルへのアクセス
                     </li>
                     <li>確認ダイアログが出たら、コマンドの内容を確認して「許可」または「拒否」を選択できます</li>
                 </ul>
@@ -932,7 +917,7 @@
                     </tr>
                     <tr>
                         <td>モデルが選択できない</td>
-                        <td>Rate Limit の可能性。しばらく待つか別モデルへ切り替え</td>
+                        <td>Rate Limit の可能性。利用状況画面でリセット時刻を確認してください。</td>
                     </tr>
                     <tr>
                         <td>チャットが応答しない</td>
@@ -953,7 +938,7 @@
 
         <!-- Step 1-2 -->
         <section class="section" id="step1-2">
-            <h2>Step 1-2: Rules（CLAUDE.md）設定</h2>
+            <h2>Step 1-2: Rules（AGENTS.md）設定</h2>
             <span class="badge badge-time">🕐 19:30〜19:45（Step1 合計 15分）</span>
 
             <h3>目標</h3>
@@ -976,12 +961,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><code>CLAUDE.md</code></td>
+                        <td><code>AGENTS.md</code></td>
                         <td>プロジェクトルートに配置。もっとも一般的</td>
-                    </tr>
-                    <tr>
-                        <td><code>AI_INSTRUCTIONS.md</code></td>
-                        <td>別名。機能は同じ</td>
                     </tr>
 
                 </tbody>
@@ -999,22 +980,17 @@
                 <tbody>
                     <tr>
                         <td>グローバル</td>
-                        <td><code>~/.gemini/CLAUDE.md</code></td>
+                        <td><code>~/.codex/AGENTS.md</code></td>
                         <td>すべてのプロジェクトに適用</td>
                     </tr>
                     <tr>
-                        <td>ワークスペース</td>
-                        <td><code>.agent/rules/</code> フォルダ内</td>
-                        <td>そのワークスペースのみ</td>
-                    </tr>
-                    <tr>
                         <td>プロジェクトルート</td>
-                        <td><code>CLAUDE.md</code></td>
+                        <td><code>AGENTS.md</code></td>
                         <td>そのプロジェクト全体</td>
                     </tr>
                     <tr>
                         <td>サブディレクトリ</td>
-                        <td>各フォルダ内の <code>CLAUDE.md</code></td>
+                        <td>各フォルダ内の <code>AGENTS.md</code></td>
                         <td>そのフォルダ以下のみ</td>
                     </tr>
                 </tbody>
@@ -1056,12 +1032,12 @@
             <h3>基本テンプレートの設定</h3>
             <ol>
                 <li>Editor View のファイルツリー（左側）で、一番上のフォルダ（プロジェクトルート）を右クリックします。</li>
-                <li><strong>New File</strong> を選択し、ファイル名を <code>CLAUDE.md</code> にして Enter を押します。</li>
+                <li><strong>New File</strong> を選択し、ファイル名を <code>AGENTS.md</code> にして Enter を押します。</li>
                 <li>作成されたファイルに以下のテンプレートをコピー＆ペーストして、保存（<code>Cmd + S</code>）してください。</li>
             </ol>
-            <!-- 【画像挿入箇所】 CLAUDE.md ファイルを作成してテンプレートを貼り付けた際のエディタ画面スクショ -->
+            <!-- 【画像挿入箇所】 AGENTS.md ファイルを作成してテンプレートを貼り付けた際のエディタ画面スクショ -->
             <img class="screenshot" src="img/fig4.png"
-                alt="プロジェクト直下に CLAUDE.md ファイルを作成し、基本ルールや技術スタックが記述されたマークダウンのテンプレートを貼り付けたエディタ画面のスクリーンショット">
+                alt="プロジェクト直下に AGENTS.md ファイルを作成し、基本ルールや技術スタックが記述されたマークダウンのテンプレートを貼り付けたエディタ画面のスクリーンショット">
             <pre><code># プロジェクト設定 - OpenAI Codex Hands-on
 
 ## 基本ルール
@@ -1071,7 +1047,7 @@
 
 ## 技術スタック
 - HTML / CSS / JavaScript（Vanilla）
-- Node.js (任意)
+- Node.js（基礎編では任意、発展編では必要）
 
 ## コーディング規約
 - 変数名: camelCase
@@ -1087,9 +1063,10 @@
             </ul>
             <!-- 【画像挿入箇所】 指示通りに動作確認し、ルールが適用されていることを示すチャットとコードのスクショ -->
             <img class="screenshot" src="img/fig5.png"
-                alt="AIによって生成されたHTMLファイルのコード。CLAUDE.md で指定した通り、日本語のコメントが含まれ、変数名にキャメルケースが適用されていることが確認できるスクリーンショット">
+                alt="AIによって生成されたHTMLファイルのコード。AGENTS.md で指定した通り、日本語のコメントが含まれ、変数名にキャメルケースが適用されていることが確認できるスクリーンショット">
 
             <h3>応用: Workflows を体験しよう（任意）</h3>
+            <blockquote>以下の保存先と呼び出し方はCodexの標準機能ではありません。</blockquote>
             <p><code>.agent/workflows/</code> フォルダに <code>.md</code> ファイルを作成し、チャットで <code>/ワークフロー名</code> と入力して実行できます。
             </p>
             <pre><code># .agent/workflows/hello.md
@@ -1119,7 +1096,7 @@ description: 挨拶のテスト用ワークフロー
             <ul>
                 <li>Codex との基本的な対話方法を身につける</li>
                 <li>自然言語でコードを生成する感覚をつかむ</li>
-                <li>DALL-E で画像を生成してみる</li>
+                <li>画像生成機能を使って画像を生成してみる</li>
                 <li>すぐに動く Web ページを一つ作る</li>
             </ul>
 
@@ -1161,7 +1138,7 @@ description: 挨拶のテスト用ワークフロー
                 <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
                     💡 <strong>補足:</strong> AI に「どんな立場で考えてほしいか」を伝えると、回答の質が変わる。
                     技術スタックや制約条件（「外部ライブラリは使わない」「TypeScript で書く」など）も最初に伝えておくと、後から修正する手間が減る。
-                    これは CLAUDE.md に書いておくと毎回設定不要になる。
+                    これは AGENTS.md に書いておくと毎回設定不要になる。
                 </p>
             </div>
             <div class="card">
@@ -1187,11 +1164,11 @@ description: 挨拶のテスト用ワークフロー
             <div class="card">
                 <h4>7. チームで使うときのコツ（ハッカソン特有）</h4>
                 <p>✅ 一人が Codex を操作し、残りのメンバーは画面を見てフィードバックを出す「モブプログラミング」形式</p>
-                <p>✅ CLAUDE.md にチームの共通ルール（技術スタック・ファイル命名規則など）を書いておく</p>
+                <p>✅ AGENTS.md にチームの共通ルール（技術スタック・ファイル命名規則など）を書いておく</p>
                 <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
                     💡 <strong>補足:</strong> ハッカソンでは「全員でAIの計画書を確認 → 合意してから実行」のフローが大事。
                     AIが生成した implementation_plan.md をチーム全員で読んで認識を合わせると、後でのやり直しが減る。
-                    コードベースが大きくなっても CLAUDE.md のルールがあれば AI のコードスタイルが一貫する。
+                    コードベースが大きくなっても AGENTS.md のルールがあれば AI のコードスタイルが一貫する。
                 </p>
             </div>
 
@@ -1225,13 +1202,13 @@ description: 挨拶のテスト用ワークフロー
             <pre><code>名前の部分にふわっと表示されるアニメーションを追加して</code></pre>
             <pre><code>スマホでも綺麗に見えるようにレスポンシブ対応して</code></pre>
 
-            <h3>Part 3: DALL-E で画像生成（15分）</h3>
-            <pre><code>DALL-Eで、プロフィール用のアバター画像を生成して。
+            <h3>Part 3: 画像生成機能を使う（15分）</h3>
+            <p>CLIでは <code>$imagegen</code> を付けて呼び出します。</p>
+            <pre><code>$imagegen プロフィール用の正方形のアバター画像を生成し、avatar.pngとして保存してください。</code></pre>
+            <pre><code>画像生成機能を使って、プロフィール用の正方形のアバター画像を生成し、avatar.pngとして保存してください。
 - スタイル: アニメ風またはイラスト風
-- 背景: シンプルなグラデーション
-- サイズ: 正方形
-ファイル名は「avatar.png」で保存して。</code></pre>
-            <pre><code>DALL-Eで、ヘッダー用の背景画像を生成して。
+- 背景: シンプルなグラデーション</code></pre>
+            <pre><code>画像生成機能を使って、ヘッダー用の背景画像を生成して。
 - テーマ: 抽象的な波模様
 - 色: 紺から青緑へのグラデーション
 - 幅広い横長画像
@@ -1239,9 +1216,9 @@ description: 挨拶のテスト用ワークフロー
             <pre><code>生成したavatar.pngとheader-bg.pngを自己紹介ページに配置して。
 - avatar.pngは丸くトリミングしてプロフィール欄に
 - header-bg.pngはヘッダーの背景に</code></pre>
-            <!-- 【画像挿入箇所】 DALL-Eで生成した画像が反映された完成版ページのスクショ -->
+            <!-- 【画像挿入箇所】 画像生成機能を使って生成した画像が反映された完成版ページのスクショ -->
             <img class="screenshot" src="img/fig7.png"
-                alt="DALL-Eで生成されたアニメ風アバターとグラデーション背景画像が組み込まれ、ダークテーマで装飾された完成版の自己紹介ページのスクリーンショット">
+                alt="画像生成機能を使って生成されたアニメ風アバターとグラデーション背景画像が組み込まれ、ダークテーマで装飾された完成版の自己紹介ページのスクリーンショット">
 
             <div class="card" style="border-left: 4px solid var(--yellow, #f4c542);">
                 <strong>⏩ 早く終わった人へ：自分だけのオリジナリティを加えよう</strong>
@@ -1251,7 +1228,7 @@ description: 挨拶のテスト用ワークフロー
                 <ul style="font-size: 0.9rem; margin-top: 8px; padding-left: 20px;">
                     <li><strong>テーマを自分ごとに：</strong> 「自己紹介ページ」を、自分の趣味・推し・ペット・架空のサービスの紹介ページに変えてみる。題材が変わるとデザインの正解も変わります。</li>
                     <li><strong>インタラクションを足す：</strong> 「ダークモード切り替えボタン」「スクロールで要素がフェードインする」「クリックで開閉する FAQ アコーディオン」など、動きのある要素を 1 つ追加依頼してみる。</li>
-                    <li><strong>DALL-E を使い倒す：</strong> アバターや背景だけでなく、セクションごとのアイコンや、ページ全体の世界観を統一したイラストを生成して差し込んでみる。「同じ画風で 3 枚」のように世界観を揃えるのがコツ。</li>
+                    <li><strong>画像生成機能を使い倒す：</strong> アバターや背景だけでなく、セクションごとのアイコンや、ページ全体の世界観を統一したイラストを生成して差し込んでみる。「同じ画風で 3 枚」のように世界観を揃えるのがコツ。</li>
                     <li><strong>1 機能だけ JS を入れる：</strong> 「現在時刻を表示する」「3 秒ごとに名言が切り替わる」など、小さな JavaScript の機能を 1 つ追加して、静的ページから一歩進める。</li>
                     <li><strong>AI に相談する：</strong> 「このページをもっと魅力的にするアイデアを 3 つ提案して」と聞いて、提案の中から良いものを選んで実装させる。発想を AI に手伝ってもらうのも立派なスキルです。</li>
                 </ul>
@@ -1352,41 +1329,25 @@ description: 挨拶のテスト用ワークフロー
             </table>
 
             <h3>ハンズオン: serena を設定ファイルで追加する</h3>
-            <p>MCP サーバーは GUI の MCP Store から追加する方法と、設定ファイルを直接編集する方法の2つがあります。ここでは、大規模コードベース解析に使える <code>serena</code> MCP
-                を例に、設定ファイルでの追加方法を学びます。</p>
+            <p>ここでは、大規模コードベース解析に使える <code>serena</code> MCP を直接接続します。</p>
 
             <h4>設定ファイルの場所</h4>
-            <p>Codex CLI の MCP 設定は、プロジェクトルートの <code>.codex/mcp.json</code> または設定ファイルで管理できます。</p>
+            <p>直接接続の設定は <code>~/.codex/config.toml</code>、または信頼済みプロジェクトの <code>.codex/config.toml</code> に書きます。</p>
 
             <h4>設定手順</h4>
             <ol>
-                <li>Agent パネル右上の <code>...</code>（三点メニュー）をクリック</li>
-                <li><strong>Manage MCP Servers</strong> を選択</li>
-                <li>メインタブの <strong>View raw config</strong> をクリック</li>
-                <li>以下の設定を <code>mcpServers</code> セクションに追加：
-                    <pre><code>{
-  "mcpServers": {
-    "serena": {
-      "command": "uvx",
-      "args": [
-        "--from",
-        "git+https://github.com/oraios/serena",
-        "serena",
-        "start-mcp-server",
-        "--context",
-        "ide"
-      ]
-    }
-  }
-}</code></pre>
-                </li>
-                <li>設定を保存して Codex を再起動</li>
-                <li>プロジェクトを開いた後、エージェントに「Activate the current project using serena's activation tool」と依頼して serena を有効化
-                </li>
+                <li>uvを導入して <code>uv --version</code> を確認します。</li>
+                <li><a href="https://oraios.github.io/serena/02-usage/030_clients.html#codex-cli-and-app" target="_blank">Serena公式手順</a>でインストールします。</li>
+                <li><code>serena setup codex</code> を実行します。</li>
+                <li>Codex CLIを再起動し、<code>/mcp</code> で接続を確認します。</li>
+                <li>プロジェクトを開いた後、エージェントに「Activate the current project using serena's activation tool」と依頼して serena を有効化します。</li>
             </ol>
 
-            <blockquote>💡 <strong>ヒント:</strong> 簡単に試したい場合は、MCP Store
-                からワンクリックでインストールすることもできます。設定ファイルでの追加は、バージョン管理や複数環境での一貫した設定に便利です。</blockquote>
+            <h4>手動で設定する場合</h4>
+            <p>上の設定コマンドの代わりに、設定ファイルへ次の内容を追加します。</p>
+            <pre><code>[mcp_servers.serena]
+command = "uvx"
+args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]</code></pre>
 
             <h3>やってみよう</h3>
             <p style="margin-bottom: 20px;">以下の演習を通して、AI が外部ツールを自律的に使いこなす様子を体験してみましょう。上記の手順で
@@ -1434,7 +1395,7 @@ description: 挨拶のテスト用ワークフロー
             <div class="card">
                 <h4>✅ 安全な MCP の見分け方</h4>
                 <ul>
-                    <li><strong>公式 MCP Store からインストールする</strong> — Codex が審査・掲載したサーバーを優先して使う</li>
+                    <li><strong>提供元の公式ページで、導入先と設定方法を確認してください。</strong></li>
                     <li><strong>ソースコードが公開されているものを選ぶ</strong> — GitHub 等でコードが確認できる著名なプロジェクトが安心</li>
                     <li><strong>インストール前に用途・権限を確認する</strong> — 「なぜそのアクセス権限が必要なのか」が明示されているものを選ぶ</li>
                     <li><strong>不要な MCP は無効化（Disable）する</strong> — 使わないサーバーは常時有効にしない</li>
@@ -1488,13 +1449,14 @@ description: 挨拶のテスト用ワークフロー
                     <tr>
                         <td>Skills</td>
                         <td>専門的な能力を追加する</td>
-                        <td><code>@スキル名</code>、または AI が自動判断</td>
+                        <td>CLI・IDE拡張では <code>$スキル名</code>、ChatGPTでは <code>@</code> から選択、または AI が自動判断</td>
                     </tr>
                 </tbody>
             </table>
 
             <h3>Skills の構造</h3>
-            <pre><code>.agent/skills/&lt;skill-name&gt;/
+            <p>CLI・IDE拡張では <code>/skills</code> で一覧を確認し、<code>$スキル名</code> で指定します。ChatGPTでは <code>@</code> から選びます。</p>
+            <pre><code>.agents/skills/&lt;skill-name&gt;/
 └── SKILL.md          # スキルの定義（必須）</code></pre>
 
             <h3>SKILL.md のフォーマット</h3>
@@ -1511,10 +1473,11 @@ description: 特定のタスクを支援するスキル
 ...</code></pre>
 
             <h3>このフォルダに入っているサンプル Skill</h3>
-            <!-- 【画像挿入箇所】 .agent/skills 内のディレクトリツリーのスクショ -->
+            <blockquote>教材には <code>sample.js</code>、<code>code-review</code>、<code>marp-presentation</code> は同梱されていないため、この演習には追加の配布物が必要です。</blockquote>
+            <!-- 【画像挿入箇所】 .agents/skills 内のディレクトリツリーのスクショ -->
             <img class="screenshot" src="img/fig10.png"
-                alt="エディタのファイルツリー表示。.agent/skills ディレクトリの配下に code-review や marp-presentation といった複数の独自スキル（SKILL.md）が格納されている状態のスクリーンショット">
-            <pre><code>.agent/
+                alt="エディタのファイルツリー表示。.agents/skills ディレクトリの配下に code-review や marp-presentation といった複数の独自スキル（SKILL.md）が格納されている状態のスクリーンショット">
+            <pre><code>.agents/
 └── skills/
     ├── code-review/
     │   └── SKILL.md      # コードレビュー用 Skill
@@ -1535,53 +1498,46 @@ description: 特定のタスクを支援するスキル
 
             <p><strong>方法1: AI に依頼する（初心者におすすめ）</strong></p>
             <p>Codex のチャット欄で、AI に自然言語で依頼するだけで Skills を追加できます：</p>
-            <pre><code>GitHub の https://github.com/USERNAME/skills-collection から
-multi-ai-review と agent-team の Skill をダウンロードして
-.agent/skills/ に配置して</code></pre>
-            <p>AIが自動的にダウンロード、配置まで行ってくれるので、<strong>ターミナル操作に不慣れな方はこの方法が最も簡単</strong>です。</p>
+            <pre><code>取得済みの教材の .agent/skills/ にある multi-ai-review と agent-team のフォルダを、
+プロジェクト直下の .agents/skills/ にコピーしてください。</code></pre>
 
             <p><strong>方法2: ターミナルで手動追加（詳細手順）</strong></p>
-            <p>より詳しく理解したい方は、以下の手順でターミナルから手動で追加できます：</p>
-
             <ol>
-                <li><strong>Codex でターミナルを開く：</strong> <code>Terminal</code> メニュー → <code>New Terminal</code></li>
-                <li><strong>プロジェクトフォルダにいることを確認：</strong> ターミナルに現在のパスが表示されます。<code>codex-handson</code>
-                    フォルダ内にいることを確認してください。</li>
-                <li><strong>Skills リポジトリをクローン：</strong> 以下のコマンドをコピーして貼り付け、Enter で実行</li>
+                <li><strong>Codex でターミナルを開く：</strong> 画面右上のターミナルアイコンを押します。</li>
+                <li><strong>プロジェクトフォルダにいることを確認：</strong> <code>codex-handson</code> フォルダ内にいることを確認してください。</li>
+                <li><strong>コピー先を作成：</strong> 次のコマンドを実行します。</li>
             </ol>
-            <pre><code>git clone https://github.com/USERNAME/skills-collection.git</code></pre>
+            <pre><code>mkdir -p .agents/skills</code></pre>
             <ol start="4">
-                <li><strong>Skills をコピー：</strong> 以下のコマンドを1行ずつ実行します（<code>#</code> で始まる行はコメントなので入力不要）</li>
+                <li><strong>Skills をコピー：</strong> 次のコマンドを実行します。</li>
             </ol>
-            <pre><code># multi-ai-review Skill をコピー
-cp -r skills-collection/multi-ai-review .agent/skills/
-
-# agent-team Skill をコピー
-cp -r skills-collection/agent-team .agent/skills/</code></pre>
+            <pre><code>cp -r .agent/skills/multi-ai-review .agents/skills/
+cp -r .agent/skills/agent-team .agents/skills/</code></pre>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--blue);">
                 <strong>💡 コマンドの意味</strong>
                 <ul style="margin-top: 8px; font-size: 0.9rem;">
-                    <li><code>git clone</code>: GitHubからファイルをダウンロード</li>
+                    <li><code>mkdir -p</code>: コピー先のフォルダを作成</li>
                     <li><code>cp -r</code>: フォルダごとコピー（<code>-r</code> は「再帰的に=中身も全部」の意味）</li>
-                    <li><code>.agent/skills/</code>: コピー先のフォルダ（<code>.</code> は「現在のフォルダ」を指す）</li>
+                    <li><code>.agent/skills/</code>: 教材に含まれるコピー元のフォルダ</li>
+                    <li><code>.agents/skills/</code>: コピー先のフォルダ（<code>.</code> は「現在のフォルダ」を指す）</li>
                 </ul>
             </div>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--green);">
                 <strong>✅ 成功の確認</strong>
                 <ul style="margin-top: 8px; font-size: 0.9rem;">
-                    <li>左側のファイルツリーで <code>.agent/skills/</code> を開く</li>
+                    <li>左側のファイルツリーで <code>.agents/skills/</code> を開く</li>
                     <li><code>multi-ai-review</code> や <code>agent-team</code> フォルダが表示されていればOK</li>
                     <li>各フォルダ内に <code>SKILL.md</code> ファイルがあることを確認</li>
                 </ul>
             </div>
 
             <h4>有用な Skill の例</h4>
-            <p>以下は公開されている有用な Skills の例です。これらを <code>.agent/skills/</code> に追加することで利用できます：</p>
-            <!-- 【画像挿入箇所】 .agent/skills ディレクトリに複数のコミュニティSkillが追加されている状態のスクショ -->
+            <p>以下は公開されている有用な Skills の例です。これらを <code>.agents/skills/</code> に追加することで利用できます：</p>
+            <!-- 【画像挿入箇所】 .agents/skills ディレクトリに複数のコミュニティSkillが追加されている状態のスクショ -->
             <img class="screenshot" src="img/fig11.png"
-                alt=".agent/skills ディレクトリに multi-ai-review、agent-team、git-workflow などの公開 Skills が追加されている状態のスクリーンショット">
+                alt=".agents/skills ディレクトリに multi-ai-review、agent-team、git-workflow などの公開 Skills が追加されている状態のスクリーンショット">
             <table>
                 <thead>
                     <tr>
@@ -1591,23 +1547,23 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><code>@multi-ai-review</code></td>
+                        <td><code>$multi-ai-review</code></td>
                         <td>Codex, Gemini, Claude の3つに並列コードレビューを依頼し統合レポートを生成</td>
                     </tr>
                     <tr>
-                        <td><code>@agent-team</code></td>
+                        <td><code>$agent-team</code></td>
                         <td>複数のサブエージェントをオーケストレーションし並列実行</td>
                     </tr>
                     <tr>
-                        <td><code>@git-workflow</code></td>
+                        <td><code>$git-workflow</code></td>
                         <td>ブランチ作成・コミット・PR 作成の Git ワークフローを自動化</td>
                     </tr>
                     <tr>
-                        <td><code>@ci-check</code></td>
+                        <td><code>$ci-check</code></td>
                         <td>GitHub Actions の CI チェックをローカル実行して自動修正</td>
                     </tr>
                     <tr>
-                        <td><code>@ui-verify</code></td>
+                        <td><code>$ui-verify</code></td>
                         <td>Chrome DevTools でフロントエンドの動作確認とデバッグを実行</td>
                     </tr>
                 </tbody>
@@ -1695,9 +1651,8 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
                 </tbody>
             </table>
 
-            <h3>Tips: Web ブラウザを操作する（標準機能）</h3>
-            <p>Codex では、特別な拡張機能をインストールしなくても、<strong>デフォルトで外部の Web サイトを検索・閲覧したり、ブラウザの画面を操作する機能</strong>が備わっています。AI
-                は最新の公式ドキュメントやネット上の情報を自律的に検索したり、開発中のアプリをブラウザで開いて自律的にテストを行ってくれます。</p>
+            <h3>Tips: Web ブラウザを操作する</h3>
+            <p>デスクトップアプリでは内蔵ブラウザを使えます。通常のChromeを操作するには、ブラウザ拡張の導入と接続が必要です。CLI・IDE拡張には内蔵ブラウザがないため、別途ブラウザ操作ツールを設定します。</p>
 
             <div class="card" style="margin-bottom: 16px; border-left: 4px solid var(--blue);">
                 <p style="font-size: 0.9rem; margin: 0 0 8px;"><strong>💡 どういう時に便利？:</strong></p>
@@ -1716,14 +1671,14 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
 
             <h3>ハンズオン: AI Coffee Shop LP を作ろう</h3>
 
-            <p>このハンズオンでは、架空の「AI カフェ」のランディングページ（LP）を作成します。<strong>MCP × Skills × DALL-E</strong> を総動員して、本格的な Web
+            <p>このハンズオンでは、架空の「AI カフェ」のランディングページ（LP）を作成します。<strong>MCP × Skills × 画像生成機能</strong> を総動員して、本格的な Web
                 アプリケーションを約30分で完成させる体験ができます。</p>
 
             <div class="card" style="background: var(--bg-light); border-left: 4px solid var(--primary);">
                 <strong>🎯 このハンズオンで体験できること</strong>
                 <ul style="margin-top: 8px; font-size: 0.9rem;">
                     <li><strong>MCP Browser</strong> で競合サイトを自動リサーチ</li>
-                    <li><strong>DALL-E</strong> でプロ品質のビジュアル生成</li>
+                    <li><strong>画像生成機能</strong>を使ってプロ品質のビジュアル生成</li>
                     <li><strong>React + TailwindCSS</strong> で本格的なフロントエンド開発</li>
                     <li><strong>Agent Skills</strong> で自動コードレビュー＆修正</li>
                     <li>従来なら数日かかる作業を約30分で完結</li>
@@ -1756,7 +1711,7 @@ cp -r skills-collection/agent-team .agent/skills/</code></pre>
     ↓
 Step 2: 競合分析 → 構成決定
     ↓
-Step 3: ビジュアル生成（DALL-E）
+Step 3: ビジュアル生成（画像生成機能）
     ↓
 Step 4: 実装（Skills 活用）
     ↓
@@ -1798,11 +1753,11 @@ Step 6: デプロイ</code></pre>
                 <strong>💡 ポイント：</strong> AI が提案した構成に対して「もっとこうしたい」とフィードバックすれば、即座に修正案を出してくれます。企画書作成の壁打ち相手として最適です。
             </div>
 
-            <h4>Part 3: ビジュアル生成（DALL-E）— 所要時間: 3分</h4>
+            <h4>Part 3: ビジュアル生成（画像生成機能）— 所要時間: 3分</h4>
             <p><strong>目的：</strong> LP のメインビジュアル（ヒーロー画像）を AI で生成し、デザイン品質を一気に引き上げます。</p>
-            <p><strong>やること：</strong> DALL-E に「近未来的なカフェ」のイメージを指示すると、プロ品質のフォトリアリスティックな画像を生成してプロジェクトに配置してくれます。</p>
+            <p><strong>やること：</strong> 画像生成機能に「近未来的なカフェ」のイメージを指示すると、プロ品質のフォトリアリスティックな画像を生成してプロジェクトに配置してくれます。</p>
 
-            <pre><code>DALL-E で、「近未来的なカフェの店内、
+            <pre><code>画像生成機能を使って、「近未来的なカフェの店内、
 ネオンブルーとウォームライト、観葉植物、4K、フォトリアリスティック」
 のイメージを生成して。ファイル名は hero-bg.webp で保存して。</code></pre>
 
@@ -1811,6 +1766,7 @@ Step 6: デプロイ</code></pre>
                 従来ならデザイナーに依頼して数日待つか、有料素材サイトで探す作業が、<strong>数秒で完結</strong>します。イメージに合わなければ「もっと温かみを出して」と再生成できます。
             </div>
 
+            <blockquote>発展編ではNode.jsとnpmが必要です。Node.js 22系なら22.12以上を使い、<code>node --version</code> と <code>npm --version</code> で確認してください。</blockquote>
             <h4>Part 4: 実装（React + TailwindCSS）— 所要時間: 10分</h4>
             <p><strong>目的：</strong> Part 2 で決めた構成と Part 3 で生成した画像を使い、本格的な React アプリとして実装します。</p>
             <p><strong>やること：</strong> AI に「Vite + React + TailwindCSS で構築して」と依頼すると、プロジェクトのセットアップからコンポーネント実装まで全自動で行われます。
@@ -1845,10 +1801,11 @@ Vite + React + TailwindCSS のプロジェクトを作成して。
             </div>
 
             <h4>Part 5: 品質チェック（Skills活用）— 所要時間: 5分</h4>
+            <blockquote>教材には <code>sample.js</code>、<code>code-review</code>、<code>marp-presentation</code> は同梱されていないため、この演習には追加の配布物が必要です。</blockquote>
             <p><strong>目的：</strong> 実装したコードの品質を自動レビューし、バグやアンチパターンを事前に発見・修正します。</p>
-            <p><strong>やること：</strong> <code>@code-review</code> Skill を呼び出すと、AI が全コンポーネントをレビューし、改善すべき点を自動的に修正してくれます。</p>
+            <p><strong>やること：</strong> <code>$code-review</code> Skill を呼び出すと、AI が全コンポーネントをレビューし、改善すべき点を自動的に修正してくれます。</p>
 
-            <pre><code>@code-review ai-coffee-shop/src/components/ のすべてのコンポーネントを
+            <pre><code>$code-review ai-coffee-shop/src/components/ のすべてのコンポーネントを
 レビューして、改善点があれば自動的に修正して。</code></pre>
 
             <div class="card" style="font-size: 0.9rem;">
@@ -1954,7 +1911,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
             </div>
             <!-- 【画像挿入箇所】 完成したAI Coffee Shop LPのスクリーンショットや構築中のチャット画面 -->
             <img class="screenshot" src="img/fig12.png"
-                alt="Vibe Coding 発展編で作成された「AI Coffee Shop LP」の完成版のブラウザプレビュー。近未来的なデザインと DALL-E で生成された高品質な画像が調和しているスクリーンショット">
+                alt="Vibe Coding 発展編で作成された「AI Coffee Shop LP」の完成版のブラウザプレビュー。近未来的なデザインと 画像生成機能を使って生成された高品質な画像が調和しているスクリーンショット">
 
             <h3>開発時間の比較</h3>
             <table>
@@ -2143,7 +2100,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     <tr>
                         <td>Construction（構築）</td>
                         <td>コード・デザイン・テスト</td>
-                        <td>Vibe Coding + MCP + DALL-E</td>
+                        <td>Vibe Coding + MCP + 画像生成機能</td>
                     </tr>
                     <tr>
                         <td>Operations（運用）</td>
@@ -2158,7 +2115,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 <ol>
                     <li><strong>最初にモブエラボレーションする</strong> — 全員でAIの出した計画を見て合意を取る</li>
                     <li><strong>コードは AI に任せ、人間は判断に集中する</strong> — フレームワーク選定、デザイン方針、審査基準への対応</li>
-                    <li><strong>デモの見栄えを重視する</strong> — DALL-E で画像生成、Browser Subagent で最終確認</li>
+                    <li><strong>デモの見栄えを重視する</strong> — 画像生成機能を使って画像生成、Browser Subagent で最終確認</li>
                 </ol>
             </div>
 
@@ -2195,9 +2152,8 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                                 style="color: var(--blue); word-break: break-all;">note.com/<br>kino_11</a></td>
                     </tr>
                     <tr>
-                        <td>モードは基本「Planning」一択</td>
-                        <td>Planning Mode ではAIがまず計画を立て、宣言してから作業する。Fast Mode は計画なしで即作業するためミスりやすい。複雑なタスクは急がば回れで Planning
-                            を選ぶほうが精度が上がる。モデルは <code>GPT-5.5</code>（未提供なら <code>GPT-5.4</code>）が安定。</td>
+                        <td>計画作成と Fast の違い</td>
+                        <td>CLIでは <code>/plan</code> で計画を確認してから実装を依頼します。Fastは、利用量の消費を増やして処理を速くする設定です。計画を立てるかどうかとは別です。モデルは <code>GPT-6 系</code> など、利用中のアカウントとアプリに表示される推奨モデルを選んでください。</td>
                     </tr>
                     <tr>
                         <td>Global Rules に「日本語指示」を書く</td>
@@ -2209,23 +2165,20 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                         <td>チャット欄にファイルをドラッグ＆ドロップするか <code>@ファイル名</code> で参照することで、AIに正確なコンテキストを与えられる。指示の精度が大きく向上する。</td>
                     </tr>
                     <tr>
-                        <td>Auto Execution の使い分け</td>
-                        <td>設計を壁打ちしたいときは <code>Request Review</code>（AIが毎回確認を求める）、単純作業を任せるときは
-                            <code>Always Proceed</code>（確認なしで爆速）に切り替える。慣れるまでは Request Review が安全。
+                        <td>権限メニューの使い分け</td>
+                        <td>権限メニューには <code>Ask for approval</code>／<code>Approve for me</code>／<code>Full access</code>／<code>Custom</code> があります。実習では <code>Ask for approval</code> を使います。作業フォルダ内の編集や通常のコマンドは実行できます。ネット接続や作業範囲外へのアクセスでは確認を求めます。削除操作でも、必ず確認が出るとは限りません。
                         </td>
                     </tr>
                     <tr>
                         <td>Artifacts でAIの作業を「見える化」</td>
-                        <td>タスク実行時に
-                            <code>task.md</code>（進行状況）・<code>implementation_plan.md</code>（実装計画）・<code>walkthrough.md</code>（作業ログ）が自動生成される。コードを書く前に計画書が出るため「仕様レビュー」感覚で開発できる。
+                        <td>CLIでは <code>/plan</code> で計画を確認してから実装を依頼します。計画書や作業記録をファイルに残す場合は、保存先を指定してください。
                         </td>
                         <td rowspan="4"><a href="https://zenn.dev/minedia/articles/cc718542d8cc73" target="_blank"
                                 style="color: var(--blue); word-break: break-all;">zenn.dev/<br>minedia</a></td>
                     </tr>
                     <tr>
                         <td>Chrome拡張でクロスツール自律操作</td>
-                        <td>Codex 専用の Chrome
-                            拡張を入れると、AIがブラウザを実際に見て操作できるようになる。ターミナル実行→ブラウザ動作確認まで全自動。UIの実装精度が段違いに向上する。</td>
+                        <td>デスクトップアプリでは内蔵ブラウザを使えます。通常のChromeを操作するには、ブラウザ拡張の導入と接続が必要です。CLI・IDE拡張には内蔵ブラウザがないため、別途ブラウザ操作ツールを設定します。</td>
                     </tr>
                     <tr>
                         <td>スクショに直接コメントで指示する</td>
@@ -2233,14 +2186,12 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                         </td>
                     </tr>
                     <tr>
-                        <td>DALL-E Pro で画像を即生成</td>
+                        <td>画像生成機能を使って画像を即生成</td>
                         <td>UIモックアップ・アーキテクチャ図・Webサイト用の画像アセットなどをAIが生成して直接プロジェクトに配置してくれる。デザイナーを待たずとも高品質な素材が数秒で手に入る。</td>
                     </tr>
                     <tr>
-                        <td>Artifact Review で実行前にモデル切り替え</td>
-                        <td>Artifact Review Policy を「Request
-                            Review」に設定すると、AIが実装計画を提示した段階でレビューできる。ここで<strong>実行前にモデルを切り替えられる</strong>のが最大のメリット。設計フェーズは
-                            GPT-5.5、実装フェーズは GPT-5.3-Codex や GPT-5.4-Mini に切り替えると、素早いトライアンドエラーが可能になる。</td>
+                        <td>計画を確認してからモデルを選ぶ</td>
+                        <td>CLIでは <code>/plan</code> で計画を確認してから実装を依頼します。計画書や作業記録をファイルに残す場合は、保存先を指定してください。モデルを切り替える場合は <code>/model</code> を使い、利用可能な <code>GPT-6 系</code> などから選びます。</td>
                         <td rowspan="8"><a href="https://platform.openai.com/docs"
                                 target="_blank" style="color: var(--blue); word-break: break-all;">OpenAI Docs
                                 /<br>Community</a></td>
@@ -2253,7 +2204,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>Step10 超過時に一時停止させる</td>
-                        <td><code>~/.gemini/CLAUDE.md</code>
+                        <td><code>~/.codex/AGENTS.md</code>
                             に「Step10超過時に処理を一時停止して、完了内容・状況報告・次アクションを報告すること」と書くことで、根本原因分析を促進し、無限ループを防げる。日本語対応設定も同じファイルに記述できる。
                         </td>
                     </tr>
@@ -2264,24 +2215,20 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     </tr>
                     <tr>
                         <td>無料枠のレート制限に注意</td>
-                        <td>無料・低位プランではレート制限が厳しく、数時間で上限に達する可能性がある。制限に達したら<strong>別モデルへ切り替え</strong>（GPT-5.4-Mini
-                            は比較的制限が緩やか）、またはエラー発生時は「続きを実装して」と依頼すると再開される。</td>
+                        <td>利用上限に達したら、利用状況画面でリセット時刻を確認してください。5時間単位の枠に加え、週ごとの上限がある場合もあります。</td>
                     </tr>
                     <tr>
                         <td>Review-driven development を活用</td>
-                        <td>ターミナル実行ポリシーを「Request Review」、変更の適用は「Agent
-                            Decides」に設定すると、コマンド実行時に確認を挟みつつ、AIが状況に応じて自動判断できる。要所で人間の確認を挟みながら作業を進められる。</td>
+                        <td>実習では <code>Ask for approval</code> を使います。作業フォルダ内の編集や通常のコマンドは実行できます。ネット接続や作業範囲外へのアクセスでは確認を求めます。削除操作でも、必ず確認が出るとは限りません。変更内容を確認しながら作業を進めてください。</td>
                     </tr>
                     <tr>
                         <td>Browser Agent でデバッグ自動化</td>
-                        <td>Browser Agent
-                            拡張機能をインストールすると、エージェントに「ブラウザで確認するよう指示」するだけで、エラー画面を自動確認・デバッグ情報を収集できる。ターミナル実行→ブラウザ動作確認まで全自動になる。
+                        <td>ブラウザ操作ツールの接続後、エージェントに「ブラウザで確認するよう指示」して、エラー画面の確認やデバッグ情報の収集を依頼します。通常のChromeにはブラウザ拡張の導入と接続が必要です。CLI・IDE拡張では、別途ブラウザ操作ツールを設定します。
                         </td>
                     </tr>
                     <tr>
-                        <td>Planning Mode は9割のケースで使う</td>
-                        <td>Planning Mode は計画立案→実装の流れで進むため、エラーが出やすいクラウドインフラ構築・複雑な機能実装に最適。Fast Mode
-                            は単発の質問やテキスト修正向けで、継続的なタスク実行には不向き。迷ったら Planning を選ぶべし。</td>
+                        <td>CLIの <code>/plan</code> で計画を確認する</td>
+                        <td>CLIでは <code>/plan</code> で計画を確認してから実装を依頼します。Fastは、利用量の消費を増やして処理を速くする設定です。計画を立てるかどうかとは別です。</td>
                     </tr>
                     <tr>
                         <td>コミット前は <code>/diff</code> → <code>/review</code> の2段構え</td>
@@ -2323,7 +2270,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     <tr>
                         <td>マルチエージェントでは安価なモデルをサブに割り当てる</td>
                         <td>複数のサブエージェントを並列で動かすワークフローでは、すべてを最上位モデルで回すと一気にコストが膨らむ。<strong>サブエージェントには
-                            <code>GPT-5.4-Mini</code> のような軽量モデル</strong>を割り当て、設計・統合だけ上位モデルに任せると、品質を保ちつつ費用を抑えられる。</td>
+                            利用中の環境に表示される <code>GPT-6 系</code> などから、作業に合うモデル</strong>を割り当て、設計・統合だけ上位モデルに任せると、品質を保ちつつ費用を抑えられる。</td>
                     </tr>
                 </tbody>
             </table>
@@ -2341,8 +2288,8 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                     <tr>
                         <td>公式サイト</td>
                         <td>Codex のダウンロード・プラン・最新情報</td>
-                        <td><a href="https://openai.com/index/introducing-codex/" target="_blank"
-                                style="color: var(--blue);">openai.com/index/introducing-codex/</a></td>
+                        <td><a href="https://learn.chatgpt.com/docs" target="_blank"
+                                style="color: var(--blue);">learn.chatgpt.com/docs</a></td>
                     </tr>
                     <tr>
                         <td>公式ドキュメント</td>
@@ -2387,7 +2334,7 @@ Firebase Hosting にデプロイする準備をして。</code></pre>
                 <div class="yt-card">
                     <span class="yt-tag">基本機能5選</span>
                     <h4>Codex の5つの基本機能 — Skills/MCP/Plugins/Hooks/Subagents</h4>
-                    <p>Codex デスクトップアプリ初心者が最初に押さえるべき 5 機能を非エンジニア向けに解説。Skills は Anthropic がオープン規格化した共通仕様で、Claude Code・Antigravity・Codex 間で再利用できます。Hooks は <strong>TOML 形式</strong> で書く必要があるので、AI に依頼する際は「TOML で書いて」と添えるのがコツ。</p>
+                    <p>Codex デスクトップアプリ初心者が最初に押さえるべき 5 機能を非エンジニア向けに解説。Skills は Anthropic がオープン規格化した共通仕様で、Claude Code・Antigravity・Codex 間で再利用できます。Hooksは <code>hooks.json</code>、または <code>config.toml</code> の <code>[hooks]</code> に設定します。</p>
                     <a class="yt-link" href="https://www.youtube.com/watch?v=ANxcREbyiOU" target="_blank" rel="noopener">出典: https://www.youtube.com/watch?v=ANxcREbyiOU</a>
                 </div>
 
