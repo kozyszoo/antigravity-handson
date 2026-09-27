@@ -545,6 +545,8 @@
 
         <section class="section" id="intro">
             <h2>はじめに：なぜ今この講座が必要か</h2>
+            <h3>前提条件</h3>
+            <p>Google Antigravity の利用は18歳以上が対象です。</p>
             <div class="fig-container">
                 <img class="fig-image" src="img/fig-rg-hero.png" alt="エンジニアと AI ロボットが並んで座り、AI がコードを書きながら高速で走る車を運転している。エンジニア側は赤いシートベルトと「STOP」ボタンに手をかけている。背景はダークなコックピット風、赤と緑のアクセントライト。フラットイラスト、横長バナー。AI コーディングを安全に走らせる「ブレーキとシートベルト」の比喩。">
             </div>
@@ -733,14 +735,15 @@ CREATE TABLE users(id INT, email TEXT, plan TEXT);
                     <li>
                         AI エージェントの<strong>承認モードをツール側で固定</strong>する：
                         <ul>
-                            <li>Codex: <code>approval_policy = "on-request"</code>（<a href="https://developers.openai.com/codex/agent-approvals-security" target="_blank" rel="noopener" style="color: var(--primary);">公式 docs</a>）</li>
+                            <li>Codex: <code>approval_policy = "on-request"</code>。ただし、許可された範囲の操作は承認なしで動きます。最初は <code>sandbox_mode = "read-only"</code> を併用し、承認要求は <code>approvals_reviewer = "user"</code> で人に送ります（<a href="https://developers.openai.com/codex/agent-approvals-security" target="_blank" rel="noopener" style="color: var(--primary);">公式 docs</a>）</li>
                             <li>Claude Code: <code>--dangerously-skip-permissions</code> は本番リポジトリで<strong>絶対使わない</strong>（<a href="https://code.claude.com/docs/en/permissions" target="_blank" rel="noopener" style="color: var(--primary);">公式 docs</a>）</li>
                             <li>Antigravity: Subagent の workspace は公式では inherit / branch / share の選択制。業務リポジトリでは<strong>Worktree 隔離（branch）を本講座の標準</strong>にする（<a href="https://antigravity.google/docs/subagents" target="_blank" rel="noopener" style="color: var(--primary);">公式 docs</a>）</li>
                         </ul>
                     </li>
                     <li>
                         本番デプロイは <strong>GitHub Actions の <code>environment: production</code> + Required Reviewers</strong> で
-                        必ず人間スタンプを挟む
+                        承認者を登録し、管理者が承認を省略できる設定を無効にして、人の承認を挟む。
+                        非公開リポジトリで Required Reviewers を使うには GitHub Enterprise が必要です。
                     </li>
                     <li>
                         作業前に <code>git switch -c feature/ai-xxx</code> でブランチを切る。<strong>main で直接 AI を動かさない</strong>
@@ -1053,7 +1056,7 @@ $ そのまま実行 → 実は誰かが直前に公開した悪意ある同名�
                 </p>
 
                 <div class="card warn" style="margin-top: 12px;">
-                    <span class="badge warn">ただし！ 30条の4 が適用されない 3 つのケース</span>
+                    <span class="badge warn">30条の4が適用されない場合や、法的リスクが高まる場合</span>
                     <ol style="margin-top: 8px;">
                         <li>
                             <strong>享受目的が並存している</strong>場合
@@ -1067,14 +1070,14 @@ $ そのまま実行 → 実は誰かが直前に公開した悪意ある同名�
                             <strong>著作権者の利益を不当に害する</strong>場合（30条の4 ただし書）
                             <ul>
                                 <li>例：情報解析用に有償販売されているデータベースを無許諾でコピーして学習に使う</li>
-                                <li>例：<code>robots.txt</code>／ID・パスワード等の<strong>技術的措置を回避</strong>して学習データを収集する</li>
+                                <li>例：情報解析用データベースの販売中・販売予定の市場を妨げる形で、<code>robots.txt</code> などの制限を回避してデータを集める</li>
                                 <li>例：「近い将来、解析用に販売される」と推認できるデータを先回りで複製する</li>
                             </ul>
                         </li>
                         <li>
-                            <strong>海賊版だと知りながら</strong>学習に使う場合
+                            <strong>海賊版と知りながら学習に使う行為は慎むべき</strong>です。
                             <ul>
-                                <li>後段の責任追及（AI開発者の侵害責任）でも、極めて不利に働く</li>
+                                <li>生成物が著作権を侵害した場合に、開発者も責任を問われる可能性が高まります。</li>
                             </ul>
                         </li>
                     </ol>
@@ -1088,6 +1091,7 @@ $ そのまま実行 → 実は誰かが直前に公開した悪意ある同名�
                 <p>
                     AIに「学習させる」ときの話と、AIで「生成・利用する」ときの話は別です。
                     生成・利用段階での著作権侵害は、<strong>通常の著作権侵害と同じく次の 2 つが両方そろったとき</strong>に成立します。
+                    ただし、権利者の許可がある場合や、私的使用・引用など法律で認められた条件を満たす場合を除きます。
                 </p>
 
                 <div class="step-grid" style="margin: 14px 0;">
@@ -1190,7 +1194,7 @@ $ そのまま実行 → 実は誰かが直前に公開した悪意ある同名�
                             <td>侵害により生じた損害の補填</td>
                         </tr>
                         <tr>
-                            <td>刑事罰（10年以下の懲役 等）</td>
+                            <td>刑事罰（著作権法119条1項では、10年以下の拘禁刑、1,000万円以下の罰金、またはその両方）</td>
                             <td>故意</td>
                             <td>悪質な侵害。原則として親告罪</td>
                         </tr>
@@ -1253,7 +1257,7 @@ $ そのまま実行 → 実は誰かが直前に公開した悪意ある同名�
                 <ul class="checklist">
                     <li><strong>類似性チェック</strong>：生成物を画像検索・コード検索にかけ、既存著作物との類似がないかを確認した</li>
                     <li><strong>有名キャラ・有名作品の入力禁止</strong>：プロンプトにタイトル・固有名詞・既存画像を直接入力していない</li>
-                    <li><strong>学習データの素性を確認</strong>：可能なら学習データの来歴が明示されたAI（例：Adobe Firefly のようなクリーン学習を謳うサービス）を選ぶ</li>
+                    <li><strong>学習データの素性を確認</strong>：可能なら学習データの来歴が明示されたAI（例：Adobe独自のFireflyモデルなど、学習データの説明が公開されているモデル）を選ぶ。Firefly内で選べる他社モデルは、別に利用条件を確認します</li>
                     <li><strong>プロンプトと生成過程のログ保存</strong>：いつ・どのプロンプトで・どの生成結果を採用したかを記録（依拠性なしの主張＆著作物性主張の両方で効く）</li>
                     <li><strong>狙い撃ち学習を行わない</strong>：特定クリエイターの少量作品のみでの追加学習（過学習）は 30条の4 適用外リスクが高い</li>
                     <li><strong>海賊版データを学習に絶対使わない</strong>：素性不明のデータセットには手を出さない</li>
@@ -1427,7 +1431,7 @@ git worktree remove ../myproject-agent
                     </tr>
                     <tr>
                         <td>③ 秘密情報を環境から追い出す</td>
-                        <td>APIキー等は <code>.env</code> ＋ <code>.gitignore</code>、または OS のキーチェーン/シークレットマネージャへ</td>
+                        <td>APIキー等は、エージェントに読み取りを許可していないキーチェーンやシークレットマネージャで管理する</td>
                         <td>コードや会話に鍵が紛れ込む事故を防ぐ</td>
                     </tr>
                 </tbody>
@@ -1459,7 +1463,7 @@ git worktree remove ../myproject-agent
 
 ## 3. エージェントに「見せない」もの（マウント/許可しない）
 - ~/.ssh / パスワードマネージャ / 個人フォルダ / 他案件のコード
-- 本番DBへの接続情報・APIキー（.env は .gitignore 済みを確認）
+- 本番DBへの接続情報・APIキー（エージェントが読めるフォルダや、コンテナに渡す範囲には置かない。`.gitignore` では読み取りを防げない）
 
 ## 4. 作業の分離
 - 作業ルート: ~/work/&lt;案件名&gt; に固定
@@ -1693,7 +1697,7 @@ git worktree remove ../myproject-agent
                     <h4>【AIエージェント使うべきじゃない？】自律型AI全盛時代 リスクはセキュリティ面 │ AIが人間に仕事依頼 │ AI同士のSNS登場【月刊AIニュース】</h4>
                     <p class="yt-meta">登壇: ナル先生（元 Facebook/Meta エンジニア、汎用型 AI エージェント Manus 日本初 Fellow、Devin Expert） ／ 監修協力: HEROZ 株式会社</p>
                     <p>
-                        OpenClaw の OpenAI 参画、AI マッチングプラットフォーム、Moltbook、Claude Code デスクトップ版、freee 確定申告など、最新トピック 5 選を切り口に <strong>「自律型 AI に飛びつくと事故るポイント」</strong> を実務家が解説。本講座の 第2章「AI活用の代表的リスク」 と第3章「組織のAIガバナンス」を、最新ニュースの文脈で復習するのに向いています。
+                        OpenClaw開発者のOpenAI参画、AI マッチングプラットフォーム、Moltbook、Claude Code デスクトップ版、freee 確定申告など、最新トピック 5 選を切り口に <strong>「自律型 AI に飛びつくと事故るポイント」</strong> を実務家が解説。本講座の 第2章「AI活用の代表的リスク」 と第3章「組織のAIガバナンス」を、最新ニュースの文脈で復習するのに向いています。
                     </p>
                     <p>
                         特に AI エージェントが <strong>外部 API を能動的に叩き始める時代</strong> の「セキュリティ面のリスク」と、AI 同士が連携・依頼し合うことで生まれる <strong>責任分界の不透明化</strong> は、本講座の <a href="#gov-roles" style="color: var(--blue);">3-3. 責任分界（RACI モデル）</a> とセットで考えると理解が深まります。

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>「即戦力」AIツール実践ハンズオン ｜ NotebookLM × Deep Research × Google Sites</title>
+    <title>「即戦力」AIツール実践ハンズオン ｜ Gemini Notebook × Deep Research × Google Sites</title>
     <!-- Google Material Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <style>
@@ -468,7 +468,7 @@
                 <li><a href="#overview">全体像 — 3ツールの連携フロー</a></li>
                 <li><a href="#step1">Step 1: テーマを決める</a></li>
                 <li><a href="#step2">Step 2: Deep Research で調査</a></li>
-                <li><a href="#step3">Step 3: NotebookLM で整理・要約</a></li>
+                <li><a href="#step3">Step 3: Gemini Notebook で整理・要約</a></li>
                 <li><a href="#step4">Step 4: Google Sites で公開</a></li>
                 <li><a href="#step5">Step 5: 仕上げと共有</a></li>
                 <li><a href="#checklist">✅ 完成チェックリスト</a></li>
@@ -482,7 +482,7 @@
         <div class="hero">
             <span class="badge badge-level">コースB ／ アンバサダー向け</span>
             <h1>🚀 「即戦力」AIツール実践ハンズオン</h1>
-            <p style="margin-top:8px; font-size:1.05rem; color: var(--text);"><strong>NotebookLM × Deep Research × Google Sites</strong></p>
+            <p style="margin-top:8px; font-size:1.05rem; color: var(--text);"><strong>Gemini Notebook（旧 NotebookLM）× Deep Research × Google Sites</strong></p>
             <p style="margin-top:8px;">最新の AI でリサーチ・分析を行い、その成果を<strong>ノンコードで Web ページとして公開する</strong>までの一連の流れを、1 つのテーマを題材に最後まで体験します。コードは一切書きません。ブラウザだけで完結します。</p>
             <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間の目安: 約 60〜75 分 ／ レベル: 初〜中級（コーディング不要）</p>
         </div>
@@ -522,7 +522,7 @@
                         <td>テーマの「素材集め」。広く深い一次情報を集める</td>
                     </tr>
                     <tr>
-                        <td><strong>NotebookLM</strong><br><span style="font-size:0.82rem;color:var(--muted);">(Google)</span></td>
+                        <td><strong>Gemini Notebook</strong><br><span style="font-size:0.82rem;color:var(--muted);">(Google)</span></td>
                         <td>自分が渡した資料 <em>だけ</em> を根拠に、要約・比較・FAQ・音声解説を作る「資料特化 AI」</td>
                         <td>集めた情報の「整理・要約」。ハルシネーションを抑え、出典に紐づけて読みやすくする</td>
                     </tr>
@@ -535,18 +535,19 @@
             </table>
 
             <div class="callout callout-info">
-                💡 <strong>なぜこの順番なのか？</strong> 「広く集める（Deep Research）→ 絞って整理する（NotebookLM）→ 形にして出す（Google Sites）」は、リサーチ系アウトプットの王道の流れです。1 つのツールで全部やろうとすると、情報が浅くなったり、根拠が曖昧になったりします。<strong>役割を分けることが品質のコツ</strong>です。
+                💡 <strong>なぜこの順番なのか？</strong> 「広く集める（Deep Research）→ 絞って整理する（Gemini Notebook）→ 形にして出す（Google Sites）」は、リサーチ系アウトプットの王道の流れです。1 つのツールで全部やろうとすると、情報が浅くなったり、根拠が曖昧になったりします。<strong>役割を分けることが品質のコツ</strong>です。
             </div>
 
             <h3>✅ 必要な環境</h3>
+            <p>Gemini の Deep Research の利用は18歳以上が対象です。</p>
             <ul>
-                <li><strong>Google アカウント</strong>（NotebookLM・Google Sites で使用。普段お使いのもので OK）</li>
+                <li><strong>Google アカウント</strong>（Gemini Notebook・Google Sites で使用）。学校や職場のアカウントでは、管理者の設定により使えない場合があります。参加前にノートブックとサイトを作れるか確認してください。</li>
                 <li><strong>Deep Research が使える AI</strong>（Gemini / ChatGPT / Genspark など、お使いのものでOK）
                     <div class="callout callout-warn" style="margin-top: 8px;">
                         ⚠️ Deep Research 機能は提供元やプラン（無料/有料）によって名称・使える回数が異なります。お使いの環境で「Deep Research」「詳細リサーチ」などと表示される機能を使ってください。<strong>無い場合でも、通常のチャットで代用する手順</strong>を Step 2 で案内します。
                     </div>
                 </li>
-                <li><strong>ブラウザ</strong>（Google Chrome 推奨）</li>
+                <li><strong>インターネットに接続したパソコンとブラウザ</strong>（Google Chrome 推奨）。Google Sites の作成・編集にはパソコンが必要です。</li>
             </ul>
 
             <div class="nav-btns">
@@ -573,7 +574,7 @@
                 </div>
                 <div class="step-card">
                     <div class="step-num">Step 3（20分）</div>
-                    <h4>📓 NotebookLM で整理</h4>
+                    <h4>📓 Gemini Notebook で整理</h4>
                     <p>調査結果をソースに、要約・比較表・FAQ・音声解説を作ります。</p>
                 </div>
                 <div class="step-card">
@@ -593,7 +594,7 @@
                 <ol style="margin: 0; padding-left: 20px;">
                     <li><strong>Step1 → Step2</strong>: テーマ文（リサーチの問い）</li>
                     <li><strong>Step2 → Step3</strong>: Deep Research のレポート（テキスト/リンク）</li>
-                    <li><strong>Step3 → Step4</strong>: NotebookLM で整理した要約・FAQ・見出し案</li>
+                    <li><strong>Step3 → Step4</strong>: Gemini Notebook で整理した要約・FAQ・見出し案</li>
                     <li><strong>Step4 → Step5</strong>: 公開直前の Google Sites ページ</li>
                 </ol>
             </div>
@@ -644,13 +645,14 @@
 
             <h3>2-1. Deep Research を起動する</h3>
             <p>お使いの AI（Gemini / ChatGPT など）で、<strong>「Deep Research」「詳細リサーチ」</strong>などのモードを ON にします。チャット入力欄の近くにあるトグルやメニューから選べることが多いです。</p>
+            <p>Gemini では、入力欄の［ファイルを追加］→［Deep Research］を選びます。</p>
 
             <div class="img-placeholder">
                 📷 スクリーンショット差し込み位置<br>（Deep Research モードを ON にした画面）
             </div>
 
             <h3>2-2. リサーチ用プロンプトを書く</h3>
-            <p>ただテーマを貼るのではなく、<strong>「観点」「出力フォーマット」「出典の扱い」</strong>を指定すると、後で NotebookLM・Google Sites に流し込みやすいレポートになります。次のプロンプトをベースに、Step 1 のテーマを差し込んでください。</p>
+            <p>ただテーマを貼るのではなく、<strong>「観点」「出力フォーマット」「出典の扱い」</strong>を指定すると、後で Gemini Notebook・Google Sites に流し込みやすいレポートになります。次のプロンプトをベースに、Step 1 のテーマを差し込んでください。</p>
 
             <div class="prompt-box">
                 <span class="prompt-label">▶ コピペ用プロンプト（リサーチ依頼）</span>
@@ -670,17 +672,18 @@
 - 主張ごとに出典の URL を併記
 - 最後に「参考リンク一覧」をまとめる</p>
             </div>
+            <p>Gemini では、プロンプト送信後に表示された調査計画を確認し、［リサーチを開始］を押します。完成したら［開く］を押します。</p>
 
             <div class="callout callout-warn">
                 🤔 <strong>「なぜこのプロンプトになったのか」（発想プロセス）</strong><br>
-                ① <strong>目的の明確化</strong>＝「網羅的に調査」と役割を与える → ② <strong>制約の指定</strong>＝観点を 4 つに絞り、事例には出典を必須にする（後で NotebookLM が根拠として使える）→ ③ <strong>出力フォーマットの固定</strong>＝Markdown ＋ 参考リンク一覧（NotebookLM / Google Sites にそのまま渡せる形）。<br>このように「相手・制約・形」を先に決めると、AI の出力が一気に使いやすくなります。
+                ① <strong>目的の明確化</strong>＝「網羅的に調査」と役割を与える → ② <strong>制約の指定</strong>＝観点を 4 つに絞り、事例には出典を必須にする（後で Gemini Notebook が根拠として使える）→ ③ <strong>出力フォーマットの固定</strong>＝Markdown ＋ 参考リンク一覧（Gemini Notebook / Google Sites にそのまま渡せる形）。<br>このように「相手・制約・形」を先に決めると、AI の出力が一気に使いやすくなります。
             </div>
 
             <h3>2-3. 結果を受け取って保存する</h3>
-            <p>Deep Research は数分かけてレポートを生成します。完成したら、次のどちらかの形で<strong>手元に保存</strong>しておきます（Step 3 で NotebookLM のソースにします）。</p>
+            <p>Deep Research は数分かけてレポートを生成します。完成したら、次のどちらかの形で<strong>手元に保存</strong>しておきます（Step 3 で Gemini Notebook のソースにします）。</p>
             <ul>
                 <li>レポート本文を<strong>コピーしてテキストファイル / Google ドキュメント</strong>に貼る</li>
-                <li>レポート末尾の<strong>参考リンク一覧（URL）</strong>を別途控えておく（NotebookLM にリンクのまま渡せます）</li>
+                <li>レポート末尾の<strong>参考リンク一覧（URL）</strong>を別途控えておく（Gemini Notebook にリンクのまま渡せます）</li>
             </ul>
 
             <div class="callout callout-info">
@@ -696,13 +699,13 @@
         <!-- Step 3 -->
         <section class="section" id="step3">
             <span class="badge badge-time">⏱ 約 20 分</span>
-            <span class="badge badge-tool">NotebookLM</span>
-            <h2>Step 3: NotebookLM で整理・要約する</h2>
-            <p><strong>NotebookLM</strong> は、自分が渡した資料 <em>だけ</em> を根拠に答えてくれる Google の AI です。Step 2 のレポートやリンクを「ソース」として読み込ませることで、<strong>出典に紐づいた信頼できる要約・FAQ</strong>を作れます。ここが、Web ページに載せる「中身」を磨く工程です。</p>
+            <span class="badge badge-tool">Gemini Notebook</span>
+            <h2>Step 3: Gemini Notebook で整理・要約する</h2>
+            <p><strong>Gemini Notebook</strong> は、自分が渡した資料 <em>だけ</em> を根拠に答えてくれる Google の AI です。Step 2 のレポートやリンクを「ソース」として読み込ませることで、<strong>出典に紐づいた信頼できる要約・FAQ</strong>を作れます。ここが、Web ページに載せる「中身」を磨く工程です。</p>
 
             <h3>3-1. ノートブックを新規作成し、ソースを追加する</h3>
             <ol>
-                <li><a href="https://notebooklm.google.com/" target="_blank" rel="noopener">https://notebooklm.google.com/</a> を開き、Google アカウントでログインします。</li>
+                <li><a href="https://notebook.google.com/" target="_blank" rel="noopener">https://notebook.google.com/</a> を開き、Google アカウントでログインします。</li>
                 <li><strong>「新規作成（Create new）」</strong>でノートブックを作ります。</li>
                 <li><strong>「ソースを追加」</strong>から、Step 2 の成果物を投入します。
                     <ul>
@@ -714,41 +717,41 @@
             </ol>
 
             <div class="img-placeholder">
-                📷 スクリーンショット差し込み位置<br>（NotebookLM のソース追加ダイアログ）
+                📷 スクリーンショット差し込み位置<br>（Gemini Notebook のソース追加ダイアログ）
             </div>
 
             <div class="callout callout-tip">
-                💡 ソースは複数入れるほど、要約や比較の精度が上がります。Deep Research のレポート 1 本だけでなく、<strong>元になった参考リンクも数本入れておく</strong>と、NotebookLM が出典をきちんと引用してくれます。
+                💡 ソースは複数入れるほど、要約や比較の精度が上がります。Deep Research のレポート 1 本だけでなく、<strong>元になった参考リンクも数本入れておく</strong>と、Gemini Notebook が出典をきちんと引用してくれます。
             </div>
 
             <h3>3-2. 要約・FAQ・比較を作る</h3>
-            <p>ソースを入れたら、NotebookLM のチャット欄に指示を出して、Web ページに載せる「パーツ」を作っていきます。次の 3 つを順に作りましょう。</p>
+            <p>ソースを入れたら、Gemini Notebook のチャット欄に指示を出して、Web ページに載せる「パーツ」を作っていきます。次の 3 つを順に作りましょう。</p>
 
             <h4>① ページ冒頭の「概要文」</h4>
             <div class="prompt-box">
-                <span class="prompt-label">▶ NotebookLM への指示</span>
+                <span class="prompt-label">▶ Gemini Notebook への指示</span>
                 <p>このノートブックの内容を、（Step1で決めた読者）向けに、3〜4 文の「導入文」にまとめてください。専門用語はかみくだき、読み手がこのページを読むメリットが伝わるようにしてください。</p>
             </div>
 
             <h4>② よくある質問（FAQ）</h4>
             <div class="prompt-box">
-                <span class="prompt-label">▶ NotebookLM への指示</span>
+                <span class="prompt-label">▶ Gemini Notebook への指示</span>
                 <p>このノートブックの内容から、読者が抱きそうな疑問を「Q&A」形式で 5 つ作ってください。回答は 2〜3 文で簡潔に、必ずソースに基づいて答えてください。</p>
             </div>
 
             <h4>③ 事例の比較表</h4>
             <div class="prompt-box">
-                <span class="prompt-label">▶ NotebookLM への指示</span>
+                <span class="prompt-label">▶ Gemini Notebook への指示</span>
                 <p>調査に出てきた具体例・事例を、「名称／特徴／対象者／参考リンク」の 4 列の表に整理してください。ソースに無い情報は補わないでください。</p>
             </div>
 
             <div class="callout callout-warn">
                 ⚠️ <strong>ハルシネーション対策（とても重要）</strong><br>
-                NotebookLM は基本ソースに忠実ですが、過信は禁物です。各回答の文末に表示される<strong>引用（ソースの番号）をクリックし、元の記述と照合</strong>してください。引用が付いていない断定文や、リンク先と食い違う記述は、Web ページに載せる前に必ず人の目で確認・修正します。
+                Gemini Notebook は基本ソースに忠実ですが、過信は禁物です。各回答の文末に表示される<strong>引用（ソースの番号）をクリックし、元の記述と照合</strong>してください。引用が付いていない断定文や、リンク先と食い違う記述は、Web ページに載せる前に必ず人の目で確認・修正します。
             </div>
 
             <h3>3-3. （任意）音声解説で内容を耳でチェック</h3>
-            <p>NotebookLM の<strong>「音声概要（Audio Overview）」</strong>を生成すると、2 人の AI がポッドキャスト風に内容を解説してくれます。テキストを読み返すより<strong>「話の筋が通っているか」を素早く確認</strong>でき、抜け漏れにも気づけます。移動中の最終チェックにも便利です。</p>
+            <p>Gemini Notebook の<strong>［Studio］パネルの［音声解説］</strong>を選びます。初期設定の［詳細］では、2人のAIが会話形式で解説します。テキストを読み返すより<strong>「話の筋が通っているか」を素早く確認</strong>でき、抜け漏れにも気づけます。移動中の最終チェックにも便利です。</p>
 
             <div class="nav-btns">
                 <a href="#step2" class="btn">← Step 2</a>
@@ -761,7 +764,7 @@
             <span class="badge badge-time">⏱ 約 15 分</span>
             <span class="badge badge-tool">Google Sites</span>
             <h2>Step 4: Google Sites でページを公開する</h2>
-            <p>いよいよ仕上げです。Step 3 で NotebookLM が整理してくれた「概要文・FAQ・比較表」を、<strong>Google Sites</strong> に貼り付けて告知ページを組み立てます。ドラッグ＆ドロップだけ、コードは書きません。</p>
+            <p>いよいよ仕上げです。Step 3 で Gemini Notebook が整理してくれた「概要文・FAQ・比較表」を、<strong>Google Sites</strong> に貼り付けて告知ページを組み立てます。ドラッグ＆ドロップだけ、コードは書きません。</p>
 
             <h3>4-1. 新しいサイトを作る</h3>
             <ol>
@@ -790,17 +793,17 @@
                     <tr>
                         <td>② このページについて</td>
                         <td>テキストボックス</td>
-                        <td>NotebookLM の「概要文」（①）</td>
+                        <td>Gemini Notebook の「概要文」（①）</td>
                     </tr>
                     <tr>
                         <td>③ 事例 / おすすめ</td>
                         <td>表（テキストボックスに貼付）</td>
-                        <td>NotebookLM の「比較表」（③）</td>
+                        <td>Gemini Notebook の「比較表」（③）</td>
                     </tr>
                     <tr>
                         <td>④ よくある質問</td>
                         <td>折りたたみテキスト</td>
-                        <td>NotebookLM の「FAQ」（②）</td>
+                        <td>Gemini Notebook の「FAQ」（②）</td>
                     </tr>
                     <tr>
                         <td>⑤ 参考リンク</td>
@@ -823,6 +826,10 @@
                 💡 <strong>FAQ には「折りたたみテキスト」が便利</strong>: 挿入パネルの「折りたたみ可能なテキスト」を使うと、質問をクリックで開閉できる Q&A になり、ページがすっきりします。
             </div>
 
+            <div class="callout callout-info">
+                <strong>比較表の配置について</strong>: 貼り付けた表が4列に分かれているか確認してください。表の形が保たれない場合は、Google スプレッドシートへ移して4列に分かれていることを確認し、Google Sites の［挿入］→［スプレッドシート］から配置する方法もあります。表の閲覧権限もサイトの公開対象に合わせます。
+            </div>
+
             <h3>4-3. 見た目を整える</h3>
             <ul>
                 <li>右上の<strong>「テーマ」</strong>から配色・フォントを選ぶ（テーマカラーを 1 つ決めると統一感が出ます）</li>
@@ -832,9 +839,10 @@
 
             <h3>4-4. 公開する</h3>
             <ol>
+                <li>公開する前に、［共有］→［公開済みサイト］で公開対象を確認し、［保存］または［完了］を押します。</li>
                 <li>右上の<strong>「公開」</strong>ボタンを押します。</li>
                 <li>ページの <strong>URL（ウェブアドレス）</strong>の末尾を、わかりやすい文字列に設定します。</li>
-                <li>公開範囲を選びます（後述の Step 5 で詳しく確認します）。</li>
+                <li>画面内の［公開］を押して確定します。</li>
             </ol>
 
             <div class="nav-btns">
@@ -860,15 +868,17 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>リンクを知っている全員</td>
+                        <td>公開</td>
                         <td>一般公開のイベント告知。URL を配れば誰でも見られる</td>
                     </tr>
                     <tr>
-                        <td>特定のドメイン / ユーザーのみ</td>
+                        <td>制限付き（指定した人だけ）</td>
                         <td>組織内・コミュニティ内限定の共有</td>
                     </tr>
                 </tbody>
             </table>
+
+            <p>学校や職場のアカウントでは、組織内向けの選択肢が出る場合があります。一般公開したページは検索結果に表示される場合があります。</p>
 
             <div class="callout callout-warn">
                 ⚠️ <strong>公開前の最終チェック</strong>: ページに載せた情報（特に日時・場所・申込先・引用した事実）が正しいか、もう一度確認してください。AI が整理してくれた内容でも、<strong>公開した瞬間にあなたの発信</strong>になります。出典の確認は責任ある発信の基本です。
@@ -897,7 +907,7 @@ URL: （公開した Google Sites の URL）
                 <ul style="list-style: none; margin-left: 0;">
                     <li style="margin-bottom:10px;">☐ テーマを「読者 × テーマ × 目的」の 1 行で書けた（Step 1）</li>
                     <li style="margin-bottom:10px;">☐ Deep Research で出典付きの調査レポートを得た（Step 2）</li>
-                    <li style="margin-bottom:10px;">☐ NotebookLM に調査結果をソースとして読み込ませた（Step 3）</li>
+                    <li style="margin-bottom:10px;">☐ Gemini Notebook に調査結果をソースとして読み込ませた（Step 3）</li>
                     <li style="margin-bottom:10px;">☐ 概要文・FAQ・比較表を作り、引用を照合した（Step 3）</li>
                     <li style="margin-bottom:10px;">☐ Google Sites に流し込み、見た目を整えた（Step 4）</li>
                     <li style="margin-bottom:10px;">☐ 公開範囲を確認し、ページを公開した（Step 4・5）</li>
@@ -921,7 +931,7 @@ URL: （公開した Google Sites の URL）
                 <div class="step-card">
                     <div class="step-num">応用 1</div>
                     <h4>研究・レポート作成</h4>
-                    <p>Deep Research × NotebookLM は、卒論やレポートの文献調査・整理にもそのまま使えます。</p>
+                    <p>Deep Research × Gemini Notebook は、卒論やレポートの文献調査・整理にもそのまま使えます。</p>
                 </div>
                 <div class="step-card">
                     <div class="step-num">応用 2</div>
