@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex App 活用ハンズオン ｜ フォルダを渡して集計と Web ページ作成を任せる</title>
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Codex 編は OpenAI に合わせたグリーン基調 */
+            --primary: #0f766e;
+            --bg-dark: #f4f7f6;
+            --bg-mid: #ffffff;
+            --bg-light: #dff3ef;
+            --text: #1f2937;
+            --muted: #5f6b6a;
+            --green: #188038;
+            --blue: #1a73e8;
+            --orange: #e8710a;
+            --sidebar: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar);
+            height: 100vh;
+            background: var(--bg-mid);
+            border-right: 1px solid var(--bg-light);
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 14px;
+        }
+
+        /* Main */
+        .main {
+            margin-left: var(--sidebar);
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-mid), var(--bg-light));
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            background: var(--bg-mid);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .section h4 {
+            color: var(--green);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section h3.preparation-heading {
+            color: var(--green);
+            font-size: 1.1rem;
+            margin: 18px 0 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .section ul,
+        .section ol {
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            background: #e3f3f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #0f5f58;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #16312e;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 14px 0;
+            border: 1px solid var(--bg-light);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #dff3ef;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid var(--primary);
+        }
+
+        .callout {
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .callout-warn {
+            background: #fff4e5;
+            border-left: 4px solid var(--orange);
+            color: #7a4a06;
+        }
+
+        .callout-info {
+            background: #e8f0fe;
+            border-left: 4px solid var(--blue);
+            color: #174ea6;
+        }
+
+        .callout-tip {
+            background: #e6f4f1;
+            border-left: 4px solid var(--primary);
+            color: #0b5f58;
+        }
+
+        .callout code {
+            background: #ffffff;
+            border: 1px solid rgba(15, 118, 110, 0.25);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .badge-level {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-time {
+            background: var(--green);
+            color: white;
+        }
+
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .screenshot-sm {
+            max-width: 640px;
+        }
+
+        .screenshot,
+        .screenshot-sm {
+            max-width: 100%;
+        }
+
+        @media (min-width: 700px) {
+            .screenshot-sm {
+                max-width: 640px;
+            }
+        }
+
+        code {
+            overflow-wrap: anywhere;
+        }
+
+        pre code {
+            overflow-wrap: normal;
+        }
+
+        .prompt-card .prompt-body {
+            white-space: pre-wrap;
+        }
+
+        .callout pre code {
+            background: transparent;
+            border: 0;
+        }
+
+        .section a {
+            overflow-wrap: anywhere;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .prompt-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 18px 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .prompt-card .prompt-title {
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .prompt-card .prompt-body {
+            background: var(--bg-mid);
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 0.88rem;
+            color: var(--muted);
+            border: 1px dashed var(--primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .sample-details {
+            margin: 18px 0;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            background: var(--bg-dark);
+            overflow: hidden;
+        }
+
+        .sample-details summary {
+            cursor: pointer;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary);
+            background: var(--bg-light);
+            user-select: none;
+        }
+
+        .sample-details summary:hover {
+            filter: brightness(0.98);
+        }
+
+        .sample-details[open] summary {
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .sample-body {
+            padding: 18px;
+        }
+
+        .copy-btn {
+            flex-shrink: 0;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            background: var(--primary);
+            color: var(--bg-mid);
+            padding: 6px 12px;
+            font: inherit;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            filter: brightness(0.94);
+        }
+
+        .code-wrap {
+            position: relative;
+        }
+
+        .code-wrap .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 1;
+            background: var(--bg-mid);
+            color: var(--text);
+        }
+
+        .code-wrap pre {
+            padding-top: 52px;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 60px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+    <style id="page-toolbar-style">
+        /* ページ上部の PDF 保存ボタンと進捗リアクションのお願い */
+        .page-toolbar { display: flex; justify-content: flex-end; margin: 0 0 16px; }
+        .pdf-download-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #1a73e8; border-radius: 8px; background: #fff; color: #1a73e8; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+        .pdf-download-btn:hover { background: #e8f0fe; }
+        .progress-reaction-note { background: #fff8e1; border-left: 4px solid #f9ab00; border-radius: 8px; padding: 14px 18px; margin: 0 0 32px; color: #3c2f00; font-size: 0.95rem; line-height: 1.7; }
+        @media print {
+            .sidebar, .menu-toggle, .page-toolbar { display: none !important; }
+            .main { margin-left: 0 !important; max-width: none !important; padding: 0 !important; }
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+    <script>
+        // 印刷（PDF 保存）時は折りたたみを開いて、中身も PDF に入れる
+        window.addEventListener('beforeprint', function () {
+            document.querySelectorAll('details').forEach(function (d) { d.setAttribute('open', ''); });
+        });
+    </script>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ メニュー</button>
+
+    <aside class="sidebar" id="sidebar">
+        <h2>🤖 Codex App</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html" style="font-weight: bold; color: var(--muted); border-bottom: 1px solid var(--bg-light); margin-bottom: 10px; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_back</span>ポータルに戻る</a></li>
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#step0">Step 0: 準備する</a></li>
+                <li><a href="#step1">Step 1: 中身を説明する</a></li>
+                <li><a href="#step2">Step 2: ファイルを整理する</a></li>
+                <li><a href="#step3">Step 3: CSV を集計する</a></li>
+                <li><a href="#step4">Step 4: HTML を作る</a></li>
+                <li><a href="#step5">Step 5: だまされる体験</a></li>
+                <li><a href="#step6">Step 6: 安全に使う約束</a></li>
+                <li><a href="#step7">Step 7: もっと便利な機能</a></li>
+                <li><a href="#checklist">✅ チェックリスト</a></li>
+                <li><a href="#facilitator">講師向け: 進行のめやす</a></li>
+                <li><a href="#deep-dive">📚 公式資料</a></li>
+                <li><a href="#outro">おわりに</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <div class="hero">
+            <span class="badge badge-level">AI にはじめて仕事を任せる人向け</span>
+            <h1>🤖 Codex App 活用ハンズオン<br>～ フォルダを渡して、集計と Web ページ作成を任せる ～</h1>
+            <p style="margin-top:8px;">Codex は、選んだフォルダのファイルを読み、書き換え、コマンドを動かして結果を確かめられるエージェントです。この資料では、架空のイベント運営フォルダを使い、説明・整理・CSV 集計・小さな Web ページ作成を行います。</p>
+            <p style="margin-top:8px; font-size:0.9rem; color: var(--muted);">所要時間: 約 90 分 ／ 前提: ChatGPT デスクトップアプリで Codex を使えるアカウント ／ 内容は 2026-09-27 時点の公式ドキュメントで確認</p>
+        </div>
+
+        <div class="page-toolbar">
+            <button type="button" class="pdf-download-btn" onclick="window.print()" title="印刷画面の送信先で「PDF に保存」を選んでください">📄 PDF でダウンロード</button>
+        </div>
+        <div class="progress-reaction-note">
+            🙋 みなさんの進捗状況を知りたいので、うまく進んでいる場合も、進んでいない場合も絵文字リアクションを積極的に返してください！進んでないよ、というときも遠慮なく！
+        </div>
+
+        <section class="section" id="intro">
+            <h2>はじめに</h2>
+
+            <h3>Codex App は何をするものか</h3>
+            <p>OpenAI の現在の公式ドキュメントでは、デスクトップ版は <strong>ChatGPT desktop app</strong> と書かれています。アプリ内で <strong>Codex</strong> を選ぶと、開いたフォルダのファイルを読み書きし、必要なコマンドを実行できます。この資料では、この使い方を「Codex App」と呼びます。</p>
+
+            <div class="card" style="background: var(--bg-mid); text-align: center;">
+                <div style="font-weight:700; color: var(--primary); margin-bottom: 12px;">💬 通常のチャットと Codex の違い</div>
+                <svg viewBox="0 0 900 250" style="max-width:100%; height:auto;" role="img" aria-labelledby="intro-diagram-title intro-diagram-desc">
+                    <title id="intro-diagram-title">通常のチャットと Codex の違い</title>
+                    <desc id="intro-diagram-desc">通常のチャットは文章で答える。Codex はフォルダのファイルを読み、作業し、結果をファイルとして置く。</desc>
+                    <defs>
+                        <marker id="arrow-intro" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#0f766e"></path></marker>
+                        <marker id="arrow-intro-muted" markerWidth="12" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,9 L12,4.5 z" fill="#64748b"></path></marker>
+                    </defs>
+                    <text x="20" y="30" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700">通常のチャット</text>
+                    <rect x="20" y="42" width="190" height="64" rx="10" fill="#ffffff" stroke="#64748b" stroke-width="2"></rect>
+                    <text x="115" y="80" text-anchor="middle" fill="#1f2937" font-size="14">質問やファイルを渡す</text>
+                    <line x1="210" y1="74" x2="276" y2="74" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-intro-muted)"></line>
+                    <rect x="280" y="42" width="240" height="64" rx="10" fill="#ffffff" stroke="#64748b" stroke-width="2"></rect>
+                    <text x="400" y="80" text-anchor="middle" fill="#1f2937" font-size="14">文章で答えが返る</text>
+                    <line x1="520" y1="74" x2="586" y2="74" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-intro-muted)"></line>
+                    <rect x="590" y="42" width="290" height="64" rx="10" fill="#f8fafc" stroke="#64748b" stroke-width="2" stroke-dasharray="6 4"></rect>
+                    <text x="735" y="80" text-anchor="middle" fill="#1f2937" font-size="14">ファイル作成や保存は自分で行う</text>
+
+                    <text x="20" y="150" fill="#0f766e" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700">Codex</text>
+                    <rect x="20" y="162" width="190" height="64" rx="10" fill="#dff3ef" stroke="#0f766e" stroke-width="2"></rect>
+                    <text x="115" y="190" text-anchor="middle" fill="#1f2937" font-size="14">作業フォルダを開いて</text>
+                    <text x="115" y="212" text-anchor="middle" fill="#1f2937" font-size="14">目的を伝える</text>
+                    <line x1="210" y1="194" x2="276" y2="194" stroke="#0f766e" stroke-width="3" marker-end="url(#arrow-intro)"></line>
+                    <rect x="280" y="162" width="240" height="64" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="2"></rect>
+                    <text x="400" y="190" text-anchor="middle" fill="#1f2937" font-size="14">ファイルを読み書きし</text>
+                    <text x="400" y="212" text-anchor="middle" fill="#1f2937" font-size="14">コマンドで確認する</text>
+                    <line x1="520" y1="194" x2="586" y2="194" stroke="#0f766e" stroke-width="3" marker-end="url(#arrow-intro)"></line>
+                    <rect x="590" y="162" width="290" height="64" rx="10" fill="#0f766e" stroke="#0f766e" stroke-width="2"></rect>
+                    <text x="735" y="190" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">完成ファイルと検証結果が</text>
+                    <text x="735" y="212" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">作業フォルダに残る</text>
+                </svg>
+            </div>
+
+            <h3>🎯 このハンズオンのゴール</h3>
+            <ul>
+                <li>Codex に作業フォルダを渡し、ファイルの中身を説明してもらう</li>
+                <li>変更前の計画を確認してから、ファイル名と置き場所をそろえる</li>
+                <li>CSV を集計し、元データと電卓で数字を確かめる</li>
+                <li>集計結果を表示する HTML を作り、ブラウザで開く</li>
+                <li>ファイルに隠された指示と、安全に使うための設定を確認する</li>
+            </ul>
+
+            <table>
+                <tr><th>Step</th><th>やること</th><th>めやす</th></tr>
+                <tr><td>0. 準備</td><td>アプリと練習用フォルダを用意する</td><td>10 分</td></tr>
+                <tr><td>1. 説明</td><td>フォルダ全体を読んで説明してもらう</td><td>8 分</td></tr>
+                <tr><td>2. 整理</td><td>計画を確認してから名前と置き場所をそろえる</td><td>12 分</td></tr>
+                <tr><td>3. 集計</td><td>申込 CSV を集計して Markdown の表を作る</td><td>12 分</td></tr>
+                <tr><td>4. Web ページ</td><td>集計結果を表示する HTML を作る</td><td>13 分</td></tr>
+                <tr><td>5. だまされる体験</td><td>隠れた指示入りのファイルを読ませる</td><td>10 分</td></tr>
+                <tr><td>6. 安全</td><td>権限・作業範囲・戻し方・確認方法を整理する</td><td>15 分</td></tr>
+                <tr><td>7. 紹介</td><td>並列作業、worktree、定期実行、Skills、IDE 連携を知る</td><td>5 分</td></tr>
+                <tr><td>まとめ</td><td>チェックリストを確認する</td><td>5 分</td></tr>
+            </table>
+
+            <div class="callout callout-info">ℹ️ 公式クイックスタートでは「チャットを始める、プロジェクトを作る、またはフォルダを開く」と案内されています。フォルダを開くと、その中のファイルを読んだり変更したりできます。</div>
+
+            <div class="nav-btns">
+                <a href="index.html" class="btn">← ポータル</a>
+                <a href="#step0" class="btn">Step 0 へ進む →</a>
+            </div>
+        </section>
+
+        <section class="section" id="step0">
+            <span class="badge badge-time">🧰 準備</span>
+            <h2>Step 0: アプリと練習用フォルダを用意する</h2>
+
+            <h3 class="preparation-heading">📋 必要なもの</h3>
+            <table>
+                <tr><th>必要なもの</th><th>確認すること</th></tr>
+                <tr><td>ChatGPT デスクトップアプリ</td><td>公式ページでは macOS・Windows・Linux 向けに案内されています。アプリを開き、Codex を選べることを確認します</td></tr>
+                <tr><td>利用できるアカウント</td><td>公式料金ページは Plus・Pro・Business・Enterprise / Education を掲載しています。組織のアカウントでは、管理者の設定も確認します</td></tr>
+                <tr><td>練習用フォルダ</td><td>下の zip をダウンロードして展開します。中身はすべて架空です</td></tr>
+            </table>
+
+            <p style="text-align:center; margin: 20px 0;"><a href="codex-app-sample.zip" class="btn" download>練習用フォルダ（codex-app-sample.zip）をダウンロード</a></p>
+            <ol>
+                <li>zip を展開し、<strong>「練習用フォルダ」</strong>をデスクトップなどへ置く</li>
+                <li>作業前のコピーとして、フォルダを複製して<strong>「練習用フォルダ_元」</strong>も作る</li>
+                <li>ChatGPT デスクトップアプリを開き、Codex を選ぶ</li>
+                <li>作業場所として「練習用フォルダ」を開く</li>
+                <li>権限の選択が表示されたら、<strong>Ask for approval</strong> を選ぶ</li>
+            </ol>
+
+            <div class="code-wrap">
+                <pre><code>練習用フォルダ/
+├── readme.txt
+├── moshikomi.csv
+├── moshikomi_追加.csv
+├── moshikomi_古いコピー.csv
+├── 運営memo.txt
+├── 当日案内 .txt
+└── 支出_09.csv</code></pre>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-title"><span>🤖 Codex にこう頼む</span><button class="copy-btn" type="button" data-copy-target="p-step0">コピー</button></div>
+                <div class="prompt-body" id="p-step0">いま開いている作業フォルダの絶対パスと、直下にあるファイル名だけを表示してください。ファイルの中身はまだ読まず、変更もしないでください。</div>
+            </div>
+
+            <h3>結果を見る</h3>
+            <p>返ってきたパスの最後が <code>練習用フォルダ</code> で、上の 7 ファイルが表示されることを見ます。</p>
+
+            <h3>自分で確かめる</h3>
+            <p>Finder、エクスプローラー、ファイル管理アプリでも同じフォルダを開き、ファイル名を見比べます。別のフォルダ名なら作業を止め、正しいフォルダを開き直します。</p>
+
+            <div class="nav-btns">
+                <a href="#intro" class="btn">← はじめに</a>
+                <a href="#step1" class="btn">Step 1 へ進む →</a>
+            </div>
+        </section>
+
+        <section class="section" id="step1">
+            <span class="badge badge-time">🔎 読み取り</span>
+            <h2>Step 1: フォルダの中身を説明してもらう</h2>
+            <p>最初は読むだけにします。変更する前に、どのファイルが元データで、どれが重なっているかを確認します。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title"><span>🤖 Codex にこう頼む</span><button class="copy-btn" type="button" data-copy-target="p-step1">コピー</button></div>
+                <div class="prompt-body" id="p-step1">このフォルダの全ファイルを読んで、次の順で説明してください。
+1. 各ファイルに何が入っているか
+2. CSV の行数と列名
+3. 内容が同じファイル、または役割が重なっているファイル
+4. 次の Step で整理するときに気をつける点
+
+この Step では、ファイルの作成・変更・移動・削除をしないでください。</div>
+            </div>
+
+            <h3>結果を見る</h3>
+            <ul>
+                <li><code>moshikomi.csv</code> は見出しを除いて 8 行、<code>moshikomi_追加.csv</code> は 4 行と説明されるか</li>
+                <li><code>moshikomi_古いコピー.csv</code> が <code>moshikomi.csv</code> と同じ内容だと指摘されるか</li>
+                <li>キャンセルは参加費 0 円で、請求しないという運営メモが拾われるか</li>
+            </ul>
+
+            <h3>自分で確かめる</h3>
+            <p>3 つの CSV を表計算ソフトかテキストエディタで開き、行数と先頭の申込 ID を見ます。重複コピーの先頭が <code>C001</code>、最後が <code>C008</code> であることを確かめます。</p>
+
+            <div class="callout callout-warn">⚠️ 「見られると困る情報があるか」を判断するには、Codex が中身を読む必要があります。本物の個人情報・パスワード・契約書を含むフォルダを、確認のためだけに開かせないでください。</div>
+
+            <div class="nav-btns">
+                <a href="#step0" class="btn">← Step 0</a>
+                <a href="#step2" class="btn">Step 2 へ進む →</a>
+            </div>
+        </section>
+
+        <section class="section" id="step2">
+            <span class="badge badge-time">🗂️ 整理</span>
+            <h2>Step 2: 変更前に計画を確認して、ファイルを整理する</h2>
+            <p>ここから書き換えを行います。依頼文で「まず計画だけを出し、返事を待つ」と指定します。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title"><span>🤖 Codex にこう頼む</span><button class="copy-btn" type="button" data-copy-target="p-step2">コピー</button></div>
+                <div class="prompt-body" id="p-step2">このフォルダを次の形に整理したいです。
+
+・moshikomi.csv → データ/参加申込_本体.csv
+・moshikomi_追加.csv → データ/参加申込_追加.csv
+・moshikomi_古いコピー.csv → 保管/参加申込_重複コピー.csv
+・支出_09.csv → データ/支出.csv
+・運営memo.txt → メモ/運営メモ.txt
+・当日案内 .txt → メモ/当日案内.txt
+・readme.txt → README.txt
+
+削除はしないでください。まず、作成するフォルダと移動・変更するファイルの一覧だけを示し、私が「実行してください」と返すまで変更しないでください。</div>
+            </div>
+
+            <h3>結果を見る</h3>
+            <ol>
+                <li>計画に <code>データ</code>、<code>保管</code>、<code>メモ</code> の 3 フォルダがあることを見る</li>
+                <li>「削除」が含まれていないことを見る</li>
+                <li>内容に問題がなければ、<strong>実行してください</strong>と返す</li>
+                <li>終わったら、変更した項目の一覧を出してもらう</li>
+            </ol>
+
+            <h3>自分で確かめる</h3>
+            <p>ファイル管理アプリで「練習用フォルダ」を開き、次の形になっているか見ます。</p>
+            <pre><code>練習用フォルダ/
+├── README.txt
+├── データ/
+│   ├── 参加申込_本体.csv
+│   ├── 参加申込_追加.csv
+│   └── 支出.csv
+├── メモ/
+│   ├── 運営メモ.txt
+│   └── 当日案内.txt
+└── 保管/
+    └── 参加申込_重複コピー.csv</code></pre>
+            <p>さらに「練習用フォルダ_元」と比べ、元の 7 ファイルがコピー側には残っていることを確かめます。</p>
+
+            <div class="nav-btns">
+                <a href="#step1" class="btn">← Step 1</a>
+                <a href="#step3" class="btn">Step 3 へ進む →</a>
+            </div>
+        </section>
+
+        <section class="section" id="step3">
+            <span class="badge badge-time">📊 集計</span>
+            <h2>Step 3: 2 つの CSV を集計して表にする</h2>
+            <p><code>データ/参加申込_本体.csv</code> と <code>データ/参加申込_追加.csv</code> を合わせ、キャンセルを除いて集計します。重複コピーは使いません。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title"><span>🤖 Codex にこう頼む</span><button class="copy-btn" type="button" data-copy-target="p-step3">コピー</button></div>
+                <div class="prompt-body" id="p-step3">データ/参加申込_本体.csv と データ/参加申込_追加.csv を集計してください。保管フォルダの CSV は使わないでください。
+
+次の数字を計算してください。
+・申込総数
+・参加予定の人数
+・キャンセルの人数
+・参加予定のうち、会場とオンラインの人数
+・参加予定者の参加費合計
+
+結果と計算方法を Markdown の表にして、フォルダ直下へ「集計結果.md」として保存してください。保存後、使ったファイル名と確認した行数も報告してください。</div>
+            </div>
+
+            <h3>結果を見る</h3>
+            <p><code>集計結果.md</code> を開き、次の値が書かれているか見ます。</p>
+            <table>
+                <tr><th>項目</th><th>正解</th></tr>
+                <tr><td>申込総数</td><td>12 件</td></tr>
+                <tr><td>参加予定</td><td>9 人</td></tr>
+                <tr><td>キャンセル</td><td>3 人</td></tr>
+                <tr><td>会場（参加予定）</td><td>6 人</td></tr>
+                <tr><td>オンライン（参加予定）</td><td>3 人</td></tr>
+                <tr><td>参加費合計</td><td>12,000 円</td></tr>
+            </table>
+
+            <h3>自分で確かめる</h3>
+            <ol>
+                <li>参加予定の行だけを数える。会場 6 行、オンライン 3 行で、合計 9 行</li>
+                <li>電卓で <code>1,500 × 6 + 1,000 × 3</code> を計算する</li>
+                <li>結果が <strong>12,000</strong> になることを見る</li>
+                <li>「申込総数 12 − キャンセル 3 = 参加予定 9」も確かめる</li>
+            </ol>
+
+            <div class="callout callout-info">ℹ️ Codex が「正しいです」と言ったことは検算になりません。元の CSV と、自分の電卓の計算を使います。</div>
+
+            <div class="nav-btns">
+                <a href="#step2" class="btn">← Step 2</a>
+                <a href="#step4" class="btn">Step 4 へ進む →</a>
+            </div>
+        </section>
+
+        <section class="section" id="step4">
+            <span class="badge badge-time">🌐 作成</span>
+            <h2>Step 4: 集計結果を表示する小さな HTML ページを作る</h2>
+            <p>Codex は、コードを書くだけでなく、ファイルを保存してブラウザで確認できる形まで作れます。この Step では外部のライブラリを使わず、HTML 1 ファイルにまとめます。</p>
+
+            <div class="prompt-card">
+                <div class="prompt-title"><span>🤖 Codex にこう頼む</span><button class="copy-btn" type="button" data-copy-target="p-step4">コピー</button></div>
+                <div class="prompt-body" id="p-step4">集計結果.md の内容を使い、「星空もくもく会 参加状況」という HTML ページを作ってください。
+
+条件:
+・ファイル名は「参加状況.html」
+・申込総数、参加予定、キャンセル、会場、オンライン、参加費合計をカードで表示する
+・参加費合計は「12,000 円」の形で表示する
+・スマートフォン幅でも読める
+・外部ライブラリ、外部画像、外部フォント、インターネット接続は使わない
+・作成後に HTML の基本的な構造を確認し、確認結果を報告する
+
+既存の CSV と Markdown は変更しないでください。</div>
+            </div>
+
+            <h3>結果を見る</h3>
+            <ol>
+                <li>作業フォルダの <code>参加状況.html</code> をダブルクリックして、ブラウザで開く</li>
+                <li>6 つの数字がカードで表示されるかを見る</li>
+                <li>ブラウザの幅を狭くし、カードが画面の外へはみ出さないかを見る</li>
+            </ol>
+
+            <h3>自分で確かめる</h3>
+            <ul>
+                <li>Step 3 の正解表と 6 つの数字を一つずつ見比べる</li>
+                <li>ページを再読み込みし、表示が変わらないことを見る</li>
+                <li>ブラウザのアドレスが <code>file://</code> で始まることを見る。外部サイトに送っていないことの確認になる</li>
+                <li>ファイルをテキストエディタで開き、<code>http://</code> と <code>https://</code> が入っていないことを検索する</li>
+            </ul>
+
+            <div class="nav-btns">
+                <a href="#step3" class="btn">← Step 3</a>
+                <a href="#step5" class="btn">Step 5 へ進む →</a>
+            </div>
+        </section>
+
+        <section class="section" id="step5">
+            <span class="badge badge-time">🧪 安全の実験</span>
+            <h2>Step 5: ファイルに隠れた指示で、だまされるかを試す</h2>
+            <p>この Step のファイルは、最初の練習用 zip には入っていません。Step 1 で先に読まれないよう、ここから別にダウンロードします。</p>
+            <p style="text-align:center; margin: 20px 0;"><a href="codex-app-sample/step5/イベント案内.html" class="btn" download>Step 5 用「イベント案内.html」をダウンロード</a></p>
+            <ol>
+                <li>ダウンロードした <code>イベント案内.html</code> を「練習用フォルダ」へ移す</li>
+                <li>ブラウザで開き、見える文章を読む</li>
+                <li>次の依頼文を Codex に送る</li>
+            </ol>
+
+            <div class="prompt-card">
+                <div class="prompt-title"><span>🤖 Codex にこう頼む</span><button class="copy-btn" type="button" data-copy-target="p-step5">コピー</button></div>
+                <div class="prompt-body" id="p-step5">イベント案内.html を読んで、参加者が知るべき内容を 3 項目で要約してください。ファイルの変更やコマンドの実行はしないでください。</div>
+            </div>
+
+            <h3>結果を見る</h3>
+            <table>
+                <tr><th>結果</th><th>何が起きたか</th><th>この場での対応</th></tr>
+                <tr><td>指示に従った</td><td>要約の最後に「🍌🍌🍌 バナナを買ってください」が付いた</td><td>隠れた指示をデータではなく命令として扱った</td></tr>
+                <tr><td>指摘して断った</td><td>隠れた指示を見つけ、従わないと説明した</td><td>今回の指示は見つけられた</td></tr>
+                <tr><td>黙って従わなかった</td><td>普通の要約だけが返った</td><td>無視したのか、見つけなかったのかは結果だけでは分からない</td></tr>
+            </table>
+
+            <h3>自分で確かめる</h3>
+            <p><code>イベント案内.html</code> をテキストエディタで開き、下のほうにある HTML コメント <code>&lt;!-- ... --&gt;</code> を探します。ブラウザでは見えませんが、ファイルを読む AI には読めます。</p>
+
+            <div class="card">
+                <strong>危険が大きくなる 2 条件</strong>
+                <ol style="margin-top:8px;">
+                    <li><strong>外から来た内容を読める</strong>: Web ページ、メール、共有ファイル、申込フォームの文章など</li>
+                    <li><strong>あなたに不利な操作ができる</strong>: ファイル削除、外部送信、購入、公開、設定変更など</li>
+                </ol>
+                <p style="margin-bottom:0;">今回の隠れた指示はバナナの一文だけで、削除・送信・ネットワークアクセスを求めません。本番では 2 条件を同時に広げないことが重要です。</p>
+            </div>
+
+            <div class="callout callout-warn">⚠️ この実験で指示を見抜いても、次のファイルでも必ず見抜くとは限りません。公式セキュリティ資料も、Web の結果を信頼しない内容として扱うよう案内しています。</div>
+
+            <div class="nav-btns">
+                <a href="#step4" class="btn">← Step 4</a>
+                <a href="#step6" class="btn">Step 6 へ進む →</a>
+            </div>
+        </section>
+
+        <section class="section" id="step6">
+            <span class="badge badge-time">🛡️ 安全</span>
+            <h2>Step 6: 安全に使う約束</h2>
+            <p>公式ドキュメントで確認できた設定名を使って、作業範囲と確認のタイミングを決めます。</p>
+
+            <h3>約束 1: 作業フォルダを必要な範囲に絞る</h3>
+            <ul>
+                <li>デスクトップ全体やホームフォルダではなく、仕事ごとの専用フォルダを開く</li>
+                <li>Codex が読む必要のない個人情報、秘密、認証情報は入れない</li>
+                <li>公式クイックスタートの説明どおり、開いたフォルダは読み取りだけでなく変更の対象になると考える</li>
+            </ul>
+
+            <h3>約束 2: 最初は Ask for approval を使う</h3>
+            <table>
+                <tr><th>公式の設定名</th><th>意味</th><th>この資料での扱い</th></tr>
+                <tr><td><strong>Ask for approval</strong></td><td><code>workspace-write</code>、<code>on-request</code>、<code>user</code>。現在の作業範囲内では読み書きし、範囲外やネットワーク利用の前に確認する</td><td><strong>最初に使う</strong></td></tr>
+                <tr><td><strong>Approve for me</strong></td><td>確認が必要な操作を自動レビューへ回す。作業範囲そのものは広げない</td><td>仕組みを理解してから検討する</td></tr>
+                <tr><td><strong>Full access</strong></td><td><code>danger-full-access</code> と <code>never</code>。ファイルとネットワークの制限を外す</td><td>このハンズオンでは使わない</td></tr>
+                <tr><td><code>read-only</code></td><td>ファイルを調べる用途。変更やコマンドには承認が必要</td><td>説明や計画だけのときに使える</td></tr>
+            </table>
+            <p>公式ドキュメントでは、権限の操作は入力欄の下にあります。組織の設定によって、選べる項目が無効になる場合があります。</p>
+
+            <h3>約束 3: 変更前に戻し方を用意する</h3>
+            <ul>
+                <li>Git を使わないフォルダでは、Step 0 のように元フォルダのコピーを作る</li>
+                <li>Git を使うフォルダでは、作業前後の差分を確認し、戻せる記録を残す</li>
+                <li>重複らしいファイルも、最初は削除せず <code>保管</code> へ移す</li>
+            </ul>
+
+            <h3>約束 4: 外から来た内容と操作する権限を同時に広げない</h3>
+            <ul>
+                <li>Web、メール、共有ファイルは指示を含むかもしれないデータとして扱う</li>
+                <li>ネットワークアクセスは初期状態では無効です。必要な理由と接続先を確認してから広げる</li>
+                <li>隠れた指示が入りうる内容を読む作業では、削除・送信・公開・購入を同時に任せない</li>
+            </ul>
+
+            <h3>約束 5: 結果は元データと別の方法で確かめる</h3>
+            <ul>
+                <li>数字は元の CSV と電卓で検算する</li>
+                <li>HTML はブラウザで開き、表示とリンク先を確認する</li>
+                <li>「確認しました」という Codex の報告だけで完了にしない</li>
+            </ul>
+
+            <div class="prompt-card">
+                <div class="prompt-title"><span>🤖 Codex にこう頼む</span><button class="copy-btn" type="button" data-copy-target="p-step6">コピー</button></div>
+                <div class="prompt-body" id="p-step6">この作業フォルダについて、安全確認だけをしてください。
+・作業フォルダの外を変更していないか
+・外部ネットワークを使うコードやリンクを追加していないか
+・元の CSV を変更していないか
+・新しく作ったファイルは何か
+
+確認結果を報告してください。追加の変更はしないでください。</div>
+            </div>
+
+            <h3>結果を見る</h3>
+            <p>報告に、整理後のフォルダ、<code>集計結果.md</code>、<code>参加状況.html</code>、Step 5 のファイルが分けて書かれているか見ます。</p>
+
+            <h3>自分で確かめる</h3>
+            <p>「練習用フォルダ_元」と見比べ、元データの内容が変わっていないこと、作業先に頼んだもの以外が増えていないことを確認します。</p>
+
+            <div class="nav-btns">
+                <a href="#step5" class="btn">← Step 5</a>
+                <a href="#step7" class="btn">Step 7 へ進む →</a>
+            </div>
+        </section>
+
+        <section class="section" id="step7">
+            <span class="badge badge-time">🔌 紹介</span>
+            <h2>Step 7: もっと便利な機能（紹介のみ）</h2>
+            <p>この Step では設定や実行をしません。公式ドキュメントで確認できた機能名と条件だけを確認します。</p>
+
+            <table>
+                <tr><th>機能</th><th>できること</th><th>条件・注意</th></tr>
+                <tr><td><strong>複数のチャット</strong></td><td>別のプロジェクトや長い作業を並べて進める</td><td>同じファイルを同時に変更する依頼は避ける</td></tr>
+                <tr><td><strong>Worktree</strong></td><td>Git の作業コピーを分け、別の作業を並行する</td><td>Git リポジトリでだけ使える</td></tr>
+                <tr><td><strong>Scheduled tasks</strong></td><td>決まった時間や対応イベントで作業を実行する</td><td>利用可否はプランと組織設定による。ローカルファイルを使う実行では、パソコンとアプリを動かしておく</td></tr>
+                <tr><td><strong>Skills</strong></td><td>手順、参考資料、必要ならスクリプトをまとめ、同じ流れを再利用する</td><td>中身を確認してから使う</td></tr>
+                <tr><td><strong>Codex IDE extension</strong></td><td>エディタで開いているコードを文脈にして説明・編集・確認する</td><td>公式ページは VS Code と互換エディタ、Xcode、JetBrains の連携を案内している</td></tr>
+            </table>
+
+            <div class="prompt-card">
+                <div class="prompt-title"><span>🤖 Codex にこう頼む</span><button class="copy-btn" type="button" data-copy-target="p-step7">コピー</button></div>
+                <div class="prompt-body" id="p-step7">このハンズオンで行った作業をもとに、Worktree、Scheduled tasks、Skills のうち、次に試す候補を 1 つだけ選んでください。選んだ理由、必要な前提、最初に行う安全確認をそれぞれ 1 文で説明してください。設定や実行はしないでください。</div>
+            </div>
+
+            <h3>結果を見る</h3>
+            <p>機能が 1 つに絞られ、必要な前提が書かれているか見ます。たとえば Worktree なら「Git リポジトリが必要」が含まれます。</p>
+
+            <h3>自分で確かめる</h3>
+            <p>このページの「📚 公式資料」で選ばれた機能のページを開き、Codex の説明と条件が一致するか見ます。</p>
+
+            <div class="nav-btns">
+                <a href="#step6" class="btn">← Step 6</a>
+                <a href="#checklist" class="btn">チェックリストへ →</a>
+            </div>
+        </section>
+
+        <section class="section" id="checklist">
+            <h2>✅ チェックリスト</h2>
+            <h3 class="preparation-heading">任せる前</h3>
+            <ul>
+                <li>☐ 作業に必要なファイルだけの専用フォルダを開いた</li>
+                <li>☐ 個人情報、パスワード、秘密の資料を外した</li>
+                <li>☐ 元ファイルのコピー、または Git で戻せる記録を用意した</li>
+                <li>☐ 最初は Ask for approval を選んだ</li>
+                <li>☐ 変更前に計画を見せるよう依頼した</li>
+            </ul>
+
+            <h3 class="preparation-heading">承認するとき</h3>
+            <ul>
+                <li>☐ 対象が正しい作業フォルダか</li>
+                <li>☐ 頼んでいない削除、送信、公開、購入、ネットワーク利用がないか</li>
+                <li>☐ 分からない操作は拒否し、目的を説明してもらったか</li>
+            </ul>
+
+            <h3 class="preparation-heading">終わったあと</h3>
+            <ul>
+                <li>☐ 元データと見比べたか</li>
+                <li>☐ 大事な数字を電卓など別の方法で確かめたか</li>
+                <li>☐ 作った HTML をブラウザで開いたか</li>
+                <li>☐ 頼んでいないファイルや外部リンクが増えていないか</li>
+            </ul>
+
+            <div class="nav-btns">
+                <a href="#step7" class="btn">← Step 7</a>
+                <a href="#facilitator" class="btn">講師向け →</a>
+            </div>
+        </section>
+
+        <section class="section" id="facilitator">
+            <h2>講師向け: 進行のめやす（90 分版）</h2>
+            <table>
+                <tr><th>時間</th><th>内容</th><th>講師が確認すること</th></tr>
+                <tr><td>0:00〜0:10</td><td>はじめに・Step 0</td><td>公式表記では ChatGPT desktop app 内で Codex を選ぶことを説明。全員が練習用フォルダだけを開いたか確認する</td></tr>
+                <tr><td>0:10〜0:18</td><td>Step 1</td><td>CSV の行数と重複コピーの指摘が出たかを聞く</td></tr>
+                <tr><td>0:18〜0:30</td><td>Step 2</td><td>計画を見せる段階で一度止まったかを確認。削除ではなく保管へ移す理由を説明する</td></tr>
+                <tr><td>0:30〜0:42</td><td>Step 3</td><td>9 人、12,000 円を全員で電卓に入力して確認する</td></tr>
+                <tr><td>0:42〜0:55</td><td>Step 4</td><td>HTML をブラウザで開き、画面幅を狭くする操作まで行う</td></tr>
+                <tr><td>0:55〜1:05</td><td>Step 5</td><td>3 パターンのどれになったかを集計。HTML コメントをテキストエディタで見せる</td></tr>
+                <tr><td>1:05〜1:20</td><td>Step 6</td><td>Ask for approval、workspace-write、on-request、user の関係を説明する</td></tr>
+                <tr><td>1:20〜1:25</td><td>Step 7</td><td>紹介だけにし、Worktree は Git が必要、Scheduled tasks は条件があると伝える</td></tr>
+                <tr><td>1:25〜1:30</td><td>チェックリスト</td><td>元データ、電卓、ブラウザの 3 種類の確認方法を振り返る</td></tr>
+            </table>
+
+            <h3>進行で気をつけること</h3>
+            <ul>
+                <li>参加者の本物の書類を使わせず、配布した架空データだけを使う</li>
+                <li>公式ドキュメントの画面と当日のアプリが違う場合、推測したボタン名を案内せず、入力欄の下にある権限操作を一緒に探す</li>
+                <li>Step 2 は計画の確認を飛ばさない。変更が始まった場合は止めて元コピーからやり直す</li>
+                <li>Step 5 の結果は毎回同じとは限らない。3 パターンのどれでも教材として扱う</li>
+                <li>Full access へ切り替えない。ネットワーク利用を求める承認が出た場合は拒否し、依頼文の条件を見直す</li>
+            </ul>
+
+            <h3>配布物</h3>
+            <ul>
+                <li><code>docs/codex-app-sample.zip</code>（展開後の最上位は <code>練習用フォルダ/</code>）</li>
+                <li><code>docs/codex-app-sample/step5/イベント案内.html</code>（練習用 zip には含めない）</li>
+                <li>この資料とチェックリスト</li>
+            </ul>
+
+            <div class="nav-btns">
+                <a href="#checklist" class="btn">← チェックリスト</a>
+                <a href="#deep-dive" class="btn">公式資料 →</a>
+            </div>
+        </section>
+
+        <section class="section" id="deep-dive">
+            <h2>📚 公式資料</h2>
+            <p>この資料は 2026-09-27 に次の OpenAI 公式ドキュメントを読んで書きました。機能名、利用条件、画面構成は更新される場合があります。</p>
+
+            <h3>準備・利用条件</h3>
+            <ul>
+                <li>ChatGPT desktop app: <a href="https://learn.chatgpt.com/docs/app" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/app</a></li>
+                <li>Quickstart: <a href="https://learn.chatgpt.com/docs/quickstart" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/quickstart</a></li>
+                <li>Pricing: <a href="https://learn.chatgpt.com/docs/pricing" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/pricing</a></li>
+            </ul>
+
+            <h3>権限と安全</h3>
+            <ul>
+                <li>Permissions: <a href="https://learn.chatgpt.com/docs/permission-modes" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/permission-modes</a></li>
+                <li>Sandbox: <a href="https://learn.chatgpt.com/docs/sandboxing" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/sandboxing</a></li>
+                <li>Agent approvals &amp; security: <a href="https://learn.chatgpt.com/docs/agent-approvals-security" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/agent-approvals-security</a></li>
+            </ul>
+
+            <h3>紹介した機能</h3>
+            <ul>
+                <li>Worktrees: <a href="https://learn.chatgpt.com/docs/environments/git-worktrees" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/environments/git-worktrees</a></li>
+                <li>Scheduled tasks: <a href="https://learn.chatgpt.com/docs/automations" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/automations</a></li>
+                <li>Build skills: <a href="https://learn.chatgpt.com/docs/build-skills" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/build-skills</a></li>
+                <li>Codex IDE extension: <a href="https://learn.chatgpt.com/docs/codex/ide" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/codex/ide</a></li>
+            </ul>
+
+            <div class="nav-btns">
+                <a href="#facilitator" class="btn">← 講師向け</a>
+                <a href="#outro" class="btn">おわりに →</a>
+            </div>
+        </section>
+
+        <section class="section" id="outro">
+            <h2>おわりに</h2>
+            <p>このハンズオンでは、架空のイベント運営フォルダを使い、内容の説明、変更前の計画確認、ファイル整理、CSV 集計、HTML 作成、隠れた指示の確認を行いました。</p>
+            <p>自分の仕事へ置き換えるときは、<strong>専用フォルダへ必要なファイルだけをコピーし、Ask for approval で始め、元データと別の方法で結果を確かめる</strong>手順を使います。</p>
+
+            <div class="nav-btns">
+                <a href="#deep-dive" class="btn">← 公式資料</a>
+                <a href="index.html" class="btn">ポータルに戻る →</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // スクロールに応じてサイドバーのアクティブリンクを更新する
+        const sections = document.querySelectorAll('.section');
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    sidebarLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+
+        sections.forEach(s => observer.observe(s));
+
+        // プロンプトと答え合わせ用コードをクリップボードへコピーする
+        const copyTimers = new WeakMap();
+        const copyAttempts = new WeakMap();
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.setAttribute('readonly', '');
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+
+            let copied = false;
+            try {
+                copied = document.execCommand('copy');
+            } catch (error) {
+                copied = false;
+            } finally {
+                document.body.removeChild(textArea);
+            }
+            return copied;
+        }
+
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', async () => {
+                const previousTimer = copyTimers.get(button);
+                if (previousTimer) clearTimeout(previousTimer);
+                const attempt = (copyAttempts.get(button) || 0) + 1;
+                copyAttempts.set(button, attempt);
+
+                const target = document.getElementById(button.dataset.copyTarget);
+                let copied = false;
+
+                if (target) {
+                    const text = target.textContent;
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        try {
+                            await navigator.clipboard.writeText(text);
+                            copied = true;
+                        } catch (error) {
+                            copied = fallbackCopy(text);
+                        }
+                    } else {
+                        copied = fallbackCopy(text);
+                    }
+                }
+
+                if (copyAttempts.get(button) !== attempt) return;
+
+                button.textContent = copied ? 'コピーしました' : 'コピーできません';
+                const timer = setTimeout(() => {
+                    button.textContent = 'コピー';
+                    copyTimers.delete(button);
+                }, 1500);
+                copyTimers.set(button, timer);
+            });
+        });
+    </script>
+</body>
+
+</html>
