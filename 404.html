@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>このページは移動しました</title>
+    <script>
+        // 個別の転送ページが無い URL（画像・zip・練習素材など）も、同じ場所の新しい URL へ移す
+        var rest = location.pathname.replace(/^\/antigravity-handson\/?/, '');
+        location.replace('https://kozyszoo.github.io/aidd-handson/' + rest + location.search + location.hash);
+    </script>
+</head>
+<body>
+    <p>ハンズオン資料は <a href="https://kozyszoo.github.io/aidd-handson/">https://kozyszoo.github.io/aidd-handson/</a> へ移動しました。</p>
+</body>
+</html>
